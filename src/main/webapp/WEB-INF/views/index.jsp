@@ -46,6 +46,14 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
 <!-- CSS | Theme Color -->
 <link href="${pageContext.request.contextPath}/css/colors/theme-skin-color-set-1.css" rel="stylesheet" type="text/css">
 
+<style type="text/css">
+.main-bg{
+	background-image: url("${pageContext.request.contextPath}/images/index/main2.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+</style>
+
 <!-- external javascripts -->
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
@@ -76,14 +84,14 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
   <!-- Start main-content -->
   <div class="main-content">
     <!-- Section: home -->
-    <section id="home" class="divider parallax fullscreen" data-parallax-ratio="0.1" data-bg-img="http://placehold.it/1920x1280">
+    <section id="home" class="divider parallax fullscreen" data-parallax-ratio="0.1" >
       <div class="display-table">
-        <div class="display-table-cell">
+        <div class="display-table-cell main-bg" >
           <div class="container pt-150 pb-150">
             <div class="row">
               <div class="col-md-8 col-md-offset-2 text-center">
                 <div class="pb-50 pt-30">
-                   <h3 class="text-uppercase text-white bg-dark-transparent-light font-30 inline-block border-left-theme-color-2-4px border-right-theme-color-2-4px pl-30 pr-30 mb-5 pt-5 pb-5">World Best University</h3>
+                   <h3 class="text-uppercase text-white bg-dark-transparent-light font-30 inline-block border-left-theme-color-2-4px border-right-theme-color-2-4px pl-30 pr-30 mb-5 pt-5 pb-5">World Best Academy</h3>
                   <h1 class="text-uppercase text-white mt-0 inline-block bg-theme-colored-transparent border-left-theme-color-2-6px border-right-theme-color-2-6px pl-40 pr-40 pt-5 pb-5 font-42">Education For Everyone</h1>
                   <p class="font-16 text-white">We provides always our best services for our clients and  always<br> try to achieve our client's trust and satisfaction.</p>
                   <a href="#" class="btn btn-colored btn-lg btn-theme-colored pl-20 pr-20">View Details</a>
@@ -102,10 +110,12 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
           <div class="row">
             <div class="col-md-6">
               <h6 class="letter-space-4 text-gray-darkgray text-uppercase mt-0 mb-0">All About</h6>
-              <h2 class="text-uppercase font-weight-600 text-gray-lightgray mt-0 font-28 line-bottom">The Worldâs Best Education in Our University</h2>
-              <h4 class="text-theme-color-2">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
-              <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
-              <a class="btn btn-theme-colored btn-flat btn-lg mt-10 mb-sm-30" href="#">Know More â</a>
+              <h2 class="text-uppercase font-weight-600 text-gray-lightgray mt-0 font-28 line-bottom">Learning Machine</h2>
+              <h4 class="text-theme-color-2">집에서 언제든지 자신이 원하는 고퀄리티의 강의를 마음껏! <br>어디서도 볼 수 없는 탄탄한 강사진!</h4>
+              <p class="text-white"> 하늘은 바다 끝없이 넓고 푸른 바다 구름은 조각배 바람이 사공 되어 노를 젓는다. 
+              					               하늘은 바다 끝없이 넓고 푸른 바다 구름은 조각배 바람이 사공 되어 노를 젓는다.
+								                하늘은 바다 끝없이 넓고 푸른 바다 구름은 조각배 바람이 사공 되어 노를 젓는다. </p>
+              <a class="btn btn-theme-colored btn-flat btn-lg mt-10 mb-sm-30" href="#">Read More</a>
             </div>
             <div class="col-md-6">
               <div class="video-popup">
@@ -125,8 +135,8 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
         <div class="section-title text-center">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <h2 class="text-uppercase title text-white">Our <span class="text-theme-color-2 font-weight-400"> Courses</span></h2>
-              <p class="text-uppercase letter-space-4 text-gray-lightgray">Best Education & Courses HTML Template</p>
+              <h2 class="text-uppercase title text-white">온라인 <span class="text-theme-color-2 font-weight-400"> 강의</span></h2>
+              <p class="text-uppercase letter-space-4 text-gray-lightgray">사람이 하늘처럼 맑아 보일 때가 있다 그때 나는 그 사람에게서 하늘 냄새를 맡는다</p>
             </div>
           </div>
         </div>
@@ -205,8 +215,10 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
         <div class="section-title text-center">
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
-              <h2 class="text-uppercase title text-white">Our <span class="text-theme-color-2 font-weight-400"> Teachers</span></h2>
-              <p class="text-uppercase letter-space-4 text-gray-lightgray">Best Education & Courses HTML Template</p>
+              <h2 class="text-uppercase title text-white">오프라인 <span class="text-theme-color-2 font-weight-400"> 강의</span></h2>
+              <p class="text-uppercase letter-space-4 text-gray-lightgray">
+			              흔들리지 않고 피는 꽃이 어디 있으랴 이 세상 그 어떤 아름다운 꽃들도 다 흔들리면서 <br>
+			              피었나니 흔들리면서 줄기를 곧게 세웠나니 흔들리지 않고 가는 사람이 어디 있으랴</p>
             </div>
           </div>
         </div>
@@ -309,110 +321,6 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
       </div>
     </section>
 
-    <!-- Section: blog -->
-    <section id="blog" class="divider parallax layer-overlay overlay-dark-6" data-parallax-ratio="0.1" data-bg-img="http://placehold.it/1920x1280">
-      <div class="container pt-150 pb-150">
-        <div class="section-title text-center">
-          <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-              <h2 class="text-uppercase title text-white">Latest <span class="text-theme-color-2 font-weight-400"> News</span></h2>
-              <p class="text-uppercase letter-space-4 text-gray-lightgray">Best Education & Courses HTML Template</p>
-            </div>
-          </div>
-        </div>
-        <div class="section-content">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="owl-carousel-3col">
-                <div class="item">
-                  <article class="post clearfix mb-30 bg-lighter">
-                    <div class="entry-header">
-                      <div class="post-thumb thumb">
-                        <img src="http://placehold.it/330x225" alt="" class="img-responsive img-fullwidth">
-                      </div>
-                      <div class="entry-date media-left text-center flip bg-theme-colored border-top-theme-color-2-3px pt-5 pr-15 pb-5 pl-15">
-                        <ul>
-                          <li class="font-16 text-white font-weight-600">28</li>
-                          <li class="font-12 text-white text-uppercase">Feb</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="entry-content p-15 pt-10 pb-10">
-                      <div class="entry-meta media no-bg no-border mt-0 mb-10">
-                        <div class="media-body pl-0">
-                          <div class="event-content pull-left flip">
-                            <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5"><a href="blog-single-left-sidebar.html">Post title here</a></h4>
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 214 Comments</span>
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-colored"></i> 895 Likes</span>
-                          </div>
-                        </div>
-                      </div>
-                      <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Molestias eius illum libero dolor nobis deleniti<a class="text-theme-color-2 font-12 ml-5" href="blog-single-left-sidebar.html"> View Details</a></p>
-                    </div>
-                  </article>
-                </div>
-                <div class="item">
-                  <article class="post clearfix mb-30 bg-lighter">
-                    <div class="entry-header">
-                      <div class="post-thumb thumb">
-                        <img src="http://placehold.it/330x225" alt="" class="img-responsive img-fullwidth">
-                      </div>
-                      <div class="entry-date media-left text-center flip bg-theme-colored border-top-theme-color-2-3px pt-5 pr-15 pb-5 pl-15">
-                        <ul>
-                          <li class="font-16 text-white font-weight-600">28</li>
-                          <li class="font-12 text-white text-uppercase">Feb</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="entry-content p-15 pt-10 pb-10">
-                      <div class="entry-meta media no-bg no-border mt-0 mb-10">
-                        <div class="media-body pl-0">
-                          <div class="event-content pull-left flip">
-                            <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5"><a href="#">Post title here</a></h4>
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 214 Comments</span>
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-colored"></i> 895 Likes</span>
-                          </div>
-                        </div>
-                      </div>
-                      <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Molestias eius illum libero dolor nobis deleniti<a class="text-theme-color-2 font-12 ml-5" href="#"> View Details</a></p>
-                    </div>
-                  </article>
-                </div>
-                <div class="item">
-                  <article class="post clearfix mb-30 bg-lighter">
-                    <div class="entry-header">
-                      <div class="post-thumb thumb">
-                        <img src="http://placehold.it/570x390" alt="" class="img-responsive img-fullwidth">
-                      </div>
-                      <div class="entry-date media-left text-center flip bg-theme-colored border-top-theme-color-2-3px pt-5 pr-15 pb-5 pl-15">
-                        <ul>
-                          <li class="font-16 text-white font-weight-600">28</li>
-                          <li class="font-12 text-white text-uppercase">Feb</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="entry-content p-15 pt-10 pb-10">
-                      <div class="entry-meta media no-bg no-border mt-0 mb-10">
-                        <div class="media-body pl-0">
-                          <div class="event-content pull-left flip">
-                            <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5"><a href="blog-single-left-sidebar.html">Post title here</a></h4>
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 214 Comments</span>
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-colored"></i> 895 Likes</span>
-                          </div>
-                        </div>
-                      </div>
-                      <p class="mt-5">Lorem ipsum dolor sit amet, consectetur adipisi cing elit. Molestias eius illum libero dolor nobis deleniti<a class="text-theme-color-2 font-12 ml-5" href="blog-single-left-sidebar.html"> View Details</a></p>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
- </div>
   <!-- end main-content -->
 </body>
 </html>
