@@ -187,7 +187,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <div class="col-xs-12 col-sm-4 col-md-5">
                     <div class="widget no-border m-0">
                         <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img
-                                src="images/logo-wide.png" alt=""></a>
+                                src="images/logo-wide22.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4">
