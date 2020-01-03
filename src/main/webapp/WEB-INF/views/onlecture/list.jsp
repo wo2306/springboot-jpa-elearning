@@ -59,6 +59,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body class="">
@@ -109,6 +110,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                       <h4 class="line-bottom mb-10">Accounting Technologies</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
+                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wish list</a>
                     </div>
                   </div>
                 </div>
@@ -121,6 +123,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                       <h4 class="line-bottom mb-10">Modern Technologies</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
+                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wish list</a>
                    </div>
                   </div>
                 </div>
@@ -133,6 +136,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                       <h4 class="line-bottom mb-10">Modern Languages</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
+                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wish list</a>
                    </div>
                   </div>
                 </div>
@@ -145,6 +149,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                       <h4 class="line-bottom mb-10">Computer Technologies</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
+                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wish list</a>
                     </div>
                   </div>
                 </div>
@@ -157,6 +162,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                       <h4 class="line-bottom mb-10">Development Studies</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
+                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wish list</a>
                    </div>
                   </div>
                 </div>
@@ -169,6 +175,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                       <h4 class="line-bottom mb-10">Electrical & Electronic </h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
+                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wish list</a>
                     </div>
                   </div>
                 </div>
