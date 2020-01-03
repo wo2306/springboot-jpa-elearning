@@ -1,5 +1,4 @@
 package project.web.mvc.controller;
 
-public class PaymentController {
-
+public class ReviewController {
 }
