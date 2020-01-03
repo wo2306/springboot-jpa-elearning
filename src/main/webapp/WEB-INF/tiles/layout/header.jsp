@@ -221,12 +221,12 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
             <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive"><a
                     href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em></a>
                 <ul class="menuzord-menu onepage-nav menuzord-indented scrollable" style="max-height: 400px;">
-                    <li class="current active"><a href="#services">공지사항</a></li>
-                    <li><a href="#services">교육원</a></li>
-                    <li><a href="#about">오프라인 강의</a></li>
-                    <li><a href="#courses">온라인 강의</a></li>
-                    <li><a href="#teachers">로드맵</a></li>
-                    <li><a href="#gallery">커뮤니티</a></li>
+                    <li><a href="notice">공지사항</a></li>
+                    <li><a href="academy">교육원</a></li>
+                    <li><a href="offlecture">오프라인 강의</a></li>
+                    <li><a href="onlecture">온라인 강의</a></li>
+                    <li><a href="roadmap">로드맵</a></li>
+                    <li><a href="community">커뮤니티</a></li>
                     <li class="scrollable-fix"></li>
                 </ul>
                 <ul class="pull-right flip hidden-sm hidden-xs">
