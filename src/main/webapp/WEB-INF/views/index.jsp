@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 <meta name="description" content="Learning Machine" />
-<meta name="keywords" content="academy, course, education, learning machine, elearning, learning, 
+<meta name="keywords" content="academy, course, education, learning machine, elearning, learning,
 e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코딩교육, 자바, 자바스크립트" />
 <meta name="author" content="LM company" />
 
@@ -86,14 +86,14 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                    <h3 class="text-uppercase text-white bg-dark-transparent-light font-30 inline-block border-left-theme-color-2-4px border-right-theme-color-2-4px pl-30 pr-30 mb-5 pt-5 pb-5">World Best University</h3>
                   <h1 class="text-uppercase text-white mt-0 inline-block bg-theme-colored-transparent border-left-theme-color-2-6px border-right-theme-color-2-6px pl-40 pr-40 pt-5 pb-5 font-42">Education For Everyone</h1>
                   <p class="font-16 text-white">We provides always our best services for our clients and  always<br> try to achieve our client's trust and satisfaction.</p>
-                  <a href="#" class="btn btn-colored btn-lg btn-theme-colored pl-20 pr-20">View Details</a> 
+                  <a href="#" class="btn btn-colored btn-lg btn-theme-colored pl-20 pr-20">View Details</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section> 
+    </section>
 
     <!-- Section: welcome -->
     <section id="welcome" class="divider layer-overlay overlay-dark-6 parallax" data-parallax-ratio="0.1" data-bg-img="http://placehold.it/1920x1280">
@@ -108,7 +108,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
               <a class="btn btn-theme-colored btn-flat btn-lg mt-10 mb-sm-30" href="#">Know More â</a>
             </div>
             <div class="col-md-6">
-              <div class="video-popup">                
+              <div class="video-popup">
                 <a href="https://www.youtube.com/watch?v=pW1uVUg5wXM" data-lightbox-gallery="youtube-video" title="Video">
                   <img alt="" src="http://placehold.it/555x330" class="img-responsive img-fullwidth">
                 </a>
@@ -327,9 +327,9 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <div class="item">
                   <article class="post clearfix mb-30 bg-lighter">
                     <div class="entry-header">
-                      <div class="post-thumb thumb"> 
-                        <img src="http://placehold.it/330x225" alt="" class="img-responsive img-fullwidth"> 
-                      </div>                    
+                      <div class="post-thumb thumb">
+                        <img src="http://placehold.it/330x225" alt="" class="img-responsive img-fullwidth">
+                      </div>
                       <div class="entry-date media-left text-center flip bg-theme-colored border-top-theme-color-2-3px pt-5 pr-15 pb-5 pl-15">
                         <ul>
                           <li class="font-16 text-white font-weight-600">28</li>
@@ -354,9 +354,9 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <div class="item">
                   <article class="post clearfix mb-30 bg-lighter">
                     <div class="entry-header">
-                      <div class="post-thumb thumb"> 
-                        <img src="http://placehold.it/330x225" alt="" class="img-responsive img-fullwidth"> 
-                      </div>                    
+                      <div class="post-thumb thumb">
+                        <img src="http://placehold.it/330x225" alt="" class="img-responsive img-fullwidth">
+                      </div>
                       <div class="entry-date media-left text-center flip bg-theme-colored border-top-theme-color-2-3px pt-5 pr-15 pb-5 pl-15">
                         <ul>
                           <li class="font-16 text-white font-weight-600">28</li>
@@ -370,7 +370,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                           <div class="event-content pull-left flip">
                             <h4 class="entry-title text-white text-uppercase font-weight-600 m-0 mt-5"><a href="#">Post title here</a></h4>
                             <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-commenting-o mr-5 text-theme-colored"></i> 214 Comments</span>
-                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-colored"></i> 895 Likes</span>                      
+                            <span class="mb-10 text-gray-darkgray mr-10 font-13"><i class="fa fa-heart-o mr-5 text-theme-colored"></i> 895 Likes</span>
                           </div>
                         </div>
                       </div>
@@ -381,9 +381,9 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <div class="item">
                   <article class="post clearfix mb-30 bg-lighter">
                     <div class="entry-header">
-                      <div class="post-thumb thumb"> 
-                        <img src="http://placehold.it/570x390" alt="" class="img-responsive img-fullwidth"> 
-                      </div>                    
+                      <div class="post-thumb thumb">
+                        <img src="http://placehold.it/570x390" alt="" class="img-responsive img-fullwidth">
+                      </div>
                       <div class="entry-date media-left text-center flip bg-theme-colored border-top-theme-color-2-3px pt-5 pr-15 pb-5 pl-15">
                         <ul>
                           <li class="font-16 text-white font-weight-600">28</li>
@@ -414,6 +414,5 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
   </div>
  </div>
   <!-- end main-content -->
-
 </body>
 </html>
