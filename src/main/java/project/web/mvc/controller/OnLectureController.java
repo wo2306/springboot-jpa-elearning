@@ -67,7 +67,7 @@ public class OnLectureController {
 	@RequestMapping("/update")
 	public String update() {
 		OnLecture onLecture = new OnLecture();
-		onLecture.setOnLectureNo(502);
+		onLecture.setOnLectureNo(502L);
 		onLectureService.update(onLecture);
 		
 		return "redirect:";
