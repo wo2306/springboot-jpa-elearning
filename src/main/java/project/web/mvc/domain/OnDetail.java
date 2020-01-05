@@ -27,7 +27,7 @@ public class OnDetail {
 			name="ON_DETAIL_SEQ_GENERATOR", sequenceName = "ON_DETAIL_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "ON_DETAIL_NO")
-    private int onDetailNo;
+    private Long onDetailNo;
 
 	@ManyToOne
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)

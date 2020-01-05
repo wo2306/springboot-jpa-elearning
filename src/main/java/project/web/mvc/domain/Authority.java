@@ -27,7 +27,7 @@ public class Authority {
 			name="AUTHORITY_SEQ_GENERATOR", sequenceName = "AUTHORITY_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "AUTHORITY_NO")
-	private int authorityNo;
+	private Long authorityNo;
 	
 	
 	@ManyToOne

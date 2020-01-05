@@ -31,7 +31,7 @@ public class ClassAnswer {
 			name="CLASS_ANSWER_SEQ_GENERATOR", sequenceName = "CLASS_ANSWER_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "CLASS_ANSWER_NO")
-    private int classAnswerNo;
+    private Long classAnswerNo;
 
 	@ManyToOne
 	@JoinColumn(name = "CLASS_QUESTION_NO", referencedColumnName = "CLASS_QUESTION_NO", nullable = false)

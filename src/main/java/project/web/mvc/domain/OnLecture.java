@@ -36,7 +36,7 @@ public class OnLecture {
 			name="ON_LECTURE_SEQ_GENERATOR", sequenceName = "ON_LECTURE_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "ON_LECTURE_NO")
-    private int onLectureNo;
+    private Long onLectureNo;
 
 	@Column(nullable = false)
     private String onLectureName;

@@ -27,7 +27,7 @@ public class Cart {
 			name="CART_SEQ_GENERATOR", sequenceName = "CART_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "CART_NO")
-    private int cartNo;
+    private Long cartNo;
 
 	@OneToOne
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)

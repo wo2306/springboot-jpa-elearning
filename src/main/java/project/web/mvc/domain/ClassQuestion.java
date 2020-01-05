@@ -34,7 +34,7 @@ public class ClassQuestion {
 			name="CLASS_QUESTION_SEQ_GENERATOR", sequenceName = "CLASS_QUESTION_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "CLASS_QUESTION_NO")
-    private int classQuestionNo;
+    private Long classQuestionNo;
 
 	@ManyToOne
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)

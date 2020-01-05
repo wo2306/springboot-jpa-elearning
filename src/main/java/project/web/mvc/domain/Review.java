@@ -31,7 +31,7 @@ public class Review {
 			name="REVIEW_SEQ_GENERATOR", sequenceName = "REVIEW_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "REVIEW_NO")
-    private int reviewNo;
+    private Long reviewNo;
 
 	@ManyToOne
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)

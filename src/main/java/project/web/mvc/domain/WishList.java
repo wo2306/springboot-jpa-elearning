@@ -27,7 +27,7 @@ public class WishList {
 			name="WISH_LIST_SEQ_GENERATOR", sequenceName = "WISH_LIST_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "WISH_LIST_NO")
-    private int wishListNo;
+    private Long wishListNo;
 
 	@OneToOne
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)

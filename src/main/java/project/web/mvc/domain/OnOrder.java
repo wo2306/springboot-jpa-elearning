@@ -22,7 +22,7 @@ public class OnOrder {
 			name="ON_ORDER_SEQ_GENERATOR", sequenceName = "ON_ORDER_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "ON_ORDER_NO")
-    private int onOrderNo;
+    private Long onOrderNo;
 
 	@ManyToOne
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)

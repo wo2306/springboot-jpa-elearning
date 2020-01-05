@@ -25,7 +25,7 @@ public class Notice {
 			name="NOTICE_SEQ_GENERATOR", sequenceName = "NOTICE_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "NOTICE_NO")
-    private int noticeNo;
+    private Long noticeNo;
 
 	@Column(nullable = false)
     private String noticeTitle;

@@ -33,7 +33,7 @@ public class Roadmap {
 			name="ROADMAP_SEQ_GENERATOR", sequenceName = "ROADMAP_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "ROADMAP_NO")
-    private int roadmapNo;
+    private Long roadmapNo;
 
 	@ManyToMany
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)

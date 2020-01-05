@@ -31,7 +31,7 @@ public class Userdb {
 			name="USERDB_SEQ_GENERATOR", sequenceName = "USERDB_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "USERDB_NO")
-    private int userdbNo;
+    private Long userdbNo;
 
 	@Column(nullable = false)
     private String userdbEmail;

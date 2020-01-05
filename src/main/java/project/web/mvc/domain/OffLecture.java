@@ -31,7 +31,7 @@ public class OffLecture {
 			name="OFF_LECTURE_SEQ_GENERATOR", sequenceName = "OFF_LECTURE_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "OFF_LECTURE_NO")
-    private int offLectureNo;
+    private Long offLectureNo;
 
 	@OneToOne
 	@JoinColumn(name = "ACADEMY_NO", referencedColumnName = "ACADEMY_NO", nullable = false)

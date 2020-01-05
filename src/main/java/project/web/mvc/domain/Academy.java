@@ -26,7 +26,7 @@ public class Academy {
 			name="ACADEMY_SEQ_GENERATOR", sequenceName = "ACADEMY_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "ACADEMY_NO")
-    private int academyNo;
+    private Long academyNo;
 
 	@Column(nullable = false, unique = true)
     private String academyName;
