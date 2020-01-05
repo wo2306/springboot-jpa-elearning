@@ -20,12 +20,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"onDetails","reviews","roadmaps","wishList","cart"})
 public class OnLecture {
 
 	@Id
@@ -40,7 +42,7 @@ public class OnLecture {
     private String onLectureName;
 	
 	@Column(nullable = false)
-	private String onLecture_category;
+	private String onLectureCategory;
 
 	@Column(nullable = false)
     private String onLectureTeacher;
