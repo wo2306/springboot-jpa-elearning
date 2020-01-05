@@ -1,16 +1,14 @@
 package project.web.mvc.domain;
 
-import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-import org.hibernate.annotations.CreationTimestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -19,19 +17,23 @@ import lombok.Setter;
 @AllArgsConstructor
 public class OnOrder {
 
-	@Id
-    private int onorderNo;
+    @Id
+    private Long onorderNo;
 
-    private int onlectureNo;
+    @ManyToOne
+    @JoinColumn(name = "onLectureNo")
+    private OnLecture onLecture;
 
-    private int studentNo;
+    @ManyToOne
+    @JoinColumn(name = "studentno")
+    private Student student;
 
     private String onorderCode;
 
     private String onorderMethod;
 
     private String onorderState;
-    
+
     @CreationTimestamp
     private Date onorderRegdate;
 }

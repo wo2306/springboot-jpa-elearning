@@ -22,6 +22,16 @@ public class OrderController {
         return "payment/checkout";
     }
 
+    @RequestMapping("/success")
+    public String success() {
+        return "payment/success";
+    }
+
+    @RequestMapping("/info")
+    public String myAccount() {
+        return "myPage/info";
+    }
+
     @RequestMapping("/onInsert")
     public String onInsert(OnOrder onOrder) {
         orderService.onInsert(onOrder);

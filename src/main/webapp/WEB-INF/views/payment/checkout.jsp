@@ -95,7 +95,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <table class="table table-striped table-bordered tbl-shopping-cart">
                   <thead>
                     <tr>
-                      <th>Photo</th>
+                      <th>Image</th>
                       <th>Lecture Name</th>
                       <th>Price</th>
                     </tr>
@@ -117,22 +117,40 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                       <td><span class="amount">$68.00</span></td>
                     </tr>
                     <tr>
-                      <td>Order Total</td>
+                      <td>총 결제 금액</td>
                       <td>&nbsp;</td>
                       <td>$250.00</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="col-md-12">
+
+              <div class="col-md-6">
+                <h3 class="mb-30">결제 정보 입력</h3>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="checkuot-form-fname">이름</label>
+                    <input id="checkuot-form-fname" type="email" class="form-control" placeholder="Name">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="checkuot-form-lname">전화번호</label>
+                    <input id="checkuot-form-lname" type="email" class="form-control" placeholder="Phone Number">
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="checkuot-form-cname">이메일 주소</label>
+                      <input id="checkuot-form-cname" type="email" class="form-control" placeholder="Email Address">
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="checkuot-form-city">쿠폰 번호</label>
+                    <input id="checkuot-form-city" type="email" class="form-control" placeholder="쿠폰 번호 입력">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
                 <h3>결제 수단 선택</h3>
                 <div class="payment-method">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" value="option1" checked>
-                      무통장 입금 </label>
-                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order wonât be shipped until the funds have cleared in our account.</p>
-                  </div>
                   <div class="radio">
                     <label>
                       <input type="radio" name="optionsRadios" value="option2" checked>
