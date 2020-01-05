@@ -2,8 +2,14 @@ package project.web.mvc.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -20,18 +26,30 @@ import lombok.Setter;
 public class OnOrder {
 
 	@Id
-    private int onorderNo;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ON_ORDER_SEQ_GENERATOR")
+	@SequenceGenerator(
+			name="ON_ORDER_SEQ_GENERATOR", sequenceName = "ON_ORDER_SEQ",
+			initialValue = 1, allocationSize = 50)
+	@Column(name = "ON_ORDER_NO")
+    private int onOrderNo;
 
-    private int onlectureNo;
+	@ManyToOne
+	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
+    private OnLecture onlecture;
 
-    private int studentNo;
+	@ManyToOne
+	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
+    private Userdb userdb;
 
-    private String onorderCode;
+	@Column(nullable = false)
+    private String onOrderCode;
 
-    private String onorderMethod;
+	@Column(nullable = false)
+    private String onOrderMethod;
 
-    private String onorderState;
+	@Column(nullable = false)
+    private String onOrderState;
     
     @CreationTimestamp
-    private Date onorderRegdate;
+    private Date onOrderRegdate;
 }

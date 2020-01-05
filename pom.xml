@@ -77,11 +77,31 @@
 	    <version>28.1-jre</version>
 	</dependency>
 		
+	<!-- security -->
 <!-- 	<dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-entitymanager</artifactId>
-	    <version>5.1.10.Final</version>
-	</dependency> -->
+       <groupId>org.springframework.security</groupId>
+       <artifactId>spring-security-core</artifactId>
+       <version>4.2.2.RELEASE</version>
+   </dependency>
+   
+   <dependency>
+       <groupId>org.springframework.security</groupId>
+       <artifactId>spring-security-web</artifactId>
+       <version>4.2.2.RELEASE</version>
+   </dependency>
+   
+   <dependency>
+       <groupId>org.springframework.security</groupId>
+       <artifactId>spring-security-config</artifactId>
+       <version>4.2.2.RELEASE</version>
+   </dependency>
+   
+   <dependency>
+       <groupId>org.springframework.security</groupId>
+       <artifactId>spring-security-taglibs</artifactId>
+       <version>4.2.2.RELEASE</version>
+   </dependency> 
+	 -->
 	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -119,7 +139,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+	<!-- security -->
+	<!-- 	<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	 -->	
 	</dependencies>
 
 	<build>
@@ -140,6 +166,18 @@
 				<directory>src/main/java</directory>
 				<includes>
 					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
 				</includes>
 			</resource>
 		</resources>
