@@ -64,7 +64,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
 <body class="">
 <div id="wrapper" class="clearfix">
   <!-- preloader -->
-  <div id="preloader">
+<!--   <div id="preloader">
     <div id="spinner">
       <div class="preloader-dot-loading">
         <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
@@ -72,7 +72,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     </div>
     <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
   </div>  
- 
+  -->
   <!-- Start main-content -->
   <div class="main-content">
     <!-- Section: inner-header -->
