@@ -43,7 +43,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <!-- CSS | Responsive media queries -->
     <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet" type="text/css">
     <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
-    <!-- <link href="css/style.css" rel="stylesheet" type="text/css"> -->
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css">
 
     <!-- CSS | Theme Color -->
     <link href="${pageContext.request.contextPath}/css/colors/theme-skin-color-set-1.css" rel="stylesheet"
@@ -66,7 +66,6 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
 
 <body>
 
-
 <!-- Header -->
 <header id="header" class="header">
     <div class="header-top bg-theme-color-2 sm-text-center p-0">
@@ -84,7 +83,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                             </li>
                             <li class="text-white">|</li>
                             <li>
-                                <a class="text-white" href="#">Login</a>
+                                <a class="text-white" href="login">Login</a>
                             </li>
                         </ul>
                     </div>
@@ -223,8 +222,8 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <ul class="menuzord-menu onepage-nav menuzord-indented scrollable" style="max-height: 400px;">
                     <li><a href="notice">공지사항</a></li>
                     <li><a href="academy">교육원</a></li>
-                    <li><a href="offlecture">오프라인 강의</a></li>
-                    <li><a href="onlecture">온라인 강의</a></li>
+                    <li><a href="offLecture">오프라인 강의</a></li>
+                    <li><a href="onLecture">온라인 강의</a></li>
                     <li><a href="roadmap">로드맵</a></li>
                     <li><a href="community">커뮤니티</a></li>
                     <li class="scrollable-fix"></li>

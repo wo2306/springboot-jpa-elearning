@@ -1,12 +1,9 @@
 package project.web.mvc.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import project.web.mvc.domain.WishList;
 import project.web.mvc.repository.WishListRepository;
 
 @Service
@@ -17,10 +14,9 @@ public class WishListServiceImpl implements WishListService {
 	private final WishListRepository wishlistRepo;
 	
 	@Override
-	public void wishlistInsert(int studentNo, int onLectureNo) {
+	public void wishlistInsert(Long studentNo, Long onLectureNo) {
 		
 		//wishlist에 insert하기 
-		wishlistRepo.save(new WishList(1, onLectureNo, studentNo));		
-	
+		//wishlistRepo.save(new WishList(1, onLectureNo, studentNo));
 	}
 }

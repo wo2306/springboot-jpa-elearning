@@ -12,11 +12,14 @@ public class WishListController {
 	@Autowired
 	private WishListService wishlistService;
 	
+	//wishlist 버튼 눌렀을때
 	@RequestMapping("/wishlist")
 	public void wishlistInsert(int onLectureNo) {
 		//로그인이 되어있을때 csrf에서 studentNo를 빼서 service에 갈때 가져간다.
 
-		//wishlistService.wishlistInsert(studentNo, onLectureNo);
-		 
+		//wishlistService.wishlistInsert(studentNo, onLectureNo); 
 	}
+	
+	//장바구니 안에서 삭제버튼 눌렀을때
+	
 }
