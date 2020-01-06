@@ -4,15 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -65,7 +57,7 @@ public class OnLecture {
     @OneToMany(mappedBy = "onLecture")
     private List<OnDetail>onDetails = new ArrayList<>();
     
-    @OneToMany(mappedBy = "onLecture")
+    @OneToMany(mappedBy = "onLecture", fetch = FetchType.EAGER)
     private List<Review>reviews = new ArrayList<>();
     
     @ManyToMany(mappedBy = "onLectures")
