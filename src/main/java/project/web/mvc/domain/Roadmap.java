@@ -34,6 +34,9 @@ public class Roadmap {
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "ROADMAP_NO")
     private Long roadmapNo;
+	
+	@Column(nullable = false)
+	private Long roadmapCode;
 
 	@ManyToMany
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
