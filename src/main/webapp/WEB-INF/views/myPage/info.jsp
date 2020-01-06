@@ -7,8 +7,51 @@
 <html dir="ltr" lang="ko">
 <head>
 
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Learning Machine"/>
+    <meta name="keywords" content="academy, course, education, learning machine, elearning, learning,
+e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코딩교육, 자바, 자바스크립트"/>
+    <meta name="author" content="LM company"/>
+
     <!-- Page Title -->
     <title>LM company | Learning Machine</title>
+
+    <!-- Favicon and Touch Icons -->
+    <link href="${pageContext.request.contextPath}/images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="${pageContext.request.contextPath}/images/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="${pageContext.request.contextPath}/images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="${pageContext.request.contextPath}/images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="${pageContext.request.contextPath}/images/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+
+    <!-- Stylesheet -->
+    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/css/css-plugin-collections.css" rel="stylesheet"/>
+    <!-- CSS | menuzord megamenu skins -->
+    <link id="menuzord-menu-skins" href="${pageContext.request.contextPath}/css/menuzord-skins/menuzord-rounded-boxed.css" rel="stylesheet"/>
+    <!-- CSS | Main style file -->
+    <link href="${pageContext.request.contextPath}/css/style-main.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Preloader Styles -->
+    <link href="${pageContext.request.contextPath}/css/preloader.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Custom Margin Padding Collection -->
+    <link href="${pageContext.request.contextPath}/css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Responsive media queries -->
+    <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet" type="text/css">
+    <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+    <!-- <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- CSS | Theme Color -->
+    <link href="${pageContext.request.contextPath}/css/colors/theme-skin-color-set-1.css" rel="stylesheet" type="text/css">
+
+    <!-- external javascripts -->
+    <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- JS | jquery plugin collection for this theme -->
+    <script src="${pageContext.request.contextPath}/js/jquery-plugin-collection.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,6 +63,7 @@
 
 <body class="">
 <div id="wrapper" class="clearfix">
+    <!-- preloader -->
     <!-- Start main-content -->
     <div class="main-content">
 
@@ -69,9 +113,6 @@
                                     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">나의 리뷰
                                         <span class="badge">5</span></a></li>
-                                    <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
-                                                               data-toggle="tab" class="font-15 text-uppercase">구매 내역
-                                        <span class="badge">5</span></a></li>
                                 </ul>
 
                                 <!-- Tab panes -->
@@ -85,20 +126,29 @@
                                                     <th>주문날짜</th>
                                                     <th>결제수단</th>
                                                     <th>총 결제 금액</th>
-                                                    <th></th>
+                                                    <th>상세조회</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                <c:choose>
+                                                    <c:when test="list!=null">
                                                 <c:forEach var="dto" items="list">
                                                     <tr>
-                                                        <th scope="row">${dto.onorderCode}</th>
-                                                        <td>${dto.onorderRegdate}</td>
-                                                        <td>${dto.onorderMethod}</td>
-                                                        <td>${dto.onorderPrice}</td>
+                                                        <th scope="row">${dto.onOrderCode}</th>
+                                                        <td>${dto.onOrderRegdate}</td>
+                                                        <td>${dto.onOrderMethod}</td>
+                                                        <td>${dto.onOrderPrice}</td>
                                                         <td><a class="btn btn-success btn-xs" href="#">주문 내역 상세 보기</a>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <tr>
+                                                            <td colspan="5" style="text-align: center">주문 내역이 존재하지 않습니다</td>
+                                                        </tr>
+                                                    </c:otherwise>
+                                                </c:choose>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -111,7 +161,7 @@
                                                 <th>주문날짜</th>
                                                 <th>결제수단</th>
                                                 <th>총 결제 금액</th>
-                                                <th></th>
+                                                <th>상세조회</th>
                                             </tr>
                                             </thead>
                                             <tbody>
