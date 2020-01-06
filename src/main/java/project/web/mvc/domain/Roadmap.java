@@ -35,9 +35,6 @@ public class Roadmap {
 	@Column(name = "ROADMAP_NO")
     private Long roadmapNo;
 	
-	@Column(nullable = false)
-	private Long roadmapCode;
-
 	@ManyToMany
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
 	private List<OnLecture>onLectures = new ArrayList<OnLecture>();

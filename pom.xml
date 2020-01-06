@@ -23,9 +23,9 @@
 		    <project.oauth.version>1.13.1-beta</project.oauth.version>
 		    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
 	
-  <repositories>
+		
+ 	 <repositories>
 		<!-- 오라클라이브러리 다운로드 repository -->
 		<repository>
 			<id>codelds</id>
@@ -38,104 +38,15 @@
 		</repository>
 	</repositories>
 
-	<dependencies>	
-		<!-- jsp페이지 설정 -->
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-core</artifactId>
-			<version>3.0.8</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-servlet</artifactId>
-			<version>3.0.8</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-jsp</artifactId>
-			<version>3.0.8</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-el</artifactId>
-			<version>3.0.8</version>
-		</dependency>
-		<dependency>
-		   <groupId>org.apache.tomcat.embed</groupId>
-		   <artifactId>tomcat-embed-jasper</artifactId>
-		   <version>9.0.8</version>
- 	   </dependency>
- 	   
-		<!-- jstl -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		   
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.3</version>
-			<scope>compile</scope>
-		</dependency>
-	
-		 <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-		<dependency>
-		    <groupId>com.google.guava</groupId>
-		    <artifactId>guava</artifactId>
-		    <version>28.1-jre</version>
-		</dependency>
-		
-		  <!-- YouTube Data V3 support -->
-	    <dependency>
-	      <groupId>com.google.apis</groupId>
-	      <artifactId>google-api-services-youtube</artifactId>
-	      <version>${project.youtube.version}</version>
-	    </dependency>
-	
-	    <dependency>
-	      <groupId>com.google.http-client</groupId>
-	      <artifactId>google-http-client-jackson2</artifactId>
-	      <version>${project.http.version}</version>
-	    </dependency>
-	    <dependency>
-	      <groupId>com.google.oauth-client</groupId>
-	      <artifactId>google-oauth-client-jetty</artifactId>
-	      <version>${project.oauth.version}</version>
-	    </dependency>
-	    <!-- youtube -->
-		
-	<!-- security -->
-<!-- 	<dependency>
-       <groupId>org.springframework.security</groupId>
-       <artifactId>spring-security-core</artifactId>
-       <version>4.2.2.RELEASE</version>
-   </dependency>
-   
-   <dependency>
-       <groupId>org.springframework.security</groupId>
-       <artifactId>spring-security-web</artifactId>
-       <version>4.2.2.RELEASE</version>
-   </dependency>
-   
-   <dependency>
-       <groupId>org.springframework.security</groupId>
-       <artifactId>spring-security-config</artifactId>
-       <version>4.2.2.RELEASE</version>
-   </dependency>
-   
-   <dependency>
-       <groupId>org.springframework.security</groupId>
-       <artifactId>spring-security-taglibs</artifactId>
-       <version>4.2.2.RELEASE</version>
-   </dependency> 
-	 -->
-	
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+<!-- 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -168,13 +79,80 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-	<!-- security -->
-	<!-- 	<dependency>
+		
+				<!-- jsp페이지 설정 -->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-servlet</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-el</artifactId>
+			<version>3.0.8</version>
+		</dependency>
+		<dependency>
+		   <groupId>org.apache.tomcat.embed</groupId>
+		   <artifactId>tomcat-embed-jasper</artifactId>
+		   <version>9.0.8</version>
+ 	   </dependency>
+ 	   
+		<!-- jstl -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.3</version>
+			<scope>compile</scope>
+		</dependency>
+		
+	 <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>28.1-jre</version>
+		</dependency>
+		
+		  <!-- YouTube Data V3 support -->
+	    <dependency>
+	      <groupId>com.google.apis</groupId>
+	      <artifactId>google-api-services-youtube</artifactId>
+	      <version>${project.youtube.version}</version>
+	    </dependency>
+	
+	    <dependency>
+	      <groupId>com.google.http-client</groupId>
+	      <artifactId>google-http-client-jackson2</artifactId>
+	      <version>${project.http.version}</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>com.google.oauth-client</groupId>
+	      <artifactId>google-oauth-client-jetty</artifactId>
+	      <version>${project.oauth.version}</version>
+	    </dependency>
+	    <!-- youtube -->
+			
+<!-- 		
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-	 -->	
+		</dependency> 
+-->
 	</dependencies>
 
 	<build>
@@ -183,54 +161,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
-			<!-- youtube -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<configuration>
-					<mainClass>com.google.api.services.samples.youtube.cmdline.youtube_cmdline_updatevideo_sample.UpdateVideo</mainClass>
-				</configuration>
-			</plugin>
-			
-			<!-- Forces Maven to use Java 1.6 -->
-<!-- 			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<compilerArgument></compilerArgument>
-				</configuration>
-			</plugin> -->
-			
 		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.properties</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.properties</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/*.xml</include>
-				</includes>
-			</resource>
-		</resources>
 	</build>
+
 </project>
