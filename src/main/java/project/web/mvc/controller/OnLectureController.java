@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,20 +16,26 @@ import project.web.mvc.service.OnLectureService;
 @RequestMapping("/onLecture")
 public class OnLectureController {
 	
+	
 	@Autowired
 	private OnLectureService onLectureService;
-	
+
 	@RequestMapping("")
-	public ModelAndView list(ModelAndView mv) {
-		System.out.println("onLecture의 list 호출*********************");
+	public String main() {
+		System.out.println("onLecture의 메인메소드 호출");
+		return "redirect:list";
+	}
+	
+	@RequestMapping("list")
+	public void list(Model model) {
 		List<OnLecture>list = onLectureService.selectAll();
-		System.out.println("컨트롤러에서 받은값");
+		System.out.println("컨트롤러 list 메소드/ selectAll값:");
 		for(OnLecture o: list) {
 			System.out.println(o);
 		}
-		return new ModelAndView("onLecture/list");
+		model.addAttribute("list", list);
 	}
-	
+
 	@RequestMapping("/detail/{onLectureNo}")
 	public ModelAndView detail(@PathVariable int onLectureNo) {
 		System.out.println("onlecture의 detail 호출*********************");
