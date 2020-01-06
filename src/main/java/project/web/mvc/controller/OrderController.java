@@ -27,11 +27,6 @@ public class OrderController {
         return "payment/success";
     }
 
-    @RequestMapping("/info")
-    public String myAccount() {
-        return "myPage/info";
-    }
-
     @RequestMapping("/onInsert")
     public String onInsert(OnOrder onOrder) {
         orderService.onInsert(onOrder);
