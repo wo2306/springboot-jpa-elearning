@@ -60,7 +60,7 @@
                                                                role="tab" data-toggle="tab"
                                                                class="font-15 text-uppercase">오프라인 강의 <span
                                             class="badge">3</span></a></li>
-                                    <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
+                                    <li role="presentation"><a href="wish-list" aria-controls="wishlisttab" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">위시리스트
                                         <span class="badge">5</span></a></li>
                                     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
@@ -173,6 +173,25 @@
                                                 <td><h4>$127.50</h4>
                                                 <td><h4><a href="#"><i class="fa fa-close"></i></a></h4>
                                             </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="wish-list">
+                                        <table class="table">
+                                            <tbody>
+                                            	<tr>
+                                                    <th>위시리스트번호</th>
+                                                    <th>강의번호</th>                                                  
+                                                    <th></th>
+                                           		</tr>
+                                             <c:forEach var="wish" items="list">
+                                                    <tr>
+                                                        <td scope="row">${wish.wishListNo}</td>
+                                                        <td>${wish.onLectureNo}</td>                                                        
+                                                        <td><a class="btn btn-success btn-xs" href="/delete">삭제</a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
