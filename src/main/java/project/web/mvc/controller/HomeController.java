@@ -6,37 +6,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-	@RequestMapping("")
+	@RequestMapping("/")
 	public String index() {
 		System.out.println("홈컨트롤러의 인덱스 호출*************************");
 		
-		return"/index";
+		return"index";
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	public String login() {
 		System.out.println("홈컨트롤러의 로그인 호출 ***************");
-		return "/login";
+		return "login";
 	}
 	
-	@RequestMapping("signUp")
+	@RequestMapping("/signUp")
 	public String signUp() {
-		return "/signUp";
+		return "signUp";
 	}
 	
-	@RequestMapping("logout")
+	@RequestMapping("/logout")
 	public String logout() {
-		return "/logout";
+		return "logout";
 	}
 	
-	@RequestMapping("admin")
+	@RequestMapping("/admin")
 	public String admin() {
-		return "/admin";
+		return "admin";
 	}
 	
-	@RequestMapping("denied")
+	@RequestMapping("/denied")
 	public String denied() {
-		return "/denied";
+		return "denied";
 	}
 	
 	
