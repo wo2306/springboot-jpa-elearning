@@ -9,14 +9,16 @@
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //
 //import lombok.AllArgsConstructor;
-//
 //@Configuration
 //@EnableWebSecurity
 //@AllArgsConstructor
-//public class Security extends WebSecurityConfigurerAdapter {
+//public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //   
+//	private LoginServiceImpl loginService;
+//	
 //	@Bean
 //	public PasswordEncoder passwordEncoder() {
 //		return new BCryptPasswordEncoder();
@@ -32,28 +34,37 @@
 //	
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
-//    	http.authorizeRequests()
-//    	//페이지 권한설정
-//    		.antMatchers("/admin/**").hasRole("ADMIN")
-//    		.antMatchers("/*/**").hasRole("USER")
-//    		.antMatchers("/*").permitAll();
-//    	
-//    	
-//
-//    	//로그인페이지 재정의
-//    	http.formLogin().loginPage("/login");
-//    	
-//    	//비회원이 회원영역 접근시 처리
-//        http.exceptionHandling().accessDeniedPage("/accessDenied");
-//        
-//        //로그아웃처리
-//        http.logout().logoutUrl("/logout").invalidateHttpSession(true);
+//        http.authorizeRequests()
+//        // 페이지 권한 설정
+//        .antMatchers("/admin/**").hasRole("ADMIN")
+//        .antMatchers("/*/**").hasRole("MEMBER")
+//        .antMatchers("/**").permitAll()
+//    .and() // 로그인 설정
+//    	.formLogin()
+//        .loginPage("/login")
+//        .defaultSuccessUrl("")
+//        .permitAll()
+//    .and() // 로그아웃 설정
+//    	.logout()
+//        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//        .logoutSuccessUrl("")
+//        .invalidateHttpSession(true)
+//    .and()
+//        // 403 예외처리 핸들링
+//    	.exceptionHandling().accessDeniedPage("/denied");
 //
 //    }
 //    
 //    @Override
 //    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-//
-//    	//여기 수정해야함
+//    	auth.userDetailsService(loginService).passwordEncoder(passwordEncoder());
+//    	
+//    	//인메모리에 admin 저장
+//    	auth.inMemoryAuthentication()
+//    	.withUser("admin")
+//    	.password("{noop}1234")
+//    	.roles("ADMIN");
+//    	
 //    }
+//    
 //}

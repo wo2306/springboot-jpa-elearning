@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import project.web.mvc.domain.OnDetail;
 
-public interface OnDetailRepository extends CrudRepository<OnDetail, Integer> {
+public interface OnDetailRepository extends CrudRepository<OnDetail, Long> {
 
 }

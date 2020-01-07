@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import lombok.AccessLevel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -14,24 +15,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Setter
-@Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Userdb {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERDB_SEQ_GENERATOR")
 	@SequenceGenerator(
 			name="USERDB_SEQ_GENERATOR", sequenceName = "USERDB_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "USERDB_NO")
-	private Long userdbNo;
+    private Long userdbNo;
+
+	@Column(nullable = false, unique = true)
+    private String userdbEmail;
 
 	@Column(nullable = false)
-	private String userdbEmail;
-
-	@Column(nullable = false)
-	private String userdbPassword;
+    private String userdbPassword;
 
 	@Column(nullable = false, unique = true)
 	private String userdbNickname;

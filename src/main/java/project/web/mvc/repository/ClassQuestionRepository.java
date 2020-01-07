@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import project.web.mvc.domain.ClassQuestion;
 
-public interface ClassQuestionRepository extends CrudRepository<ClassQuestion, Integer> {
+public interface ClassQuestionRepository extends CrudRepository<ClassQuestion, Long> {
 
 }

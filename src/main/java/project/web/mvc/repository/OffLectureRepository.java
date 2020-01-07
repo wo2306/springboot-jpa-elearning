@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import project.web.mvc.domain.OffLecture;
 
-public interface OffLectureRepository extends CrudRepository<OffLecture, Integer> {
+public interface OffLectureRepository extends CrudRepository<OffLecture, Long> {
 
 }
