@@ -4,12 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import project.web.mvc.domain.Userdb;
-import project.web.mvc.security.LoginServiceImpl;
 
 @Controller
 public class HomeController {
 
-	private LoginServiceImpl loginService;
+//	private LoginServiceImpl loginService;
 	
 	@RequestMapping("/")
 	public String index() {
@@ -38,7 +37,7 @@ public class HomeController {
 	//회원가입 처리
 	@RequestMapping("/signUp")
 	public String execSignUp(Userdb userdb) {
-		loginService.joinUser(userdb);
+//		loginService.joinUser(userdb);
 		return "redirect:/login";
 	}
 	

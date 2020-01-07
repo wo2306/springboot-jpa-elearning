@@ -4,23 +4,16 @@ package project.web.mvc.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import lombok.AccessLevel;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -41,27 +34,34 @@ public class Userdb {
     private String userdbPassword;
 
 	@Column(nullable = false, unique = true)
-    private String userdbNickname;
-	
-	@OneToMany(mappedBy = "userdb")
-	private List<Authority>authorities = new ArrayList<>();
-    
-	@OneToMany(mappedBy = "userdb")
-	private List<ClassAnswer>classAnsers = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "userdb")
-	private List<Review>reviews = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "userdb")
-	private List<OffOrder>offOrders = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "userdb")
-	private List<OnOrder>onOrders = new ArrayList<>();
-	
-	@OneToOne(mappedBy = "userdb")
-	private Cart cart;
-	
-	@OneToOne(mappedBy = "userdb")
-	private WishList wishList;
+	private String userdbNickname;
 
+//
+//	@OneToMany(mappedBy = "userdb")
+//	@JsonBackReference
+//	private List<Authority>authorities = new ArrayList<>();
+//
+//	@OneToMany(mappedBy = "userdb")
+//	@JsonBackReference
+//	private List<ClassAnswer>classAnsers = new ArrayList<>();
+//
+//	@OneToMany(mappedBy = "userdb")
+//	@JsonBackReference
+//	private List<Review>reviews = new ArrayList<>();
+//
+//	@OneToMany(mappedBy = "userdb")
+//	@JsonBackReference
+//	private List<OffOrder>offOrders = new ArrayList<>();
+//
+//	@OneToMany(mappedBy = "userdb")
+//	@JsonBackReference
+//	private List<OnOrder>onOrders = new ArrayList<>();
+//
+//	@OneToMany(mappedBy = "userdb", fetch = FetchType.EAGER)
+//	@JsonBackReference
+//	private List<Cart> carts = new ArrayList<>();
+//
+//	@OneToMany(mappedBy = "userdb")
+//	@JsonBackReference
+//	private List<WishList> wishLists = new ArrayList<>();
 }

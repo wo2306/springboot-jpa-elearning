@@ -2,7 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
 <head>
@@ -94,56 +94,37 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                             <li class="mb-0 pb-0">
                                 <div class="top-dropdown-outer pt-5 pb-10">
                                     <a class="top-cart-link has-dropdown text-white text-hover-theme-colored"><i
-                                            class="fa fa-shopping-cart font-13"></i> (12)</a>
+                                            class="fa fa-shopping-cart font-13"></i><span id="cartSize"></span></a>
                                     <ul class="dropdown">
                                         <li>
                                             <!-- dropdown cart -->
                                             <div class="dropdown-cart">
                                                 <table class="table cart-table-list table-responsive">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td><a href="#"><img alt="" src="http://placehold.it/85x85"></a>
-                                                        </td>
-                                                        <td><a href="#"> Product Title</a></td>
-                                                        <td>X3</td>
-                                                        <td>$ 100.00</td>
-                                                        <td><a class="close" href="#"><i
-                                                                class="fa fa-close font-13"></i></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="#"><img alt="" src="http://placehold.it/85x85"></a>
-                                                        </td>
-                                                        <td><a href="#"> Product Title</a></td>
-                                                        <td>X2</td>
-                                                        <td>$ 70.00</td>
-                                                        <td><a class="close" href="#"><i
-                                                                class="fa fa-close font-13"></i></a></td>
-                                                    </tr>
+                                                    <tbody id="cartInner">
+                                                    <tr><td><a href="#"><img alt="" src="http://placehold.it/85x85"></a></td><td><a href="#"></a></td><td></td><td><a class="close" href="${pageContext.request.contextPath}/cart/delete/cartNo"><i class="fa fa-close font-13"></i></a></td></tr>
                                                     </tbody>
                                                 </table>
                                                 <div class="total-cart text-right">
                                                     <table class="table table-responsive">
                                                         <tbody>
                                                         <tr>
-                                                            <td>Cart Subtotal</td>
-                                                            <td>$170.00</td>
+                                                            <td>총 결제 금액</td>
+                                                            <td id="total"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Shipping and Handling</td>
-                                                            <td>$20.00</td>
+                                                            <td>할인 금액</td>
+                                                            <td id="discount" style="color: red"></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Order Total</td>
-                                                            <td>$190.00</td>
+                                                            <td>최종 결제 금액</td>
+                                                            <td id="final" style="font-weight: bold"></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
+
                                                 </div>
                                                 <div class="cart-btn text-right">
-                                                    <a class="btn btn-theme-colored btn-xs" href="shop-cart.html"> View
-                                                        cart</a>
-                                                    <a class="btn btn-dark btn-xs" href="shop-checkout.html">
-                                                        Checkout</a>
+                                                    <div id="cart_btn"></div>
                                                 </div>
                                             </div>
                                             <!-- dropdown cart ends -->
@@ -160,9 +141,9 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                             <div class="search-form-wrapper">
                                                 <form method="get" class="mt-10">
                                                     <input type="text"
-                                                           onfocus="if(this.value =='Enter your search') { this.value = ''; }"
-                                                           onblur="if(this.value == '') { this.value ='Enter your search'; }"
-                                                           value="Enter your search" id="searchinput" name="s" class="">
+                                                           onfocus="if(this.value =='검색어를 입력하세요') { this.value = ''; }"
+                                                           onblur="if(this.value == '') { this.value ='검색어를 입력하세요'; }"
+                                                           value="검색어를 입력하세요" id="searchinput" name="s" class="">
                                                     <label><input type="submit" name="submit" value=""></label>
                                                 </form>
                                             </div>
@@ -186,7 +167,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <div class="col-xs-12 col-sm-4 col-md-5">
                     <div class="widget no-border m-0">
                         <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img
-                                src="images/logo-wide22.png" alt=""></a>
+                                src="${pageContext.request.contextPath}/images/logo-wide22.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4">
@@ -232,7 +213,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                     <li>
                         <!-- Modal: Book Now Starts -->
                         <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"
-                           data-toggle="modal" data-target="#BSParentModal" href="ajax-load/reservation-form.html">마이
+                           data-toggle="modal" data-target="#BSParentModal" onclick="myPage()">마이
                             페이지</a>
                         <!-- Modal: Book Now End -->
                     </li>
@@ -250,7 +231,57 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
         </div>
     </div>
 </header>
+<script>
+    function myPage() {
+        location.href = "${pageContext.request.contextPath}/myPage/info";
+    }
 
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
+    $(function () {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/cart/ajaxList",
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                var size = Object.keys(result).length;
+                var str = "";
+                var totalPrice = 0;
+                var totalDiscount = 0;``
+                $.each(result, function (key, val) {
+                    if (size>0) {
+                        let no = val.cartNo;
+                        let name = val.onLecture.onLectureName;
+                        let price = val.onLecture.onLecturePrice;
+                        totalPrice += price;
+                        let discountPrice = Math.floor(val.onLecture.onLecturePrice * val.onLecture.onLectureDiscount / 100);
+                        str += "<tr><td><a href=\"#\"><img alt=\"\" src=\"http://placehold.it/85x85\"></a></td><td><a href=\"#\">"+ name + "</a></td><td>₩"+ numberWithCommas(price)+"</td><td><a class=\"close\" href=\"${pageContext.request.contextPath}/cart/delete/"+ no +"\"><i class=\"fa fa-close font-13\"></i></a></td></tr>";
+                        totalDiscount += discountPrice;
+                        $("#cart_btn").html("<a class=\"btn btn-theme-colored btn-xs\"\n" +
+                    "                                                       href=\"${pageContext.request.contextPath}/cart/list\"> 장바구니로\n" +
+                    "                                                        이동</a>\n" +
+                    "                                                    <a class=\"btn btn-dark btn-xs\"\n" +
+                    "                                                       href=\"${pageContext.request.contextPath}/cart/checkout\">\n" +
+                    "                                                        구매하기</a>")
+                    } else {
+                        str+="<tr>\n" +
+                            "<td style=\"text-align: right\">현재 장바구니에 담긴 상품이 없습니다.</td>\n" +
+                            "</tr>"
+                    }
+                });
+                $("#cartInner").html(str);
+                $("#cartSize").html("&nbsp;(" + size + ")");
+                $("#total").text("₩" + numberWithCommas(totalPrice));
+                $("#discount").text("₩" + numberWithCommas(totalDiscount));
+                $("#final").text("₩" + numberWithCommas(totalPrice-totalDiscount));
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    })
+</script>
 </body>
 </html>
