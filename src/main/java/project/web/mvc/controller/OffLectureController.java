@@ -27,7 +27,7 @@ public class OffLectureController {
 		List<OffLecture> list = offLectureService.selectAll();
 		model.addAttribute("list", list);
 		//System.out.println("왓니?");
-		return "offLecture/listTest";
+		return "offLecture/listTest"; 
 	}
 	
 	
