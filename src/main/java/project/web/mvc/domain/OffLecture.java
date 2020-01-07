@@ -2,14 +2,7 @@ package project.web.mvc.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -33,7 +26,7 @@ public class OffLecture {
 	@Column(name = "OFF_LECTURE_NO")
     private Long offLectureNo;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "ACADEMY_NO", referencedColumnName = "ACADEMY_NO", nullable = false)
 	private Academy academy;
 
