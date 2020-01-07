@@ -53,7 +53,5 @@ public class ClassQuestion {
     @CreationTimestamp
     private Date classQuestionRegdate;
 
-    @OneToMany(mappedBy = "classQuestion")
-    private List<ClassAnswer>list = new ArrayList<>();
-    
+
 }

@@ -1,5 +1,7 @@
 package project.web.mvc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,32 +17,33 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OnOrder {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ON_ORDER_SEQ_GENERATOR")
 	@SequenceGenerator(
 			name="ON_ORDER_SEQ_GENERATOR", sequenceName = "ON_ORDER_SEQ",
 			initialValue = 1, allocationSize = 50)
 	@Column(name = "ON_ORDER_NO")
-    private Long onOrderNo;
+	private Long onOrderNo;
 
 	@ManyToOne
+//	@JsonManagedReference
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
-    private OnLecture onlecture;
+	private OnLecture onlecture;
 
 	@ManyToOne
+//	@JsonManagedReference
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
-    private Userdb userdb;
+	private Userdb userdb;
 
 	@Column(nullable = false)
-    private String onOrderCode;
+	private String onOrderCode;
 
 	@Column(nullable = false)
-    private String onOrderMethod;
+	private String onOrderMethod;
 
 	@Column(nullable = false)
-    private String onOrderState;
-    
-    @CreationTimestamp
-    private Date onOrderRegdate;
+	private String onOrderState;
+
+	@CreationTimestamp
+	private Date onOrderRegdate;
 }

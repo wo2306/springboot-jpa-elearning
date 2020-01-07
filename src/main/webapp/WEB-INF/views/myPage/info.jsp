@@ -78,15 +78,14 @@
                                                 </thead>
                                                 <tbody>
                                                 <c:choose>
-                                                    <c:when test="list!=null">
-                                                <c:forEach var="dto" items="list">
+                                                    <c:when test="${list!=null}">
+                                                <c:forEach var="dto" items="${list}">
                                                     <tr>
                                                         <th scope="row">${dto.onOrderCode}</th>
                                                         <td>${dto.onOrderRegdate}</td>
                                                         <td>${dto.onOrderMethod}</td>
-                                                        <td>${dto.onOrderPrice}</td>
-                                                        <td><a class="btn btn-success btn-xs" href="#">주문 내역 상세 보기</a>
-                                                        </td>
+                                                        <td>${dto.onlecture.onLecturePrice}</td>
+                                                        <td><a class="btn btn-success btn-xs" href="#">주문 내역 상세 보기</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                     </c:when>
