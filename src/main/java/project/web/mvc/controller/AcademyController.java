@@ -68,7 +68,7 @@ public class AcademyController {
      * 교육원 삭제
      */
 	@RequestMapping("/academyDelete/{academyNo}")
-	public String academyDelete(@PathVariable int academyNo) {
+	public String academyDelete(@PathVariable Long academyNo) {
 		academyService.academyDelete(academyNo);
 		return "redirect:list";
 	}

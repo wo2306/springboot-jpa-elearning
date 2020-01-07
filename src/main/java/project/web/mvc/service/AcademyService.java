@@ -14,7 +14,7 @@ public interface AcademyService {
 	
 	void academyUpdate(Academy academy);
 	
-	void academyDelete(int academyNo);
+	void academyDelete(Long academyNo);
 	
 	Academy selectByAno(Long academyNo);
 }

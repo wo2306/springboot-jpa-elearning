@@ -15,9 +15,22 @@ import project.web.mvc.service.OffLectureService;
 
 
 @Controller
+@RequestMapping("/offLecture")
 public class OffLectureController {
+	
 	@Autowired
 	private OffLectureService offLectureService;
+	
+	@RequestMapping("")
+	public String main(Model model) { 
+		System.out.println("너왓어어어어어?");
+		List<OffLecture> list = offLectureService.selectAll();
+		model.addAttribute("list", list);
+		//System.out.println("왓니?");
+		return "offLecture/listTest";
+	}
+	
+	
 	/**
 	 * off lecture 등록
 	 * */
@@ -36,14 +49,14 @@ public class OffLectureController {
 	public ModelAndView offLecUpdate(OffLecture offLecture) {
 		offLectureService.offLecUpdate(offLecture);
 		OffLecture selectedOffLecture = offLectureService.selectByOffNo(offLecture.getOffLectureNo());
-		return new ModelAndView("offLec/detail", "offLecture", selectedOffLecture);
+		return new ModelAndView("offLecture/detail", "offLecture", selectedOffLecture);
 	}
 	/**
 	 * off lecture 삭제
 	 * */
 	
 	@RequestMapping("/offLecDelete/{offLectureNo}")
-	public String offLecDelete(@PathVariable int offLectureNo) {
+	public String offLecDelete(@PathVariable Long offLectureNo) {
 		offLectureService.offLecDelete(offLectureNo);
 		return "redirect:list";
 	}
@@ -52,19 +65,22 @@ public class OffLectureController {
 	 * off lecture 전체검색
 	 * */
 	
-	@RequestMapping("/list")
-	public void list(Model model) {
+	@RequestMapping("list")
+	public String list(Model model) {
+		System.out.println("너왓어어어어어?");
 		List<OffLecture> list = offLectureService.selectAll();
 		model.addAttribute("list", list);
+		return "offLecture/listTest";
 	}
 	/**
 	 * off lecture 부분검색
 	 * */
 	
-	@RequestMapping("offLecSelect")
-	public OffLecture offLecSelect(Long offLectureNo) {
+	@RequestMapping("/detail/{offLectureNo}")
+	public ModelAndView offLecSelect(@PathVariable Long offLectureNo) {
 		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
-		return offLecture;
+		//System.out.println(offLecture.getOffDetail());
+		return new ModelAndView("offLecture/detail", "offLecture", offLecture);
 	}
 	
 }

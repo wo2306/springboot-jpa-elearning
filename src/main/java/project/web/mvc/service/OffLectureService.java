@@ -11,7 +11,7 @@ public interface OffLectureService {
 	
 	void offLecUpdate(OffLecture offLecture);
 	
-	void offLecDelete(int offLectureNo);
+	void offLecDelete(Long offLectureNo);
 	
 	List<OffLecture> selectAll();
 	

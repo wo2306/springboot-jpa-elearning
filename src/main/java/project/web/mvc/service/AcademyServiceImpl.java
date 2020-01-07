@@ -5,14 +5,17 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 
 import project.web.mvc.domain.Academy;
 import project.web.mvc.repository.AcademyRepository;
 
+@Service
 public class AcademyServiceImpl implements AcademyService {
 
+	
 
 	@Autowired
 	private AcademyRepository academyRepository;
@@ -39,14 +42,14 @@ public class AcademyServiceImpl implements AcademyService {
 	}
 
 	@Override
-	public void academyDelete(int academyNo) {
+	public void academyDelete(Long academyNo) {
 		academyRepository.deleteById(academyNo);
 		
 	}
 
 	@Override
 	public Academy selectByAno(Long academyNo) {
-		Academy academy = academyRepository.findById(academyNo.intValue()).orElse(null);
+		Academy academy = academyRepository.findById(academyNo).orElse(null);
 		return academy;
 	}
 

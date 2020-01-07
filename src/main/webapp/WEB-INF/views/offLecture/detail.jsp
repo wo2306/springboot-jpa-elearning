@@ -28,7 +28,7 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-12 text-center">
-              <h3 class="font-28 text-white">Event Details 1</h2>
+              <h3 class="font-28 text-white">${offLecture.offLectureName}</h2>
               <ol class="breadcrumb text-center text-black mt-10">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Pages</a></li>
@@ -64,28 +64,24 @@
           <div class="col-md-4">
             <ul>
               <li>
-                <h5>Topics:</h5>
-                <p>Web design & development, Graphics design</p>
+                <h5>강의 제목:</h5>
+                <p>${offLecture.offLectureName}</p>
               </li>
               <li>
-                <h5>Host:</h5>
-                <p>Kodesolution Lmd.</p>
+                <h5>강사:</h5>
+                <p>${offLecture.offLectureTeacher}</p>
               </li>
               <li>
-                <h5>Location:</h5>
-                <p>#405, Lan Streen, Los Vegas, USA</p>
+                <h5>강의 장소</h5>
+                <p>${offLecture.academy.academyAddrCity}</p>
               </li>
               <li>
-                <h5>Start Date:</h5>
-                <p>January 26, 2016</p>
+                <h5>강의 시작일</h5>
+                <p>${offLecture.offLectureDate}</p>
               </li>
               <li>
-                <h5>End Date:</h5>
-                <p>February 10, 2016</p>
-              </li>
-              <li>
-                <h5>Website:</h5>
-                <p>kodesolution.com</p>
+                <h5>종강일</h5>
+                <p>${offLecture.offLectureDate}</p>
               </li>
               <li>
                 <h5>Share:</h5>

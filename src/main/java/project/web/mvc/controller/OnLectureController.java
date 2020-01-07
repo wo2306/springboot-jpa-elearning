@@ -33,7 +33,7 @@ public class OnLectureController {
 		for(OnLecture o: list) {
 			System.out.println(o);
 		}
-		model.addAttribute("list", list);
+		model.addAttribute("onLecutre/list", list);
 	}
 
 	@RequestMapping("/detail/{onLectureNo}")
