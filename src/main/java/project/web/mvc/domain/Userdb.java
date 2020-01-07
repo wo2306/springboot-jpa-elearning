@@ -13,15 +13,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Setter
 @Getter
-@NoArgsConstructor
+@Setter
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Userdb {
 	
@@ -33,7 +34,7 @@ public class Userdb {
 	@Column(name = "USERDB_NO")
     private Long userdbNo;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
     private String userdbEmail;
 
 	@Column(nullable = false)
@@ -41,7 +42,6 @@ public class Userdb {
 
 	@Column(nullable = false, unique = true)
     private String userdbNickname;
-	
 	
 	@OneToMany(mappedBy = "userdb")
 	private List<Authority>authorities = new ArrayList<>();
@@ -63,5 +63,5 @@ public class Userdb {
 	
 	@OneToOne(mappedBy = "userdb")
 	private WishList wishList;
-	
+
 }

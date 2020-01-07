@@ -59,7 +59,7 @@ public class OnLectureController {
 	}
 	
 	@RequestMapping("/delete/{onLectureNo}")
-	public String delete(@PathVariable int onLectureNo) {
+	public String delete(@PathVariable Long onLectureNo) {
 		
 		onLectureService.delete(onLectureNo);
 		return "onLecture/list";
