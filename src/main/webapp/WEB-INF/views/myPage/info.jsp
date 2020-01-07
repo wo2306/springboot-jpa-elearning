@@ -4,22 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html dir="ltr" lang="ko">
 <head>
-
-    <!-- Page Title -->
     <title>LM company | Learning Machine</title>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body class="">
 <div id="wrapper" class="clearfix">
+    <!-- preloader -->
     <!-- Start main-content -->
     <div class="main-content">
 
@@ -31,11 +22,11 @@
                 <div class="section-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="title text-white">My Account</h2>
+                            <h2 class="title text-white">마이 페이지</h2>
                             <ol class="breadcrumb text-left text-black mt-10">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Pages</a></li>
-                                <li class="active text-gray-silver">Page Title</li>
+                                <li><a href="#">홈</a></li>
+                                <li><a href="#">마이페이지</a></li>
+                                <li class="active text-gray-silver">구매내역 조회</li>
                             </ol>
                         </div>
                     </div>
@@ -69,9 +60,6 @@
                                     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">나의 리뷰
                                         <span class="badge">5</span></a></li>
-                                    <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
-                                                               data-toggle="tab" class="font-15 text-uppercase">구매 내역
-                                        <span class="badge">5</span></a></li>
                                 </ul>
 
                                 <!-- Tab panes -->
@@ -85,20 +73,28 @@
                                                     <th>주문날짜</th>
                                                     <th>결제수단</th>
                                                     <th>총 결제 금액</th>
-                                                    <th></th>
+                                                    <th>상세조회</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <c:forEach var="dto" items="list">
+                                                <c:choose>
+                                                    <c:when test="${list!=null}">
+                                                <c:forEach var="dto" items="${list}">
                                                     <tr>
-                                                        <th scope="row">${dto.onorderCode}</th>
-                                                        <td>${dto.onorderRegdate}</td>
-                                                        <td>${dto.onorderMethod}</td>
-                                                        <td>${dto.onorderPrice}</td>
-                                                        <td><a class="btn btn-success btn-xs" href="#">주문 내역 상세 보기</a>
-                                                        </td>
+                                                        <th scope="row">${dto.onOrderCode}</th>
+                                                        <td>${dto.onOrderRegdate}</td>
+                                                        <td>${dto.onOrderMethod}</td>
+                                                        <td>${dto.onlecture.onLecturePrice}</td>
+                                                        <td><a class="btn btn-success btn-xs" href="#">주문 내역 상세 보기</a></td>
                                                     </tr>
                                                 </c:forEach>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <tr>
+                                                            <td colspan="5" style="text-align: center">주문 내역이 존재하지 않습니다</td>
+                                                        </tr>
+                                                    </c:otherwise>
+                                                </c:choose>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -111,7 +107,7 @@
                                                 <th>주문날짜</th>
                                                 <th>결제수단</th>
                                                 <th>총 결제 금액</th>
-                                                <th></th>
+                                                <th>상세조회</th>
                                             </tr>
                                             </thead>
                                             <tbody>
