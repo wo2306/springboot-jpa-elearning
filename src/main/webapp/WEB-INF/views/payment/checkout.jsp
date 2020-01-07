@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="title text-white">강의 구매하기</h3>
-                            <ul class="list-inline text-white">
+                            <ul class="cartList-inline text-white">
                                 <li>장바구니 /</li>
                                 <li><span class="text-gray">강의 구매</span></li>
                             </ul>
@@ -51,21 +51,37 @@
                                     </thead>
                                     <tbody>
                                     <c:choose>
-                                        <c:when test="list!=null">
-                                            <c:forEach items="list" var="dto">
-                                                <c:set var="price_sum" value="${price_sum+dto.onLecturePrice}"/>
+                                        <c:when test="${cartList!=null}">
+                                            <c:forEach items="${cartList}" var="dto">
+                                                <c:set var="price_sum"
+                                                       value="${price_sum+dto.onLecture.onLecturePrice}"/>
+                                                <c:set var="discount_sum" value="${discount_sum+dto.onLecture.onLecturePrice*dto.onLecture.onLectureDiscount/100}"/>
                                                 <tr>
                                                     <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                                   src="${pageContext.request.contextPath}/onlecture/images/${dto.onLectureName}"></a>
+                                                                                                   src="${pageContext.request.contextPath}/onlecture/images/${dto.onLecture.onLectureName}"></a>
                                                     </td>
-                                                    <td><a href="#">${dto.onLectureName}</a></td>
-                                                    <td>${dto.onLecturePrice}</td>
+                                                    <td><a href="#">${dto.onLecture.onLectureName}</a></td>
+                                                    <td><fmt:formatNumber value="${dto.onLecture.onLecturePrice}"
+                                                                          pattern="₩#,###.##"/></td>
                                                 </tr>
                                             </c:forEach>
                                             <tr>
                                                 <td>총 결제 금액</td>
                                                 <td>&nbsp;</td>
-                                                <td id="total_price">100<c:out value="${price_sum}"/></td>
+                                                <td id="total_price" style="font-weight: bold"><fmt:formatNumber value="${price_sum}"
+                                                                                       pattern="₩#,###"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>할인 금액</td>
+                                                <td>&nbsp;</td>
+                                                <td id="discount_price" style="color: red"><fmt:formatNumber value="${discount_sum}"
+                                                                                          pattern="₩#,###"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-weight: bold">최종 결제 금액</td>
+                                                <td>&nbsp;</td>
+                                                <td id="final_price" style="font-weight: bold"><fmt:formatNumber value="${price_sum-discount_sum}"
+                                                                                       pattern="₩#,###"/></td>
                                             </tr>
                                         </c:when>
                                         <c:otherwise>
@@ -81,7 +97,7 @@
                                 <h3 class="mb-30">결제 정보 입력</h3>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="checkuot-form-fname">이름</label>
+                                        <label for="checkuot-form-fname">이메일주소</label>
                                         <input id="checkuot-form-fname" type="email" class="form-control"
                                                placeholder="Name">
                                     </div>
@@ -89,18 +105,6 @@
                                         <label for="checkuot-form-lname">전화번호</label>
                                         <input id="checkuot-form-lname" type="email" class="form-control"
                                                placeholder="Phone Number">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="checkuot-form-cname">이메일 주소</label>
-                                            <input id="checkuot-form-cname" type="email" class="form-control"
-                                                   placeholder="Email Address">
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="checkuot-form-city">쿠폰 번호</label>
-                                        <input id="checkuot-form-city" type="email" class="form-control"
-                                               placeholder="쿠폰 번호 입력">
                                     </div>
                                 </div>
                             </div>
@@ -114,13 +118,6 @@
                                         <p>Please send your cheque to Store Name, Store Street, Store Town, Store
                                             State
                                             / County, Store Postcode.</p>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" value="option3" checked>
-                                            무통장 입금 </label>
-                                        <p>Please use your Order ID as the payment reference. Your order won't be
-                                            shipped until the funds have cleared in our account.</p>
                                     </div>
                                 </div>
                             </div>
@@ -146,26 +143,22 @@
             pg: 'html5_inicis', // pg 사 선택
             pay_method: 'card',
             merchant_uid: 'merchant_' + new Date().getTime(),
-            name: '주문명:결제테스트',
-            amount: 100,
-            buyer_email: 'iamport@siot.do',
-            buyer_name: "고한별",
-            buyer_tel: '010-1234-5678',
+            name: 'Learning Machine Paying',
+            amount: $("#final_price").text().replace(",", "").replace("₩", ""),
+            buyer_email: $("#checkuot-form-cname").val(),
+            buyer_name: $("#checkuot-form-fname").val(),
+            buyer_tel: $("#checkuot-form-lname").val(),
             buyer_addr: '서울특별시 강남구 삼성동',
-            buyer_postcode: '123-456',
+            buyer_postcode: '42150',
             m_redirect_url: '${pageContext.request.contextPath}/order/success'
         }, function (rsp) {
             if (rsp.success) {
-                var msg = '결제가 완료되었습니다.';
-                msg += '고유ID : ' + rsp.imp_uid;
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
+                let msg = '결제가 완료되었습니다.';
                 alert(msg);
             } else {
-                var msg = '결제에 실패하였습니다. 결제 확인창으로 돌아갑니다.'
+                let msg = '결제에 실패하였습니다. 결제 확인창으로 되돌아갑니다.'
                 alert(msg);
-                location.href = "${pageContext.request.contextPath}/order/checkout";
+                location.href = "${pageContext.request.contextPath}/cart/checkout";
             }
         });
     }

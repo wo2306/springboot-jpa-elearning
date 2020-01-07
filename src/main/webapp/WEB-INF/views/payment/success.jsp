@@ -41,9 +41,9 @@
                     <div class="col-md-6 col-md-push-3">
                         <h4 class="mt-0 pt-5"> 결제에 성공하였습니다 </h4>
                         <hr>
-                        <c:forEach var="dto" items="list">
-                            <h5>${dto.onLectureName}</h5>
-                            <p>${dto.onLecturePrice}</p>
+                        <c:forEach var="dto" items="${list}">
+                            <h5>${dto.onLecture.onLectureName}</h5>
+                            <p>${dto.onLecture.onLecturePrice}</p>
                         </c:forEach>
                         <a href="/order/info" class="btn btn-dark btn-theme-colored">구매내역</a>
                         <a href="/" class="btn btn-dark btn-theme-colored">메인으로</a>
