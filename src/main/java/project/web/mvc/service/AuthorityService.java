@@ -1,10 +1,10 @@
 package project.web.mvc.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import project.web.mvc.domain.Authority;
 
 public interface AuthorityService {
 
-	Optional<Authority> selectByUserdbNo(Long userdbNo);
+	List<Authority> selectByUserdbNo(Long userdbNo);
 }

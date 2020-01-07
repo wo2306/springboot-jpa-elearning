@@ -1,6 +1,6 @@
 package project.web.mvc.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ public class AuthorityServiceImpl implements AuthorityService{
 	private AuthorityRepository authorityRepository;
 	
 	@Override
-	public Optional<Authority> selectByUserdbNo(Long userdbNo) {
-		Optional<Authority>list =  authorityRepository.findById(userdbNo);
+	public List<Authority> selectByUserdbNo(Long userdbNo) {
+		List<Authority>list = authorityRepository.findByUserdbUserdbNo(userdbNo);
 		return list;
 	}
 
