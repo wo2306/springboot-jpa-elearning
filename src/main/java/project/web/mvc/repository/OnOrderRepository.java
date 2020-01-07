@@ -9,5 +9,5 @@ import project.web.mvc.domain.OnOrder;
 
 public interface OnOrderRepository extends PagingAndSortingRepository<OnOrder, Long> {
 
-    Page<OnOrder> findByUserdbEmail(String userdbEmail, Pageable pageable);
+    Page<OnOrder> findByUserdbUserdbEmail(String userdbEmail, Pageable pageable);
 }

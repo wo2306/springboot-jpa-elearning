@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import project.web.mvc.domain.Review;
 
-public interface ReviewRepository extends CrudRepository<Review, Integer> {
+public interface ReviewRepository extends CrudRepository<Review, Long> {
 
 }

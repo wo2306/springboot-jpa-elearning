@@ -3,6 +3,7 @@ package project.web.mvc.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.web.mvc.domain.OffOrder;
@@ -17,10 +18,6 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
 
-    @RequestMapping("/checkout")
-    public String checkout() {
-        return "payment/checkout";
-    }
 
     @RequestMapping("/success")
     public String success() {
@@ -36,13 +33,6 @@ public class OrderController {
     public String onInsert(OnOrder onOrder) {
         orderService.onInsert(onOrder);
         return "payment/success";
-    }
-
-    @ResponseBody
-    @RequestMapping("/onSelect")
-    public List<OnOrder> onSelect(int pageNum) {
-        List<OnOrder> list = orderService.onSelect(pageNum);
-        return list;
     }
 
     @RequestMapping("/offInsert")

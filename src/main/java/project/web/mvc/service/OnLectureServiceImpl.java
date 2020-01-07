@@ -41,7 +41,7 @@ public class OnLectureServiceImpl implements OnLectureService {
 	}
 
 	@Override
-	public void delete(int onLectureNo) {
+	public void delete(Long onLectureNo) {
 		System.out.println("딜리트실행");
 		onLectureRepository.deleteById(onLectureNo);
 	
@@ -54,7 +54,7 @@ public class OnLectureServiceImpl implements OnLectureService {
 		
 	}
 	
-	public void selectById(Integer onLectureNo) {
+	public void selectById(Long onLectureNo) {
 		onLectureRepository.findById(onLectureNo);
 		//업데이트 덜함
 	}

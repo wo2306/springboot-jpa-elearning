@@ -53,27 +53,30 @@
                                         <th>이미지</th>
                                         <th>강의명</th>
                                         <th>가격</th>
-                                        <th>기능</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:choose>
-                                        <c:when test="${list!=null}">
-                                            <c:forEach var="cartDTO" items="list">
+                                        <c:when test="${cartList!=null}">
+                                            <c:forEach var="cartDTO" items="${cartList}">
+                                                <c:set var="total_price"
+                                                       value="${total_price+cartDTO.onLecture.onLecturePrice}"/>
+                                                <c:set var="discount_sum"
+                                                       value="${discount_sum+cartDTO.onLecture.onLecturePrice*cartDTO.onLecture.onLectureDiscount/100}"/>
                                                 <tr class="cart_item">
                                                     <td class="product-thumbnail"><a href="#"><img alt="member"
                                                                                                    src="${pageContext.request.contextPath}/onlecture/images/${cartDTO.onLecture.onLectureName}"></a>
                                                     </td>
                                                     <td class="product-name"><a href="#">${cartDTO.onLecture.onLectureName}</a>
                                                         <ul class="variation">
-                                                            <li class="variation-size">Color: <span>Black</span></li>
                                                         </ul>
                                                     </td>
-                                                    <td class="product-price"><span class="amount">${cartDTO.onLecture.onLecturePrice}</span></td>
-                                                    <td class="product-remove">
+                                                    <td class="product-price"><span class="amount"><fmt:formatNumber value="${cartDTO.onLecture.onLecturePrice}" pattern="₩#,###.##"/> </span></td>
+                                                    <td class="product-remove" width="200">
                                                         <button type="button" class="btn btn-default">위시리스트로 이동</button>
                                                         <p></p>
-                                                        <button type="button" class="btn btn-default">장바구니에서 삭제</button>
+                                                        <button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/cart/delete/${cartDTO.cartNo}'">장바구니에서 삭제</button>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -122,19 +125,19 @@
                                         <tbody>
                                         <tr>
                                             <td>총 결제 금액</td>
-                                            <td>$180.00</td>
+                                            <td><fmt:formatNumber value="${total_price}" pattern="₩#,###"/></td>
                                         </tr>
                                         <tr>
                                             <td>할인 금액</td>
-                                            <td>$70.00</td>
+                                            <td style="color: red"><fmt:formatNumber value="${discount_sum}" pattern="₩#,###"/></td>
                                         </tr>
                                         <tr>
                                             <td>최종 결제 금액</td>
-                                            <td>$250.00</td>
+                                            <td style="font-weight: bold"><fmt:formatNumber value="${total_price-discount_sum}" pattern="₩#,###"/></td>
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <a class="btn btn-default">확인 후 결제 진행하기</a></div>
+                                    <a class="btn btn-default" href="${pageContext.request.contextPath}/cart/checkout">확인 후 결제 진행하기</a></div>
                             </div>
                         </div>
                     </div>

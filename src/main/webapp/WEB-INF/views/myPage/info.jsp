@@ -51,7 +51,7 @@
                                                                role="tab" data-toggle="tab"
                                                                class="font-15 text-uppercase">오프라인 강의 <span
                                             class="badge">3</span></a></li>
-                                    <li role="presentation"><a href="wish-list" aria-controls="wishlisttab" role="tab"
+                                    <li role="presentation"><a href="#wishlisttab" aria-controls="wishlisttab" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">위시리스트
                                         <span class="badge">5</span></a></li>
                                     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
@@ -78,15 +78,14 @@
                                                 </thead>
                                                 <tbody>
                                                 <c:choose>
-                                                    <c:when test="list!=null">
-                                                <c:forEach var="dto" items="list">
+                                                    <c:when test="${list!=null}">
+                                                <c:forEach var="dto" items="${list}">
                                                     <tr>
                                                         <th scope="row">${dto.onOrderCode}</th>
                                                         <td>${dto.onOrderRegdate}</td>
                                                         <td>${dto.onOrderMethod}</td>
-                                                        <td>${dto.onOrderPrice}</td>
-                                                        <td><a class="btn btn-success btn-xs" href="#">주문 내역 상세 보기</a>
-                                                        </td>
+                                                        <td>${dto.onlecture.onLecturePrice}</td>
+                                                        <td><a class="btn btn-success btn-xs" href="#">주문 내역 상세 보기</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                     </c:when>
@@ -142,7 +141,27 @@
                                             </tr>
                                             </tbody>
                                         </table>
+                                    </div>                                 
+                                    <div role="tabpanel" class="tab-pane" id="wishlisttab">
+                                        <table class="table">
+                                            <tbody>
+                                            	<tr>
+                                                    <th style="width: 300px">위시리스트번호</th>
+                                                    <th>강의번호</th>                                                  
+                                                    <th>삭제</th>
+                                           		</tr>
+                                             <c:forEach var="wish" items="${list}">
+                                                    <tr>
+                                                        <td scope="row">${wish.wishListNo}</td>
+                                                        <td>${wish.onLectureNo}</td>                                                        
+                                                        <td><a class="btn btn-success btn-xs" href="/delete">삭제</a>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                    
                                     <div role="tabpanel" class="tab-pane" id="bookmarks">
                                         <table class="table">
                                             <tbody>
@@ -170,25 +189,6 @@
                                                 <td><h4>$127.50</h4>
                                                 <td><h4><a href="#"><i class="fa fa-close"></i></a></h4>
                                             </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane" id="wish-list">
-                                        <table class="table">
-                                            <tbody>
-                                            	<tr>
-                                                    <th>위시리스트번호</th>
-                                                    <th>강의번호</th>                                                  
-                                                    <th></th>
-                                           		</tr>
-                                             <c:forEach var="wish" items="list">
-                                                    <tr>
-                                                        <td scope="row">${wish.wishListNo}</td>
-                                                        <td>${wish.onLectureNo}</td>                                                        
-                                                        <td><a class="btn btn-success btn-xs" href="/delete">삭제</a>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
