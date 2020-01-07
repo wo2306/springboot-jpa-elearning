@@ -110,40 +110,30 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                                         <td><a class="close" href="#"><i
                                                                 class="fa fa-close font-13"></i></a></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><a href="#"><img alt="" src="http://placehold.it/85x85"></a>
-                                                        </td>
-                                                        <td><a href="#"> Product Title</a></td>
-                                                        <td>X2</td>
-                                                        <td>$ 70.00</td>
-                                                        <td><a class="close" href="#"><i
-                                                                class="fa fa-close font-13"></i></a></td>
-                                                    </tr>
                                                     </tbody>
                                                 </table>
                                                 <div class="total-cart text-right">
                                                     <table class="table table-responsive">
                                                         <tbody>
                                                         <tr>
-                                                            <td>Cart Subtotal</td>
+                                                            <td>총 결제 금액</td>
                                                             <td>$170.00</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Shipping and Handling</td>
+                                                            <td>할인 금액</td>
                                                             <td>$20.00</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Order Total</td>
+                                                            <td>최종 결제 금액</td>
                                                             <td>$190.00</td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <div class="cart-btn text-right">
-                                                    <a class="btn btn-theme-colored btn-xs" href="shop-cart.html"> View
-                                                        cart</a>
+                                                    <a class="btn btn-theme-colored btn-xs" href="shop-cart.html"> 장바구니로 이동</a>
                                                     <a class="btn btn-dark btn-xs" href="shop-checkout.html">
-                                                        Checkout</a>
+                                                        구매하기</a>
                                                 </div>
                                             </div>
                                             <!-- dropdown cart ends -->
@@ -186,7 +176,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <div class="col-xs-12 col-sm-4 col-md-5">
                     <div class="widget no-border m-0">
                         <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img
-                                src="images/logo-wide22.png" alt=""></a>
+                                src="${pageContext.request.contextPath}/images/logo-wide22.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-4">
@@ -232,7 +222,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                     <li>
                         <!-- Modal: Book Now Starts -->
                         <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"
-                           data-toggle="modal" data-target="#BSParentModal" href="ajax-load/reservation-form.html">마이
+                           data-toggle="modal" data-target="#BSParentModal" onclick="myPage()">마이
                             페이지</a>
                         <!-- Modal: Book Now End -->
                     </li>
@@ -250,7 +240,11 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
         </div>
     </div>
 </header>
-
+<script>
+    function myPage() {
+        location.href = "${pageContext.request.contextPath}/myPage/info";
+    }
+</script>
 
 </body>
 </html>

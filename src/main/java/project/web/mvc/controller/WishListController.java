@@ -38,9 +38,9 @@ public class WishListController {
 	}
 	
 	//장바구니에서 delete 누르기 
-	@RequestMapping("/delete/{onLectureNo}")
-	public String delete(@PathVariable Long onLectureNo) {
-		wishlistService.wishlistDelete(onLectureNo);
+	@RequestMapping("/delete/{wishListNo}")
+	public String delete(@PathVariable Long wishListNo) {
+		wishlistService.wishlistDelete(wishListNo);
 		
 		return "myPage/info";
 	}

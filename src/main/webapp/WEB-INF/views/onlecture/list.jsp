@@ -39,7 +39,16 @@
         </div>
       </div>
     </section>
-
+	
+	<script type="text/javascript">
+	$(function(){
+		$("#wishlist").click(){
+			
+			
+		}	
+	})
+	
+	</script>
     <!-- Section: Course gird -->
     <section>
       <div class="container">
@@ -55,7 +64,7 @@
                       <h4 class="line-bottom mb-10">Accounting Technologies</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wishlist</a>                     
+                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" id="wishlist" href="${pageContext.request.contextPath}/wishlist">wishlist</a>                     
                     </div>
                   </div>
                 </div>
@@ -68,7 +77,7 @@
                       <h4 class="line-bottom mb-10">Modern Technologies</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wishlist</a> 
+                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" id="wishlist" href="${pageContext.request.contextPath}/wishlist">wishlist</a> 
                    </div>
                   </div>
                 </div>
@@ -81,7 +90,7 @@
                       <h4 class="line-bottom mb-10">Modern Languages</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wishlist</a>                   
+                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" id="wishlist" href="${pageContext.request.contextPath}/wishlist">wishlist</a>                   
                    </div>
                   </div>
                 </div>
@@ -94,7 +103,7 @@
                       <h4 class="line-bottom mb-10">Computer Technologies</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wishlist</a>
+                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" id="wishlist" href="${pageContext.request.contextPath}/wishlist">wishlist</a>
                     
                     </div>
                   </div>
@@ -108,7 +117,7 @@
                       <h4 class="line-bottom mb-10">Development Studies</h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wishlist</a>
+                     <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" id="wishlist" href="${pageContext.request.contextPath}/wishlist">wishlist</a>
                      
                    </div>
                   </div>
@@ -122,7 +131,7 @@
                       <h4 class="line-bottom mb-10">Electrical & Electronic </h4>
                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
                       <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/wishlist">wishlist</a>
+                      <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" id="wishlist" href="${pageContext.request.contextPath}/wishlist">wishlist</a>
                       
                     </div>
                   </div>

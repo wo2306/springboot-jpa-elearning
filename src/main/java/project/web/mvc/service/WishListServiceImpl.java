@@ -36,9 +36,9 @@ public class WishListServiceImpl implements WishListService {
 	}
 	
 	@Override
-	public void wishlistDelete(Long onLectureNo) {
+	public void wishlistDelete(Long wishListNo) {
 		
-//		wishlistRepo.deleteOnlectureByNo(onLectureNo);
+		wishlistRepo.deleteWishlistByNo(wishListNo);
 		
 		
 	}

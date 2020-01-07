@@ -16,8 +16,8 @@ public interface WishListRepository extends CrudRepository<WishList, Long>{
 	public OnLecture findOnlectureByNo(Long onLectureNo);
 	
 	 
-//	@Modifying
-//	@Transactional
-//	@Query("delete from WishList wl where wl.onLectureNo =?1")
-//	public void deleteOnlectureByNo(Long onLectureNo);
+	@Modifying
+	@Transactional
+	@Query("delete from WishList wl where wl.wishListNo =?1")
+	public void deleteWishlistByNo(Long wishListNo);
 }
