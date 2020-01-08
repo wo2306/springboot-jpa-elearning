@@ -37,6 +37,10 @@ public class Userdb {
 	@ColumnDefault("1") //1이면 회원, 0이면 어드민
 	private Long authority;
 	
+	public Userdb(Long userdbNo) {
+		this.userdbNo = userdbNo;
+	}
+	
 //	@OneToOne(mappedBy = "userdb")
 //	private Authority authority;
 //	@JsonBackReference
