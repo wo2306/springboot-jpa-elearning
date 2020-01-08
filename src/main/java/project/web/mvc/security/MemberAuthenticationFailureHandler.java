@@ -19,6 +19,9 @@ public class MemberAuthenticationFailureHandler implements AuthenticationFailure
 				AuthenticationException exception) throws IOException, ServletException {
 			
 			request.setAttribute("errorMessage", exception.getMessage());
+			System.out.println("err메세지"+ exception.getMessage());
+			System.out.println("MemberAuthenticationFailureHandler 호출.........................");
+			
 			request.getRequestDispatcher("/WEB-INF/views/loginForm.jsp").forward(request, response);
 //			request.getRequestDispatcher("/member/loginForm").forward(request, response); 
 			//이것도 가능 단, 컨트롤러에서 무기능일때 가능(컨트롤러를 지나쳐서 가기때문에)

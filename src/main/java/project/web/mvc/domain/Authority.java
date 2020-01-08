@@ -21,20 +21,20 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Authority {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AUTHORITY_SEQ_GENERATOR")
-	@SequenceGenerator(
-			name="AUTHORITY_SEQ_GENERATOR", sequenceName = "AUTHORITY_SEQ",
-			initialValue = 1, allocationSize = 50)
-	@Column(name = "AUTHORITY_NO")
-	private Long authorityNo;
-	
-	
-	@ManyToOne
-	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
+   @Id
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AUTHORITY_SEQ_GENERATOR")
+   @SequenceGenerator(
+         name="AUTHORITY_SEQ_GENERATOR", sequenceName = "AUTHORITY_SEQ",
+         initialValue = 1, allocationSize = 50)
+   @Column(name = "AUTHORITY_NO")
+   private Long authorityNo;
+   
+   
+   @ManyToOne
+   @JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false, unique = true)
     private Userdb userdb;
 
-	@Column(nullable = false)
+   @Column(nullable = false)
     private String role;
 
 }

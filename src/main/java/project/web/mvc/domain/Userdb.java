@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import lombok.AccessLevel;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -16,7 +18,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 public class Userdb {
 	
@@ -37,10 +39,13 @@ public class Userdb {
 	@Column(nullable = false, unique = true)
 	private String userdbNickname;
 
-//
-//	@OneToMany(mappedBy = "userdb")
+	@Column(nullable = false)
+	@ColumnDefault("1") //1이면 회원, 0이면 어드민
+	private Long authority;
+	
+//	@OneToOne(mappedBy = "userdb")
+//	private Authority authority;
 //	@JsonBackReference
-//	private List<Authority>authorities = new ArrayList<>();
 //
 //	@OneToMany(mappedBy = "userdb")
 //	@JsonBackReference

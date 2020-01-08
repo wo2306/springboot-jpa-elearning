@@ -8,14 +8,7 @@
 
 <!-- Page Title -->
 <title>LM company | Learning Machine | login</title>
-
-
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+	
 </head>
 
 <body class="">
@@ -33,7 +26,7 @@
             <div class="col-md-12">
               <h2 class="title text-white">My Account</h2>
               <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="#">Home</a></li>
+                <li><a href="index">Home</a></li>
                 <li><a href="#">Pages</a></li>
                 <li class="active text-gray-silver">Page Title</li>
               </ol>
@@ -50,17 +43,18 @@
             <h4 class="text-gray mt-0 pt-5"> Login</h4>
             <hr>
             <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
-            <form name="login-form" class="clearfix">
+            <form name="login-form" class="clearfix" method="post" action="/login">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
               <div class="row">
                 <div class="form-group col-md-12">
                   <label for="form_username_email">Username/Email</label>
-                  <input id="form_username_email" name="form_username_email" class="form-control" type="text">
+                  <input id="form_username_email" name="id" class="form-control" type="text">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-12">
                   <label for="form_password">Password</label>
-                  <input id="form_password" name="form_password" class="form-control" type="text">
+                  <input id="form_password" name="password" class="form-control" type="password">
                 </div>
               </div>
               <div class="checkbox pull-left mt-15">
@@ -77,6 +71,7 @@
               <div class="clear text-center pt-10">
                 <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="#" data-bg-color="#3b5998">Login with facebook</a>
                 <a class="btn btn-dark btn-lg btn-block no-border" href="#" data-bg-color="#00acee">Login with twitter</a>
+                <a class="btn btn-dark btn-lg btn-block no-border" href="signUpForm" data-bg-color="red">Sign Up</a>
               </div>
             </form>
           </div>
@@ -86,6 +81,5 @@
   </div>
 </div>
   <!-- end main-content -->
-
 </body>
 </html>
