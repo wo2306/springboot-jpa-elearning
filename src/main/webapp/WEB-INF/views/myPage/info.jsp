@@ -50,14 +50,8 @@
                                         <span class="badge"></span></a></li>
                                     <li role="presentation"><a href="#free-orders" aria-controls="free-orders"
                                                                role="tab" data-toggle="tab"
-                                                               class="font-15 text-uppercase">오프라인 강의 <span
-<<<<<<< HEAD
-                                            class="badge">3</span></a></li>
+                                                               class="font-15 text-uppercase">오프라인 강의 <span class="badge">3</span></a></li>
                                     <li role="presentation"><a href="#wishlisttab" aria-controls="wishlisttab" role="tab"
-=======
-                                            class="badge"></span></a></li>
-                                    <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
->>>>>>> branch 'master' of https://github.com/noguri08/LM.git
                                                                data-toggle="tab" class="font-15 text-uppercase">위시리스트
                                         <span class="badge">4</span></a></li>
                                     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
