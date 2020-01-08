@@ -3,10 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%-- 
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
- --%>
  <!DOCTYPE html>
 <html dir="ltr" lang="ko">
 <head>
@@ -66,6 +64,11 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+		function logout() {
+			document.getElementById("logoutFrm").submit();
+		}
+	</script>
 </head>
 
 <body>
@@ -77,21 +80,30 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
             <div class="row">
                 <div class="col-md-4">
                     <div class="widget no-border m-0">
-                        <ul class="list-inline font-13 sm-text-center mt-5">
-                            <li>
-                                <a class="text-white" href="#">FAQ</a>
-                            </li>
-                            <li class="text-white">|</li>
-                            <li>
-                                <a class="text-white" href="#">Help Desk</a>
-                            </li>
+                        <sec:authorize access="isAnonymous()">
+	                        <ul class="list-inline font-13 sm-text-center mt-5">
+	                            <li>
+	                                <a class="text-white" href="${pageContext.request.contextPath}/login">Login</a>
+	                            </li>
+	                            <li class="text-white">|</li>
+	                        </ul>
+                        </sec:authorize>
+                        <sec:authorize access="isAuthenticated()">
+                        	<sec:authentication var="user" property="principal" />
+	                        <ul class="list-inline font-13 sm-text-center mt-5">
+	                            <li>
+	                                <a class="text-white" href="javascript:logout();">Logout</a>
+	                            </li>
+	                            <li class="text-white">|</li>
+	                            
+	                        	<li><a class="text-white">${user.userdbNickname}님 </a>
+	                        	</li>
+	                        	<form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post" style:"display:none">
+									<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+								</form>
+	                        </ul>
+                        </sec:authorize>
                             
-                            <li>
-                                <a class="text-white" href="${pageContext.request.contextPath}/login">Login</a>
-                            </li>
-                            <li class="text-white">|</li>
-                            
-                        </ul>
                     </div>
                 </div>
                 <div class="col-md-8">
