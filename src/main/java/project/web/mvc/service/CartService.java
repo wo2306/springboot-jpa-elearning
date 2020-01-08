@@ -7,9 +7,9 @@ import java.util.List;
 public interface CartService {
     List<Cart> selectAll();
 
-    void insert(Cart dto);
+    void insert(Long onLectureNo);
 
     void delete(Long cartNo);
 
-
+    void deleteAll();
 }

@@ -22,6 +22,7 @@
 //
 //@Service 
 //public class MemberAuthenticationProvider implements AuthenticationProvider {
+//	
 //
 //	@Autowired
 //	private UserdbService userdbService;
@@ -41,8 +42,11 @@
 //	 */
 //	@Override
 //	public Authentication authenticate(Authentication auth) throws AuthenticationException {
+//		
+//		System.out.println("MemberAuthenticationProvider call***"+auth.getName());
 //		//1. 파라미터로 전달받은 Authentication 객체의 인증처리가 지원되지 않으면 null이 리턴
 //		if(!supports(auth.getClass())){
+//			System.out.println("MemberAuthenticationProvider의 Authentication****메소드!! 이거나옴안됨");
 //			return null;
 //		}
 //		
@@ -52,6 +56,7 @@
 //		Userdb vo = userdbService.selectByUserdbEmail(id);
 //		
 //		if(vo==null){// ID가 없는경우
+//			System.out.println("아이디없는 오류남");
 //			throw new UsernameNotFoundException(id+"는 없는 회원입니다.");//spring exception
 //		}
 //		
@@ -59,29 +64,39 @@
 //		String password = (String)auth.getCredentials();//비밀번호
 //		
 //		if(!passwordEncoder.matches(password, vo.getUserdbPassword())){
+//			System.out.println("패스워드 틀림!!");
 //			throw new BadCredentialsException("패스워드 오류입니다.");
 //		}
 //		
 //	    ////////////    여기까지 왔다면 인증에 성공함  ///////////////// 
 //		//4. id, password 모두가 일치하면 Authentication를 만들어서 리턴.
 //		// 사용자의 권한을 조회 : 하나의 사용자는 여러개의 권한을 가짐.
-//		List<Authority> list = 
-//				authorityService.selectByUserdbNo(vo.getUserdbNo());
+////		List<Authority> list = 
+////				authorityService.selectByUserdbNo(vo.getUserdbNo());
+////		
 //		
-//		if(list.isEmpty()){
-//			//아무 권한이 없는경우....
-//			throw new UsernameNotFoundException(id+"는 아무 권한이 없습니다.");
-//		}
 //		
-//		//db에서 가지고 온 권한을 GrantedAuthority 로 변환해야함.
-//		List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>();
-//		for(Authority authority : list){
-//			authList.add(new SimpleGrantedAuthority(authority.getRole()));
-//		}
-//		//UsernamePasswordAuthenticationToken(Object principal, Object credentials, authorities)
-//		//UsernamePasswordAuthenticationToken는 Authentication의 자식객체
-//		//인증완료된 결과로 UsernamePasswordAuthenticationToken를 리턴한다.
+////		
+////		if(vo.list.isEmpty()){
+////			//아무 권한이 없는경우....
+////			throw new UsernameNotFoundException(id+"는 아무 권한이 없습니다.");
+////		}
+////		
+////		//db에서 가지고 온 권한을 GrantedAuthority 로 변환해야함.
+//		
+//		List<SimpleGrantedAuthority> authList = 
+//				authorityService.getAuthorities(vo.getUserdbNo());
+////		List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>();
+////		
+////		for(Authority authority : list){
+////			authList.add(new SimpleGrantedAuthority(authority.getRole()));
+////		}
+//		
+////		UsernamePasswordAuthenticationToken(Object principal, Object credentials, authorities)
+////		UsernamePasswordAuthenticationToken는 Authentication의 자식객체
+////		인증완료된 결과로 UsernamePasswordAuthenticationToken를 리턴한다.
 //		return new UsernamePasswordAuthenticationToken(vo, null, authList);
+////		return new UsernamePasswordAuthenticationToken(auth, null, null);
 //	}
 //
 //	/**

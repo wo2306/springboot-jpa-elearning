@@ -1,5 +1,6 @@
 //package project.web.mvc.security;
 //
+//import org.mortbay.log.Log;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,12 +13,14 @@
 //import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //
 //import lombok.AllArgsConstructor;
+//import project.web.mvc.service.UserdbService;
+//
 //@Configuration
 //@EnableWebSecurity
 //@AllArgsConstructor
 //public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //   
-//	private LoginServiceImpl loginService;
+//	private UserdbService service;
 //	
 //	@Bean
 //	public PasswordEncoder passwordEncoder() {
@@ -42,12 +45,12 @@
 //    .and() // 로그인 설정
 //    	.formLogin()
 //        .loginPage("/login")
-//        .defaultSuccessUrl("")
+//        .defaultSuccessUrl("/login/result")
 //        .permitAll()
 //    .and() // 로그아웃 설정
 //    	.logout()
 //        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//        .logoutSuccessUrl("")
+//        .logoutSuccessUrl("/")
 //        .invalidateHttpSession(true)
 //    .and()
 //        // 403 예외처리 핸들링
@@ -55,16 +58,19 @@
 //
 //    }
 //    
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-//    	auth.userDetailsService(loginService).passwordEncoder(passwordEncoder());
-//    	
-//    	//인메모리에 admin 저장
-//    	auth.inMemoryAuthentication()
-//    	.withUser("admin")
-//    	.password("{noop}1234")
-//    	.roles("ADMIN");
-//    	
-//    }
+////    @Override
+////    public void configure(AuthenticationManagerBuilder auth) throws Exception{
+////    	auth.userDetailsService(service).passwordEncoder(passwordEncoder());
+////    	
+////    	//인메모리에 admin 저장
+////    	auth.inMemoryAuthentication()
+////    	.withUser("admin")
+////    	.password("{noop}1234")
+////    	.roles("ADMIN");
+////    	
+////    }
+////    
+//
+//
 //    
 //}

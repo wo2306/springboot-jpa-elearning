@@ -33,4 +33,13 @@ public class Cart {
 //	@JsonManagedReference
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
 	private Userdb userdb;
+
+	public Cart(Long onLectureNo) {
+		this.onLecture = new OnLecture(onLectureNo);
+	}
+
+	public Cart(Long onLectureNo, Long userNo) {
+		this.onLecture = new OnLecture(onLectureNo);
+		this.userdb = new Userdb(userNo);
+	}
 }

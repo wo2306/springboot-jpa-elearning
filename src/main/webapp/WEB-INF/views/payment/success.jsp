@@ -45,8 +45,8 @@
                             <h5>${dto.onLecture.onLectureName}</h5>
                             <p>${dto.onLecture.onLecturePrice}</p>
                         </c:forEach>
-                        <a href="/order/info" class="btn btn-dark btn-theme-colored">구매내역</a>
-                        <a href="/" class="btn btn-dark btn-theme-colored">메인으로</a>
+                        <a href="${pageContext.request.contextPath}/myPage/info" class="btn btn-dark btn-theme-colored">구매내역</a>
+                        <a href="${pageContext.request.contextPath}/" class="btn btn-dark btn-theme-colored">메인으로</a>
                     </div>
                 </div>
             </div>

@@ -46,20 +46,20 @@
                                     <li role="presentation" class="active"><a href="#orders" aria-controls="orders"
                                                                               role="tab" data-toggle="tab"
                                                                               class="font-15 text-uppercase">온라인 강의
-                                        <span class="badge">4</span></a></li>
+                                        <span class="badge"></span></a></li>
                                     <li role="presentation"><a href="#free-orders" aria-controls="free-orders"
                                                                role="tab" data-toggle="tab"
                                                                class="font-15 text-uppercase">오프라인 강의 <span
-                                            class="badge">3</span></a></li>
+                                            class="badge"></span></a></li>
                                     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">위시리스트
-                                        <span class="badge">5</span></a></li>
+                                        <span class="badge">4</span></a></li>
                                     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">나의 질문
-                                        <span class="badge">5</span></a></li>
+                                        <span class="badge">3</span></a></li>
                                     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">나의 리뷰
-                                        <span class="badge">5</span></a></li>
+                                        <span class="badge">2</span></a></li>
                                 </ul>
 
                                 <!-- Tab panes -->
@@ -79,19 +79,29 @@
                                                 <tbody>
                                                 <c:choose>
                                                     <c:when test="${list!=null}">
-                                                <c:forEach var="dto" items="${list}">
-                                                    <tr>
-                                                        <th scope="row">${dto.onOrderCode}</th>
-                                                        <td>${dto.onOrderRegdate}</td>
-                                                        <td>${dto.onOrderMethod}</td>
-                                                        <td>${dto.onlecture.onLecturePrice}</td>
-                                                        <td><a class="btn btn-success btn-xs" href="#">주문 내역 상세 보기</a></td>
-                                                    </tr>
-                                                </c:forEach>
+                                                        <c:set var="beforeOrderCode"/>
+                                                        <c:forEach var="dto" items="${list}">
+                                                            <c:if test="${beforeOrderCode ne dto.onOrderCode}">
+                                                                <tr>
+                                                                    <th scope="row">${dto.onOrderCode}</th>
+                                                                    <td>${dto.onOrderRegdate}</td>
+                                                                    <td>${dto.onOrderMethod}</td>
+                                                                    <td><fmt:formatNumber value="${dto.onOrderPrice}"
+                                                                                          pattern="₩#,###"/></td>
+                                                                    <td><a class="btn btn-success btn-xs" href="#">주문 내역
+                                                                        상세
+                                                                        보기</a></td>
+                                                                    <c:set var="beforeOrderCode"
+                                                                           value="${dto.onOrderCode}"/>
+                                                                </tr>
+                                                            </c:if>
+                                                        </c:forEach>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <tr>
-                                                            <td colspan="5" style="text-align: center">주문 내역이 존재하지 않습니다</td>
+                                                            <td colspan="5" style="text-align: center">주문 내역이 존재하지
+                                                                않습니다
+                                                            </td>
                                                         </tr>
                                                     </c:otherwise>
                                                 </c:choose>
@@ -179,7 +189,6 @@
                 </div>
             </div>
         </section>
-
     </div>
 </div>
 <!-- end main-content -->

@@ -8,5 +8,6 @@ import project.web.mvc.domain.Authority;
 
 public interface AuthorityRepository extends CrudRepository<Authority, Long> {
 
+	List<Authority> findByUserdbUserdbNo(Long userdbNo);
 	
 }
