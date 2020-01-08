@@ -43,7 +43,7 @@
             <h4 class="text-gray mt-0 pt-5"> Login</h4>
             <hr>
             <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
-            <form name="login-form" class="clearfix" method="post" action="/login">
+            <form name="login-form" class="clearfix" method="post" action="${pageContext.request.contextPath}/login/result">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
               <div class="row">
                 <div class="form-group col-md-12">
