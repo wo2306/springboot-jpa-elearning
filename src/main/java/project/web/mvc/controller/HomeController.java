@@ -21,6 +21,7 @@ public class HomeController {
 //	
 	@RequestMapping("/")
 	public String index() {
+		System.out.println("인덱스 컨트롤러");
 		return"index";
 	}
 	
