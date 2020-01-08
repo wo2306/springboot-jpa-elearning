@@ -55,6 +55,7 @@ public class OnLectureServiceImpl implements OnLectureService {
 
     }
 
+    @Override
     public List<OnDetail> selectById(Long onLectureNo) {
         List<OnDetail> list = new ArrayList<>();
         onDetailRepository.findByOnLectureOnLectureNo(onLectureNo).iterator().forEachRemaining(list::add);
@@ -62,4 +63,8 @@ public class OnLectureServiceImpl implements OnLectureService {
         //업데이트 덜함
     }
 
+    @Override
+    public OnLecture selectOnLectureById(Long onLectureNo) {
+        return onLectureRepository.findById(onLectureNo).orElse(null);
+    }
 }

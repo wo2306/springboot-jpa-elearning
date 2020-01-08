@@ -16,4 +16,7 @@ public interface OnLectureService {
     List<OnLecture> selectAll();
 
     List<OnDetail> selectById(Long onLectureNo);
+
+    OnLecture selectOnLectureById(Long onLectureNo);
+
 }

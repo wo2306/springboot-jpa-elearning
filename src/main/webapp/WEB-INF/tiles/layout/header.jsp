@@ -101,10 +101,9 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                             <div class="dropdown-cart">
                                                 <table class="table cart-table-list table-responsive">
                                                     <tbody id="cartInner">
-                                                    <tr><td><a href="#"><img alt="" src="http://placehold.it/85x85"></a></td><td><a href="#"></a></td><td></td><td><a class="close" href="${pageContext.request.contextPath}/cart/delete/cartNo"><i class="fa fa-close font-13"></i></a></td></tr>
                                                     </tbody>
                                                 </table>
-                                                <div class="total-cart text-right">
+                                                <div id="totalCart" class="total-cart text-right">
                                                     <table class="table table-responsive">
                                                         <tbody>
                                                         <tr>
@@ -121,12 +120,10 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                                         </tr>
                                                         </tbody>
                                                     </table>
-
-                                                </div>
-                                                <div class="cart-btn text-right">
                                                     <div id="cart_btn"></div>
                                                 </div>
                                             </div>
+
                                             <!-- dropdown cart ends -->
                                         </li>
                                     </ul>
@@ -240,7 +237,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    $(function () {
+    function cartList() {
         $.ajax({
             url: "${pageContext.request.contextPath}/cart/ajaxList",
             type: "post",
@@ -249,39 +246,62 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 var size = Object.keys(result).length;
                 var str = "";
                 var totalPrice = 0;
-                var totalDiscount = 0;``
-                $.each(result, function (key, val) {
-                    if (size>0) {
+                var totalDiscount = 0;
+                if (size > 0) {
+                    $("#totalCart").show();
+                    $.each(result, function (key, val) {
+
                         let no = val.cartNo;
                         let name = val.onLecture.onLectureName;
                         let price = val.onLecture.onLecturePrice;
                         totalPrice += price;
                         let discountPrice = Math.floor(val.onLecture.onLecturePrice * val.onLecture.onLectureDiscount / 100);
-                        str += "<tr><td><a href=\"#\"><img alt=\"\" src=\"http://placehold.it/85x85\"></a></td><td><a href=\"#\">"+ name + "</a></td><td>₩"+ numberWithCommas(price)+"</td><td><a class=\"close\" href=\"${pageContext.request.contextPath}/cart/delete/"+ no +"\"><i class=\"fa fa-close font-13\"></i></a></td></tr>";
+                        str += "<tr><td><a href=\"#\"><img alt=\"\" src=\"http://placehold.it/85x85\"></a></td><td><a href=\"#\">" + name + "</a></td><td>₩" + numberWithCommas(price) + "</td><td><a class=\"close\" onclick='deleteCartAjax(" + no + ")'><i class=\"fa fa-close font-13\"></i></a></td></tr>";
                         totalDiscount += discountPrice;
                         $("#cart_btn").html("<a class=\"btn btn-theme-colored btn-xs\"\n" +
-                    "                                                       href=\"${pageContext.request.contextPath}/cart/list\"> 장바구니로\n" +
-                    "                                                        이동</a>\n" +
-                    "                                                    <a class=\"btn btn-dark btn-xs\"\n" +
-                    "                                                       href=\"${pageContext.request.contextPath}/cart/checkout\">\n" +
-                    "                                                        구매하기</a>")
-                    } else {
-                        str+="<tr>\n" +
-                            "<td style=\"text-align: right\">현재 장바구니에 담긴 상품이 없습니다.</td>\n" +
-                            "</tr>"
-                    }
-                });
+                            "                                                       href=\"${pageContext.request.contextPath}/cart/list\"> 장바구니로\n" +
+                            "                                                        이동</a>\n" +
+                            "                                                    <a class=\"btn btn-dark btn-xs\"\n" +
+                            "                                                       href=\"${pageContext.request.contextPath}/cart/checkout\">\n" +
+                            "                                                        구매하기</a>")
+                    });
+                } else {
+                    $("#totalCart").hide();
+                    str += "<tr>\n" +
+                        "<td style=\"text-align: right\">현재 장바구니에 담긴 상품이 없습니다.</td>\n" +
+                        "</tr>"
+                }
                 $("#cartInner").html(str);
                 $("#cartSize").html("&nbsp;(" + size + ")");
                 $("#total").text("₩" + numberWithCommas(totalPrice));
                 $("#discount").text("₩" + numberWithCommas(totalDiscount));
-                $("#final").text("₩" + numberWithCommas(totalPrice-totalDiscount));
+                $("#final").text("₩" + numberWithCommas(totalPrice - totalDiscount));
             },
             error: function (error) {
                 console.log(error)
             }
         })
+    }
+
+    $(function () {
+        cartList();
     })
+
+    function deleteCartAjax(no) {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/cart/delete/"+no,
+            type: "post",
+            dataType: "json",
+            success: function () {
+                console.log("잘들어옴");
+                cartList();
+            },
+            error: function (error) {
+                console.log("에러낫다")
+            }
+        })
+
+    }
 </script>
 </body>
 </html>

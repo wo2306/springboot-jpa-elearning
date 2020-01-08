@@ -50,9 +50,10 @@ public class OnLecture {
     @Column(nullable = false)
     private String onLectureSummary;
 
-    public OnLecture(int onLectureNo) {
-        this.onLectureNo = (long)onLectureNo;
+    public OnLecture(Long onLectureNo) {
+        this.onLectureNo = onLectureNo;
     }
+
 
     //
 //    @OneToMany(mappedBy = "onLecture", fetch = FetchType.LAZY)

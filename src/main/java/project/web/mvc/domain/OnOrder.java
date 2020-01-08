@@ -38,11 +38,11 @@ public class OnOrder {
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
 	private Userdb userdb;
 
-	@Column(nullable = false)
-	private String onOrderMethod;
+	@Column(columnDefinition="varchar(255) default '신용카드'")
+	private String onOrderMethod = "신용카드";
 
-	@Column(nullable = false)
-	private String onOrderState;
+	@Column(columnDefinition="varchar(255) default '결제완료'")
+	private String onOrderState = "결제완료";
 
 	@CreationTimestamp
 	private Date onOrderRegdate;

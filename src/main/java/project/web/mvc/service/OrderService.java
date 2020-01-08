@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface OrderService {
 
-    void onInsert(List<Integer> onLectureNo, String paymentId);
+    void cartInsert(List<Long> onLectureNo, OnOrder onOrder);
+    void onInsert(Long onLectureNo, OnOrder onOrder);
+
     void offInsert(OffOrder offOrder);
 
     List<OnOrder> onSelect(int pageNum);

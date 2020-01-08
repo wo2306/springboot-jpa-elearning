@@ -14,4 +14,6 @@ public interface CartRepository extends CrudRepository<Cart, Long> {
 
     @Modifying
     void deleteByUserdbUserdbNo(Long userdbUserdbNo);
+
+    Cart findByOnLectureOnLectureNo(Long onLecture);
 }

@@ -32,8 +32,16 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void insert(Cart dto) {
-        cartRepository.save(dto);
+    @Transactional
+    public void insert(Long onLectureNo) {
+        //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        String userdbEmail = auth.getName();
+        //auth.getPrincipal().getUserdbUserdbNo();
+        if (cartRepository.findByOnLectureOnLectureNo(onLectureNo)!=null) {
+            System.out.println("null입니다.");
+            throw new RuntimeException("이미 중복된 강의가 존재합니다.");
+        };
+        cartRepository.save(new Cart(onLectureNo, 1L));
     }
 
     @Override

@@ -24,15 +24,24 @@ public class OrderServiceImpl implements OrderService {
     private final OffOrderRepository offOrderRepository;
 
     @Override
-    public void onInsert(List<Integer> onLectureNo, String paymentId) {
+    public void cartInsert(List<Long> onLectureNo, OnOrder onOrder) {
         for (int i=0; i<onLectureNo.size(); i++) {
             //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             // Long userNo = auth.getPrincipal().getUserdbUserdbNo()
             Long userNo = 1L;
-            onOrderRepository.save(new OnOrder(null, paymentId, new OnLecture(onLectureNo.get(i)), new Userdb(userNo), "신용카드", "결제완료", null, 10000));
+            onOrder.setOnlecture(new OnLecture(onLectureNo.get(i)));
+            onOrder.setUserdb(new Userdb(userNo));
+            onOrderRepository.save(onOrder);
         }
     }
 
+    @Override
+    public void onInsert(Long onLectureNo, OnOrder onOrder) {
+        Long userNo = 1L;
+        onOrder.setOnlecture(new OnLecture(onLectureNo));
+        onOrder.setUserdb(new Userdb(userNo));
+        onOrderRepository.save(onOrder);
+    }
 
     @Override
     public List<OnOrder> onSelect(int pageNum) {
