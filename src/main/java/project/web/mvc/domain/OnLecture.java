@@ -50,10 +50,12 @@ public class OnLecture {
     @Column(nullable = false)
     private String onLectureSummary;
 
-//    @OneToMany(mappedBy = "onLecture")
-//    @JsonBackReference
-//    private List<OnDetail>onDetails = new ArrayList<>();
-//
+    public OnLecture(Long onLectureNo) {
+        this.onLectureNo = onLectureNo;
+    }
+
+
+    //
 //    @OneToMany(mappedBy = "onLecture", fetch = FetchType.LAZY)
 //    @JsonBackReference
 //    private List<Review>reviews = new ArrayList<>();

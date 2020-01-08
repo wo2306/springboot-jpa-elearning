@@ -16,6 +16,13 @@ public class CartServiceImpl implements CartService {
     private final CartRepository cartRepository;
 
     @Override
+    public void deleteAll() {
+        //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        // auth.getPrincipal().getUserdbUserdbNo();
+        cartRepository.deleteByUserdbUserdbNo(1L);
+    }
+
+    @Override
     public List<Cart> selectAll() {
         List<Cart> list = new ArrayList<>();
         //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -25,8 +32,16 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void insert(Cart dto) {
-        cartRepository.save(dto);
+    @Transactional
+    public void insert(Long onLectureNo) {
+        //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        String userdbEmail = auth.getName();
+        //auth.getPrincipal().getUserdbUserdbNo();
+        if (cartRepository.findByOnLectureOnLectureNo(onLectureNo)!=null) {
+            System.out.println("null입니다.");
+            throw new RuntimeException("이미 중복된 강의가 존재합니다.");
+        };
+        cartRepository.save(new Cart(onLectureNo, 1L));
     }
 
     @Override
