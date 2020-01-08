@@ -1,16 +1,10 @@
 package project.web.mvc.domain;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
 
 import org.hibernate.annotations.ColumnDefault;
 
-import lombok.AccessLevel;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
