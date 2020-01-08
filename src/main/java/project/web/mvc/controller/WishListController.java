@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import project.web.mvc.domain.WishList;
 import project.web.mvc.service.WishListService;
@@ -17,6 +18,7 @@ public class WishListController {
 	
 	@Autowired
 	private WishListService wishlistService;
+
 	Long userdbNo = 1L;
 	
 	//wishlist 버튼 눌렀을때
@@ -29,30 +31,24 @@ public class WishListController {
 		return wishlist;
 	}
 	
-	//장바구니 탭 누르기 
-//	@RequestMapping("/wishlisttab")
-//	public ModelAndView wishlisttab(Model model, Integer pageNum) {
-//		List<WishList> list = wishlistService.wishlistselectAll(pageNum == null ? 0 : pageNum);
-//        if (!list.isEmpty())
-//        	model.addAttribute("list", list);
-//        return new ModelAndView("myPage/info");
-//    }
+
 	
-	@RequestMapping("/wishlisttab")
-	public ModelAndView wishlisttab(Model model, Long userdbNo) {
-		System.out.println("tab눌렀음");
-		List<WishList> list = wishlistService.wishlistselectAll(userdbNo);
-        if (!list.isEmpty())
-        	model.addAttribute("list", list);
-        return new ModelAndView("myPage/info");
-    }
 
 	
 	//장바구니에서 delete 누르기 
-	@RequestMapping("/delete/{wishListNo}")
-	public String delete(@PathVariable Long wishListNo) {
-		wishlistService.wishlistDelete(wishListNo);
-		
-		return "myPage/info";
+//	@RequestMapping("/delete")
+//	public String delete(@PathVariable Long wishListNo) {
+//		System.out.println("delete 눌렀어여");
+//		wishlistService.wishlistDelete(wishListNo);
+//		
+//		return "myPage/info";
+//	}
+	
+	//delete 누르기
+	@DeleteMapping(value = "/delete/{wishlistNo}")
+	public String delete(@PathVariable Long wishlistNo) {
+		System.out.println("삭제버튼 눌렀어요");
+		System.out.println("wishlistNo" + wishlistNo);
+		return "삭제됨";
 	}
 }

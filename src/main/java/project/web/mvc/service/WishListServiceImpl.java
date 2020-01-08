@@ -36,22 +36,23 @@ public class WishListServiceImpl implements WishListService {
 	
 //	@Override
 //	public List<WishList> wishlistselectAll(int pageNum) {
+//		System.out.println("서비스도 진입");
 //		List<WishList> list = new ArrayList<>();
 //        Pageable pageable = PageRequest.of(pageNum, 10);
 ////        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//    
-//        wishlistRepo.findAll(pageable).iterator().forEachRemaining(list::add);
+//        Long userdbNo = 1L;
+//        wishlistRepo.findByUserdbUserdbNo(userdbNo, pageable).iterator().forEachRemaining(list::add);
 //
 //        return list;
 //	}
 	
 	@Override
-	public List<WishList> wishlistselectAll(Long userdbNo) {
-       
+	public List<WishList> wishlistselectAll() {
+		List<WishList> list = new ArrayList<>();
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    
-        List<WishList> list = wishlistRepo.findByUserdb(userdbNo);
-
+		Long userdbNo = 1L;
+		wishlistRepo.findByUserdbUserdbNo(userdbNo).iterator().forEachRemaining(list::add);
+		System.out.println("서비스에서 list" + list);
         return list;
 	}
 	

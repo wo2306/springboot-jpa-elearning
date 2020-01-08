@@ -10,7 +10,10 @@ public interface WishListService {
 	public WishList wishlistInsert(Long userdbNo, Long onLectureNo);
 	
 //	public List<WishList> wishlistselectAll(int pageNum);
-	public List<WishList> wishlistselectAll(Long userdbNo);
+
+	List<WishList> wishlistselectAll();
 	
 	public void wishlistDelete(Long onLectureNo);
+
+	 
 }

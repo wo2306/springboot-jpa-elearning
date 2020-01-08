@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import project.web.mvc.domain.OnLecture;
+import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.domain.WishList;
 
@@ -21,6 +22,6 @@ public interface WishListRepository extends CrudRepository<WishList, Long>{
 	public Userdb findUserdbByNo(Long userdbNo);
 	
 	Page<WishList> findAll(Pageable pageable);
-	
-	List<WishList> findByUserdb(Long userdbNo);
+	Page<WishList> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
+	List<WishList> findByUserdbUserdbNo(Long userdbNo);
 }

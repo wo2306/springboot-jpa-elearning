@@ -26,7 +26,7 @@ public class CartController {
         return "payment/checkout";
     }
 
-    @RequestMapping("ajaxList")
+    @RequestMapping("/ajaxList")
     @ResponseBody
     public List<Cart> ajaxList() {
         System.out.println("ajaxList call()");
