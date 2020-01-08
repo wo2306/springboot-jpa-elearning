@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.web.mvc.domain.Cart;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.service.CartService;
 
 import java.util.List;
@@ -26,12 +27,14 @@ public class CartController {
         return "payment/checkout";
     }
 
-    @RequestMapping("ajaxList")
+    @RequestMapping("/ajaxList")
     @ResponseBody
     public List<Cart> ajaxList() {
         System.out.println("ajaxList call()");
         return cartService.selectAll();
     }
+
+    //카트 삽입 없음.
 
     @RequestMapping("/list")
     public String list(Model model) {

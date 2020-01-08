@@ -38,106 +38,116 @@
             <div class="container">
                 <div class="section-content">
                     <div class="row mt-30">
-                        <form id="checkout-form" action="#">
-                            <div class="col-md-12">
-                                <h3>결제 목록</h3>
-                                <table class="table table-striped table-bordered tbl-shopping-cart">
-                                    <thead>
-                                    <tr>
-                                        <th>이미지</th>
-                                        <th>강의명</th>
-                                        <th>가격</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:choose>
-                                        <c:when test="${cartList!=null}">
-                                            <c:forEach items="${cartList}" var="dto">
-                                                <c:set var="price_sum"
-                                                       value="${price_sum+dto.onLecture.onLecturePrice}"/>
-                                                <c:set var="discount_sum" value="${discount_sum+dto.onLecture.onLecturePrice*dto.onLecture.onLectureDiscount/100}"/>
-                                                <tr>
-                                                    <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                                   src="${pageContext.request.contextPath}/onlecture/images/${dto.onLecture.onLectureName}"></a>
-                                                    </td>
-                                                    <td><a href="#">${dto.onLecture.onLectureName}</a></td>
-                                                    <td><fmt:formatNumber value="${dto.onLecture.onLecturePrice}"
-                                                                          pattern="₩#,###.##"/></td>
-                                                </tr>
-                                            </c:forEach>
+                        <div class="col-md-12">
+                            <h3>결제 목록</h3>
+                            <table class="table table-striped table-bordered tbl-shopping-cart">
+                                <thead>
+                                <tr>
+                                    <th>이미지</th>
+                                    <th>강의명</th>
+                                    <th>가격</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:choose>
+                                    <c:when test="${cartList!=null}">
+
+                                        <c:forEach items="${cartList}" var="dto">
+                                            <c:set var="price_sum"
+                                                   value="${price_sum+dto.onLecture.onLecturePrice}"/>
+                                            <c:set var="discount_sum"
+                                                   value="${discount_sum+dto.onLecture.onLecturePrice*dto.onLecture.onLectureDiscount/100}"/>
                                             <tr>
-                                                <td>총 결제 금액</td>
-                                                <td>&nbsp;</td>
-                                                <td id="total_price" style="font-weight: bold"><fmt:formatNumber value="${price_sum}"
-                                                                                       pattern="₩#,###"/></td>
+                                                <td class="product-thumbnail"><a href="#"><img alt="member"
+                                                                                               src="${pageContext.request.contextPath}/onlecture/images/${dto.onLecture.onLectureName}"></a>
+                                                </td>
+                                                <td><a href="#">${dto.onLecture.onLectureName}</a></td>
+                                                <td><fmt:formatNumber value="${dto.onLecture.onLecturePrice}"
+                                                                      pattern="₩#,###.##"/></td>
                                             </tr>
-                                            <tr>
-                                                <td>할인 금액</td>
-                                                <td>&nbsp;</td>
-                                                <td id="discount_price" style="color: red"><fmt:formatNumber value="${discount_sum}"
-                                                                                          pattern="₩#,###"/></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="font-weight: bold">최종 결제 금액</td>
-                                                <td>&nbsp;</td>
-                                                <td id="final_price" style="font-weight: bold"><fmt:formatNumber value="${price_sum-discount_sum}"
-                                                                                       pattern="₩#,###"/></td>
-                                            </tr>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <tr>
-                                                <td colspan="3" style="text-align: center">수강바구니에 담긴 강의가 없습니다</td>
-                                            </tr>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <h3 class="mb-30">결제 정보 입력</h3>
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="checkuot-form-fname">이메일주소</label>
-                                        <input id="checkuot-form-fname" type="email" class="form-control"
-                                               placeholder="Name">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="checkuot-form-lname">전화번호</label>
-                                        <input id="checkuot-form-lname" type="email" class="form-control"
-                                               placeholder="Phone Number">
-                                    </div>
+
+                                        </c:forEach>
+                                        <tr>
+                                            <td>총 결제 금액</td>
+                                            <td>&nbsp;</td>
+                                            <td id="total_price" style="font-weight: bold"><fmt:formatNumber
+                                                    value="${price_sum}"
+                                                    pattern="₩#,###"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>할인 금액</td>
+                                            <td>&nbsp;</td>
+                                            <td id="discount_price" style="color: red"><fmt:formatNumber
+                                                    value="${discount_sum}"
+                                                    pattern="₩#,###"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold">최종 결제 금액</td>
+                                            <td>&nbsp;</td>
+                                            <td id="final_price" style="font-weight: bold"><fmt:formatNumber
+                                                    value="${price_sum-discount_sum}"
+                                                    pattern="₩#,###"/></td>
+                                        </tr>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <tr>
+                                            <td colspan="3" style="text-align: center">수강바구니에 담긴 강의가 없습니다</td>
+                                        </tr>
+                                    </c:otherwise>
+                                </c:choose>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="mb-30">결제 정보 입력</h3>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="checkuot-form-fname">이메일주소</label>
+                                    <input id="checkuot-form-fname" type="email" class="form-control"
+                                           placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="checkuot-form-lname">전화번호</label>
+                                    <input id="checkuot-form-lname" type="email" class="form-control"
+                                           placeholder="Phone Number">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <h3>결제 수단 선택</h3>
-                                <div class="payment-method">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="optionsRadios" value="option2" checked>
-                                            신용카드 결제 </label>
-                                        <p>Please send your cheque to Store Name, Store Street, Store Town, Store
-                                            State
-                                            / County, Store Postcode.</p>
-                                    </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h3>결제 수단 선택</h3>
+                            <div class="payment-method">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" value="option2" checked>
+                                        신용카드 결제 </label>
+                                    <p>Please send your cheque to Store Name, Store Street, Store Town, Store
+                                        State
+                                        / County, Store Postcode.</p>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="text-right"><a class="btn btn-default" href='javascript:void(0);'
-                                                           onclick="requestPay();">구매하기</a></div>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="text-right"><a class="btn btn-default" href='javascript:void(0);'
+                                                       onclick="requestPay();">구매하기</a></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 </div>
-
+<form id="payForm" action="${pageContext.request.contextPath}/order/onInsert">
+    <c:forEach items="${cartList}" var="dto">
+        <input name="onLectureNo" type="hidden"
+               value="${dto.onLecture.onLectureNo}"/>
+    </c:forEach>
+        <input id="paymentId" name="paymentId" type="hidden" value=""/>
+</form>
 
 <script>
     function requestPay() {
         var IMP = window.IMP; // 생략가능
-        IMP.init('iamport');  // 가맹점 식별 코드
+        IMP.init('imp32416573');  // 가맹점 식별 코드
         IMP.request_pay({
             // name과 amount만 있어도 결제 진행가능
             pg: 'html5_inicis', // pg 사 선택
@@ -150,11 +160,14 @@
             buyer_tel: $("#checkuot-form-lname").val(),
             buyer_addr: '서울특별시 강남구 삼성동',
             buyer_postcode: '42150',
-            m_redirect_url: '${pageContext.request.contextPath}/order/success'
+            m_redirect_url: '${pageContext.request.contextPath}/order/success/'
         }, function (rsp) {
             if (rsp.success) {
                 let msg = '결제가 완료되었습니다.';
                 alert(msg);
+                alert(rsp.pg_tid);
+                $("#paymentId").val(rsp.pg_tid);
+                $("#payForm").submit();
             } else {
                 let msg = '결제에 실패하였습니다. 결제 확인창으로 되돌아갑니다.'
                 alert(msg);

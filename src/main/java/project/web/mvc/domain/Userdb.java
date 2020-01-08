@@ -36,6 +36,10 @@ public class Userdb {
 	@Column(nullable = false, unique = true)
 	private String userdbNickname;
 
+	public Userdb(Long userNo) {
+		this.userdbNo = userNo;
+	}
+
 //
 //	@OneToMany(mappedBy = "userdb")
 //	@JsonBackReference

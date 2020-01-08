@@ -25,6 +25,9 @@ public class OnOrder {
 	@Column(name = "ON_ORDER_NO")
 	private Long onOrderNo;
 
+	@Column(nullable = false)
+	private String onOrderCode;
+
 	@ManyToOne
 //	@JsonManagedReference
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
@@ -36,9 +39,6 @@ public class OnOrder {
 	private Userdb userdb;
 
 	@Column(nullable = false)
-	private String onOrderCode;
-
-	@Column(nullable = false)
 	private String onOrderMethod;
 
 	@Column(nullable = false)
@@ -46,4 +46,11 @@ public class OnOrder {
 
 	@CreationTimestamp
 	private Date onOrderRegdate;
+
+	@Column(nullable = false)
+	private int onOrderPrice;
+
+	public OnOrder(int onLectureNo) {
+		onlecture.setOnLectureNo((long)onLectureNo);
+	}
 }

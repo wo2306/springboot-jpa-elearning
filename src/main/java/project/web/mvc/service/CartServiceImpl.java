@@ -16,6 +16,13 @@ public class CartServiceImpl implements CartService {
     private final CartRepository cartRepository;
 
     @Override
+    public void deleteAll() {
+        //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        // auth.getPrincipal().getUserdbUserdbNo();
+        cartRepository.deleteByUserdbUserdbNo(1L);
+    }
+
+    @Override
     public List<Cart> selectAll() {
         List<Cart> list = new ArrayList<>();
         //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
