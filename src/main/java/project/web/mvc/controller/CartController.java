@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.web.mvc.domain.Cart;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.service.CartService;
 
 import java.util.List;
@@ -33,6 +35,8 @@ public class CartController {
         return cartService.selectAll();
     }
 
+    //카트 삽입 없음.
+
     @RequestMapping("/list")
     public String list(Model model) {
         List<Cart> list = cartService.selectAll();
@@ -41,15 +45,23 @@ public class CartController {
         return "payment/cart";
     }
 
-    @RequestMapping("/insert")
-    public String insert(Cart cart) {
-        cartService.insert(cart);
-        return "redirect:/cart/list";
+    @RequestMapping("/insert/{onLectureNo}")
+    @ResponseBody
+    public int insert(@PathVariable Long onLectureNo) {
+        System.out.println(onLectureNo);
+        cartService.insert(onLectureNo);
+        return 0;
     }
 
     @RequestMapping("/delete/{cartNo}")
-    public String update(@PathVariable Long cartNo) {
-        System.out.println(cartNo);
+    @ResponseBody
+    public int delete(@PathVariable Long cartNo) {
+        cartService.delete(cartNo);
+        return 0;
+    }
+
+    @RequestMapping("/deleteCart/{cartNo}")
+    public String deleteCart(@PathVariable Long cartNo) {
         cartService.delete(cartNo);
         return "redirect:/cart/list";
     }
