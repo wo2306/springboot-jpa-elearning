@@ -17,7 +17,7 @@ import java.util.List;
 public class MyPageController {
     private final OrderService orderService;
 
-    @RequestMapping("/info")
+    @RequestMapping("/info")//onOrderSelect
     public void onSelect(Integer pageNum, Model model) {
         List<OnOrder> list = orderService.onSelect(pageNum == null ? 0 : pageNum);
         if (!list.isEmpty())
@@ -29,6 +29,6 @@ public class MyPageController {
     public List<OffOrder> offSelect(Integer pageNum, Model model) {
         List<OffOrder> list = orderService.offSelect(pageNum == null ? 0 : pageNum);
         return list;
-    }
+}
 }
 

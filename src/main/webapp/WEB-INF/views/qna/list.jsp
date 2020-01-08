@@ -18,6 +18,47 @@
 </head>
 
 <body>
-
+<div class="container pt-80 pb-60">
+        <div class="section-content">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped table-schedule">
+                <thead>
+                  <tr class="bg-theme-colored">
+                    <th> </th>
+                    <th> </th>
+                    <th> </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><strong>seeko 웹사이트가 바뀌었어요</strong></td>
+                    <td>abc</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><strong> 질문드립니다.</strong></td>
+                    <td>defg</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><strong>게임 버그 문의</strong></td>
+                    <td>ggg</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><a href="#">어디서 틀린걸까요</a> </td>
+                    <td>1a2a3a</td>
+                  </tr>
+                  
+                  
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>
