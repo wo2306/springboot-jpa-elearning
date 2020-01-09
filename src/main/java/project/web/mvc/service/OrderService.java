@@ -15,4 +15,5 @@ public interface OrderService {
     List<OnOrder> onSelect(int pageNum);
     List<OffOrder> offSelect(int pageNum);
 
+    boolean payCheck(Long onLectureNo);
 }

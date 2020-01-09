@@ -1,7 +1,5 @@
 package project.web.mvc.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -21,7 +19,7 @@ public class OnLecture {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ON_LECTURE_SEQ_GENERATOR")
     @SequenceGenerator(
-            name="ON_LECTURE_SEQ_GENERATOR", sequenceName = "ON_LECTURE_SEQ",
+            name = "ON_LECTURE_SEQ_GENERATOR", sequenceName = "ON_LECTURE_SEQ",
             initialValue = 1, allocationSize = 50)
     @Column(name = "ON_LECTURE_NO")
     private Long onLectureNo;
@@ -54,9 +52,7 @@ public class OnLecture {
         this.onLectureNo = onLectureNo;
     }
 
-
-    //
-//    @OneToMany(mappedBy = "onLecture", fetch = FetchType.LAZY)
+    //    @OneToMany(mappedBy = "onLecture", fetch = FetchType.LAZY)
 //    @JsonBackReference
 //    private List<Review>reviews = new ArrayList<>();
 //
@@ -71,5 +67,4 @@ public class OnLecture {
 //    @OneToMany(mappedBy = "onLecture", fetch = FetchType.EAGER)
 //    @JsonBackReference
 //    private List<Cart> carts = new ArrayList<>();
-
 }
