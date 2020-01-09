@@ -1,21 +1,16 @@
 package project.web.mvc.domain;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
 
-import lombok.AccessLevel;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+@Setter
+@Getter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 public class Userdb {
 	
@@ -36,14 +31,21 @@ public class Userdb {
 	@Column(nullable = false, unique = true)
 	private String userdbNickname;
 
-	public Userdb(Long userNo) {
-		this.userdbNo = userNo;
+	@Column(nullable = false)
+	private Long authority;
+	
+	public Userdb(Long userdbNo) {
+		this.userdbNo = userdbNo;
 	}
-
-//
-//	@OneToMany(mappedBy = "userdb")
+	
+	@PrePersist
+	public void insertAuthority() {
+		this.authority = this.authority == null ? 1: this.authority;
+	}
+	
+//	@OneToOne(mappedBy = "userdb")
+//	private Authority authority;
 //	@JsonBackReference
-//	private List<Authority>authorities = new ArrayList<>();
 //
 //	@OneToMany(mappedBy = "userdb")
 //	@JsonBackReference

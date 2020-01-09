@@ -23,8 +23,14 @@ public class OnLectureController {
     private final OrderService orderService;
     private final SugangService sugangService;
 
+    @RequestMapping("")
+    public String main() {
+    	return "redirect:onLecture/list";
+    }
+    
     @RequestMapping("/list")
     public String list(Model model) {
+    	System.out.println("나오니???");
         List<OnLecture> list = onLectureService.selectAll();
         model.addAttribute("list", list);
         return "onLecture/list";

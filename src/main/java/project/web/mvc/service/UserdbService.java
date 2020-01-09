@@ -1,12 +1,15 @@
 package project.web.mvc.service;
 
-import java.util.Optional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import project.web.mvc.domain.Userdb;
 
-public interface UserdbService {
+public interface UserdbService{
 
 	void insert(Userdb userdb);
+	void delete(Long userdbNo);
 	Userdb selectByUserdbEmail(String userdbEmail);
-	Optional<Userdb> selectByUserdbNo(Long userdbNo);
+	Userdb selectByUserdbNo(Long userdbNo);
+	boolean duplicatedByEmail(Userdb userdb);
+	PasswordEncoder passwordEncoder();
 }

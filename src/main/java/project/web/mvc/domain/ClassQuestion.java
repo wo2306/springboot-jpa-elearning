@@ -40,9 +40,6 @@ public class ClassQuestion {
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
     private Userdb userdb;
 
-	@ManyToOne
-	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
-    private OnLecture onLecture;
 
 	@Column(nullable = false)
     private String classQuestionTitle;
