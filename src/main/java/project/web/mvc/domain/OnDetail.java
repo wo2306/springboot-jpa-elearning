@@ -1,13 +1,6 @@
 package project.web.mvc.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -15,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -34,7 +30,7 @@ public class OnDetail {
 	@ManyToOne
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
 //	@JsonManagedReference
-    private OnLecture onLecture;
+	private OnLecture onLecture;
 
 
 	@Column(nullable = false)
@@ -45,5 +41,9 @@ public class OnDetail {
 
 	@Column(nullable = false)
     private String onDetailPlaytime;
+
+
+
+
 
 }
