@@ -46,57 +46,61 @@
       <div class="container">
         <div class="section-content">
           <div class="row">
-          
-           
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <tr>
-                      <th>academyNo</th>
-                      <th>academyName</th>
-                      <th>academyAddrCity</th>
-                      <th>academyAddrDetail</th>
-                      <th>수정</th>
-                      <th>삭제</th>
-                    </tr>
-                   <c:forEach items="${requestScope.list}" var="list"> 
-                    <tr>
-                      <td>${list.academyNo}</td>
-                      <td>${list.academyName}</td>
-                      <td>${list.academyAddrCity}</td>
-                      <td>${list.academyAddrDetail}</td>
-                      <td><input type="button" value="수정"></td>
-                      <td><input type="button" value="삭제"></td>
-                    </tr>
-                    </c:forEach>
-            </table>
 
+<form name="updateForm" method="post"
+								action="${pageContext.request.contextPath}/admin/adminUpdate">
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<tr>
-									<th>등록</th>
+									<th>academyNo</th>
+									<th>academyName</th>
+									<th>academyAddrCity</th>
+									<th>academyAddrDetail</th>
+									<th>수정</th>
+									<th>삭제</th>
 								</tr>
-								<tr>
-									<td><input type="button" value="등록"></td>
-								</tr>
+								<c:forEach items="${requestScope.list}" var="list">
+									<tr>
+										<td>${list.academyNo}</td>
+										<td>${list.academyName}</td>
+										<td>${list.academyAddrCity}</td>
+										<td>${list.academyAddrDetail}</td>
+										<td><input type="submit" value="수정"></td>
+										<td><input type="button" value="삭제"></td>
+									</tr>
+								</c:forEach>
 							</table>
+							</form>
+							<form name="writeForm" method="post"
+								action="${pageContext.request.contextPath}/admin/adminRegister">
+								<table class="table table-bordered" id="dataTable" width="100%"
+									cellspacing="0">
+									<tr>
+										<th>등록</th>
+									</tr>
+									<tr>
+										<td><input type="submit" value="등록"></td>
+									</tr>
+								</table>
+
+							</form>
+
+											<div class="col-md-6">
+												<div class="video-popup">
+													<a href="https://www.youtube.com/watch?v=pW1uVUg5wXM"
+														data-lightbox-gallery="youtube-video" title="Video"> </a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
 
 
-							<div class="col-md-6">
-              <div class="video-popup">                
-                <a href="https://www.youtube.com/watch?v=pW1uVUg5wXM" data-lightbox-gallery="youtube-video" title="Video">
-                  
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-   
 
-   
 
-    <!-- Divider: Call To Action -->
+
+							<!-- Divider: Call To Action -->
     <section class="bg-theme-color-2">
       <div class="container pt-10 pb-20">
         <div class="row">
