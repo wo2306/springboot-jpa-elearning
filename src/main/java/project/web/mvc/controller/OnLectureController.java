@@ -1,14 +1,12 @@
 package project.web.mvc.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
-import project.web.mvc.domain.OnOrder;
 import project.web.mvc.service.OnLectureService;
 import project.web.mvc.service.OrderService;
 import project.web.mvc.service.SugangService;
@@ -30,7 +28,6 @@ public class OnLectureController {
     
     @RequestMapping("/list")
     public String list(Model model) {
-    	System.out.println("나오니???");
         List<OnLecture> list = onLectureService.selectAll();
         model.addAttribute("list", list);
         return "onLecture/list";
@@ -42,9 +39,9 @@ public class OnLectureController {
         model.addAttribute("detailList", list);
         model.addAttribute("onLecture", list.get(0).getOnLecture());
         if (orderService.payCheck(onLectureNo)) {
-//            model.addAttribute("sugangList", sugangService.sugangCount(onLectureNo));
+            model.addAttribute("sugangList", sugangService.sugangList(onLectureNo));
             return "onLecture/dashboard";
-        };
+        }
         return "onLecture/detail";
     }
 

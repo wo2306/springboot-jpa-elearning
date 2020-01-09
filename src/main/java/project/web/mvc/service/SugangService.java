@@ -1,6 +1,7 @@
 package project.web.mvc.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import project.web.mvc.domain.Sugang;
 import project.web.mvc.domain.Userdb;
@@ -14,25 +15,21 @@ public class SugangService {
     private final SugangReposiitory sugangReposiitory;
 
     public List<Sugang> sugangList(Long onLectureNo) {
-        //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        String userdbEmail = auth.getName();
-        Long userdbNo = 1L;
-        return null;
+        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return sugangReposiitory.findTopByUserdbUserdbNoAndOnLectureNo(userdb.getUserdbNo(), onLectureNo);
     }
 
     public void insert(Long onLectureNo, Long onDetailNo) {
-        Long userdbNo = 1L;
-        if (sugangReposiitory.findTopByUserdb_UserdbNoAndOnDetailNo(onLectureNo, userdbNo) == null) {
-            sugangReposiitory.save(new Sugang(null, new Userdb(1L),null, "수강중", onDetailNo, onLectureNo));
+        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (sugangReposiitory.findByUserdb_UserdbNoAndOnDetailNoAndOnLectureNo(userdb.getUserdbNo(), onDetailNo, onLectureNo) == null) {
+            sugangReposiitory.save(new Sugang(null, userdb, null, "수강중", onDetailNo, onLectureNo));
         }
     }
 
     public void complete(Long onLectureNo, Long onDetailNo) {
-        // Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        Userdb userdb = auth.getPrincipal();
-        Long userdbNo = 1L;
-        if (sugangReposiitory.findTopByUserdb_UserdbNoAndOnDetailNo(onLectureNo, userdbNo) == null) {
-            sugangReposiitory.save(new Sugang(null, new Userdb(1L),null, "수강완료", onDetailNo, onLectureNo));
-        }
+        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Sugang sugang = sugangReposiitory.findByUserdb_UserdbNoAndOnDetailNoAndOnLectureNo(userdb.getUserdbNo(), onDetailNo, onLectureNo);
+        sugang.setSugangState("수강완료");
+        sugangReposiitory.save(sugang);
     }
 }

@@ -207,7 +207,6 @@
 
 <!-- Footer Scripts -->
 <!-- JS | Custom script for all pages -->
-<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 </div>
 <script>
     var tag = document.createElement('script');
@@ -228,13 +227,23 @@
     }
 
     function onPlayerStateChange(event) {
-        var nextNo = ${nextNo}
+        var nextNo =;
+        ${nextNo}
         if (event.data === 0) {
             $.ajax({
                 url: "${pageContext.request.contextPath}/sugang/complete/${onDetail.onLecture.onLectureNo}/${onDetailNo}",
                 type: "post",
                 dataType: "json",
-            })
+                success: function (result) {
+                    $.each(result, function (key, val) {
+
+                    });
+                    console.log(result)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
             if (nextNo != -1) {
                 if (confirm("학습이 종료되었습니다.\n 다음 강의로 이동하시겠습니까?")) {
                     location.href = '${pageContext.request.contextPath}/onLecture/view/${nextNo}'
@@ -246,5 +255,6 @@
         }
     }
 </script>
+<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 </body>
 </html>

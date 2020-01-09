@@ -2,16 +2,12 @@ package project.web.mvc.service;
 
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
-import project.web.mvc.domain.Sugang;
 import project.web.mvc.repository.OnDetailRepository;
 import project.web.mvc.repository.OnLectureRepository;
-import project.web.mvc.repository.SugangReposiitory;
 
-import javax.xml.soap.Detail;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +30,6 @@ public class OnLectureServiceImpl implements OnLectureService {
     @Override
     public List<OnLecture> selectAll() {
         List<OnLecture> list = Lists.newArrayList(onLectureRepository.findAll());
-
         System.out.println("집중!! 서비스 결과나왓다!!!");
         for (OnLecture o : list) {
             System.out.println(o);
