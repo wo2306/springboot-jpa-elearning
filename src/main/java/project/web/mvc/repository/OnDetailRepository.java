@@ -9,5 +9,6 @@ import java.util.List;
 public interface OnDetailRepository extends CrudRepository<OnDetail, Long> {
 
     List<OnDetail> findByOnLectureOnLectureNo(Long onLectureNo);
+
 }
 

@@ -70,4 +70,15 @@ public class OrderServiceImpl implements OrderService {
         offOrderRepository.findByUserdbUserdbEmail(userdbEmail, pageable).iterator().forEachRemaining(list::add);
         return list;
     }
+
+    @Override
+    public boolean payCheck(Long onLectureNo) {
+        //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        String userdbEmail = auth.getName();
+        String userdbEmail = "wo2306@gmail.com";
+        if (onOrderRepository.findByUserdbUserdbEmailAndOnlecture_OnLectureNo(userdbEmail, onLectureNo)!=null) {
+            return true;
+        };
+        return false;
+    }
 }
