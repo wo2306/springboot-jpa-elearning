@@ -25,21 +25,31 @@ public class AcademyController {
      * 교육원 전체 검색
      * 
      */
-	
-	@RequestMapping("/list")
-	public void list(Model model) {
+	@RequestMapping("")
+	public String main(Model model) {
+		System.out.println("너왓어어어어어?");
 		List<Academy> list = academyService.selectAll();
 		model.addAttribute("list", list);
 		System.out.println(list);
+		return "academy/listTest";
+	}
+	
+	
+	@RequestMapping("list")
+	public String list(Model model) {
+		List<Academy> list = academyService.selectAll();
+		model.addAttribute("list", list);
+		System.out.println(list);
+		return "academy/listTest";
 	}
 	
 	/**
 	 * 교육원 부분 검색
 	 * */
-	@RequestMapping("/academySelect")
-	public Academy academySelect(Long academyNo){
+	@RequestMapping("/detail/{academyNo}")
+	public ModelAndView academySelect(@PathVariable Long academyNo){
 		Academy academy = academyService.selectByAno(academyNo);
-		return academy;
+		return new ModelAndView("academy/detail", "academy", academy);
 	}
 	
 	
