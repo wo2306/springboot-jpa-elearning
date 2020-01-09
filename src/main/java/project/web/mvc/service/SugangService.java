@@ -20,13 +20,12 @@ public class SugangService {
         return sugangReposiitory.findByUserdb_UserdbNoAndOnLectureNoOrderBySugangDate(userdbNo, onLectureNo);
     }
 
-    public void insert(Sugang sugang) {
+    public void insert(Long onLectureNo, Long onDetailNo) {
         // Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        Userdb userdb = auth.getPrincipal();
         Long userdbNo = 1L;
-        if (sugangReposiitory.findByUserdb_UserdbNoAndOnDetailNo(userdbNo, sugang.getOnLectureNo()) == null) {
-            sugang.setUserdb(new Userdb(userdbNo));
-            sugangReposiitory.save(sugang);
+        if (sugangReposiitory.findByUserdb_UserdbNoAndOnDetailNo(userdbNo, onLectureNo) == null) {
+            sugangReposiitory.save(new Sugang(null, new Userdb(1L),null, "수강완료", onDetailNo, onLectureNo));
         }
     }
 }

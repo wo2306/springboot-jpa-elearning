@@ -129,7 +129,7 @@
                             <div class="widget">
                                 <div class="services-list">
                                 <ul class="list list-border angle-double-right">
-                                    <li class="active"><a href="page-courses-accounting-technologies.html">지금 바로 학습 시작</a></li>
+                                    <li class="active"><a href="${pageContext.request.contextPath}/onLecture/view/${sugangList.get(0).onDetailNo}">지금 바로 학습 시작</a></li>
                                 </ul>
                                     <br>
                                 <h4 style="display: inline" class="widget-title line-bottom">내 학습 상황 &nbsp;<span
@@ -138,7 +138,9 @@
                                         <div class="progress-item style2">
                                             <br>
                                             <div class="progress">
-                                                <div class="progress-bar" data-percent="${sugangList.size()/detailList.size()*100}"></div>
+                                                <div class="progress-bar" data-percent="
+<fmt:parseNumber var="test" value="${sugangList.size()/detailList.size()}" integerOnly="true" />
+                                                "></div>
                                             </div>
                                         </div>
                                     </div>
