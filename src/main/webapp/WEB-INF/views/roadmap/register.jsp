@@ -61,8 +61,9 @@
 <script type="text/javascript">
 $(function(){
 	$("#onlecturebtn").click(function(){
-		window.open("list", "PopupWin", "width=1000,height=1000")
-	})
+		window.open("onLectureList", "PopupWin", "width=1000,height=1000")
+	})// click end
+	
 })
 
 </script>

@@ -91,9 +91,9 @@
             <div class="col-sm-12 col-md-9">
               <div class="row multi-row-clearfix">
                 <div class="products">
+                <c:forEach items="${roadmapList}" var="list">
                   <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
                     <div class="product">
-                      <span class="tag-sale">Sale!</span>
                       <div class="product-thumb"> 
                         <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
                         <div class="overlay">
@@ -106,176 +106,13 @@
                         </div>
                       </div>
                       <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">로드맵 이름</h5></a>
+                        <a href="#"><h5 class="product-title">${list.roadmapName}</h5></a>
                         <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 67%;">3.50</span></div>
-                        <div class="price"><del><span class="amount">$110.00</span></del><ins><span class="amount">100,000원</span></ins></div>
+                        <div class="price"><ins><span class="amount"><fmt:formatNumber value="${list.roadmapPrice}" pattern="₩#,###"/></span></ins></div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
-                    <div class="product">
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="shop-product-details.html">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Pen</h5></a>
-                        <div class="star-rating" title="Rated 5.00 out of 5"><span style="width: 100%;">5.00</span></div>
-                        <div class="price"><ins><span class="amount">$480.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
-                    <div class="product">
-                      <span class="tag-sale">Sale!</span>
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="shop-product-details.html">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">College Bag</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 60%;">3.50</span></div>
-                        <div class="price"><del><span class="amount">$70.00</span></del><ins><span class="amount">$55.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
-                    <div class="product">
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="shop-product-details.html">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Ladies Bag</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 75%;">3.50</span></div>
-                        <div class="price"><ins><span class="amount">$185.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
-                    <div class="product">
-                      <span class="tag-sale">Sale!</span>
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="shop-product-details.html">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Note Book</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 40%;">3.50</span></div>
-                        <div class="price"><del><span class="amount">$220.00</span></del><ins><span class="amount">$210.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
-                    <div class="product">
-                      <span class="tag-sale">Sale!</span>
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="shop-product-details.html">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">BWatch</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 80%;">3.50</span></div>
-                        <div class="price"><del><span class="amount">$165.00</span></del><ins><span class="amount">$160.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
-                    <div class="product">
-                      <span class="tag-sale">Sale!</span>
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="shop-product-details.html">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Color Box</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 32%;">3.50</span></div>
-                        <div class="price"><del><span class="amount">$120.00</span></del><ins><span class="amount">$110.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
-                    <div class="product">
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="shop-product-details.html">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Ruler</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 85%;">3.50</span></div>
-                        <div class="price"><ins><span class="amount">$240.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
-                    <div class="product">
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="shop-product-details.html">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Table Lamp</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
-                        <div class="price"><ins><span class="amount">$480.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
+                 </c:forEach>
                 </div>
               </div>
             </div>
