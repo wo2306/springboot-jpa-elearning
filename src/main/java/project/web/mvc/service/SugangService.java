@@ -17,16 +17,22 @@ public class SugangService {
         //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        String userdbEmail = auth.getName();
         Long userdbNo = 1L;
-        return sugangReposiitory.findByUserdb_UserdbNoAndOnLectureNoOrderBySugangDate(userdbNo, onLectureNo);
+        return null;
     }
 
-    public void insert(Sugang sugang) {
+    public void insert(Long onLectureNo, Long onDetailNo) {
+        Long userdbNo = 1L;
+        if (sugangReposiitory.findTopByUserdb_UserdbNoAndOnDetailNo(onLectureNo, userdbNo) == null) {
+            sugangReposiitory.save(new Sugang(null, new Userdb(1L),null, "수강중", onDetailNo, onLectureNo));
+        }
+    }
+
+    public void complete(Long onLectureNo, Long onDetailNo) {
         // Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        Userdb userdb = auth.getPrincipal();
         Long userdbNo = 1L;
-        if (sugangReposiitory.findByUserdb_UserdbNoAndOnDetailNo(userdbNo, sugang.getOnLectureNo()) == null) {
-            sugang.setUserdb(new Userdb(userdbNo));
-            sugangReposiitory.save(sugang);
+        if (sugangReposiitory.findTopByUserdb_UserdbNoAndOnDetailNo(onLectureNo, userdbNo) == null) {
+            sugangReposiitory.save(new Sugang(null, new Userdb(1L),null, "수강완료", onDetailNo, onLectureNo));
         }
     }
 }

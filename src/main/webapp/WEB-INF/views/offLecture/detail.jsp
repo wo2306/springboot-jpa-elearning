@@ -28,7 +28,7 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-12 text-center">
-              <h2 class="font-28 text-white">Event Details 1</h2>
+              <h3 class="font-28 text-white">Event Details 1</h2>
               <ol class="breadcrumb text-center text-black mt-10">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Pages</a></li>

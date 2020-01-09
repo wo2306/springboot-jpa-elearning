@@ -128,79 +128,85 @@
                         <div class="sidebar sidebar-left mt-sm-30 ml-40">
                             <div class="widget">
                                 <div class="services-list">
-                                <ul class="list list-border angle-double-right">
-                                    <li class="active"><a href="page-courses-accounting-technologies.html">지금 바로 학습 시작</a></li>
-                                </ul>
+                                    <ul class="list list-border angle-double-right">
+                                        <li class="active"><a
+                                                href="${pageContext.request.contextPath}/onLecture/view/${sugangList.get(0).onDetailNo}">지금
+                                            바로 학습 시작</a></li>
+                                    </ul>
                                     <br>
-                                <h4 style="display: inline" class="widget-title line-bottom">내 학습 상황 &nbsp;<span
-                                        class="text-theme-color-2">${sugangList.size()}/${detailList.size()}</span></h4>
+                                    <h4 style="display: inline" class="widget-title line-bottom">내 학습 상황 &nbsp;<span
+                                            class="text-theme-color-2">${sugangList.size()}/${detailList.size()}</span>
+                                    </h4>
                                     <div class="progressbar-container">
                                         <div class="progress-item style2">
                                             <br>
                                             <div class="progress">
-                                                <div class="progress-bar" data-percent="${sugangList.size()/detailList.size()*100}"></div>
+                                                <div class="progress-bar" data-percent="
+                                                <fmt:formatNumber value="${sugangList.size()/detailList.size()*100}" pattern="#.#" />">
+                                              </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget">
-                                <h4 class="widget-title line-bottom">최근 <span
-                                        class="text-theme-color-2">질문</span></h4>
-                                <div class="opening-hours">
-                                    <ul class="list-border">
-                                        <c:forEach var="qna" items="${qnaList}">
-                                            <li class="clearfix"><span> Mon - Tues :  </span>
-                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="widget">
-                                <h4 class="widget-title line-bottom">강의 <span
-                                        class="text-theme-color-2">공지</span></h4>
-                                <div class="opening-hours">
-                                    <ul class="list-border">
-                                        <c:forEach var="notice" items="${noticeList}">
-                                            <li class="clearfix"><span> Mon - Tues :  </span>
-                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
-                                </div>
-                            </div>
+                            <div class=" widget
+                                                ">
+                                                <h4 class="widget-title line-bottom">최근 <span
+                                                        class="text-theme-color-2">질문</span></h4>
+                                                <div class="opening-hours">
+                                                    <ul class="list-border">
+                                                        <c:forEach var="qna" items="${qnaList}">
+                                                            <li class="clearfix"><span> Mon - Tues :  </span>
+                                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <h4 class="widget-title line-bottom">강의 <span
+                                                        class="text-theme-color-2">공지</span></h4>
+                                                <div class="opening-hours">
+                                                    <ul class="list-border">
+                                                        <c:forEach var="notice" items="${noticeList}">
+                                                            <li class="clearfix"><span> Mon - Tues :  </span>
+                                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </div>
+                                            </div>
 
-                                <!-- Quick Contact Form Validation-->
-                                <script type="text/javascript">
-                                    $("#quick_contact_form_sidebar").validate({
-                                        submitHandler: function (form) {
-                                            var form_btn = $(form).find('button[type="submit"]');
-                                            var form_result_div = '#form-result';
-                                            $(form_result_div).remove();
-                                            form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
-                                            var form_btn_old_msg = form_btn.html();
-                                            form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
-                                            $(form).ajaxSubmit({
-                                                dataType: 'json',
-                                                success: function (data) {
-                                                    if (data.status == 'true') {
-                                                        $(form).find('.form-control').val('');
+                                            <!-- Quick Contact Form Validation-->
+                                            <script type="text/javascript">
+                                                $("#quick_contact_form_sidebar").validate({
+                                                    submitHandler: function (form) {
+                                                        var form_btn = $(form).find('button[type="submit"]');
+                                                        var form_result_div = '#form-result';
+                                                        $(form_result_div).remove();
+                                                        form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
+                                                        var form_btn_old_msg = form_btn.html();
+                                                        form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
+                                                        $(form).ajaxSubmit({
+                                                            dataType: 'json',
+                                                            success: function (data) {
+                                                                if (data.status == 'true') {
+                                                                    $(form).find('.form-control').val('');
+                                                                }
+                                                                form_btn.prop('disabled', false).html(form_btn_old_msg);
+                                                                $(form_result_div).html(data.message).fadeIn('slow');
+                                                                setTimeout(function () {
+                                                                    $(form_result_div).fadeOut('slow')
+                                                                }, 6000);
+                                                            }
+                                                        });
                                                     }
-                                                    form_btn.prop('disabled', false).html(form_btn_old_msg);
-                                                    $(form_result_div).html(data.message).fadeIn('slow');
-                                                    setTimeout(function () {
-                                                        $(form_result_div).fadeOut('slow')
-                                                    }, 6000);
-                                                }
-                                            });
-                                        }
-                                    });
-                                </script>
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
         </section>
     </div>
 </div>

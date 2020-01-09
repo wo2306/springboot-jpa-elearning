@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface SugangReposiitory extends CrudRepository<Sugang, Long> {
 
-    List<Sugang> findByUserdb_UserdbNoAndOnLectureNoOrderBySugangDate(Long userdbNo, Long onLectureNo);
 
-    Sugang findByUserdb_UserdbNoAndOnDetailNo(Long userdbNo, Long onDetailNo);
-
+    List<Sugang> findTopByUserdb_UserdbNoAndOnDetailNo(Long onLectureNo, Long userdbNo);
 }

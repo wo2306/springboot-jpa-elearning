@@ -1,8 +1,6 @@
 package project.web.mvc.domain;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -35,9 +33,9 @@ public class Roadmap {
 	@Column(name = "ROADMAP_NO")
     private Long roadmapNo;
 	
-	@ManyToMany
+	@ManyToOne
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
-	private List<OnLecture>onLectures = new ArrayList<OnLecture>();
+	private OnLecture onLecture;
 	
 	@Column(nullable = false)
     private String roadmapName;
