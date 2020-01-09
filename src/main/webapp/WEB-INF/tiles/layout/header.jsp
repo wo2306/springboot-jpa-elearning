@@ -209,7 +209,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                     <li><a href="${pageContext.request.contextPath}/offLecture">오프라인 강의</a></li>
                     <li><a href="${pageContext.request.contextPath}/onLecture">온라인 강의</a></li>
                     <li><a href="${pageContext.request.contextPath}/roadmap">로드맵</a></li>
-                    <li><a href="${pageContext.request.contextPath}/community">커뮤니티</a></li>
+                    <li><a href="${pageContext.request.contextPath}/qna/list">묻고답하기</a></li>
                     <li class="scrollable-fix"></li>
                 </ul>
                 <ul class="pull-right flip hidden-sm hidden-xs">
