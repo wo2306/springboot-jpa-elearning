@@ -278,7 +278,7 @@
 			dataType:"text",
 			success:function(){
 				alert("삭제완료");
-				printwishlist();
+			//	printwishlist();
 			},error:function(err){
 				alert("안눌려");
 			}
