@@ -20,7 +20,6 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	
 	@Override
 	public List<ClassQuestion> selectAll() {
-		System.out.println("퀘스쳔서비스에서 찾은 리스트 : ");
 		System.out.println(Lists.newArrayList(classQuestionRepo.findAll()));
 		return Lists.newArrayList(classQuestionRepo.findAll());
 	}
@@ -49,6 +48,12 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		ClassQuestion dbQuestion = classQuestionRepo.findById(classQuestion.getClassQuestionNo()).orElse(null);
 		//update와 같이 db검증(회원 인증)하고
 		classQuestionRepo.delete(dbQuestion);
+	}
+
+	@Override
+	public ClassQuestion selectByQNo(Long id) {
+		ClassQuestion question = classQuestionRepo.findById(id).orElse(null);
+		return question;
 	}
 
 }
