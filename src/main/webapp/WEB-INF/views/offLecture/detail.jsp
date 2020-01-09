@@ -76,12 +76,12 @@
                 <p>${offLecture.academy.academyAddrCity}</p>
               </li>
               <li>
-                <h5>강의 시작일</h5>
+                <h5>강의 날짜</h5>
                 <p>${offLecture.offLectureDate}</p>
               </li>
               <li>
-                <h5>종강일</h5>
-                <p>${offLecture.offLectureDate}</p>
+                <h5>남은 좌석 수</h5>
+                <p>${offLecture.offLectureSeat-offLecture.offLectureReservedseat}</p>
               </li>
               <li>
                 <h5>Share:</h5>
