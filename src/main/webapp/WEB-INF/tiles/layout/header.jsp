@@ -67,7 +67,21 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <script type="text/javascript">
 		function logout() {
 			document.getElementById("logoutFrm").submit();
-		}
+		};
+		
+/*  		var t = document.getElementById('target');
+		t.addEventListener('submit', function(event){
+			<!-- 첫번째 인자의 이벤트가 발생하면 두번째 인자인 익명함수가 실행된다. -->
+		    if(document.getElementById('name').value.length === 0){
+		        alert('Name 필드의 값이 누락 되었습니다');
+		        event.preventDefault(); 
+		        <!-- submit이 안 된다.(action 프로퍼티로 전송되는 것을 방지한다.) 기본 동작의 취소-->
+		   		return
+		    }
+		    document.write("<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" style:"display:none">");
+		    submit();
+		});  */
+		
 	</script>
 </head>
 
@@ -181,7 +195,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-5">
                     <div class="widget no-border m-0">
-                        <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="javascript:void(0)"><img
+                        <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="${pageContext.request.contextPath}/"><img
                                 src="${pageContext.request.contextPath}/images/logo-wide22.png" alt=""></a>
                     </div>
                 </div>
@@ -213,23 +227,24 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <div class="header-nav-wrapper navbar-scrolltofixed bg-theme-colored border-bottom-theme-color-2-1px"
          style="z-index: auto; position: static; top: auto;">
         <div class="container">
-            <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive"><a
-                    href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em></a>
+            <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
+            <!-- <a
+                    href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em>
+                    </a> -->
                 <ul class="menuzord-menu onepage-nav menuzord-indented scrollable" style="max-height: 400px;">
-                    <li><a href="${pageContext.request.contextPath}/notice">공지사항</a></li>
-                    <li><a href="${pageContext.request.contextPath}/academy">교육원</a></li>
-                    <li><a href="${pageContext.request.contextPath}/offLecture">오프라인 강의</a></li>
-                    <li><a href="${pageContext.request.contextPath}/onLecture">온라인 강의</a></li>
-                    <li><a href="${pageContext.request.contextPath}/roadmap">로드맵</a></li>
-                    <li><a href="${pageContext.request.contextPath}/community">커뮤니티</a></li>
+                    <li><a href="" id="notice" onclick="notice()">공지사항</a></li>
+                    <li><a href="" id="academy" onclick="academy()">교육원</a></li>
+                    <li><a href="" id="offLecture" onclick="offLecture()">오프라인 강의</a></li>
+                    <li><a href="" id="onLecture" onclick="onLecture()">온라인 강의</a></li>
+                    <li><a href="" id="roadmap" onclick="roadmap()">로드맵</a></li>
+                    <li><a href="" id="community" onclick="community()">커뮤니티</a></li>
                     <li class="scrollable-fix"></li>
                 </ul>
                 <ul class="pull-right flip hidden-sm hidden-xs">
                     <li>
                         <!-- Modal: Book Now Starts -->
                         <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"
-                           data-toggle="modal" data-target="#BSParentModal" onclick="myPage()">마이
-                            페이지</a>
+                           data-toggle="modal" data-target="#BSParentModal" onclick="myPage()" id="myPage">마이 페이지</a>
                         <!-- Modal: Book Now End -->
                     </li>
                 </ul>
@@ -247,6 +262,27 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     </div>
 </header>
 <script>
+
+    function academy() {
+        location.href = "${pageContext.request.contextPath}/academy";
+    }
+    function notice() {
+        location.href = "${pageContext.request.contextPath}/notice";
+    }
+    function onLecture() {
+    	console.log(11);
+        location.href = "${pageContext.request.contextPath}/onLecture";
+    }
+    function offLecture() {
+        location.href = "${pageContext.request.contextPath}/offLecture";
+    }
+    function roadmap() {
+        location.href = "${pageContext.request.contextPath}/roadmap";
+    }
+    function community() {
+        location.href = "${pageContext.request.contextPath}/community";
+    }
+    
     function myPage() {
         location.href = "${pageContext.request.contextPath}/myPage/info";
     }

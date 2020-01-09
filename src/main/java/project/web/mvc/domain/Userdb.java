@@ -34,11 +34,15 @@ public class Userdb {
 	private String userdbNickname;
 
 	@Column(nullable = false)
-	@ColumnDefault("1") //1이면 회원, 0이면 어드민
 	private Long authority;
 	
 	public Userdb(Long userdbNo) {
 		this.userdbNo = userdbNo;
+	}
+	
+	@PrePersist
+	public void insertAuthority() {
+		this.authority = this.authority == null ? 1: this.authority;
 	}
 	
 //	@OneToOne(mappedBy = "userdb")

@@ -1,34 +1,19 @@
 package project.web.mvc.service;
 
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
-import project.web.mvc.domain.Authority;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.UserdbRepository;
-import project.web.mvc.security.UserCustom;
 
 @Service
 @RequiredArgsConstructor
 public class UserdbServiceImpl implements UserdbService {
 
 	private final UserdbRepository userdbRepository;
-	private final AuthorityService authorityService;
 	private  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
@@ -65,13 +50,12 @@ public class UserdbServiceImpl implements UserdbService {
 	@Override
 	public void insert(Userdb userdb) {
 		if(duplicatedByEmail(userdb)) {
-		//비밀번호 인코딩
-		String password = userdb.getUserdbPassword();
-		String encodedPassword = passwordEncoder.encode(password);
-		userdb.setUserdbPassword(encodedPassword);
-		
-		//회원가입
-		userdbRepository.save(userdb);
+				//비밀번호 인코딩
+				String password = userdb.getUserdbPassword();
+				String encodedPassword = passwordEncoder.encode(password);
+				userdb.setUserdbPassword(encodedPassword);
+				//회원가입
+				userdbRepository.save(userdb);
 		}
 	}
 
@@ -80,6 +64,7 @@ public class UserdbServiceImpl implements UserdbService {
 	public void delete(Long userdbNo) {
 		userdbRepository.deleteById(userdbNo);
 	}
+
 
 
 }

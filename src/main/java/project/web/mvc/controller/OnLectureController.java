@@ -22,7 +22,7 @@ public class OnLectureController {
 	@RequestMapping("")
 	public String main() {
 		System.out.println("onLecture의 메인메소드 호출");
-		return "redirect:onLecture/list";
+		return "redirect:/onLecture/list";
 	}
 	
 	@RequestMapping("/list")

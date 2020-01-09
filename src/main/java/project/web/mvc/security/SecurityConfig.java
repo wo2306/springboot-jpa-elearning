@@ -39,9 +39,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         // 페이지 권한 설정
-//        .antMatchers("/admin/**").hasRole("ADMIN")
-//        .antMatchers("/*/**").hasRole("MEMBER")
-        .antMatchers("/**").permitAll()
+        .antMatchers("/admin/**").hasRole("ADMIN")
+        .antMatchers("/myPage/*").authenticated()
+        .antMatchers("/cart/*").authenticated()
+        .anyRequest().permitAll()
+//        .antMatchers("/*/*/*/*/**").authenticated()
+//        .antMatchers("/roadmap/*/**").authenticated()
+//        .antMatchers("/onLecture/*/*/*/**").authenticated()
+//        .antMatchers("/offLecutre/*/**").authenticated()
+//        .antMatchers("/academy/*/**").authenticated()
+//        .antMatchers("/notice/*/**").authenticated()
+//        .antMatchers("/community/*/**").authenticated()
+//        .antMatchers("/login/*/**").authenticated()
+//        .antMatchers("/signUpForm/*/**").authenticated()
+//        .antMatchers("/cart/*").authenticated()
     .and() // 로그인 설정
     	.formLogin()
         .loginPage("/login")
