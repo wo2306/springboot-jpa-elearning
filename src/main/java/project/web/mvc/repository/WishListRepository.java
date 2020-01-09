@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import project.web.mvc.domain.Cart;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.Userdb;
@@ -24,4 +26,5 @@ public interface WishListRepository extends CrudRepository<WishList, Long>{
 	Page<WishList> findAll(Pageable pageable);
 	Page<WishList> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
 	List<WishList> findByUserdbUserdbNo(Long userdbNo);
+	WishList findByOnLectureOnLectureNo(Long onLecture);
 }

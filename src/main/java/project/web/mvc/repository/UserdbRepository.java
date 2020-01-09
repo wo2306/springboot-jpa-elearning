@@ -7,4 +7,6 @@ import project.web.mvc.domain.Userdb;
 public interface UserdbRepository extends CrudRepository<Userdb, Long>{
 
 	Userdb findByUserdbEmail(String userdbEmail);
+	
+	Userdb findByUserdbNo(Long userdbNo);
 }
