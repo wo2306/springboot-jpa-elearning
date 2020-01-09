@@ -1,25 +1,26 @@
 package project.web.mvc.service;
 
 import com.google.common.collect.Lists;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
+import project.web.mvc.domain.Sugang;
 import project.web.mvc.repository.OnDetailRepository;
 import project.web.mvc.repository.OnLectureRepository;
+import project.web.mvc.repository.SugangReposiitory;
 
 import javax.xml.soap.Detail;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class OnLectureServiceImpl implements OnLectureService {
+    private final OnLectureRepository onLectureRepository;
+    private final OnDetailRepository onDetailRepository;
 
-    @Autowired
-    private OnLectureRepository onLectureRepository;
-
-    @Autowired
-    private OnDetailRepository onDetailRepository;
 
     @Override
     public void insert(OnLecture onLecture) {
@@ -55,6 +56,7 @@ public class OnLectureServiceImpl implements OnLectureService {
 
     }
 
+
     @Override
     public List<OnDetail> selectById(Long onLectureNo) {
         List<OnDetail> list = new ArrayList<>();
@@ -67,4 +69,11 @@ public class OnLectureServiceImpl implements OnLectureService {
     public OnLecture selectOnLectureById(Long onLectureNo) {
         return onLectureRepository.findById(onLectureNo).orElse(null);
     }
+
+    @Override
+    public OnDetail selectOnDetailById(Long onDetailNo) {
+        return onDetailRepository.findById(onDetailNo).orElse(null);
+    }
 }
+
+
