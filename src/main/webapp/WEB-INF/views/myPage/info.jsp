@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <head>
     <title>LM company | Learning Machine</title>
+     
 </head>
 
 <body class="">
@@ -42,16 +43,15 @@
                         <div class="col-xs-12 col-sm-8 col-md-12">
                             <div>
                                 <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" role="tablist">
+                                <ul class="nav nav-tabs" role="tablist" id="myTab">
                                     <li role="presentation" class="active"><a href="#orders" aria-controls="orders"
                                                                               role="tab" data-toggle="tab"
                                                                               class="font-15 text-uppercase">온라인 강의
                                         <span class="badge"></span></a></li>
                                     <li role="presentation"><a href="#free-orders" aria-controls="free-orders"
                                                                role="tab" data-toggle="tab"
-                                                               class="font-15 text-uppercase">오프라인 강의 <span
-                                            class="badge"></span></a></li>
-                                    <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
+                                                               class="font-15 text-uppercase">오프라인 강의 <span class="badge">3</span></a></li>
+                                    <li role="presentation"><a href="#wishlisttab" aria-controls="wishlisttab" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">위시리스트
                                         <span class="badge">4</span></a></li>
                                     <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
@@ -70,7 +70,7 @@
                                                 <thead>
                                                 <tr>
                                                     <th>주문번호</th>
-                                                    <th>주문날짜</th>
+                                                    <th>주문날짜</th	>
                                                     <th>결제수단</th>
                                                     <th>총 결제 금액</th>
                                                     <th>상세조회</th>
@@ -151,7 +151,23 @@
                                             </tr>
                                             </tbody>
                                         </table>
+                                    </div>                                 
+                                    <div role="tabpanel" class="tab-pane" id="wishlisttab">
+                                        <table class="table" id="wishlisttable">
+                                            <tbody>
+                                            	<tr>
+                                                    <th>강의번호</th>
+                                                    <th>강의제목</th>                                                                
+                                                    <th>가격</th>                                                                                        
+                                                    <th>삭제</th>                                                                                        
+                                           		</tr>
+                                           		<tr>
+                                           			<th><span id="etx"></span></th>
+                                           		</tr>
+                                            </tbody>
+                                        </table>
                                     </div>
+                                    
                                     <div role="tabpanel" class="tab-pane" id="bookmarks">
                                         <table class="table">
                                             <tbody>
@@ -192,6 +208,55 @@
     </div>
 </div>
 <!-- end main-content -->
-
+<script type="text/javascript">
+    $(document).ready(function(){ 
+    	$('#myTab li:eq(2) a').on('click', function(){
+    		$.ajax({
+                type :"post",
+                url :"${pageContext.request.contextPath}/myPage/info/wishlisttab",
+                dataType :"json",               
+                success : function(result){
+                	alert("통신성공!!!");
+                	if(result!=null){
+                	alert(result);
+                	$('#wishlisttable tr:gt(0)').empty();
+    				var str = "";
+    				$.each(result,function(index,item){
+    					str+='<tr>';
+    					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail">'+item.onLecture.onLectureNo+'</a>'+'</td>';
+    					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'+item.onLecture.onLectureName+'</a>'+'</td>';
+    					str+='<td>'+item.onLecturePrice+'</td>';
+    					str+='<td><input type="button" value="삭제" id="wishlistdelete"></td>';
+    					str+='</tr>';
+    				});
+    				$('#wishlisttable').append(str);
+                	}else alert("위시리스트에 항목이 없습니다.");
+                },error : function(err){
+                alert("통신실패!!!! err : " + err);
+            } 
+            });
+    	})
+  		  
+  	
+		$('#wishlistdelete').on("click",function() {
+			$.ajax({
+			url:"delete",
+			type:"delete",
+			data:'#wishlisttable > tbody > tr:nth-child(3) > td:nth-child(1)',
+			//data:{"stNo : $(this).attr('id')}
+			dataType:"text",
+			success:function(result){
+				alert("result = " + result);
+				printMember();
+			},error:function(err){
+				alert("안눌려");
+			}
+		})
+	});//delete
+    	
+    });//ready
+    
+ 
+</script>
 </body>
 </html>

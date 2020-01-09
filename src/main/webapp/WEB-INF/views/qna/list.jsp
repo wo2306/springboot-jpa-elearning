@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <head>
@@ -18,47 +19,54 @@
 </head>
 
 <body>
-<div class="container pt-80 pb-60">
-        <div class="section-content">
-          <div class="row">
-            <div class="col-md-12">
-              <table class="table table-striped table-schedule">
-                <thead>
-                  <tr class="bg-theme-colored">
-                    <th> </th>
-                    <th> </th>
-                    <th> </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td><strong>seeko 웹사이트가 바뀌었어요</strong></td>
-                    <td>abc</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td><strong> 질문드립니다.</strong></td>
-                    <td>defg</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><strong>게임 버그 문의</strong></td>
-                    <td>ggg</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td><a href="#">어디서 틀린걸까요</a> </td>
-                    <td>1a2a3a</td>
-                  </tr>
-                  
-                  
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
+	<div class="container pt-80 pb-60">
+		<div class="section-content">
+			<div class="row">
+				<div class="col-md-12">
+				    <div class="media-content">
+      <h4><span style="color:#1dc078">Q.</span> <a href="/qna/questionForm">질문등록</a></h4>
+  
+    </div>
+					<table class="table table-striped table-schedule">
+						<thead>
+							<tr class="bg-theme-colored">
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+								<c:choose>
+    <c:when test="${empty list}">
+	<tr>
+        <td colspan="3">
+            <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
+        </td>
+    </tr>
+    </c:when>
+    <c:otherwise>
+    <c:forEach items = "${list }" var="question">
+    <tr class="">
+    
+    <td>${question.classQuestionNo }</td>
+    
+    <td><a href="${pageContext.request.contextPath}/qna/read/${question.classQuestionNo }">${question.classQuestionTitle }</a></td>
+    
+    <td>${question.userdb.userdbNickname }</td>
+    
+    </tr>
+    	
+    </c:forEach>
+    </c:otherwise>
+    </c:choose>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

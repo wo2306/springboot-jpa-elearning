@@ -107,12 +107,13 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>강의명</th>
+                                            <th>강의명을 클릭하면 해당 강의로 이동합니다</th>
                                             <th width="100">강의 길이</th>
                                             <tbody>
                                             <c:forEach items="${detailList}" var="onDetail">
                                                 <tr>
-                                                    <td scope="row"><a>${onDetail.onDetailName}</a>
+                                                    <td scope="row"><a
+                                                            href="${pageContext.request.contextPath}/onLecture/view/${onDetail.onDetailNo}">${onDetail.onDetailName}</a>
                                                     </td>
                                                     <td>${onDetail.onDetailPlaytime}</td>
                                                 </tr>
@@ -124,56 +125,88 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-4">
-                        <div id="sidebox">
-                            <div class="sidebar sidebar-left mt-sm-30 ml-40">
-                                <div class="widget" style="padding: 30px; border: outset 1px">
-                                    <h4 class="widget-title line-bottom">강의 <span
-                                            class="text-theme-color-2">구매하기</span></h4>
-                                    <form id="quick_contact_form_sidebar" name="footer_quick_contact_form"
-                                          class="quick-contact-form" action="includes/quickcontact.php" method="post">
-                                        <div class="form-group">
-                                            <p>
-                                            <h2><fmt:formatNumber
-                                                    value="${onLecture.onLecturePrice-onLecture.onLectureDiscount/100*onLecture.onLecturePrice}"
-                                                    pattern="₩#,###"/></h2>
-                                            <c:if test="${onLecture.onLectureDiscount ne 0}">
-                                        <span style="text-decoration: line-through; color: darkgrey">
-                                            <fmt:formatNumber value="${onLecture.onLecturePrice}" pattern="₩#,###"/>
-                                             </span>
-                                                <span style="color: red">&nbsp; 현재&nbsp;${onLecture.onLectureDiscount}% 할인중 </span>
-                                                <hr>
-                                                <p><span
-                                                        style="font-weight: bold">지식공유자 - ${onLecture.onLectureTeacher}</span><br>
-                                                    총&nbsp;${detailList.size()}회 수업<br>
-                                                    평생 무제한 시청<br>
-                                                    완강시 수료증 발급<br>
-                                                <hr>
-                                            </c:if>
-                                            <p></p>
+                        <div class="sidebar sidebar-left mt-sm-30 ml-40">
+                            <div class="widget">
+                                <div class="services-list">
+                                    <ul class="list list-border angle-double-right">
+                                        <li class="active"><a
+                                                href="${pageContext.request.contextPath}/onLecture/view/${sugangList.get(0).onDetailNo}">지금
+                                            바로 학습 시작</a></li>
+                                    </ul>
+                                    <br>
+                                    <h4 style="display: inline" class="widget-title line-bottom">내 학습 상황 &nbsp;<span
+                                            class="text-theme-color-2">${sugangList.size()}/${detailList.size()}</span>
+                                    </h4>
+                                    <div class="progressbar-container">
+                                        <div class="progress-item style2">
+                                            <br>
+                                            <div class="progress">
+                                                <div class="progress-bar" data-percent="
+                                                <fmt:formatNumber value="${sugangList.size()/detailList.size()*100}" pattern="#.#" />">
+                                              </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                        </div>
-                                    </form>
-                                    <div class="form-group">
-                                        <input name="form_botcheck" class="form-control" type="hidden" value=""/>
-                                        <button type="button"
-                                                onclick="location.href='${pageContext.request.contextPath}/order/buynow/${onLecture.onLectureNo}'"
-                                                class="btn btn-theme-colored btn-flat btn-xs btn-quick-contact pt-10 pb-10"
-                                                data-loading-text="Please wait...">바로 구매하기
-                                        </button>
-                                        &nbsp&nbsp
-                                        <button type="button" onclick="cartInsert()"
-                                                class="btn btn-theme-colored btn-flat btn-xs btn-quick-contact pt-10 pb-10"
-                                                data-loading-text="Please wait...">장바구니에 담기
-                                        </button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                            <div class=" widget
+                                                ">
+                                                <h4 class="widget-title line-bottom">최근 <span
+                                                        class="text-theme-color-2">질문</span></h4>
+                                                <div class="opening-hours">
+                                                    <ul class="list-border">
+                                                        <c:forEach var="qna" items="${qnaList}">
+                                                            <li class="clearfix"><span> Mon - Tues :  </span>
+                                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="widget">
+                                                <h4 class="widget-title line-bottom">강의 <span
+                                                        class="text-theme-color-2">공지</span></h4>
+                                                <div class="opening-hours">
+                                                    <ul class="list-border">
+                                                        <c:forEach var="notice" items="${noticeList}">
+                                                            <li class="clearfix"><span> Mon - Tues :  </span>
+                                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </div>
+                                            </div>
 
-            </div>
+                                            <!-- Quick Contact Form Validation-->
+                                            <script type="text/javascript">
+                                                $("#quick_contact_form_sidebar").validate({
+                                                    submitHandler: function (form) {
+                                                        var form_btn = $(form).find('button[type="submit"]');
+                                                        var form_result_div = '#form-result';
+                                                        $(form_result_div).remove();
+                                                        form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
+                                                        var form_btn_old_msg = form_btn.html();
+                                                        form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
+                                                        $(form).ajaxSubmit({
+                                                            dataType: 'json',
+                                                            success: function (data) {
+                                                                if (data.status == 'true') {
+                                                                    $(form).find('.form-control').val('');
+                                                                }
+                                                                form_btn.prop('disabled', false).html(form_btn_old_msg);
+                                                                $(form_result_div).html(data.message).fadeIn('slow');
+                                                                setTimeout(function () {
+                                                                    $(form_result_div).fadeOut('slow')
+                                                                }, 6000);
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
         </section>
     </div>
 </div>
@@ -181,39 +214,5 @@
 </div>
 </div>
 <!-- end main-content -->
-<script>
-    //구매했으면 구매 사이드바 숨기고 학습하기 UI 보여줌
-    $(".relatedRoadmapList").hover(function () {
-        $(this).attr('class', 'active')
-    }, function () {
-        $(this).attr('class', 'relatedRoadmapList')
-    })
-
-    var currentPosition = parseInt($("#sidebox").css("top"));
-    $(window).scroll(function () {
-        var position = $(window).scrollTop();
-        if (position > 400 && position < 1300)
-            $("#sidebox").stop().animate({"top": position + currentPosition - 400 + "px"}, 0);
-    });
-
-    function cartInsert() {
-        $.ajax({
-            url: "${pageContext.request.contextPath}/cart/insert/" + ${onLecture.onLectureNo},
-            type: "post",
-            dataType: "json",
-            success: function () {
-                cartList()
-                if (confirm("강의를 수강바구니에 담았습니다. \n지금 장바구니로 이동하시겠습니까?")) {
-                    location.href = '${pageContext.request.contextPath}/cart/list';
-                }
-                console.log("성공했다");
-            },
-            error: function (error) {
-                alert("이미 해당 강의가 장바구니에 담겨있습니다.");
-            }
-        })
-    }
-
-</script>
 </body>
 </html>
