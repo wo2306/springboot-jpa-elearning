@@ -1,6 +1,5 @@
 package project.web.mvc.security;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,19 +70,15 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 	    ////////////    여기까지 왔다면 인증에 성공함  ///////////////// 
 		//4. id, password 모두가 일치하면 Authentication를 만들어서 리턴.
 		// 사용자의 권한을 조회 : 하나의 사용자는 여러개의 권한을 가짐.
-//		List<Authority> list = 
-//				authorityService.selectByUserdbNo(vo.getUserdbNo());
+		List<Authority> list = 
+				authorityService.findAuthorityByUserdbNo(vo.getUserdbNo());
 //		
-		
-		
-//		
-//		if(vo.list.isEmpty()){
-//			//아무 권한이 없는경우....
-//			throw new UsernameNotFoundException(id+"는 아무 권한이 없습니다.");
-//		}
+		if(list.isEmpty()){
+			//아무 권한이 없는경우....
+			throw new UsernameNotFoundException(id+"는 아무 권한이 없습니다.");
+		}
 //		
 //		//db에서 가지고 온 권한을 GrantedAuthority 로 변환해야함.
-		
 		List<SimpleGrantedAuthority> authList = 
 				authorityService.getAuthorities(vo.getUserdbNo());
 //		List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>();

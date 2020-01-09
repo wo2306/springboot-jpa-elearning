@@ -3,8 +3,6 @@ package project.web.mvc.domain;
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.ColumnDefault;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
