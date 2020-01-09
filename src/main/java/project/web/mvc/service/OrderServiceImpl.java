@@ -50,8 +50,8 @@ public class OrderServiceImpl implements OrderService {
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        String userdbEmail = auth.getName();
         String userdbEmail = "wo2306@gmail.com";
-        onOrderRepository.findByUserdbUserdbEmail(userdbEmail, pageable).iterator().forEachRemaining(list::add);
- 
+        onOrderRepository.findTopByUserdbUserdbEmail(userdbEmail, pageable).iterator().forEachRemaining(list::add);
+
         return list;
     }
 
@@ -67,7 +67,19 @@ public class OrderServiceImpl implements OrderService {
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        String userdbEmail = auth.getName();
         String userdbEmail = "wo2306@gmail.com";
-        offOrderRepository.findByUserdbUserdbEmail(userdbEmail, pageable).iterator().forEachRemaining(list::add);
+        offOrderRepository.findTopByUserdbUserdbEmail(userdbEmail, pageable).iterator().forEachRemaining(list::add);
         return list;
+    }
+
+    @Override
+    public boolean payCheck(Long onLectureNo) {
+        //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        String userdbEmail = auth.getName();
+        String userdbEmail = "asdf@naver.com";
+        if (onOrderRepository.findTopByUserdbUserdbEmailAndOnlecture_OnLectureNo(userdbEmail, onLectureNo)!=null) {
+            System.out.println("11111111111111111111111111111111111111111111111");
+            return true;
+        };
+        return false;
     }
 }
