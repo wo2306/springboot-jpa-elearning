@@ -14,9 +14,9 @@ import project.web.mvc.service.SugangService;
 public class SugangController {
     private final SugangService sugangService;
 
-    @RequestMapping("/insert/{onLectureNo}/{onDetailNo}")
-    public void insert(@PathVariable Long onLectureNo, @PathVariable Long onDetailNo) {
-        sugangService.insert(onLectureNo, onDetailNo);
+    @RequestMapping("/complete/{onLectureNo}/{onDetailNo}")
+    public void complete(@PathVariable Long onLectureNo, @PathVariable Long onDetailNo) {
+        sugangService.complete(onLectureNo, onDetailNo);
     }
 
 }

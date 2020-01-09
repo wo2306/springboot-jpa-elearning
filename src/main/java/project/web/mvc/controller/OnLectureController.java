@@ -36,7 +36,7 @@ public class OnLectureController {
         model.addAttribute("detailList", list);
         model.addAttribute("onLecture", list.get(0).getOnLecture());
         if (orderService.payCheck(onLectureNo)) {
-            model.addAttribute("sugangList", sugangService.sugangList(onLectureNo));
+//            model.addAttribute("sugangList", sugangService.sugangCount(onLectureNo));
             return "onLecture/dashboard";
         };
         return "onLecture/detail";
@@ -65,7 +65,8 @@ public class OnLectureController {
     @RequestMapping("/view/{onDetailNo}")
     public String view(@PathVariable Long onDetailNo, Model model) {
         OnDetail onDetail = onLectureService.selectOnDetailById(onDetailNo);
-        List<OnDetail> list = onLectureService.selectById(onDetail.getOnLecture().getOnLectureNo());
+        Long onLectureNo = onDetail.getOnLecture().getOnLectureNo();
+        List<OnDetail> list = onLectureService.selectById(onLectureNo);
         model.addAttribute("onDetail", onDetail);
         model.addAttribute("onDetailList", list);
         int index = list.indexOf(onDetail);
@@ -76,6 +77,7 @@ public class OnLectureController {
         if (index < list.size() - 1) {
             nextNo = (int) (long) list.get(index + 1).getOnDetailNo();
         }
+        sugangService.insert(onLectureNo, onDetailNo);
         model.addAttribute("prevNo", prevNo);
         model.addAttribute("nextNo", nextNo);
         return "onLecture/video/view";

@@ -231,7 +231,7 @@
         var nextNo = ${nextNo}
         if (event.data === 0) {
             $.ajax({
-                url: "${pageContext.request.contextPath}/sugang/insert/${onDetail.onLecture.onLectureNo}/${onDetailNo}",
+                url: "${pageContext.request.contextPath}/sugang/complete/${onDetail.onLecture.onLectureNo}/${onDetailNo}",
                 type: "post",
                 dataType: "json",
             })
