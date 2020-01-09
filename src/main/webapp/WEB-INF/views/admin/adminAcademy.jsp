@@ -66,7 +66,7 @@
 										<td>${list.academyAddrCity}</td>
 										<td>${list.academyAddrDetail}</td>
 										<td><input type="submit" value="수정"></td>
-										<td><input type="button" value="삭제"></td>
+										<td><input type="button" value="삭제" id=${list.academyNo}></td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -95,10 +95,6 @@
 									</div>
 								</div>
 							</section>
-
-
-
-
 
 							<!-- Divider: Call To Action -->
     <section class="bg-theme-color-2">
@@ -137,6 +133,54 @@
                     }
                     $mailchimpform.prepend($response);
                 }
+                
+                //전체레코드 가져오기
+                function printAcademy() {
+                   $.ajax({
+                         type :"post",
+                         url :"${pageContext.request.contextPath}/admin/this",
+                         dataType :"json",               
+                         success : function(result){
+                           // alert("통신성공!!!");
+                            if(result!=null){
+                           // alert(result);
+                            $('#dataTable tr:gt(0)').empty();
+                         var str = "";
+                         $.each(result,function(index,item){
+                            str+='<tr>';
+                            str+='<td>'+item.academyNo+'</td>';
+                            str+='<td>'+item.academyName+'</td>';
+                            str+='<td>'+item.academyAddrCity+'</td>';
+                            str+='<td>'+item.academyAddrDetail+'</td>';
+                            str+='<td><input type="submit" value="수정"></td>';
+                            str+='<td><input type="button" value="삭제" id='+item.academyNo+'></td>';
+                            str+='</tr>';
+                         });
+                         $('#dataTable').append(str);
+                            }else alert("등록된 교육원이 없습니다.");
+                           },
+                        error : function(err){
+                         alert("통신실패!!!! err : " + err);
+                     } 
+                     });
+                }
+
+                
+                $('#dataTable').on('click','input[value=삭제]',function() {
+                    alert($(this).attr('id'));
+                    $.ajax({
+                    url:"${pageContext.request.contextPath}/admin/delete",
+                    type:"delete",
+                    data:"academyNo="+$(this).attr('id'),
+                    dataType:"text",
+                    success:function(){
+                       alert("삭제완료");
+                       printAcademy();
+                    },error:function(err){
+                       alert("안눌려");
+                    }
+                 })
+              });//delete
               </script>
               <!-- Mailchimp Subscription Form Ends Here -->
             </div>

@@ -52,14 +52,14 @@
 									<div class="section-title">
 										<div class="row">
 											<div class="col-md-6 col-md-offset-3 text-center">
-												<h3 class="title text-theme-colored">등록 하기 Form</h3>
+												<h3 class="title text-theme-colored">수정 하기 Form</h3>
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6 col-md-offset-3">
 											<form id="booking-form" name="booking-form"
-												action="${pageContext.request.contextPath}/admin/adminRegister/update" method="post"
+												action="${pageContext.request.contextPath}/admin/adminUpdate/{academy}" method="post"
 												enctype="multipart/form-data">
 												<div class="row">
 													<div class="col-sm-6">

@@ -62,15 +62,7 @@
 												action="${pageContext.request.contextPath}/admin/adminRegister/insert" method="post"
 												enctype="multipart/form-data">
 												<div class="row">
-													<div class="col-sm-6">
-														<div class="form-group">
-														
-														<label>academyNo</label>
-															<input type="text" placeholder="academyNo"
-																name="academyNo" required="" class="form-control">
-														</div>
-														
-													</div>
+													
 													
 													<div class="col-sm-6">
 														<div class="form-group">
