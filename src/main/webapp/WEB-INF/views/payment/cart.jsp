@@ -76,7 +76,7 @@
                                                     <td class="product-remove" width="200">
                                                         <button type="button" class="btn btn-default">위시리스트로 이동</button>
                                                         <p></p>
-                                                        <button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/cart/delete/${cartDTO.cartNo}'">장바구니에서 삭제</button>
+                                                        <button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/cart/deleteCart/${cartDTO.cartNo}'">장바구니에서 삭제</button>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

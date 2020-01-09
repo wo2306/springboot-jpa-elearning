@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.web.mvc.domain.OffOrder;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.OnOrder;
+import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
 
@@ -22,7 +24,22 @@ public class OrderServiceImpl implements OrderService {
     private final OffOrderRepository offOrderRepository;
 
     @Override
-    public void onInsert(OnOrder onOrder) {
+    public void cartInsert(List<Long> onLectureNo, OnOrder onOrder) {
+        for (int i=0; i<onLectureNo.size(); i++) {
+            //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            // Long userNo = auth.getPrincipal().getUserdbUserdbNo()
+            Long userNo = 1L;
+            onOrder.setOnlecture(new OnLecture(onLectureNo.get(i)));
+            onOrder.setUserdb(new Userdb(userNo));
+            onOrderRepository.save(onOrder);
+        }
+    }
+
+    @Override
+    public void onInsert(Long onLectureNo, OnOrder onOrder) {
+        Long userNo = 1L;
+        onOrder.setOnlecture(new OnLecture(onLectureNo));
+        onOrder.setUserdb(new Userdb(userNo));
         onOrderRepository.save(onOrder);
     }
 
@@ -34,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
 //        String userdbEmail = auth.getName();
         String userdbEmail = "wo2306@gmail.com";
         onOrderRepository.findByUserdbUserdbEmail(userdbEmail, pageable).iterator().forEachRemaining(list::add);
-
+ 
         return list;
     }
 

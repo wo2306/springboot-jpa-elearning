@@ -49,52 +49,40 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:choose>
-                                    <c:when test="${cartList!=null}">
+                                <c:set var="price_sum"
+                                       value="${price_sum+onLecture.onLecturePrice}"/>
+                                <c:set var="discount_sum"
+                                       value="${discount_sum+onLecture.onLecturePrice*onLecture.onLectureDiscount/100}"/>
+                                <tr>
+                                    <td class="product-thumbnail"><a href="#"><img alt="member"
+                                                                                   src="${pageContext.request.contextPath}/onlecture/images/${onLecture.onLectureName}"></a>
+                                    </td>
+                                    <td><a href="#">${onLecture.onLectureName}</a></td>
+                                    <td><fmt:formatNumber value="${onLecture.onLecturePrice}"
+                                                          pattern="₩#,###.##"/></td>
+                                </tr>
 
-                                        <c:forEach items="${cartList}" var="dto">
-                                            <c:set var="price_sum"
-                                                   value="${price_sum+dto.onLecture.onLecturePrice}"/>
-                                            <c:set var="discount_sum"
-                                                   value="${discount_sum+dto.onLecture.onLecturePrice*dto.onLecture.onLectureDiscount/100}"/>
-                                            <tr>
-                                                <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                               src="${pageContext.request.contextPath}/onlecture/images/${dto.onLecture.onLectureName}"></a>
-                                                </td>
-                                                <td><a href="#">${dto.onLecture.onLectureName}</a></td>
-                                                <td><fmt:formatNumber value="${dto.onLecture.onLecturePrice}"
-                                                                      pattern="₩#,###.##"/></td>
-                                            </tr>
-
-                                        </c:forEach>
-                                        <tr>
-                                            <td>총 결제 금액</td>
-                                            <td>&nbsp;</td>
-                                            <td id="total_price" style="font-weight: bold"><fmt:formatNumber
-                                                    value="${price_sum}"
-                                                    pattern="₩#,###"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td>할인 금액</td>
-                                            <td>&nbsp;</td>
-                                            <td id="discount_price" style="color: red"><fmt:formatNumber
-                                                    value="${discount_sum}"
-                                                    pattern="₩#,###"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight: bold">최종 결제 금액</td>
-                                            <td>&nbsp;</td>
-                                            <td id="final_price" style="font-weight: bold"><fmt:formatNumber
-                                                    value="${price_sum-discount_sum}"
-                                                    pattern="₩#,###"/></td>
-                                        </tr>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <tr>
-                                            <td colspan="3" style="text-align: center">수강바구니에 담긴 강의가 없습니다</td>
-                                        </tr>
-                                    </c:otherwise>
-                                </c:choose>
+                                <tr>
+                                    <td>총 결제 금액</td>
+                                    <td>&nbsp;</td>
+                                    <td id="total_price" style="font-weight: bold"><fmt:formatNumber
+                                            value="${price_sum}"
+                                            pattern="₩#,###"/></td>
+                                </tr>
+                                <tr>
+                                    <td>할인 금액</td>
+                                    <td>&nbsp;</td>
+                                    <td id="discount_price" style="color: red"><fmt:formatNumber
+                                            value="${discount_sum}"
+                                            pattern="₩#,###"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold">최종 결제 금액</td>
+                                    <td>&nbsp;</td>
+                                    <td id="final_price" style="font-weight: bold"><fmt:formatNumber
+                                            value="${price_sum-discount_sum}"
+                                            pattern="₩#,###"/></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -136,12 +124,11 @@
         </section>
     </div>
 </div>
-<form id="payForm" action="${pageContext.request.contextPath}/order/cartInsert">
-    <c:forEach items="${cartList}" var="dto">
-        <input name="onLectureNo" type="hidden"
-               value="${dto.onLecture.onLectureNo}"/>
-    </c:forEach>
-        <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
+<form id="payForm" action="${pageContext.request.contextPath}/order/onInsert">
+    <input name="onLectureNo" type="hidden"
+           value="${onLecture.onLectureNo}"/>
+    <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
+    <input id="paymentPrice" name="onOrderPrice" type="hidden" value="${onLecture.onLecturePrice-onLecture.onLecturePrice*onLecture.onLectureDiscount/100}"/>
 </form>
 
 <script>
@@ -167,6 +154,7 @@
                 alert(msg);
                 alert(rsp.pg_tid);
                 $("#paymentId").val(rsp.pg_tid);
+                $("#paymentPrice").val(parseInt($("#paymentPrice").val()))
                 $("#payForm").submit();
             } else {
                 let msg = '결제에 실패하였습니다. 결제 확인창으로 되돌아갑니다.'

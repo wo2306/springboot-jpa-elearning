@@ -1,11 +1,7 @@
 //package project.web.mvc.security;
 //
-//import java.util.ArrayList;
-//import java.util.Collection;
 //import java.util.List;
 //
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,20 +11,19 @@
 //
 //import lombok.RequiredArgsConstructor;
 //import project.web.mvc.domain.Authority;
-//import project.web.mvc.domain.Role;
 //import project.web.mvc.domain.Userdb;
-//import project.web.mvc.repository.AuthorityRepository;
-//import project.web.mvc.repository.UserdbRepository;
+//import project.web.mvc.service.AuthorityService;
+//import project.web.mvc.service.UserdbService;
 //
 //@Service
 //@RequiredArgsConstructor
 //public class CustomUserDetailService implements UserDetailsService {
 //    
-//	private final UserdbRepository userdbRepository;
-//	private final AuthorityRepository authorityRepository;
+//	private UserdbService userdbService;
+//	private AuthorityService authorityService;
 //    
 //    //로그인 시도하려는 유저정보
-//    private Userdb user;
+////    private Userdb user;
 //
 //    // 시큐리티의 내용 외 파라미터를 추가하고 싶을 때, 아래 사용
 //    //  제약조건: Controller 에서 Auth를 점검할 때, UserCustom 으로 받아야 함.
@@ -39,32 +34,35 @@
 //    boolean accountNonLocked = true;
 //    
 //    @Transactional
-//    public Long joinUser(Userdb userdb) {
+//    public Userdb joinUser(Userdb userdb) {
 //        // 비밀번호 암호화
 //               BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //               userdb.setUserdbPassword(passwordEncoder.encode(userdb.getUserdbPassword()));
-//               return userdb.getUserdbNo();
+//               return userdb;
 //    }
 //
 //	@Override
 //    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+//		
+//		System.out.println("적은아이디"+id);
 //    		// 로그인 시도하려는 유저정보 조회
-//        user = userdbRepository.findByUserdbEmail(id);
-//
+//        Userdb user = userdbService.selectByUserdbEmail(id);
+//        
+//        System.out.println("유저정보"+user);
 //        // 조회가 되지않는 고객은 에러발생.
-//        if(user == null){
-//            throw new UsernameNotFoundException(id);
-//        }
+////        if(user == null){
+////            throw new UsernameNotFoundException(id);
+////        }
 //        
 //		Long userdbNo = user.getUserdbNo();
 //		String userdbEmail = user.getUserdbEmail();
 //		String userdbPassword = user.getUserdbPassword();
 //		String userdbNickName = user.getUserdbNickname();
-//		Boolean enabled = true;
-//		Boolean accountNonExpired = true;
-//		Boolean credentialsNonExpired = true;
-//		Boolean accountNonLocked = true;
-//		List<Authority> list = authorityRepository.findByUserdbNo(userdbNo);
+//		boolean enabled = true;
+//		boolean accountNonExpired = true;
+//		boolean credentialsNonExpired = true;
+//		boolean accountNonLocked = true;
+//		List<Authority> list = authorityService.selectByUserdbNo(userdbNo);
 //
 //        // 조회한 정보를 userCustom에 담는다.
 //        // 만약 파라미터를 추가해야한다면 UserCustom 을 먼저 수정한다.
@@ -78,19 +76,19 @@
 //		}
 //	}
 //
-//    // DB에 등록된 권한에 따라 유저권한 부여 user_role
-//    private static Collection<Object> authorities(Userdb userdb){
-//        Collection<Object> authorities = new ArrayList<>();
-//        
-//        // admin 이메일을 제외한 모든 유저는 MEMBER ROLE 부여
-//        
-//        if (("admin@example.com").equals(userdb.getUserdbEmail())) {
-//            authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
-//        } else {
-//            authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
-//        }
-//        return authorities;
-//    }
+////    // DB에 등록된 권한에 따라 유저권한 부여 user_role
+////    private static Collection<Object> authorities(Userdb userdb){
+////        Collection<Object> authorities = new ArrayList<>();
+////        
+////        // admin 이메일을 제외한 모든 유저는 MEMBER ROLE 부여
+////        
+////        if (("admin@example.com").equals(userdb.getUserdbEmail())) {
+////            authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
+////        } else {
+////            authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
+////        }
+////        return authorities;
+////    }
 //}
 //
 ////사용한 것, Role, UserCustom
