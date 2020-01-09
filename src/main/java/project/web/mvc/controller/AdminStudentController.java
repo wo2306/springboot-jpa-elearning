@@ -11,7 +11,7 @@ import project.web.mvc.domain.Userdb;
 import project.web.mvc.service.AdminStudentService;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/student")
 @RequiredArgsConstructor
 public class AdminStudentController {
 
