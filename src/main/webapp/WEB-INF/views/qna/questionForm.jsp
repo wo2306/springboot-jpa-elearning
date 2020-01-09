@@ -103,57 +103,63 @@ function checkValid() {
 </HEAD>
 <BODY>
  
-<form name="writeForm" method="post" action="${pageContext.request.contextPath}/board/insert"  >
+<form name="writeForm" method="post" action="${pageContext.request.contextPath}/qna/insert"  >
 
-<table align="center" cellpadding="5" cellspacing="none" width="600" border="1" >
+<div class="container pt-80 pb-60">
+		<div class="section-content">
+			<div class="row">
+				<div class="col-md-12">
+				    <div class="media-content">
+<table class="table table-striped table-schedule">
+						<thead>
+							<tr class="bg-theme-colored">
+								<th colspan='2'><p align="center"><font color="white" size="3">질문 등록</p></th>
+								
+							</tr>
+						</thead>
+						<tbody>
+	</tbody>
+	<tr>
+        <td >
+            <p align="right"><b><span style="font-size:11pt;">제목</span></b></p>
+        </td>
+        <td><b><span style="font-size:11pt;">
+		<input type=text name="classQuestionTitle" size="80"></span></b></td>
+    </tr>
 
     <tr>
-        <td width="1220" height="20" colspan="2" bgcolor="#808080">
-            <p align="center"><font color="white" size="3"><b> 게시물 등록 </b></font></p>
+        <td >
+            <p align="right"><b><span style="font-size:11pt;">내용</span></b></p>
         </td>
-    </tr>
-    <tr>
-        <td width="150" height="20" >
-            <p align="right"><b><span style="font-size:9pt;">제목</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type=text name="subject" size="60"></span></b></td>
-    </tr>
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">작성자</span></b></p>
-        </td>
-        <td width="450" height="20"><b><span style="font-size:9pt;">
-		<input type=text name="writer" size="60"></span></b></td>
-    </tr>
-    <tr>
-        <td width="150" height="20">
-            <p align="right"><b><span style="font-size:9pt;">내용</span></b></p>
-        </td>
-        <td width="450" height="20" ><b><span style="font-size:9pt;">
-		<textarea name="content"  rows="20" cols="62"></textarea></span></b></td>
+        <td ><b><span style="font-size:11pt;">
+		<textarea name="classQuestionContent"  rows="25" cols="80"></textarea></span></b></td>
     </tr>
    
-    <tr>
-        <td width="150" height="20">
+    <tr style="display:none">
+        <td>
             <p align="right"><b><span style="font-size:9pt;">비밀번호</span></b></p>
         </td>
-        <td width="450" height="20">
+        <td >
         	<b><span style="font-size:9pt;">
-        		<input type=password name="password" size="12">    (글 수정, 삭제시 필요합니다.)
+        		<input type=password name="password" size="12">   (질문 수정, 삭제시 필요합니다.)
         	   </span></b>
         </td>
     </tr>
     <tr>
-        <td width="450" height="20" colspan="2" align="center"><b><span style="font-size:9pt;"><input type=submit value=글쓰기> 
-        <input type=reset value=다시쓰기></span></b></td>
+        <td ><b><span><input type=submit value=글쓰기  style="font-size:11pt; background-color: #fff; border-color: #dbdbdb; border-width: 1px; color: #363636;"> 
+        <input type=reset value=다시쓰기 style="font-size:11pt; background-color: #fff; border-color: #dbdbdb; border-width: 1px; color: #363636;"></span></b></td>
     </tr>
-</table>
-
-</form>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</form>
+	
 
 <hr>
-<div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/board/list" style="text-decoration:none;">리스트로 돌아가기</a>&gt;</span></div>
+<div align=right><span style="font-size:9pt;">&lt;<a href="${pageContext.request.contextPath}/qna/list" style="text-decoration:none;">리스트로 돌아가기</a>&gt;</span></div>
 
 </BODY>
 </HTML>

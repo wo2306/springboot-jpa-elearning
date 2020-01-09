@@ -14,6 +14,7 @@ public interface ClassQuestionService {
 		
 		void delete(ClassQuestion classQuestion);
 		
+		ClassQuestion selectByQNo(Long id);
 		
 
 }

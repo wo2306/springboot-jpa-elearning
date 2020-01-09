@@ -22,13 +22,8 @@
               
   <article class="media post question_list_item" fxd-data="{&quot;id&quot;:&quot;20706&quot;,&quot;author&quot;:&quot;Howoo Jang&quot;,&quot;recommended_cnt&quot;:0,&quot;myreaction&quot;:&quot;undefined&quot;}">
     <div class="media-content">
-      <h4 class="post_title"><span class="has-text-link">Q.</span> <a href="/questions/20706">seeko 웹사이트가 바뀌었어요</a></h4>
-      <p class="post_metas">
-        <span class="author">글쓴이: Howoo Jang</span>
-        <span class="updated_at">시간: 16분 전</span>
-        
-        <span class="relative_course">강의명: 파이썬입문과 크롤링기초 부트캠프 [쉽게! 하지만, 견고한 자료로!]</span>
-      </p>
+      <h4 class="post_title"><span class="has-text-link">Q.</span> <a href="/qna/questionForm">등록하기</a></h4>
+  
     </div>
     <div class="media-right">
       <div class="comments_cnt">미답변</div>
