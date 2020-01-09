@@ -46,13 +46,15 @@
       <div class="container">
         <div class="section-content">
           <div class="row">
+          
             <div class="col-md-6">
               <h6 class="letter-space-4 text-gray-darkgray text-uppercase mt-0 mb-0">All About</h6>
-              <h2 class="text-uppercase font-weight-600 mt-0 font-28 line-bottom">The Worldâs Best Education in Our University</h2>
-              <h4 class="text-theme-colored">Lorem ipsum dolor sit amet soluta saepe odit error, maxime praesentium sunt udiandae!</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus iure quos quam recusandae dolor quas et perspiciatis voluptatum accusantium delectus nisi reprehenderit, eveniet fuga modi pariatur, eius vero. Ea vitae maiores.</p>
-              <a class="btn btn-theme-colored btn-flat btn-lg mt-10 mb-sm-30" href="#">Know More â</a>
+              <h2 class="text-uppercase font-weight-600 mt-0 font-28 line-bottom">${academy.academyName}</h2>
+              <h4 class="text-theme-colored">${academy.academyAddrCity}</h4>
+              <p>${academy.academyAddrDetail}</p>
+              <a class="btn btn-theme-colored btn-flat btn-lg mt-10 mb-sm-30" href="#">Know More</a>
             </div>
+            
             <div class="col-md-6">
               <div class="video-popup">                
                 <a href="https://www.youtube.com/watch?v=pW1uVUg5wXM" data-lightbox-gallery="youtube-video" title="Video">

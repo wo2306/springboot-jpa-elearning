@@ -28,6 +28,60 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-12 text-center">
+              <h3 class="font-28 text-white">${offLecture.offLectureName}</h2>
+              <ol class="breadcrumb text-center text-black mt-10">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Pages</a></li>
+                <li class="active text-theme-colored">Page Title</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </section>
+
+    <section class="bg-theme-colored">
+      <div class="container pt-40 pb-40">
+        <div class="row text-center">
+          <div class="col-md-12">
+            <h2 id="basic-coupon-clock" class="text-white"></h2>
+            <!-- Final Countdown Timer Script -->
+            <script type="text/javascript">
+              $(document).ready(function() {
+                $('#basic-coupon-clock').countdown('2020/10/10', function(event) {
+                  $(this).html(event.strftime('%D days %H:%M:%S'));
+                });
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <ul>
+              <li>
+                <h5>강의 제목:</h5>
+                <p>${offLecture.offLectureName}</p>
+              </li>
+              <li>
+                <h5>강사:</h5>
+                <p>${offLecture.offLectureTeacher}</p>
+              </li>
+              <li>
+                <h5>강의 장소</h5>
+                <p>${offLecture.academy.academyAddrCity}</p>
+              </li>
+              <li>
+                <h5>강의 날짜</h5>
+                <p>${offLecture.offLectureDate}</p>
+              </li>
+              <li>
+                <h5>남은 좌석 수</h5>
+                <p>${offLecture.offLectureSeat-offLecture.offLectureReservedseat}</p>
               <h3 class="font-28 text-white">Event Details 1</h2>
               <ol class="breadcrumb text-center text-black mt-10">
                 <li><a href="#">Home</a></li>

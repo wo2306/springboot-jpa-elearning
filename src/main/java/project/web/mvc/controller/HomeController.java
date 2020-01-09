@@ -95,11 +95,6 @@ public class HomeController {
 //		return "redirect:/";
 //	}
 	
-	//어드민페이지
-	@RequestMapping("/admin")
-	public String dispAdmin() {
-		return "admin";
-	}
 	
 	//접근거부페이지
 	@RequestMapping("/denied")

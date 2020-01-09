@@ -28,6 +28,11 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-12">
+              <h2 class="title text-white">오프라인 강의</h3>
+              <ol class="breadcrumb text-left text-black mt-10">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Pages</a></li>
+                <li class="active text-gray-silver">오프라인 강의 리스트</li>
               <h2 class="title text-white">Event Grid 3column</h3>
               <ol class="breadcrumb text-left text-black mt-10">
                 <li><a href="#">Home</a></li>
