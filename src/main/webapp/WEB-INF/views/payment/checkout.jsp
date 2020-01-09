@@ -142,6 +142,7 @@
                value="${dto.onLecture.onLectureNo}"/>
     </c:forEach>
         <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
+        <input id="paymentPrice" name="onOrderPrice" type="hidden" value="${price_sum-discount_sum}"/>
 </form>
 
 <script>
@@ -167,6 +168,7 @@
                 alert(msg);
                 alert(rsp.pg_tid);
                 $("#paymentId").val(rsp.pg_tid);
+                $("#paymentPrice").val(parseInt($("#paymentPrice").val()))
                 $("#payForm").submit();
             } else {
                 let msg = '결제에 실패하였습니다. 결제 확인창으로 되돌아갑니다.'

@@ -10,5 +10,5 @@ import project.web.mvc.domain.OnOrder;
 
 public interface OffOrderRepository extends PagingAndSortingRepository<OffOrder, Long> {
 
-    Page<OffOrder> findByUserdbUserdbEmail(String userdbEmail, Pageable pageable);
+    Page<OffOrder> findTopByUserdbUserdbEmail(String userdbEmail, Pageable pageable);
 }

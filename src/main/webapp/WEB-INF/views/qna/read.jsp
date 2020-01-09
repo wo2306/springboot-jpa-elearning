@@ -21,5 +21,24 @@
 
 <body>
 
+        <div class="author">
+          <span class="author"><strong>작성자 : ${question.userdb.userdbNickname } </strong></span>
+        
+          <span class="option" fxd-data="{&quot;id&quot;:20900,&quot;type&quot;:&quot;question&quot;}">
+          </span>
+        </div>
+
+<div class="article_body">
+	${question.classQuestionContent }
+</div>
+  
+<hr>
+<h4><span style="color:red">A.</span><b>답변하기</b></h4>
+<form >
+<textarea name="classAnswerContent"  rows="17" cols="70"></textarea><br>
+<button style=" color : #363636; background : #FFFFFF; padding : 5px 12px">답변 입력</button>
+</form>
+<button disabled="" style=" color : #FFFFFF; background : #FF7867; padding : 5px 12px">로그인 시 답변을 제출할 수 있습니다.</button>
+ 
 </body>
 </html>

@@ -34,4 +34,13 @@ public class WishList {
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
 	private Userdb userdb;
 
+	
+	public WishList(Long onlectureNo, Long userNo) {
+		this.onLecture = new OnLecture(onlectureNo);
+		this.userdb = new Userdb(userNo);
+	}
 }
+
+
+
+

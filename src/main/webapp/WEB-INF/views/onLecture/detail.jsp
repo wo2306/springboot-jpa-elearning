@@ -38,7 +38,7 @@
                 <div class="section-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="title text-white">강의 상세 조회</h2>
+                            <h2 class="title text-white">${onLecture.onLectureName}</h2>
                             <ol class="breadcrumb text-left text-black mt-10">
                                 <li><a href="#">홈</a></li>
                                 <li><a href="#">강의 상세 조회</a></li>
@@ -112,8 +112,7 @@
                                             <tbody>
                                             <c:forEach items="${detailList}" var="onDetail">
                                                 <tr>
-                                                    <td scope="row"><a
-                                                            href="https://youtu.be/${onDetail.onDetailUrl}">${onDetail.onDetailName}</a>
+                                                    <td scope="row"><a>${onDetail.onDetailName}</a>
                                                     </td>
                                                     <td>${onDetail.onDetailPlaytime}</td>
                                                 </tr>
@@ -150,7 +149,6 @@
                                                     완강시 수료증 발급<br>
                                                 <hr>
                                             </c:if>
-
                                             <p></p>
                                         </div>
                                         <div class="form-group">
@@ -169,44 +167,22 @@
                                                 data-loading-text="Please wait...">장바구니에 담기
                                         </button>
                                     </div>
-
-                                    <!-- Quick Contact Form Validation-->
-                                    <script type="text/javascript">
-                                        $("#quick_contact_form_sidebar").validate({
-                                            submitHandler: function (form) {
-                                                var form_btn = $(form).find('button[type="submit"]');
-                                                var form_result_div = '#form-result';
-                                                $(form_result_div).remove();
-                                                form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
-                                                var form_btn_old_msg = form_btn.html();
-                                                form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
-                                                $(form).ajaxSubmit({
-                                                    dataType: 'json',
-                                                    success: function (data) {
-                                                        if (data.status == 'true') {
-                                                            $(form).find('.form-control').val('');
-                                                        }
-                                                        form_btn.prop('disabled', false).html(form_btn_old_msg);
-                                                        $(form_result_div).html(data.message).fadeIn('slow');
-                                                        setTimeout(function () {
-                                                            $(form_result_div).fadeOut('slow')
-                                                        }, 6000);
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    </script>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
     </div>
 </div>
+</section>
+</div>
+</div>
 <!-- end main-content -->
 <script>
+    //구매했으면 구매 사이드바 숨기고 학습하기 UI 보여줌
     $(".relatedRoadmapList").hover(function () {
         $(this).attr('class', 'active')
     }, function () {
@@ -216,7 +192,7 @@
     var currentPosition = parseInt($("#sidebox").css("top"));
     $(window).scroll(function () {
         var position = $(window).scrollTop();
-        if (position > 400)
+        if (position > 400 && position < 1300)
             $("#sidebox").stop().animate({"top": position + currentPosition - 400 + "px"}, 0);
     });
 

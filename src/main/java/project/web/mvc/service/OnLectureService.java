@@ -2,6 +2,7 @@ package project.web.mvc.service;
 
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
+import project.web.mvc.domain.Sugang;
 
 import java.util.List;
 
@@ -18,5 +19,7 @@ public interface OnLectureService {
     List<OnDetail> selectById(Long onLectureNo);
 
     OnLecture selectOnLectureById(Long onLectureNo);
+
+    OnDetail selectOnDetailById(Long onDetailNo);
 
 }

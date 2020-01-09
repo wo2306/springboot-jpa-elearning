@@ -1,16 +1,13 @@
 package project.web.mvc.controller;
 
-import java.util.List;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import project.web.mvc.domain.WishList;
 import project.web.mvc.service.WishListService;
 
 @Controller
@@ -22,18 +19,15 @@ public class WishListController {
 	Long userdbNo = 1L;
 	
 	//wishlist 버튼 눌렀을때
-	@RequestMapping("/wishlist/{onLectureNo}")
-	public WishList wishlistInsert(@PathVariable Long onLectureNo) {
+	@RequestMapping("/wishlist")
+	@ResponseBody
+	public void wishlistInsert(Long onLectureNo) {
 		//로그인이 되어있을때 csrf에서 studentNo를 빼서 service에 갈때 가져간다.
+		System.out.println("insert controller 진입");
+		wishlistService.wishlistInsert(onLectureNo); 
 		
-		WishList wishlist = wishlistService.wishlistInsert(userdbNo, onLectureNo); 
-		
-		return wishlist;
 	}
 	
-
-	
-
 	
 	//장바구니에서 delete 누르기 
 //	@RequestMapping("/delete")
@@ -45,10 +39,11 @@ public class WishListController {
 //	}
 	
 	//delete 누르기
-	@DeleteMapping(value = "/delete/{wishlistNo}")
-	public String delete(@PathVariable Long wishlistNo) {
-		System.out.println("삭제버튼 눌렀어요");
-		System.out.println("wishlistNo" + wishlistNo);
-		return "삭제됨";
-	}
+//	@DeleteMapping(value ="/myPage/delete")
+//	@ResponseBody
+//	public String delete(Long wishListNo) {
+//		System.out.println("삭제버튼 눌렀어요");
+//		System.out.println("wishListNo" + wishListNo);
+//		return "삭제됨";
+//	}
 }

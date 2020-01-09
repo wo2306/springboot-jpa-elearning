@@ -3,6 +3,8 @@ package project.web.mvc.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,13 +27,21 @@ public class WishListServiceImpl implements WishListService {
 	private final WishListRepository wishlistRepo;
 	
 	@Override
-	public WishList wishlistInsert(Long userdbNo, Long onLectureNo) {
+	@Transactional
+	public void wishlistInsert(Long onLectureNo) {
 		
+//      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//      String userdbEmail = auth.getName();
+      //auth.getPrincipal().getUserdbUserdbNo();
+		//Userdb userdb = wishlistRepo.findUserdbByNo(userdbNo);
+		if (wishlistRepo.findByOnLectureOnLectureNo(onLectureNo)!=null) {
+            System.out.println("null입니다.");
+            throw new RuntimeException("이미 중복된 강의가 존재합니다.");
+        };
 		OnLecture onlecture = wishlistRepo.findOnlectureByNo(onLectureNo);
-		Userdb userdb = wishlistRepo.findUserdbByNo(userdbNo);
-		
-		WishList wishlist = wishlistRepo.save(new WishList(1L, onlecture, userdb));
-		return wishlist;
+
+		System.out.println("onLectureNo : " + onLectureNo + "/" + onlecture);
+		wishlistRepo.save(new WishList(onLectureNo, 1L));
 	}
 	
 //	@Override
@@ -52,15 +62,13 @@ public class WishListServiceImpl implements WishListService {
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Long userdbNo = 1L;
 		wishlistRepo.findByUserdbUserdbNo(userdbNo).iterator().forEachRemaining(list::add);
-		System.out.println("서비스에서 list" + list);
         return list;
 	}
 	
+	@Transactional
 	@Override
 	public void wishlistDelete(Long wishListNo) {
-		
 		wishlistRepo.deleteById(wishListNo);
-		
 		
 	}
 }
