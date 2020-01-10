@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.web.mvc.domain.OffOrder;
@@ -73,6 +72,7 @@ public class OrderServiceImpl implements OrderService {
 
         Userdb userdb = LoginCheck.getUserdb();
         if (userdb!=null) {
+
             return onOrderRepository.findByUserdbNoAndOnLectureNo(userdb.getUserdbNo(), onLectureNo) != null;
         }
         return false;

@@ -280,6 +280,8 @@
 		
 		<script type="text/javascript">
         $('.reviewDelete').click(function(){
+        	if(confirm("정말로 삭제 하시겠습니까?"))
+        	{
         	 $.ajax({
                  type:"POST",
                  url:"${pageContext.request.contextPath}/review/delete",            
@@ -291,6 +293,7 @@
                           
                  }//callback         
               });//ajax
+        	}
         	
         })
 			
