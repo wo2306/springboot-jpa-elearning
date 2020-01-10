@@ -23,9 +23,9 @@ public class OnLectureController {
 
     @RequestMapping("")
     public String main() {
-    	return "redirect:onLecture/list";
+        return "redirect:onLecture/list";
     }
-    
+
     @RequestMapping("/list")
     public String list(Model model) {
         List<OnLecture> list = onLectureService.selectAll();
@@ -84,5 +84,12 @@ public class OnLectureController {
         model.addAttribute("prevNo", prevNo);
         model.addAttribute("nextNo", nextNo);
         return "onLecture/video/view";
+    }
+
+    @RequestMapping("/search/{keyword}")
+    public String search(@PathVariable String keyword, Model model) {
+        List<OnLecture> list = onLectureService.selectByKeyword(keyword);
+        model.addAttribute("list", list);
+        return "onLecture/list";
     }
 }

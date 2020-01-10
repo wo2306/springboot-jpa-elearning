@@ -1,10 +1,10 @@
 package project.web.mvc.video;
 /*
- * 
+ *
  * key=API_KEY
  * AIzaSyCCYU_v-Em9q4YUbSZg8MJ8GNIwu_-Llko
- * 
- * 
+ *
+ *
  * Copyright (c) 2013 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except

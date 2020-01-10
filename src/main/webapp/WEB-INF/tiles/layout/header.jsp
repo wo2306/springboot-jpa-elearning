@@ -52,7 +52,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
           type="text/css">
 
     <!-- external javascripts -->
-    <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <!-- JS | jquery plugin collection for this theme -->
@@ -310,7 +310,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     function cartList() {
         $.ajax({
             url: "${pageContext.request.contextPath}/cart/ajaxList",
-            type: "post",
+            type: "get",
             dataType: "json",
             success: function (result) {
                 var size = Object.keys(result).length;
@@ -358,7 +358,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
             type: "post",
             dataType: "text",
             success: function (result) {
-                alert(result)
+                console.log(result)
             },
             error: function (error) {
                 console.log(error)

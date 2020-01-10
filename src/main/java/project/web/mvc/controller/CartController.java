@@ -35,6 +35,7 @@ public class CartController {
     @RequestMapping("/ajaxTest")
     @ResponseBody
     public String ajaxTest() {
+        System.out.println("@@@@@@@@@@ajaxTest CALL");
         return "ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ";
     }
 
@@ -50,9 +51,9 @@ public class CartController {
 
     @RequestMapping("/insert/{onLectureNo}")
     @ResponseBody
-    public int insert(@PathVariable Long onLectureNo) {
+    public String insert(@PathVariable Long onLectureNo) {
         cartService.insert(onLectureNo);
-        return 0;
+        return "삽입 성공";
     }
 
     @RequestMapping("/delete/{cartNo}")

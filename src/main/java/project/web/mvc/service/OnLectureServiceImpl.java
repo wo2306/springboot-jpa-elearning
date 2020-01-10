@@ -69,6 +69,11 @@ public class OnLectureServiceImpl implements OnLectureService {
     public OnDetail selectOnDetailById(Long onDetailNo) {
         return onDetailRepository.findById(onDetailNo).orElse(null);
     }
+
+    @Override
+    public List<OnLecture> selectByKeyword(String keyword) {
+        return onLectureRepository.findByKeyword(keyword);
+    }
 }
 
 

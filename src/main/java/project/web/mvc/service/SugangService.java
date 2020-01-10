@@ -16,7 +16,7 @@ public class SugangService {
 
     public List<Sugang> sugangList(Long onLectureNo) {
         Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return sugangReposiitory.findTopByUserdbUserdbNoAndOnLectureNo(userdb.getUserdbNo(), onLectureNo);
+        return sugangReposiitory.findTopByUserdbUserdbNoAndOnLectureNoAndSugangState(userdb.getUserdbNo(), onLectureNo, "수강완료");
     }
 
     public void insert(Long onLectureNo, Long onDetailNo) {

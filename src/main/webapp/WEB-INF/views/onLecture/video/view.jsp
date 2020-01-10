@@ -232,12 +232,10 @@
         if (event.data === 0) {
             $.ajax({
                 url: "${pageContext.request.contextPath}/sugang/complete/${onDetail.onLecture.onLectureNo}/${onDetailNo}",
-                type: "post",
+                type: "get",
                 dataType: "json",
                 success: function (result) {
-                    $.each(result, function (key, val) {
-
-                    });
+                    alert("호출성공");
                     console.log(result)
                 },
                 error: function (error) {

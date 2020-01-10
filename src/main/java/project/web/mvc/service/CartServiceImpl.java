@@ -1,6 +1,8 @@
 package project.web.mvc.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +28,12 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<Cart> selectAll() {
         List<Cart> list = new ArrayList<>();
-        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        cartRepository.findByUserdb(userdb).iterator().forEachRemaining(list::add);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            cartRepository.findByUserdbNo(userdb.getUserdbNo()).iterator().forEachRemaining(list::add);
+        }
+//        cartRepository.findByUserdbUserdbEmail("kosta").iterator().forEachRemaining(list::add);
         return list;
     }
 
