@@ -70,7 +70,7 @@ public class OrderServiceImpl implements OrderService {
     public boolean payCheck(Long onLectureNo) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Userdb userdb = (Userdb) authentication.getPrincipal();
             return onOrderRepository.findByUserdbNoAndOnLectureNo(userdb.getUserdbNo(), onLectureNo) != null;
         }
         return false;
