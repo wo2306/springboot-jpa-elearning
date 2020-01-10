@@ -46,9 +46,6 @@
       <div class="container">
         <div class="section-content">
           <div class="row">
-
-<form name="updateForm" method="post"
-                        action="${pageContext.request.contextPath}/admin/adminUpdate">
                      <table class="table table-bordered" id="dataTable" width="100%"
                         cellspacing="0">
                         <tr>
@@ -63,26 +60,11 @@
                               <td>${list.userdbNo}</td>
                               <td>${list.userdbEmail}</td>
                               <td>${list.userdbNickname}</td>
-                              <td><input type="submit" value="수정"></td>
-                              <td><input type="button" value="삭제"></td>
+                              <td><button type="button" onclick="location.herf='${pageContext.request.contextPath}/admin/adminUser.jsp'">수정</button></td>
+                              <td><input type="button" value="삭제" id=${list.userdbNo}></td>
                            </tr>
                         </c:forEach>
                      </table>
-                     </form>
-                     <form name="writeForm" method="post"
-                        action="${pageContext.request.contextPath}/admin/adminRegister">
-                        <table class="table table-bordered" id="dataTable" width="100%"
-                           cellspacing="0">
-                           <tr>
-                              <th>등록</th>
-                           </tr>
-                           <tr>
-                              <td><input type="submit" value="등록"></td>
-                           </tr>
-                        </table>
-
-                     </form>
-
                                  <div class="col-md-6">
                                     <div class="video-popup">
                                        <a href="https://www.youtube.com/watch?v=pW1uVUg5wXM"

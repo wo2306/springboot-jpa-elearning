@@ -8,26 +8,27 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.Userdb;
-import project.web.mvc.service.AdminStudentService;
+import project.web.mvc.service.AdminUserService;
 
 @Controller
-@RequestMapping("/admin/student")
+@RequestMapping("/admin/user")
 @RequiredArgsConstructor
-public class AdminStudentController {
+public class AdminUserController {
 
-	private final AdminStudentService adminstudentService;
+	private final AdminUserService adminuserService;
+	
 	@RequestMapping("")
 	public ModelAndView main() {
 		System.out.println("admin controller진입");
-		 List<Userdb> list = adminstudentService.selectAll();
-		return new ModelAndView("admin/adminStudent", "list", list);
+		 List<Userdb> list = adminuserService.selectAll();
+		return new ModelAndView("admin/adminUser", "list", list);
 	}
 	
 	//업데이트 폼 보여주기
-	@RequestMapping("/adminUpdateForm")
-	public ModelAndView studentupdateForm(Long id) {
+	@RequestMapping("/update")
+	public ModelAndView userupdateForm(Long id) {
 		
-		 Userdb item = adminstudentService.selectByUserdbNo();
+		 Userdb item = adminuserService.selectByUserdbNo();
 		 
 		return new ModelAndView("admin/adminUpdate", "item", item);
 	}

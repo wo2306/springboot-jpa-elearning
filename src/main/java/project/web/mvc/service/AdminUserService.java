@@ -4,7 +4,7 @@ import java.util.List;
 
 import project.web.mvc.domain.Userdb;
 
-public interface AdminStudentService {
+public interface AdminUserService {
 
 	public List<Userdb> selectAll();
 	

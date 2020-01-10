@@ -244,12 +244,12 @@
     	alert("누름");
     		$.ajax({
                 type :"post",
-                url :"${pageContext.request.contextPath}/myPage/info/#wishlisttab",
+                url :"${pageContext.request.contextPath}/myPage/info/wishlisttab",
                 dataType :"json",               
                 success : function(result){
-                	alert("통신성공!!!");
+                	//alert("통신성공!!!");
                 	if(result!=null){
-                	alert(result);
+                	//alert(result);
                 	$('#wishlisttable tr:gt(0)').empty();
     				var str = "";
     				$.each(result,function(index,item){
@@ -279,7 +279,7 @@
 			dataType:"text",
 			success:function(){
 				alert("삭제완료");
-			//	printwishlist();
+				printwishlist();
 			},error:function(err){
 				alert("안눌려");
 			}
