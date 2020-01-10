@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.OffOrder;
 import project.web.mvc.domain.OnOrder;
+import project.web.mvc.domain.Review;
 import project.web.mvc.domain.WishList;
 import project.web.mvc.service.OrderService;
+import project.web.mvc.service.ReviewService;
 import project.web.mvc.service.WishListService;
 
 @Controller
@@ -22,12 +24,22 @@ import project.web.mvc.service.WishListService;
 public class MyPageController {
     private final OrderService orderService;
     private final WishListService wishlistService;
+    private final ReviewService reviewService;
+	
     
     @RequestMapping("/info")
     public void onSelect(Integer pageNum, Model model) { 
     	List<OnOrder> list = orderService.onSelect(pageNum == null ? 0 : pageNum);
         if (!list.isEmpty())
             model.addAttribute("list", list);
+        
+      //임의로 테스트하는 OnlectureNo 500값 (디비에 따라 다름)
+      		Long tempOnlectureNo=500L;
+		List<Review> reviewlist= reviewService.selectByOnlectureNo(pageNum ==null ? 0:pageNum, tempOnlectureNo);
+		if(!list.isEmpty()) {
+			model.addAttribute("reviewList", reviewlist);
+			
+		}
     }
 
     @RequestMapping("/offSelect")

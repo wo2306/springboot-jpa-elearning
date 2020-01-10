@@ -21,7 +21,7 @@ public class QnaController {
 	@Autowired
 	private ClassQuestionService classQuestionService;
 	@RequestMapping("/list")
-	public void test(Model model) {
+	public void list(Model model) {
 		System.out.println("qna test ctrl");
 		List<ClassQuestion> list = classQuestionService.selectAll();
 		
@@ -52,15 +52,16 @@ public class QnaController {
 		return "redirect:list";
 	}
 	
-	@RequestMapping("/list4")
-	public void list4(Model model) {
-		System.out.println("list div형식 호출");
-		
-	}
 
 	@RequestMapping("/answer")
 	public void answer(Model model) {
 		System.out.println("answer 호출");
+		
+	}
+	
+	@RequestMapping("/test")
+	public void test(Model model) {
+		System.out.println("list div형식 호출");
 		
 	}
 	
