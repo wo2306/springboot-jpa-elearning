@@ -43,6 +43,52 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script type="text/javascript">
+	$(function(){
+
+		$(".btn").click(function(){
+			var onLectureNo = $(this).val()
+			/* alert($(this).val()); */
+			
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/roadmap/onLectureAdd",				
+				data:"${_csrf.parameterName}=${_csrf.token}&onLectureNo="+onLectureNo,
+				dataType:"json",
+				success:function(result){						
+ 	 					alert("성공")
+						alert(result)
+						var objectValues = result;
+						 
+						for (var key in objectValues){
+						    console.log("attr: " + key + ", value: " + objectValues[key]);
+						}   
+						
+  						 var data="<tr class='onLecture_item'>";
+	                      data+="<td class='onLecture-remove'>"+"</td>";
+	                      data+="<td class='product-thumbnail'>"+"<a href='#'>"+"<img alt='member' src='http://placehold.it/285x300'>"+"</a>"+"</td>";
+	                      data+="<td class='onLecture-name'>"+"<a href='#'>"+result.onLectureName+"</a>"+"</td>"
+	                      data+="<td class='onLecture-content'>"+"<span class='content'>"+result.onLectureContent+"</span>"+"</td>";
+	        			  data+="<td class='onLecture-teacher'>"+"<span class='teacher'>"+result.onLectureTeacher+"</span>"+"</td>";
+	                      data+="<td class='onLecture-price'>"+"<span class='price'>"+result.onLecturePrice+"</span>"+"</td>";
+	                  	  data+="</tr>";
+	                  	  data+="<tr class='cart_item'>";
+	                      data+="<td colspan='6'>"+"<div class='onlecture'>";
+	                      data+="<button type='button' class='btn' value='${list.onLectureNo}'>"+"취소"+"</button>";
+	                      data+="</div>"+"</td>";
+	                      data+="</tr>";
+	                    	$('#table').append(data);		  
+						  
+						 
+							
+				}//callback			
+			});//ajax
+			
+			
+		})
+	})
+
+</script>
 
 </head>
 <body class="">
@@ -92,26 +138,48 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <c:forEach items="${list}" var="list">
+                  <c:forEach items="${onLectureList}" var="list" varStatus="status">
                     <tr class="onLecture_item">
-                      <td class="onLecture-remove"><a title="Remove this item" class="remove" href="#">×</a></td>
+                      <td class="onLecture-remove"><a title="Remove this item" class="remove" href="#"></a></td>
                       <td class="product-thumbnail"><a href="#"><img alt="member" src="http://placehold.it/285x300"></a></td>
                       <td class="onLecture-name"><a href="#">${list.onLectureName}</a>
-                        <ul class="variation">
-                          <li class="variation-size">Color: <span>Black</span></li>
-                        </ul></td>
                       <td class="onLecture-content"><span class="content">${list.onLectureContent}</span></td>
         			  <td class="onLecture-teacher"><span class="teacher">${list.onLectureTeacher}</span></td>
-                      <td class="onLecture-price"><span class="price">${list.onLecturePrice}</span></td>
+                      <td class="onLecture-price"><span class="price">${list.onLecturePrice}</span>
+                      </td>
                     </tr>
                     <tr class="cart_item">
                       <td colspan="6"><div class="onlecture">
-                          <button type="button" class="btn" id="onlecturebtn">강의 추가하기</button>
+                    <!--   <form name="requestForm" method="post" id="requestForm"> -->
+                     	  <input type="hidden" name="id" value="${list.onLectureNo}"/>
+                          <button type="button" class="btn" value="${list.onLectureNo}">강의 선택하기</button>
+                      <!--  </form> -->
                         </div></td>
                     </tr>
                     </c:forEach>
                   </tbody>
                 </table>
+                <div class="col-md-12">
+                  <h3>선택한 강의</h3>
+                  <hr>
+                  </div>
+                  
+                     <table class="table table-striped table-bordered tbl-shopping-cart" id="table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Photo</th>
+                      <th>Onlecture name</th>
+                      <th>Onlecture content</th>
+                      <th>Teacher</th>
+                      <th>Onlecture price</th>
+                    </tr>
+                  </thead>
+   
+                </table>
+     
+                  
+                  <button type="button" class="btn" value="">강의 선택 완료</button>
                </div>
               </div>
              </div>

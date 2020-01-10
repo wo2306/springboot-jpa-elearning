@@ -149,10 +149,7 @@ $(function(){
                     <tr class="onLecture_item">
                       <td class="onLecture-remove"><a title="Remove this item" class="remove" href="#">×</a></td>
                       <td class="product-thumbnail"><a href="#"><img alt="member" src="http://placehold.it/285x300"></a></td>
-                      <td class="onLecture-name"><a href="#">강의 이름</a>
-                        <ul class="variation">
-                          <li class="variation-size">Color: <span>Black</span></li>
-                        </ul></td>
+                      <td class="onLecture-name"><a href="#">강의 이름</a></td>
                       <td class="onLecture-content"><span class="content">강의 내용</span></td>
         			  <td class="onLecture-teacher"><span class="teacher">강사명</span></td>
                       <td class="onLecture-price"><span class="price">$185.00</span></td>
