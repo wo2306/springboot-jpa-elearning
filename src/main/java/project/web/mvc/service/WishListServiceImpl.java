@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
@@ -31,9 +33,12 @@ public class WishListServiceImpl implements WishListService {
 	public void wishlistInsert(Long onLectureNo) {
 		
 //      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//      auth.isAuthenticated().
 //      String userdbEmail = auth.getName();
-      //auth.getPrincipal().getUserdbUserdbNo();
+//      auth.getPrincipal().getUserdbUserdbNo();
 		//Userdb userdb = wishlistRepo.findUserdbByNo(userdbNo);
+//       Long userNo = auth.getPrincipal().getUserdbUserdbNo()
+      
 		if (wishlistRepo.findByOnLectureOnLectureNo(onLectureNo)!=null) {
             System.out.println("null입니다.");
             throw new RuntimeException("이미 중복된 강의가 존재합니다.");

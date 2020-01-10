@@ -241,9 +241,10 @@
     	}
     	
     $('#myTab li:eq(2) a').on('click', function(){
+    	alert("누름");
     		$.ajax({
                 type :"post",
-                url :"${pageContext.request.contextPath}/myPage/info/wishlisttab",
+                url :"${pageContext.request.contextPath}/myPage/info/#wishlisttab",
                 dataType :"json",               
                 success : function(result){
                 	alert("통신성공!!!");
