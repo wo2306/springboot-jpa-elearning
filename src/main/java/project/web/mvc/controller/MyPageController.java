@@ -37,15 +37,15 @@ public class MyPageController {
         return list;
     }
     
-    @PostMapping("/info/wishlisttab")
+    @RequestMapping("/info/wishlisttab")
     @ResponseBody
 	public List<WishList> wishlisttab(Model model) {
-		
+		System.out.println("콘트롤러 인");
 		List<WishList> list = wishlistService.wishlistselectAll();
         	
 		if (!list.isEmpty())
         	model.addAttribute("list", list);
-            
+		  
 		return list;
   }
     
