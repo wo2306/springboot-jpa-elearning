@@ -14,7 +14,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = {"onDetails", "reviews", "roadmaps", "wishList", "cart"})
-public class OnLecture {
+public class
+
+
+OnLecture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ON_LECTURE_SEQ_GENERATOR")

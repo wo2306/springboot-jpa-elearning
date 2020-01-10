@@ -34,25 +34,26 @@
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="heading-line-bottom">
-              <h4 class="heading-title">Don't have an Account? Register Now</h4>
-            </div>
-            <form action="${pageContext.request.contextPath}/signUp" method="post">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" style:"display:none">
+      <section>
+          <div class="container">
               <div class="row">
-                <div class="form-group col-md-12">
-                  <label>Id : Email Address</label>
-                  <input type="text" class="form-control" name="userdbEmail">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label>Choose Password</label>
-                  <input type="password" class="form-control" name="userdbPassword">
+                  <div class="col-md-6">
+                      <div class="heading-line-bottom">
+                          <h4 class="heading-title">Don't have an Account? Register Now</h4>
+                      </div>
+                      <form action="${pageContext.request.contextPath}/signUp" method="post">
+                          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"
+                                 style="display:none">
+                          <div class="row">
+                              <div class="form-group col-md-12">
+                                  <label>Id : Email Address</label>
+                                  <input type="text" class="form-control" name="userdbEmail">
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form-group col-md-6">
+                                  <label>Choose Password</label>
+                                  <input type="password" class="form-control" name="userdbPassword">
                 </div>
                 <div class="form-group col-md-6">
                   <label>Re-enter Password</label>

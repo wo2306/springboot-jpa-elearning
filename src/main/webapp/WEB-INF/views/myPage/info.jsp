@@ -209,13 +209,13 @@
 </div>
 <!-- end main-content -->
 <script type="text/javascript">
-    $(document).ready(function(){ 
-    
-    	//전체레코드 가져오기
-    	function printwishlist() {
-    		$.ajax({
-                type :"post",
-                url :"${pageContext.request.contextPath}/myPage/info/wishlisttab",
+    $(document).ready(function () {
+
+        //전체레코드 가져오기
+        function printwishlist() {
+            $.ajax({
+                type: "post",
+                url: "${pageContext.request.contextPath}/myPage/info/wishlisttab",
                 dataType :"json",               
                 success : function(result){
                 	//alert("통신성공!!!");
@@ -232,23 +232,24 @@
     					str+='</tr>';
     				});
     				$('#wishlisttable').append(str);
-                	}else alert("위시리스트에 항목이 없습니다.");
-                  },
-               error : function(err){
-                alert("통신실패!!!! err : " + err);
-            } 
+                    } else alert("위시리스트에 항목이 없습니다.");
+                },
+                error: function (err) {
+                    alert("통신실패!!!! err : " + err);
+                }
             });
     	}
     	
     $('#myTab li:eq(2) a').on('click', function(){
+    	alert("누름");
     		$.ajax({
                 type :"post",
                 url :"${pageContext.request.contextPath}/myPage/info/wishlisttab",
                 dataType :"json",               
                 success : function(result){
-                	alert("통신성공!!!");
+                	//alert("통신성공!!!");
                 	if(result!=null){
-                	alert(result);
+                	//alert(result);
                 	$('#wishlisttable tr:gt(0)').empty();
     				var str = "";
     				$.each(result,function(index,item){
@@ -256,29 +257,29 @@
     					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail">'+item.onLecture.onLectureNo+'</a>'+'</td>';
     					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'+item.onLecture.onLectureName+'</a>'+'</td>';
     					str+='<td>'+item.onLecturePrice+'</td>';
-    					str+='<td><input type="button" value="삭제" id='+item.wishListNo+'></td>';
-    					str+='</tr>';
-    				});
-    				$('#wishlisttable').append(str);
-                	}else alert("위시리스트에 항목이 없습니다.");
-                  },
-               error : function(err){
-                alert("통신실패!!!! err : " + err);
-            } 
+                        str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
+                        str += '</tr>';
+                    });
+                        $('#wishlisttable').append(str);
+                    } else alert("위시리스트에 항목이 없습니다.");
+                },
+                error: function (err) {
+                    alert("통신실패!!!! err : " + err);
+                }
             });
-    	})
-  		  
-  	
-		$('#wishlisttable').on('click','input[value=삭제]',function() {
-			alert($(this).attr('id'));
-			$.ajax({
-			url:"${pageContext.request.contextPath}/myPage/delete",
+        });
+
+
+        $('#wishlisttable').on('click', 'input[value=삭제]', function () {
+            alert($(this).attr('id'));
+            $.ajax({
+                url: "${pageContext.request.contextPath}/myPage/delete",
 			type:"delete",
 			data:"wishListNo="+$(this).attr('id'),
 			dataType:"text",
 			success:function(){
 				alert("삭제완료");
-			//	printwishlist();
+				printwishlist();
 			},error:function(err){
 				alert("안눌려");
 			}

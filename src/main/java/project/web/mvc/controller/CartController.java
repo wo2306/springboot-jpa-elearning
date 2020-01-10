@@ -4,11 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.web.mvc.domain.Cart;
-import project.web.mvc.domain.OnLecture;
 import project.web.mvc.service.CartService;
 
 import java.util.List;
@@ -18,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartController {
     private final CartService cartService;
-//    private final UserService userService;
 
     @RequestMapping("/checkout")
     public String checkout(Model model) {
@@ -31,8 +28,15 @@ public class CartController {
     @RequestMapping("/ajaxList")
     @ResponseBody
     public List<Cart> ajaxList() {
-        System.out.println("ajaxList call()");
+        System.out.println("@@@@@@@@@@AJAXLIST CALL");
         return cartService.selectAll();
+    }
+
+    @RequestMapping("/ajaxTest")
+    @ResponseBody
+    public String ajaxTest() {
+        System.out.println("@@@@@@@@@@ajaxTest CALL");
+        return "ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ";
     }
 
     //카트 삽입 없음.
@@ -47,10 +51,9 @@ public class CartController {
 
     @RequestMapping("/insert/{onLectureNo}")
     @ResponseBody
-    public int insert(@PathVariable Long onLectureNo) {
-        System.out.println(onLectureNo);
+    public String insert(@PathVariable Long onLectureNo) {
         cartService.insert(onLectureNo);
-        return 0;
+        return "삽입 성공";
     }
 
     @RequestMapping("/delete/{cartNo}")

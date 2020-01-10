@@ -7,7 +7,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import project.web.mvc.domain.OnOrder;
 
 public interface OnOrderRepository extends PagingAndSortingRepository<OnOrder, Long> {
-    Page<OnOrder> findTopByUserdbUserdbEmail(String userdbEmail, Pageable pageable);
+    Page<OnOrder> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
 
-    OnOrder findTopByUserdbUserdbEmailAndOnlecture_OnLectureNo(String userdbEmail, Long onLectureNo);
+    @Query("select o from OnOrder o inner join o.userdb u inner join o.onlecture l where u.userdbNo=?1 and l.onLectureNo=?2")
+    OnOrder findByUserdbNoAndOnLectureNo(Long userdbNo, Long onLectureNo);
 }

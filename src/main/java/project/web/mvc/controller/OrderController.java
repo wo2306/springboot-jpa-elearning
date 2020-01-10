@@ -7,15 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import project.web.mvc.domain.OffOrder;
-import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.OnOrder;
 import project.web.mvc.service.CartService;
 import project.web.mvc.service.OnLectureService;
 import project.web.mvc.service.OrderService;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Controller

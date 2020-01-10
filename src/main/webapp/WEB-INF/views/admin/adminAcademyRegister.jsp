@@ -59,7 +59,7 @@
 									<div class="row">
 										<div class="col-md-6 col-md-offset-3">
 											<form id="booking-form" name="booking-form"
-												action="${pageContext.request.contextPath}/admin/academy/adminAcademyRegister/insert" method="post"
+				 								action="${pageContext.request.contextPath}/admin/academy/adminAcademyRegister/insert" method="post"
 												enctype="multipart/form-data">
 												<div class="row">
 													

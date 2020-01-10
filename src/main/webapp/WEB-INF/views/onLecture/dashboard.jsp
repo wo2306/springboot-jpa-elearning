@@ -130,7 +130,7 @@
                                 <div class="services-list">
                                     <ul class="list list-border angle-double-right">
                                         <li class="active"><a
-                                                href="${pageContext.request.contextPath}/onLecture/view/${sugangList.get(0).onDetailNo}">지금
+                                                href="${pageContext.request.contextPath}/onLecture/view/${sugangList.size()>0?sugangList.get(0).onDetailNo:detailList.get(0).onDetailNo}">지금
                                             바로 학습 시작</a></li>
                                     </ul>
                                     <br>

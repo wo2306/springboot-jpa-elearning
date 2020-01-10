@@ -1,11 +1,10 @@
 package project.web.mvc.service;
 
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.UserdbRepository;
 
@@ -20,7 +19,7 @@ public class UserdbServiceImpl implements UserdbService {
 	public PasswordEncoder passwordEncoder() {
 		return this.passwordEncoder();
 	}
-	
+
 	//UserdbEmail에 따른 User정보조회
 	@Override
 	public Userdb selectByUserdbEmail(String userdbEmail) {
@@ -34,17 +33,14 @@ public class UserdbServiceImpl implements UserdbService {
 		Userdb result = userdbRepository.findById(userdbNo).orElse(null);
 		return result;
 	}
-	
-	//아이디중복체크
+
+    //아이디중복체크
 	@Override
-	public boolean duplicatedByEmail(Userdb userdb){
-		String userdbEmail = userdb.getUserdbEmail();
-		Userdb user = selectByUserdbEmail(userdbEmail);
-		if(user!=null) {
-			return false;
-		}
-		return true;
-	}
+	public boolean duplicatedByEmail(Userdb userdb) {
+        String userdbEmail = userdb.getUserdbEmail();
+        Userdb user = selectByUserdbEmail(userdbEmail);
+        return user == null;
+    }
 
 	//회원가입
 	@Override
