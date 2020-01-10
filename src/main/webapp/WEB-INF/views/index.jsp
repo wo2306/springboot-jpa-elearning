@@ -268,7 +268,8 @@
         </div>
       </div>
     </section>
-
-  <!-- end main-content -->
+  </div>
+</div>
+<!-- end main-content -->
 </body>
 </html>
