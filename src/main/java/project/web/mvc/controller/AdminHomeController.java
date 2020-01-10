@@ -25,6 +25,12 @@ public class AdminHomeController {
 		return "admin/academy/adminStudent";
 	}
 	
+	@RequestMapping("/tables")
+	public String c() {
+		
+		return"admin/tables";
+	}
+	
 	
 	
 

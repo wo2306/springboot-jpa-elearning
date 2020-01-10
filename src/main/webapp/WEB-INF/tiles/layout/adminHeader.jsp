@@ -40,7 +40,17 @@
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/admin/js/demo/chart-area-demo.js"></script>
   <script src="${pageContext.request.contextPath}/admin/js/demo/chart-pie-demo.js"></script>
+  <style type="text/css">
+  .container-fluid:after{clear: both;}
+  .container-fluid{
   
+  }
+  #accordionSidebar{
+  float: left;
+  margin-right: 40px;
+  }
+  
+  </style>
 
 </head>
 <body>

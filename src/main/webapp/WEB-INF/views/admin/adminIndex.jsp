@@ -16,6 +16,7 @@
   <meta name="author" content="">
 
   <title>SB Admin 2 - Dashboard</title>
+  
 
 </head>
 
@@ -23,7 +24,6 @@
 
 
       <!-- Main Content -->
-      <div id="content">
 
 
         <!-- Begin Page Content -->
@@ -306,8 +306,6 @@
 
             </div>
           </div>
-
-        </div>
         <!-- /.container-fluid -->
 
 </div>
