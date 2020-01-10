@@ -14,6 +14,7 @@ import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
+import project.web.mvc.util.LoginCheck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,9 +69,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean payCheck(Long onLectureNo) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            Userdb userdb = (Userdb) authentication.getPrincipal();
+        Userdb userdb = LoginCheck.getUserdb();
+        if (userdb!=null) {
             return onOrderRepository.findByUserdbNoAndOnLectureNo(userdb.getUserdbNo(), onLectureNo) != null;
         }
         return false;
