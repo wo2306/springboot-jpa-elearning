@@ -133,12 +133,12 @@
                     }
                     $mailchimpform.prepend($response);
                 }
-                
+
                 //전체레코드 가져오기
                 function printAcademy() {
-                   $.ajax({
-                         type :"post",
-                         url :"${pageContext.request.contextPath}/admin/this",
+                    $.ajax({
+                        type: "post",
+                        url: "${pageContext.request.contextPath}/admin/this",
                          dataType :"json",               
                          success : function(result){
                            // alert("통신성공!!!");
