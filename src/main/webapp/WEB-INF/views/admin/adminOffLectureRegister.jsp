@@ -66,9 +66,9 @@
 													
 													<div class="col-sm-6">
 														<div class="form-group">
-														<label>academyName</label>
-															<input type="text" placeholder="academyName"
-																name="academyName" required="" class="form-control">
+														<label>academyNo</label>
+															<input type="text" placeholder="academyNo"
+																name="academy.academyNo" required="" class="form-control">
 														</div>
 													</div>
 													
@@ -95,14 +95,6 @@
 														<label>category</label>
 															<input type="text" placeholder="category"
 																name="category" required="" class="form-control">
-														</div>
-													</div>
-													
-													<div class="col-sm-6">
-														<div class="form-group">
-														<label>offLectureDate</label>
-															<input type="text" placeholder="offLectureDate"
-																name="offLectureDate" required="" class="form-control">
 														</div>
 													</div>
 													

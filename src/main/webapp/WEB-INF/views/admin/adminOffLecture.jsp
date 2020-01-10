@@ -123,45 +123,46 @@
                 </div>
               </form>
               <!-- Mailchimp Subscription Form Validation-->
-              <script type="text/javascript">
-                $('#mailchimp-subscription-form').ajaxChimp({
-                    callback: mailChimpCallBack,
-                    url: '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&amp;id=49d6d30e1e'
-                });
+             
+              
+              <!-- Mailchimp Subscription Form Ends Here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                function mailChimpCallBack(resp) {
-                    // Hide any previous response text
-                    var $mailchimpform = $('#mailchimp-subscription-form'),
-                        $response = '';
-                    $mailchimpform.children(".alert").remove();
-                    if (resp.result === 'success') {
-                        $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
-                    } else if (resp.result === 'error') {
-                        $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
-                    }
-                    $mailchimpform.prepend($response);
-                }
+  </div>
+</div>
+
+ <script type="text/javascript">
+              $(document).ready(function(){ 
+               
                 
                 //전체레코드 가져오기
                 function printAcademy() {
                    $.ajax({
                          type :"post",
-                         url :"${pageContext.request.contextPath}/admin/academy/this",
+                         url :"${pageContext.request.contextPath}/admin/offLecture/this",
                          dataType :"json",               
                          success : function(result){
-                           // alert("통신성공!!!");
+                            alert("통신성공!!!");
                             if(result!=null){
-                           // alert(result);
+                            alert(result);
                             $('#dataTable tr:gt(0)').empty();
                          var str = "";
                          $.each(result,function(index,item){
                             str+='<tr>';
-                            str+='<td>'+item.academyNo+'</td>';
-                            str+='<td>'+item.academyName+'</td>';
-                            str+='<td>'+item.academyAddrCity+'</td>';
-                            str+='<td>'+item.academyAddrDetail+'</td>';
+                            str+='<td>'+item.offLectureNo+'</td>';
+                            str+='<td>'+item.academy.academyName+'</td>';
+                            str+='<td>'+item.offLectureName+'</td>';
+                            str+='<td>'+item.offLectureTeacher+'</td>';
+                            str+='<td>'+item.category+'</td>';
+                            str+='<td>'+item.offLectureAvailableseat+'</td>';
+                            str+='<td>'+item.offDetail+'</td>';
+                            str+='<td>'+item.offLectureDate+'</td>';
                             str+='<td><input type="submit" value="수정"></td>';
-                            str+='<td><input type="button" value="삭제" id='+item.academyNo+'></td>';
+                            str+='<td><input type="button" value="삭제" id='+item.offLectureNo+'></td>';
                             str+='</tr>';
                          });
                          $('#dataTable').append(str);
@@ -175,11 +176,12 @@
 
                 
                 $('#dataTable').on('click','input[value=삭제]',function() {
+                	
                     alert($(this).attr('id'));
                     $.ajax({
-                    url:"${pageContext.request.contextPath}/admin/academy/delete",
+                    url:"${pageContext.request.contextPath}/admin/offLecture/delete",
                     type:"delete",
-                    data:"academyNo="+$(this).attr('id'),
+                    data:"offLectureNo="+$(this).attr('id'),
                     dataType:"text",
                     success:function(){
                        alert("삭제완료");
@@ -189,15 +191,9 @@
                     }
                  })
               });//delete
+              
+              })
+              
               </script>
-              <!-- Mailchimp Subscription Form Ends Here -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </div>
-</div>
 </body>
 </html>

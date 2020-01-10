@@ -27,7 +27,7 @@ public class AdminAcademyController {
 	public ModelAndView main() {
 		List<Academy> list = academyService.selectAll();
 		System.out.println(list);
-		return new ModelAndView("admin/adminAcademy", "list", list);
+		return new ModelAndView("admin/academy/adminAcademy", "list", list);
 	}
 	
 	@RequestMapping("this")
