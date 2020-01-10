@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.web.mvc.domain.OffOrder;
@@ -15,7 +14,6 @@ import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
-import project.web.mvc.util.LoginCheck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,8 +68,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean payCheck(Long onLectureNo) {
-        Userdb userdb = LoginCheck.getUserdb();
-        if (userdb!=null) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            Userdb userdb = (Userdb) authentication.getPrincipal();
             return onOrderRepository.findByUserdbNoAndOnLectureNo(userdb.getUserdbNo(), onLectureNo) != null;
         }
         return false;
