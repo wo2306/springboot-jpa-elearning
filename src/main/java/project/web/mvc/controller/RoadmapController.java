@@ -23,6 +23,11 @@ public class RoadmapController {
 	@Autowired
 	private RoadmapService service;
 
+	@RequestMapping("")
+	public String main() {
+		return "redirect:roadmap/list";
+	}
+	
 	@RequestMapping("/list")
 	public void roadmapList(Model model) {
 		List<Roadmap> list = service.selectAll();

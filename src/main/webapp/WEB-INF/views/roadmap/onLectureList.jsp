@@ -49,7 +49,7 @@
 		$(".btn").click(function(){
 			var onLectureNo = $(this).val()
 			/* alert($(this).val()); */
-			
+			//로드맵 등록시 온라인강의 추가
 			$.ajax({
 				type:"POST",
 				url:"${pageContext.request.contextPath}/roadmap/onLectureAdd",				
@@ -57,35 +57,29 @@
 				dataType:"json",
 				success:function(result){						
  	 					alert("성공")
-						alert(result)
 						var objectValues = result;
-						 
 						for (var key in objectValues){
 						    console.log("attr: " + key + ", value: " + objectValues[key]);
 						}   
 						
   						 var data="<tr class='onLecture_item'>";
-	                      data+="<td class='onLecture-remove'>"+"</td>";
+	                      data+="<td class='onLecture-remove'>"+"<button type='button' class='btn' id='btn' value='${list.onLectureNo}'>"+"취소"+"</button>"+"</td>";
 	                      data+="<td class='product-thumbnail'>"+"<a href='#'>"+"<img alt='member' src='http://placehold.it/285x300'>"+"</a>"+"</td>";
 	                      data+="<td class='onLecture-name'>"+"<a href='#'>"+result.onLectureName+"</a>"+"</td>"
 	                      data+="<td class='onLecture-content'>"+"<span class='content'>"+result.onLectureContent+"</span>"+"</td>";
 	        			  data+="<td class='onLecture-teacher'>"+"<span class='teacher'>"+result.onLectureTeacher+"</span>"+"</td>";
 	                      data+="<td class='onLecture-price'>"+"<span class='price'>"+result.onLecturePrice+"</span>"+"</td>";
 	                  	  data+="</tr>";
-	                  	  data+="<tr class='cart_item'>";
-	                      data+="<td colspan='6'>"+"<div class='onlecture'>";
-	                      data+="<button type='button' class='btn' value='${list.onLectureNo}'>"+"취소"+"</button>";
-	                      data+="</div>"+"</td>";
-	                      data+="</tr>";
+	               
 	                    	$('#table').append(data);		  
-						  
-						 
-							
 				}//callback			
 			});//ajax
-			
-			
+		})//click이벤트 끝
+		//추가한  강의 삭제
+		$(document).on("click","#btn",function(){
+			$(this).closest("tr").remove();
 		})
+		//
 	})
 
 </script>
