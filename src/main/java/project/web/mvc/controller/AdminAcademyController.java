@@ -16,7 +16,7 @@ import project.web.mvc.service.AcademyService;
 
 
 @Controller
-@RequestMapping("/admin/academy/")
+@RequestMapping("/admin/academy")
 public class AdminAcademyController {
 	
 	@Autowired
@@ -38,24 +38,27 @@ public class AdminAcademyController {
 		return list;
 	}
 	
-	@RequestMapping("adminRegister")
-	public void register() {
-		
+	@RequestMapping("/adminAcademyRegister")
+	public String register() {
+		//System.out.println("나와?");
+		return "admin/adminAcademyRegister";
 	}
 	
-	@RequestMapping("adminRegister/insert")
-	public String academyInsert(Academy academy) {
+	@RequestMapping("/adminAcademyRegister/insert")
+	public ModelAndView academyInsert(Academy academy) {
 		academyService.academyInsert(academy);
-		return "redirect:/admin";
+		List<Academy> list = academyService.selectAll();
+		System.out.println(list);
+		return new ModelAndView("admin/adminAcademy", "list", list);
 	}
 	
-	@RequestMapping("adminUpdate")
-	public ModelAndView update(Long academyNo) {
+	@RequestMapping("adminAcademyUpdate/{academyNo}")
+	public ModelAndView update(@PathVariable Long academyNo) {
 		Academy academy = academyService.selectByAno(academyNo);
 		return new ModelAndView("adminUpdate/updates", "academy", academy);
 	}
 	
-	@RequestMapping("/adminUpdate/update")
+	@RequestMapping("/adminAcademyUpdate/update")
 	public ModelAndView academyUpdate(Academy academy) {
 		academyService.academyUpdate(academy);
 		Academy selectedacademy = academyService.selectByAno(academy.getAcademyNo());

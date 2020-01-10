@@ -48,7 +48,7 @@
           <div class="row">
 
 <form name="updateForm" method="post"
-								action="${pageContext.request.contextPath}/admin/adminUpdate">
+								action="${pageContext.request.contextPath}/admin/academy/adminAcademyUpdate/{academyNo}">
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<tr>
@@ -72,7 +72,7 @@
 							</table>
 							</form>
 							<form name="writeForm" method="post"
-								action="${pageContext.request.contextPath}/admin/adminRegister">
+								action="${pageContext.request.contextPath}/admin/academy/adminAcademyRegister">
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
 									<tr>
@@ -138,7 +138,7 @@
                 function printAcademy() {
                    $.ajax({
                          type :"post",
-                         url :"${pageContext.request.contextPath}/admin/this",
+                         url :"${pageContext.request.contextPath}/admin/academy/this",
                          dataType :"json",               
                          success : function(result){
                            // alert("통신성공!!!");
@@ -169,7 +169,7 @@
                 $('#dataTable').on('click','input[value=삭제]',function() {
                     alert($(this).attr('id'));
                     $.ajax({
-                    url:"${pageContext.request.contextPath}/admin/delete",
+                    url:"${pageContext.request.contextPath}/admin/academy/delete",
                     type:"delete",
                     data:"academyNo="+$(this).attr('id'),
                     dataType:"text",
