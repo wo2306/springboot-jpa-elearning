@@ -122,7 +122,7 @@
                 function printAcademy() {
                    $.ajax({
                          type :"post",
-                         url :"${pageContext.request.contextPath}/admin/this",
+                         url :"${pageContext.request.contextPath}/admin/academy/this",
                          dataType :"json",               
                          success : function(result){
                            // alert("통신성공!!!");
@@ -154,7 +154,7 @@
                 	
                     alert($(this).attr('id'));
                     $.ajax({
-                    url:"${pageContext.request.contextPath}/admin/delete",
+                    url:"${pageContext.request.contextPath}/admin/academy/delete",
                     type:"delete",
                     data:"academyNo="+$(this).attr('id'),
                     dataType:"text",
