@@ -15,6 +15,7 @@ public class AdminUserServiceImpl implements AdminUserService {
 
 	@Autowired
 	private UserdbRepository userdbRepo;
+	
 	@Override
 	public List<Userdb> selectAll() {
 		System.out.println("admin service 진입");
