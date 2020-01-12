@@ -66,7 +66,7 @@
 							</table>
 							</form>
 							<form name="writeForm" method="post"
-								action="${pageContext.request.contextPath}/admin/adminRegister">
+								action="${pageContext.request.contextPath}/admin/academy/adminRegister">
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0">
 									<tr>

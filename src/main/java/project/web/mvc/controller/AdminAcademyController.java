@@ -38,10 +38,10 @@ public class AdminAcademyController {
 		return list;
 	}
 	
-	@RequestMapping("/adminAcademyRegister")
+	@RequestMapping("/adminRegister")
 	public String register() {
 		//System.out.println("나와?");
-		return "admin/adminAcademyRegister";
+		return "admin/academy/adminRegister";
 	}
 	
 	@RequestMapping("/adminAcademyRegister/insert")
@@ -49,7 +49,7 @@ public class AdminAcademyController {
 		academyService.academyInsert(academy);
 		List<Academy> list = academyService.selectAll();
 		System.out.println(list);
-		return new ModelAndView("admin/adminAcademy", "list", list);
+		return new ModelAndView("admin/academy/adminAcademy", "list", list);
 	}
 	
 	@RequestMapping("adminAcademyUpdate/{academyNo}")

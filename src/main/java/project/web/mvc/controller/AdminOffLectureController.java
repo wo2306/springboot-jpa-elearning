@@ -24,13 +24,13 @@ public class AdminOffLectureController {
 	public ModelAndView main() {
 		List<OffLecture> list = offLectureService.selectAll();
 		System.out.println(list);
-		return new ModelAndView("admin/adminOffLecture", "list", list);
+		return new ModelAndView("admin/offLecture/adminOffLecture", "list", list);
 	}
 	
 	@RequestMapping("/adminOffLectureRegister")
 	public String register() {
 		//System.out.println("나와?");
-		return "admin/adminOffLectureRegister";
+		return "admin/offLecture/adminOffLectureRegister";
 	}
 	
 	@RequestMapping("/adminOffLectureRegister/insert")
@@ -38,7 +38,7 @@ public class AdminOffLectureController {
 		offLectureService.offLecInsert(offLecture);
 		List<OffLecture> list = offLectureService.selectAll();
 		System.out.println(list);
-		return new ModelAndView("admin/adminOffLecture", "list", list);
+		return new ModelAndView("admin/offLecture/adminOffLecture", "list", list);
 	}
 	
 	@RequestMapping("this")
