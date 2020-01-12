@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.web.mvc.domain.Academy;
+import project.web.mvc.domain.OffLecture;
 import project.web.mvc.service.AcademyService;
 
 
@@ -51,11 +52,11 @@ public class AdminAcademyController {
 		System.out.println(list);
 		return new ModelAndView("admin/academy/adminAcademy", "list", list);
 	}
-	
-	@RequestMapping("adminAcademyUpdate/{academyNo}")
-	public ModelAndView update(@PathVariable Long academyNo) {
+
+	@RequestMapping("adminUpdate")
+	public ModelAndView update(Long academyNo) {
 		Academy academy = academyService.selectByAno(academyNo);
-		return new ModelAndView("adminUpdate/updates", "academy", academy);
+		return new ModelAndView("admin/academy/adminUpdate", "academy", academy);
 	}
 	
 	@RequestMapping("/adminAcademyUpdate/update")

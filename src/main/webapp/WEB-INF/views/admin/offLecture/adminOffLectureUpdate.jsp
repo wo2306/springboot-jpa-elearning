@@ -59,40 +59,80 @@
 									<div class="row">
 										<div class="col-md-6 col-md-offset-3">
 											<form id="booking-form" name="booking-form"
-												action="${pageContext.request.contextPath}/admin/adminUpdate/{academy}" method="post"
+												action="${pageContext.request.contextPath}/admin/offLecture/offLecUpdate/update" method="post"
 												enctype="multipart/form-data">
 												<div class="row">
+												
 													<div class="col-sm-6">
 														<div class="form-group">
-														
-														<label>${academy.academyNo}</label>
-															<input type="text" placeholder="academyNo"
+														<label>academyNo</label>
+															<input type="text" value="${offLecture.academy.academyNo}"
 																name="academyNo" required="" class="form-control">
 														</div>
+													</div>
+												
+												
+													<div class="col-sm-6">
+														<div class="form-group">
 														
+														
+														<label>offLectureNo</label>
+															<input type="text" value="${offLecture.offLectureNo}"
+																name="offLectureNo" required="" class="form-control">
+														</div>
+														
+													</div>
+													
+													
+													<div class="col-sm-6">
+														<div class="form-group">
+														
+														
+														<label>offLectureName</label>
+															<input type="text" value="${offLecture.offLectureName}"
+																name="offLectureName" required="" class="form-control">
+														</div>
+														
+													</div>
+													
+													
+													<div class="col-sm-6">
+														<div class="form-group">
+														<label>offLectureTeacher</label>
+															<input type="text" value="${offLecture.offLectureTeacher}"
+																name="offLectureTeacher" required="" class="form-control">
+														</div>
 													</div>
 													
 													<div class="col-sm-6">
 														<div class="form-group">
-														<label>${academy.academyName}</label>
-															<input type="text" placeholder="academyName"
-																name="academyName" required="" class="form-control">
+														<label>category</label>
+															<input type="text" value="${offLecture.category}"
+																name="category" required="" class="form-control">
 														</div>
 													</div>
 													
-													<div class="col-sm-12">
+													<div class="col-sm-6">
 														<div class="form-group">
-														<label>${academy.academyAddrCity}</label>
-															<input type="text" placeholder="academyAddrCity"
-																name="academyAddrCity" required="" class="form-control">
+														<label>offLectureSeat</label>
+															<input type="text" value="${offLecture.offLectureSeat}"
+																name="offLectureSeat" required="" class="form-control">
 														</div>
 													</div>
 													
+													<%-- <div class="col-sm-6">
+														<div class="form-group">
+														<label>offLectureDate</label>
+															<input type="text" value="${offLecture.offLectureDate}"
+																name="offLectureDate" required="" class="form-control">
+														</div>
+													</div> --%>
+													
 													<div class="col-sm-12">
 														<div class="form-group">
-														<label>${academy.academyAddrDetail}</label>
-															<input type="text" placeholder="academyAddrDetail"
-																name="academyAddrDetail" required="" class="form-control">
+														<label>offDetail</label>
+															<input type="text" value="${offLecture.offDetail}"
+																name="offDetail" required="" class="form-control">
 														</div>
 													</div>
 										

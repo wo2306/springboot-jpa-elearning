@@ -48,7 +48,7 @@
           <div class="row">
 
 <form name="updateForm" method="post"
-								action="${pageContext.request.contextPath}/admin/offLecture/adminoffLectureUpdate/{academyNo}">
+								action="${pageContext.request.contextPath}/admin/offLecture/offLecUpdate">
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<tr>
@@ -73,7 +73,7 @@
 										<td>${list.offLectureSeat-list.offLectureReservedseat}</td>
 										<td>${list.offDetail}</td>
 										<td>${list.offLectureDate}</td>
-										<td><input type="submit" value="수정"></td>
+										<td><input type="submit" value="수정" ><input type=hidden name="offLectureNo" value="${list.offLectureNo}"></td>
 										<td><input type="button" value="삭제" id=${list.offLectureNo}></td>
 									</tr>
 								</c:forEach>
@@ -193,6 +193,18 @@
               });//delete
               
               })
+              
+              
+              //수정하기 폼으로 이동하기
+               /* $(function(){
+	   
+	   $("input[value=수정]").click(function(){
+		   //document.requestForm.action="${pageContext.request.contextPath}/board/updateForm";
+		   
+		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/admin/offLecture/offLecUpdate");
+		   $("#requestForm").submit();
+	   })
+               } */
               
               </script>
 </body>

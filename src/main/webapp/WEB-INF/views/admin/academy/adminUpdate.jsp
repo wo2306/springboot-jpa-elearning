@@ -59,14 +59,14 @@
 									<div class="row">
 										<div class="col-md-6 col-md-offset-3">
 											<form id="booking-form" name="booking-form"
-												action="${pageContext.request.contextPath}/admin/adminUpdate/{academy}" method="post"
+												action="${pageContext.request.contextPath}/admin/adminUpdate/{academyNo}" method="post"
 												enctype="multipart/form-data">
 												<div class="row">
 													<div class="col-sm-6">
 														<div class="form-group">
 														
-														<label>${academy.academyNo}</label>
-															<input type="text" placeholder="academyNo"
+														<label>academyNo</label>
+															<input type="text" value="${academy.academyNo}"
 																name="academyNo" required="" class="form-control">
 														</div>
 														
@@ -74,24 +74,24 @@
 													
 													<div class="col-sm-6">
 														<div class="form-group">
-														<label>${academy.academyName}</label>
-															<input type="text" placeholder="academyName"
+														<label>academyName</label>
+															<input type="text" value="${academy.academyName}"
 																name="academyName" required="" class="form-control">
 														</div>
 													</div>
 													
-													<div class="col-sm-12">
+													<div class="col-sm-6">
 														<div class="form-group">
-														<label>${academy.academyAddrCity}</label>
-															<input type="text" placeholder="academyAddrCity"
+														<label>academyAddrCity</label>
+															<input type="text" value="${academy.academyAddrCity}"
 																name="academyAddrCity" required="" class="form-control">
 														</div>
 													</div>
 													
 													<div class="col-sm-12">
 														<div class="form-group">
-														<label>${academy.academyAddrDetail}</label>
-															<input type="text" placeholder="academyAddrDetail"
+														<label>academyAddrDetail</label>
+															<input type="text" value="${academy.academyAddrDetail}"
 																name="academyAddrDetail" required="" class="form-control">
 														</div>
 													</div>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,6 +50,19 @@ public class AdminOffLectureController {
 		return list;
 	}
 
+	@RequestMapping("/offLecUpdate")
+	public ModelAndView update( Long offLectureNo) {
+		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
+		return new ModelAndView("admin/offLecture/adminOffLectureUpdate", "offLecture", offLecture);
+	}
+
+
+	@RequestMapping("offLecUpdate/update")
+	public ModelAndView offLecUpdate (OffLecture offLecture) {
+		offLectureService.offLecUpdate(offLecture);
+		OffLecture selectedOffLecture = offLectureService.selectByOffNo(offLecture.getOffLectureNo());
+		return new ModelAndView("admin/offLecture/adminOffLecture", "offLecture", selectedOffLecture);
+	}
 	
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
