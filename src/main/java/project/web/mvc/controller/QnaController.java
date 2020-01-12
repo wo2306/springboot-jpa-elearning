@@ -63,9 +63,4 @@ public class QnaController {
 		System.out.println("answer 호출");
 		
 	}
-	
-
-
-	
-	
 }

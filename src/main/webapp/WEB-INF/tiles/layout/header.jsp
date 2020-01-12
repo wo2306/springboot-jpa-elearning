@@ -179,11 +179,11 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                     <ul class="dropdown">
                                         <li>
                                             <div class="search-form-wrapper">
-                                                <form method="get" class="mt-10">
+                                                <form method="post" class="mt-10" onsubmit="return topSearch()">
                                                     <input type="text"
                                                            onfocus="if(this.value =='검색어를 입력하세요') { this.value = ''; }"
                                                            onblur="if(this.value == '') { this.value ='검색어를 입력하세요'; }"
-                                                           value="검색어를 입력하세요" id="searchinput" name="s" class="">
+                                                           value="검색어를 입력하세요" id="searchKeyword" name="keyword" class="">
                                                     <label><input type="submit" name="submit" value=""></label>
                                                 </form>
                                             </div>
@@ -274,6 +274,12 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     </div>
 </header>
 <script>
+    function topSearch() {
+        var keyword = $("#searchKeyword").val();
+        location.href = '${pageContext.request.contextPath}/onLecture/search/key/' + keyword + '/1'
+        return false;
+    }
+
     function academy() {
         location.href = "${pageContext.request.contextPath}/academy";
     }
@@ -284,7 +290,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
 
     function onLecture() {
         console.log(11);
-        location.href = "${pageContext.request.contextPath}/onLecture";
+        location.href = "${pageContext.request.contextPath}/onLecture/search/category/웹개발/1";
     }
 
     function offLecture() {
@@ -300,7 +306,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     }
 
     function myPage() {
-        location.href = "${pageContext.request.contextPath}/myPage/info";
+        location.href = "${pageContext.request.contextPath}/myPage/info/1";
     }
 
     function numberWithCommas(x) {
@@ -353,17 +359,6 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     }
 
     $(function () {
-        $.ajax({
-            url: "${pageContext.request.contextPath}/cart/ajaxTest",
-            type: "post",
-            dataType: "text",
-            success: function (result) {
-                console.log(result)
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        });
         cartList();
     });
 

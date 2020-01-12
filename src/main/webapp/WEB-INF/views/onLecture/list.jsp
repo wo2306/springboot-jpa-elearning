@@ -31,11 +31,11 @@
                 <div class="section-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="title text-white">Course Gird</h2>
+                            <h2 class="title text-white">온라인 강의</h2>
                             <ol class="breadcrumb text-left text-black mt-10">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Pages</a></li>
-                                <li class="active text-gray-silver">Page Title</li>
+                                <li><a href="#">홈</a></li>
+                                <li><a href="#">온라인 강의</a></li>
+                                <li class="active text-gray-silver">강의 리스트</li>
                             </ol>
                         </div>
                     </div>
@@ -62,7 +62,8 @@
                                             <h4 class="line-bottom mb-10">${dto.onLectureName}</h4>
                                             <p>${dto.onLectureSummary}</p>
                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의 상세 보기</a>
+                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의
+                                                상세 보기</a>
                                         </div>
                                     </div>
                                 </div>
@@ -70,15 +71,33 @@
                             <div class="col-sm-12" id="paginationList">
                                 <nav>
                                     <ul class="pagination theme-colored xs-pull-center m-0">
-                                        <li><a href="#" aria-label="Previous"> <span aria-hidden="true">이전</span> </a>
-                                        </li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">...</a></li>
-                                        <li><a href="#" aria-label="Next"> <span aria-hidden="true">다음</span> </a></li>
+                                        <c:if test="${page.hasPrevious() eq true}">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number}"
+                                                   aria-label="Previous"> <span aria-hidden="true">이전</span> </a>
+                                            </li>
+                                        </c:if>
+                                        <c:if test="${page.totalPages ne 1}">
+                                            <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
+                                                <c:choose>
+                                                    <c:when test="${page.number eq i.count-1}">
+                                                        <li class="active"><a
+                                                                href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                        </li>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <li>
+                                                            <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                        </li>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </c:if>
+                                        <c:if test="${page.hasNext() eq true}">
+                                            <li>
+                                                <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+2}"
+                                                   aria-label="Next"> <span aria-hidden="true">다음</span> </a></li>
+                                        </c:if>
                                     </ul>
                                 </nav>
                             </div>
@@ -90,13 +109,13 @@
                                 <h5 class="widget-title line-bottom">Search <span
                                         class="text-theme-color-2">Courses</span></h5>
                                 <div class="search-form">
-                                    <form>
+                                    <form method="post" onsubmit="return searchFrm()">
                                         <div class="input-group">
-                                            <input type="text" placeholder="강의 제목 또는 강사명 입력"
-                                                   class="form-control search-input">
+                                            <input type="text" placeholder="${keyword}"
+                                                   id="searchText" class="form-control search-input">
                                             <span class="input-group-btn">
-                      <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
-                      </span>
+    <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+    </span>
                                         </div>
                                     </form>
                                 </div>
@@ -106,39 +125,33 @@
                                         class="text-theme-color-2">Categories</span></h5>
                                 <div class="categories">
                                     <ul class="list list-border angle-double-right">
-                                        <li><a href="#">웹개발<span>(19)</span></a></li>
-                                        <li><a href="#">모바일개발<span>(21)</span></a></li>
-                                        <li><a href="#">게임개발<span>(15)</span></a></li>
-                                        <li><a href="#">알고리즘<span>(35)</span></a></li>
-                                        <li><a href="#">데이터베이스<span>(16)</span></a></li>
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/onLecture/search/category/웹개발/1">웹개발(<span
+                                                    id="ct4">0</span>)</a>
+                                        </li>
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/onLecture/search/category/모바일개발/1">모바일개발(<span
+                                                    id="ct2">0</span>)</a>
+                                        </li>
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/onLecture/search/category/게임개발/1">게임개발(<span
+                                                    id="ct0">0</span>)</a>
+                                        </li>
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/onLecture/search/category/알고리즘/1">알고리즘(<span
+                                                    id="ct3">0</span>)</a>
+                                        </li>
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/onLecture/search/category/데이터베이스/1">데이터베이스(<span
+                                                    id="ct1">0</span>)</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="widget">
                                 <h5 class="widget-title line-bottom">Latest <span
                                         class="text-theme-color-2">Course</span></h5>
-                                <div class="latest-posts">
-                                    <article class="post media-post clearfix pb-0 mb-10">
-                                        <a class="post-thumb" href="#"><img src="http://placehold.it/75x75" alt=""></a>
-                                        <div class="post-right">
-                                            <h5 class="post-title mt-0"><a href="#">Sustainable Construction</a></h5>
-                                            <p>Lorem ipsum dolor sit amet adipisicing elit...</p>
-                                        </div>
-                                    </article>
-                                    <article class="post media-post clearfix pb-0 mb-10">
-                                        <a class="post-thumb" href="#"><img src="http://placehold.it/75x75" alt=""></a>
-                                        <div class="post-right">
-                                            <h5 class="post-title mt-0"><a href="#">Industrial Coatings</a></h5>
-                                            <p>Lorem ipsum dolor sit amet adipisicing elit...</p>
-                                        </div>
-                                    </article>
-                                    <article class="post media-post clearfix pb-0 mb-10">
-                                        <a class="post-thumb" href="#"><img src="http://placehold.it/75x75" alt=""></a>
-                                        <div class="post-right">
-                                            <h5 class="post-title mt-0"><a href="#">Storefront Installations</a></h5>
-                                            <p>Lorem ipsum dolor sit amet adipisicing elit...</p>
-                                        </div>
-                                    </article>
+                                <div class="latest-posts" id="latest-posts">
                                 </div>
                             </div>
 
@@ -153,6 +166,52 @@
     </div>
 </div>
 <!-- end main-content -->
+<script>
+    $(function () {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/onLecture/latest",
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                var str = ""
+                $.each(result, function (key, val) {
+                    str += "<article class=\"post media-post clearfix pb-0 mb-10\">\n" +
+                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/onlecture/images/" + val.onLectureName + " alt=\"http://placehold.it/75x75\"></a>\n" +
+                        " <div class=\"post-right\">\n" +
+                        " <h5 class=\"post-title mt-0\"><a href=\"${pageContext.request.contextPath}/onLecture/detail/" + val.onLectureNo + "\">" + val.onLectureName + "</a></h5>\n" +
+                        " <p>" + val.onLectureSummary + "</p>\n" +
+                        " </div>\n" +
+                        " </article>"
+                });
+                $("#latest-posts").html(str);
+                console.log(result)
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
 
+        $.ajax({
+            url: "${pageContext.request.contextPath}/onLecture/count",
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                $.each(result, function (key, val) {
+                    $("#ct" + key).text(val);
+                });
+                console.log(result)
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    })
+
+    function searchFrm() {
+        var keyword = $("#searchText").val();
+        location.href = '${pageContext.request.contextPath}/onLecture/search/key/' + keyword + '/1'
+        return false;
+    }
+</script>
 </body>
 </html>

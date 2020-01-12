@@ -1,13 +1,12 @@
 package project.web.mvc.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.OffOrder;
@@ -23,17 +22,21 @@ public class MyPageController {
     private final OrderService orderService;
     private final WishListService wishlistService;
     
-    @RequestMapping("/info")
-    public void onSelect(Integer pageNum, Model model) { 
-    	List<OnOrder> list = orderService.onSelect(pageNum == null ? 0 : pageNum);
-        if (!list.isEmpty())
-            model.addAttribute("list", list);
+    @RequestMapping("/info/{pageNum}")
+    public String onSelect(@PathVariable Integer pageNum, Model model) {
+        List<OnOrder> orderList = new ArrayList<>();
+        Iterator<OnOrder> iterator = orderService.onSelect(pageNum).iterator();
+        iterator.forEachRemaining(orderList::add);
+        if (!orderList.isEmpty()) {
+            model.addAttribute("orderList", orderList);
+        }
+        return "myPage/info";
     }
 
     @RequestMapping("/offSelect")
     @ResponseBody
     public List<OffOrder> offSelect(Integer pageNum, Model model) {
-        List<OffOrder> list = orderService.offSelect(pageNum == null ? 0 : pageNum);
+        List<OffOrder> list = orderService.offSelect(pageNum == null ? 1 : pageNum);
         return list;
     }
     

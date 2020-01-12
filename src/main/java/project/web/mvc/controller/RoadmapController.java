@@ -37,7 +37,7 @@ public class RoadmapController {
 	public String roadmapInsert(Roadmap roadmap) {
 	
 		List<OnLecture> onLectures = new ArrayList<OnLecture>();
-		onLectures = OnLectureService.selectAll();
+//		onLectures = OnLectureService.selectAll();
 		
 		for(OnLecture o : onLectures) {
 			o.getOnLectureNo();

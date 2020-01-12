@@ -66,13 +66,8 @@
                                             style="width: 90%;">4.50</span></div>
                                 </li>
                             </ul>
-                            <h5><em>${onLecture.onLectureSummary}</em></h5>
-                            <p>${onLecture.onLectureContent}</p>
                             <br>
 
-                            <h4 class="widget-title line-bottom">강의 등록 일자</h4>
-                            <p>${onLecture.onLectureRegdate}</p>
-                            <br>
                             <h4 class="widget-title line-bottom">함께 학습하면 좋은 <span
                                     class="text-theme-color-2">로드맵</span></h4>
                             <div class="services-list">
@@ -87,16 +82,17 @@
                             <br>
                             <h4 class="widget-title line-bottom">${onLecture.onLectureTeacher}<span
                                     class="text-theme-color-2">님의 다른 강의</span></h4>
-                            <div class="opening-hours">
-                                <ul class="list-border">
-                                    <c:forEach items="${teacherList}" var="teacherLecture">
+                            <ul class="list-border">
+                                <c:forEach items="${teacherList}" var="teacherLecture">
+                                    <c:if test="${teacherLecture.onLectureName ne onLecture.onLectureName}">
                                         <li class="clearfix"><span> <a
                                                 href="${pageContext.request.contextPath}/onLecture/detail/${teacherLecture.onLectureNo}">${teacherLecture.onLectureName} </a> </span>
                                             <div class="value pull-right"></div>
                                         </li>
-                                    </c:forEach>
-                                </ul>
-                            </div>
+                                    </c:if>
+                                </c:forEach>
+                            </ul>
+                            <br>
                             <br>
                             <div id="myTabContent" class="tab-content">
                                 <div class="tab-pane fade in active" id="small">
@@ -143,70 +139,67 @@
                                             <div class="progress">
                                                 <div class="progress-bar" data-percent="
                                                 <fmt:formatNumber value="${sugangList.size()/detailList.size()*100}" pattern="#.#" />">
-                                              </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class=" widget
-                                                ">
-                                                <h4 class="widget-title line-bottom">최근 <span
-                                                        class="text-theme-color-2">질문</span></h4>
-                                                <div class="opening-hours">
-                                                    <ul class="list-border">
-                                                        <c:forEach var="qna" items="${qnaList}">
-                                                            <li class="clearfix"><span> Mon - Tues :  </span>
-                                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
-                                                            </li>
-                                                        </c:forEach>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="widget">
-                                                <h4 class="widget-title line-bottom">강의 <span
-                                                        class="text-theme-color-2">공지</span></h4>
-                                                <div class="opening-hours">
-                                                    <ul class="list-border">
-                                                        <c:forEach var="notice" items="${noticeList}">
-                                                            <li class="clearfix"><span> Mon - Tues :  </span>
-                                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
-                                                            </li>
-                                                        </c:forEach>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                            <div class=" widget">
+                                <h4 class="widget-title line-bottom">최근 <span
+                                        class="text-theme-color-2">질문</span></h4>
+                                <ul class="list-border">
+                                    <c:forEach var="qna" items="${qnaList}">
+                                        <li class="clearfix"><span> ${qna.classQuestionTitle}</span>
+                                            <div class="value pull-right"> ${qna.userdb.userdbNickname}</div>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <h4 class="widget-title line-bottom">강의 <span
+                                        class="text-theme-color-2">공지</span></h4>
+                                <div class="opening-hours">
+                                    <ul class="list-border">
+                                        <c:forEach var="notice" items="${noticeList}">
+                                            <li class="clearfix"><span> Mon - Tues :  </span>
+                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                </div>
+                            </div>
 
-                                            <!-- Quick Contact Form Validation-->
-                                            <script type="text/javascript">
-                                                $("#quick_contact_form_sidebar").validate({
-                                                    submitHandler: function (form) {
-                                                        var form_btn = $(form).find('button[type="submit"]');
-                                                        var form_result_div = '#form-result';
-                                                        $(form_result_div).remove();
-                                                        form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
-                                                        var form_btn_old_msg = form_btn.html();
-                                                        form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
-                                                        $(form).ajaxSubmit({
-                                                            dataType: 'json',
-                                                            success: function (data) {
-                                                                if (data.status == 'true') {
-                                                                    $(form).find('.form-control').val('');
-                                                                }
-                                                                form_btn.prop('disabled', false).html(form_btn_old_msg);
-                                                                $(form_result_div).html(data.message).fadeIn('slow');
-                                                                setTimeout(function () {
-                                                                    $(form_result_div).fadeOut('slow')
-                                                                }, 6000);
-                                                            }
-                                                        });
-                                                    }
-                                                });
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Quick Contact Form Validation-->
+                            <script type="text/javascript">
+                                $("#quick_contact_form_sidebar").validate({
+                                    submitHandler: function (form) {
+                                        var form_btn = $(form).find('button[type="submit"]');
+                                        var form_result_div = '#form-result';
+                                        $(form_result_div).remove();
+                                        form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
+                                        var form_btn_old_msg = form_btn.html();
+                                        form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
+                                        $(form).ajaxSubmit({
+                                            dataType: 'json',
+                                            success: function (data) {
+                                                if (data.status == 'true') {
+                                                    $(form).find('.form-control').val('');
+                                                }
+                                                form_btn.prop('disabled', false).html(form_btn_old_msg);
+                                                $(form_result_div).html(data.message).fadeIn('slow');
+                                                setTimeout(function () {
+                                                    $(form_result_div).fadeOut('slow')
+                                                }, 6000);
+                                            }
+                                        });
+                                    }
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 </div>
