@@ -60,9 +60,9 @@
 										<div class="upcoming-events bg-white-f3 mb-20">
 											<div class="row">
 												<div class="col-sm-4 pr-0 pr-sm-15">
-													<div class="thumb p-15">
+													<div class="thumb p-15" style="height:160px;width:220px;">
 														<img class="img-fullwidth"
-															src="https://placehold.it/220x160" alt="...">
+															src="${pageContext.request.contextPath}/academy/${list.academyNo}.jpg" alt="...">
 													</div>
 												</div>
 												<div class="col-sm-4 pl-0 pl-sm-15">
