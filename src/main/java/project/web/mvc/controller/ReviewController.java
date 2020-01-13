@@ -42,4 +42,19 @@ public class ReviewController {
 			model.addAttribute("tempName",tempNickName);
 		}
 	}
+	
+	@RequestMapping("/insert")
+	public String reviewInsert(String reviewContent, Integer userdbNo, Integer onlectureNo) {
+		System.out.println("리뷰 인서트 ctrl");
+		
+		reviewService.insert(new Review());
+		
+		return "ㅇㅇ";
+	}
+	
+	@RequestMapping("/delete")
+	public String reviewDelete() {
+		System.out.println("리뷰 delete ctrl");
+		return "dd";
+	}
 }
