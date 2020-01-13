@@ -114,7 +114,7 @@
                                                 <tr>
                                                     <td scope="row"><a>${onDetail.onDetailName}</a>
                                                     </td>
-                                                    <td>${onDetail.onDetailPlaytime}</td>
+                                                    <td>${onDetail.onDetailPlaytime}분</td>
                                                 </tr>
                                             </c:forEach>
                                             </tbody>
@@ -141,6 +141,7 @@
                                             <fmt:formatNumber value="${onLecture.onLecturePrice}" pattern="₩#,###"/>
                                              </span>
                                                 <span style="color: red">&nbsp; 현재&nbsp;${onLecture.onLectureDiscount}% 할인중 </span>
+                                            </c:if>
                                                 <hr>
                                                 <p><span
                                                         style="font-weight: bold">지식공유자 - ${onLecture.onLectureTeacher}</span><br>
@@ -148,7 +149,6 @@
                                                     평생 무제한 시청<br>
                                                     완강시 수료증 발급<br>
                                                 <hr>
-                                            </c:if>
                                             <p></p>
                                         </div>
                                         <div class="form-group">

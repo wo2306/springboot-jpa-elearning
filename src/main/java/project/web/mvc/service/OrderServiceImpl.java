@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +14,6 @@ import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
 import project.web.mvc.util.LoginCheck;
-import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OffOrder> offSelect(int pageNum) {
         List<OffOrder> list = new ArrayList<>();
-        Pageable pageable = PageRequest.of(pageNum-1, 10);
+        Pageable pageable = PageRequest.of(pageNum - 1, 10);
         offOrderRepository.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), pageable).iterator().forEachRemaining(list::add);
         return list;
     }
@@ -66,7 +63,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public boolean payCheck(Long onLectureNo) {
         Userdb userdb = LoginCheck.getUserdb();
-        if (userdb!=null) {
+        if (userdb != null) {
             return onOrderRepository.findByUserdbNoAndOnLectureNo(userdb.getUserdbNo(), onLectureNo) != null;
         }
         return false;

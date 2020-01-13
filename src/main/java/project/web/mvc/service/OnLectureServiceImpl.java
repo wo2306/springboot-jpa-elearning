@@ -35,7 +35,7 @@ public class OnLectureServiceImpl implements OnLectureService {
 
     @Override
     public Page<OnLecture> selectAll(int pageNum) {
-        return onLectureRepository.findAll(PageRequest.of(pageNum - 1, 9));
+        return onLectureRepository.findByOrderByOnLectureNo(PageRequest.of(pageNum - 1, 9));
     }
 
     @Override

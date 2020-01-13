@@ -50,13 +50,13 @@
                     <div class="col-md-9 blog-pull-right">
                         <div class="row">
                             <c:forEach var="dto" items="${list}">
-                                <div class="col-sm-6 col-md-4">
+                                <div class="col-sm-6 col-md-4" style="height: 500px">
                                     <div class="service-block bg-white">
                                         <div class="thumb"><img alt="featured project"
-                                                                src="${pageContext.request.contextPath}/onlecture/images/${dto.onLectureName}"
+                                                                src="http://placehold.it/265x195"
                                                                 class="img-fullwidth">
                                             <h4 class="text-white mt-0 mb-0"><span class="price"><fmt:formatNumber
-                                                    value="${dto.onLecturePrice}" pattern="₩#,###"/></span></h4>
+                                                    value="${dto.onLecturePrice*(100-dto.onLectureDiscount)/100}" pattern="₩#,###"/></span></h4>
                                         </div>
                                         <div class="content text-left flip p-25 pt-0">
                                             <h4 class="line-bottom mb-10">${dto.onLectureName}</h4>
@@ -111,7 +111,7 @@
                                 <div class="search-form">
                                     <form method="post" onsubmit="return searchFrm()">
                                         <div class="input-group">
-                                            <input type="text" placeholder="${keyword}"
+                                            <input type="text" placeholder="강사명 또는 강의명 입력"
                                                    id="searchText" class="form-control search-input">
                                             <span class="input-group-btn">
     <button type="button" class="btn search-button" onclick="return searchFrm()"><i class="fa fa-search"></i></button>
@@ -130,7 +130,7 @@
                                                     id="ct4">0</span>)</a>
                                         </li>
                                         <li>
-                                            <a href="${pageContext.request.contextPath}/onLecture/search/category/모바일개발/1">모바일개발(<span
+                                            <a href="${pageContext.request.contextPath}/onLecture/search/category/모바일앱/1">모바일앱(<span
                                                     id="ct2">0</span>)</a>
                                         </li>
                                         <li>
@@ -142,7 +142,7 @@
                                                     id="ct3">0</span>)</a>
                                         </li>
                                         <li>
-                                            <a href="${pageContext.request.contextPath}/onLecture/search/category/데이터베이스/1">데이터베이스(<span
+                                            <a href="${pageContext.request.contextPath}/onLecture/search/category/데이터사이언스/1">데이터사이언스(<span
                                                     id="ct1">0</span>)</a>
                                         </li>
                                     </ul>
@@ -176,10 +176,10 @@
                 var str = ""
                 $.each(result, function (key, val) {
                     str += "<article class=\"post media-post clearfix pb-0 mb-10\">\n" +
-                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/onlecture/images/" + val.onLectureName + " alt=\"http://placehold.it/75x75\"></a>\n" +
+                        " <a class=\"post-thumb\" href=\"#\"><img src=http://placehold.it/45x45 alt=\"http://placehold.it/75x75\"></a>\n" +
                         " <div class=\"post-right\">\n" +
                         " <h5 class=\"post-title mt-0\"><a href=\"${pageContext.request.contextPath}/onLecture/detail/" + val.onLectureNo + "\">" + val.onLectureName + "</a></h5>\n" +
-                        " <p>" + val.onLectureSummary + "</p>\n" +
+                        " <p>" + "</p>\n" +
                         " </div>\n" +
                         " </article>"
                 });
