@@ -50,6 +50,113 @@
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script type="text/javascript">
+		$(function () {
+			console.log(44)
+			$('#addForm').click(function () {
+			console.log(787)
+				var str;
+			str+='<div><h3>세부강의등록하기-----------------------</h3></div>';
+				str+='<div class="form-group"><label>onDetailName (세부강의내용)</label><input type="text" class="form-control" placeholder="onDetail네임(세부강의목록)"';
+				str+='name="onDetailName"></div><div class="form-group"><label>File input</label><input type="file" name="onLectureFile">';
+				str+='<p class="help-block">Example block-level help text here.</p></div>';
+				 $(this).after(str);
+			});
+		});
+/* 
+	      //폼 배열화
+	      $(document).on("submit", "#submitOnLecture" ,function(){
+			alert(6);});
+	      
+	      function _submit(f) {
+			
+		   //같이 보낼 값 정리
+		    if (typeof(f.elements['chk[]'].length) == 'undefined') //단일
+		    {
+		        if (f.elements['chk[]'].checked==false) 
+		        {
+		            f.elements['field_a[]'].disabled=true; 
+		            f.elements['field_b[]'].disabled=true; 
+		        }
+		   } else { //다중
+		        for (i=0; i<f.elements['chk[]'].length; i++) 
+		        {
+		            if (f.elements['chk[]'][i].checked==false)
+		            {
+		                f.elements['field_a[]'][i].disabled=true;
+		                f.elements['field_b[]'][i].disabled=true;
+		            }
+		        }
+		    }
+	    return true;  
+			
+			
+		}
+			 */
+
+		
+		/* 
+		$(function () {
+			console.log(44)
+			$('#addForm').click(function () {
+			console.log(787)
+		   //같이 보낼 값 정리
+			    if (typeof(f.elements['chk[]'].length) == 'undefined') //단일
+			    {
+			        if (f.elements['chk[]'].checked==false) 
+			        {
+			            f.elements['field_a[]'].disabled=true; 
+			            f.elements['field_b[]'].disabled=true; 
+			        }
+		   } else { //다중
+			        for (i=0; i<f.elements['chk[]'].length; i++) 
+			        {
+			            if (f.elements['chk[]'][i].checked==false)
+			            {
+			                f.elements['field_a[]'][i].disabled=true;
+			                f.elements['field_b[]'][i].disabled=true;
+			            }
+			        }
+			    }
+		    return true;
+
+
+			});
+		}); */
+		
+/* 		$(function(){
+			alert(1)
+		})
+		function checkValid() {
+			var f = window.document.updateForm;
+			if ( f.modelName.value == "" ) {
+				alert( "모델이름을 입력해 주세요." );
+				f.modelName.focus();
+				return false;
+			}
+			if ( f.price.value == "" ) {
+				alert( "가격을 입력해 주세요." );
+				f.price.focus();
+				return false;
+			}
+			if ( f.description.value == "" ) {
+		        alert( "상품 설명을 입력해 주세요." );
+		        f.description.focus();
+		        return false;
+		    }
+			if ( f.password.value == "" ) {
+		        alert( "비밀번호를 입력해 주세요" );
+		        f.password.focus();
+		        return false;
+		    }
+			
+		    return true;
+		}
+ */
+ 
+ 
+		
+    </script>
 
 
 <!-- Page Title -->
@@ -63,26 +170,48 @@
 	
 	<h1>온렉쳐 인설트 양식</h1>
 	
-	<form>
+	<form action="${pageContext.request.contextPath}/admin/onLecture/insert" method="post">
 	  <div class="form-group">
-	    <label for="exampleInputEmail2">Email address</label>
-	    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
+	    <label>온라인 강의 명</label>
+	    <input type="text" class="form-control" placeholder="온라인 강의 명" name="onLectureName">
 	  </div>
 	  <div class="form-group">
-	    <label for="exampleInputPassword2">Password</label>
-	    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+	    <label>강의 카테고리</label>
+	    <input type="text" class="form-control" placeholder="ex) java, 알고리즘, python ..." name="onLectureCategory">
 	  </div>
 	  <div class="form-group">
-	    <label for="exampleInputFile2">File input</label>
-	    <input type="file" id="exampleInputFile2">
+	    <label>강의 선생님명</label>
+	    <input type="text" class="form-control" placeholder="ex) 장희정" name="onLectureTeacher">
+	  </div>
+	  <div class="form-group">
+	    <label>강의 가격</label>
+	    <input type="number" class="form-control" placeholder="ex) 25000" name="onLecturePrice">
+	  </div>
+	  <div class="form-group">
+	    <label>강의 내용설명</label>
+	    <input type="text" class="form-control" placeholder="강의에 대한 설명을 쓰세요" name="onLectureContent">
+	  </div>
+	  <div class="form-group">
+	    <label>썸네일용 강의 설명</label>
+	    <input type="text" class="form-control" placeholder="썸네일용 강의 설명" name="onLectureSummary">
+	  </div>
+	  <div>
+	  	<h3>세부강의등록하기-----------------------</h3>
+	  </div>
+	  <div class="form-group">
+	    <label>onDetailName (세부강의내용)</label>
+	    <input type="text" class="form-control" placeholder="onDetail네임(세부강의목록)" name="onDetailName[]">
+	  </div>
+	  <div class="form-group">
+	    <label>File input</label>
+	    <input type="file" name="onLectureFile[]">
 	    <p class="help-block">Example block-level help text here.</p>
 	  </div>
 	  <div class="checkbox">
-	    <label>
-	      <input type="checkbox"> Check me out
-	    </label>
+	      <input type="button" value="강의 추가하기" id="addForm" > 
+	      <input type="button" value="강의 삭제하기" id="removeForm" > 
 	  </div>
-	  <button type="submit" class="btn btn-default">Submit</button>
+	  <button type="submit" class="btn btn-default" id="">강의 등록 완료</button>
 	</form>  
 	
 	</div>
