@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import project.web.mvc.service.LoginService;
 import project.web.mvc.service.UserdbService;
 
 @Configuration
@@ -17,7 +19,7 @@ import project.web.mvc.service.UserdbService;
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private UserdbService service;
+    private LoginService service;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -36,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         // 페이지 권한 설정
-//        .antMatchers("/admin/**").hasRole("ADMIN")
+        .antMatchers("/admin/**").hasAuthority("ADMIN")
         .antMatchers("/myPage/*").authenticated()
         .antMatchers("/cart/*").authenticated()
         .anyRequest().permitAll()
@@ -66,23 +68,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .invalidateHttpSession(true)
     .and()
         // 403 예외처리 핸들링
-    	.exceptionHandling().accessDeniedPage("/denied");
-        
-        //post방식 허용
-        http.csrf().disable();
+    	.exceptionHandling().accessDeniedPage("/denied")
+	.and()
+		//post방식 허용
+		.csrf().disable();
     }
 
     
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception{
-//    	auth.userDetailsService(service).passwordEncoder(passwordEncoder());
-    	//인메모리에 admin 저장
-    	auth.inMemoryAuthentication()
-    	.withUser("admin")
-    	.password("{noop}1234")
-    	.roles("ADMIN");
-    	
-    }
     
 
 

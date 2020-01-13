@@ -35,9 +35,6 @@ public class HomeController {
 		System.out.println("HomeController call *** /login");
 		return "/login";
 	}
-//	
-//	@RequestMapping("/login")
-//	public String 
 	
 	//로그인결과페이지
 	@RequestMapping("/login/result")

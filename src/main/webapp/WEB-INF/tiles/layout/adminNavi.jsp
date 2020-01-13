@@ -105,7 +105,7 @@
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="${pageContext.request.contextPath}/admin/404.html">404 Page</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/blank.html">Blank Page</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/onLecutre/insertOnLecture">온라인 강의 관리</a>
           </div>
         </div>
       </li>

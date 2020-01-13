@@ -9,7 +9,7 @@
     <definition name="admin-layout" template="/WEB-INF/tiles/layout/admin-base.jsp">
         <put-attribute name="adminHeader" value="/WEB-INF/tiles/layout/adminHeader.jsp" />
         <put-attribute name="adminNavi" value="/WEB-INF/tiles/layout/adminNavi.jsp" />
-       <!--  <put-attribute name="adminBody" value="" /> -->
+        <put-attribute name="adminBody" value="" /> 
         <put-attribute name="adminFooter" value="/WEB-INF/tiles/layout/adminFooter.jsp" />
     </definition>
     
@@ -21,9 +21,9 @@
         <put-attribute name="adminBody" value="/WEB-INF/views/admin/{1}.jsp" />
     </definition> 
     
-     <!--  <definition name="admin/adminSignUpForm" extends="admin-layout">
+    <definition name="admin/signUpForm" extends="admin-layout">
         <put-attribute name="adminBody" value="/WEB-INF/views/admin/signUpForm.jsp" />
-    </definition>  -->
+    </definition>  
      
      <definition name="admin/*/**" extends="admin-layout">
         <put-attribute name="adminBody" value="/WEB-INF/views/admin/{1}/{2}.jsp" />

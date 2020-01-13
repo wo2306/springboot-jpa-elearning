@@ -3,16 +3,13 @@ package project.web.mvc.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.Authority;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.AuthorityRepository;
-import project.web.mvc.repository.UserdbRepository;
 
 @Service
 @RequiredArgsConstructor
