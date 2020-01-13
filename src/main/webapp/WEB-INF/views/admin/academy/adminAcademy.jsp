@@ -41,8 +41,8 @@
         <div class="section-content">
           <div class="row">
 
-<form name="updateForm" method="post"
-								action="${pageContext.request.contextPath}/admin/academy/adminUpdate">
+<%-- <form name="updateForm" method="post"
+								action="${pageContext.request.contextPath}/admin/academy/adminUpdate"> --%>
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<tr>
@@ -59,12 +59,12 @@
 										<td>${list.academyName}</td>
 										<td>${list.academyAddrCity}</td>
 										<td>${list.academyAddrDetail}</td>
-										<td><input type="submit" value="수정"><input type=hidden name="academyNo" value="${list.academyNo}"></td>
+										<td><input type="submit" onClick="location.href='${pageContext.request.contextPath}/admin/academy/adminUpdate/${list.academyNo}'" value="수정"></td>
 										<td><input type="button" value="삭제" id=${list.academyNo}></td>
 									</tr>
 								</c:forEach>
 							</table>
-							</form>
+							<!-- </form> -->
 							<form name="writeForm" method="post"
 								action="${pageContext.request.contextPath}/admin/academy/adminRegister">
 								<table class="table table-bordered" id="dataTable" width="100%"

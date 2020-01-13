@@ -53,8 +53,8 @@ public class AdminAcademyController {
 		return new ModelAndView("admin/academy/adminAcademy", "list", list);
 	}
 
-	@RequestMapping("adminUpdate")
-	public ModelAndView update(Long academyNo) {
+	@RequestMapping("adminUpdate/{academyNo}")
+	public ModelAndView update(@PathVariable Long academyNo) {
 		Academy academy = academyService.selectByAno(academyNo);
 		return new ModelAndView("admin/academy/adminUpdate", "academy", academy);
 	}

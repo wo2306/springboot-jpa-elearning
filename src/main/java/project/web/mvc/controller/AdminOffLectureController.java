@@ -50,8 +50,8 @@ public class AdminOffLectureController {
 		return list;
 	}
 
-	@RequestMapping("/offLecUpdate")
-	public ModelAndView update( Long offLectureNo) {
+	@RequestMapping("/offLecUpdate/{offLectureNo}")
+	public ModelAndView update(@PathVariable Long offLectureNo) {
 		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
 		return new ModelAndView("admin/offLecture/adminOffLectureUpdate", "offLecture", offLecture);
 	}
