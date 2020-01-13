@@ -209,6 +209,7 @@
                 console.log("성공했다");
             },
             error: function (error) {
+                cartList()
                 alert("이미 해당 강의가 장바구니에 담겨있습니다.");
             }
         })

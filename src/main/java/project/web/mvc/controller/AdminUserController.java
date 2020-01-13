@@ -15,7 +15,6 @@ import project.web.mvc.service.AdminUserService;
 @Controller
 @RequestMapping("/admin/user")
 public class AdminUserController {
-	
 	@Autowired
 	private AdminUserService adminuserService;
 	

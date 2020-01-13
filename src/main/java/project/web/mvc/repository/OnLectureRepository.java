@@ -1,10 +1,8 @@
 package project.web.mvc.repository;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import project.web.mvc.domain.OnLecture;
@@ -15,7 +13,7 @@ public interface OnLectureRepository extends PagingAndSortingRepository<OnLectur
 
 
     @Query("select o from OnLecture o where o.onLectureName LIKE CONCAT('%',:keyword,'%') or o.onLectureTeacher LIKE CONCAT('%',:keyword,'%')")
-    Page<OnLecture> findByKeyword(@Param("keyword")String keyword, Pageable pageable);
+    Page<OnLecture> findByKeyword(@Param("keyword") String keyword, Pageable pageable);
 
     Page<OnLecture> findByOnLectureCategory(String onLectureCategory, Pageable pageable);
 
@@ -27,5 +25,10 @@ public interface OnLectureRepository extends PagingAndSortingRepository<OnLectur
     List<Long> countCategory();
 
     Page<OnLecture> findByOrderByOnLectureNo(Pageable pageable);
+
+    Page<OnLecture> findByOnLectureTeacher(String teacherName, Pageable pageable);
+
+    @Query("select o from OnLecture o where o.onLectureName LIKE CONCAT('%',:keyword,'%')")
+    Page<OnLecture> findByOnLectureName(String keyword, Pageable pageable);
 
 }

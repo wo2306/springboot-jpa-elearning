@@ -33,7 +33,10 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public void insert(Long onLectureNo) {
-        cartRepository.save(new Cart(onLectureNo, LoginCheck.getUserdb().getUserdbNo()));
+        if (cartRepository.findByUserdbUserdbNoAndOnLecture_OnLectureNo(LoginCheck.getUserdb().getUserdbNo(), onLectureNo).isEmpty()) {
+            cartRepository.save(new Cart(onLectureNo, LoginCheck.getUserdb().getUserdbNo()));
+        }
+        throw new RuntimeException("이미 카트에 있어");
     }
 
     @Override
