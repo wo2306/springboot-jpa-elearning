@@ -79,17 +79,12 @@
 								</c:forEach>
 							</table>
 						<!-- 	</form> -->
+						<h4>OffLecture 등록하기 :  </h4>
 							<form name="writeForm" method="post"
 								action="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<tr>
-										<th>등록</th>
-									</tr>
-									<tr>
-										<td><input type="submit" value="등록"></td>
-									</tr>
-								</table>
+								<input type="submit" value="등록하기">
+								
+									
 
 							</form>
 
@@ -104,28 +99,6 @@
 								</div>
 							</section>
 
-							<!-- Divider: Call To Action -->
-    <section class="bg-theme-color-2">
-      <div class="container pt-10 pb-20">
-        <div class="row">
-          <div class="call-to-action">
-            <div class="col-md-6">
-              <h3 class="mt-5 mb-5 text-white vertical-align-middle"><i class="pe-7s-mail mr-10 font-48 vertical-align-middle"></i> SUBSCRIBE TO OUR NEWSLETTER</h3>
-            </div>
-            <div class="col-md-6">
-              <!-- Mailchimp Subscription Form Starts Here -->
-              <form id="mailchimp-subscription-form" class="newsletter-form mt-10">
-                <div class="input-group">
-                  <input type="email" value="" name="EMAIL" placeholder="Your Email" class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
-                  <span class="input-group-btn">
-                    <button data-height="45px" class="btn bg-theme-colored text-white btn-xs m-0 font-14" type="submit">Subscribe</button>
-                  </span>
-                </div>
-              </form>
-              <!-- Mailchimp Subscription Form Validation-->
-             
-              
-              <!-- Mailchimp Subscription Form Ends Here -->
             </div>
           </div>
         </div>
