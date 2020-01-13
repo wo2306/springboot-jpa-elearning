@@ -54,10 +54,10 @@
                                     <li role="presentation"><a href="#wishlisttab" aria-controls="wishlisttab" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">위시리스트
                                         <span class="badge">4</span></a></li>
-                                    <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
+                                    <li role="presentation"><a href="#questions" aria-controls="bookmarks" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">나의 질문
                                         <span class="badge">3</span></a></li>
-                                    <li role="presentation"><a href="#bookmarks" aria-controls="bookmarks" role="tab"
+                                    <li role="presentation"><a href="#reviews" aria-controls="bookmarks" role="tab"
                                                                data-toggle="tab" class="font-15 text-uppercase">나의 리뷰
                                         <span class="badge">2</span></a></li>
                                 </ul>
@@ -70,78 +70,75 @@
                                                 <thead>
                                                 <tr>
                                                     <th>주문번호</th>
-                                                    <th>주문날짜</th	>
+                                                    <th>강의 이름</th>
+                                                    <th>주문날짜</th>
                                                     <th>결제상태</th>
                                                     <th>총 결제 금액</th>
-                                                    <th>상세조회</th>
+                                                    <th>리 뷰</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <c:choose>
                                                     <c:when test="${orderList!=null}">
                                                         <c:forEach var="dto" items="${orderList}">
-                                                            <c:if test="${beforeOrderCode ne dto.onOrderCode}">
-                                                            <c:set var="beforeOrderCode" value="${dto.onOrderCode}"/>
                                                                 <tr>
                                                                     <th scope="row" class="orderCode">${dto.onOrderCode}</th>
+                                                                    <td>${dto.onlecture.onLectureName }
                                                                     <td>${dto.onOrderRegdate}</td>
                                                                     <td>${dto.onOrderMethod}</td>
                                                                     <td><fmt:formatNumber value="${dto.onOrderPrice}"
                                                                                           pattern="₩#,###"/></td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm${dto.onOrderCode}">주문 내역 상세보기</button>
+                                                                        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm${dto.onOrderCode}">리뷰 등록 하기</button>
 
                                                                         <div class="modal fade bs-example-modal-sm${dto.onOrderCode}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                                                                             <div class="modal-dialog modal-sm">
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                                                        <h4 class="modal-title" id="myModalLabel3">구매 상세 내역</h4>
+                                                                                        <h4 class="modal-title" id="myModalLabel3">리뷰 등록 하기</h4>
                                                                                     </div>
                                                                                     <div class="modal-body">
                                                                                         <div class="card-content">
-                                                                                            <div class="total_amount_container"><div class="total_amount">${dto.onOrderCode}
-                                                                                            </div>
+                                                                                            <div class="total_amount_container"><div class="total_amount"><strong>강의 : ${dto.onlecture.onLectureName }</strong></div>
+                                                                                                <form>
                                                                                                 <table class="table table-hover">
                                                                                                     <tbody>
                                                                                                     <tr>
-                                                                                                        <th>총 결제 금액</th>
-                                                                                                        <td><span style="text-align: right"><fmt:formatNumber value="${dto.onOrderPrice}" pattern="₩#,###"/></span></td>
+                                                                                                        <th> 평 점 </th>
+                                                                                                        <td><span style="text-align: right">
+																															<div class="form-group">
+																																<select class="form-control">
+																																	<option value="0">평점 선택</option>
+																																	<option value="1">1</option>
+																																	<option value="2">2</option>
+																																	<option value="3">3</option>
+																																	<option value="4">4</option>
+																																	<option value="5">5</option>
+																																</select>
+																															</div>
+																													</span></td>
                                                                                                     </tr>
-                                                                                                    <c:forEach var="detail" items="${orderList}">
-                                                                                                            <c:if test="${detail.onOrderCode eq dto.onOrderCode}">
-                                                                                                                <tr>
-                                                                                                            <td>
-                                                                                                                ${detail.onlecture.onLectureName}
-                                                                                                            </td>
-                                                                                                            <td><fmt:formatNumber value="${detail.onlecture.onLecturePrice}" pattern="₩#,###"/></td>
-                                                                                                                </tr>
-                                                                                                            </c:if>
-                                                                                                        </c:forEach>
+                                                                                                    
                                                                                                     <tr>
-                                                                                                        <th>주문 상태</th>
-                                                                                                        <td><span class="payment_status">${dto.onOrderState}</span></td>
+                                                                                                    <td colspan="2"><textarea name="reviewContent" cols="30" rows="13" placeholder="리뷰 내용"></textarea> </td>
                                                                                                     </tr>
-                                                                                                    <tr>
-                                                                                                        <th>주문 시각</th>
-                                                                                                        <td><time datetime="Sat Dec 28 2019 14:27:27 GMT+0900 (GMT+09:00)">${dto.onOrderRegdate}</time></td>
-                                                                                                    </tr>
-                                                                                                    <tr><th>결제 수단</th><td>${dto.onOrderMethod}</td></tr>
+                                                                                                  
                                                                                                     </tbody>
                                                                                                 </table>
+                                                                                                </form>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="modal-footer">
+                                                                                        <button type="submit" class="btn btn-primary text-white">등록</button>
                                                                                         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                                                                                        <button type="button" class="btn btn-primary text-white">문의하기</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                            </c:if>
                                                         </c:forEach>
                                                     </c:when>
                                                     <c:otherwise>
@@ -156,6 +153,8 @@
                                             </table>
                                         </div>
                                     </div>
+                                    
+                                    
                                     <div role="tabpanel" class="tab-pane" id="free-orders">
                                         <table class="table table-hover">
                                             <thead>
@@ -215,7 +214,7 @@
                                         </table>
                                     </div>
 
-                                    <div role="tabpanel" class="tab-pane" id="bookmarks">
+                                    <div role="tabpanel" class="tab-pane" id="questions">
                                         <table class="table">
                                             <tbody>
                                             <tr>
@@ -230,18 +229,21 @@
                                                 <td><h4>$127.50</h4>
                                                 <td><h4><a href="#"><i class="fa fa-close"></i></a></h4>
                                             </tr>
+                                           
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                                                        <div role="tabpanel" class="tab-pane" id="reviews">
+                                        <table class="table">
+                                            <tbody>
                                             <tr>
                                                 <th scope="row"><img src="http://placehold.it/100x50" alt=""></th>
-                                                <td><h4>App Development Course</h4>
-                                                <td><h4>$127.50</h4>
+                                                <td><h4>리뷰리뷰</h4>
+                                                <td><h4> 내용내용</h4>
                                                 <td><h4><a href="#"><i class="fa fa-close"></i></a></h4>
                                             </tr>
-                                            <tr>
-                                                <th scope="row"><img src="http://placehold.it/100x50" alt=""></th>
-                                                <td><h4>Photoshop Course</h4>
-                                                <td><h4>$127.50</h4>
-                                                <td><h4><a href="#"><i class="fa fa-close"></i></a></h4>
-                                            </tr>
+       
                                             </tbody>
                                         </table>
                                     </div>

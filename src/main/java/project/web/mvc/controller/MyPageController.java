@@ -30,6 +30,7 @@ public class MyPageController {
         if (!orderList.isEmpty()) {
             model.addAttribute("orderList", orderList);
         }
+        
         return "myPage/info";
     }
 
