@@ -42,10 +42,31 @@
                 <div class="section-content">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="title text-white">관리자 페이지</h2>
                             <ol class="breadcrumb text-left text-black mt-10">
                                 <li><a href="#">온라인 강의 관리</a></li>
                                 <li class="active text-gray-silver"> - 온라인 강의들을 등록, 수정, 삭제할 수 있는 페이지입니다.</li>
+                                <!-- Topbar Search -->
+                                <li>
+                                    <form name="searchForm" method="post" onsubmit="return searchform()">
+                                        <div class="input-group" style="padding-left: 730px">
+                                            <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
+                                                <option value="all">전체</option>
+                                                <option value="category">카테고리</option>
+                                                <option value="name">강의명</option>
+                                                <option value="teacher">강사명</option>
+                                            </select>
+                                            <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                                                   class="form-control bg-light border-0 small"
+                                                   placeholder="Search for..." aria-label="Search"
+                                                   aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit" id="search">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
                             </ol>
                         </div>
                     </div>
@@ -62,7 +83,7 @@
                                cellspacing="0">
                             <tr>
                                 <th>강의번호</th>
-                                <th>종류</th>
+                                <th>카테고리</th>
                                 <th>이름</th>
                                 <th>등록일</th>
                                 <th colspan="2">기능</th>
@@ -86,59 +107,59 @@
                         <div class="container" id="in">
                             <div class="row">
                                 <div class="col">
-                                    <center>
-                                        <ul class="pagination">
-                                            <c:choose>
-                                                <c:when test="${page.hasPrevious() eq true}">
-                                                    <li class="page-item">
-                                                        <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number}"
-                                                           aria-label="Previous"> <span aria-hidden="true">이전</span>
-                                                        </a>
-                                                    </li>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <li class="page-item">
-                                                        <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
-                                                           aria-label="Previous"> <span aria-hidden="true">이전</span>
-                                                        </a>
-                                                    </li>
-                                                </c:otherwise>
-                                            </c:choose>
-                                            <c:if test="${page.totalPages ne 1}">
-                                                <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
-                                                    <li class="page-item">
-                                                        <c:choose>
-                                                            <c:when test="${page.number eq i.count-1}">
-                                                                <a class="page-link"
-                                                                   href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <a class="page-link"
-                                                                   href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
-                                                            </c:otherwise>
-                                                        </c:choose>
-                                                    </li>
-                                                </c:forEach>
-                                            </c:if>
+                                    <ul class="pagination">
+                                        <c:if test="${page.totalPages ne 0}">
+                                        <c:choose>
+                                            <c:when test="${page.hasPrevious() eq true}">
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number}"
+                                                       aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                    </a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
+                                                       aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                    </a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                        <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
                                             <li class="page-item">
                                                 <c:choose>
-                                                    <c:when test="${page.hasNext() eq true}">
+                                                    <c:when test="${page.number eq i.count-1}">
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+2}"
-                                                           aria-label="Next"> <span aria-hidden="true">다음</span> </a>
+                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
-                                                           aria-label="Previous"> <span aria-hidden="true">다음</span>
-                                                        </a>
+                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </li>
-                                        </ul>
-                                    </center>
+                                        </c:forEach>
+
+                                        <li class="page-item">
+                                            <c:choose>
+                                                <c:when test="${page.hasNext() eq true}">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+2}"
+                                                       aria-label="Next"> <span aria-hidden="true">다음</span> </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
+                                                       aria-label="Previous"> <span aria-hidden="true">다음</span>
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            </c:if>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -149,6 +170,17 @@
     </div>
 </div>
 <script>
+    function searchform() {
+        var keyfield = $("#key option:selected").val();
+        var keyword = $("#keyword").val();
+        location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
+        return false;
+    }
+    $("button[name=deleteBtn]").click(function () {
+        alert("선택한 강의를 강의를 삭제하였습니다");
+        location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).attr(id);
+    })
+
 </script>
 </body>
 </html>

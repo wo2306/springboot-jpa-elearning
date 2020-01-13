@@ -128,11 +128,19 @@
 														</div>
 													</div> --%>
 													
-													<div class="col-sm-12">
+													<div class="col-sm-6">
 														<div class="form-group">
 														<label>offDetail</label>
 															<input type="text" value="${offLecture.offDetail}"
 																name="offDetail" required="" class="form-control">
+														</div>
+													</div>
+													
+													<div class="col-sm-6">
+														<div class="form-group">
+														<label>Date: </label>
+															<input type="text" id="datepicker"
+																name="offLectureDate" required="" class="form-control">
 														</div>
 													</div>
 										

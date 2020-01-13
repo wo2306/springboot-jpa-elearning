@@ -41,8 +41,8 @@
         <div class="section-content">
           <div class="row">
 
-<form name="updateForm" method="post"
-								action="${pageContext.request.contextPath}/admin/academy/adminUpdate">
+<%-- <form name="updateForm" method="post"
+								action="${pageContext.request.contextPath}/admin/academy/adminUpdate"> --%>
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<tr>
@@ -59,23 +59,18 @@
 										<td>${list.academyName}</td>
 										<td>${list.academyAddrCity}</td>
 										<td>${list.academyAddrDetail}</td>
-										<td><input type="submit" value="수정"><input type=hidden name="academyNo" value="${list.academyNo}"></td>
+										<td><input type="submit" onClick="location.href='${pageContext.request.contextPath}/admin/academy/adminUpdate/${list.academyNo}'" value="수정"></td>
 										<td><input type="button" value="삭제" id=${list.academyNo}></td>
 									</tr>
 								</c:forEach>
 							</table>
-							</form>
+							<!-- </form> -->
+							<h4>Academy 등록하기 :  </h4>
 							<form name="writeForm" method="post"
 								action="${pageContext.request.contextPath}/admin/academy/adminRegister">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<tr>
-										<th>등록</th>
-									</tr>
-									<tr>
-										<td><input type="submit" value="등록"></td>
-									</tr>
-								</table>
+										<input type="submit" value="등록하기">
+							
+			
 
 							</form>
 
@@ -90,29 +85,8 @@
 								</div>
 							</section>
 
-							<!-- Divider: Call To Action -->
-    <section class="bg-theme-color-2">
-      <div class="container pt-10 pb-20">
-        <div class="row">
-          <div class="call-to-action">
-            <div class="col-md-6">
-              <h3 class="mt-5 mb-5 text-white vertical-align-middle"><i class="pe-7s-mail mr-10 font-48 vertical-align-middle"></i> SUBSCRIBE TO OUR NEWSLETTER</h3>
-            </div>
-            <div class="col-md-6">
-              <!-- Mailchimp Subscription Form Starts Here -->
-              <form id="mailchimp-subscription-form" class="newsletter-form mt-10">
-                <div class="input-group">
-                  <input type="email" value="" name="EMAIL" placeholder="Your Email" class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
-                  <span class="input-group-btn">
-                    <button data-height="45px" class="btn bg-theme-colored text-white btn-xs m-0 font-14" type="submit">Subscribe</button>
-                  </span>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+							
+    
   </div>
 </div>
               <script type="text/javascript">

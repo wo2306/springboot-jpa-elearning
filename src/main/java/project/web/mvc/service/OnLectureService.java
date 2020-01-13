@@ -32,4 +32,7 @@ public interface OnLectureService {
 
     List<Long> countCategory();
 
+    Page<OnLecture> selectByTeacherName(String keyword, int pageNum);
+
+    Page<OnLecture> selectByonLectureName(String keyword, int pageNum);
 }

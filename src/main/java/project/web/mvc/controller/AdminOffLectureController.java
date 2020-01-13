@@ -50,18 +50,17 @@ public class AdminOffLectureController {
 		return list;
 	}
 
-	@RequestMapping("/offLecUpdate")
-	public ModelAndView update( Long offLectureNo) {
+	@RequestMapping("/offLecUpdate/{offLectureNo}")
+	public ModelAndView update(@PathVariable Long offLectureNo) {
 		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
 		return new ModelAndView("admin/offLecture/adminOffLectureUpdate", "offLecture", offLecture);
 	}
 
 
 	@RequestMapping("offLecUpdate/update")
-	public ModelAndView offLecUpdate (OffLecture offLecture) {
+	public String offLecUpdate (OffLecture offLecture) {
 		offLectureService.offLecUpdate(offLecture);
-		OffLecture selectedOffLecture = offLectureService.selectByOffNo(offLecture.getOffLectureNo());
-		return new ModelAndView("admin/offLecture/adminOffLecture", "offLecture", selectedOffLecture);
+		return "redirect:/admin/offLecture";
 	}
 	
 	@DeleteMapping(value = "/delete")

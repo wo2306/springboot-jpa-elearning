@@ -71,8 +71,6 @@
                 <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your Password?</a>
               </div>
               <div class="clear text-center pt-10">
-                <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="#" data-bg-color="#3b5998">Login with facebook</a>
-                <a class="btn btn-dark btn-lg btn-block no-border" href="#" data-bg-color="#00acee">Login with twitter</a>
                 <a class="btn btn-dark btn-lg btn-block no-border" href="signUpForm" data-bg-color="red">Sign Up</a>
               </div>
             </form>

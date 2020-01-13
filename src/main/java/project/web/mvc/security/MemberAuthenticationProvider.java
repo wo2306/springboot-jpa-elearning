@@ -1,5 +1,6 @@
 package project.web.mvc.security;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import project.web.mvc.domain.Authority;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.service.AuthorityService;
+import project.web.mvc.service.LoginService;
 import project.web.mvc.service.UserdbService;
 
 
@@ -25,6 +27,9 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
 	private UserdbService userdbService;
+	
+	@Autowired
+	private LoginService loginService;
 	
 	@Autowired
 	private AuthorityService authorityService;
@@ -41,17 +46,21 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 	 */
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
-		
-		System.out.println("MemberAuthenticationProvider call***"+auth.getName());
 		//1. 파라미터로 전달받은 Authentication 객체의 인증처리가 지원되지 않으면 null이 리턴
-//		if(!supports(auth.getClass())){
-//			System.out.println("MemberAuthenticationProvider의 Authentication****메소드!! 이거나옴안됨");
-//			return null;
-//		}
+		if(!supports(auth.getClass())){
+			System.out.println("MemberAuthenticationProvider의 Authentication****메소드!! 이거나옴안됨");
+			return null;
+		}
+
+		System.out.println("MemberAuthenticationProvider call***"+auth.getName());
+		
+		String id = (String)auth.getPrincipal();
+		String password = (String)auth.getCredentials();
+		
+//		UserCustom user = (UserCustom) loginService.loadUserByUsername(id);
 		
 		//2. 인증됬다면, 인수로 받는 user정보를 가지고 디비에 존재하는지 체크(id check)
 		
-		String id = auth.getName();
 		Userdb vo = userdbService.selectByUserdbEmail(id);
 		
 		if(vo==null){// ID가 없는경우
@@ -60,8 +69,6 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 		}
 		
 		//3.id가 존재하면 비밀번호 비교
-		String password = (String)auth.getCredentials();//비밀번호
-		
 		if(!passwordEncoder.matches(password, vo.getUserdbPassword())){
 			System.out.println("패스워드 틀림!!");
 			throw new BadCredentialsException("패스워드 오류입니다.");
@@ -74,24 +81,20 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 				authorityService.findAuthorityByUserdbNo(vo.getUserdbNo());
 //		
 		if(list.isEmpty()){
-			//아무 권한이 없는경우....
 			throw new UsernameNotFoundException(id+"는 아무 권한이 없습니다.");
 		}
 //		
 //		//db에서 가지고 온 권한을 GrantedAuthority 로 변환해야함.
-		List<SimpleGrantedAuthority> authList = 
-				authorityService.getAuthorities(vo.getUserdbNo());
-//		List<SimpleGrantedAuthority> authList = new ArrayList<SimpleGrantedAuthority>();
-//		
-//		for(Authority authority : list){
-//			authList.add(new SimpleGrantedAuthority(authority.getRole()));
-//		}
+//				authorityService.getAuthorities(vo.getUserdbNo());
 		
-//		UsernamePasswordAuthenticationToken(Object principal, Object credentials, authorities)
-//		UsernamePasswordAuthenticationToken는 Authentication의 자식객체
-//		인증완료된 결과로 UsernamePasswordAuthenticationToken를 리턴한다.
+		List<SimpleGrantedAuthority> authList = 
+				new ArrayList<SimpleGrantedAuthority>();
+		for(Authority authority : list) {
+			authList.add(new SimpleGrantedAuthority(authority.getRole()));
+		}
+		
+		System.out.println("여기다아아:"+authList+"");
 		return new UsernamePasswordAuthenticationToken(vo, null, authList);
-//		return new UsernamePasswordAuthenticationToken(auth, null, null);
 	}
 
 	/**

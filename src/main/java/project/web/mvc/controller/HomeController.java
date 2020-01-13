@@ -43,9 +43,6 @@ public class HomeController {
 		System.out.println("HomeController call *** /login");
 		return "/login";
 	}
-//	
-//	@RequestMapping("/login")
-//	public String 
 	
 	//로그인결과페이지
 	@RequestMapping("/login/result")
@@ -84,25 +81,6 @@ public class HomeController {
 		
 		return "redirect:/";
 	}
-//	회원가입 처리
-//	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
-//	@Transactional
-//	public String execSignUp(String userdbEmail, String userdbNickname, String userdbPassword) {
-//		System.out.println("HomeController call *** /signUp");
-//
-//		Userdb userdb = new Userdb();
-//		userdb.setUserdbEmail(userdbEmail);
-//		userdb.setUserdbNickname(userdbNickname);
-//		userdb.setUserdbPassword(userdbPassword);
-//		//회원가입
-//		userdbService.insert(userdb);
-//		//회원가입 후 authority db 저장
-//		authorityService.insert(userdb);
-//		System.out.println("회원가입끝");
-//		
-//		return "redirect:/";
-//	}
-	
 	
 	//접근거부페이지
 	@RequestMapping("/denied")

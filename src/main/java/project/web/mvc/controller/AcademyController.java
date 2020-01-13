@@ -31,7 +31,7 @@ public class AcademyController {
 		List<Academy> list = academyService.selectAll();
 		model.addAttribute("list", list);
 		System.out.println(list);
-		return "academy/listTest";
+		return "academy/list";
 	}
 	
 	
@@ -40,7 +40,7 @@ public class AcademyController {
 		List<Academy> list = academyService.selectAll();
 		model.addAttribute("list", list);
 		System.out.println(list);
-		return "academy/listTest";
+		return "academy/list";
 	}
 	
 	/**

@@ -22,10 +22,14 @@ public class AdminOnLectureController {
     public String category(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
         List<OnLecture> list = new ArrayList<>();
         Page<OnLecture> page = null;
-        if (command.equals("category")) {
-            page = onLectureService.selectByCategory(keyword, pageNum);
-        } else {
+        if (command.equals("all")) {
             page = onLectureService.selectByKeyword("", pageNum);
+        } else if (command.equals("category")) {
+            page = onLectureService.selectByCategory(keyword, pageNum);
+        } else if (command.equals("teacher"))  {
+            page = onLectureService.selectByTeacherName(keyword, pageNum);
+        } else if (command.equals("name")) {
+            page = onLectureService.selectByonLectureName(keyword, pageNum);
         }
         page.iterator().forEachRemaining(list::add);
         model.addAttribute("list", list);

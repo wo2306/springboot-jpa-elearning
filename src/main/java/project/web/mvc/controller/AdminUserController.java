@@ -9,15 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.service.AdminUserService;
 
+
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/admin/user")
 public class AdminUserController {
 	
-	@Autowired
-	private AdminUserService adminuserService;
+	private final AdminUserService adminuserService;
 	
 	@RequestMapping("")
 	public ModelAndView main() {

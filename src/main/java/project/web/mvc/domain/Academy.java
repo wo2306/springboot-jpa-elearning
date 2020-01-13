@@ -31,5 +31,7 @@ public class Academy {
 	@Column(nullable = false)
     private String academyAddrDetail;
 	
-
+	/*
+	 * @Column(nullable = false) private String academyDetail;
+	 */
 }

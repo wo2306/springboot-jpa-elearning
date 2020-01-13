@@ -16,6 +16,15 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
+
+        #in {
+            margin: auto;
+            width: 50%;
+        }
     </style>
 </head>
 
@@ -47,7 +56,7 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9 blog-pull-right">
+                    <div class="col-md-9 blog-pull-right" >
                         <div class="row">
                             <c:forEach var="dto" items="${list}">
                                 <div class="col-sm-6 col-md-4" style="height: 500px">
@@ -68,7 +77,7 @@
                                     </div>
                                 </div>
                             </c:forEach>
-                            <div class="col-sm-12" id="paginationList">
+                            <div id="in" class="col-sm-12" id="paginationList">
                                 <nav>
                                     <ul class="pagination theme-colored xs-pull-center m-0">
                                         <c:if test="${page.hasPrevious() eq true}">

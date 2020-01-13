@@ -6,4 +6,6 @@ import project.web.mvc.domain.Notice;
 
 public interface NoticeRepository extends CrudRepository<Notice, Long> {
 
+
+	
 }

@@ -64,7 +64,7 @@ public class OnLectureController {
     @RequestMapping("/delete/{onLectureNo}")
     public String delete(@PathVariable Long onLectureNo) {
         onLectureService.delete(onLectureNo);
-        return "redirect:onLecture/list";
+        return "redirect:admin/onLecture/all/keyword/1";
     }
 
     @RequestMapping("/update")

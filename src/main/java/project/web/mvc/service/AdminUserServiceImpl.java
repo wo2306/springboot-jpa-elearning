@@ -15,7 +15,6 @@ import project.web.mvc.repository.UserdbRepository;
 
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
-
 	@Autowired
 	private UserdbRepository userdbRepo;
 	
