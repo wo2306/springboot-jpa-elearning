@@ -6,4 +6,6 @@ import project.web.mvc.domain.OffLecture;
 
 public interface OffLectureRepository extends CrudRepository<OffLecture, Long> {
 
+	OffLecture findByOffLectureNo(Long offLectureNo);
+	
 }

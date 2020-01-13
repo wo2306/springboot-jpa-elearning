@@ -47,7 +47,8 @@ public class OffLecture {
     @Column(nullable = false)
     private String offDetail;
 
-    @CreationTimestamp
+    //@CreationTimestamp
+    @Column(nullable = false)
     private Date offLectureDate;
 
 }
