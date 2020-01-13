@@ -37,9 +37,12 @@ public class AdminUserController {
 	}
 	
 	//업데이트하기 
-//	@RequestMapping("/update")
-//	public String userupdate(@ModelAttribute Userdb inuserdb) {
-//		System.out.println("update하러 들어온 updatedb" + inuserdb.toString());
-//		return "";
-//	}
+	@RequestMapping("/update")
+	public String userupdate(Userdb inuserdb) {
+		adminuserService.updateUserdb(inuserdb);
+		
+		return "redirect:/admin/user";
+	}
+	
+	//삭제하기
 }

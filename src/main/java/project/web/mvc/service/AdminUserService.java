@@ -12,5 +12,5 @@ public interface AdminUserService {
 	
 	public Userdb selectByUserdbNo(Long userdbNo);
 	
-//	public void updateUserdb(Userdb userdb);
+	public void updateUserdb(Userdb userdb);
 }

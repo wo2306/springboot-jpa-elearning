@@ -31,9 +31,8 @@
             <div class="col-md-12">
               <h2 class="title text-white">관리자 페이지</h2>
               <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active text-gray-silver">Page Title</li>
+                <li><a href="${pageContext.request.contextPath}/admin">Home</a></li>
+                <li class="active text-gray-silver">&nbsp&nbsp&nbspUser</li>
               </ol>
             </div>
           </div>
@@ -76,10 +75,6 @@
                         </div>
                      </section>
 
-
-
-
-
                      <!-- Divider: Call To Action -->
     <section class="bg-theme-color-2">
       <div class="container pt-10 pb-20">
@@ -92,9 +87,7 @@
               <!-- Mailchimp Subscription Form Starts Here -->
               <form id="mailchimp-subscription-form" class="newsletter-form mt-10">
                 <div class="input-group">
-                  <input type="email" value="" name="EMAIL" placeholder="Your Email" class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
                   <span class="input-group-btn">
-                    <button data-height="45px" class="btn bg-theme-colored text-white btn-xs m-0 font-14" type="submit">Subscribe</button>
                   </span>
                 </div>
               </form>
