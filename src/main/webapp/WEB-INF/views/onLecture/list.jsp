@@ -114,7 +114,7 @@
                                             <input type="text" placeholder="${keyword}"
                                                    id="searchText" class="form-control search-input">
                                             <span class="input-group-btn">
-    <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+    <button type="button" class="btn search-button" onclick="return searchFrm()"><i class="fa fa-search"></i></button>
     </span>
                                         </div>
                                     </form>
@@ -209,7 +209,9 @@
 
     function searchFrm() {
         var keyword = $("#searchText").val();
+        if (keyword!="") {
         location.href = '${pageContext.request.contextPath}/onLecture/search/key/' + keyword + '/1'
+        }
         return false;
     }
 </script>

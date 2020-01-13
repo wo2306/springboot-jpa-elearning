@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -14,153 +14,163 @@
     <title>LM company | Learning Machine | main</title>
 
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+          rel="stylesheet">
 
 </head>
 <body>
-<div class="container">
-    <h3 class=" text-center">Messaging</h3>
-    <div class="messaging">
-        <div class="inbox_msg">
-            <div class="inbox_people">
-                <div class="headind_srch">
-                    <div class="recent_heading">
-                        <h4>Recent</h4>
-                    </div>
-                    <div class="srch_bar">
-                        <div class="stylish-input-group">
-                            <input type="text" class="search-bar"  placeholder="Search" >
-                            <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
-                    </div>
-                </div>
-                <div class="inbox_chat">
-                    <div class="chat_list active_chat">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chat_list">
-                        <div class="chat_people">
-                            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                            <div class="chat_ib">
-                                <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                                <p>Test, which is a new approach to have all solutions
-                                    astrology under one roof.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<img src="images/chatbox-icons/chatbox-init-icon.png" onclick="chatboxInit()"/>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark unique-color">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">Navbar</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link font-weight-bold" href="#" id="chat">Chat</a>
+            </li>
+
+        </ul>
+        <!-- Links -->
+
+        <form class="form-inline">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             </div>
-            <div class="mesgs">
-                <div class="msg_history">
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>Test which is a new approach to have all
-                                    solutions</p>
-                                <span class="time_date"> 11:01 AM    |    June 9</span></div>
+        </form>
+    </div>
+    <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+
+<div id="'chatbox">
+    <div class="container mt-5">
+
+        <!-- Grid row -->
+        <div class="row d-flex flex-row-reverse">
+
+            <!-- Grid column -->
+            <div class="col-md-6 mb-4 d-flex flex-row-reverse">
+
+                <div class="card chat-room small-chat wide" id="myForm">
+                    <div class="card-header white d-flex justify-content-between p-2" id="toggle"
+                         style="cursor: pointer;">
+                        <div class="heading d-flex justify-content-start">
+                            <div class="profile-photo">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar"
+                                     class="avatar rounded-circle mr-2 ml-0">
+                                <span class="state"></span>
+                            </div>
+                            <div class="data">
+                                <p class="name mb-0"><strong>John Smith</strong></p>
+                                <p class="activity text-muted mb-0">Active now</p>
+                            </div>
+                        </div>
+                        <div class="icons grey-text">
+                            <a class="feature"><i class="fas fa-video mr-2"></i></a>
+                            <a class="feature"><i class="fas fa-phone mr-2"></i></a>
+                            <a class="feature"><i class="fas fa-cog mr-2"></i></a>
+                            <a id="closeButton"><i class="fas fa-times mr-2"></i></a>
                         </div>
                     </div>
-                    <div class="outgoing_msg">
-                        <div class="sent_msg">
-                            <p>Test which is a new approach to have all
-                                solutions</p>
-                            <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-                    </div>
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>Test, which is a new approach to have</p>
-                                <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
+                    <div class="my-custom-scrollbar" id="message">
+                        <div class="card-body p-3">
+                            <div class="chat-message">
+                                <div class="media mb-3">
+                                    <img class="d-flex rounded mr-2"
+                                         src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg"
+                                         alt="Generic placeholder image">
+                                    <div class="media-body">
+                                        <p class="my-0">You're friends on Facebook</p>
+                                        <p class="mb-0 text-muted">Web Designer at MDBootstrap</p>
+                                        <p class="mb-0 text-muted">Lives in Paris</p>
+                                    </div>
+                                </div>
+                                <div class="card bg-primary rounded w-75 float-right z-depth-0 mb-1">
+                                    <div class="card-body p-2">
+                                        <p class="card-text text-white">Lorem ipsum dolor sit amet consectetur
+                                            adipisicing elit voluptatem cum eum tempore.</p>
+                                    </div>
+                                </div>
+                                <div class="card bg-primary rounded w-50 float-right z-depth-0 mb-2">
+                                    <div class="card-body p-2">
+                                        <p class="card-text text-white">Rem suscipit lorum repellendus ditiis?</p>
+                                    </div>
+                                </div>
+                                <div class="card bg-light rounded w-75 z-depth-0 mb-1 message-text">
+                                    <div class="card-body p-2">
+                                        <p class="card-text black-text">Nostrum minima cupiditate assumenda, atque
+                                            cumque hic voluptatibus at corporis maxime quam harum.</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-start">
+                                    <div class="profile-photo message-photo">
+                                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar"
+                                             class="avatar rounded-circle mr-2 ml-0">
+                                        <span class="state"></span>
+                                    </div>
+                                    <div class="card bg-light rounded w-75 z-depth-0 mb-2">
+                                        <div class="card-body p-2">
+                                            <p class="card-text black-text">Qui animi molestiae autem nihil optio
+                                                recusandae nisi sit ab quo est.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card bg-primary rounded w-75 float-right z-depth-0 mb-1 last">
+                                    <div class="card-body p-2">
+                                        <p class="card-text text-white">Maxime nostrum ut blanditiis a quod quam, quidem
+                                            deleniti?</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="outgoing_msg">
-                        <div class="sent_msg">
-                            <p>Apollo University, Delhi, India Test</p>
-                            <span class="time_date"> 11:01 AM    |    Today</span> </div>
-                    </div>
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>We work directly with our designers and suppliers,
-                                    and sell direct to you, which means quality, exclusive
-                                    products, at a price anyone can afford.</p>
-                                <span class="time_date"> 11:01 AM    |    Today</span></div>
+                    <div class="card-footer text-muted white pt-1 pb-2 px-3">
+                        <input type="text" id="exampleForm2" class="form-control" placeholder="Type a message...">
+                        <div>
+                            <a><i class="far fa-file-image mr-2"></i></a>
+                            <a><i class="far fa-laugh mr-2"></i></a>
+                            <a><i class="fas fa-gamepad mr-2"></i></a>
+                            <a><i class="fas fa-paperclip mr-2"></i></a>
+                            <a><i class="fas fa-camera mr-2"></i></a>
+                            <a><i class="fas fa-thumbs-up float-right"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="type_msg">
-                    <div class="input_msg_write">
-                        <input type="text" class="write_msg" placeholder="Type a message" />
-                        <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-                    </div>
-                </div>
+
             </div>
+            <!-- Grid column -->
+
         </div>
+        <!-- Grid row -->
+    </div>
+</div>
+<script>
+    function chatboxInit() {
+        $(this).hide();
+        $("#chatbox").show();
+    }
 
-
-        <p class="text-center top_spac"> Design by <a target="_blank" href="#">Sunil Rajput</a></p>
-
-    </div></div>
+    $(function () {
+        $("#chatbox").hide();
+    })
+</script>
 </body>
 </html>
