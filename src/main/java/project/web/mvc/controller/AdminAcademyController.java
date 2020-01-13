@@ -59,11 +59,11 @@ public class AdminAcademyController {
 		return new ModelAndView("admin/academy/adminUpdate", "academy", academy);
 	}
 	
-	@RequestMapping("/adminAcademyUpdate/update")
-	public ModelAndView academyUpdate(Academy academy) {
+	@RequestMapping("/adminAcademyUpdate/update/{academyNo}")
+	public ModelAndView academyUpdate(@PathVariable Long academyNo) {
+		Academy academy = academyService.selectByAno(academyNo);
 		academyService.academyUpdate(academy);
-		Academy selectedacademy = academyService.selectByAno(academy.getAcademyNo());
-		return new ModelAndView("admin", "academy", selectedacademy);
+		return new ModelAndView("admin", "academy", academy);
 	}
 	
 	@DeleteMapping(value = "/delete")

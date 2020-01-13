@@ -36,9 +36,11 @@ public class AcademyServiceImpl implements AcademyService {
 	}
 
 	@Override
-	public void academyUpdate(Academy academy) {
-		academyRepository.save(academy);
-		
+	public void academyUpdate(Academy inacademy) {
+		Academy academy = academyRepository.findById(inacademy.getAcademyNo()).orElse(null);
+		academy.setAcademyName(inacademy.getAcademyName());
+		academy.setAcademyAddrDetail(inacademy.getAcademyAddrDetail());
+		academy.setAcademyAddrCity(inacademy.getAcademyAddrCity());
 	}
 
 	@Override
