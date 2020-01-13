@@ -1,6 +1,7 @@
 package project.web.mvc.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -14,6 +15,8 @@ import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
+import project.web.mvc.util.LoginCheck;
+import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,28 +31,23 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void cartInsert(List<Long> onLectureNo, OnOrder onOrder) {
         for (int i = 0; i < onLectureNo.size(); i++) {
-            Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             onOrder.setOnlecture(new OnLecture(onLectureNo.get(i)));
-            onOrder.setUserdb(userdb);
+            onOrder.setUserdb(LoginCheck.getUserdb());
             onOrderRepository.save(onOrder);
         }
     }
 
     @Override
     public void onInsert(Long onLectureNo, OnOrder onOrder) {
-        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         onOrder.setOnlecture(new OnLecture(onLectureNo));
-        onOrder.setUserdb(userdb);
+        onOrder.setUserdb(LoginCheck.getUserdb());
         onOrderRepository.save(onOrder);
     }
 
     @Override
-    public List<OnOrder> onSelect(int pageNum) {
-        List<OnOrder> list = new ArrayList<>();
-        Pageable pageable = PageRequest.of(pageNum, 10);
+    public List<OnOrder> onSelectAll() {
         Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        onOrderRepository.findByUserdbUserdbNo(userdb.getUserdbNo(), pageable).iterator().forEachRemaining(list::add);
-        return list;
+        return onOrderRepository.findByUserdbUserdbNo(userdb.getUserdbNo());
     }
 
     @Override
@@ -60,19 +58,22 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OffOrder> offSelect(int pageNum) {
         List<OffOrder> list = new ArrayList<>();
-        Pageable pageable = PageRequest.of(pageNum, 10);
-        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        offOrderRepository.findByUserdbUserdbNo(userdb.getUserdbNo(), pageable).iterator().forEachRemaining(list::add);
+        Pageable pageable = PageRequest.of(pageNum-1, 10);
+        offOrderRepository.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), pageable).iterator().forEachRemaining(list::add);
         return list;
     }
 
     @Override
     public boolean payCheck(Long onLectureNo) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            Userdb userdb = (Userdb) authentication.getPrincipal();
+        Userdb userdb = LoginCheck.getUserdb();
+        if (userdb!=null) {
             return onOrderRepository.findByUserdbNoAndOnLectureNo(userdb.getUserdbNo(), onLectureNo) != null;
         }
         return false;
+    }
+
+    @Override
+    public Page<OnOrder> onSelect(int pageNum) {
+        return onOrderRepository.findOnOrder(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum - 1, 9));
     }
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -18,82 +18,97 @@
   <![endif]-->
 </head>
 <body class="">
-   <div id="wrapper" class="clearfix">
+	<div id="wrapper" class="clearfix">
 
-      <!-- Start main-content -->
-      <div class="main-content">
-         <!-- Section: inner-header -->
-         <section
-            class="inner-header divider parallax layer-overlay overlay-dark-5"
-            data-bg-img="http://placehold.it/1920x1280">
-            <div class="container pt-70 pb-20">
-               <!-- Section Content -->
-               <div class="section-content">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <h3 class="title text-white">교육원 소개</h3>
-                        <ol class="breadcrumb text-center text-black mt-10">
-                           <li><a href="#">Home</a></li>
-                           <li><a href="#">Pages</a></li>
-                           <li class="active text-theme-colored">Page Title</li>
-                           <li class="active text-theme-colored">Event List without
-                              Sidebar</li>
-                        </ol>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
+		<!-- Start main-content -->
+		<div class="main-content">
+			<!-- Section: inner-header -->
+			<section
+				class="inner-header divider parallax layer-overlay overlay-dark-5"
+				data-bg-img="http://placehold.it/1920x1280">
+				<div class="container pt-70 pb-20">
+					<!-- Section Content -->
+					<div class="section-content">
+						<div class="row">
+							<div class="col-md-12">
+								<h3 class="title text-white">교육원 소개</h3>
+								<ol class="breadcrumb text-center text-black mt-10">
+									<li><a href="#">Home</a></li>
+									<li><a href="#">Pages</a></li>
+									<li class="active text-theme-colored">Page Title</li>
+									<li class="active text-theme-colored">Event List without
+										Sidebar</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 <!-- start -->
-                     <!-- Section: Registration Form -->
-                     <section class="divider parallax layer-overlay overlay-white-8" data-bg-img="http://placehold.it/1920x1280">
-                        <div class="container-fluid">
-                           <div class="section-title">
-                              <div class="row">
-                                 <div class="col-md-6 col-md-offset-3 text-center">
-                                    <h3 class="title text-theme-colored">등록 하기 Form</h3>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6 col-md-offset-3">
-                                 <form id="booking-form" name="booking-form"
-                                    action="${pageContext.request.contextPath}/admin/adminRegister/insert" method="post"
-                                    enctype="multipart/form-data">
-                                    <div class="row">
-                                       
-                                       
-                                       <div class="col-sm-6">
-                                          <div class="form-group">
-                                          <label>userdbNo</label>
-                                             <input type="text" placeholder="userdbNo" value=${item.userdbNo}
-                                                name="userdbNo" required="" class="form-control">
-                                          </div>
-                                       </div>
-                                       
-                                       <div class="col-sm-12">
-                                          <div class="form-group">
-                                          <label>userdbEmail</label>
-                                             <input type="text" placeholder="userdbEmail" value=${item.userdbEmail}
-                                                name="userdbEmail" required="" class="form-control">
-                                          </div>
-                                       </div>
-                                       
-                                       <div class="col-sm-12">
-                                          <div class="form-group">
-                                          <label>userdbNickname</label>
-                                             <input type="text" placeholder="userdbNickname" value=${item.userdbNickname}
-                                                name="userdbNickname" required="" class="form-control">
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </form>
-                                 </div>
-                                 </div>
-                                 </div>
-                                 </section>
-                                 <!-- End -->
-         
-   </div>
+							<!-- Section: Registration Form -->
+							<section class="divider parallax layer-overlay overlay-white-8"
+								data-bg-img="http://placehold.it/1920x1280">
+								<div class="container-fluid">
+									<div class="section-title">
+										<div class="row">
+											<div class="col-md-6 col-md-offset-3 text-center">
+												<h3 class="title text-theme-colored">수정 하기 Form</h3>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6 col-md-offset-3">
+											<form id="booking-form" name="booking-form"
+												action="${pageContext.request.contextPath}/admin/adminUpdate/{academyNo}" method="post"
+												enctype="multipart/form-data">
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="form-group">
+														
+														<label>academyNo</label>
+															<input type="text" value="${academy.academyNo}"
+																name="academyNo" required="" class="form-control">
+														</div>
+														
+													</div>
+													
+													<div class="col-sm-6">
+														<div class="form-group">
+														<label>academyName</label>
+															<input type="text" value="${academy.academyName}"
+																name="academyName" required="" class="form-control">
+														</div>
+													</div>
+													
+													<div class="col-sm-6">
+														<div class="form-group">
+														<label>academyAddrCity</label>
+															<input type="text" value="${academy.academyAddrCity}"
+																name="academyAddrCity" required="" class="form-control">
+														</div>
+													</div>
+													
+													<div class="col-sm-12">
+														<div class="form-group">
+														<label>academyAddrDetail</label>
+															<input type="text" value="${academy.academyAddrDetail}"
+																name="academyAddrDetail" required="" class="form-control">
+														</div>
+													</div>
+										
+													<div class="col-sm-12">
+														<div class="form-group text-center">
+															<input name="form_botcheck" class="form-control"
+																type="hidden" value="" />
+															<button data-loading-text="Please wait..."
+																class="btn btn-dark btn-theme-colored btn-sm btn-block mt-20 pt-10 pb-10"
+																type="submit">Update now</button>
+														</div>
+													</div>
+												</div>
+											</form>
+											<!-- End -->
+			
+	</div>
 </body>
 </html>

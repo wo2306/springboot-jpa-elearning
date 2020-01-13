@@ -1,14 +1,13 @@
 package project.web.mvc.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.web.mvc.domain.Cart;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.CartRepository;
+import project.web.mvc.util.LoginCheck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,30 +20,20 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void deleteAll() {
-        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        cartRepository.deleteByUserdbUserdbNo(userdb.getUserdbNo());
+        cartRepository.deleteByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo());
     }
 
     @Override
     public List<Cart> selectAll() {
         List<Cart> list = new ArrayList<>();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken)) {
-            Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            cartRepository.findByUserdbNo(userdb.getUserdbNo()).iterator().forEachRemaining(list::add);
-        }
-//        cartRepository.findByUserdbUserdbEmail("kosta").iterator().forEachRemaining(list::add);
+        cartRepository.findByUserdbNo(LoginCheck.getUserdb().getUserdbNo()).iterator().forEachRemaining(list::add);
         return list;
     }
 
     @Override
     @Transactional
     public void insert(Long onLectureNo) {
-        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (cartRepository.findByUserdbUserdbNoAndOnLecture_OnLectureNo(userdb.getUserdbNo(), onLectureNo).isEmpty()) {
-            throw new RuntimeException("이미 중복된 강의가 존재합니다.");
-        }
-        cartRepository.save(new Cart(onLectureNo, userdb.getUserdbNo()));
+        cartRepository.save(new Cart(onLectureNo, LoginCheck.getUserdb().getUserdbNo()));
     }
 
     @Override

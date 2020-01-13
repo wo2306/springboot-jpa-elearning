@@ -1,5 +1,6 @@
 package project.web.mvc.service;
 
+import org.springframework.data.domain.Page;
 import project.web.mvc.domain.OffOrder;
 import project.web.mvc.domain.OnOrder;
 
@@ -12,7 +13,9 @@ public interface OrderService {
 
     void offInsert(OffOrder offOrder);
 
-    List<OnOrder> onSelect(int pageNum);
+    List<OnOrder> onSelectAll();
+
+    Page<OnOrder> onSelect(int pageNum);
     List<OffOrder> offSelect(int pageNum);
 
     boolean payCheck(Long onLectureNo);

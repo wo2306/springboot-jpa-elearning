@@ -32,14 +32,6 @@ public class CartController {
         return cartService.selectAll();
     }
 
-    @RequestMapping("/ajaxTest")
-    @ResponseBody
-    public String ajaxTest() {
-        System.out.println("@@@@@@@@@@ajaxTest CALL");
-        return "ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ";
-    }
-
-    //카트 삽입 없음.
 
     @RequestMapping("/list")
     public String list(Model model) {

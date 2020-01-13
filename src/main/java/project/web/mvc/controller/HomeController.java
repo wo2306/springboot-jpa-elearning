@@ -6,25 +6,33 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.service.AuthorityService;
+import project.web.mvc.service.OnLectureService;
 import project.web.mvc.service.UserdbService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
-
 //	private LoginServiceImpl loginService;
-	
 	private final UserdbService userdbService;
+	private final OnLectureService onLectureService;
 	private final AuthorityService authorityService;
 	
 	@RequestMapping("/")
-	public String index() {
-		System.out.println("home controller index call.........");
+	public String index(Model model) {
+		List<OnLecture> lectureList = new ArrayList<>();
+		onLectureService.selectAll(1).iterator().forEachRemaining(lectureList::add);
+		System.out.println(lectureList);
+		model.addAttribute("onLectureList", lectureList);
 		return"index";
 	}
 	
