@@ -13,11 +13,6 @@ package project.web.mvc.video;
  * the License.
  */
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.java6.auth.oauth2.FileCredentialStore;
@@ -36,10 +31,15 @@ import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.common.collect.Lists;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Prints a list of videos uploaded to the user's YouTube account using OAuth2 for authentication.
- *
- *  Details: The app uses Youtube.Channnels.List to get the playlist id associated with all the
+ * <p>
+ * Details: The app uses Youtube.Channnels.List to get the playlist id associated with all the
  * videos ever uploaded to the user's account. It then gets all the video info using
  * YouTube.PlaylistItems.List. Finally, it prints all the information to the screen.
  *
@@ -121,7 +121,7 @@ public class MyUploads {
       YouTube.Channels.List channelRequest = youtube.channels().list("contentDetails");
      /**
       * 여기 꼭 수정하기!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      * 
+      *
       * */
       channelRequest.setMine(false);
 //      channelRequest.setMine("true");

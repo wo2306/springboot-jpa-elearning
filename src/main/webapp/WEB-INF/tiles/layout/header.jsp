@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html dir="ltr" lang="ko">
 <head>
 
@@ -52,7 +52,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
           type="text/css">
 
     <!-- external javascripts -->
-    <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <!-- JS | jquery plugin collection for this theme -->
@@ -63,26 +63,27 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
     <![endif]-->
     <script type="text/javascript">
-		function logout() {
-			document.getElementById("logoutFrm").submit();
-		};
-		
-/*  		var t = document.getElementById('target');
-		t.addEventListener('submit', function(event){
-			<!-- 첫번째 인자의 이벤트가 발생하면 두번째 인자인 익명함수가 실행된다. -->
-		    if(document.getElementById('name').value.length === 0){
-		        alert('Name 필드의 값이 누락 되었습니다');
-		        event.preventDefault(); 
-		        <!-- submit이 안 된다.(action 프로퍼티로 전송되는 것을 방지한다.) 기본 동작의 취소-->
-		   		return
-		    }
-		    document.write("<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" style:"display:none">");
+        function logout() {
+            document.getElementById("logoutFrm").submit();
+        }
+
+        /*  		var t = document.getElementById('target');
+                t.addEventListener('submit', function(event){
+                    <!-- 첫번째 인자의 이벤트가 발생하면 두번째 인자인 익명함수가 실행된다. -->
+                    if(document.getElementById('name').value.length === 0){
+                        alert('Name 필드의 값이 누락 되었습니다');
+                        event.preventDefault();
+                        <!-- submit이 안 된다.(action 프로퍼티로 전송되는 것을 방지한다.) 기본 동작의 취소-->
+                           return
+                    }
+                    document.write("<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" style:"display:none">");
 		    submit();
 		});  */
-		
-	</script>
+
+    </script>
 </head>
 
 <body>
@@ -104,71 +105,72 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <div class="col-md-4">
                     <div class="widget no-border m-0">
                         <sec:authorize access="isAnonymous()">
-	                        <ul class="list-inline font-13 sm-text-center mt-5">
-	                            <li>
-	                                <a class="text-white" href="${pageContext.request.contextPath}/login">Login</a>
-	                            </li>
-	                            <li class="text-white">|</li>
-	                        </ul>
+                            <ul class="list-inline font-13 sm-text-center mt-5">
+                                <li>
+                                    <a class="text-white" href="${pageContext.request.contextPath}/login">Login</a>
+                                </li>
+                                <li class="text-white">|</li>
+                            </ul>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
-                        	<sec:authentication var="user" property="principal" />
-	                        <ul class="list-inline font-13 sm-text-center mt-5">
-	                            <li>
-	                                <a class="text-white" href="javascript:logout();">Logout</a>
-	                            </li>
-	                            <li class="text-white">|</li>
-	                            
-	                        	<li><a class="text-white">${user.userdbNickname}님 </a>
-	                        	</li>
-	                        	<form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post" style:"display:none">
-									<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-								</form>
-	                        </ul>
+                            <sec:authentication var="user" property="principal"/>
+                            <ul class="list-inline font-13 sm-text-center mt-5">
+                                <li>
+                                    <a class="text-white" href="javascript:logout();">Logout</a>
+                                </li>
+                                <li class="text-white">|</li>
+
+                                <li><a class="text-white">${user.userdbNickname}님 </a>
+                                </li>
+                                <form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post"
+                                      style="display:none">
+                                    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+                                </form>
+                            </ul>
                         </sec:authorize>
-                            
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="widget m-0 pull-right sm-pull-none sm-text-center">
                         <ul class="list-inline pull-right">
                             <li class="mb-0 pb-0">
-                                <div class="top-dropdown-outer pt-5 pb-10">
-                                    <a class="top-cart-link has-dropdown text-white text-hover-theme-colored"><i
-                                            class="fa fa-shopping-cart font-13"></i><span id="cartSize"></span></a>
-                                    <ul class="dropdown">
-                                        <li>
-                                            <!-- dropdown cart -->
-                                            <div class="dropdown-cart">
-                                                <table class="table cart-table-list table-responsive">
-                                                    <tbody id="cartInner">
-                                                    </tbody>
-                                                </table>
-                                                <div id="totalCart" class="total-cart text-right">
-                                                    <table class="table table-responsive">
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>총 결제 금액</td>
-                                                            <td id="total"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>할인 금액</td>
-                                                            <td id="discount" style="color: red"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>최종 결제 금액</td>
-                                                            <td id="final" style="font-weight: bold"></td>
-                                                        </tr>
+                                <sec:authorize access="isAuthenticated()">
+                                    <div class="top-dropdown-outer pt-5 pb-10">
+                                        <a class="top-cart-link has-dropdown text-white text-hover-theme-colored"><i
+                                                class="fa fa-shopping-cart font-13"></i><span id="cartSize"></span></a>
+                                        <ul class="dropdown">
+                                            <li>
+                                                <!-- dropdown cart -->
+                                                <div class="dropdown-cart">
+                                                    <table class="table cart-table-list table-responsive">
+                                                        <tbody id="cartInner">
                                                         </tbody>
                                                     </table>
-                                                    <div id="cart_btn"></div>
+                                                    <div id="totalCart" class="total-cart text-right">
+                                                        <table class="table table-responsive">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>총 결제 금액</td>
+                                                                <td id="total"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>할인 금액</td>
+                                                                <td id="discount" style="color: red"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>최종 결제 금액</td>
+                                                                <td id="final" style="font-weight: bold"></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <div id="cart_btn"></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <!-- dropdown cart ends -->
-                                        </li>
-                                    </ul>
-                                </div>
+                                                <!-- dropdown cart ends -->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </sec:authorize>
                             </li>
                             <li class="mb-0 pb-0">
                                 <div class="top-dropdown-outer pt-5 pb-10">
@@ -204,7 +206,8 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-5">
                     <div class="widget no-border m-0">
-                        <a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="${pageContext.request.contextPath}/"><img
+                        <a class="menuzord-brand pull-left flip xs-pull-center mb-15"
+                           href="${pageContext.request.contextPath}/"><img
                                 src="${pageContext.request.contextPath}/images/logo-wide22.png" alt=""></a>
                     </div>
                 </div>
@@ -237,9 +240,9 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
          style="z-index: auto; position: static; top: auto;">
         <div class="container">
             <nav id="menuzord" class="menuzord bg-theme-colored pull-left flip menuzord-responsive">
-            <!-- <a
-                    href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em>
-                    </a> -->
+                <!-- <a
+                        href="javascript:void(0)" class="showhide" style="display: none;"><em></em><em></em><em></em>
+                        </a> -->
                 <ul class="menuzord-menu onepage-nav menuzord-indented scrollable" style="max-height: 400px;">
                     <li><a href="" id="notice" onclick="notice()">공지사항</a></li>
                     <li><a href="" id="academy" onclick="academy()">교육원</a></li>
@@ -271,27 +274,31 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     </div>
 </header>
 <script>
-
     function academy() {
         location.href = "${pageContext.request.contextPath}/academy";
     }
+
     function notice() {
         location.href = "${pageContext.request.contextPath}/notice";
     }
+
     function onLecture() {
-    	console.log(11);
+        console.log(11);
         location.href = "${pageContext.request.contextPath}/onLecture";
     }
+
     function offLecture() {
         location.href = "${pageContext.request.contextPath}/offLecture";
     }
+
     function roadmap() {
         location.href = "${pageContext.request.contextPath}/roadmap";
     }
+
     function community() {
         location.href = "${pageContext.request.contextPath}/community";
     }
-    
+
     function myPage() {
         location.href = "${pageContext.request.contextPath}/myPage/info";
     }
@@ -303,7 +310,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     function cartList() {
         $.ajax({
             url: "${pageContext.request.contextPath}/cart/ajaxList",
-            type: "post",
+            type: "get",
             dataType: "json",
             success: function (result) {
                 var size = Object.keys(result).length;
@@ -313,7 +320,6 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 if (size > 0) {
                     $("#totalCart").show();
                     $.each(result, function (key, val) {
-
                         let no = val.cartNo;
                         let name = val.onLecture.onLectureName;
                         let price = val.onLecture.onLecturePrice;
@@ -347,12 +353,23 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     }
 
     $(function () {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/cart/ajaxTest",
+            type: "post",
+            dataType: "text",
+            success: function (result) {
+                console.log(result)
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        });
         cartList();
-    })
+    });
 
     function deleteCartAjax(no) {
         $.ajax({
-            url: "${pageContext.request.contextPath}/cart/delete/"+no,
+            url: "${pageContext.request.contextPath}/cart/delete/" + no,
             type: "post",
             dataType: "json",
             success: function () {
@@ -363,9 +380,8 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 console.log("에러낫다")
             }
         })
-
     }
 </script>
-</body>
 <script src="${pageContext.request.contextPath}/js/custom.js"></script>
+</body>
 </html>

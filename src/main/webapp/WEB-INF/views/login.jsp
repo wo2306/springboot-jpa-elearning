@@ -36,25 +36,27 @@
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 col-md-push-3">
-            <h4 class="text-gray mt-0 pt-5"> Login</h4>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
-            <form name="login-form" class="clearfix" method="post" action="${pageContext.request.contextPath}/loginCheck">
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" style:"display:none">
+      <section>
+          <div class="container">
               <div class="row">
-                <div class="form-group col-md-12">
-                  <label for="form_username_email">Username/Email</label>
-                  <input id="form_username_email" name="id" class="form-control" type="text">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-md-12">
-                  <label for="form_password">Password</label>
-                  <input id="form_password" name="password" class="form-control" type="password">
+                  <div class="col-md-6 col-md-push-3">
+                      <h4 class="text-gray mt-0 pt-5"> Login</h4>
+                      <hr>
+                      <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
+                      <form name="login-form" class="clearfix" method="post"
+                            action="${pageContext.request.contextPath}/loginCheck">
+                          <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"
+                                 style="display:none">
+                          <div class="row">
+                              <div class="form-group col-md-12">
+                                  <label for="form_username_email">Username/Email</label>
+                                  <input id="form_username_email" name="id" class="form-control" type="text">
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form-group col-md-12">
+                                  <label for="form_password">Password</label>
+                                  <input id="form_password" name="password" class="form-control" type="password">
                 </div>
               </div>
               <div class="checkbox pull-left mt-15">
