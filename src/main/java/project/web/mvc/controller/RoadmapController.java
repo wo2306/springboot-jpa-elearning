@@ -1,12 +1,13 @@
 package project.web.mvc.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,6 +28,10 @@ public class RoadmapController {
 	public String main() {
 		return "redirect:roadmap/list";
 	}
+	@RequestMapping("/register")
+	public void  roadmapRegister() {
+		
+	}
 	
 	@RequestMapping("/list")
 	public void roadmapList(Model model) {
@@ -38,19 +43,18 @@ public class RoadmapController {
 	
 	}
 	 
-	@RequestMapping("/onLectureList")
-	public void onLectureList(Model model) {
-//		List<OnLecture> list =OnLectureService.selectAll();
-//		model.addAttribute("onLectureList", list);
+	@RequestMapping("/onLectureList/{pageNum}")
+	public String onLectureList(Model model, @PathVariable int pageNum) {
+		List<OnLecture> list = new ArrayList<>();
+		Page<OnLecture> page =OnLectureService.selectAll(pageNum);
+		page.iterator().forEachRemaining(list::add);
+		model.addAttribute("onLectureList", list);
+		model.addAttribute("page", page);
+		return "roadmap/onLectureList";
 	}
 
 	@RequestMapping("/detail")
 	public void roadmapDetail() {
-
-	}
-
-	@RequestMapping("/register")
-	public void roadmapRegister() {
 
 	}
 
