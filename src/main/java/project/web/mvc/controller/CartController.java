@@ -44,6 +44,7 @@ public class CartController {
     @RequestMapping("/insert/{onLectureNo}")
     @ResponseBody
     public String insert(@PathVariable Long onLectureNo) {
+        System.out.println(onLectureNo);
         cartService.insert(onLectureNo);
         return "삽입 성공";
     }

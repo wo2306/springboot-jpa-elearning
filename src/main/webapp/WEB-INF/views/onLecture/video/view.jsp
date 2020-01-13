@@ -231,7 +231,7 @@
         if (event.data === 0) {
             $.ajax({
                 url: "${pageContext.request.contextPath}/sugang/complete/${onDetail.onLecture.onLectureNo}/${onDetailNo}",
-                type: "get",
+                type: "post",
                 dataType: "json",
                 success: function (result) {
                     alert("호출성공");

@@ -8,6 +8,7 @@ import project.web.mvc.domain.Cart;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.CartRepository;
 import project.web.mvc.util.LoginCheck;
+import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +34,10 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public void insert(Long onLectureNo) {
-        if (cartRepository.findByUserdbUserdbNoAndOnLecture_OnLectureNo(LoginCheck.getUserdb().getUserdbNo(), onLectureNo).isEmpty()) {
-            cartRepository.save(new Cart(onLectureNo, LoginCheck.getUserdb().getUserdbNo()));
+        if (cartRepository.findByUserdbNoAndOnLectureNo(LoginCheck.getUserdb().getUserdbNo(), onLectureNo).size()!=0) {
+            throw new RuntimeException("이미 카트에 있어");
         }
-        throw new RuntimeException("이미 카트에 있어");
+        cartRepository.save(new Cart(onLectureNo, LoginCheck.getUserdb().getUserdbNo()));
     }
 
     @Override
