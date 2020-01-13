@@ -19,6 +19,7 @@ public class AdminOnLectureController {
     private final OnLectureService onLectureService;
 
 
+
     @RequestMapping("/onLecture/{command}/{keyword}/{pageNum}")
     public String category(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
         List<OnLecture> list = new ArrayList<>();
