@@ -2,6 +2,8 @@ package project.web.mvc.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -32,14 +34,30 @@ public class AdminUserServiceImpl implements AdminUserService {
 		return userdbRepo.findByUserdbNo(userdbNo);
 	}
 	
-//	
-//	@Override
-//	public void updateUserdb(Userdb inuserdb) {
-//
-//		Userdb updatedb = userdbRepo.update(inuserdb);
-//		System.out.println(" repo 찍고 나온 updatedb" + updatedb);
-//		userdbRepo.save(inuserdb);
-//		
-//	}
+	
+	@Transactional
+	@Override
+	public void updateUserdb(Userdb inuserdb) {
+		
+		Userdb userdb = userdbRepo.findByUserdbNo(inuserdb.getUserdbNo());
+		userdb.setUserdbEmail(inuserdb.getUserdbEmail());
+		userdb.setUserdbNickname(inuserdb.getUserdbNickname());
+		
+	}
+
+	@Override
+	public void deleteUserdb(Long userdbNo) {
+		userdbRepo.deleteById(userdbNo);
+		
+	}
+	
+	@Override
+	public List<Userdb> selectByKey(String key, String value){
+		
+		List<Userdb> list = userdbRepo.searchByKey(key, value);
+		System.out.println(list);
+		return list;
+		
+	}
 
 }

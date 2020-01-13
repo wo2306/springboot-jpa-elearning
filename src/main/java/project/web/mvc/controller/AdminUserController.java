@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.web.mvc.domain.Userdb;
@@ -37,9 +37,26 @@ public class AdminUserController {
 	}
 	
 	//업데이트하기 
-//	@RequestMapping("/update")
-//	public String userupdate(@ModelAttribute Userdb inuserdb) {
-//		System.out.println("update하러 들어온 updatedb" + inuserdb.toString());
-//		return "";
-//	}
+	@RequestMapping("/update")
+	public String userupdate(Userdb inuserdb) {
+		adminuserService.updateUserdb(inuserdb);
+		
+		return "redirect:/admin/user";
+	}
+	
+	//삭제하기
+	@RequestMapping("/delete")
+	@ResponseBody
+	public void userdbdelete(Long userdbNo) {
+		adminuserService.deleteUserdb(userdbNo);
+	}
+	
+	//검색하기
+	@RequestMapping("/search")
+	@ResponseBody
+	public void serach(String key, String value) {
+		System.out.println("검색하러 들어왔어요");
+		System.out.println("key : " + key + "//////" + "value :" + value);
+		adminuserService.selectByKey(key, value);
+	}
 }
