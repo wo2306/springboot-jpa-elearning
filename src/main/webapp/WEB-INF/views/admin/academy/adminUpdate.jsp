@@ -59,7 +59,7 @@
 									<div class="row">
 										<div class="col-md-6 col-md-offset-3">
 											<form id="booking-form" name="booking-form"
-												action="${pageContext.request.contextPath}/admin/academy/adminAcademyUpdate/update/{academyNo}" method="post"
+												action="${pageContext.request.contextPath}/admin/academy/adminAcademyUpdate/update" method="post"
 												enctype="multipart/form-data">
 												<div class="row">
 													<div class="col-sm-6">
@@ -103,10 +103,11 @@
 															<button data-loading-text="Please wait..."
 																class="btn btn-dark btn-theme-colored btn-sm btn-block mt-20 pt-10 pb-10"
 																type="submit">Update now</button>
+																</form>
 														</div>
 													</div>
 												</div>
-											</form>
+											
 											<!-- End -->
 			
 	</div>

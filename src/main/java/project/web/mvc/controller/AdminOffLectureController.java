@@ -58,10 +58,9 @@ public class AdminOffLectureController {
 
 
 	@RequestMapping("offLecUpdate/update")
-	public ModelAndView offLecUpdate (OffLecture offLecture) {
+	public String offLecUpdate (OffLecture offLecture) {
 		offLectureService.offLecUpdate(offLecture);
-		OffLecture selectedOffLecture = offLectureService.selectByOffNo(offLecture.getOffLectureNo());
-		return new ModelAndView("admin/offLecture/adminOffLecture", "offLecture", selectedOffLecture);
+		return "redirect:/admin/offLecture";
 	}
 	
 	@DeleteMapping(value = "/delete")
