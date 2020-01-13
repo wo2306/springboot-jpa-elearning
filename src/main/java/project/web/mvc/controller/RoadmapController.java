@@ -40,8 +40,8 @@ public class RoadmapController {
 	 
 	@RequestMapping("/onLectureList")
 	public void onLectureList(Model model) {
-		List<OnLecture> list =OnLectureService.selectAll();
-		model.addAttribute("onLectureList", list);
+//		List<OnLecture> list =OnLectureService.selectAll();
+//		model.addAttribute("onLectureList", list);
 	}
 
 	@RequestMapping("/detail")
