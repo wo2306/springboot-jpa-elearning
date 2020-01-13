@@ -6,8 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import project.web.mvc.domain.OnOrder;
 
+import java.util.List;
+
 public interface OnOrderRepository extends PagingAndSortingRepository<OnOrder, Long> {
-    Page<OnOrder> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
+    List<OnOrder> findByUserdbUserdbNo(Long userdbNo);
+
+    @Query("select distinct o from OnOrder o inner join o.userdb u inner join o.onlecture l where u.userdbNo=?1")
+    Page<OnOrder> findOnOrder(Long userdbNo, Pageable pageable);
+
 
     @Query("select o from OnOrder o inner join o.userdb u inner join o.onlecture l where u.userdbNo=?1 and l.onLectureNo=?2")
     OnOrder findByUserdbNoAndOnLectureNo(Long userdbNo, Long onLectureNo);

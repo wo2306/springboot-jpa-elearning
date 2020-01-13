@@ -32,6 +32,7 @@
 		</c:forEach>
 		<span class="fa-hover"> 작성자 : ${review.userdb.userdbNickname }</span><br>
 		<span class="fa-hover">${review.reviewContent }</span><br>
+		
 		</div>
     </c:forEach>
     

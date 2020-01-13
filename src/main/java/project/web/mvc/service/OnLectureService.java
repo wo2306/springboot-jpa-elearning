@@ -1,5 +1,6 @@
 package project.web.mvc.service;
 
+import org.springframework.data.domain.Page;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
 
@@ -13,7 +14,7 @@ public interface OnLectureService {
 
     void update(OnLecture onLecture);
 
-    List<OnLecture> selectAll();
+    Page<OnLecture> selectAll(int pageNum);
 
     List<OnDetail> selectById(Long onLectureNo);
 
@@ -21,5 +22,14 @@ public interface OnLectureService {
 
     OnDetail selectOnDetailById(Long onDetailNo);
 
-    List<OnLecture> selectByKeyword(String keyword);
+    Page<OnLecture> selectByKeyword(String keyword, int pageNum);
+
+    List<OnLecture> selectByTeacher(String teacherName);
+
+    Page<OnLecture> selectByCategory(String category, int pageNum);
+
+    List<OnLecture> selectLatest();
+
+    List<Long> countCategory();
+
 }

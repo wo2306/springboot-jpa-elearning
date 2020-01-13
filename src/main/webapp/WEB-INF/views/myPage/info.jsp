@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <head>
     <title>LM company | Learning Machine</title>
-     
+
 </head>
 
 <body class="">
@@ -71,28 +71,75 @@
                                                 <tr>
                                                     <th>주문번호</th>
                                                     <th>주문날짜</th	>
-                                                    <th>결제수단</th>
+                                                    <th>결제상태</th>
                                                     <th>총 결제 금액</th>
                                                     <th>상세조회</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <c:choose>
-                                                    <c:when test="${list!=null}">
-                                                        <c:set var="beforeOrderCode"/>
-                                                        <c:forEach var="dto" items="${list}">
+                                                    <c:when test="${orderList!=null}">
+                                                        <c:forEach var="dto" items="${orderList}">
                                                             <c:if test="${beforeOrderCode ne dto.onOrderCode}">
+                                                            <c:set var="beforeOrderCode" value="${dto.onOrderCode}"/>
                                                                 <tr>
-                                                                    <th scope="row">${dto.onOrderCode}</th>
+                                                                    <th scope="row" class="orderCode">${dto.onOrderCode}</th>
                                                                     <td>${dto.onOrderRegdate}</td>
                                                                     <td>${dto.onOrderMethod}</td>
                                                                     <td><fmt:formatNumber value="${dto.onOrderPrice}"
                                                                                           pattern="₩#,###"/></td>
-                                                                    <td><a class="btn btn-success btn-xs" href="#">주문 내역
-                                                                        상세
-                                                                        보기</a></td>
-                                                                    <c:set var="beforeOrderCode"
-                                                                           value="${dto.onOrderCode}"/>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm${dto.onOrderCode}">주문 내역 상세보기</button>
+
+                                                                        <div class="modal fade bs-example-modal-sm${dto.onOrderCode}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                                                                            <div class="modal-dialog modal-sm">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                                        <h4 class="modal-title" id="myModalLabel3">구매 상세 내역</h4>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <div class="card-content">
+                                                                                            <div class="total_amount_container"><div class="total_amount">${dto.onOrderCode}
+                                                                                            </div>
+                                                                                                <table class="table table-hover">
+                                                                                                    <tbody>
+                                                                                                    <tr>
+                                                                                                        <th>총 결제 금액</th>
+                                                                                                        <td><span style="text-align: right"><fmt:formatNumber value="${dto.onOrderPrice}" pattern="₩#,###"/></span></td>
+                                                                                                    </tr>
+                                                                                                    <c:forEach var="detail" items="${orderList}">
+                                                                                                            <c:if test="${detail.onOrderCode eq dto.onOrderCode}">
+                                                                                                                <tr>
+                                                                                                            <td>
+                                                                                                                ${detail.onlecture.onLectureName}
+                                                                                                            </td>
+                                                                                                            <td><fmt:formatNumber value="${detail.onlecture.onLecturePrice}" pattern="₩#,###"/></td>
+                                                                                                                </tr>
+                                                                                                            </c:if>
+                                                                                                        </c:forEach>
+                                                                                                    <tr>
+                                                                                                        <th>주문 상태</th>
+                                                                                                        <td><span class="payment_status">${dto.onOrderState}</span></td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <th>주문 시각</th>
+                                                                                                        <td><time datetime="Sat Dec 28 2019 14:27:27 GMT+0900 (GMT+09:00)">${dto.onOrderRegdate}</time></td>
+                                                                                                    </tr>
+                                                                                                    <tr><th>결제 수단</th><td>${dto.onOrderMethod}</td></tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                                                                        <button type="button" class="btn btn-primary text-white">문의하기</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
                                                                 </tr>
                                                             </c:if>
                                                         </c:forEach>
@@ -151,15 +198,15 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                    </div>                                 
+                                    </div>
                                     <div role="tabpanel" class="tab-pane" id="wishlisttab">
                                         <table class="table" id="wishlisttable">
                                             <tbody>
                                             	<tr>
                                                     <th>강의번호</th>
-                                                    <th>강의제목</th>                                                                
-                                                    <th>가격</th>                                                                                        
-                                                    <th>삭제</th>                                                                                        
+                                                    <th>강의제목</th>
+                                                    <th>가격</th>
+                                                    <th>삭제</th>
                                            		</tr>
                                            		<tr>
                                            			<th><span id="etx"></span></th>
@@ -167,7 +214,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    
+
                                     <div role="tabpanel" class="tab-pane" id="bookmarks">
                                         <table class="table">
                                             <tbody>
@@ -216,7 +263,7 @@
             $.ajax({
                 type: "post",
                 url: "${pageContext.request.contextPath}/myPage/info/wishlisttab",
-                dataType :"json",               
+                dataType :"json",
                 success : function(result){
                 	//alert("통신성공!!!");
                 	if(result!=null){
@@ -238,18 +285,17 @@
                     alert("통신실패!!!! err : " + err);
                 }
             });
-    	}
-    	
-    $('#myTab li:eq(2) a').on('click', function(){
-    	alert("누름");
-    		$.ajax({
-                type :"post",
-                url :"${pageContext.request.contextPath}/myPage/info/wishlisttab",
-                dataType :"json",               
+        }
+
+        $('#myTab li:eq(2) a').on('click', function () {
+            $.ajax({
+                type: "post",
+                url: "${pageContext.request.contextPath}/myPage/info/wishlisttab",
+                dataType :"json",
                 success : function(result){
-                	//alert("통신성공!!!");
+                	alert("통신성공!!!");
                 	if(result!=null){
-                	//alert(result);
+                	alert(result);
                 	$('#wishlisttable tr:gt(0)').empty();
     				var str = "";
     				$.each(result,function(index,item){
@@ -279,16 +325,16 @@
 			dataType:"text",
 			success:function(){
 				alert("삭제완료");
-				printwishlist();
+			//	printwishlist();
 			},error:function(err){
 				alert("안눌려");
 			}
 		})
 	});//delete
-    	
+
     });//ready
-    
- 
+
+
 </script>
 </body>
 </html>

@@ -87,16 +87,16 @@
                             <br>
                             <h4 class="widget-title line-bottom">${onLecture.onLectureTeacher}<span
                                     class="text-theme-color-2">님의 다른 강의</span></h4>
-                            <div class="opening-hours">
                                 <ul class="list-border">
                                     <c:forEach items="${teacherList}" var="teacherLecture">
+                                        <c:if test="${teacherLecture.onLectureName ne onLecture.onLectureName}">
                                         <li class="clearfix"><span> <a
                                                 href="${pageContext.request.contextPath}/onLecture/detail/${teacherLecture.onLectureNo}">${teacherLecture.onLectureName} </a> </span>
                                             <div class="value pull-right"></div>
+                                        </c:if>
                                         </li>
                                     </c:forEach>
                                 </ul>
-                            </div>
                             <br>
                             <div id="myTabContent" class="tab-content">
                                 <div class="tab-pane fade in active" id="small">

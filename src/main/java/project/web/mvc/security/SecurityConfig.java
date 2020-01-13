@@ -3,7 +3,6 @@ package project.web.mvc.security;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -35,11 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-        // 페이지 권한 설정
-       // .antMatchers("/admin/**").hasRole("ADMIN")
-        .antMatchers("/myPage/*").authenticated()
-        .antMatchers("/cart/*").authenticated()
-        .anyRequest().permitAll()
+                // 페이지 권한 설정
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/myPage/**").authenticated()
+                .antMatchers("/cart/**").authenticated()
+                .antMatchers("/order/**").authenticated()
+                .anyRequest().permitAll()
 //        .antMatchers("/*/*/*/*/**").authenticated()
 //        .antMatchers("/roadmap/*/**").authenticated()
 //        .antMatchers("/onLecture/*/*/*/**").authenticated()
@@ -63,26 +63,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/")
 //        .deleteCookies(cookieNamesToClear)
-        .invalidateHttpSession(true)
-    .and()
-        // 403 예외처리 핸들링
-    	.exceptionHandling().accessDeniedPage("/denied");
-        //post방식 허용
+                .invalidateHttpSession(true)
+                .and()
+                // 403 예외처리 핸들링
+                .exceptionHandling().accessDeniedPage("/denied");
         http.csrf().disable();
     }
 
-    
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception{
+//    @Override
+//    public void configure(AuthenticationManagerBuilder auth) throws Exception{
 //    	auth.userDetailsService(service).passwordEncoder(passwordEncoder());
-    	//인메모리에 admin 저장
-    	auth.inMemoryAuthentication()
-    	.withUser("admin")
-    	.password("{noop}1234")
-    	.roles("ADMIN");
-    	
-    }
-    
+//    	
+//    	//인메모리에 admin 저장
+//    	auth.inMemoryAuthentication()
+//    	.withUser("admin")
+//    	.password("{noop}1234")
+//    	.roles("ADMIN");
+//    	
+//    }
+//    
 
 
 }
