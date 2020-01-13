@@ -31,13 +31,8 @@
                <div class="section-content">
                   <div class="row">
                      <div class="col-md-12">
-                        <h3 class="title text-white">교육원 소개</h3>
                         <ol class="breadcrumb text-center text-black mt-10">
-                           <li><a href="#">Home</a></li>
-                           <li><a href="#">Pages</a></li>
-                           <li class="active text-theme-colored">Page Title</li>
-                           <li class="active text-theme-colored">Event List without
-                              Sidebar</li>
+                           <li><a href="${pageContext.request.contextPath}/admin/user">Home</a></li>
                         </ol>
                      </div>
                   </div>
@@ -58,8 +53,7 @@
                            <div class="row">
                               <div class="col-md-6 col-md-offset-3">
                                  <form id="booking-form" name="booking-form"
-                                    action="${pageContext.request.contextPath}/admin/user/update" method="post"
-                                    enctype="multipart/form-data">
+                                    action="${pageContext.request.contextPath}/admin/user/update" method="post">
                                     <div class="row">
                                        <div class="col-sm-6">
                                           <div class="form-group">
@@ -93,7 +87,7 @@
                                           <div class="form-group">
                                           <label>Authority</label>
                                              <input type="text" name="authority" value=${item.authority}
-                                                name="userdbauthority" required="" class="form-control">
+                                                name="userdbauthority" readonly="readonly" required="" class="form-control">
                                           </div>
                                        </div>
                                     </div>

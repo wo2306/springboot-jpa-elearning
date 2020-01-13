@@ -1,5 +1,7 @@
 package project.web.mvc.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -13,7 +15,7 @@ public interface UserdbRepository extends CrudRepository<Userdb, Long>{
 	Userdb findByUserdbNo(Long userdbNo);
 
 	
-//	@Modifying
-//	@Query("update userdb u set u.userdb_email =?1, u.userdb_nickname= ?2, us.authority=?3 where u.userdb_no = ?4")
-//	public Userdb update(Userdb userdb);
+	@Query("select user from Userdb user where upper(?1) like '%' || upper(?2) || '%'")
+	public List<Userdb> searchByKey(String key, String value);
+
 }
