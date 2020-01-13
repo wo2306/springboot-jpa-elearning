@@ -111,7 +111,7 @@
                                                     <td scope="row"><a
                                                             href="${pageContext.request.contextPath}/onLecture/view/${onDetail.onDetailNo}">${onDetail.onDetailName}</a>
                                                     </td>
-                                                    <td>${onDetail.onDetailPlaytime}</td>
+                                                    <td>${onDetail.onDetailPlaytime}분</td>
                                                 </tr>
                                             </c:forEach>
                                             </tbody>
