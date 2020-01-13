@@ -3,7 +3,6 @@ package project.web.mvc.security;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,15 +10,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import project.web.mvc.service.LoginService;
-import project.web.mvc.service.UserdbService;
-
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private LoginService service;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -41,17 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/admin/**").hasAuthority("ADMIN")
         .antMatchers("/myPage/*").authenticated()
         .antMatchers("/cart/*").authenticated()
+        .antMatchers("/order/**").authenticated()
         .anyRequest().permitAll()
-//        .antMatchers("/*/*/*/*/**").authenticated()
-//        .antMatchers("/roadmap/*/**").authenticated()
-//        .antMatchers("/onLecture/*/*/*/**").authenticated()
-//        .antMatchers("/offLecutre/*/**").authenticated()
-//        .antMatchers("/academy/*/**").authenticated()
-//        .antMatchers("/notice/*/**").authenticated()
-//        .antMatchers("/community/*/**").authenticated()
-//        .antMatchers("/login/*/**").authenticated()
-//        .antMatchers("/signUpForm/*/**").authenticated()
-//        .antMatchers("/cart/*").authenticated()
                 .and() // 로그인 설정
                 .formLogin()
                 .loginPage("/login")
@@ -73,9 +58,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//post방식 허용
 		.csrf().disable();
     }
-
-    
-    
 
 
 }

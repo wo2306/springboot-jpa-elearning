@@ -56,4 +56,8 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		return question;
 	}
 
+	@Override
+	public List<ClassQuestion> findTop10ByOrderByClassQuestionRegdateDesc() {
+		return classQuestionRepo.findTop10ByOrderByClassQuestionRegdateDesc();
+	}
 }

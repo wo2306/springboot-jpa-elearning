@@ -227,8 +227,7 @@
     }
 
     function onPlayerStateChange(event) {
-        var nextNo =;
-        ${nextNo}
+        var nextNo =${nextNo}
         if (event.data === 0) {
             $.ajax({
                 url: "${pageContext.request.contextPath}/sugang/complete/${onDetail.onLecture.onLectureNo}/${onDetailNo}",

@@ -2,6 +2,9 @@ package project.web.mvc.service;
 
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
@@ -9,6 +12,7 @@ import project.web.mvc.repository.OnDetailRepository;
 import project.web.mvc.repository.OnLectureRepository;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -20,33 +24,28 @@ public class OnLectureServiceImpl implements OnLectureService {
 
     @Override
     public void insert(OnLecture onLecture) {
-        System.out.println("온렉쳐IMPL 인설트실행");
-
         OnLecture result = onLectureRepository.save(onLecture);
-        System.out.println("인설트 서비스결과" + result);
     }
 
 
     @Override
-    public List<OnLecture> selectAll() {
-        List<OnLecture> list = Lists.newArrayList(onLectureRepository.findAll());
-        System.out.println("집중!! 서비스 결과나왓다!!!");
-        for (OnLecture o : list) {
-            System.out.println(o);
-        }
-        return list;
+    public List<Long> countCategory() {
+        return onLectureRepository.countCategory();
+    }
+
+    @Override
+    public Page<OnLecture> selectAll(int pageNum) {
+        return onLectureRepository.findAll(PageRequest.of(pageNum - 1, 9));
     }
 
     @Override
     public void delete(Long onLectureNo) {
-        System.out.println("딜리트실행");
         onLectureRepository.deleteById(onLectureNo);
 
     }
 
     @Override
     public void update(OnLecture onLecture) {
-        System.out.println("업데이트서비스실행");
         onLectureRepository.save(onLecture);
 
     }
@@ -57,7 +56,6 @@ public class OnLectureServiceImpl implements OnLectureService {
         List<OnDetail> list = new ArrayList<>();
         onDetailRepository.findByOnLectureOnLectureNo(onLectureNo).iterator().forEachRemaining(list::add);
         return list;
-        //업데이트 덜함
     }
 
     @Override
@@ -71,8 +69,23 @@ public class OnLectureServiceImpl implements OnLectureService {
     }
 
     @Override
-    public List<OnLecture> selectByKeyword(String keyword) {
-        return onLectureRepository.findByKeyword(keyword);
+    public List<OnLecture> selectByTeacher(String teacherName) {
+        return onLectureRepository.findTop5ByOnLectureTeacher(teacherName);
+    }
+
+    @Override
+    public Page<OnLecture> selectByCategory(String category, int pageNum) {
+        return onLectureRepository.findByOnLectureCategory(category, PageRequest.of(pageNum - 1, 9));
+    }
+
+    @Override
+    public Page<OnLecture> selectByKeyword(String keyword, int pageNum) {
+        return onLectureRepository.findByKeyword(keyword, PageRequest.of(pageNum - 1, 9));
+    }
+
+    @Override
+    public List<OnLecture> selectLatest() {
+        return onLectureRepository.findTop3ByOrderByOnLectureRegdateDesc();
     }
 }
 

@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.web.mvc.domain.Academy;
+import project.web.mvc.domain.OffLecture;
 import project.web.mvc.service.AcademyService;
 
 
 @Controller
-@RequestMapping("/admin/academy/")
+@RequestMapping("/admin/academy")
 public class AdminAcademyController {
 	
 	@Autowired
@@ -27,7 +28,7 @@ public class AdminAcademyController {
 	public ModelAndView main() {
 		List<Academy> list = academyService.selectAll();
 		System.out.println(list);
-		return new ModelAndView("admin/adminAcademy", "list", list);
+		return new ModelAndView("admin/academy/adminAcademy", "list", list);
 	}
 	
 	@RequestMapping("this")
@@ -38,24 +39,27 @@ public class AdminAcademyController {
 		return list;
 	}
 	
-	@RequestMapping("adminRegister")
-	public void register() {
-		
+	@RequestMapping("/adminRegister")
+	public String register() {
+		//System.out.println("나와?");
+		return "admin/academy/adminRegister";
 	}
 	
-	@RequestMapping("adminRegister/insert")
-	public String academyInsert(Academy academy) {
+	@RequestMapping("/adminAcademyRegister/insert")
+	public ModelAndView academyInsert(Academy academy) {
 		academyService.academyInsert(academy);
-		return "redirect:/admin";
+		List<Academy> list = academyService.selectAll();
+		System.out.println(list);
+		return new ModelAndView("admin/academy/adminAcademy", "list", list);
 	}
-	
+
 	@RequestMapping("adminUpdate")
 	public ModelAndView update(Long academyNo) {
 		Academy academy = academyService.selectByAno(academyNo);
-		return new ModelAndView("adminUpdate/updates", "academy", academy);
+		return new ModelAndView("admin/academy/adminUpdate", "academy", academy);
 	}
 	
-	@RequestMapping("/adminUpdate/update")
+	@RequestMapping("/adminAcademyUpdate/update")
 	public ModelAndView academyUpdate(Academy academy) {
 		academyService.academyUpdate(academy);
 		Academy selectedacademy = academyService.selectByAno(academy.getAcademyNo());

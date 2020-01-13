@@ -91,66 +91,20 @@
         <div class="section-content">
           <div class="row">
             <div class="owl-carousel-4col">
+        <c:forEach var="dto" items="${onLectureList}">
               <div class="item ">
                 <div class="service-block bg-white">
                   <div class="thumb"> <img alt="featured project" src="http://placehold.it/265x195" class="img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
+                  <h4 class="text-white mt-0 mb-0"><span class="price"><fmt:formatNumber value="${dto.onLecturePrice}" pattern="₩#,###"/></span></h4>
                   </div>
                   <div class="content text-left flip p-25 pt-0">
-                    <h4 class="line-bottom mb-10">Accounting Technologies</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                   <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
+                    <h4 class="line-bottom mb-10">${dto.onLectureName}</h4>
+                    <p>${dto.onLectureSummary}</p>
+                   <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">자세히보기</a>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="service-block mb-md-30 bg-white">
-                  <div class="thumb"> <img alt="featured project" src="http://placehold.it/265x195" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                  </div>
-                  <div class="content text-left flip p-25 pt-0">
-                    <h4 class="line-bottom mb-10">Computer Technologies</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                   <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                 </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="service-block mb-md-30 bg-white">
-                  <div class="thumb"> <img alt="featured project" src="http://placehold.it/265x195" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                  </div>
-                  <div class="content text-left flip p-25 pt-0">
-                    <h4 class="line-bottom mb-10">Development Studies</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                   <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                 </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="service-block mb-md-30 bg-white">
-                  <div class="thumb"> <img alt="featured project" src="http://placehold.it/265x195" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                  </div>
-                  <div class="content text-left flip p-25 pt-0">
-                    <h4 class="line-bottom mb-10">Electrical & Electronic</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="service-block mb-md-30 bg-white">
-                  <div class="thumb"> <img alt="featured project" src="http://placehold.it/265x195" class="img-responsive img-fullwidth">
-                  <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
-                  </div>
-                  <div class="content text-left flip p-25 pt-0">
-                    <h4 class="line-bottom mb-10">Chemical Engineering</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquam ipsum quis ipsum facilisis sit amet.</p>
-                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="page-courses-accounting-technologies.html">view details</a>
-                  </div>
-                </div>
-              </div>
+        </c:forEach>
             </div>
           </div>
         </div>
