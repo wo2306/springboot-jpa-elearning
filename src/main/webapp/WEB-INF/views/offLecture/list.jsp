@@ -63,7 +63,7 @@
 											<div class="schedule-box maxwidth500 bg-light mb-30">
 												<div class="thumb">
 													<img class="img-fullwidth" alt=""
-														src="https://placehold.it/220x160">
+														src="${pageContext.request.contextPath}/offLecture/${list.category}.jpg">
 													<div class="overlay"></div>
 												</div>
 
