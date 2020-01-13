@@ -1,6 +1,7 @@
 package project.web.mvc.repository;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -24,4 +25,7 @@ public interface OnLectureRepository extends PagingAndSortingRepository<OnLectur
 
     @Query("select count(o) from OnLecture o group by o.onLectureCategory order by o.onLectureCategory")
     List<Long> countCategory();
+
+    Page<OnLecture> findByOrderByOnLectureNo(Pageable pageable);
+
 }
