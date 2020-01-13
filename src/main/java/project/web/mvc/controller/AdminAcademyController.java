@@ -16,7 +16,7 @@ import project.web.mvc.service.AcademyService;
 
 
 @Controller
-@RequestMapping("/admin/academy/")
+@RequestMapping("/admin/academy")
 public class AdminAcademyController {
 	
 	@Autowired
