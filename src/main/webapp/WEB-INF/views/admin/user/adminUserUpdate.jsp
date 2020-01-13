@@ -51,42 +51,54 @@
                            <div class="section-title">
                               <div class="row">
                                  <div class="col-md-6 col-md-offset-3 text-center">
-                                    <h3 class="title text-theme-colored">등록 하기 Form</h3>
+                                    <h3 class="title text-theme-colored">수정하기 Form</h3>
                                  </div>
                               </div>
                            </div>
                            <div class="row">
                               <div class="col-md-6 col-md-offset-3">
                                  <form id="booking-form" name="booking-form"
-                                    action="${pageContext.request.contextPath}/admin/adminRegister/insert" method="post"
+                                    action="${pageContext.request.contextPath}/admin/user/update" method="post"
                                     enctype="multipart/form-data">
                                     <div class="row">
-                                       
-                                       
                                        <div class="col-sm-6">
                                           <div class="form-group">
                                           <label>userdbNo</label>
-                                             <input type="text" placeholder="userdbNo" value=${item.userdbNo}
-                                                name="userdbNo" required="" class="form-control">
+                                             <input type="text" name="userdbNo" value=${item.userdbNo}
+                                                name="userdbNo" readonly="readonly" required="" class="form-control">
                                           </div>
                                        </div>
-                                       
                                        <div class="col-sm-12">
                                           <div class="form-group">
-                                          <label>userdbEmail</label>
-                                             <input type="text" placeholder="userdbEmail" value=${item.userdbEmail}
+                                          <label>Email</label>
+                                             <input type="text" name="userdbEmail" value=${item.userdbEmail}
                                                 name="userdbEmail" required="" class="form-control">
                                           </div>
                                        </div>
-                                       
                                        <div class="col-sm-12">
                                           <div class="form-group">
-                                          <label>userdbNickname</label>
-                                             <input type="text" placeholder="userdbNickname" value=${item.userdbNickname}
+                                          <label>Password</label>
+                                             <input type="password" name="Password" value=${item.userdbPassword}
+                                                name="userdbEmail" readonly="readonly" class="form-control">
+                                          </div>
+                                       </div>
+                                       <div class="col-sm-12">
+                                          <div class="form-group">
+                                          <label>Nickname</label>
+                                             <input type="text" name="userdbNickname" value=${item.userdbNickname}
                                                 name="userdbNickname" required="" class="form-control">
                                           </div>
                                        </div>
+                                       <div class="col-sm-12">
+                                          <div class="form-group">
+                                          <label>Authority</label>
+                                             <input type="text" name="authority" value=${item.authority}
+                                                name="userdbauthority" required="" class="form-control">
+                                          </div>
+                                       </div>
                                     </div>
+                                    <input type="submit" value="수정">
+                                    <input type="button" value="취소" onClick="location.href='${pageContext.request.contextPath}/admin/user'">
                                  </form>
                                  </div>
                                  </div>

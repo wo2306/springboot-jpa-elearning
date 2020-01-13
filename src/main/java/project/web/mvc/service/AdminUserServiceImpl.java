@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.google.common.collect.Lists;
 
@@ -27,10 +28,18 @@ public class AdminUserServiceImpl implements AdminUserService {
 	}
 	
 	@Override
-	public Userdb selectByUserdbNo() {
-		Long userdbNo=1L;
-		userdbRepo.findByUserdbNo(userdbNo);
+	public Userdb selectByUserdbNo(Long userdbNo) {
 		return userdbRepo.findByUserdbNo(userdbNo);
 	}
 	
+//	
+//	@Override
+//	public void updateUserdb(Userdb inuserdb) {
+//
+//		Userdb updatedb = userdbRepo.update(inuserdb);
+//		System.out.println(" repo 찍고 나온 updatedb" + updatedb);
+//		userdbRepo.save(inuserdb);
+//		
+//	}
+
 }
