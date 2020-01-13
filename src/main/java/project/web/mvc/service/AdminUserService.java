@@ -13,4 +13,8 @@ public interface AdminUserService {
 	public Userdb selectByUserdbNo(Long userdbNo);
 	
 	public void updateUserdb(Userdb userdb);
+	
+	public void deleteUserdb(Long userdbNo);
+	
+	public List<Userdb> selectByKey(String key, String value);
 }

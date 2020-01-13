@@ -31,8 +31,26 @@
             <div class="col-md-12">
               <h2 class="title text-white">관리자 페이지</h2>
               <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="${pageContext.request.contextPath}/admin">Home</a></li>
-                <li class="active text-gray-silver">&nbsp&nbsp&nbspUser</li>
+                <li><a href="${pageContext.request.contextPath}/admin"><h3>Home</h3></a></li>
+	                 <!-- Topbar Search -->
+	            <li>
+	            	<form name="serchForm" method="post">
+		            <div class="input-group" style="padding-left: 730px">
+			           	<select name="key" style="background-color:#F8F9FC; margin-right: 10px;" >
+						    <option value="">메뉴</option>
+						    <option value="userdbNo">UserNo</option>
+						    <option value="userdbEmail">Email</option>
+						    <option value="userdbNickname">Nickname</option>
+						</select>
+		              <input type="text" name="value" style="padding-left: 10px" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+		              <div class="input-group-append">
+		                <button class="btn btn-primary" type="submit" id="search">
+		                  <i class="fas fa-search fa-sm"></i>
+		                </button>
+		              </div>
+		            </div>
+		            </form>
+	            </li>
               </ol>
             </div>
           </div>
@@ -45,12 +63,11 @@
       <div class="container">
         <div class="section-content">
           <div class="row">
-                     <table class="table table-bordered" id="dataTable" width="100%"
-                        cellspacing="0">
+                     <table class="table table-bordered" id="dataTable" cellspacing="0">
                         <tr>
-                           <th>userdbNo</th>
-                           <th>userdbEmail</th>
-                           <th>userdbNickname</th>
+                           <th style="width:200px">UserNo</th>
+                           <th style="width:350px">Email</th>
+                           <th style="width:350px">Nickname</th>
                            <th>수정</th>
                            <th>삭제</th>
                         </tr>
@@ -99,11 +116,75 @@
     </section>
   </div>
 </div>
-		<!-- Mailchimp Subscription Form Validation-->
-              <script type="text/javascript">
-      $(function(){ 
+	<script type="text/javascript">
+              $(document).ready(function(){ 
+               
                 
-      })
+                //전체레코드 가져오기
+                function printUser() {
+                   $.ajax({
+                         type :"post",
+                         url :"${pageContext.request.contextPath}/admin/user/",
+                         dataType :"json",               
+                         success : function(result){
+                            alert("통신성공!!!");
+                            if(result!=null){
+                            alert(result);
+                            $('#dataTable tr:gt(0)').empty();
+                         var str = "";
+                         $.each(result,function(index,item){
+                            str+='<tr>';
+                            str+='<td>'+item.userdbNo+'</td>';
+                            str+='<td>'+item.userdbEmail+'</td>';
+                            str+='<td>'+item.userdbNickname+'</td>';
+                            str+='<td><input type="submit" value="수정"></td>';
+                            str+='<td><input type="button" value="삭제" id='+item.userdbNo+'></td>';
+                            str+='</tr>';
+                         });
+                         $('#dataTable').append(str);
+                            }else alert("등록된 유저가 없습니다.");
+                           },
+                        error : function(err){
+                         alert("통신실패!!!! err : " + err);
+                     } 
+                     });
+                }
+
+                
+                $('#dataTable').on('click','input[value=삭제]',function() {
+                	
+                    alert($(this).attr('id'));
+                    $.ajax({
+                    url:"${pageContext.request.contextPath}/admin/user/delete",
+                    type:"delete",
+                    data:"userdbNo="+$(this).attr('id'),
+                    dataType:"text",
+                    success:function(){
+                       alert("삭제완료");
+                       printUser();
+                    },error:function(err){
+                       alert("자식레코드있어서 못지워요");
+                    }
+                 })
+              });//delete
+              
+              
+              $(document).on('click','#search',function() {
+              	
+                  $.ajax({
+                  url:"${pageContext.request.contextPath}/admin/user/search",
+                  type:"post",
+                  data:$("form[name=serchForm]").serialize() ,
+                  dataType:"text",
+                  success:function(){
+                     alert("검색완료");
+                     printUser();
+                },error:function(err){
+                     alert("통신오류");
+                  }
+               })
+            });//search
+              })
               </script>
 
 </body>

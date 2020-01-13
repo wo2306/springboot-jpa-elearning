@@ -45,4 +45,19 @@ public class AdminUserServiceImpl implements AdminUserService {
 		
 	}
 
+	@Override
+	public void deleteUserdb(Long userdbNo) {
+		userdbRepo.deleteById(userdbNo);
+		
+	}
+	
+	@Override
+	public List<Userdb> selectByKey(String key, String value){
+		
+		List<Userdb> list = userdbRepo.searchByKey(key, value);
+		System.out.println(list);
+		return list;
+		
+	}
+
 }
