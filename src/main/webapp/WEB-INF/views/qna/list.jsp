@@ -32,9 +32,10 @@
 					<table class="table table-striped table-schedule">
 						<thead>
 							<tr class="bg-theme-colored">
-								<th></th>
-								<th></th>
-								<th></th>
+								<th>질문</th>
+								<th>연관 강의</th>
+								<th>제목</th>
+								<th>작성자</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -50,11 +51,13 @@
     <c:forEach items = "${list }" var="question">
     <tr class="">
     
-    <td>${question.classQuestionNo }</td>
+    <th scope="row" style="width: 170px;"><img src="http://placehold.it/100x50"
+															alt=""></th>
+    <td style="width: 160px;">${question.onLecture.onLectureName }</td>
+    <td><strong><a href="${pageContext.request.contextPath}/qna/read/${question.classQuestionNo }">${question.classQuestionTitle }</a></strong></td>
     
-    <td><a href="${pageContext.request.contextPath}/qna/read/${question.classQuestionNo }">${question.classQuestionTitle }</a></td>
     
-    <td>${question.userdb.userdbNickname }</td>
+    <td style="width: 100px;">${question.userdb.userdbNickname }</td>
     
     </tr>
     	
