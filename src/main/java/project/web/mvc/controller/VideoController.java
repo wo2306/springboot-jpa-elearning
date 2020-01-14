@@ -23,16 +23,11 @@ public class VideoController {
 		return "/admin/onLecture/login";
 	}
 
-	@RequestMapping("youtube")
-	public String main() {
-		return "/admin/onLecture/youtube/upload_video";
-	}
-
 	@RequestMapping("oauth2callback")
 	public String token(String code, Model model, String access_token) {
 		model.addAttribute("code", code);
 		System.out.println("token : "+ access_token);
-		return "/admin/onLecture/video";
+		return "/admin/onLecture/insertOnLecture";
 	}
 
 	@RequestMapping("token")
@@ -40,4 +35,9 @@ public class VideoController {
 		System.out.println(access_token);
 	}
 
+
+	@RequestMapping("vimeo")
+	public String vimeoLogin() {
+		return "/admin/onLecture/vimeo";
+	}
 }
