@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.OnLecture;
@@ -39,7 +40,6 @@ public class HomeController {
 	//로그인페이지
 	@RequestMapping("/login")
 	public String dispLogin() {
-		
 		System.out.println("HomeController call *** /login");
 		return "/login";
 	}
@@ -61,16 +61,14 @@ public class HomeController {
 //	회원가입 처리
 	@RequestMapping("/signUp")
 	@Transactional
-	public String execSignUp(HttpServletRequest request) {
+	@ResponseBody
+	public int execSignUp(String userdbEmail, String userdbNickname, String userdbPassword) {
 		System.out.println("HomeController call *** /signUp");
-		String userdbEail = request.getParameter("userdbEmail");
-		String userdbNickname = request.getParameter("userdbNickname");
-		String userdbPassword = request.getParameter("userdbPassword");
-		System.out.println(userdbEail+userdbNickname+userdbPassword+"나오니?");
+		System.out.println(userdbEmail+userdbNickname+userdbPassword+"나오니?");
 
 		Userdb userdb = new Userdb();
 		System.out.println("얍"+userdb.getAuthority()+"권한을보자");
-		userdb.setUserdbEmail(userdbEail);
+		userdb.setUserdbEmail(userdbEmail);
 		userdb.setUserdbNickname(userdbNickname);
 		userdb.setUserdbPassword(userdbPassword);
 		//회원가입
@@ -78,9 +76,34 @@ public class HomeController {
 		//회원가입 후 authority db 저장
 		authorityService.insert(userdb);
 		System.out.println("회원가입끝");
-		
-		return "redirect:/";
+		//1 : 성공 , 0: 실패
+		int result = 1;
+		return result;
 	}
+	
+	@RequestMapping("/idCheck")
+	@ResponseBody
+	public int idCheck(String userdbEmail) {
+		System.out.println(userdbEmail+"아이디체크");
+		boolean idCheck = userdbService.duplicatedEmailCheck(userdbEmail);
+		//true면 중복, false면 사용가능
+		//0: 중복, 1:사용가능
+		int result = (idCheck)? 0 : 1;
+		return result;
+	}
+	
+	
+	@RequestMapping("/nicknameCheck")
+	@ResponseBody
+	public int nicknameCheck(String userdbNickname) {
+		System.out.println(userdbNickname+"userdbNickname");
+		boolean nicknameCheck = userdbService.duplicatedNicknameCheck(userdbNickname);
+		//true면 중복, false면 사용가능
+		//0: 중복, 1:사용가능
+		int result = (nicknameCheck)? 0 : 1;
+		return result;
+	}
+	
 	
 	//접근거부페이지
 	@RequestMapping("/denied")

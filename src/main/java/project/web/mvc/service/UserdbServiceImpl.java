@@ -2,6 +2,9 @@ package project.web.mvc.service;
 
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,25 +37,14 @@ public class UserdbServiceImpl implements UserdbService {
 		return result;
 	}
 
-    //아이디중복체크
-	@Override
-	public boolean duplicatedByEmail(Userdb userdb) {
-        String userdbEmail = userdb.getUserdbEmail();
-        Userdb user = selectByUserdbEmail(userdbEmail);
-        return user == null;
-    }
-
 	//회원가입
 	@Override
 	public void insert(Userdb userdb) {
-		if(duplicatedByEmail(userdb)) {
-				//비밀번호 인코딩
-				String password = userdb.getUserdbPassword();
-				String encodedPassword = passwordEncoder.encode(password);
-				userdb.setUserdbPassword(encodedPassword);
-				//회원가입
-				userdbRepository.save(userdb);
-		}
+		//비밀번호 인코딩
+		String encodedPassword = passwordEncoder.encode(userdb.getUserdbPassword());
+		userdb.setUserdbPassword(encodedPassword);
+		//회원가입
+		userdbRepository.save(userdb);
 	}
 
 	//회원탈퇴
@@ -60,6 +52,25 @@ public class UserdbServiceImpl implements UserdbService {
 	public void delete(Long userdbNo) {
 		userdbRepository.deleteById(userdbNo);
 	}
+
+	//idCheck
+	//true : 중복, false : 중복아님
+	@Override
+	public boolean duplicatedEmailCheck(String userdbEmail) {
+		Userdb user = userdbRepository.findByUserdbEmail(userdbEmail);
+		boolean result = (user==null)? false : true;
+		return result;
+	}
+
+	//nickname 중복체크
+	//true : 중복, false : 중복아님
+	@Override
+	public boolean duplicatedNicknameCheck(String userdbNickname) {
+		List<Userdb> list = userdbRepository.findByUserdbNickname(userdbNickname);
+		boolean result = (list.isEmpty())? false : true;
+		return result;
+	}
+
 
 
 

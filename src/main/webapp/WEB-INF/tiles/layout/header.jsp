@@ -110,6 +110,10 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                     <a class="text-white" href="${pageContext.request.contextPath}/login">Login</a>
                                 </li>
                                 <li class="text-white">|</li>
+                                <li>
+                                    <a class="text-white" href="${pageContext.request.contextPath}/signUpForm">Sign Up</a>
+                                </li>
+                                <li class="text-white">|</li>
                             </ul>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
@@ -249,7 +253,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                     <li><a href="" id="offLecture" onclick="offLecture()">오프라인 강의</a></li>
                     <li><a href="" id="onLecture" onclick="onLecture()">온라인 강의</a></li>
                     <li><a href="" id="roadmap" onclick="roadmap()">로드맵</a></li>
-                    <li><a href="" id="community" onclick="community()">커뮤니티</a></li>
+                    <li><a href="" id="community" onclick="qna()">묻고답하기</a></li>
                     <li class="scrollable-fix"></li>
                 </ul>
                 <ul class="pull-right flip hidden-sm hidden-xs">
@@ -301,8 +305,8 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
         location.href = "${pageContext.request.contextPath}/roadmap";
     }
 
-    function community() {
-        location.href = "${pageContext.request.contextPath}/community";
+    function qna() {
+        location.href = "${pageContext.request.contextPath}/qna/list";
     }
 
     function myPage() {
