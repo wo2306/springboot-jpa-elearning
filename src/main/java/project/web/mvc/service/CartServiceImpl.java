@@ -34,10 +34,14 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public void insert(Long onLectureNo) {
-        if (cartRepository.findByUserdbNoAndOnLectureNo(LoginCheck.getUserdb().getUserdbNo(), onLectureNo).size()!=0) {
-            throw new RuntimeException("이미 카트에 있어");
+        Userdb userdb = LoginCheck.getUserdb();
+        if (userdb==null) {
+            throw new RuntimeException("로그인 후 이용해주세요");
         }
-        cartRepository.save(new Cart(onLectureNo, LoginCheck.getUserdb().getUserdbNo()));
+        if (cartRepository.findByUserdbNoAndOnLectureNo(userdb.getUserdbNo(), onLectureNo).size()!=0) {
+            throw new RuntimeException("이미 장바구니에 같은 상품이 담겨있습니다.");
+        }
+        cartRepository.save(new Cart(onLectureNo, userdb.getUserdbNo()));
     }
 
     @Override

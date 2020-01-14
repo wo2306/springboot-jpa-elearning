@@ -208,8 +208,9 @@
                 cartList()
                 console.log("성공했다");
             },
-            error: function (error) {
-                alert("이미 해당 강의가 장바구니에 담겨있습니다.");
+            error: function (xmlHttpRequest, status, error) {
+                var err = eval("(" + xmlHttpRequest.responseText + ")");
+                alert(err.message);
                 cartList()
             }
         })
