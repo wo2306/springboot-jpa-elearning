@@ -134,8 +134,8 @@
                             str+='<td>'+item.offLectureAvailableseat+'</td>';
                             str+='<td>'+item.offDetail+'</td>';
                             str+='<td>'+item.offLectureDate+'</td>';
-                            str+='<td><input type="submit" value="수정"></td>';
-                            str+='<td><input type="button" value="삭제" id='+item.offLectureNo+'></td>';
+                            str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
+                            str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.offLectureNo+'></td>';
                             str+='</tr>';
                          });
                          $('#dataTable').append(str);

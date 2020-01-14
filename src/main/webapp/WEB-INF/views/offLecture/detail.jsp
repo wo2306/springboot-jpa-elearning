@@ -18,13 +18,31 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		var result = document.getElementById('seat').innerText;
+		 //alert(endDate);
 		if(result<=0){
 			$('#btn').attr("href", "#");
 			alert("현재 남아있는 좌석 수가 없어 예약이 불가합니다.");
 		}
-		//alert(result);
+
+		 var endDate = document.getElementById('endDate').innerText;
+		 var yyyy = endDate.substr(0,4);
+		    var mm = endDate.substr(5,2);
+		    var dd = endDate.substr(8,2); 
+		    var offdate = new Date(yyyy, mm-1, dd);
+		    //var offDate = offdate.getTime();
+		    var date = new Date();
+		    //var startDate = date.getTime();
+		    //var dateresult = offDate-startDate;
+		    //alert(offDate);
+		   // alert(startDate);
+		  // alert(dateresult);
+		    if(offdate.getTime()<date.getTime()){
+		    	$('#btn').attr("href", "#");
+		    	alert("날짜가 지나 마감되었습니다.");
+		    } 
 	});
-</script>
+   
+    </script>
 </head>
 
 <body class="">
@@ -77,7 +95,7 @@
               </li>
               <li>
                 <h5>강의 날짜</h5>
-                <input type = "text" id ="endDate" name="endDate" value="${offLecture.offLectureDate}">${offLecture.offLectureDate}
+                <span id ="endDate">${offLecture.offLectureDate}</span>
               </li>
               <li>
                 <h5>남은 좌석 수</h5>

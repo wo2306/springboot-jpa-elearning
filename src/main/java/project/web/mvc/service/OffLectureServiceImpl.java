@@ -5,12 +5,15 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 
 import project.web.mvc.domain.Academy;
 import project.web.mvc.domain.OffLecture;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.repository.OffLectureRepository;
 
 @Service
@@ -31,11 +34,10 @@ public class OffLectureServiceImpl implements OffLectureService {
 		OffLecture offLecture = offLectureRepository.findByOffLectureNo(inoffLecture.getOffLectureNo());
 		offLecture.setCategory(inoffLecture.getCategory());
 		offLecture.setOffDetail(inoffLecture.getOffDetail());
-		//offLecture.setOffLectureDate(inoffLecture.getOffLectureDate());
+		offLecture.setOffLectureDate(inoffLecture.getOffLectureDate());
 		offLecture.setOffLectureName(inoffLecture.getOffLectureName());
 		offLecture.setOffLectureSeat(inoffLecture.getOffLectureSeat());
 		offLecture.setOffLectureTeacher(inoffLecture.getOffLectureTeacher());
-		
 	}
 
 	@Override
@@ -67,4 +69,9 @@ public class OffLectureServiceImpl implements OffLectureService {
 		return result;
 	}
 
+	@Override
+	public Page<OffLecture> selectAll(int pageNum) {
+		return offLectureRepository.findByOrderByOffLectureNo(PageRequest.of(pageNum - 1, 9));
+	}
+	
 }

@@ -110,8 +110,8 @@
                             str+='<td>'+item.academyName+'</td>';
                             str+='<td>'+item.academyAddrCity+'</td>';
                             str+='<td>'+item.academyAddrDetail+'</td>';
-                            str+='<td><input type="submit" value="수정"></td>';
-                            str+='<td><input type="button" value="삭제" id='+item.academyNo+'></td>';
+                            str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
+                            str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.academyNo+'></td>';
                             str+='</tr>';
                          });
                          $('#dataTable').append(str);
