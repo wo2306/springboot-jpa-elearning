@@ -102,6 +102,20 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Review</span></a>
       </li>
+      
+      <!-- admin 계정 추가등록 -->
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/signUpForm">
+          <i class="fas fa-fw fa-table"></i>
+          <span>admin SignUp</span></a>
+      </li>
+      
+      <!-- admin  계정삭제-->
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/manage/">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Manage User</span></a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

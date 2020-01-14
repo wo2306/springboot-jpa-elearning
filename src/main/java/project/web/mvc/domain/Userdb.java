@@ -38,6 +38,7 @@ public class Userdb {
 		this.userdbNo = userdbNo;
 	}
 	
+	//1 = Member, 0 = admin
 	@PrePersist
 	public void insertAuthority() {
 		this.authority = this.authority == null ? 1: this.authority;

@@ -9,7 +9,7 @@
 
 <!-- Page Title -->
 <title>LM company | Learning Machine | SignUp</title>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 
 <body class="">
@@ -79,6 +79,20 @@
 							<div class="form-group">
 								<button type="submit" class="btn btn-default" id="register"
 									onclick="isEmpty()">회원가입</button>
+							</div>
+
+							<div class="form-group">
+
+								<!-- 카카오로그인 -->
+								<a id="custom-login-btn" href="javascript:loginWithKakao()">
+									<img
+									src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
+									width="300" />
+								</a>
+
+								<button type="submit" class="btn btn-default">Register
+									Now</button>
+								<div class="clear text-center pt-10"></div>
 							</div>
 						</form>
 					</div>
@@ -202,5 +216,24 @@
 		})
 	</script>
 
+
+
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
+    function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
+      Kakao.Auth.login({
+        success: function(authObj) {
+          alert(JSON.stringify(authObj));
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+    };
+  //]]>
+</script>
 </body>
 </html>

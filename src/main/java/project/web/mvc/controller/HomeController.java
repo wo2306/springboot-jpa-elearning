@@ -1,9 +1,6 @@
 package project.web.mvc.controller;
 
-import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -23,7 +20,6 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
-//	private LoginServiceImpl loginService;
 	private final UserdbService userdbService;
 	private final OnLectureService onLectureService;
 	private final AuthorityService authorityService;

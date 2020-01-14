@@ -12,28 +12,20 @@ import org.springframework.web.servlet.ModelAndView;
 import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.service.AdminUserService;
-import project.web.mvc.service.AuthorityService;
-import project.web.mvc.service.OnLectureService;
-import project.web.mvc.service.UserdbService;
 
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/admin/user")
-public class AdminUserController {
+@RequestMapping("/admin/manage")
+public class AdminManageController {
 	
 	private final AdminUserService adminuserService;
-	private final UserdbService userdbService;
-	private final OnLectureService onLectureService;
-	private final AuthorityService authorityService;
-	
-	
 	
 	@RequestMapping("")
 	public ModelAndView main() {
-		System.out.println("admin controller진입");
+		System.out.println("admin manage controller진입");
 		 List<Userdb> list = adminuserService.selectAll();
-		return new ModelAndView("admin/user/adminUser", "list", list);
+		return new ModelAndView("admin/manage/adminUser", "list", list);
 	}
 	
 	//업데이트 폼 보여주기
@@ -58,7 +50,6 @@ public class AdminUserController {
 	@RequestMapping("/delete")
 	@ResponseBody
 	public void userdbdelete(Long userdbNo) {
-		authorityService.deleteByUserdbNo(userdbNo);
 		adminuserService.deleteUserdb(userdbNo);
 	}
 	
