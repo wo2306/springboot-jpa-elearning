@@ -74,11 +74,28 @@
             <h6 class="collapse-header">Custom Components:</h6>
             <a class="collapse-item" href="${pageContext.request.contextPath}/admin/onLecture/all/keyword/1">OnLecture</a>
             <a class="collapse-item" href="${pageContext.request.contextPath}/admin/offLecture">OffLecture</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/loadMap">LoadMap</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/coupon">Coupon</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/history">Sales history</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/roadMap">RoadMap</a>
+
           </div>
         </div>
+      </li>
+      <hr class="sidebar-divider">
+
+      <div class="sidebar-heading">
+        Order
+      </div>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/coupon">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Coupon</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/onOrder/list/1">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Sales History</span></a>
       </li>
 
       <!-- Divider -->
@@ -110,7 +127,15 @@
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
-
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
     </ul>
     <!-- End of Sidebar -->
     

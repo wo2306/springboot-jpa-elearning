@@ -10,6 +10,7 @@ target/
 .factorypath
 .project
 .settings
+
 .springBeans
 .sts4-cache
 
@@ -29,3 +30,5 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/java/project/web/mvc/controller/VideoController.java
+src/main/java/project/web/mvc/video/vimeo/

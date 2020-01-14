@@ -21,12 +21,7 @@
             horiz-align: center;
             text-align: center;
         }
-
         #in {
-            margin: auto;
-            width: 50%;
-        }
-        #inin {
             margin: auto;
             width: 50%;
         }
@@ -47,17 +42,16 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ol class="breadcrumb text-left text-black mt-10">
-                                <li><a href="#">온라인 강의 관리</a></li>
-                                <li class="active text-gray-silver"> - 온라인 강의들을 등록, 수정, 삭제할 수 있는 페이지입니다.</li>
+                                <li><a href="#">판매 내역 조회</a></li>
+                                <li class="active text-gray-silver"> - 판매 내역을 조회하고 관리할 수 있는 페이지입니다.</li>
                                 <!-- Topbar Search -->
                                 <li>
                                     <form name="searchForm" method="post" onsubmit="return searchform()">
                                         <div class="input-group" style="padding-left: 730px">
                                             <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
                                                 <option value="all">전체</option>
-                                                <option value="category">카테고리</option>
+                                                <option value="category">주문코드</option>
                                                 <option value="name">강의명</option>
-                                                <option value="teacher">강사명</option>
                                             </select>
                                             <input id="keyword" type="text" name="value" style="padding-left: 10px"
                                                    class="form-control bg-light border-0 small"
@@ -86,33 +80,40 @@
                         <table class="table table-bordered" id="dataTable2" width="100%"
                                cellspacing="0">
                             <tr>
-                                <th>강의번호</th>
-                                <th>카테고리</th>
-                                <th>이름</th>
-                                <th>등록일</th>
-                                <th colspan="2">기능</th>
+                                <th>주문번호</th>
+                                <th>주문코드</th>
+                                <th>강의명</th>
+                                <th>결제수단</th>
+                                <th>금액</th>
+                                <th>결제일자</th>
+                                <th>상태</th>
                             </tr>
+                            <c:choose>
+                                <c:when test="${list ne null}">
                             <c:forEach items="${requestScope.list}" var="list">
                                 <tr>
-                                    <td>${list.onLectureNo}</td>
-                                    <td>${list.onLectureCategory}</td>
-                                    <td>${list.onLectureName}</td>
-                                    <td><fmt:formatDate value="${list.onLectureRegdate}" pattern="yyyy.MM.dd hh:mm"/></td>
-                                    <input type=hidden name="offLectureNo" value="${list.onLectureNo}">
-                                    <td>
-                                        <button class="btn btn-dark">수정</button>
-                                    </td>
-                                    <td>
-                                        <button name="deleteBtn" class="btn btn-dark" id=${list.onLectureNo}>삭제</button>
-                                    </td>
+                                    <td>${list.onOrderNo}</td>
+                                    <td>${list.onOrderCode}</td>
+                                    <td>${list.onlecture.onLectureNo}</td>
+                                    <td>${list.onOrderMethod}</td>
+                                    <td><fmt:formatNumber value="${list.onOrderPrice}" pattern="₩#,###"/></td>
+                                    <td><fmt:formatDate value="${list.onOrderRegdate}" pattern="yyyy.MM.dd"/></td>
+                                    <td>${list.onOrderState}</td>
                                 </tr>
                             </c:forEach>
+                                </c:when>
+                                <c:otherwise>
+                                    <tr>
+                                        <td colspan="7">주문 내역이 없습니다.</td>
+                                    </tr>
+                                </c:otherwise>
+                            </c:choose>
                         </table>
                         <div class="container" id="in">
-                            <div class="row">
-                                <div class="col" id="inin">
-                                    <ul class="pagination" >
-                                        <c:if test="${page.totalPages ne 0}">
+                            <div class="row" >
+                                <div class="col">
+                                    <ul class="pagination">
+                                        <c:if test="${page.totalPages ne 0 && page ne null}">
                                         <c:choose>
                                             <c:when test="${page.hasPrevious() eq true}">
                                                 <li class="page-item">
@@ -137,7 +138,7 @@
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                           href="${pageContext.request.contextPath}/admin/onOrder/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <a class="page-link"
@@ -164,7 +165,6 @@
                                             </c:if>
                                         </li>
                                     </ul>
-                                   <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.upload&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:8888/oauth2callback&response_type=code&client_id=1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com" class="btn btn-dark">새로운 강의 등록하기</a>
                                 </div>
                             </div>
                         </div>

@@ -42,9 +42,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OnOrder> onSelectAll() {
-        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return onOrderRepository.findByUserdbUserdbNo(userdb.getUserdbNo());
+    public Page<OnOrder> onSelectAll(int pageNum) {
+        return onOrderRepository.findAll(PageRequest.of(pageNum - 1, 10));
     }
 
     @Override

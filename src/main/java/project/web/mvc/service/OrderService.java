@@ -13,7 +13,7 @@ public interface OrderService {
 
     void offInsert(OffOrder offOrder);
 
-    List<OnOrder> onSelectAll();
+    Page<OnOrder> onSelectAll(int pageNum);
 
     Page<OnOrder> onSelect(int pageNum);
     List<OffOrder> offSelect(int pageNum);

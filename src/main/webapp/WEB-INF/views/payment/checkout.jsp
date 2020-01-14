@@ -167,7 +167,8 @@
                 let msg = '결제가 완료되었습니다.';
                 alert(msg);
                 alert(rsp.pg_tid);
-                $("#paymentId").val(rsp.pg_tid);
+                $("#paymentId").val(fn(rsp.pg_tid));
+                //문자 날리고 숫자만 주문코드로 저장
                 $("#paymentPrice").val(parseInt($("#paymentPrice").val()))
                 $("#payForm").submit();
             } else {
@@ -176,6 +177,11 @@
                 location.href = "${pageContext.request.contextPath}/cart/checkout";
             }
         });
+    }
+    function fn(str){
+        var res;
+        res = str.replace(/[^0-9]/g,"");
+        return res;
     }
 </script>
 <!-- end main-content -->
