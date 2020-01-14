@@ -2,7 +2,7 @@ package project.web.mvc.service;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
+import org.springframework.data.domain.Page;
 
 import project.web.mvc.domain.Userdb;
 
@@ -16,5 +16,6 @@ public interface AdminUserService {
 	
 	public void deleteUserdb(Long userdbNo);
 	
-	public List<Userdb> selectByKey(String key, String value);
+	Page<Userdb> selectByKeyword(String keyword, int pageNum);
+	
 }
