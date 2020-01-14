@@ -187,7 +187,7 @@
 		        </exclusion>
 		    </exclusions>
 		</dependency>
- 
+
 		https://mvnrepository.com/artifact/com.google.apis/google-api-services-youtube
 		<dependency>
 		    <groupId>com.google.apis</groupId>
