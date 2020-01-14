@@ -82,5 +82,5 @@ public class OffLectureController {
 		//System.out.println(offLecture.getOffDetail());
 		return new ModelAndView("offLecture/detail", "offLecture", offLecture);
 	}
-	
+
 }

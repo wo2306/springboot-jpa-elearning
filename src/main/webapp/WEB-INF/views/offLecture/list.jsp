@@ -16,6 +16,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 </head>
 
 <body class="">
@@ -57,7 +58,7 @@
 											없습니다.</span></b>
 								</c:when>
 								<c:otherwise>
-									<c:forEach items="${requestScope.list}" var="list">
+									<c:forEach items="${requestScope.list}" var="list" varStatus="status">
 
 										<div class="col-sm-6 col-md-4 col-lg-4">
 											<div class="schedule-box maxwidth500 bg-light mb-30">
@@ -78,9 +79,10 @@
 													</ul>
 													<p>강사님 이름 : ${list.offLectureTeacher}</p>
 													<p>강의 설명 : ${list.offDetail}</p>
+													<p>남은 좌석수 : ${list.offLectureSeat-list.offLectureReservedseat}</p>
+													
 													<div class="mt-10">
-														<a class="btn btn-dark btn-theme-colored btn-sm mt-10"
-															href="#">Register</a> <a href="${pageContext.request.contextPath}/offLecture/detail/${list.offLectureNo}"
+															<a href="${pageContext.request.contextPath}/offLecture/detail/${list.offLectureNo}"
 															class="btn btn-dark btn-sm mt-10">Details</a>
 													</div>
 												</div>
