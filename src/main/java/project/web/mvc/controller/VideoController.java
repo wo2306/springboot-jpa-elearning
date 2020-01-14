@@ -13,15 +13,4 @@ public class VideoController {
 		return"";
 	}
 	
-	@RequestMapping("/myUpload")
-	public String myUpload() {
-		System.out.println("마이업로드호출");
-		return "/admin/onLecture/youtube/my_uploads";
-	}
-	@RequestMapping("/insertVideo")
-	
-	public String insert() {
-		System.out.println("insertVideo call *****");
-		return "/admin/onLecture/my_uploads";
-	}
 }
