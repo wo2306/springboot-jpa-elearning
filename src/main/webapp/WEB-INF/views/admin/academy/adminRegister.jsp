@@ -59,7 +59,7 @@
 									<div class="row">
 										<div class="col-md-6 col-md-offset-3">
 											<form id="booking-form" name="booking-form"
-												action="${pageContext.request.contextPath}/admin/academy/adminAcademyRegister/insert" method="post"
+												action="${pageContext.request.contextPath}/admin/academy/adminAcademyRegister/insert.do" method="post"
 												enctype="multipart/form-data">
 												<div class="row">
 													
@@ -88,6 +88,16 @@
 														</div>
 													</div>
 										
+										
+													<div class="col-sm-12">
+														<div class="form-group">
+														<label >file upload : </label>
+															<input type="file" 
+																name="file" >
+														</div>
+													</div>
+												
+												
 													<div class="col-sm-12">
 														<div class="form-group text-center">
 															<input name="form_botcheck" class="form-control"
