@@ -36,8 +36,8 @@
 						}   
 						
   						 var data="<tr class='onLecture_item'>";
-	                      data+="<td class='onLecture-remove'>"+"<button type='button' class='btn' id='btn' value='${list.onLectureNo}'>"+"취소"+"</button>"+"</td>";
-	                      data+="<td class='product-thumbnail'>"+"<a href='#'>"+"<img alt='member' src='http://placehold.it/285x300'>"+"</a>"+"</td>";
+	                      data+="<td class='onLecture-remove'>"+"<button type='button' class='btn' id='btn'>"+"취소"+"</button>"+"</td>";
+	                      data+="<td class='product-thumbnail' id='result.onLectureNo'>"+result.onLectureNo+"</a>"+"</td>";
 	                      data+="<td class='onLecture-name'>"+"<a href='#'>"+result.onLectureName+"</a>"+"</td>"
 	                      data+="<td class='onLecture-content'>"+"<span class='content'>"+result.onLectureContent+"</span>"+"</td>";
 	        			  data+="<td class='onLecture-teacher'>"+"<span class='teacher'>"+result.onLectureTeacher+"</span>"+"</td>";
@@ -51,8 +51,18 @@
 		//추가한  강의 삭제
 		$(document).on("click","#btn",function(){
 			$(this).closest("tr").remove();
+		})//강의 삭제 이벤트 끝
+		
+		//팝업 자식창 부모창으로 값넘기기
+		$("#roadmapBtn").click(function(){
+			
+			var add = $("#table tr").val()
+			alert(add)
+			console.log(add)
+			//$(opener.dacument).find("#addOnLecture").val(add);
+			//self.close();
 		})
-		//
+		
 	})
 
 </script>
@@ -95,24 +105,24 @@
                 <table class="table table-striped table-bordered tbl-shopping-cart">
                   <thead>
                     <tr>
-                      <th></th>
-                      <th>Photo</th>
-                      <th>Onlecture name</th>
-                      <th>Onlecture content</th>
-                      <th>Teacher</th>
-                      <th>Onlecture price</th>
+                      
+                      <th>onLectureNo</th>
+                      <th>onLectureName</th>
+                      <th>onLectureContent</th>
+                      <th>teacher</th>
+                      <th>onLecturePrice</th>
                     </tr>
                   </thead>
                   <tbody>
                   <c:forEach items="${onLectureList}" var="list" varStatus="status">
                     <tr class="onLecture_item">
-                      <td class="onLecture-remove"><a title="Remove this item" class="remove" href="#"></a></td>
-                      <td class="product-thumbnail"><a href="#"><img alt="member" src="http://placehold.it/285x300"></a></td>
-                      <td class="onLecture-name"><a href="#">${list.onLectureName}</a>
+                      <td class="onLecture-no">${list.onLectureNo}</td>
+                      <td class="onLecture-name"><a href="#">${list.onLectureName}</a></td>
                       <td class="onLecture-content"><span class="content">${list.onLectureContent}</span></td>
         			  <td class="onLecture-teacher"><span class="teacher">${list.onLectureTeacher}</span></td>
                       <td class="onLecture-price"><span class="price">${list.onLecturePrice}</span>
                       </td>
+                    
                     </tr>
                     <tr class="cart_item">
                       <td colspan="6"><div class="onlecture">
@@ -164,23 +174,23 @@
                   <h3>선택한 강의</h3>
                   <hr>
                   </div>
-                  
+                  <!-- <form action=""> -->
                      <table class="table table-striped table-bordered tbl-shopping-cart" id="table">
                   <thead>
                     <tr>
                       <th></th>
-                      <th>Photo</th>
-                      <th>Onlecture name</th>
-                      <th>Onlecture content</th>
-                      <th>Teacher</th>
-                      <th>Onlecture price</th>
+                      <th>onLectureNo</th>
+                      <th>onLectureName</th>
+                      <th>onLectureContent</th>
+                      <th>teacher</th>
+                      <th>onLecturePrice</th>
                     </tr>
                   </thead>
    
                 </table>
-     
+                  <button type="button" class="btn" id="roadmapBtn" value="">강의 선택 완료</button>
+              <!--   </form> -->
                   
-                  <button type="button" class="btn" value="">강의 선택 완료</button>
                </div>
               </div>
              </div>
