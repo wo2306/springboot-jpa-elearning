@@ -95,8 +95,9 @@
                         <div class="form-group">
                             <label>온라인 강의명</label>
                             <input type="hidden" class="form-control" placeholder="강의번호"
-                                   name="onLectureNo">
-                            <input type="text" class="form-control" placeholder="온라인 강의 명" name="onLectureName">
+                                   name="onLectureNo" value="${onLecture.onLectureNo}">
+                            <input type="text" class="form-control" placeholder="온라인 강의 명" name="onLectureName"
+                                   value="${onLecture.onLectureName}">
                         </div>
                         <div class="form-group">
                             <label>강의 카테고리</label>
@@ -112,12 +113,12 @@
                         <div class="form-group">
                             <label>강사명</label>
                             <input type="text" class="form-control" placeholder="ex) 장희정"
-                                   name="onLectureTeacher">
+                                   name="onLectureTeacher" value="${onLecture.onLectureTeacher}">
                         </div>
                         <div class="form-group">
                             <label>강의 가격</label>
                             <input type="number" class="form-control" placeholder="ex) 25000"
-                                   name="onLecturePrice">
+                                   name="onLecturePrice" value="${onLecture.onLecturePrice}">
                         </div>
                         <div class="form-group">
                             <label>강의 내용 설명</label>
@@ -127,30 +128,24 @@
                         <div class="form-group">
                             <label>썸네일용 강의 설명</label>
                             <input type="text" class="form-control" placeholder="썸네일용 강의 설명"
-                                   name="onLectureSummary">
+                                   name="onLectureSummary" value="${onLecture.onLectureSummary}">
                         </div>
 
                         <br>
                         <br>
-                        <h4>세부 강의 등록하기</h4>
+                        <h4>세부 강의 수정하기</h4>
                         <hr>
-                        <div id="detail">
-                            <div>
-                                <div class="form-group">
-                                    <label>세부 강의 제목</label>
-                                    <input id="title" type="text" class="form-control"
-                                           placeholder="강의 제목을 입력하세요" name="onDetailName">
-                                </div>
-                                <div class="form-group">
-                                    <label>동영상 업로드</label>
-                                    <br>
-                                    <input id="file" class="file" type="file" name="onLectureFile">
-                                    <input type="hidden" id="videoLength" name="videoLength" value=""/>
-                                    <p class="help-block"></p>
+                        <c:forEach items="${list}" var="detail">
+                            <div id="detail">
+                                <div>
+                                    <div class="form-group">
+                                        <label>세부 강의 제목</label>
+                                        <input id="title" type="text" class="form-control"
+                                               placeholder="강의 제목을 입력하세요" name="onDetailName" value="${detail.onDetailName}">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <input type="hidden" id="detailUrl" name="detailUrl" value=""/>
+                        </c:forEach>
                     </form>
 
                     <div class="checkbox">
@@ -216,6 +211,7 @@
                 }
             });
         }
+
         function deleteFile(file) {
             $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
         }

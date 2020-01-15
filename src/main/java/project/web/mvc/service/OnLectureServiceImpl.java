@@ -68,6 +68,8 @@ public class OnLectureServiceImpl implements OnLectureService {
         return list;
     }
 
+
+
     @Override
     public OnLecture selectOnLectureById(Long onLectureNo) {
         return onLectureRepository.findById(onLectureNo).orElse(null);
