@@ -1,31 +1,54 @@
 package project.web.mvc.service;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.common.collect.Lists;
 
-import project.web.mvc.domain.Academy;
 import project.web.mvc.domain.OffLecture;
-import project.web.mvc.domain.OnLecture;
 import project.web.mvc.repository.OffLectureRepository;
+import project.web.mvc.util.FileUtils;
 
 @Service
 public class OffLectureServiceImpl implements OffLectureService {
+	@Resource(name="fileUtils") 
+	private FileUtils fileUtils; 
 	
 	@Autowired
 	private OffLectureRepository offLectureRepository;
 
 	@Override
-	public void offLecInsert(OffLecture offLecture) {
+	public void offLecInsert(OffLecture offLecture, HttpServletRequest request) throws Exception {
 		OffLecture result = offLectureRepository.save(offLecture);
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		MultipartFile multipartFile = null;
 		
+		while(iterator.hasNext()) {
+			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			if(multipartFile.isEmpty()==false) {
+				System.out.println("----file start----");
+				System.out.println("name : "+multipartFile.getName());
+				System.out.println("filename : "+multipartFile.getOriginalFilename());
+				System.out.println("size : "+multipartFile.getSize());
+				System.out.println("----file end----");
+			}
+		}
+		
+		//List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+
 	}
 	
 	@Transactional

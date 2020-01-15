@@ -2,6 +2,8 @@ package project.web.mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,9 +36,9 @@ public class AdminOffLectureController {
 		return "admin/offLecture/adminOffLectureRegister";
 	}
 	
-	@RequestMapping("/adminOffLectureRegister/insert")
-	public ModelAndView offLectureInsert(OffLecture offLecture) {
-		offLectureService.offLecInsert(offLecture);
+	@RequestMapping("/adminOffLectureRegister/insert.do")
+	public ModelAndView offLectureInsert(OffLecture offLecture, HttpServletRequest request) throws Exception {
+		offLectureService.offLecInsert(offLecture, request);
 		List<OffLecture> list = offLectureService.selectAll();
 		System.out.println(list);
 		return new ModelAndView("redirect:/admin/offLecture", "list", list);
@@ -69,4 +71,6 @@ public class AdminOffLectureController {
 		offLectureService.offLecDelete(offLectureNo);
 		//return "redirect:/admin/offLecture";
 	}
+	
+	
 }

@@ -4,6 +4,8 @@ package project.web.mvc.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -38,8 +40,8 @@ public class OffLectureController {
 	 * off lecture 등록
 	 * */
 	@RequestMapping("/offLecInsert")
-	public String offLecInsert(OffLecture offLecture) {
-		offLectureService.offLecInsert(offLecture);
+	public String offLecInsert(OffLecture offLecture, HttpServletRequest request) throws Exception{
+		offLectureService.offLecInsert(offLecture, request);
 		return "redirect:list";
 	}
 	
