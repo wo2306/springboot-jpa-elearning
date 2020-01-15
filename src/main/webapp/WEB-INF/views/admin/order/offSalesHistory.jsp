@@ -49,8 +49,7 @@
                                     <form name="searchForm" method="post" onsubmit="return searchform()">
                                         <div class="input-group" style="padding-left: 730px">
                                             <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
-                                                <option value="all">전체</option>
-                                                <option value="code">주문코드</option>
+                                                <option value="list">전체</option>
                                                 <option value="id">유저 ID</option>
                                                 <option value="lecture">강의명</option>
                                             </select>
@@ -178,6 +177,9 @@
     function searchform() {
         var keyfield = $("#key option:selected").val();
         var keyword = $("#keyword").val();
+        if (keyword=="" ) {
+            keyword = "all";
+        }
         location.href = '${pageContext.request.contextPath}/admin/offOrder/' + keyfield + '/' + keyword + '/1';
         return false;
     }
