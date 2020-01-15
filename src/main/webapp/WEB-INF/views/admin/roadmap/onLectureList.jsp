@@ -43,8 +43,7 @@
 	        			  data+="<td class='onLecture-teacher'>"+"<span class='teacher'>"+result.onLectureTeacher+"</span>"+"</td>";
 	                      data+="<td class='onLecture-price'>"+"<span class='price'>"+result.onLecturePrice+"</span>"+"</td>";
 	                  	  data+="</tr>";
-	               
-	                    	$('#table').append(data);		  
+	                      $('#table').append(data);		  
 				}//callback			
 			});//ajax
 		})//click이벤트 끝
@@ -56,19 +55,11 @@
 		//팝업 자식창 부모창으로 값넘기기
 	//	$("#roadmapBtn").click(function(){
 		$(document).on("click","#roadmapBtn",function(){
-
 			var add = $("#selectable tr").val(this)
-			//$(opener.dacument).find("#addOnLectureTable").val(add);
-			//alert(add)
 			opener.addOnLecture(add);
 			self.close();
-		})	
-		
-			//$(opener.dacument).find("#addOnLecture").val(add);
-			//self.close();
-		//})
-		
-	})
+		});
+	});
 
 </script>
 
@@ -120,13 +111,12 @@
                   <tbody>
                   <c:forEach items="${onLectureList}" var="list" varStatus="status">
                     <tr class="onLecture_item">
-                      <td class="onLecture-no">${list.onLectureNo}</td>
+                      <td class="onLecture-no" id="${list.onLectureNo}">${list.onLectureNo}</td>
                       <td class="onLecture-name"><a href="#">${list.onLectureName}</a></td>
                       <td class="onLecture-content"><span class="content">${list.onLectureContent}</span></td>
         			  <td class="onLecture-teacher"><span class="teacher">${list.onLectureTeacher}</span></td>
                       <td class="onLecture-price"><span class="price">${list.onLecturePrice}</span>
                       </td>
-                    
                     </tr>
                     <tr class="cart_item">
                       <td colspan="6"><div class="onlecture">

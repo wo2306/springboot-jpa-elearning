@@ -13,17 +13,26 @@ $(function(){
 	$("#onlecturebtn").click(function(){
 		window.open("onLectureList/1", "PopupWin", "width=1000,height=1000")
 	})// click end	
-
-})//팝업창 끝
+	
+	//추가한  강의 삭제
+	$(document).on("click","#btn",function(){
+	
+		$(this).closest("tr").remove();
+		
+	})//강의 삭제 이벤트 끝
+	
+})
+	    //강의 추가하기
 	    function addOnLecture(data){
 		var result = data
 		$("#addOnLecture").append(result)
 		//alert(result+"결과값");
-		
 		$.each(result,function(index,row){
-			//alert($(row).html($("#result.onLectureNo").val()));
+			alert($(row).html());
 		})
 	}
+	
+	
 </script>
 
 </head>
@@ -60,7 +69,7 @@ $(function(){
               <div class="row">
                 <div class="col-md-12">
                   <h3>로드맵 등록</h3>
-                  <form class="form" method="post" action="${pageContext.request.contextPath}/admin/roadmap/insert/{onLectureNo}">
+                  <form class="form" method="post" action="${pageContext.request.contextPath}/admin/roadmap/insert/${result.onLectureNo}">
                     <table class="table no-border">
                       <tbody>
                        <tr>
@@ -80,6 +89,9 @@ $(function(){
                          </tr>
                         <tr>
                           <td><input type="text" class="form-control" placeholder="가격을 입력해주세요." name="roadmapPrice" ></td>
+                        </tr>
+                        <tr>
+                          <td><input type="hidden" class="onLectureNo" name="onLectureNo"></td>
                         </tr>                        
                         <tr>
                           <td><button type="submit" class="btn btn-default">등록</button></td>
