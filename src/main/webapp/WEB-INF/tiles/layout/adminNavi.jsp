@@ -79,10 +79,23 @@
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link" href="${pageContext.request.contextPath}/admin/review">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Review</span></a>
-    </li>
-    <hr class="sidebar-divider">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Review</span></a>
+      </li>
+      
+      <!-- admin 계정 추가등록 -->
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/user/signUpForm">
+          <i class="fas fa-fw fa-table"></i>
+          <span>admin SignUp</span></a>
+      </li>
+      
+      <!-- admin  계정삭제-->
+      <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/user/">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Manage User</span></a>
+      </li>
 
     <div class="sidebar-heading">
         Order
