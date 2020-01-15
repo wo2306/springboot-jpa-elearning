@@ -37,10 +37,10 @@ public class AdminNoticeController {
 //	}
 	
 	@RequestMapping("/read")
-	public String detail(@PathVariable Long noticeNo){
+	public String read(@PathVariable Long noticeNo){
 		Notice item = noticeService.selectByNoticeNo(noticeNo);
 		
-		return "admin/notice/adminNoticeDetail";
+		return "admin/notice/adminNoticeRead";
 	}
 	
 	@RequestMapping("/insertForm")
@@ -54,5 +54,11 @@ public class AdminNoticeController {
 		System.out.println(notice.getNoticeContent());
 		noticeService.insert(notice);
 		return "redirect:";
+	}
+	
+	@RequestMapping("/detail")
+	public ModelAndView detail(Long noticeNo) {
+		Notice selectednotice = noticeService.selectByNoticeNo(noticeNo);
+		return new ModelAndView("admin/notice/read", "item", selectednotice);
 	}
 }

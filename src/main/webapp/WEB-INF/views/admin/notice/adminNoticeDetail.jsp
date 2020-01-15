@@ -72,7 +72,7 @@
 				</span>
 			</div>
 
-			<div class="article_body">${question.classQuestionContent }</div>
+			<div classss="article_body">${question.classQuestionContent }</div>
 
 			<hr>
 			<h4>

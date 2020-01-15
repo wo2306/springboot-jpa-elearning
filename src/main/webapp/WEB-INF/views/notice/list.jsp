@@ -36,7 +36,7 @@
         <div class="section-content">
           <div class="row">
             <div class="col-md-12">
-              <h3 class="title text-white">공지사항</h3>
+              <h2 class="title text-white">공지사항</h3>
               <ol class="breadcrumb text-left text-black mt-10">
                 <li><a href="${pageContext.request.contextPath}/">Home</a></li>
               </ol>
@@ -77,6 +77,5 @@
     </section>
   </div>
   <!-- end main-content -->
-</div>
 </body>
 </html>

@@ -2,6 +2,8 @@ package project.web.mvc.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,16 +35,18 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
+	@Transactional
 	public void insert(Notice notice) {
 		Notice selnotice = noticeRepo.findByNoticeNo(notice.getNoticeNo());
 		if(selnotice == null){
 			Notice saveNotice = new Notice();
 			saveNotice.setNoticeTitle(notice.getNoticeTitle());
 			saveNotice.setNoticeContent(notice.getNoticeContent());
+			//saveNotice.setNoticeRegdate(null);
 			noticeRepo.save(notice);
 		}else {
-			notice.setNoticeTitle(notice.getNoticeTitle());
-			notice.setNoticeContent(notice.getNoticeContent());	
+			selnotice.setNoticeTitle(notice.getNoticeTitle());
+			selnotice.setNoticeContent(notice.getNoticeContent());	
 		}
 		
 	}

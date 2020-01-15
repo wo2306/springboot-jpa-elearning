@@ -65,9 +65,9 @@
           <div class="row">
                      <table class="table table-bordered" id="dataTable" cellspacing="0">
                         <tr>
-                           <th style="width:200px">글번호</th>
+                           <th style="width:100px">글번호</th>
                            <th style="width:500px">제목</th>
-                           <th style="width:200px">등록일</th>
+                           <th style="width:300px">등록일</th>
                            <th>수정</th>
                            <th>삭제</th>
                         </tr>
@@ -76,7 +76,7 @@
                               <td>${list.noticeNo}</td>
                               <td><a href="${pageContext.request.contextPath}/admin/notice/read/${list.noticeNo}">${list.noticeTitle}</a></td>
                               <td>${list.noticeRegdate}</td>
-                              <td><input type="button" class="btn btn-dark" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/admin/updateForm/${list.noticeNo}'"></td>
+                              <td><input type="button" class="btn btn-dark" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/notice/updateForm/${list.noticeNo}'"></td>
                               <td><input type="button" class="btn btn-dark" value="삭제" id=${list.noticeNo}></td>
                            </tr>
                         </c:forEach>

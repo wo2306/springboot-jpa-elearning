@@ -10,8 +10,9 @@ public interface NoticeRepository extends PagingAndSortingRepository<Notice, Lon
 
 
 	Notice findByNoticeNo(Long noticeNo);
+
 	
 //	@Modifying
-//	@Query("insert notice_no, notice_title , notice_content, notice_regdate into notice no "
-//			+ "values())
+//	@Query("INSERT INTO NOTICE no (no.notice_no, no.notice_content , no.notice_title, no.notice_regdate)   VALUES (?=1, ?=2,?=3, null)")
+//	void insertNotice(Long no, String content, String title);
 }
