@@ -57,6 +57,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <!-- JS | jquery plugin collection for this theme -->
     <script src="${pageContext.request.contextPath}/js/jquery-plugin-collection.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -84,6 +85,11 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
 		});  */
 
     </script>
+    <style>
+       * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+    </style>
 </head>
 
 <body>

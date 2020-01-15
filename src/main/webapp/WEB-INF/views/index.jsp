@@ -67,7 +67,7 @@
             </div>
             <div class="col-md-6">
               <div class="video-popup">
-                  <iframe width="460" height="315" src="https://www.youtube.com/embed/PrN9QB8HDNM?autoplay=1&controls=0&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <iframe width="460" height="315" src="https://www.youtube.com/embed/PrN9QB8HDNM?autoplay=1&controls=0&mute=1&rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             </div>
           </div>
