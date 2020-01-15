@@ -61,7 +61,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                 
+                <c:forEach items="${list}" var="notice"> 
+                  <tr>
+                    <td>${notice.noticeNo}</td>
+                    <td><strong><a href="${pageContext.request.contextPath}/notice/detail/${notice.noticeNo}">${notice.noticeTitle}</a></strong></td>
+                    <td>${notice.noticeRegdate}</td>
+                  </tr>
+                </c:forEach>  
                 </tbody>
               </table>
             </div>

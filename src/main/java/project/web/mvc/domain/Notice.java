@@ -1,11 +1,15 @@
 package project.web.mvc.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,7 +37,8 @@ public class Notice {
 	@Column(nullable = false)
     private String noticeContent;
 
-	@Column(nullable = false)
-    private String noticeRegdate;
+	@CreationTimestamp
+//	@Column(nullable = true)
+	private Date noticeRegdate;
 
 }

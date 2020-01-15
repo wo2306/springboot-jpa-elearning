@@ -141,8 +141,8 @@
                             str+='<td>'+item.userdbNo+'</td>';
                             str+='<td>'+item.userdbEmail+'</td>';
                             str+='<td>'+item.userdbNickname+'</td>';
-                            str+='<td><input type="submit" value="수정"></td>';
-                            str+='<td><input type="button" value="삭제" id='+item.userdbNo+'></td>';
+                            str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
+                            str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.userdbNo+'></td>';
                             str+='</tr>';
                          });
                          $('#dataTable').append(str);
