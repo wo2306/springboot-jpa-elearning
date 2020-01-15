@@ -189,7 +189,7 @@
                     request.setRequestHeader('Authorization', 'Bearer ' + access_token);
                 },
             }).done(function (data, textStatus, jqXHR) {
-                self.resumableUpload({
+                this.resumableUpload({
                     url: jqXHR.getResponseHeader('Location'),
                     file: file,
                     start: 0
@@ -225,7 +225,7 @@
 
     var metadata = {
         snippet: {
-            title: $("#title").val(),
+            title: "test",
             description: "Learning Machine Video Upload",
             categoryId: 22
         },
@@ -239,7 +239,6 @@
 
 
     resumableUpload = function (options) {
-        var self = this;
         var ajax = $.ajax({
             url: options.url,
             method: 'PUT',
@@ -247,85 +246,114 @@
             headers: {
                 'Content-Range': 'bytes ' + options.start + '-' + (options.file.size - 1) + '/' + options.file.size
             },
-            error: function (error) {
-                console.log(error)
-            }
-        });
+            xhr: function () {
+                var xhr = $.ajaxSettings.xhr();
+                if (xhr.upload) {
+                    xhr.upload.addEventListener('progress', function (e) {
+                            if (e.lengthComputable) {
+                                var bytesTransferred = e.loaded;
+                                var totalBytes = e.total;
+                                var percentage = Math.round(100 * bytesTransferred / totalBytes);
+                            }
 
+                        },
+                        false
+                    );
+                }
+                return xhr;
+            },
+            processData: false,
+            data: options.file
+        });
         ajax.done(function (response) {
-            console.log("2" + response);
-            alert('등록이 완료되었습니다.');
             videoId = response.id;
-            $("#detailUrl").val(videoId);
-            self.checkVideoStatus(videoId, INITIAL_STATUS_POLLING_INTERVAL_MS);
+            this.checkVideoStatus(videoId, INITIAL_STATUS_POLLING_INTERVAL_MS);
         });
     }
+
     checkVideoStatus = function (videoId, waitFornextPoll) {
         $.ajax({
             url: VIDEOS_SERVICE_URL,
             method: 'GET',
             headers: {
-                Authorization: 'Bearer ' + access_token
+                Authorization: 'Bearer ' + accessToken
             },
             data: {
                 part: 'status,processingDetails,player',
                 id: videoId
             }
-        }).done(function (response) {
-            console.log("3" + response);
-        });
-    }
-
-    $(function () {
-        $('#addForm').click(function () {
-            var str = "";
-            str += '<hr><div><div><label>세부 강의 제목</label><input type="text" class="form-control" placeholder="강의 제목을 입력하세요"';
-            str += 'name="onDetailName"></div><div class="form-group"><br><label>동영상 업로드</label><br><input type="file" name="onLectureFile">';
-            str += '<p class="help-block"></p><input type="hidden" name="videoLength" value=""/></div></div>';
-            $("#detail").parent().append(str);
-        });
-
-        $('#outInsert').click(function () {
-            location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
-        })
-        $('#summernote').summernote({
-            height: 300,                 // set editor height
-            minHeight: null,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
-            focus: true,
-            callbacks: {
-                onImageUpload: function (files, editor, welEditable) {
-                    for (var i = files.length - 1; i >= 0; i--) {
-                        sendFile(files[i], this);
-                    }
-                },
-                onMediaDelete: function (files) {
-                    var filename = files.attr('src').split('/')[5];
-                    deleteFile(filename);
+        }).done(function(response){
+            var uploadStatus = response.items[0].status.uploadStatus;
+            var embed = response.items[0].player.embedHtml;
+            console.log(embed);
+            console.log(uploadStatus);
+            if(uploadStatus == 'uploaded'){
+                setTimeout(function(){
+                    this.checkVideoStatus(videoId, waitFornextPoll * 2);
+                }, waitFornextPoll);
+            }else{
+                if(uploadStatus == 'processed'){
+                    console.log("finally completed!");
+                    $("#uploading").hide();
+                    $(".progress-bar").removeClass("progress-bar-striped active");
+                    $('.container').find('.embed-responsive').append(embed);
                 }
             }
         });
+    },
 
-        function sendFile(file, el) {
-            var form_data = new FormData();
-            form_data.append('file', file);
-            $.ajax({
-                data: form_data,
-                type: "POST",
-                url: '${pageContext.request.contextPath}/uploadImage',
-                cache: false,
-                contentType: false,
-                enctype: 'multipart/form-data',
-                processData: false,
-                success: function (url) {
-                    $(el).summernote('editor.insertImage', url);
+
+        $(function () {
+            $('#addForm').click(function () {
+                var str = "";
+                str += '<hr><div><div><label>세부 강의 제목</label><input type="text" class="form-control" placeholder="강의 제목을 입력하세요"';
+                str += 'name="onDetailName"></div><div class="form-group"><br><label>동영상 업로드</label><br><input type="file" name="onLectureFile">';
+                str += '<p class="help-block"></p><input type="hidden" name="videoLength" value=""/></div></div>';
+                $("#detail").parent().append(str);
+            });
+
+            $('#outInsert').click(function () {
+                location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
+            })
+            $('#summernote').summernote({
+                height: 300,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true,
+                callbacks: {
+                    onImageUpload: function (files, editor, welEditable) {
+                        for (var i = files.length - 1; i >= 0; i--) {
+                            sendFile(files[i], this);
+                        }
+                    },
+                    onMediaDelete: function (files) {
+                        var filename = files.attr('src').split('/')[5];
+                        deleteFile(filename);
+                    }
                 }
             });
-        }
-        function deleteFile(file) {
-            $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
-        }
-    });
+
+            function sendFile(file, el) {
+                var form_data = new FormData();
+                form_data.append('file', file);
+                $.ajax({
+                    data: form_data,
+                    type: "POST",
+                    url: '${pageContext.request.contextPath}/uploadImage',
+                    cache: false,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    success: function (url) {
+                        $(el).summernote('editor.insertImage', url);
+                    }
+                });
+            }
+
+            function deleteFile(file) {
+                $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
+            }
+        });
 
 </script>
 </html>

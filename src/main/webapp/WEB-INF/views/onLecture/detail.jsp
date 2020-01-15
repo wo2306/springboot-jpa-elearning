@@ -58,7 +58,6 @@
                         <div class="single-service">
                             <img src="http://placehold.it/750x500" alt="">
                             <h3 class="text-theme-colored line-bottom text-theme-colored">${onLecture.onLectureName}</h3>
-                            </h4>
                             <ul class="review_text list-inline">
                                 <li>
                                     <!--리뷰 평점 평균내서 -->

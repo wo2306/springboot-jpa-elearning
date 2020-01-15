@@ -41,6 +41,7 @@ public class OnLectureController {
     public String detail(@PathVariable Long onLectureNo, Model model) {
         List<OnDetail> list = onLectureService.selectById(onLectureNo);
         OnLecture onLecture = list.get(0).getOnLecture();
+        System.out.println(onLecture);
         List<OnLecture> teachers = onLectureService.selectByTeacher(onLecture.getOnLectureTeacher());
         model.addAttribute("teacherList", teachers);
         model.addAttribute("detailList", list);
