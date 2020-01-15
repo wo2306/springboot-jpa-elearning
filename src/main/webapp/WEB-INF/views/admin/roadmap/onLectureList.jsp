@@ -54,14 +54,19 @@
 		})//강의 삭제 이벤트 끝
 		
 		//팝업 자식창 부모창으로 값넘기기
-		$("#roadmapBtn").click(function(){
-			
-			var add = $("#table tr").val()
-			alert(add)
-			console.log(add)
+	//	$("#roadmapBtn").click(function(){
+		$(document).on("click","#roadmapBtn",function(){
+
+			var add = $("#selectable tr").val(this)
+			//$(opener.dacument).find("#addOnLectureTable").val(add);
+			//alert(add)
+			opener.addOnLecture(add);
+			self.close();
+		})	
+		
 			//$(opener.dacument).find("#addOnLecture").val(add);
 			//self.close();
-		})
+		//})
 		
 	})
 
@@ -92,7 +97,6 @@
         </div>
       </div>
     </section>
-
     <section>
       <div class="container">
         <div class="section-content">
@@ -186,19 +190,20 @@
                       <th>onLecturePrice</th>
                     </tr>
                   </thead>
+				<tbody id="selectable">
+				</tbody>
    
                 </table>
-                  <button type="button" class="btn" id="roadmapBtn" value="">강의 선택 완료</button>
+                  <button type="button" class="roadmapbtn" id="roadmapBtn">강의 선택 완료</button>
               <!--   </form> -->
                   
                </div>
               </div>
              </div>
             </div>
-           </div>
-          </div>
 	  </section>
-	 
+  </div>
+</div>
 <!-- end wrapper --> 
 
 <!-- Footer Scripts -->

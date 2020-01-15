@@ -53,6 +53,7 @@
 			$(this).closest("tr").remove();
 		})
 		//
+
 	})
 
 </script>
