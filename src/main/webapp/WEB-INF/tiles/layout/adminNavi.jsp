@@ -74,7 +74,7 @@
             <h6 class="collapse-header">Custom Components:</h6>
             <a class="collapse-item" href="${pageContext.request.contextPath}/admin/onLecture">OnLecture</a>
             <a class="collapse-item" href="${pageContext.request.contextPath}/admin/offLecture">OffLecture</a>
-            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/loadMap">LoadMap</a>
+            <a class="collapse-item" href="${pageContext.request.contextPath}/admin/roadmap">RoadMap</a>
             <a class="collapse-item" href="${pageContext.request.contextPath}/admin/coupon">Coupon</a>
             <a class="collapse-item" href="${pageContext.request.contextPath}/admin/history">Sales history</a>
           </div>
