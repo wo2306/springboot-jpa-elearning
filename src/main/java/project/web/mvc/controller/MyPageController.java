@@ -71,7 +71,8 @@ public class MyPageController {
     @RequestMapping("/offSelect")
     @ResponseBody
     public List<OffOrder> offSelect(Integer pageNum, Model model) {
-        List<OffOrder> list = orderService.offSelect(pageNum == null ? 1 : pageNum);
+        List<OffOrder> list = new ArrayList<>();
+        orderService.offSelect(pageNum == null ? 1 : pageNum).iterator().forEachRemaining(list::add);
         return list;
     }
     

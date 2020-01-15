@@ -27,6 +27,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public List<Cart> selectAll() {
         List<Cart> list = new ArrayList<>();
+        if (LoginCheck.getUserdb()!=null)
         cartRepository.findByUserdbNo(LoginCheck.getUserdb().getUserdbNo()).iterator().forEachRemaining(list::add);
         return list;
     }
