@@ -58,7 +58,6 @@
                         <div class="single-service">
                             <img src="http://placehold.it/750x500" alt="">
                             <h3 class="text-theme-colored line-bottom text-theme-colored">${onLecture.onLectureName}</h3>
-                            </h4>
                             <ul class="review_text list-inline">
                                 <li>
                                     <!--리뷰 평점 평균내서 -->
@@ -120,6 +119,28 @@
                                             </tbody>
                                     </table>
                                 </div>
+                            </div>
+                            <div>
+                            <table class="table table-bordered">
+                                        <tr>
+                                            <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white"
+                                                colspan="3">리뷰 리스트
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>작성자</th>
+                                            <th>강의 평점</th>
+                                            <th>리뷰 내용</th>
+                                            <tbody>
+                                           <c:forEach items="${reviewList}" var="review">
+                                                <tr>
+                                                    <td>${review.userdb.userdbNickname }</td>
+                                                    <td>${review.reviewScore }</td>
+                                                    <td>${review.reviewContent }</td>
+                                                </tr>
+                                            </c:forEach> 
+                                            </tbody>
+                                    </table>
                             </div>
                         </div>
                     </div>

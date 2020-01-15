@@ -39,16 +39,23 @@ public class OnLectureController {
 
     @RequestMapping("/detail/{onLectureNo}")
     public String detail(@PathVariable Long onLectureNo, Model model) {
+    	System.out.println("@@@@@@@@@@@@@@@@@@@@!#!@#!@#!@#@!#!@#!");
         List<OnDetail> list = onLectureService.selectById(onLectureNo);
         OnLecture onLecture = list.get(0).getOnLecture();
         List<OnLecture> teachers = onLectureService.selectByTeacher(onLecture.getOnLectureTeacher());
+        List<Review> reviewList = reviewService.selectByOnlectureNo(onLectureNo);
+       
+        System.out.println("@@@teachers : "+teachers.toString());
+        System.out.println("@@@detail : " +list);
+        System.out.println("@@@onLecture + "+onLecture);
+        System.out.println("@@@@reviewList : "+reviewList.toString());
+        
         model.addAttribute("teacherList", teachers);
         model.addAttribute("detailList", list);
         model.addAttribute("onLecture", onLecture);
-       // List<Review> reviews = reviewService.selectByOnlectureNo(1, onLectureNo);
-//        if (!list.isEmpty()) {
-//            model.addAttribute("reviewList", reviews);
-//        }
+        model.addAttribute("reviewList", reviewList);
+       
+        
         if (orderService.payCheck(onLectureNo)) {
             model.addAttribute("qnaList", qnaService.findTop10ByOrderByClassQuestionRegdateDesc());
             model.addAttribute("sugangList", sugangService.sugangList(onLectureNo));
