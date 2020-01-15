@@ -26,7 +26,7 @@
 			<!-- Section: inner-header -->
 			<section
 				class="inner-header divider parallax layer-overlay overlay-dark-5"
-				data-bg-img="http://placehold.it/1920x1280">
+				data-bg-img="${pageContext.request.contextPath}/images/banner/offlist.jpg">
 				<div class="container pt-70 pb-20">
 					<!-- Section Content -->
 					<div class="section-content">
@@ -63,7 +63,7 @@
 										<div class="col-sm-6 col-md-4 col-lg-4">
 											<div class="schedule-box maxwidth500 bg-light mb-30">
 												<div class="thumb">
-													<img class="img-fullwidth" alt=""
+													<img class="img-fullwidth"
 														src="${pageContext.request.contextPath}/images/offLecture/${list.offLectureNo}.png">
 													<div class="overlay"></div>
 												</div>

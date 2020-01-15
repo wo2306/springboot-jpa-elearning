@@ -97,7 +97,7 @@ public class OnLectureServiceImpl implements OnLectureService {
 
     @Override
     public List<OnLecture> selectLatest() {
-        return onLectureRepository.findTop3ByOrderByOnLectureRegdateDesc();
+        return onLectureRepository.findTop5ByOrderByOnLectureRegdateDesc();
     }
 }
 

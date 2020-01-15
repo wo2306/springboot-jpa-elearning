@@ -19,7 +19,7 @@ public interface OnLectureRepository extends PagingAndSortingRepository<OnLectur
 
     List<OnLecture> findTop5ByOnLectureTeacher(String teacherName);
 
-    List<OnLecture> findTop3ByOrderByOnLectureRegdateDesc();
+    List<OnLecture> findTop5ByOrderByOnLectureRegdateDesc();
 
     @Query("select count(o) from OnLecture o group by o.onLectureCategory order by o.onLectureCategory")
     List<Long> countCategory();
