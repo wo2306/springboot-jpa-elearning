@@ -47,9 +47,9 @@ public class QnaController {
 	@RequestMapping("/insert")
 	public String insert(ClassQuestion question) {
 		
-		classQuestionService.insert(question);
+		//classQuestionService.insert(question);
 		
-		return "redirect:list";
+		return "redirect:/qna/list";
 	}
 	
 

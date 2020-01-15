@@ -26,6 +26,10 @@
             margin: auto;
             width: 50%;
         }
+        #inin {
+            margin: auto;
+            width: 50%;
+        }
     </style>
 </head>
 <body class="">
@@ -93,10 +97,10 @@
                                     <td>${list.onLectureNo}</td>
                                     <td>${list.onLectureCategory}</td>
                                     <td>${list.onLectureName}</td>
-                                    <td>${list.onLectureRegdate}</td>
+                                    <td><fmt:formatDate value="${list.onLectureRegdate}" pattern="yyyy.MM.dd hh:mm"/></td>
                                     <input type=hidden name="offLectureNo" value="${list.onLectureNo}">
                                     <td>
-                                        <button class="btn btn-dark">수정</button>
+                                        <button class="btn btn-dark" name="updateBtn">수정</button>
                                     </td>
                                     <td>
                                         <button name="deleteBtn" class="btn btn-dark" id=${list.onLectureNo}>삭제</button>
@@ -106,8 +110,8 @@
                         </table>
                         <div class="container" id="in">
                             <div class="row">
-                                <div class="col">
-                                    <ul class="pagination">
+                                <div class="col" id="inin">
+                                    <ul class="pagination" >
                                         <c:if test="${page.totalPages ne 0}">
                                         <c:choose>
                                             <c:when test="${page.hasPrevious() eq true}">
@@ -160,6 +164,7 @@
                                             </c:if>
                                         </li>
                                     </ul>
+                                   <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.upload&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:8888/oauth2callback&response_type=code&client_id=1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com" class="btn btn-dark">새로운 강의 등록하기</a>
                                 </div>
                             </div>
                         </div>
@@ -179,6 +184,9 @@
     $("button[name=deleteBtn]").click(function () {
         alert("선택한 강의를 강의를 삭제하였습니다");
         location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).attr(id);
+    })
+    $("button[name=deleteBtn]").click(function () {
+        location.href = '${pageContext.request.contextPath}/admin/onLecture/updateForm/' + $(#deleteBtn).attr(id);
     })
 
 </script>

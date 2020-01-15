@@ -42,9 +42,6 @@ public class ClassAnswer {
     private Userdb userdb;
 
     @Column(nullable = false)
-    private String classAnswerTitle;
-
-    @Column(nullable = false)
     private String classAnswerContent;
 
     @CreationTimestamp

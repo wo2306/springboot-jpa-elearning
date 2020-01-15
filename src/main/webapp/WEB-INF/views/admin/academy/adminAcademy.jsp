@@ -59,8 +59,8 @@
 										<td>${list.academyName}</td>
 										<td>${list.academyAddrCity}</td>
 										<td>${list.academyAddrDetail}</td>
-										<td><input type="submit" onClick="location.href='${pageContext.request.contextPath}/admin/academy/adminUpdate/${list.academyNo}'" value="수정"></td>
-										<td><input type="button" value="삭제" id=${list.academyNo}></td>
+										<td><input type="submit" class="btn btn-dark" onClick="location.href='${pageContext.request.contextPath}/admin/academy/adminUpdate/${list.academyNo}'" value="수정"></td>
+										<td><input type="button" class="btn btn-dark" value="삭제" id=${list.academyNo}></td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -68,7 +68,7 @@
 							<h4>Academy 등록하기 :  </h4>
 							<form name="writeForm" method="post"
 								action="${pageContext.request.contextPath}/admin/academy/adminRegister">
-										<input type="submit" value="등록하기">
+										<input type="submit" class="btn btn-dark" value="등록하기">
 							
 			
 
@@ -110,8 +110,8 @@
                             str+='<td>'+item.academyName+'</td>';
                             str+='<td>'+item.academyAddrCity+'</td>';
                             str+='<td>'+item.academyAddrDetail+'</td>';
-                            str+='<td><input type="submit" value="수정"></td>';
-                            str+='<td><input type="button" value="삭제" id='+item.academyNo+'></td>';
+                            str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
+                            str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.academyNo+'></td>';
                             str+='</tr>';
                          });
                          $('#dataTable').append(str);

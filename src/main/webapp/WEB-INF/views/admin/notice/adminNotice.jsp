@@ -71,20 +71,20 @@
                            <th>수정</th>
                            <th>삭제</th>
                         </tr>
-                        <c:forEach items="${list}" var="list">
+                        <c:forEach items="${requestScope.list}" var="list">
                            <tr>
                               <td>${list.noticeNo}</td>
-                              <td><a href="${pageContext.request.contextPath}/admin/user/adminNoticeDetail">${list.noticeTitle}</a></td>
+                              <td><a href="${pageContext.request.contextPath}/admin/notice/read/${list.noticeNo}">${list.noticeTitle}</a></td>
                               <td>${list.noticeRegdate}</td>
-                              <td><input type="button" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/user/updateForm/${list.userdbNo}'"></td>
-                              <td><input type="button" value="삭제" id=${list.userdbNo}></td>
+                              <td><input type="button" class="btn btn-dark" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/admin/updateForm/${list.noticeNo}'"></td>
+                              <td><input type="button" class="btn btn-dark" value="삭제" id=${list.noticeNo}></td>
                            </tr>
                         </c:forEach>
                      </table>
                                  <div class="col-md-6">
                                     <div class="video-popup">
-                                       <a href="https://www.youtube.com/watch?v=pW1uVUg5wXM"
-                                          data-lightbox-gallery="youtube-video" title="Video"> </a>
+                                       <input type="button" class="btn btn-dark" value="등록" style="width: 500px; margin-left:150px"
+                                       onClick="location.href='${pageContext.request.contextPath}/admin/notice/insertForm'">
                                     </div>
                                  </div>
                               </div>
@@ -116,76 +116,13 @@
     </section>
   </div>
 </div>
-	<!-- <script type="text/javascript">
-              $(document).ready(function(){ 
-               
-                
-                //전체레코드 가져오기
-                function printUser() {
-                   $.ajax({
-                         type :"post",
-                         url :"${pageContext.request.contextPath}/admin/user/",
-                         dataType :"json",               
-                         success : function(result){
-                            alert("통신성공!!!");
-                            if(result!=null){
-                            alert(result);
-                            $('#dataTable tr:gt(0)').empty();
-                         var str = "";
-                         $.each(result,function(index,item){
-                            str+='<tr>';
-                            str+='<td>'+item.userdbNo+'</td>';
-                            str+='<td>'+item.userdbEmail+'</td>';
-                            str+='<td>'+item.userdbNickname+'</td>';
-                            str+='<td><input type="submit" value="수정"></td>';
-                            str+='<td><input type="button" value="삭제" id='+item.userdbNo+'></td>';
-                            str+='</tr>';
-                         });
-                         $('#dataTable').append(str);
-                            }else alert("등록된 유저가 없습니다.");
-                           },
-                        error : function(err){
-                         alert("통신실패!!!! err : " + err);
-                     } 
-                     });
-                }
-
-                
-                $('#dataTable').on('click','input[value=삭제]',function() {
-                	
-                    alert($(this).attr('id'));
-                    $.ajax({
-                    url:"${pageContext.request.contextPath}/admin/user/delete",
-                    type:"delete",
-                    data:"userdbNo="+$(this).attr('id'),
-                    dataType:"text",
-                    success:function(){
-                       alert("삭제완료");
-                       printUser();
-                    },error:function(err){
-                       alert("자식레코드있어서 못지워요");
-                    }
-                 })
-              });//delete
-              
-              
-              $(document).on('click','#search',function() {
-              	
-                  $.ajax({
-                  url:"${pageContext.request.contextPath}/admin/user/search",
-                  type:"post",
-                  data:$("form[name=serchForm]").serialize() ,
-                  dataType:"text",
-                  success:function(){
-                     alert("검색완료");
-                     printUser();
-                },error:function(err){
-                     alert("통신오류");
-                  }
-               })
-            });//search
-              })
-              </script> -->
-
+	<script type="text/javascript">
+	 function searchform() {
+	        var keyfield = $("#key option:selected").val();
+	        var keyword = $("#keyword").val();
+	        location.href = '${pageContext.request.contextPath}/admin/notice/' + keyfield + '/' + keyword + '/1';
+	        return false;
+	    }
+	</script>
 </body>
 </html>

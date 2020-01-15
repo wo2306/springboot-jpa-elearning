@@ -50,9 +50,7 @@
   float: left;
   margin-right: 40px;
   }
-  
   </style>
-
 </head>
 <body>
         <!-- Topbar -->

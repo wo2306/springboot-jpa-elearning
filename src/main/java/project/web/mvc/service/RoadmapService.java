@@ -7,7 +7,9 @@ import project.web.mvc.domain.Roadmap;
 public interface RoadmapService {
 	void insert(Roadmap roadmap);
 	void update(Roadmap roadmap);
-	void delete(int roadmapNo);
-	
+	void delete(Long roadmapNo);
+	Roadmap selectById(Long roadmapNo);
+	List<Roadmap> selectByName(String roadmapName);
 	List<Roadmap> selectAll();
+	
 }

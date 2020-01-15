@@ -42,9 +42,6 @@ public class Review {
     private OnLecture onLecture;
 
 	@Column(nullable = false)
-    private String reviewTitle;
-
-	@Column(nullable = false)
     private String reviewContent;
 
     private int reviewScore;
