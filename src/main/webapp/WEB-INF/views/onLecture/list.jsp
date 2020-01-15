@@ -62,7 +62,8 @@
                                 <div class="col-sm-6 col-md-4" style="height: 500px">
                                     <div class="service-block bg-white">
                                         <div class="thumb"><img alt="featured project"
-                                                                src="http://placehold.it/265x195"
+                                                                src="${pageContext.request.contextPath}/images/onLecture/${dto.onLectureNo}.png"
+                                                                style="width:265px; height: 195px;"
                                                                 class="img-fullwidth">
                                             <h4 class="text-white mt-0 mb-0"><span class="price"><fmt:formatNumber
                                                     value="${dto.onLecturePrice*(100-dto.onLectureDiscount)/100}"
@@ -73,8 +74,10 @@
                                                 class="line-bottom mb-10">${dto.onLectureName}</h5>
                                             <p>${dto.onLectureSummary}</p>
                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의 상세 보기</a>
-                                           <input class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" type="button" value="wishlist" id=${dto.onLectureNo}>
+                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의
+                                                상세 보기</a>
+                                            <input class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
+                                                   type="button" value="wishlist" id=${dto.onLectureNo}>
 
                                         </div>
                                     </div>
@@ -245,23 +248,23 @@
         }
         return false;
     }
-    
-    $(document).on('click','input[value=wishlist]', function(){
-   	 if(confirm('위시리스트에 담을까요?')) {
-		$.ajax({
-           type :"post",
-           url :"${pageContext.request.contextPath}/wishlist",
-           dataType :"text",
-           data :"onLectureNo="+$(this).attr('id'),
-           success : function(){
-           	  if(confirm('성공해쓰 보러갈래?')) return location.href = "${pageContext.request.contextPath}/myPage/info/1";
-           },
-           error : function(err){
-           	 alert("이미 중복된 강의가 있습니다." + err);
-       } 
-       });
-   	 }
-	})
+
+    $(document).on('click', 'input[value=wishlist]', function () {
+        if (confirm('위시리스트에 담을까요?')) {
+            $.ajax({
+                type: "post",
+                url: "${pageContext.request.contextPath}/wishlist",
+                dataType: "text",
+                data: "onLectureNo=" + $(this).attr('id'),
+                success: function () {
+                    if (confirm('성공해쓰 보러갈래?')) return location.href = "${pageContext.request.contextPath}/myPage/info/1";
+                },
+                error: function (err) {
+                    alert("이미 중복된 강의가 있습니다." + err);
+                }
+            });
+        }
+    })
 </script>
 </body>
 </html>
