@@ -13,6 +13,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,6 +55,10 @@ public class OffLecture {
     
     @Column(nullable = false)
     private String offDetail;
+    
+    @Column(nullable = false)
+    @ColumnDefault("10000")
+    private int price;
 
     //@CreationTimestamp
     @Temporal(TemporalType.DATE)

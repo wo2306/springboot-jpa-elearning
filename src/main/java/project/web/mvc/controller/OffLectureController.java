@@ -89,5 +89,12 @@ public class OffLectureController {
 		//System.out.println(offLecture.getOffDetail());
 		return new ModelAndView("offLecture/detail", "offLecture", offLecture);
 	}
+	
+	@RequestMapping("checkout/{offLectureNo}")
+	public ModelAndView offLecCheckout(@PathVariable Long offLectureNo) {
+		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
+		System.out.println(offLecture.getOffLectureName());
+		return new ModelAndView("payment/offLecturecheckout", "offLecture", offLecture);
+	}
 
 }

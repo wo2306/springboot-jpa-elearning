@@ -86,13 +86,12 @@ public class AdminOffLectureController {
 	 * 	:bean 설정문서
 	 * */
 	@RequestMapping("/adminOffLectureRegister/insert.do")
-	public ModelAndView upload(String name, MultipartFile file, HttpSession session) {
-		
+	public ModelAndView upload(String name, MultipartFile file, HttpSession session, OffLecture offLecture) {
+		offLectureService.offLecInsert(offLecture);
 		ModelAndView mv = new ModelAndView();
 		try {
 			//실제 root 경로를 가져오기
 			String path = session.getServletContext().getRealPath("/WEB-INF/save");
-			
 			//첨부된 파일 이름 가져오기
 			String fileName = file.getOriginalFilename();
 			file.transferTo(new File(path +"/" + fileName)); //폴더에 저장완료
@@ -103,7 +102,7 @@ public class AdminOffLectureController {
 			mv.addObject("path", path);
 			mv.addObject("fileSize", file.getSize());
 			
-			mv.setViewName("admin/offLecture/adminOffLecture"); //WEB-INF/views/uploadResult.jsp이동
+			mv.setViewName("redirect:/admin/offLecture/list/1"); //WEB-INF/views/uploadResult.jsp이동
 			
 		}catch(Exception e){
 			e.printStackTrace();
