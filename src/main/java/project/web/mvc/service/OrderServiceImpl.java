@@ -60,6 +60,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Page<OnOrder> onSelectById(int pageNum, String keyword) {
+        return onOrderRepository.findByOrderCode(keyword, PageRequest.of(pageNum - 1, 10));
+    }
+
+    @Override
+    public Page<OnOrder> onSelectByLectureName(int pageNum, String keyword) {
+        return onOrderRepository.findByLectureName(keyword,  PageRequest.of(pageNum - 1, 10));
+    }
+
+    @Override
     public boolean payCheck(Long onLectureNo) {
         Userdb userdb = LoginCheck.getUserdb();
         if (userdb != null) {

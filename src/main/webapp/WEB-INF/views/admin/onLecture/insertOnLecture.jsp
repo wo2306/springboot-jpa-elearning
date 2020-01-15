@@ -16,14 +16,18 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <![endif]-->
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
     <style>
         #out {
             horiz-align: center;
             text-align: center;
         }
+
         label {
             font-weight: bold;
         }
+
         #in {
             margin: auto;
             width: 50%;
@@ -87,18 +91,24 @@
 
                     </div>
                     <hr>
-                    <form action="${pageContext.request.contextPath}/admin/onLecture/insert" method="post">
+                    <form id="onLectureForm" action="${pageContext.request.contextPath}/onLecture/insert" method="post">
                         <div class="form-group">
-                            <label>온라인 강의 명</label>
+                            <label>온라인 강의명</label>
                             <input type="text" class="form-control" placeholder="온라인 강의 명" name="onLectureName">
                         </div>
                         <div class="form-group">
                             <label>강의 카테고리</label>
-                            <input type="text" class="form-control" placeholder="ex) java, 알고리즘, python ..."
-                                   name="onLectureCategory">
+                            <select name="onLectureCategory" class="form-control">
+                                <option>---카테고리 선택---</option>
+                                <option>웹개발</option>
+                                <option>모바일앱</option>
+                                <option>게임개발</option>
+                                <option>알고리즘</option>
+                                <option>데이터베이스</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label>강의 선생님명</label>
+                            <label>강사명</label>
                             <input type="text" class="form-control" placeholder="ex) 장희정"
                                    name="onLectureTeacher">
                         </div>
@@ -108,9 +118,9 @@
                                    name="onLecturePrice">
                         </div>
                         <div class="form-group">
-                            <label>강의 내용설명</label>
-                            <input type="text" class="form-control" placeholder="강의에 대한 설명을 쓰세요"
-                                   name="onLectureContent">
+                            <label>강의 내용 설명</label>
+                            <textarea class="form-control" name="onLectureContent" id="summernote" rows="7"
+                                      placeholder="강의에 대한 설명을 쓰세요"></textarea>
                         </div>
                         <div class="form-group">
                             <label>썸네일용 강의 설명</label>
@@ -127,22 +137,24 @@
                                 <div class="form-group">
                                     <label>세부 강의 제목</label>
                                     <input id="title" type="text" class="form-control"
-                                           placeholder="강의 제목을 입력하세요" name="onDetailName[]">
+                                           placeholder="강의 제목을 입력하세요" name="onDetailName">
                                 </div>
                                 <div class="form-group">
                                     <label>동영상 업로드</label>
                                     <br>
-                                    <input id="file" type="file" name="onLectureFile[]">
+                                    <input id="file" class="file" type="file" name="onLectureFile">
+                                    <input type="hidden" id="videoLength" name="videoLength" value=""/>
                                     <p class="help-block"></p>
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="detailUrl" name="detailUrl" value=""/>
                     </form>
 
                     <div class="checkbox">
                         <br>
                         <input type="button" class="btn btn-dark" value="강의 추가하기" id="addForm">&nbsp;&nbsp;
-                        <button type="submit" class="btn btn-dark" id="submit">강의 등록 완료</button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-dark" id="submit">강의 등록 완료</button>&nbsp;&nbsp;
                         <button type="button" class="btn btn-dark" id="outInsert">나가기</button>
                     </div>
                 </div>
@@ -154,6 +166,17 @@
 
 </body>
 <script>
+    document.querySelector('.file').addEventListener('change', function () {
+        var vid = document.createElement('video');
+        var fileURL = URL.createObjectURL(this.files[0]);
+        vid.src = fileURL;
+        vid.ondurationchange = function () {
+            console.log(this.duration);
+            dur = this.duration;
+            $("#videoLength").val(Math.floor(dur) + '분')
+        };
+    });
+
     $("#submit").on('click', function () {
         var file = $('#file').get(0).files[0];
         if (file) {
@@ -224,38 +247,20 @@
             headers: {
                 'Content-Range': 'bytes ' + options.start + '-' + (options.file.size - 1) + '/' + options.file.size
             },
-            xhr: function () {
-                var xhr = $.ajaxSettings.xhr();
-                if (xhr.upload) {
-                    xhr.upload.addEventListener('progress', function (e) {
-                            if (e.lengthComputable) {
-                                var bytesTransferred = e.loaded;
-                                var totalBytes = e.total;
-                                var percentage = Math.round(100 * bytesTransferred / totalBytes);
-                                $('.progress').show();
-                                $(".progress-bar").attr({
-                                    'style': 'width :' + percentage + '%',
-                                });
-                            }
-                        },
-                        false
-                    );
-                }
-                return xhr;
-            },
-            processData: false,
-            data: options.file
+            error: function (error) {
+                console.log(error)
+            }
         });
 
         ajax.done(function (response) {
-            $("#uploading").html("업로딩중 잠시만 기다려 주세요!");
-            $('.progress-bar').addClass("progress-bar-striped active");
+            console.log("2" + response);
+            alert('등록이 완료되었습니다.');
             videoId = response.id;
+            $("#detailUrl").val(videoId);
             self.checkVideoStatus(videoId, INITIAL_STATUS_POLLING_INTERVAL_MS);
         });
     }
     checkVideoStatus = function (videoId, waitFornextPoll) {
-        var self = this;
         $.ajax({
             url: VIDEOS_SERVICE_URL,
             method: 'GET',
@@ -267,38 +272,59 @@
                 id: videoId
             }
         }).done(function (response) {
-            var uploadStatus = response.items[0].status.uploadStatus;
-            var embed = response.items[0].player.embedHtml;
-            console.log(embed);
-            console.log(uploadStatus);
-            if (uploadStatus == 'uploaded') {
-                setTimeout(function () {
-                    self.checkVideoStatus(videoId, waitFornextPoll * 2);
-                }, waitFornextPoll);
-            } else {
-                if (uploadStatus == 'processed') {
-                    console.log("finally completed!");
-                    $("#uploading").html("업로드 완료!!");
-                    $("#uploading").hide();
-                    $(".progress-bar").removeClass("progress-bar-striped active");
-                    $('.container').find('.embed-responsive').append(embed);
-
-                }
-            }
+            console.log("3" + response);
         });
     }
+
     $(function () {
         $('#addForm').click(function () {
             var str = "";
             str += '<hr><div><div><label>세부 강의 제목</label><input type="text" class="form-control" placeholder="강의 제목을 입력하세요"';
             str += 'name="onDetailName"></div><div class="form-group"><br><label>동영상 업로드</label><br><input type="file" name="onLectureFile">';
-            str += '<p class="help-block"></p></div></div>';
+            str += '<p class="help-block"></p><input type="hidden" name="videoLength" value=""/></div></div>';
             $("#detail").parent().append(str);
         });
 
         $('#outInsert').click(function () {
             location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
         })
+        $('#summernote').summernote({
+            height: 300,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true,
+            callbacks: {
+                onImageUpload: function (files, editor, welEditable) {
+                    for (var i = files.length - 1; i >= 0; i--) {
+                        sendFile(files[i], this);
+                    }
+                }
+                onMediaDelete: function (files) {
+                    var filename = files.attr('src').split('/')[5];
+                    deleteFile(filename);
+                }
+            }
+        });
+
+        function sendFile(file, el) {
+            var form_data = new FormData();
+            form_data.append('file', file);
+            $.ajax({
+                data: form_data,
+                type: "POST",
+                url: '${pageContext.request.contextPath}/uploadImage',
+                cache: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                processData: false,
+                success: function (url) {
+                    $(el).summernote('editor.insertImage', url);
+                }
+            });
+        }
+        function deleteFile(file) {
+            $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
+        }
     });
 
 </script>

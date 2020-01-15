@@ -18,10 +18,17 @@ import java.util.List;
 public class AdminOrderController {
     private final OrderService orderService;
 
-    @RequestMapping("/list/{pageNum}")
-    public String selectAll(@PathVariable int pageNum, Model model) {
+    @RequestMapping("/{keyfield}/{keyword}/{pageNum}")
+    public String select(@PathVariable String keyfield, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
         List<OnOrder> list = new ArrayList<>();
-        Page<OnOrder> onOrders = orderService.onSelectAll(pageNum);
+        Page<OnOrder> onOrders = null;
+        if (keyfield.equals("list")) {
+            onOrders = orderService.onSelectAll(pageNum);
+        } else if (keyfield.equals("code")) {
+            onOrders = orderService.onSelectById(pageNum, keyword);
+        } else if (keyfield.equals("lecture")) {
+            onOrders = orderService.onSelectByLectureName(pageNum, keyword);
+        }
         onOrders.iterator().forEachRemaining(list::add);
         if (!list.isEmpty()) {
             model.addAttribute("list", list);

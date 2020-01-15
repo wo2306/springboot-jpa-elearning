@@ -50,8 +50,8 @@
                                         <div class="input-group" style="padding-left: 730px">
                                             <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
                                                 <option value="all">전체</option>
-                                                <option value="category">주문코드</option>
-                                                <option value="name">강의명</option>
+                                                <option value="code">주문코드</option>
+                                                <option value="lecture">강의명</option>
                                             </select>
                                             <input id="keyword" type="text" name="value" style="padding-left: 10px"
                                                    class="form-control bg-light border-0 small"
@@ -94,7 +94,7 @@
                                 <tr>
                                     <td>${list.onOrderNo}</td>
                                     <td>${list.onOrderCode}</td>
-                                    <td>${list.onlecture.onLectureNo}</td>
+                                    <td>${list.onlecture.onLectureName}</td>
                                     <td>${list.onOrderMethod}</td>
                                     <td><fmt:formatNumber value="${list.onOrderPrice}" pattern="₩#,###"/></td>
                                     <td><fmt:formatDate value="${list.onOrderRegdate}" pattern="yyyy.MM.dd"/></td>
@@ -118,7 +118,7 @@
                                             <c:when test="${page.hasPrevious() eq true}">
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number}"
+                                                       href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${page.number}"
                                                        aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                     </a>
                                                 </li>
@@ -126,7 +126,7 @@
                                             <c:otherwise>
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
+                                                       href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${page.number+1}"
                                                        aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                     </a>
                                                 </li>
@@ -138,11 +138,11 @@
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onOrder/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                           href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                           href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </li>
@@ -152,12 +152,12 @@
                                             <c:choose>
                                                 <c:when test="${page.hasNext() eq true}">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+2}"
+                                                       href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${page.number+2}"
                                                        aria-label="Next"> <span aria-hidden="true">다음</span> </a>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
+                                                       href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${page.number+1}"
                                                        aria-label="Previous"> <span aria-hidden="true">다음</span>
                                                     </a>
                                                 </c:otherwise>
@@ -178,12 +178,12 @@
     function searchform() {
         var keyfield = $("#key option:selected").val();
         var keyword = $("#keyword").val();
-        location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
+        location.href = '${pageContext.request.contextPath}/admin/onOrder/' + keyfield + '/' + keyword + '/1';
         return false;
     }
     $("button[name=deleteBtn]").click(function () {
         alert("선택한 강의를 강의를 삭제하였습니다");
-        location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).attr(id);
+        location.href = '${pageContext.request.contextPath}/admin/onOrder/delete/' + $(this).attr(id);
     })
 
 </script>

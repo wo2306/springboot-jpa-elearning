@@ -12,6 +12,7 @@ import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Review;
 import project.web.mvc.service.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class OnLectureController {
     private final SugangService sugangService;
     private final ReviewService reviewService;
     private final ClassQuestionService qnaService;
+    private final OnDetailService onDetailService;
 
     @RequestMapping("/list/{pageNUm}")
     public String list(Model model, @PathVariable int pageNum) {
@@ -56,9 +58,14 @@ public class OnLectureController {
     }
 
     @RequestMapping("/insert")
-    public String insert(OnLecture onLecture) {
+    public String insert(OnLecture onLecture, HttpServletRequest request, String detailUrl) {
         onLectureService.insert(onLecture);
-        return "redirect:onLecture/list";
+        String[] detailNames = request.getParameterValues("onDetailName");
+        String[] videoLength = request.getParameterValues("videoLength");
+        for (int i = 0; i < detailNames.length; i++) {
+            onDetailService.insert(new OnDetail(null, onLecture, detailUrl, detailNames[i], videoLength[i]));
+        }
+        return "redirect:admin/onLecture/all/keyword/1";
     }
 
     @RequestMapping("/delete/{onLectureNo}")
