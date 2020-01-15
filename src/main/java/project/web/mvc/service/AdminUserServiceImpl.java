@@ -5,8 +5,9 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import com.google.common.collect.Lists;
 
@@ -51,12 +52,10 @@ public class AdminUserServiceImpl implements AdminUserService {
 	}
 	
 	@Override
-	public List<Userdb> selectByKey(String key, String value){
+	public Page<Userdb> selectByKeyword(String keyword, int pageNum) {
 		
-		List<Userdb> list = userdbRepo.searchByKey(key, value);
-		System.out.println(list);
-		return list;
-		
+		return userdbRepo.findByKeyword(keyword, PageRequest.of(pageNum - 1, 9));
+		  
 	}
 
 }

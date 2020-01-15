@@ -1,6 +1,5 @@
 package project.web.mvc.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +32,28 @@ public class RoadmapServiceImpl implements RoadmapService {
 	}
 
 	@Override
-	public void delete(int roadmapNo) {
+	public void delete(Long roadmapNo) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public List<Roadmap> selectAll() {
-		List<Roadmap> list = Lists.newArrayList(roadmapRepo.findAll());
-
+		List<Roadmap> list = Lists.newArrayList(roadmapRepo.findByRoadmapNameSelectAll());
 		return list;
+	}
+
+	@Override
+	public Roadmap selectById(Long roadmapNo) {
+			
+		return roadmapRepo.findById(roadmapNo).orElse(null);
+	}
+
+	@Override
+	public List<Roadmap> selectByName(String roadmapName) {
+		
+		return roadmapRepo.findByRoadmapName(roadmapName);
+		
 	}
 
 }

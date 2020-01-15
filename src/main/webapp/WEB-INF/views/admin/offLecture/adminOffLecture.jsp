@@ -73,8 +73,8 @@
 										<td>${list.offLectureSeat-list.offLectureReservedseat}</td>
 										<td>${list.offDetail}</td>
 										<td>${list.offLectureDate}</td>
-										<td><input type="submit" onClick="location.href='${pageContext.request.contextPath}/admin/offLecture/offLecUpdate/${list.offLectureNo}'" value="수정" ></td>
-										<td><input type="button" value="삭제" id=${list.offLectureNo}></td>
+										<td><input type="submit" class="btn btn-dark" onClick="location.href='${pageContext.request.contextPath}/admin/offLecture/offLecUpdate/${list.offLectureNo}'" value="수정" ></td>
+										<td><input type="button" class="btn btn-dark" value="삭제" id=${list.offLectureNo}></td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -82,7 +82,7 @@
 						<h4>OffLecture 등록하기 :  </h4>
 							<form name="writeForm" method="post"
 								action="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister">
-								<input type="submit" value="등록하기">
+								<input type="submit" class="btn btn-dark" value="등록하기">
 								
 									
 
@@ -134,8 +134,8 @@
                             str+='<td>'+item.offLectureAvailableseat+'</td>';
                             str+='<td>'+item.offDetail+'</td>';
                             str+='<td>'+item.offLectureDate+'</td>';
-                            str+='<td><input type="submit" value="수정"></td>';
-                            str+='<td><input type="button" value="삭제" id='+item.offLectureNo+'></td>';
+                            str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
+                            str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.offLectureNo+'></td>';
                             str+='</tr>';
                          });
                          $('#dataTable').append(str);

@@ -18,27 +18,65 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-
 <body>
-
-        <div class="author">
-          <span class="author"><strong>작성자 : ${question.userdb.userdbNickname } </strong></span>
-        
-          <span class="option" fxd-data="{&quot;id&quot;:20900,&quot;type&quot;:&quot;question&quot;}">
-          </span>
+<section class="bg-white-f7">
+  <div class="container pb-0">
+    <div class="section-title">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="text-center">
+            
+            <h2 class="title">${question.classQuestionTitle }</h2>
+            <p>등록일 : ${question.classQuestionRegdate }</p>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container">
 
-<div class="article_body">
-	${question.classQuestionContent }
-</div>
-  
+        <!-- Textblock -->
+        <div class="esc-heading heading-line-bottom lr-line left-heading">
+          <span class="text-highlight light" style="font-size: 25px;"> 작성자 : ${question.userdb.userdbNickname }</span>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+            	${question.classQuestionContent }
+            </p>
+            </div>
+        </div>
 <hr>
-<h4><span style="color:red">A.</span><b>답변하기</b></h4>
-<form >
-<textarea name="classAnswerContent"  rows="17" cols="70"></textarea><br>
-<button style=" color : #363636; background : #FFFFFF; padding : 5px 12px">답변 입력</button>
-</form>
-<button disabled="" style=" color : #FFFFFF; background : #FF7867; padding : 5px 12px">로그인 시 답변을 제출할 수 있습니다.</button>
- 
+      
+<div class="col-md-6">
+            <div class="heading-line-bottom">
+              <span class="text-highlight light" style="font-size: 25px;">답변하기</span>
+            </div>
+            <form action="#">
+             
+              <div class="row">
+                <div class="form-group col-md-12">
+                  <label>내 용</label>
+                  <input type="text" class="form-control" id="answerContent">
+                  <input type="hidden" value="${question.classQuestionNo }" id="classQuestionNo">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <button type="submit" id="answerInsert" class="btn btn-default">답글 입력</button>
+              </div>
+            </form>
+          </div>
+          
+          </div>
+          <script>
+          	$("#answerInsert").on('click', function() {
+          		var answerContent=$("#answerContent").val();
+          		var questionNo = $("#classQuestionNo").val();
+          		
+          	});
+          </script>
+     
 </body>
 </html>

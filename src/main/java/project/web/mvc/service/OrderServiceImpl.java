@@ -42,9 +42,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OnOrder> onSelectAll() {
-        Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return onOrderRepository.findByUserdbUserdbNo(userdb.getUserdbNo());
+    public Page<OnOrder> onSelectAll(int pageNum) {
+        return onOrderRepository.findAll(PageRequest.of(pageNum - 1, 10));
     }
 
     @Override
@@ -58,6 +57,16 @@ public class OrderServiceImpl implements OrderService {
         Pageable pageable = PageRequest.of(pageNum - 1, 10);
         offOrderRepository.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), pageable).iterator().forEachRemaining(list::add);
         return list;
+    }
+
+    @Override
+    public Page<OnOrder> onSelectById(int pageNum, String keyword) {
+        return onOrderRepository.findByOrderCode(keyword, PageRequest.of(pageNum - 1, 10));
+    }
+
+    @Override
+    public Page<OnOrder> onSelectByLectureName(int pageNum, String keyword) {
+        return onOrderRepository.findByLectureName(keyword,  PageRequest.of(pageNum - 1, 10));
     }
 
     @Override

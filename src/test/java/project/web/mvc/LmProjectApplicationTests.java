@@ -61,7 +61,7 @@ class LmProjectApplicationTests {
 
 	    // Load client secrets.
 	    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(
-	        JSON_FACTORY, LmProjectApplicationTests.class.getResourceAsStream("/client_secrets.json"));
+	        JSON_FACTORY, LmProjectApplicationTests.class.getResourceAsStream("/static/client_secrets.json"));
 
 	    // Checks that the defaults have been replaced (Default = "Enter X here").
 	    if (clientSecrets.getDetails().getClientId().startsWith("Enter")

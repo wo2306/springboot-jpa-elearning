@@ -58,13 +58,6 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <!-- JS | jquery plugin collection for this theme -->
     <script src="${pageContext.request.contextPath}/js/jquery-plugin-collection.js"></script>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-    <![endif]-->
     <script type="text/javascript">
         function logout() {
             document.getElementById("logoutFrm").submit();
@@ -253,7 +246,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                     <li><a href="" id="offLecture" onclick="offLecture()">오프라인 강의</a></li>
                     <li><a href="" id="onLecture" onclick="onLecture()">온라인 강의</a></li>
                     <li><a href="" id="roadmap" onclick="roadmap()">로드맵</a></li>
-                    <li><a href="" id="community" onclick="qna()">묻고답하기</a></li>
+                    <li><a href="" id="community" onclick="community()">묻고답하기</a></li>
                     <li class="scrollable-fix"></li>
                 </ul>
                 <ul class="pull-right flip hidden-sm hidden-xs">
@@ -305,7 +298,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
         location.href = "${pageContext.request.contextPath}/roadmap";
     }
 
-    function qna() {
+    function community() {
         location.href = "${pageContext.request.contextPath}/qna/list";
     }
 
@@ -320,9 +313,10 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     function cartList() {
         $.ajax({
             url: "${pageContext.request.contextPath}/cart/ajaxList",
-            type: "get",
+            type: "post",
             dataType: "json",
             success: function (result) {
+                console.log(result)
                 var size = Object.keys(result).length;
                 var str = "";
                 var totalPrice = 0;

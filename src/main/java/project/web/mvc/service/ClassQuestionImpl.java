@@ -5,12 +5,15 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 
 import project.web.mvc.domain.ClassQuestion;
 import project.web.mvc.repository.ClassQuestionRepository;
+import project.web.mvc.util.LoginCheck;
 
 @Service
 public class ClassQuestionImpl implements ClassQuestionService {
@@ -36,9 +39,7 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		//db 검증(회원 인증해주고)
 		dbQuestion.setClassQuestionContent(classQuestion.getClassQuestionContent());
 		dbQuestion.setClassQuestionTitle(classQuestion.getClassQuestionTitle());
-		
-		
-		
+
 	}
 
 	@Override
@@ -60,4 +61,11 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	public List<ClassQuestion> findTop10ByOrderByClassQuestionRegdateDesc() {
 		return classQuestionRepo.findTop10ByOrderByClassQuestionRegdateDesc();
 	}
+
+	@Override
+	public Page<ClassQuestion> selectByUserdbId(int pageNum) {
+		return classQuestionRepo.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum-1, 9));
+	}
+	
+	
 }

@@ -1,9 +1,12 @@
 package project.web.mvc.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,12 +63,17 @@ public class AdminUserController {
 	}
 	
 	//검색하기
-	@RequestMapping("/search")
-	@ResponseBody
-	public void serach(String key, String value) {
-		System.out.println("검색하러 들어왔어요");
-		System.out.println("key : " + key + "//////" + "value :" + value);
-		adminuserService.selectByKey(key, value);
+	@RequestMapping("/search/{command}/{keyword}/{pageNum}")
+	public String category(@PathVariable String command,@PathVariable String keyword,@PathVariable int pageNum, Model model) {
+		System.out.println("들어왔다 오바");
+		System.out.println(command);
+		System.out.println(keyword);
+		List<Userdb> list = new ArrayList<>();
+		Page<Userdb> page = null;
+		if(command.equals("all")) { //전체일때
+			page = adminuserService.selectByKeyword("", pageNum);
+		}
+		return "admin/user";
 	}
 	
 	

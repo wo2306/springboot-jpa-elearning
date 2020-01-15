@@ -16,7 +16,7 @@ public interface CartRepository extends CrudRepository<Cart, Long> {
     void deleteByUserdbUserdbNo(Long userdbNo);
 
     @Query("select c from Cart c inner join c.userdb u inner join c.onLecture o where u.userdbNo=?1 and o.onLectureNo=?2")
-    List<Cart> findByUserdbUserdbNoAndOnLecture_OnLectureNo(Long userdbNo, Long onLectureNo);
+    List<Cart> findByUserdbNoAndOnLectureNo(Long userdbNo, Long onLectureNo);
 
     List<Cart> findByUserdbUserdbEmail(String userdbEmail);
 }

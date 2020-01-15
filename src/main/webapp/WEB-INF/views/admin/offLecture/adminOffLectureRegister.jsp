@@ -69,7 +69,7 @@
 									<div class="row">
 										<div class="col-md-6 col-md-offset-3">
 											<form id="booking-form" name="booking-form"
-												action="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister/insert" method="post"
+												action="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister/insert.do" method="post"
 												enctype="multipart/form-data">
 												<div class="row">
 													
@@ -133,6 +133,14 @@
 														<label>offDetail</label>
 															<input type="text" placeholder="offDetail"
 																name="offDetail" required="" class="form-control">
+														</div>
+													</div>
+													
+													<div class="col-sm-12">
+														<div class="form-group">
+														<label >file upload : </label>
+															<input type="file" 
+																name="file" >
 														</div>
 													</div>
 													

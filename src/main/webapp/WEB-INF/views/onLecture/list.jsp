@@ -56,7 +56,7 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9 blog-pull-right" >
+                    <div class="col-md-9 blog-pull-right">
                         <div class="row">
                             <c:forEach var="dto" items="${list}">
                                 <div class="col-sm-6 col-md-4" style="height: 500px">
@@ -65,14 +65,17 @@
                                                                 src="http://placehold.it/265x195"
                                                                 class="img-fullwidth">
                                             <h4 class="text-white mt-0 mb-0"><span class="price"><fmt:formatNumber
-                                                    value="${dto.onLecturePrice*(100-dto.onLectureDiscount)/100}" pattern="₩#,###"/></span></h4>
+                                                    value="${dto.onLecturePrice*(100-dto.onLectureDiscount)/100}"
+                                                    pattern="₩#,###"/></span></h4>
                                         </div>
                                         <div class="content text-left flip p-25 pt-0">
-                                            <h4 class="line-bottom mb-10">${dto.onLectureName}</h4>
+                                            <h5 style="font-weight: bold"
+                                                class="line-bottom mb-10">${dto.onLectureName}</h5>
                                             <p>${dto.onLectureSummary}</p>
                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의
-                                                상세 보기</a>
+                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의 상세 보기</a>
+                                           <input class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" type="button" value="wishlist" id=${dto.onLectureNo}>
+
                                         </div>
                                     </div>
                                 </div>
@@ -80,13 +83,23 @@
                             <div id="in" class="col-sm-12" id="paginationList">
                                 <nav>
                                     <ul class="pagination theme-colored xs-pull-center m-0">
-                                        <c:if test="${page.hasPrevious() eq true}">
-                                            <li>
-                                                <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number}"
-                                                   aria-label="Previous"> <span aria-hidden="true">이전</span> </a>
-                                            </li>
-                                        </c:if>
                                         <c:if test="${page.totalPages ne 1}">
+                                            <c:choose>
+                                                <c:when test="${page.hasPrevious() eq true}">
+                                                    <li>
+                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number}"
+                                                           aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                        </a>
+                                                    </li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li>
+                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+1}"
+                                                           aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                        </a>
+                                                    </li>
+                                                </c:otherwise>
+                                            </c:choose>
                                             <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
@@ -101,11 +114,20 @@
                                                     </c:otherwise>
                                                 </c:choose>
                                             </c:forEach>
-                                        </c:if>
-                                        <c:if test="${page.hasNext() eq true}">
-                                            <li>
-                                                <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+2}"
-                                                   aria-label="Next"> <span aria-hidden="true">다음</span> </a></li>
+                                            <c:choose>
+                                                <c:when test="${page.hasNext() eq true}">
+                                                    <li>
+                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+2}"
+                                                           aria-label="Next"> <span aria-hidden="true">다음</span> </a>
+                                                    </li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li>
+                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+1}"
+                                                           aria-label="Next"> <span aria-hidden="true">다음</span> </a>
+                                                    </li>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:if>
                                     </ul>
                                 </nav>
@@ -218,11 +240,28 @@
 
     function searchFrm() {
         var keyword = $("#searchText").val();
-        if (keyword!="") {
-        location.href = '${pageContext.request.contextPath}/onLecture/search/key/' + keyword + '/1'
+        if (keyword != "") {
+            location.href = '${pageContext.request.contextPath}/onLecture/search/key/' + keyword + '/1'
         }
         return false;
     }
+    
+    $(document).on('click','input[value=wishlist]', function(){
+   	 if(confirm('위시리스트에 담을까요?')) {
+		$.ajax({
+           type :"post",
+           url :"${pageContext.request.contextPath}/wishlist",
+           dataType :"text",
+           data :"onLectureNo="+$(this).attr('id'),
+           success : function(){
+           	  if(confirm('성공해쓰 보러갈래?')) return location.href = "${pageContext.request.contextPath}/myPage/info/1";
+           },
+           error : function(err){
+           	 alert("이미 중복된 강의가 있습니다." + err);
+       } 
+       });
+   	 }
+	})
 </script>
 </body>
 </html>

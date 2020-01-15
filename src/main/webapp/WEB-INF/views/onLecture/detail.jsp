@@ -200,17 +200,18 @@
         $.ajax({
             url: "${pageContext.request.contextPath}/cart/insert/" + ${onLecture.onLectureNo},
             type: "post",
-            dataType: "json",
+            dataType: "text",
             success: function () {
-                cartList()
                 if (confirm("강의를 수강바구니에 담았습니다. \n지금 장바구니로 이동하시겠습니까?")) {
                     location.href = '${pageContext.request.contextPath}/cart/list';
                 }
+                cartList()
                 console.log("성공했다");
             },
-            error: function (error) {
+            error: function (xmlHttpRequest, status, error) {
+                var err = eval("(" + xmlHttpRequest.responseText + ")");
+                alert(err.message);
                 cartList()
-                alert("이미 해당 강의가 장바구니에 담겨있습니다.");
             }
         })
     }
