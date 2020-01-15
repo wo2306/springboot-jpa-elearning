@@ -13,4 +13,5 @@ public interface UserdbService{
 	PasswordEncoder passwordEncoder();
 	boolean duplicatedEmailCheck(String userdbEmail);
 	boolean duplicatedNicknameCheck(String userdbNickname);
+	boolean checkPassword(String password);
 }

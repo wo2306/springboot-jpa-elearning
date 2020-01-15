@@ -105,14 +105,14 @@
       
       <!-- admin 계정 추가등록 -->
       <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/signUpForm">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/user/signUpForm">
           <i class="fas fa-fw fa-table"></i>
           <span>admin SignUp</span></a>
       </li>
       
       <!-- admin  계정삭제-->
       <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/manage/">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/user/">
           <i class="fas fa-fw fa-table"></i>
           <span>Manage User</span></a>
       </li>

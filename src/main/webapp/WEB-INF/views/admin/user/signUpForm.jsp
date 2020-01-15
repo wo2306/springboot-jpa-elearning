@@ -76,8 +76,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-default" id="register"
-									onclick="isEmpty()">회원가입</button>
+								<button type="submit" class="btn btn-default" id="register">회원가입</button>
 							</div>
 						</form>
 					</div>
@@ -180,7 +179,7 @@
 			$('#register').click(function() {
 				
 					$.ajax({
-						url : "${pageContext.request.contextPath}/admin/signUp",
+						url : "${pageContext.request.contextPath}/admin/user/signUp",
 						type : "post",
 						data : $("form[name=signUpForm]").serialize(),
 						dataType : "text",

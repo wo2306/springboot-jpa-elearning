@@ -13,6 +13,7 @@ import project.web.mvc.domain.OffOrder;
 import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.WishList;
 import project.web.mvc.service.OrderService;
+import project.web.mvc.service.UserdbService;
 import project.web.mvc.service.WishListService;
 
 @Controller
@@ -21,6 +22,7 @@ import project.web.mvc.service.WishListService;
 public class MyPageController {
     private final OrderService orderService;
     private final WishListService wishlistService;
+    private final UserdbService userdbService;
     
     @RequestMapping("/info/{pageNum}")
     public String onSelect(@PathVariable Integer pageNum, Model model) {
@@ -59,6 +61,22 @@ public class MyPageController {
 		wishlistService.wishlistDelete(wishListNo);
 	
 	}
+    
+    @RequestMapping(value ="/myAccount")
+    public String myAccount(Long wishListNo) {
+    	
+    	return "myPage/myAccount";
+    }
+    
+    @RequestMapping(value ="/myAccount/passwordCheck")
+    @ResponseBody
+    public int passwordCheck(String userdbPassword0) {
+    	//true = 비밀번호 일치, false = 비밀번호 불일치
+    	//true : 0, false : 1
+    	int result = (userdbService.checkPassword(userdbPassword0))? 0 : 1;
+    	return result;
+    	
+    }
 
 }
 

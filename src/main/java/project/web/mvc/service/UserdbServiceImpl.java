@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.UserdbRepository;
+import project.web.mvc.util.LoginCheck;
 
 @Service
 @RequiredArgsConstructor
@@ -71,6 +72,14 @@ public class UserdbServiceImpl implements UserdbService {
 		return result;
 	}
 
+	//입력한 pw와 db pw비교
+	//true: 비밀번호 일치, false: 비밀번호 비일치
+	@Override
+	public boolean checkPassword(String password) {
+		String userdbPassword = LoginCheck.getUserdb().getUserdbPassword();
+		boolean result = (passwordEncoder.matches(password, userdbPassword))? true : false;
+		return result;
+	}
 
 
 
