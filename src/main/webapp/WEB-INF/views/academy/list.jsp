@@ -97,27 +97,7 @@
 								</c:otherwise>
 							</c:choose>
 
-							<div class="row">
-								<div class="col-sm-12">
-									<nav>
-										<ul
-											class="pagination theme-colored pull-right xs-pull-center mb-xs-40">
-											<li><a href="#" aria-label="Previous"> <span
-													aria-hidden="true">Â«</span>
-											</a></li>
-											<li class="active"><a href="#">1</a></li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">4</a></li>
-											<li><a href="#">5</a></li>
-											<li><a href="#">...</a></li>
-											<li><a href="#" aria-label="Next"> <span
-													aria-hidden="true">Â»</span>
-											</a></li>
-										</ul>
-									</nav>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>

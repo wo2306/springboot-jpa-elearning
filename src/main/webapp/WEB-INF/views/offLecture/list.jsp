@@ -91,6 +91,8 @@
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>
+							
+							<!-- 페이징처리 -->
 							<div id="in" class="col-sm-12" id="paginationList">
                                 <nav>
                                     <ul class="pagination theme-colored xs-pull-center m-0">
@@ -98,14 +100,14 @@
                                             <c:choose>
                                                 <c:when test="${page.hasPrevious() eq true}">
                                                     <li>
-                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number}"
+                                                        <a href="${pageContext.request.contextPath}/offLecture/list/${page.number}"
                                                            aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                         </a>
                                                     </li>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li>
-                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+1}"
+                                                        <a href="${pageContext.request.contextPath}/offLecture/list/${page.number+1}"
                                                            aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                         </a>
                                                     </li>
@@ -115,12 +117,12 @@
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
                                                         <li class="active"><a
-                                                                href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                                href="${pageContext.request.contextPath}/offLecture/list/${i.count}">${i.count}</a>
                                                         </li>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <li>
-                                                            <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                            <a href="${pageContext.request.contextPath}/offLecture/list/${i.count}">${i.count}</a>
                                                         </li>
                                                     </c:otherwise>
                                                 </c:choose>
@@ -128,13 +130,13 @@
                                             <c:choose>
                                                 <c:when test="${page.hasNext() eq true}">
                                                     <li>
-                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+2}"
+                                                        <a href="${pageContext.request.contextPath}/offLecture/list/${page.number+2}"
                                                            aria-label="Next"> <span aria-hidden="true">다음</span> </a>
                                                     </li>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li>
-                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+1}"
+                                                        <a href="${pageContext.request.contextPath}/offLecture/list/${page.number+1}"
                                                            aria-label="Next"> <span aria-hidden="true">다음</span> </a>
                                                     </li>
                                                 </c:otherwise>
