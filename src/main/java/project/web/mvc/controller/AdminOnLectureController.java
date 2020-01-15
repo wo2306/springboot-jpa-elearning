@@ -39,7 +39,10 @@ public class AdminOnLectureController {
         return "admin/onLecture/list";
     }
 
-//    @RequestMapping("/onLecture/updateForm")
-
+    @RequestMapping("/onLecture/updateForm/{onLectureNo}")
+    public String updateForm(@PathVariable Long onLectureNo, Model model) {
+        model.addAttribute("onLecture", onLectureService.selectById(onLectureNo));
+        return "admin/onLecture/updateOnLecture";
+    }
 }
 

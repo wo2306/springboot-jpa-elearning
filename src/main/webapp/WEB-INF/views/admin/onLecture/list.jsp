@@ -100,7 +100,7 @@
                                     <td><fmt:formatDate value="${list.onLectureRegdate}" pattern="yyyy.MM.dd hh:mm"/></td>
                                     <input type=hidden name="offLectureNo" value="${list.onLectureNo}">
                                     <td>
-                                        <button class="btn btn-dark">수정</button>
+                                        <button class="btn btn-dark" name="updateBtn">수정</button>
                                     </td>
                                     <td>
                                         <button name="deleteBtn" class="btn btn-dark" id=${list.onLectureNo}>삭제</button>
@@ -184,6 +184,9 @@
     $("button[name=deleteBtn]").click(function () {
         alert("선택한 강의를 강의를 삭제하였습니다");
         location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).attr(id);
+    })
+    $("button[name=deleteBtn]").click(function () {
+        location.href = '${pageContext.request.contextPath}/admin/onLecture/updateForm/' + $(#deleteBtn).attr(id);
     })
 
 </script>
