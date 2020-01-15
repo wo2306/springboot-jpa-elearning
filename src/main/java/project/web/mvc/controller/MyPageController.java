@@ -1,7 +1,6 @@
 package project.web.mvc.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -20,9 +19,9 @@ import project.web.mvc.domain.Review;
 import project.web.mvc.domain.WishList;
 import project.web.mvc.service.ClassQuestionService;
 import project.web.mvc.service.OrderService;
+import project.web.mvc.service.UserdbService;
 import project.web.mvc.service.ReviewService;
 import project.web.mvc.service.WishListService;
-import project.web.mvc.util.LoginCheck;
 
 @Controller
 @RequestMapping("/myPage")
@@ -30,6 +29,7 @@ import project.web.mvc.util.LoginCheck;
 public class MyPageController {
     private final OrderService orderService;
     private final WishListService wishlistService;
+    private final UserdbService userdbService;
     private final ReviewService reviewService;
     private final ClassQuestionService classQuestionService;
     
@@ -71,7 +71,8 @@ public class MyPageController {
     @RequestMapping("/offSelect")
     @ResponseBody
     public List<OffOrder> offSelect(Integer pageNum, Model model) {
-        List<OffOrder> list = orderService.offSelect(pageNum == null ? 1 : pageNum);
+        List<OffOrder> list = new ArrayList<>();
+        orderService.offSelect(pageNum == null ? 1 : pageNum).iterator().forEachRemaining(list::add);
         return list;
     }
     
@@ -94,6 +95,22 @@ public class MyPageController {
 		wishlistService.wishlistDelete(wishListNo);
 	
 	}
+    
+    @RequestMapping(value ="/myAccount")
+    public String myAccount(Long wishListNo) {
+    	
+    	return "myPage/myAccount";
+    }
+    
+    @RequestMapping(value ="/myAccount/passwordCheck")
+    @ResponseBody
+    public int passwordCheck(String userdbPassword0) {
+    	//true = 비밀번호 일치, false = 비밀번호 불일치
+    	//true : 0, false : 1
+    	int result = (userdbService.checkPassword(userdbPassword0))? 0 : 1;
+    	return result;
+    	
+    }
 
 }
 

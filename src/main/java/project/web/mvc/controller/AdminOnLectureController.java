@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.service.OnLectureService;
 
@@ -41,7 +42,9 @@ public class AdminOnLectureController {
 
     @RequestMapping("/onLecture/updateForm/{onLectureNo}")
     public String updateForm(@PathVariable Long onLectureNo, Model model) {
-        model.addAttribute("onLecture", onLectureService.selectById(onLectureNo));
+        List<OnDetail> list = onLectureService.selectById(onLectureNo);
+        model.addAttribute("list", list);
+        model.addAttribute("onLecture", list.get(0).getOnLecture());
         return "admin/onLecture/updateOnLecture";
     }
 }

@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <head>
@@ -43,9 +44,12 @@
           <div class="col-md-6 text-right">
             <div class="widget no-border m-0">
               <ul class="list-inline sm-text-center mt-5 font-12">
+              <sec:authorize ifAnyGranted="ADMIN">
                 <li>
-                  <a href="/admin">Admin login</a>
+                  <a href="/admin">Admin Page</a>
                 </li>
+               </sec:authorize>
+              <sec:authorize ifNotGranted="ADMIN"></sec:authorize>
               </ul>
             </div>
           </div>

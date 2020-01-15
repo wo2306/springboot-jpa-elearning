@@ -52,11 +52,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OffOrder> offSelect(int pageNum) {
-        List<OffOrder> list = new ArrayList<>();
-        Pageable pageable = PageRequest.of(pageNum - 1, 10);
-        offOrderRepository.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), pageable).iterator().forEachRemaining(list::add);
-        return list;
+    public Page<OffOrder> offSelect(int pageNum) {
+        return offOrderRepository.findAll(PageRequest.of(pageNum - 1, 10));
     }
 
     @Override
@@ -67,6 +64,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Page<OnOrder> onSelectByLectureName(int pageNum, String keyword) {
         return onOrderRepository.findByLectureName(keyword,  PageRequest.of(pageNum - 1, 10));
+    }
+
+    @Override
+    public Page<OffOrder> offSelectByUserEmail(int pageNum, String keyword) {
+        return offOrderRepository.findByUserdbUserdbEmail(keyword, PageRequest.of(pageNum - 1, 10));
+    }
+
+    @Override
+    public Page<OffOrder> offSelectByLectureName(int pageNum, String keyword) {
+        return offOrderRepository.findByLectureName(keyword, PageRequest.of(pageNum - 1, 10));
     }
 
     @Override
