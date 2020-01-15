@@ -50,8 +50,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ol class="breadcrumb text-left text-black mt-10">
-                                <li><a href="#">온라인 강의 등록</a></li>
-                                <li class="active text-gray-silver"> - 온라인 강의들을 등록할 수 있는 페이지입니다.</li>
+                                <li><a href="#">온라인 강의 수정</a></li>
+                                <li class="active text-gray-silver"> - 온라인 강의들을 수정할 수 있는 페이지입니다.</li>
                                 <!-- Topbar Search -->
                                 <li>
                                     <form name="searchForm" method="post" onsubmit="return searchform()">
@@ -76,7 +76,7 @@
                                 </li>
                             </ol>
                             <br>
-                            <h4>온라인 강의 등록</h4>
+                            <h4>온라인 강의 수정</h4>
                         </div>
                     </div>
                 </div>
@@ -91,9 +91,11 @@
 
                     </div>
                     <hr>
-                    <form id="onLectureForm" action="${pageContext.request.contextPath}/onLecture/insert" method="post">
+                    <form id="onLectureForm" action="${pageContext.request.contextPath}/onLecture/update" method="post">
                         <div class="form-group">
                             <label>온라인 강의명</label>
+                            <input type="hidden" class="form-control" placeholder="강의번호"
+                                   name="onLectureNo">
                             <input type="text" class="form-control" placeholder="온라인 강의 명" name="onLectureName">
                         </div>
                         <div class="form-group">
@@ -153,8 +155,7 @@
 
                     <div class="checkbox">
                         <br>
-                        <input type="button" class="btn btn-dark" value="강의 추가하기" id="addForm">&nbsp;&nbsp;
-                        <button type="button" class="btn btn-dark" id="submit">강의 등록 완료</button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-dark" id="submit">강의 수정 완료</button>&nbsp;&nbsp;
                         <button type="button" class="btn btn-dark" id="outInsert">나가기</button>
                     </div>
                 </div>
@@ -177,114 +178,7 @@
         };
     });
 
-    $("#submit").on('click', function () {
-        var file = $('#file').get(0).files[0];
-        if (file) {
-            $.ajax({
-                url: VIDEOS_UPLOAD_SERVICE_URL,
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(metadata),
-                beforeSend: function (request) {
-                    request.setRequestHeader('Authorization', 'Bearer ' + access_token);
-                },
-            }).done(function (data, textStatus, jqXHR) {
-                self.resumableUpload({
-                    url: jqXHR.getResponseHeader('Location'),
-                    file: file,
-                    start: 0
-                });
-            });
-        } else {
-            alert("file을 선택해주세요");
-        }
-
-    })
-
-    var access_token = "";
     $(function () {
-        $.ajax({
-            url: "https://www.googleapis.com/oauth2/v4/token",
-            type: "post",
-            dataType: "json",
-            data: {
-                code: "${code}",
-                client_id: "1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com",
-                client_secret: "YW06D8o9k2GCHceDUYpM4e7L",
-                redirect_uri: "http://localhost:8888/oauth2callback",
-                grant_type: "authorization_code"
-            },
-            success: function (result) {
-                access_token = result.access_token;
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        })
-    })
-
-    var metadata = {
-        snippet: {
-            title: $("#title").val(),
-            description: "Learning Machine Video Upload",
-            categoryId: 22
-        },
-    };
-
-    var GOOGLE_PLUS_SCRIPT_URL = 'https://apis.google.com/js/client:plusone.js';
-    var CHANNELS_SERVICE_URL = 'https://www.googleapis.com/youtube/v3/channels';
-    var VIDEOS_UPLOAD_SERVICE_URL = 'https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet';
-    var VIDEOS_SERVICE_URL = 'https://www.googleapis.com/youtube/v3/videos';
-    var INITIAL_STATUS_POLLING_INTERVAL_MS = 15 * 1000;
-
-
-    resumableUpload = function (options) {
-        var self = this;
-        var ajax = $.ajax({
-            url: options.url,
-            method: 'PUT',
-            contentType: options.file.type,
-            headers: {
-                'Content-Range': 'bytes ' + options.start + '-' + (options.file.size - 1) + '/' + options.file.size
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        });
-
-        ajax.done(function (response) {
-            console.log("2" + response);
-            alert('등록이 완료되었습니다.');
-            videoId = response.id;
-            $("#detailUrl").val(videoId);
-            self.checkVideoStatus(videoId, INITIAL_STATUS_POLLING_INTERVAL_MS);
-        });
-    }
-    checkVideoStatus = function (videoId, waitFornextPoll) {
-        $.ajax({
-            url: VIDEOS_SERVICE_URL,
-            method: 'GET',
-            headers: {
-                Authorization: 'Bearer ' + access_token
-            },
-            data: {
-                part: 'status,processingDetails,player',
-                id: videoId
-            }
-        }).done(function (response) {
-            console.log("3" + response);
-        });
-    }
-
-    $(function () {
-        $('#addForm').click(function () {
-            var str = "";
-            str += '<hr><div><div><label>세부 강의 제목</label><input type="text" class="form-control" placeholder="강의 제목을 입력하세요"';
-            str += 'name="onDetailName"></div><div class="form-group"><br><label>동영상 업로드</label><br><input type="file" name="onLectureFile">';
-            str += '<p class="help-block"></p><input type="hidden" name="videoLength" value=""/></div></div>';
-            $("#detail").parent().append(str);
-        });
-
         $('#outInsert').click(function () {
             location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
         })

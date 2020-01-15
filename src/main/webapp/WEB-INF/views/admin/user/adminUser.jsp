@@ -31,26 +31,30 @@
             <div class="col-md-12">
               <h2 class="title text-white">관리자 페이지</h2>
               <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="${pageContext.request.contextPath}/admin"><h3>Home</h3></a></li>
-	                 <!-- Topbar Search -->
-	            <li>
-	            	<form name="serchForm" method="post">
-		            <div class="input-group" style="padding-left: 730px">
-			           	<select name="key" style="background-color:#F8F9FC; margin-right: 10px;" >
-						    <option value="">메뉴</option>
-						    <option value="userdbNo">UserNo</option>
-						    <option value="userdbEmail">Email</option>
-						    <option value="userdbNickname">Nickname</option>
-						</select>
-		              <input type="text" name="value" style="padding-left: 10px" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-		              <div class="input-group-append">
-		                <button class="btn btn-primary" type="submit" id="search">
-		                  <i class="fas fa-search fa-sm"></i>
-		                </button>
-		              </div>
-		            </div>
-		            </form>
-	            </li>
+                <li><a href="${pageContext.request.contextPath}/admin"><h3>Home</h3></a>- 사용자들을  수정, 삭제할 수 있는 페이지입니다.</li>
+	                
+	           <!-- Topbar Search -->
+                 <li>
+                     <form name="searchForm" method="post" onsubmit="return searchform()">
+                         <div class="input-group" style="padding-left: 730px">
+                             <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
+                                 <option value="all">전체</option>
+                                 <option value="no">학생번호</option>
+                                 <option value="email">이메일</option>
+                                 <option value="nickname">닉네임</option>
+                             </select>
+                             <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                                    class="form-control bg-light border-0 small"
+                                    placeholder="Search for..." aria-label="Search"
+                                    aria-describedby="basic-addon2">
+                             <div class="input-group-append">
+                                 <button class="btn btn-primary" type="submit" id="search">
+                                     <i class="fas fa-search fa-sm"></i>
+                                 </button>
+                             </div>
+                         </div>
+                     </form>
+                 </li>      
               </ol>
             </div>
           </div>
@@ -76,8 +80,8 @@
                               <td>${list.userdbNo}</td>
                               <td>${list.userdbEmail}</td>
                               <td>${list.userdbNickname}</td>
-                              <td><input type="button" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/user/updateForm/${list.userdbNo}'"></td>
-                              <td><input type="button" value="삭제" id=${list.userdbNo}></td>
+                              <td><input type="button" class="btn btn-dark" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/user/updateForm/${list.userdbNo}'"></td>
+                              <td><input type="button" class="btn btn-dark" value="삭제" id=${list.userdbNo}></td>
                            </tr>
                         </c:forEach>
                      </table>
@@ -137,8 +141,8 @@
                             str+='<td>'+item.userdbNo+'</td>';
                             str+='<td>'+item.userdbEmail+'</td>';
                             str+='<td>'+item.userdbNickname+'</td>';
-                            str+='<td><input type="submit" value="수정"></td>';
-                            str+='<td><input type="button" value="삭제" id='+item.userdbNo+'></td>';
+                            str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
+                            str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.userdbNo+'></td>';
                             str+='</tr>';
                          });
                          $('#dataTable').append(str);
@@ -168,22 +172,14 @@
                  })
               });//delete
               
+              function searchform() {
+            	  alert(2222);
+                  var keyfield = $("#key option:selected").val();
+                  var keyword = $("#keyword").val();
+                  location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
+                  return false;
+              }
               
-              $(document).on('click','#search',function() {
-              	
-                  $.ajax({
-                  url:"${pageContext.request.contextPath}/admin/user/search",
-                  type:"post",
-                  data:$("form[name=serchForm]").serialize() ,
-                  dataType:"text",
-                  success:function(){
-                     alert("검색완료");
-                     printUser();
-                },error:function(err){
-                     alert("통신오류");
-                  }
-               })
-            });//search
               })
               </script>
 

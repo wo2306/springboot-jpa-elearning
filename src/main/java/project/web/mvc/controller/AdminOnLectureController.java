@@ -26,7 +26,7 @@ public class AdminOnLectureController {
             page = onLectureService.selectByKeyword("", pageNum);
         } else if (command.equals("category")) {
             page = onLectureService.selectByCategory(keyword, pageNum);
-        } else if (command.equals("teacher"))  {
+        } else if (command.equals("teacher")) {
             page = onLectureService.selectByTeacherName(keyword, pageNum);
         } else if (command.equals("name")) {
             page = onLectureService.selectByonLectureName(keyword, pageNum);
@@ -39,6 +39,7 @@ public class AdminOnLectureController {
         return "admin/onLecture/list";
     }
 
+//    @RequestMapping("/onLecture/updateForm")
 
 }
 
