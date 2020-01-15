@@ -23,11 +23,9 @@
             horiz-align: center;
             text-align: center;
         }
-
         label {
             font-weight: bold;
         }
-
         #in {
             margin: auto;
             width: 50%;
@@ -141,7 +139,8 @@
                                     <div class="form-group">
                                         <label>세부 강의 제목</label>
                                         <input id="title" type="text" class="form-control"
-                                               placeholder="강의 제목을 입력하세요" name="onDetailName" value="${detail.onDetailName}">
+                                               placeholder="강의 제목을 입력하세요" name="onDetailName"
+                                               value="${detail.onDetailName}">
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +180,6 @@
             height: 300,                 // set editor height
             minHeight: null,             // set minimum height of editor
             maxHeight: null,             // set maximum height of editor
-            focus: true,
             callbacks: {
                 onImageUpload: function (files, editor, welEditable) {
                     for (var i = files.length - 1; i >= 0; i--) {
@@ -194,28 +192,29 @@
                 }
             }
         });
-
-        function sendFile(file, el) {
-            var form_data = new FormData();
-            form_data.append('file', file);
-            $.ajax({
-                data: form_data,
-                type: "POST",
-                url: '${pageContext.request.contextPath}/uploadImage',
-                cache: false,
-                contentType: false,
-                enctype: 'multipart/form-data',
-                processData: false,
-                success: function (url) {
-                    $(el).summernote('editor.insertImage', url);
-                }
-            });
-        }
-
-        function deleteFile(file) {
-            $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
-        }
     });
+
+    function sendFile(file, el) {
+        var form_data = new FormData();
+        form_data.append('file', file);
+        $.ajax({
+            data: form_data,
+            type: "POST",
+            url: '${pageContext.request.contextPath}/uploadImage',
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function (url) {
+                $(el).summernote('editor.insertImage', url);
+            }
+        });
+    }
+
+    function deleteFile(file) {
+        $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
+    }
+
 
 </script>
 </html>

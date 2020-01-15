@@ -123,7 +123,7 @@
 																												<tr>
 																													<th>평 점</th>
 																													<td><span style="text-align: right">
-																															<divclass="form-group">
+																															<div class="form-group">
 																																<select class="form-control" name = "reviewScore">
 																																	<option value="0">평점 선택</option>
 																																	<option value="1">1</option>
@@ -325,7 +325,7 @@
 																							<span aria-hidden="true">×</span>
 																						</button>
 																						<div style="text-align: center">
-																							<h4 class="modal-title" id="myModalLabel3">리뷰 수정</h4>
+																							<h4 class="modal-title">리뷰 수정</h4>
 																						</div>
 																					</div>
 																					<div class="modal-body">
@@ -407,9 +407,9 @@
                 url: "${pageContext.request.contextPath}/myPage/info/wishlisttab",
                 dataType :"json",
                 success : function(result){
-                	//alert("통신성공!!!");
+                	//console.log("통신성공!!!");
                 	if(result!=null){
-                	alert(result);
+                	console.log(result);
                 	$('#wishlisttable tr:gt(0)').empty();
     				var str = "";
     				$.each(result,function(index,item){
@@ -421,10 +421,10 @@
     					str+='</tr>';
     				});
     				$('#wishlisttable').append(str);
-                    } else alert("위시리스트에 항목이 없습니다.");
+                    } else console.log("위시리스트에 항목이 없습니다.");
                 },
                 error: function (err) {
-                    alert("통신실패!!!! err : " + err);
+                    console.log("통신실패!!!! err : " + err);
                 }
             });
         }
@@ -435,9 +435,9 @@
                 url: "${pageContext.request.contextPath}/myPage/info/wishlisttab",
                 dataType :"json",
                 success : function(result){
-                	alert("통신성공!!!");
+                	console.log("통신성공!!!");
                 	if(result!=null){
-                	alert(result);
+                	console.log(result);
                 	$('#wishlisttable tr:gt(0)').empty();
     				var str = "";
     				$.each(result,function(index,item){
@@ -449,27 +449,27 @@
                         str += '</tr>';
                     });
                         $('#wishlisttable').append(str);
-                    } else alert("위시리스트에 항목이 없습니다.");
+                    } else console.log("위시리스트에 항목이 없습니다.");
                 },
                 error: function (err) {
-                    alert("통신실패!!!! err : " + err);
+                    console.log("통신실패!!!! err : " + err);
                 }
             });
         });
 
 
         $('#wishlisttable').on('click', 'input[value=삭제]', function () {
-            alert($(this).attr('id'));
+            console.log($(this).attr('id'));
             $.ajax({
                 url: "${pageContext.request.contextPath}/myPage/delete",
 			type:"delete",
 			data:"wishListNo="+$(this).attr('id'),
 			dataType:"text",
 			success:function(){
-				alert("삭제완료");
+				console.log("삭제완료");
 			//	printwishlist();
 			},error:function(err){
-				alert("안눌려");
+				console.log("안눌려");
 			}
 		})
 	});//delete
@@ -481,36 +481,36 @@
                 url: "${pageContext.request.contextPath}/myPage/info/wishlisttab",
                 dataType :"json",
                 success : function(result){
-                	alert("통신성공!!!");
+                	console.log("통신성공!!!");
                 	if(result!=null){
-                	alert(result);
+                	console.log(result);
                 	$('#wishlisttable tr:gt(0)').empty();
     				var str = "";
     				$.each(result,function(index,item){
     					str+='<tr>';
     					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail">'+item.onLecture.onLectureNo+'</a>'+'</td>';
     					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'+item.onLecture.onLectureName+'</a>'+'</td>';
-    					str+='<td>'+item.onLecturePrice+'</td>';
+    					str+='<td>'+item.onLecture.onLecturePrice+'</td>';
                         str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                         str += '</tr>';
                     });
                         $('#wishlisttable').append(str);
-                    } else alert("위시리스트에 항목이 없습니다.");
+                    } else console.log("위시리스트에 항목이 없습니다.");
                 },
                 error: function (err) {
-                    alert("통신실패!!!! err : " + err);
+                    console.log("통신실패!!!! err : " + err);
                 }
             });
         });
 	
 	
         $("#reviewInsert").on('click', function () {
-        	alert("등록 insert!");
+        	console.log("등록 insert!");
        	
         });
         
         $("#reviewUpdate").on('click', function() {
-        	alert("수정 update!");
+        	console.log("수정 update!");
         });
         
         $("a[name='reviewDelete']").on('click', function() {
@@ -524,14 +524,14 @@
   			success:function(){
   				
   			},error:function(err){
-  				alert("에러 : "+err);
+  				console.log("에러 : "+err);
   			}
   		})
        }
         });
         
         $("a[name='questionDelete']").on('click', function() {
-      	  alert($(this).attr('id'));
+      	  console.log($(this).attr('id'));
         	var reviewNo = $(this).attr('id');
       	  if(confirm("정말로 삭제 하시겠습니까?")) {
             $.ajax({
@@ -542,7 +542,7 @@
 			success:function(){
 				
 			},error:function(err){
-				//alert("에러 : "+err);
+				//console.log("에러 : "+err);
 			}
 		})
      }
