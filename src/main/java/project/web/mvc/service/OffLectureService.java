@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 
 import project.web.mvc.domain.OffLecture;
-import project.web.mvc.util.FileUtils;
 
 public interface OffLectureService {
 
-	void offLecInsert(OffLecture offLecture, HttpServletRequest request) throws Exception;
+	void offLecInsert(OffLecture offLecture);
 	
 	void offLecUpdate(OffLecture offLecture);
 	

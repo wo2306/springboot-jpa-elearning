@@ -19,35 +19,16 @@ import com.google.common.collect.Lists;
 
 import project.web.mvc.domain.OffLecture;
 import project.web.mvc.repository.OffLectureRepository;
-import project.web.mvc.util.FileUtils;
 
 @Service
 public class OffLectureServiceImpl implements OffLectureService {
-	@Resource(name="fileUtils") 
-	private FileUtils fileUtils; 
-	
+
 	@Autowired
 	private OffLectureRepository offLectureRepository;
 
 	@Override
-	public void offLecInsert(OffLecture offLecture, HttpServletRequest request) throws Exception {
-		OffLecture result = offLectureRepository.save(offLecture);
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
-		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		MultipartFile multipartFile = null;
-		
-		while(iterator.hasNext()) {
-			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			if(multipartFile.isEmpty()==false) {
-				System.out.println("----file start----");
-				System.out.println("name : "+multipartFile.getName());
-				System.out.println("filename : "+multipartFile.getOriginalFilename());
-				System.out.println("size : "+multipartFile.getSize());
-				System.out.println("----file end----");
-			}
-		}
-		
-		//List<Map<String,Object>> list = fileUtils.parseInsertFileInfo(map, request);
+	public void offLecInsert(OffLecture offLecture){
+		 offLectureRepository.save(offLecture);
 
 	}
 	
