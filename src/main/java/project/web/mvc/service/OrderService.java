@@ -13,10 +13,14 @@ public interface OrderService {
 
     void offInsert(OffOrder offOrder);
 
-    List<OnOrder> onSelectAll();
+    Page<OnOrder> onSelectAll(int pageNum);
 
     Page<OnOrder> onSelect(int pageNum);
     List<OffOrder> offSelect(int pageNum);
 
     boolean payCheck(Long onLectureNo);
+
+    Page<OnOrder> onSelectById(int pageNum, String keyword);
+
+    Page<OnOrder> onSelectByLectureName(int pageNum, String keyword);
 }

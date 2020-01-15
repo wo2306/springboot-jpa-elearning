@@ -2,7 +2,11 @@ package project.web.mvc.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -13,7 +17,6 @@ import project.web.mvc.repository.UserdbRepository;
 
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
-
 	@Autowired
 	private UserdbRepository userdbRepo;
 	
@@ -32,14 +35,28 @@ public class AdminUserServiceImpl implements AdminUserService {
 		return userdbRepo.findByUserdbNo(userdbNo);
 	}
 	
-//	
-//	@Override
-//	public void updateUserdb(Userdb inuserdb) {
-//
-//		Userdb updatedb = userdbRepo.update(inuserdb);
-//		System.out.println(" repo 찍고 나온 updatedb" + updatedb);
-//		userdbRepo.save(inuserdb);
-//		
-//	}
+	
+	@Transactional
+	@Override
+	public void updateUserdb(Userdb inuserdb) {
+		
+		Userdb userdb = userdbRepo.findByUserdbNo(inuserdb.getUserdbNo());
+		userdb.setUserdbEmail(inuserdb.getUserdbEmail());
+		userdb.setUserdbNickname(inuserdb.getUserdbNickname());
+		
+	}
+
+	@Override
+	public void deleteUserdb(Long userdbNo) {
+		userdbRepo.deleteById(userdbNo);
+		
+	}
+	
+	@Override
+	public Page<Userdb> selectByKeyword(String keyword, int pageNum) {
+		
+		return userdbRepo.findByKeyword(keyword, PageRequest.of(pageNum - 1, 9));
+		  
+	}
 
 }

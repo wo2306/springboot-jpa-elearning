@@ -2,6 +2,8 @@ package project.web.mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,12 +36,12 @@ public class AdminOffLectureController {
 		return "admin/offLecture/adminOffLectureRegister";
 	}
 	
-	@RequestMapping("/adminOffLectureRegister/insert")
-	public ModelAndView offLectureInsert(OffLecture offLecture) {
-		offLectureService.offLecInsert(offLecture);
+	@RequestMapping("/adminOffLectureRegister/insert.do")
+	public ModelAndView offLectureInsert(OffLecture offLecture, HttpServletRequest request) throws Exception {
+		offLectureService.offLecInsert(offLecture, request);
 		List<OffLecture> list = offLectureService.selectAll();
 		System.out.println(list);
-		return new ModelAndView("admin/offLecture/adminOffLecture", "list", list);
+		return new ModelAndView("redirect:/admin/offLecture", "list", list);
 	}
 	
 	@RequestMapping("this")
@@ -50,23 +52,25 @@ public class AdminOffLectureController {
 		return list;
 	}
 
-	@RequestMapping("/offLecUpdate")
-	public ModelAndView update( Long offLectureNo) {
+	@RequestMapping("/offLecUpdate/{offLectureNo}")
+	public ModelAndView update(@PathVariable Long offLectureNo) {
 		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
 		return new ModelAndView("admin/offLecture/adminOffLectureUpdate", "offLecture", offLecture);
 	}
 
 
 	@RequestMapping("offLecUpdate/update")
-	public ModelAndView offLecUpdate (OffLecture offLecture) {
+	public String offLecUpdate (OffLecture offLecture) {
 		offLectureService.offLecUpdate(offLecture);
-		OffLecture selectedOffLecture = offLectureService.selectByOffNo(offLecture.getOffLectureNo());
-		return new ModelAndView("admin/offLecture/adminOffLecture", "offLecture", selectedOffLecture);
+		return "redirect:/admin/offLecture";
 	}
 	
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
 	public void offLecDelete(Long offLectureNo) {
 		offLectureService.offLecDelete(offLectureNo);
+		//return "redirect:/admin/offLecture";
 	}
+	
+	
 }

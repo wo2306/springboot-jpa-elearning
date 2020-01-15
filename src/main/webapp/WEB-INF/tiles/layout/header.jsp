@@ -316,9 +316,10 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     function cartList() {
         $.ajax({
             url: "${pageContext.request.contextPath}/cart/ajaxList",
-            type: "get",
+            type: "post",
             dataType: "json",
             success: function (result) {
+                console.log(result)
                 var size = Object.keys(result).length;
                 var str = "";
                 var totalPrice = 0;

@@ -1,19 +1,21 @@
 package project.web.mvc.repository;
 
-import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Userdb;
 
-public interface UserdbRepository extends CrudRepository<Userdb, Long>{
+public interface UserdbRepository extends PagingAndSortingRepository<Userdb, Long>{
 
 	Userdb findByUserdbEmail(String userdbEmail);
 	
 	Userdb findByUserdbNo(Long userdbNo);
 
-	
-//	@Modifying
-//	@Query("update userdb u set u.userdb_email =?1, u.userdb_nickname= ?2, us.authority=?3 where u.userdb_no = ?4")
-//	public Userdb update(Userdb userdb);
+	 @Query("select u from Userdb u where u.userdbEmail LIKE CONCAT('%',:keyword,'%') or u.userdbNickname LIKE CONCAT('%',:keyword,'%')")
+	Page<Userdb> findByKeyword(@Param("keyword") String keyword, Pageable pageable);
+
 }

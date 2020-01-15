@@ -17,4 +17,6 @@ public interface AcademyService {
 	void academyDelete(Long academyNo);
 	
 	Academy selectByAno(Long academyNo);
+	
+	Academy findByAcademyNo(Long academyNo);
 }

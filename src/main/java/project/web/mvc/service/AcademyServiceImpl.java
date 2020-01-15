@@ -1,8 +1,8 @@
 package project.web.mvc.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,13 +34,23 @@ public class AcademyServiceImpl implements AcademyService {
 		}
 		return list;
 	}
-
+	
+	@Transactional
 	@Override
-	public void academyUpdate(Academy academy) {
-		academyRepository.save(academy);
-		
+	public void academyUpdate(Academy inacademy) {
+		Academy academy = academyRepository.findByAcademyNo(inacademy.getAcademyNo());
+		academy.setAcademyName(inacademy.getAcademyName());
+		academy.setAcademyAddrDetail(inacademy.getAcademyAddrDetail());
+		academy.setAcademyAddrCity(inacademy.getAcademyAddrCity());
 	}
 
+	
+	@Override
+	public Academy findByAcademyNo(Long academyNo) {
+		Academy result = academyRepository.findById(academyNo).orElse(null);
+		return result;
+	}
+	
 	@Override
 	public void academyDelete(Long academyNo) {
 		academyRepository.deleteById(academyNo);

@@ -31,9 +31,30 @@
             <div class="col-md-12">
               <h2 class="title text-white">관리자 페이지</h2>
               <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active text-gray-silver">Page Title</li>
+                <li><a href="${pageContext.request.contextPath}/admin"><h3>Home</h3></a>- 사용자들을  수정, 삭제할 수 있는 페이지입니다.</li>
+	                
+	           <!-- Topbar Search -->
+                 <li>
+                     <form name="searchForm" method="post" onsubmit="return searchform()">
+                         <div class="input-group" style="padding-left: 730px">
+                             <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
+                                 <option value="all">전체</option>
+                                 <option value="no">학생번호</option>
+                                 <option value="email">이메일</option>
+                                 <option value="nickname">닉네임</option>
+                             </select>
+                             <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                                    class="form-control bg-light border-0 small"
+                                    placeholder="Search for..." aria-label="Search"
+                                    aria-describedby="basic-addon2">
+                             <div class="input-group-append">
+                                 <button class="btn btn-primary" type="submit" id="search">
+                                     <i class="fas fa-search fa-sm"></i>
+                                 </button>
+                             </div>
+                         </div>
+                     </form>
+                 </li>      
               </ol>
             </div>
           </div>
@@ -46,12 +67,11 @@
       <div class="container">
         <div class="section-content">
           <div class="row">
-                     <table class="table table-bordered" id="dataTable" width="100%"
-                        cellspacing="0">
+                     <table class="table table-bordered" id="dataTable" cellspacing="0">
                         <tr>
-                           <th>userdbNo</th>
-                           <th>userdbEmail</th>
-                           <th>userdbNickname</th>
+                           <th style="width:200px">UserNo</th>
+                           <th style="width:350px">Email</th>
+                           <th style="width:350px">Nickname</th>
                            <th>수정</th>
                            <th>삭제</th>
                         </tr>
@@ -60,8 +80,8 @@
                               <td>${list.userdbNo}</td>
                               <td>${list.userdbEmail}</td>
                               <td>${list.userdbNickname}</td>
-                              <td><input type="button" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/user/updateForm/${list.userdbNo}'"></td>
-                              <td><input type="button" value="삭제" id=${list.userdbNo}></td>
+                              <td><input type="button" class="btn btn-dark" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/user/updateForm/${list.userdbNo}'"></td>
+                              <td><input type="button" class="btn btn-dark" value="삭제" id=${list.userdbNo}></td>
                            </tr>
                         </c:forEach>
                      </table>
@@ -76,10 +96,6 @@
                         </div>
                      </section>
 
-
-
-
-
                      <!-- Divider: Call To Action -->
     <section class="bg-theme-color-2">
       <div class="container pt-10 pb-20">
@@ -92,9 +108,7 @@
               <!-- Mailchimp Subscription Form Starts Here -->
               <form id="mailchimp-subscription-form" class="newsletter-form mt-10">
                 <div class="input-group">
-                  <input type="email" value="" name="EMAIL" placeholder="Your Email" class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
                   <span class="input-group-btn">
-                    <button data-height="45px" class="btn bg-theme-colored text-white btn-xs m-0 font-14" type="submit">Subscribe</button>
                   </span>
                 </div>
               </form>
@@ -106,11 +120,67 @@
     </section>
   </div>
 </div>
-		<!-- Mailchimp Subscription Form Validation-->
-              <script type="text/javascript">
-      $(function(){ 
+	<script type="text/javascript">
+              $(document).ready(function(){ 
+               
                 
-      })
+                //전체레코드 가져오기
+                function printUser() {
+                   $.ajax({
+                         type :"post",
+                         url :"${pageContext.request.contextPath}/admin/user/",
+                         dataType :"json",               
+                         success : function(result){
+                            alert("통신성공!!!");
+                            if(result!=null){
+                            alert(result);
+                            $('#dataTable tr:gt(0)').empty();
+                         var str = "";
+                         $.each(result,function(index,item){
+                            str+='<tr>';
+                            str+='<td>'+item.userdbNo+'</td>';
+                            str+='<td>'+item.userdbEmail+'</td>';
+                            str+='<td>'+item.userdbNickname+'</td>';
+                            str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
+                            str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.userdbNo+'></td>';
+                            str+='</tr>';
+                         });
+                         $('#dataTable').append(str);
+                            }else alert("등록된 유저가 없습니다.");
+                           },
+                        error : function(err){
+                         alert("통신실패!!!! err : " + err);
+                     } 
+                     });
+                }
+
+                
+                $('#dataTable').on('click','input[value=삭제]',function() {
+                	
+                    alert($(this).attr('id'));
+                    $.ajax({
+                    url:"${pageContext.request.contextPath}/admin/user/delete",
+                    type:"delete",
+                    data:"userdbNo="+$(this).attr('id'),
+                    dataType:"text",
+                    success:function(){
+                       alert("삭제완료");
+                       printUser();
+                    },error:function(err){
+                       alert("자식레코드있어서 못지워요");
+                    }
+                 })
+              });//delete
+              
+              function searchform() {
+            	  alert(2222);
+                  var keyfield = $("#key option:selected").val();
+                  var keyword = $("#keyword").val();
+                  location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
+                  return false;
+              }
+              
+              })
               </script>
 
 </body>

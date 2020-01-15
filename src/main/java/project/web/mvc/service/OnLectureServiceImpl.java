@@ -29,13 +29,23 @@ public class OnLectureServiceImpl implements OnLectureService {
 
 
     @Override
+    public Page<OnLecture> selectByTeacherName(String keyword, int pageNum) {
+        return onLectureRepository.findByOnLectureTeacher(keyword, PageRequest.of(pageNum - 1, 9));
+    }
+
+    @Override
+    public Page<OnLecture> selectByonLectureName(String keyword, int pageNum) {
+        return onLectureRepository.findByOnLectureName(keyword, PageRequest.of(pageNum - 1, 9));
+    }
+
+    @Override
     public List<Long> countCategory() {
         return onLectureRepository.countCategory();
     }
 
     @Override
     public Page<OnLecture> selectAll(int pageNum) {
-        return onLectureRepository.findAll(PageRequest.of(pageNum - 1, 9));
+        return onLectureRepository.findByOrderByOnLectureNo(PageRequest.of(pageNum - 1, 9));
     }
 
     @Override
@@ -57,6 +67,8 @@ public class OnLectureServiceImpl implements OnLectureService {
         onDetailRepository.findByOnLectureOnLectureNo(onLectureNo).iterator().forEachRemaining(list::add);
         return list;
     }
+
+
 
     @Override
     public OnLecture selectOnLectureById(Long onLectureNo) {

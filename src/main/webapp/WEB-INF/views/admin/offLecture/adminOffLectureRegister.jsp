@@ -6,7 +6,17 @@
 
 <!DOCTYPE html>
 <head>
-
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
 <!-- Page Title -->
 <title>LM company | Learning Machine | main</title>
 
@@ -59,7 +69,7 @@
 									<div class="row">
 										<div class="col-md-6 col-md-offset-3">
 											<form id="booking-form" name="booking-form"
-												action="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister/insert" method="post"
+												action="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister/insert.do" method="post"
 												enctype="multipart/form-data">
 												<div class="row">
 													
@@ -108,11 +118,29 @@
 													</div>
 													
 													
+													
+													<div class="col-sm-6">
+														<div class="form-group">
+														<label>Date: </label>
+															<input type="text" id="datepicker"
+																name="offLectureDate" required="" class="form-control">
+														</div>
+													</div>
+													
+													
 													<div class="col-sm-12">
 														<div class="form-group">
 														<label>offDetail</label>
 															<input type="text" placeholder="offDetail"
 																name="offDetail" required="" class="form-control">
+														</div>
+													</div>
+													
+													<div class="col-sm-12">
+														<div class="form-group">
+														<label >file upload : </label>
+															<input type="file" 
+																name="file" >
 														</div>
 													</div>
 													
