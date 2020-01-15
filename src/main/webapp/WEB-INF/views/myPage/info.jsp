@@ -502,17 +502,12 @@
                 }
             });
         });
-	
-	
         $("#reviewInsert").on('click', function () {
         	console.log("등록 insert!");
-       	
         });
-        
         $("#reviewUpdate").on('click', function() {
         	console.log("수정 update!");
         });
-        
         $("a[name='reviewDelete']").on('click', function() {
         	  var reviewNo = $(this).attr('id');
         	  if(confirm("정말로 삭제 하시겠습니까?")) {
