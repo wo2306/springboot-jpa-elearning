@@ -81,6 +81,13 @@ public class UserdbServiceImpl implements UserdbService {
 		return result;
 	}
 
+	@Override
+	public void updateNickname(String userdbNickname) {
+		Userdb userdb = LoginCheck.getUserdb();
+		userdb.setUserdbNickname(userdbNickname);
+		userdbRepository.save(userdb);
+	}
+
 
 
 }

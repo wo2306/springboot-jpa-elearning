@@ -10,18 +10,21 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.ClassQuestion;
 import project.web.mvc.domain.OffOrder;
 import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.Review;
+import project.web.mvc.domain.Userdb;
 import project.web.mvc.domain.WishList;
 import project.web.mvc.service.ClassQuestionService;
 import project.web.mvc.service.OrderService;
 import project.web.mvc.service.UserdbService;
 import project.web.mvc.service.ReviewService;
 import project.web.mvc.service.WishListService;
+import project.web.mvc.util.LoginCheck;
 
 @Controller
 @RequestMapping("/myPage")
@@ -96,9 +99,10 @@ public class MyPageController {
 	}
     
     @RequestMapping(value ="/myAccount")
-    public String myAccount(Long wishListNo) {
-    	
-    	return "myPage/myAccount";
+    public ModelAndView myAccount() {
+    	Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
+		 Userdb item = userdbService.selectByUserdbNo(userdbNo);
+		return new ModelAndView("myPage/myAccount", "item", item);
     }
     
     @RequestMapping(value ="/myAccount/passwordCheck")
@@ -108,8 +112,15 @@ public class MyPageController {
     	//true : 0, false : 1
     	int result = (userdbService.checkPassword(userdbPassword0))? 0 : 1;
     	return result;
-    	
     }
+    
+    //nickname 변경
+    @RequestMapping(value ="/myAccount/nickUpdate")
+    @ResponseBody
+    public void nickUpdate(String userdbNickname) {
+		userdbService.updateNickname(userdbNickname);
+    }
+    
 
 }
 

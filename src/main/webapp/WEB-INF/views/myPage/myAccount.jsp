@@ -41,7 +41,7 @@
         <div class="section-content">
           <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-8">
-              <form name="form" method="post">
+              <form name="form" method="post" onSubmit="return checkValid()">
                 <div class="icon-box mb-0 p-0">
                   <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                     <i class="fa fa-user"></i>
@@ -53,7 +53,7 @@
                   <div class="form-group col-md-6">
                     <label>이메일</label>
                     <span>변경불가</span>
-                    <input name="userdbEmail" class="form-control" type="email" readonly="readonly">
+                    <input name="userdbEmail" class="form-control" type="email" readonly="readonly" value=${item.userdbEmail}>
                   </div>
                   <div class="form-group col-md-6">
                   </div>
@@ -61,19 +61,20 @@
                 <div class="row">
                   <div class="form-group col-md-6">
                     <label>닉네임</label>
-                    <input name="userdbNickname" class="form-control" type="text">
+                    <input name="userdbNickname" class="form-control" type="text" value=${item.userdbNickname}>
+                  	<span id="nickCheck">닉네임중복확인란</span>
                   </div>
                 </div>
                 <div class="row">
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
+                  <button class="btn btn-dark btn-lg mt-15" type="submit" id="nickBtn">Nickname Update</button>
                 </div>
               </form>
               
               <hr class="mt-30 mb-30">
 
-              <form name="editprofile-form" method="post">
+              <form name="formPassword" method="post" onSubmit="return checkValidPw()">
                 <div class="icon-box mb-0 p-0">
                   <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                     <i class="fa fa-key"></i>
@@ -84,18 +85,20 @@
                 <div class="row">
                   <div class="form-group col-md-12">
                     <label>현재비밀번호</label>
-                    <input name="userdbPassword0" class="form-control" type="text">
+                    <input name="userdbPassword0" class="form-control" type="password">
                     <span id="passwordCheck">입력한 비밀번호와 현재 비밀번호 일치 확인란</span>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6">
                     <label>변경 비밀번호</label>
-                    <input name="userdbPassword" class="form-control" type="text">
+                    <input name="userdbPassword1" class="form-control" type="password">
+                    <span id="passwordCheck2">비밀번호를 입력하시오</span>
                   </div>
                   <div class="form-group col-md-6">
                     <label>비밀번호 확인</label>
-                    <input name="userdbPassword2"  class="form-control" type="text">
+                    <input name="userdbPassword2"  class="form-control" type="password">
+                    <span id="passwordCheck3">비밀번호를 입력하시오</span>
                   </div>
                 </div>
                 <div class="form-group">
@@ -113,6 +116,41 @@
   <!-- end main-content -->
 
 	<script type="text/javascript">
+	
+	var userNickname = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.userdbNickname}';
+	console.log(userNickname);
+
+	var status;
+	
+	function checkValid() {
+		var f = window.document.form;
+		if ( f.userdbNickname.value == "" ) {
+			alert( "닉네임을 입력해 주세요." );
+			f.userdbNickname.focus();
+			return false;
+		}
+	}
+	
+	function checkValidPw() {
+		var f = window.document.formPassword;
+		if ( f.userdbPassword0.value == "" ) {
+	        alert( "비밀번호0를 입력해 주세요" );
+			f.userdbPassword0.focus();
+			return false;
+		}
+		if ( f.userdbPassword1.value == "" ) {
+	        alert( "비밀번호1를 입력해 주세요" );
+	        f.userdbPassword1.focus();
+	        return false;
+	    }
+		if ( f.userdbPassword2.value == "" ) {
+	        alert( "비밀번호2를 입력해 주세요" );
+	        f.userdbPassword2.focus();
+	        return false;
+	    }
+	}
+	
+	
 		$(document).ready(function() {
 			
 			/*password 유호성체크 체크*/
@@ -122,7 +160,7 @@
 				$.ajax({
 					url : "${pageContext.request.contextPath}/myPage/myAccount/passwordCheck",
 					type : "post",
-					data : $("form[name=form]").serialize(),
+					data : $("form[name=formPassword]").serialize(),
 					dataType : "text",
 					success : function(result) {
 						//0=비밀번호 일치, 1=비밀번호 불일치
@@ -140,16 +178,32 @@
 			
 			
 			/*password 유호성체크 체크*/
-			$('[name=userdbPassword2]').keyup(function () {
-				var password1 = $('[name=userdbPassword]').val();
+			/*기존 비번이랑 다른지 체크*/
+			$('[name=userdbPassword1]').keyup(function () {
+				var password1 = $('[name=userdbPassword0]').val();
 				var password2 = $(this).val();
 				
 				if(password1===password2){
 					$('#register').attr("disabled", false);
-					$('#passwordCheck').text('비밀번호가 정확합니다.');
+					$('#passwordCheck2').text('현재 비밀번호와 다를게 없소!!! 증말 바꿀꺼요??');
 				}else{
 					$('#register').attr("disabled", true);
-					$('#passwordCheck').text('비밀번호가 다릅니다. 확인해주세요');
+					$('#passwordCheck2').text('오 그래 지금 비밀번호와 다르군');
+				}
+			});
+			
+			
+			/*password 유호성체크 체크*/
+			$('[name=userdbPassword2]').keyup(function () {
+				var password1 = $('[name=userdbPassword1]').val();
+				var password2 = $(this).val();
+				
+				if(password1===password2){
+					$('#register').attr("disabled", false);
+					$('#passwordCheck3').text('비밀번호가 정확합니다.');
+				}else{
+					$('#register').attr("disabled", true);
+					$('#passwordCheck3').text('비밀번호가 다릅니다. 확인해주세요');
 				}
 			});
 			
@@ -157,19 +211,24 @@
 
 			/*닉네임 중복체크*/
 			$('[name=userdbNickname]').keyup(function () {
+				var nickName = $('[name=userdbNickname]').val();
 				$.ajax({
 					url : "${pageContext.request.contextPath}/nicknameCheck",
 					type : "post",
-					data : $("form[name=signUpForm]").serialize(),
+					data : $("form").serialize(),
 					dataType : "text",
 					success : function(result) {
 						//0=중복, 1=사용가능
 						if (result == 0) {
-							$('#register').attr("disabled", true);
-							$('#nickCheck').text('이미 사용중인 닉네임입니다.');
-
+							if(userNickname==nickName){
+								$('#nickBtn').attr("disabled", false);
+								$('#nickCheck').text('현재 닉네임과 동일합니다.');
+							}else{
+								$('#nickBtn').attr("disabled", true);
+								$('#nickCheck').text('이미 사용중인 닉네임입니다.');
+							}
 						} else if (result == 1){
-							$('#register').attr("disabled", false);
+							$('#nickBtn').attr("disabled", false);
 							$('#nickCheck').text('사용 가능한 닉네임입니다.');
 						}
 					},
@@ -180,23 +239,19 @@
 			});///////
 			
 			
-			/*가입하기*/
-			$('#register').click(function() {
+			/*닉네임 업데이트*/
+			$('#nickBtn').click(function() {
 				
 					$.ajax({
-						url : "${pageContext.request.contextPath}/signUp",
+						url : "${pageContext.request.contextPath}/myPage/nickUpdate",
 						type : "post",
 						data : $("form[name=signUpForm]").serialize(),
 						dataType : "text",
 						success : function(result) {
-							alert(result);
-							if(result==1)
-								alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
-							location.href = "${pageContext.request.contextPath}/login";
+							alert('수정되었습니다.');
 						},
 						error : function(err) {
-							alert("등록에 실패했습니다.");
-							location.href = "${pageContext.request.contextPath}/";
+							alert('수정에 실패했습니다.');
 						}
 					})
 			})

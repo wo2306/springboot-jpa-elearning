@@ -14,4 +14,5 @@ public interface UserdbService{
 	boolean duplicatedEmailCheck(String userdbEmail);
 	boolean duplicatedNicknameCheck(String userdbNickname);
 	boolean checkPassword(String password);
+	void updateNickname(String userdbNickname);
 }

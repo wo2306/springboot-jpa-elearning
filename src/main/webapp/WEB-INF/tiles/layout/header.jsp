@@ -117,7 +117,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                 </li>
                                 <li class="text-white">|</li>
 
-                                <li><a class="text-white">${user.userdbNickname}님 </a>
+                                <li><a class="text-white" href="${pageContext.request.contextPath}/myPage/myAccount/">${user.userdbNickname}님 </a>
                                 </li>
                                 <form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post"
                                       style="display:none">
