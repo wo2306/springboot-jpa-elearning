@@ -45,10 +45,10 @@ public class OnLectureController {
         model.addAttribute("teacherList", teachers);
         model.addAttribute("detailList", list);
         model.addAttribute("onLecture", onLecture);
-        List<Review> reviews = reviewService.selectByOnlectureNo(1, onLectureNo);
-        if (!list.isEmpty()) {
-            model.addAttribute("reviewList", reviews);
-        }
+       // List<Review> reviews = reviewService.selectByOnlectureNo(1, onLectureNo);
+//        if (!list.isEmpty()) {
+//            model.addAttribute("reviewList", reviews);
+//        }
         if (orderService.payCheck(onLectureNo)) {
             model.addAttribute("qnaList", qnaService.findTop10ByOrderByClassQuestionRegdateDesc());
             model.addAttribute("sugangList", sugangService.sugangList(onLectureNo));
