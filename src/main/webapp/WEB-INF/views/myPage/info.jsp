@@ -71,12 +71,12 @@
 												<table class="table table-hover">
 													<thead>
 														<tr>
-															<th>주문번호</th>
-															<th>강의 이름</th>
-															<th>주문날짜</th>
-															<th>결제상태</th>
-															<th>총 결제 금액</th>
-															<th>리 뷰</th>
+															<th style="text-align: center;">주문번호</th>
+															<th style="text-align: center;">강의 이름</th>
+															<th style="text-align: center;">주문날짜</th>
+															<th style="text-align: center;">결제상태</th>
+															<th style="text-align: center;">총 결제 금액</th>
+															<th style="text-align: center;">리 뷰</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -90,8 +90,8 @@
 																		<td>${dto.onOrderMethod}</td>
 																		<td><fmt:formatNumber value="${dto.onOrderPrice}"
 																				pattern="₩#,###" /></td>
-																		<td>
-																			<button type="button" class="btn btn-success btn-xs"
+																		<td style="text-align: center;">
+																			<button type="button" class="btn btn-dark btn-xs"
 																				data-toggle="modal"
 																				data-target=".bs-example-modal-sm${dto.onOrderCode}">리뷰
 																				등록 하기</button>
@@ -117,44 +117,45 @@
 																										<strong>강의 :
 																											${dto.onlecture.onLectureName }</strong>
 																									</div>
-																									
-																										<table class="table table-hover">
-																											<tbody>
-																												<tr>
-																													<th>평 점</th>
-																													<td><span style="text-align: right">
-																															<divclass="form-group">
-																																<select class="form-control" name = "reviewScore">
-																																	<option value="0">평점 선택</option>
-																																	<option value="1">1</option>
-																																	<option value="2">2</option>
-																																	<option value="3">3</option>
-																																	<option value="4">4</option>
-																																	<option value="5">5</option>
-																																</select>
-																															</div>
-																													</span></td>
-																												</tr>
 
-																												<tr>
-																													<td colspan="2"><textarea
-																															name="reviewContent" cols="30" rows="13"
-																															placeholder="리뷰 내용" name="reviewContent"></textarea>
-																															<input type="hidden" name="onLectureNo" value="${dto.onlecture.onLectureNo }"/>
-																													</td>
-																													
-																												</tr>
+																									<table class="table table-hover">
+																										<tbody>
+																											<tr>
+																												<th>평 점</th>
+																												<td><span style="text-align: right">
+																														<div class="form-group">
+																															<select class="form-control"
+																																name="reviewScore">
+																																<option value="0">평점 선택</option>
+																																<option value="1">1</option>
+																																<option value="2">2</option>
+																																<option value="3">3</option>
+																																<option value="4">4</option>
+																																<option value="5">5</option>
+																															</select>
+																														</div>
+																												</span></td>
+																											</tr>
 
-																											</tbody>
-																										</table>
-																										<div class="modal-footer">
-																											<button type="submit" id="reviewInsert"
-																												class="btn btn-primary text-white">등록</button>
-																											<button type="button" class="btn btn-default"
-																												data-dismiss="modal">닫기</button>
-																										</div>
-																								
-																									
+																											<tr>
+																												<td colspan="2"><textarea
+																														name="reviewContent" cols="30" rows="13"
+																														placeholder="리뷰 내용" name="reviewContent"></textarea>
+																													<input type="hidden" name="onLectureNo"
+																													value="${dto.onlecture.onLectureNo }" /></td>
+
+																											</tr>
+
+																										</tbody>
+																									</table>
+																									<div class="modal-footer">
+																										<button type="submit" id="reviewInsert"
+																											class="btn btn-primary text-white">등록</button>
+																										<button type="button" class="btn btn-default"
+																											data-dismiss="modal">닫기</button>
+																									</div>
+
+
 																								</div>
 																							</div>
 																						</div>
@@ -245,33 +246,53 @@
 										<div role="tabpanel" class="tab-pane" id="questions">
 											<table class="table">
 												<thead>
-														<tr>
-															<th>질문</th>
-															<th>연관 강의</th>
-															<th>질문 제목 <span style="font-size: 11px;">
-																(상세 내용을 보려면 클릭하세요.)</span></th>
-															<th>삭 제 </th>
-														</tr>
-													</thead>
+													<tr>
+														<th>질문</th>
+														<th>연관 강의</th>
+														<th>질문 제목 <span style="font-size: 11px;"> (상세
+																내용을 보려면 클릭하세요.)</span></th>
+														<th>삭 제</th>
+													</tr>
+												</thead>
 												<tbody>
-												
+
 													<c:choose>
 														<c:when test="${questionList!=null}">
 															<c:forEach var="dto" items="${questionList}">
 																<tr>
 																	<th scope="row"><img
 																		src="http://placehold.it/100x50" alt=""></th>
-																		
+
 																	<td>${dto.onLecture.onLectureName }</td>
-																	
-																	<td>
-																
-																<a href="#" name="popup" data-lightbox="inline" class="btn btn-default">${dto.classQuestionTitle }</a>
-	
-					</td>											
-																
+
+																	<td><a href="#promoModal1${dto.classQuestionNo}"
+																		name="popup" data-lightbox="inline"
+																		class="btn btn-default">${dto.classQuestionTitle }</a>
+
+																		<div style="display: none;"
+																			id="promoModal1${dto.classQuestionNo}"
+																			class="modal-promo-box bg-img-cover"
+																			data-bg-img="http://placehold.it/1920x1280"
+																			style="background-image: url(&quot;http://placehold.it/1920x1280&quot;);">
+																			<h3 class="mt-0 text-white">상세 내용</h3>
+																			<h4 class="text-white">${dto.classQuestionContent}</h4>
+
+
+																			<!-- Mailchimp Subscription Form Validation-->
+																			<script>
+																				$("a[name='popup']").on('click',function() {
+																									$(this).next().show();
+																						});
+																			</script>
+
+																			<a class="text-gray-darkgray" href="#"
+																				onclick="$.magnificPopup.close(); return false;">닫기</a>
+																		</div></td>
+
 																	<td><h4>
-																			<a href="#" name="questionDelete" id="${dto.classQuestionNo }"><i class="fa fa-close"></i></a>
+																			<a href="#" name="questionDelete"
+																				id="${dto.classQuestionNo }"><i
+																				class="fa fa-close"></i></a>
 																		</h4></td>
 																</tr>
 															</c:forEach>
@@ -309,8 +330,8 @@
 																	<th scope="row"><img
 																		src="http://placehold.it/100x50" alt=""></th>
 																	<td>${dto.reviewScore }</td>
-																	<td><button type="button"
-																			class="btn btn-dark btn-flat" data-toggle="modal"
+																	<td><button type="button" class="btn btn-default"
+																			data-toggle="modal"
 																			data-target=".bs-example-modal-sm${dto.reviewNo}">${dto.reviewContent }</button>
 
 																		<div
@@ -325,11 +346,13 @@
 																							<span aria-hidden="true">×</span>
 																						</button>
 																						<div style="text-align: center">
-																							<h4 class="modal-title" id="myModalLabel3">리뷰 수정</h4>
+																							<h4 class="modal-title" id="myModalLabel3">리뷰
+																								수정</h4>
 																						</div>
 																					</div>
 																					<div class="modal-body">
-																						<form action="${pageContext.request.contextPath}/review/update">
+																						<form
+																							action="${pageContext.request.contextPath}/review/update">
 																							<table class="table table-hover">
 																								<tbody>
 																									<tr>
@@ -371,7 +394,8 @@
 																		</div></td>
 
 																	<td><h4>
-																			<a href="#" name="reviewDelete" id="${dto.reviewNo }"><i class="fa fa-close"></i></a>
+																			<a href="#" name="reviewDelete" id="${dto.reviewNo }"><i
+																				class="fa fa-close"></i></a>
 																		</h4></td>
 																</tr>
 															</c:forEach>
@@ -398,162 +422,259 @@
 	</div>
 	<!-- end main-content -->
 	<script type="text/javascript">
-    $(document).ready(function () {
+		$(document)
+				.ready(
+						function() {
 
-        //전체레코드 가져오기
-        function printwishlist() {
-            $.ajax({
-                type: "post",
-                url: "${pageContext.request.contextPath}/myPage/info/wishlisttab",
-                dataType :"json",
-                success : function(result){
-                	//alert("통신성공!!!");
-                	if(result!=null){
-                	alert(result);
-                	$('#wishlisttable tr:gt(0)').empty();
-    				var str = "";
-    				$.each(result,function(index,item){
-    					str+='<tr>';
-    					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail">'+item.onLecture.onLectureNo+'</a>'+'</td>';
-    					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'+item.onLecture.onLectureName+'</a>'+'</td>';
-    					str+='<td>'+item.onLecturePrice+'</td>';
-    					str+='<td><input type="button" value="삭제" id='+item.wishListNo+'></td>';
-    					str+='</tr>';
-    				});
-    				$('#wishlisttable').append(str);
-                    } else alert("위시리스트에 항목이 없습니다.");
-                },
-                error: function (err) {
-                    alert("통신실패!!!! err : " + err);
-                }
-            });
-        }
+							//전체레코드 가져오기
+							function printwishlist() {
+								$
+										.ajax({
+											type : "post",
+											url : "${pageContext.request.contextPath}/myPage/info/wishlisttab",
+											dataType : "json",
+											success : function(result) {
+												//alert("통신성공!!!");
+												if (result != null) {
+													alert(result);
+													$('#wishlisttable tr:gt(0)')
+															.empty();
+													var str = "";
+													$
+															.each(
+																	result,
+																	function(
+																			index,
+																			item) {
+																		str += '<tr>';
+																		str += '<td>'
+																				+ '<a href="${pageContext.request.contextPath}/onLecture/detail">'
+																				+ item.onLecture.onLectureNo
+																				+ '</a>'
+																				+ '</td>';
+																		str += '<td>'
+																				+ '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'
+																				+ item.onLecture.onLectureName
+																				+ '</a>'
+																				+ '</td>';
+																		str += '<td>'
+																				+ item.onLecturePrice
+																				+ '</td>';
+																		str += '<td><input type="button" value="삭제" id='+item.wishListNo+'></td>';
+																		str += '</tr>';
+																	});
+													$('#wishlisttable').append(
+															str);
+												} else
+													alert("위시리스트에 항목이 없습니다.");
+											},
+											error : function(err) {
+												alert("통신실패!!!! err : " + err);
+											}
+										});
+							}
 
-        $('#myTab li:eq(2) a').on('click', function () {
-            $.ajax({
-                type: "post",
-                url: "${pageContext.request.contextPath}/myPage/info/wishlisttab",
-                dataType :"json",
-                success : function(result){
-                	alert("통신성공!!!");
-                	if(result!=null){
-                	alert(result);
-                	$('#wishlisttable tr:gt(0)').empty();
-    				var str = "";
-    				$.each(result,function(index,item){
-    					str+='<tr>';
-    					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail">'+item.onLecture.onLectureNo+'</a>'+'</td>';
-    					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'+item.onLecture.onLectureName+'</a>'+'</td>';
-    					str+='<td>'+item.onLecturePrice+'</td>';
-                        str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
-                        str += '</tr>';
-                    });
-                        $('#wishlisttable').append(str);
-                    } else alert("위시리스트에 항목이 없습니다.");
-                },
-                error: function (err) {
-                    alert("통신실패!!!! err : " + err);
-                }
-            });
-        });
+							$('#myTab li:eq(2) a')
+									.on(
+											'click',
+											function() {
+												$
+														.ajax({
+															type : "post",
+															url : "${pageContext.request.contextPath}/myPage/info/wishlisttab",
+															dataType : "json",
+															success : function(
+																	result) {
+																alert("통신성공!!!");
+																if (result != null) {
+																	alert(result);
+																	$(
+																			'#wishlisttable tr:gt(0)')
+																			.empty();
+																	var str = "";
+																	$
+																			.each(
+																					result,
+																					function(
+																							index,
+																							item) {
+																						str += '<tr>';
+																						str += '<td>'
+																								+ '<a href="${pageContext.request.contextPath}/onLecture/detail">'
+																								+ item.onLecture.onLectureNo
+																								+ '</a>'
+																								+ '</td>';
+																						str += '<td>'
+																								+ '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'
+																								+ item.onLecture.onLectureName
+																								+ '</a>'
+																								+ '</td>';
+																						str += '<td>'
+																								+ item.onLecturePrice
+																								+ '</td>';
+																						str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
+																						str += '</tr>';
+																					});
+																	$(
+																			'#wishlisttable')
+																			.append(
+																					str);
+																} else
+																	alert("위시리스트에 항목이 없습니다.");
+															},
+															error : function(
+																	err) {
+																alert("통신실패!!!! err : "
+																		+ err);
+															}
+														});
+											});
 
+							$('#wishlisttable')
+									.on(
+											'click',
+											'input[value=삭제]',
+											function() {
+												alert($(this).attr('id'));
+												$
+														.ajax({
+															url : "${pageContext.request.contextPath}/myPage/delete",
+															type : "delete",
+															data : "wishListNo="
+																	+ $(this)
+																			.attr(
+																					'id'),
+															dataType : "text",
+															success : function() {
+																alert("삭제완료");
+																//	printwishlist();
+															},
+															error : function(
+																	err) {
+																alert("안눌려");
+															}
+														})
+											});//delete
 
-        $('#wishlisttable').on('click', 'input[value=삭제]', function () {
-            alert($(this).attr('id'));
-            $.ajax({
-                url: "${pageContext.request.contextPath}/myPage/delete",
-			type:"delete",
-			data:"wishListNo="+$(this).attr('id'),
-			dataType:"text",
-			success:function(){
-				alert("삭제완료");
-			//	printwishlist();
-			},error:function(err){
-				alert("안눌려");
-			}
-		})
-	});//delete
-		
-	
-        $('#myTab li:eq(2) a').on('click', function () {
-            $.ajax({
-                type: "post",
-                url: "${pageContext.request.contextPath}/myPage/info/wishlisttab",
-                dataType :"json",
-                success : function(result){
-                	alert("통신성공!!!");
-                	if(result!=null){
-                	alert(result);
-                	$('#wishlisttable tr:gt(0)').empty();
-    				var str = "";
-    				$.each(result,function(index,item){
-    					str+='<tr>';
-    					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail">'+item.onLecture.onLectureNo+'</a>'+'</td>';
-    					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'+item.onLecture.onLectureName+'</a>'+'</td>';
-    					str+='<td>'+item.onLecturePrice+'</td>';
-                        str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
-                        str += '</tr>';
-                    });
-                        $('#wishlisttable').append(str);
-                    } else alert("위시리스트에 항목이 없습니다.");
-                },
-                error: function (err) {
-                    alert("통신실패!!!! err : " + err);
-                }
-            });
-        });
-	
-	
-        $("#reviewInsert").on('click', function () {
-        	alert("등록 insert!");
-       	
-        });
-        
-        $("#reviewUpdate").on('click', function() {
-        	alert("수정 update!");
-        });
-        
-        $("a[name='reviewDelete']").on('click', function() {
-        	  var reviewNo = $(this).attr('id');
-        	  if(confirm("정말로 삭제 하시겠습니까?")) {
-              $.ajax({
-                  url: "${pageContext.request.contextPath}/review/delete",
-  			type:"delete",
-  			data:"reviewNo="+reviewNo,
-  			dataType:"text",
-  			success:function(){
-  				
-  			},error:function(err){
-  				alert("에러 : "+err);
-  			}
-  		})
-       }
-        });
-        
-        $("a[name='questionDelete']").on('click', function() {
-      	  alert($(this).attr('id'));
-        	var reviewNo = $(this).attr('id');
-      	  if(confirm("정말로 삭제 하시겠습니까?")) {
-            $.ajax({
-                url: "${pageContext.request.contextPath}/",
-			type:"delete",
-			data:"reviewNo="+reviewNo,
-			dataType:"text",
-			success:function(){
-				
-			},error:function(err){
-				//alert("에러 : "+err);
-			}
-		})
-     }
-      });
-        
-        
-	
+							$('#myTab li:eq(2) a')
+									.on(
+											'click',
+											function() {
+												$
+														.ajax({
+															type : "post",
+															url : "${pageContext.request.contextPath}/myPage/info/wishlisttab",
+															dataType : "json",
+															success : function(
+																	result) {
+																alert("통신성공!!!");
+																if (result != null) {
+																	alert(result);
+																	$(
+																			'#wishlisttable tr:gt(0)')
+																			.empty();
+																	var str = "";
+																	$
+																			.each(
+																					result,
+																					function(
+																							index,
+																							item) {
+																						str += '<tr>';
+																						str += '<td>'
+																								+ '<a href="${pageContext.request.contextPath}/onLecture/detail">'
+																								+ item.onLecture.onLectureNo
+																								+ '</a>'
+																								+ '</td>';
+																						str += '<td>'
+																								+ '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'
+																								+ item.onLecture.onLectureName
+																								+ '</a>'
+																								+ '</td>';
+																						str += '<td>'
+																								+ item.onLecturePrice
+																								+ '</td>';
+																						str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
+																						str += '</tr>';
+																					});
+																	$(
+																			'#wishlisttable')
+																			.append(
+																					str);
+																} else
+																	alert("위시리스트에 항목이 없습니다.");
+															},
+															error : function(
+																	err) {
+																alert("통신실패!!!! err : "
+																		+ err);
+															}
+														});
+											});
 
-    });//ready  
-    
-</script>
+							$("#reviewInsert").on('click', function() {
+								alert("등록 insert!");
+
+							});
+
+							$("#reviewUpdate").on('click', function() {
+								alert("수정 update!");
+							});
+
+							$("a[name='reviewDelete']")
+									.on(
+											'click',
+											function() {
+												var reviewNo = $(this).attr(
+														'id');
+												if (confirm("정말로 삭제 하시겠습니까?")) {
+													$
+															.ajax({
+																url : "${pageContext.request.contextPath}/review/delete",
+																type : "delete",
+																data : "reviewNo="
+																		+ reviewNo,
+																dataType : "text",
+																success : function() {
+
+																},
+																error : function(
+																		err) {
+																	alert("에러 : "
+																			+ err);
+																}
+															})
+												}
+											});
+
+							$("a[name='questionDelete']")
+									.on(
+											'click',
+											function() {
+												alert($(this).attr('id'));
+												var reviewNo = $(this).attr(
+														'id');
+												if (confirm("정말로 삭제 하시겠습니까?")) {
+													$
+															.ajax({
+																url : "${pageContext.request.contextPath}/",
+																type : "delete",
+																data : "reviewNo="
+																		+ reviewNo,
+																dataType : "text",
+																success : function() {
+
+																},
+																error : function(
+																		err) {
+																	//alert("에러 : "+err);
+																}
+															})
+												}
+											});
+
+						});//ready
+	</script>
 
 </body>
 </html>
