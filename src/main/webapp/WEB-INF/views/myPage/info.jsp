@@ -221,7 +221,7 @@
                                                 <td>${offOrder.offLecture.offLectureName}</td>
                                                 <td><fmt:formatDate value="${offOrder.offOrderRegdate}" pattern="yyyy.MM.dd"/></td>
                                                 <td>${offOrder.offOrderMethod}</td>
-                                                <td><fmt:formatNumber value="${offOrder.price}" pattern="₩#,###"/></td>
+                                                <td><fmt:formatNumber value="${offOrder.offLecture.price}" pattern="₩#,###"/></td>
                                             </tr>
                                             </c:forEach>
                                             </c:when>

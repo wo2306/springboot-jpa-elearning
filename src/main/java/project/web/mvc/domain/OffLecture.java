@@ -56,7 +56,7 @@ public class OffLecture {
     @Column(nullable = false)
     private String offDetail;
     
-    @Column(nullable = false)
+    @Column(nullable = false, name="PRICE")
     @ColumnDefault("10000")
     private int price;
 
