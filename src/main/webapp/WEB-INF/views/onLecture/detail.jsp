@@ -32,7 +32,7 @@
     <div class="main-content">
         <!-- Section: inner-header -->
         <section class="inner-header divider parallax layer-overlay overlay-dark-5"
-                 data-bg-img="http://placehold.it/1920x1280">
+                 data-bg-img="${pageContext.request.contextPath}/images/banner/onLectureListBanner.jpg">
             <div class="container pt-70 pb-20">
                 <!-- Section Content -->
                 <div class="section-content">
@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col-md-8 blog-pull-right">
                         <div class="single-service">
-                            <img src="http://placehold.it/750x500" alt="">
+                            <img src="${pageContext.request.contextPath}/images/onLecture/${onLecture.onLectureNo}.png" style="width: 750px; height: 500px" alt="">
                             <h3 class="text-theme-colored line-bottom text-theme-colored">${onLecture.onLectureName}</h3>
                             <ul class="review_text list-inline">
                                 <li>

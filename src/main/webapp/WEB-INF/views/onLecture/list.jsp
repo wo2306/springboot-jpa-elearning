@@ -56,10 +56,10 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9 blog-pull-right">
+                    <div class="col-md-9 blog-pull-right" id-="out">
                         <div class="row">
                             <c:forEach var="dto" items="${list}">
-                                <div class="col-sm-6 col-md-4" style="height: 500px">
+                                <div class="col-sm-6 col-md-4">
                                     <div class="service-block bg-white">
                                         <div class="thumb"><img alt="featured project"
                                                                 src="${pageContext.request.contextPath}/images/onLecture/${dto.onLectureNo}.png"
@@ -70,9 +70,9 @@
                                                     pattern="₩#,###"/></span></h4>
                                         </div>
                                         <div class="content text-left flip p-25 pt-0">
-                                            <h5 style="font-weight: bold"
+                                            <h5 style="font-weight: bold; height: 50px"
                                                 class="line-bottom mb-10">${dto.onLectureName}</h5>
-                                            <p>${dto.onLectureSummary}</p>
+                                            <p style="height: 150px">${dto.onLectureSummary}</p>
                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
                                                href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의
                                                 상세 보기</a>
@@ -83,9 +83,9 @@
                                     </div>
                                 </div>
                             </c:forEach>
-                            <div id="in" class="col-sm-12" id="paginationList">
-                                <nav>
-                                    <ul class="pagination theme-colored xs-pull-center m-0">
+                            <div class="col-sm-12" id="paginationList">
+                                <nav >
+                                    <ul class="pagination theme-colored xs-pull-center m-0" id="in">
                                         <c:if test="${page.totalPages ne 1}">
                                             <c:choose>
                                                 <c:when test="${page.hasPrevious() eq true}">
@@ -121,13 +121,15 @@
                                                 <c:when test="${page.hasNext() eq true}">
                                                     <li>
                                                         <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+2}"
-                                                           aria-label="Next"> <span aria-hidden="true">다음</span> </a>
+                                                           aria-label="Next"> <span aria-hidden="true">다음</span>
+                                                        </a>
                                                     </li>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li>
                                                         <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+1}"
-                                                           aria-label="Next"> <span aria-hidden="true">다음</span> </a>
+                                                           aria-label="Next"> <span aria-hidden="true">다음</span>
+                                                        </a>
                                                     </li>
                                                 </c:otherwise>
                                             </c:choose>
@@ -210,7 +212,7 @@
                 var str = ""
                 $.each(result, function (key, val) {
                     str += "<article class=\"post media-post clearfix pb-0 mb-10\">\n" +
-                        " <a class=\"post-thumb\" href=\"#\"><img src=http://placehold.it/45x45 alt=\"http://placehold.it/75x75\"></a>\n" +
+                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/images/onLecture/" + val.onLectureNo + ".png\" style=\"width:80px; height:85px;\" alt=\"http://placehold.it/75x75\"></a>\n" +
                         " <div class=\"post-right\">\n" +
                         " <h5 class=\"post-title mt-0\"><a href=\"${pageContext.request.contextPath}/onLecture/detail/" + val.onLectureNo + "\">" + val.onLectureName + "</a></h5>\n" +
                         " <p>" + "</p>\n" +
