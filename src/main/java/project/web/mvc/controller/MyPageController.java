@@ -57,14 +57,18 @@ public class MyPageController {
         Page<ClassQuestion> questionPage = classQuestionService.selectByUserdbId(pageNum);
         classQuestionService.selectByUserdbId(pageNum).iterator().forEachRemaining(questionList::add);
         
-        System.out.println(questionList.toString());
         if(!questionList.isEmpty()) {
         	model.addAttribute("questionList", questionList);
         	model.addAttribute("questionPage", questionPage);
         }
-        
-        
-        
+
+        List<OffOrder> offOrders = new ArrayList<>();
+        Page<OffOrder> offOrderPage = orderService.offSelectByUserdbNo(pageNum);
+        offOrderPage.iterator().forEachRemaining(offOrders::add);
+        if(!offOrders.isEmpty()) {
+            model.addAttribute("offOrderList", offOrders);
+            model.addAttribute("offOrderPage", offOrderPage);
+        }
         return "myPage/info";
     }
 
