@@ -116,7 +116,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/coupon/list/1">
+        <a class="nav-link" href="${pageContext.request.contextPath}/coupon/list/all/1">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Coupon</span></a>
     </li>

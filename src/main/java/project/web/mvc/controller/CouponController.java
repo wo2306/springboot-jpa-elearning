@@ -29,13 +29,13 @@ public class CouponController {
         return "redirect:coupon/select/1";
     }
 
-    @RequestMapping("/list/{pageNum}")
+    @RequestMapping("/list/all/{pageNum}")
     public String selectAll(@PathVariable int pageNum, Model model) {
         List<Coupon> coupons = new ArrayList<>();
         Page<Coupon> page = couponService.selectAll(pageNum);
         page.iterator().forEachRemaining(coupons::add);
         model.addAttribute("couponList", coupons);
-        model.addAttribute("couponPage", page);
+        model.addAttribute("page", page);
         return "admin/coupon/list";
     }
 

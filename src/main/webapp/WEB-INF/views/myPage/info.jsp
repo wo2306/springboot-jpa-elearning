@@ -278,8 +278,7 @@
                                                                 <div style="display: none;"
                                                                      id="promoModal1${dto.classQuestionNo}"
                                                                      class="modal-promo-box bg-img-cover"
-                                                                     data-bg-img="http://placehold.it/1920x1280"
-                                                                     style="background-image: url('http://placehold.it/1920x1280');">
+                                                                     data-bg-img="http://placehold.it/1920x1280">
                                                                     <h2 class="mt-0 text-white">상세 내용</h2>
 
                                                                     <h5>

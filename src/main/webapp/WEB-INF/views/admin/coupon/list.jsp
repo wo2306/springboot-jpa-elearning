@@ -16,6 +16,11 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <![endif]-->
+    <link href="${pageContext.request.contextPath}/css/datepicker.min.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath}/js/datepicker.min.js"></script>
+
+    <!-- Include English language -->
+    <script src="${pageContext.request.contextPath}/js/i18n/datepicker.en.js"></script>
     <style>
         #out {
             horiz-align: center;
@@ -89,17 +94,18 @@
                                 <th>남은 개수</th>
                                 <th colspan="2">기능</th>
                             </tr>
-                            <c:forEach items="${requestScope.list}" var="list">
+                            <c:forEach items="${requestScope.couponList}" var="list">
                                 <tr>
-                                    <td>${list.onLectureNo}</td>
-                                    <td>${list.onLectureCategory}</td>
-                                    <td>${list.onLectureName}</td>
-                                    <td><fmt:formatDate value="${list.onLectureRegdate}"
+                                    <td>${list.couponCode}</td>
+                                    <td>${list.couponName}</td>
+                                    <td>${list.couponDiscount}%</td>
+                                    <td><fmt:formatDate value="${list.couponDate}"
                                                         pattern="yyyy.MM.dd hh:mm"/></td>
-                                    <input type=hidden name="offLectureNo" value="${list.onLectureNo}">
+                                    <td>${list.couponOriginalCount}</td>
+                                    <td>${list.couponRemainingCount}</td>
                                     <td>
                                         <button type="button" name="deleteBtn" class="btn btn-dark"
-                                                value="${list.onLectureNo}">삭제
+                                                value="${list.couponCode}">삭제
                                         </button>
                                     </td>
                                 </tr>
@@ -109,7 +115,6 @@
                             <div class="row">
                                 <div class="col" id="inin">
                                     <ul class="pagination">
-                                        <c:if test="${page.totalPages ne 0}">
                                         <c:choose>
                                             <c:when test="${page.hasPrevious() eq true}">
                                                 <li class="page-item">
@@ -158,15 +163,19 @@
                                                     </a>
                                                 </c:otherwise>
                                             </c:choose>
-                                            </c:if>
                                         </li>
                                     </ul>
-                                    <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.upload&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:8888/oauth2callback&response_type=code&client_id=1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com"
-                                       class="btn btn-dark">새로운</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="col-md-6">
+                    <h4>쿠폰 등록</h4>
+                    <div class="datepicker-here" data-language='en'></div>
                 </div>
             </div>
         </section>
@@ -176,16 +185,11 @@
     function searchform() {
         var keyfield = $("#key option:selected").val();
         var keyword = $("#keyword").val();
-        location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
+        location.href = '${pageContext.request.contextPath}/coupon/' + keyfield + '/' + keyword + '/1';
         return false;
     }
-
     $("button[name='deleteBtn']").on('click', function () {
-        location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).val();
-    })
-
-    $("button[name='updateBtn']").on('click', function () {
-        location.href = '${pageContext.request.contextPath}/admin/onLecture/updateForm/' + $(this).val();
+        location.href = '${pageContext.request.contextPath}/coupon/delete/' + $(this).val();
     })
 </script>
 </body>
