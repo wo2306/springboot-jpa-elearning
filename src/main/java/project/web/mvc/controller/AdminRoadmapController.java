@@ -43,4 +43,11 @@ public class AdminRoadmapController {
 		model.addAttribute("page", page);
 		return "admin/roadmap/onLectureList";
 	}
+	
+	@RequestMapping("/insert/{onLectureNo}")
+	public String roadmapInsert(@PathVariable Long onLectureNo, Roadmap roadmap) {
+		roadmap.setOnLecture(onLectureService.selectOnLectureById(onLectureNo));
+		service.insert(roadmap);
+		return "";
+	}
 }

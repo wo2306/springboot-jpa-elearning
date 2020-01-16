@@ -43,8 +43,7 @@
 	        			  data+="<td class='onLecture-teacher'>"+"<span class='teacher'>"+result.onLectureTeacher+"</span>"+"</td>";
 	                      data+="<td class='onLecture-price'>"+"<span class='price'>"+result.onLecturePrice+"</span>"+"</td>";
 	                  	  data+="</tr>";
-	               
-	                    	$('#table').append(data);		  
+	                      $('#table').append(data);		  
 				}//callback			
 			});//ajax
 		})//click이벤트 끝
@@ -54,16 +53,13 @@
 		})//강의 삭제 이벤트 끝
 		
 		//팝업 자식창 부모창으로 값넘기기
-		$("#roadmapBtn").click(function(){
-			
-			var add = $("#table tr").val()
-			alert(add)
-			console.log(add)
-			//$(opener.dacument).find("#addOnLecture").val(add);
-			//self.close();
-		})
-		
-	})
+	//	$("#roadmapBtn").click(function(){
+		$(document).on("click","#roadmapBtn",function(){
+			var add = $("#selectable tr").val(this)
+			opener.addOnLecture(add);
+			self.close();
+		});
+	});
 
 </script>
 
@@ -92,7 +88,6 @@
         </div>
       </div>
     </section>
-
     <section>
       <div class="container">
         <div class="section-content">
@@ -116,13 +111,12 @@
                   <tbody>
                   <c:forEach items="${onLectureList}" var="list" varStatus="status">
                     <tr class="onLecture_item">
-                      <td class="onLecture-no">${list.onLectureNo}</td>
+                      <td class="onLecture-no" id="${list.onLectureNo}">${list.onLectureNo}</td>
                       <td class="onLecture-name"><a href="#">${list.onLectureName}</a></td>
                       <td class="onLecture-content"><span class="content">${list.onLectureContent}</span></td>
         			  <td class="onLecture-teacher"><span class="teacher">${list.onLectureTeacher}</span></td>
                       <td class="onLecture-price"><span class="price">${list.onLecturePrice}</span>
                       </td>
-                    
                     </tr>
                     <tr class="cart_item">
                       <td colspan="6"><div class="onlecture">
@@ -186,19 +180,20 @@
                       <th>onLecturePrice</th>
                     </tr>
                   </thead>
+				<tbody id="selectable">
+				</tbody>
    
                 </table>
-                  <button type="button" class="btn" id="roadmapBtn" value="">강의 선택 완료</button>
+                  <button type="button" class="roadmapbtn" id="roadmapBtn">강의 선택 완료</button>
               <!--   </form> -->
                   
                </div>
               </div>
              </div>
             </div>
-           </div>
-          </div>
 	  </section>
-	 
+  </div>
+</div>
 <!-- end wrapper --> 
 
 <!-- Footer Scripts -->

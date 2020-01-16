@@ -12,10 +12,27 @@
 $(function(){
 	$("#onlecturebtn").click(function(){
 		window.open("onLectureList/1", "PopupWin", "width=1000,height=1000")
-	})// click end
+	})// click end	
+	
+	//추가한  강의 삭제
+	$(document).on("click","#btn",function(){
+	
+		$(this).closest("tr").remove();
+		
+	})//강의 삭제 이벤트 끝
 	
 })
-
+	    //강의 추가하기
+	    function addOnLecture(data){
+		var result = data
+		$("#addOnLecture").append(result)
+		//alert(result+"결과값");
+		$.each(result,function(index,row){
+			alert($(row).html());
+		})
+	}
+	
+	
 </script>
 
 </head>
@@ -52,7 +69,7 @@ $(function(){
               <div class="row">
                 <div class="col-md-12">
                   <h3>로드맵 등록</h3>
-                  <form class="form" method="post" action="${pageContext.request.contextPath}/roadmap/insert">
+                  <form class="form" method="post" action="${pageContext.request.contextPath}/admin/roadmap/insert/${result.onLectureNo}">
                     <table class="table no-border">
                       <tbody>
                        <tr>
@@ -72,18 +89,16 @@ $(function(){
                          </tr>
                         <tr>
                           <td><input type="text" class="form-control" placeholder="가격을 입력해주세요." name="roadmapPrice" ></td>
+                        </tr>
+                        <tr>
+                          <td><input type="hidden" class="onLectureNo" name="onLectureNo"></td>
                         </tr>                        
                         <tr>
                           <td><button type="submit" class="btn btn-default">등록</button></td>
                         </tr>
                       </tbody>
                     </table>
-                  </form>
-                </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="table-responsive">
-                <table class="table table-striped table-bordered tbl-shopping-cart" id="addOnLecture">
+                  <table class="table table-striped table-bordered tbl-shopping-cart" id="addOnLecture">
                   <thead>
                     <tr>
                       <th></th>
@@ -94,36 +109,32 @@ $(function(){
                       <th>onLecturePrice</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr class="onLecture_item">
-                      <td class="onLecture-remove"><a title="Remove this item" class="remove" href="#">×</a></td>
-                      <td class="onLecture-name"><a href="#"></a></td>
-                      <td class="onLecture-content"><span class="content"></span></td>
-        			  <td class="onLecture-teacher"><span class="teacher"></span></td>
-                      <td class="onLecture-price"><span class="price"></span></td>
-                    </tr>
+                  <tbody  id="addOnLectureTable">
 
-        
+                   </tbody>
                     <tr class="cart_item">
                       <td colspan="6"><div class="onlecture">
                           <button type="button" class="btn" id="onlecturebtn">강의 추가하기</button>
                         </div></td>
-                     
                     </tr>
                   </tbody>
                 </table>
+             </form>
+           </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
               </div>
             </div>
-            
-              </div>
-            </div>
+           </div>
           </div>
         </div>
       </div>
-      </div>
-      </div>
-    </section>
-  </div>
+    </div>
+   </section>
+ </div>
+</div>
+  
 <!-- Footer Scripts -->
 <!-- JS | Custom script for all pages -->
 <script src="js/custom.js"></script>
