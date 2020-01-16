@@ -13,6 +13,7 @@ import project.web.mvc.domain.Academy;
 import project.web.mvc.repository.AcademyRepository;
 
 @Service
+@Transactional
 public class AcademyServiceImpl implements AcademyService {
 
 	
@@ -35,7 +36,7 @@ public class AcademyServiceImpl implements AcademyService {
 		return list;
 	}
 	
-	@Transactional
+
 	@Override
 	public void academyUpdate(Academy inacademy) {
 		Academy academy = academyRepository.findByAcademyNo(inacademy.getAcademyNo());

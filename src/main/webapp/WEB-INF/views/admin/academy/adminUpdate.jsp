@@ -16,6 +16,8 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  
+  
 </head>
 <body class="">
 	<div id="wrapper" class="clearfix">
@@ -32,13 +34,32 @@
 						<div class="row">
 							<div class="col-md-12">
 								<h3 class="title text-white">교육원 소개</h3>
-								<ol class="breadcrumb text-center text-black mt-10">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Pages</a></li>
-									<li class="active text-theme-colored">Page Title</li>
-									<li class="active text-theme-colored">Event List without
-										Sidebar</li>
-								</ol>
+								<ol class="breadcrumb text-left text-black mt-10">
+                                <li><a href="#">교육원 수정</a></li>
+                                <li class="active text-gray-silver"> - 교육원을 수정할 수 있는 페이지입니다.</li>
+                                <!-- Topbar Search -->
+                                <li>
+                                    <form name="searchForm" method="post" onsubmit="return searchform()">
+                                        <div class="input-group" style="padding-left: 730px">
+                                            <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
+                                                <option value="all">전체</option>
+                                                <option value="category">카테고리</option>
+                                                <option value="name">강의명</option>
+                                                <option value="teacher">강사명</option>
+                                            </select>
+                                            <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                                                   class="form-control bg-light border-0 small"
+                                                   placeholder="Search for..." aria-label="Search"
+                                                   aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit" id="search">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ol>
 							</div>
 						</div>
 					</div>

@@ -21,6 +21,7 @@ import project.web.mvc.domain.OffLecture;
 import project.web.mvc.repository.OffLectureRepository;
 
 @Service
+@Transactional
 public class OffLectureServiceImpl implements OffLectureService {
 
 	@Autowired
@@ -32,7 +33,6 @@ public class OffLectureServiceImpl implements OffLectureService {
 
 	}
 	
-	@Transactional
 	@Override
 	public void offLecUpdate(OffLecture inoffLecture) {
 		OffLecture offLecture = offLectureRepository.findByOffLectureNo(inoffLecture.getOffLectureNo());
@@ -66,7 +66,6 @@ public class OffLectureServiceImpl implements OffLectureService {
 		return offLecture;
 	}
 	
-	@Transactional
 	@Override
 	public OffLecture findByOffLectureNo(Long offLectureNo) {
 		OffLecture result = offLectureRepository.findById(offLectureNo).orElse(null);
