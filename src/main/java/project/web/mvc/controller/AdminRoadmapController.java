@@ -17,7 +17,7 @@ import project.web.mvc.service.OnLectureService;
 import project.web.mvc.service.RoadmapService;
 
 @Controller
-@RequestMapping("/admin/roadmap")
+@RequestMapping("/admin/roadMap")
 public class AdminRoadmapController {
 	
 	@Autowired
@@ -44,9 +44,12 @@ public class AdminRoadmapController {
 		return "admin/roadmap/onLectureList";
 	}
 	
-	@RequestMapping("/insert/{onLectureNo}")
-	public String roadmapInsert(@PathVariable Long onLectureNo, Roadmap roadmap) {
-		roadmap.setOnLecture(onLectureService.selectOnLectureById(onLectureNo));
+	@RequestMapping("/insert")
+	public String roadmapInsert(List<OnLecture> list, Roadmap roadmap) {
+		
+		System.out.println(list+"리스트받기~!!");
+		//roadmap.setOnLecture(onLectureService.selectOnLectureById());
+		//new OnLeture();
 		service.insert(roadmap);
 		return "";
 	}

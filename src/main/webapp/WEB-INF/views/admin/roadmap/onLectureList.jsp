@@ -37,7 +37,7 @@
 						
   						 var data="<tr class='onLecture_item'>";
 	                      data+="<td class='onLecture-remove'>"+"<button type='button' class='btn' id='btn'>"+"취소"+"</button>"+"</td>";
-	                      data+="<td class='product-thumbnail' id='result.onLectureNo'>"+result.onLectureNo+"</a>"+"</td>";
+	                      data+="<td class='product-thumbnail' id='result.onLectureNo' name='list[index].onLectureNo'>"+result.onLectureNo+"</a>"+"</td>";
 	                      data+="<td class='onLecture-name'>"+"<a href='#'>"+result.onLectureName+"</a>"+"</td>"
 	                      data+="<td class='onLecture-content'>"+"<span class='content'>"+result.onLectureContent+"</span>"+"</td>";
 	        			  data+="<td class='onLecture-teacher'>"+"<span class='teacher'>"+result.onLectureTeacher+"</span>"+"</td>";
