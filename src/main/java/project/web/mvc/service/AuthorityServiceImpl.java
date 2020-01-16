@@ -11,8 +11,11 @@ import project.web.mvc.domain.Authority;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.AuthorityRepository;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AuthorityServiceImpl implements AuthorityService{
 
 	private final AuthorityRepository authorityRepository;

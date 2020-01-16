@@ -11,12 +11,14 @@ import project.web.mvc.domain.OnLecture;
 import project.web.mvc.repository.OnDetailRepository;
 import project.web.mvc.repository.OnLectureRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class OnLectureServiceImpl implements OnLectureService {
     private final OnLectureRepository onLectureRepository;
     private final OnDetailRepository onDetailRepository;

@@ -1,6 +1,9 @@
 package project.web.mvc.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -8,14 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import project.web.mvc.domain.OffLecture;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.service.AuthorityService;
+import project.web.mvc.service.OffLectureService;
 import project.web.mvc.service.OnLectureService;
 import project.web.mvc.service.UserdbService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,6 +25,7 @@ public class HomeController {
 	private final UserdbService userdbService;
 	private final OnLectureService onLectureService;
 	private final AuthorityService authorityService;
+	private final OffLectureService offLectureService;
 	
 	@RequestMapping("/")
 	public String index(Model model) {
@@ -30,6 +33,10 @@ public class HomeController {
 		onLectureService.selectAll(1).iterator().forEachRemaining(lectureList::add);
 		System.out.println(lectureList);
 		model.addAttribute("onLectureList", lectureList);
+		List <OffLecture> offLectureList = new ArrayList<>();
+		offLectureService.selectAll(1).iterator().forEachRemaining(offLectureList::add);
+		System.out.println(offLectureList);
+		model.addAttribute("offLectureList", offLectureList);
 		return"index";
 	}
 	

@@ -15,6 +15,7 @@ import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.UserdbRepository;
 
 @Service
+@Transactional
 public class AdminUserServiceImpl implements AdminUserService {
 	@Autowired
 	private UserdbRepository userdbRepo;
@@ -35,7 +36,6 @@ public class AdminUserServiceImpl implements AdminUserService {
 	}
 	
 	
-	@Transactional
 	@Override
 	public void updateUserdb(Userdb inuserdb) {
 		

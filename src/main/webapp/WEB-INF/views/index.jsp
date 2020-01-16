@@ -123,98 +123,22 @@
           </div>
         </div>
         <div class="row mtli-row-clearfix">
-          <div class="col-md-12">
+          <div class="row">
             <div class="owl-carousel-4col">
-              <div class="item">
-                <div class="team-members maxwidth400">
-                  <div class="team-thumb">
-                    <img class="img-fullwidth" alt="" src="http://placehold.it/260x230">
+        <c:forEach var="list" items="${offLectureList}">
+              <div class="item ">
+                <div class="service-block bg-white">
+                  <div class="thumb"> <img alt="featured project" src="${pageContext.request.contextPath}/images/offLecture/${list.offLectureNo}.png" class="img-fullwidth">
+                  <h4 class="text-white mt-0 mb-0"><span class="price"><fmt:formatNumber value="${list.price}" pattern="₩#,###"/></span></h4>
                   </div>
-                  <div class="team-bottom-part border-bottom-theme-color-2-2px border-1px bg-white text-center p-10 pt-20 pb-10">
-                    <h4 class="text-uppercase font-raleway text-theme-color-2 font-weight-600 line-bottom-center m-0">Jhon Anderson</h4>
-                    <h5 class="m-0">- Engine Specialist -</h5>
-                    <p class="font-13 mt-10 mb-10">Lorem ipsum dolorsit amet consecte turadip isior ipsum dolor sit ametor ipsum dolor sit amet conse</p>
-                    <ul class="styled-icons icon-sm icon-gray icon-hover-theme-colored">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                      <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                    </ul>
+                  <div class="content text-left flip p-25 pt-0">
+                    <h4 style="height: 60px" class="line-bottom mb-10">${list.offLectureName}</h4>
+                    <p style="height: 130px">${list.offDetail}</p>
+                   <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/offLecture/detail/${list.offLectureNo}">자세히보기</a>
                   </div>
                 </div>
               </div>
-              <div class="item">
-                <div class="team-members maxwidth400">
-                  <div class="team-thumb">
-                    <img class="img-fullwidth" alt="" src="http://placehold.it/260x230">
-                  </div>
-                  <div class="team-bottom-part border-bottom-theme-color-2-2px border-1px bg-white text-center p-10 pt-20 pb-10">
-                    <h4 class="text-uppercase font-raleway text-theme-color-2 font-weight-600 line-bottom-center m-0">Zakaria Smith</h4>
-                    <h5 class="m-0">- Engine Specialist -</h5>
-                    <p class="font-13 mt-10 mb-10">Lorem ipsum dolorsit amet consecte turadip isior ipsum dolor sit ametor ipsum dolor sit amet conse</p>
-                    <ul class="styled-icons icon-sm icon-gray icon-hover-theme-colored">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                      <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="team-members maxwidth400">
-                  <div class="team-thumb">
-                    <img class="img-fullwidth" alt="" src="http://placehold.it/260x230">
-                  </div>
-                  <div class="team-bottom-part border-bottom-theme-color-2-2px border-1px bg-white text-center p-10 pt-20 pb-10">
-                    <h4 class="text-uppercase font-raleway text-theme-color-2 font-weight-600 line-bottom-center m-0">David Matthews</h4>
-                    <h5 class="m-0">- Engine Specialist -</h5>
-                    <p class="font-13 mt-10 mb-10">Lorem ipsum dolorsit amet consecte turadip isior ipsum dolor sit ametor ipsum dolor sit amet conse</p>
-                    <ul class="styled-icons icon-sm icon-gray icon-hover-theme-colored">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                      <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="team-members maxwidth400">
-                  <div class="team-thumb">
-                    <img class="img-fullwidth" alt="" src="http://placehold.it/260x230">
-                  </div>
-                  <div class="team-bottom-part border-bottom-theme-color-2-2px border-1px bg-white text-center p-10 pt-20 pb-10">
-                    <h4 class="text-uppercase font-raleway text-theme-color-2 font-weight-600 line-bottom-center m-0">Andrew Smith</h4>
-                    <h5 class="m-0">- Engine Specialist -</h5>
-                    <p class="font-13 mt-10 mb-10">Lorem ipsum dolorsit amet consecte turadip isior ipsum dolor sit ametor ipsum dolor sit amet conse</p>
-                    <ul class="styled-icons icon-sm icon-gray icon-hover-theme-colored">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                      <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="team-members maxwidth400">
-                  <div class="team-thumb">
-                    <img class="img-fullwidth" alt="" src="http://placehold.it/260x230">
-                  </div>
-                  <div class="team-bottom-part border-bottom-theme-color-2-2px border-1px bg-white text-center p-10 pt-20 pb-10">
-                    <h4 class="text-uppercase font-raleway text-theme-color-2 font-weight-600 line-bottom-center m-0">Faruk Haydar</h4>
-                    <h5 class="m-0">- Engine Specialist -</h5>
-                    <p class="font-13 mt-10 mb-10">Lorem ipsum dolorsit amet consecte turadip isior ipsum dolor sit ametor ipsum dolor sit amet conse</p>
-                    <ul class="styled-icons icon-sm icon-gray icon-hover-theme-colored">
-                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                      <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+        </c:forEach>
             </div>
           </div>
         </div>

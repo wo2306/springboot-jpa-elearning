@@ -335,7 +335,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                         let price = val.onLecture.onLecturePrice;
                         totalPrice += price;
                         let discountPrice = Math.floor(val.onLecture.onLecturePrice * val.onLecture.onLectureDiscount / 100);
-                        str += "<tr><td><a href=\"#\"><img alt=\"\" src=\"http://placehold.it/85x85\"></a></td><td><a href=\"#\">" + name + "</a></td><td>₩" + numberWithCommas(price) + "</td><td><a class=\"close\" onclick='deleteCartAjax(" + no + ")'><i class=\"fa fa-close font-13\"></i></a></td></tr>";
+                        str += "<tr><td><a href=\"#\"><img alt=\"\" src=\"${pageContext.request.contextPath}/images/onLecture/"+val.onLecture.onLectureNo+".png\"></a></td><td><a href=\"#\">" + name + "</a></td><td>₩" + numberWithCommas(price) + "</td><td><a class=\"close\" onclick='deleteCartAjax(" + no + ")'><i class=\"fa fa-close font-13\"></i></a></td></tr>";
                         totalDiscount += discountPrice;
                         $("#cart_btn").html("<a class=\"btn btn-theme-colored btn-xs\"\n" +
                             "                                                       href=\"${pageContext.request.contextPath}/cart/list\"> 장바구니로\n" +

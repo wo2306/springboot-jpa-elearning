@@ -13,7 +13,10 @@ import project.web.mvc.domain.Review;
 import project.web.mvc.repository.ReviewRepository;
 import project.web.mvc.util.LoginCheck;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired

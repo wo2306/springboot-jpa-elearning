@@ -33,7 +33,6 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    @Transactional
     public void insert(Long onLectureNo) {
         Userdb userdb = LoginCheck.getUserdb();
         if (userdb==null) {
