@@ -21,7 +21,13 @@
             horiz-align: center;
             text-align: center;
         }
+
         #in {
+            margin: auto;
+            width: 50%;
+        }
+
+        #inin {
             margin: auto;
             width: 50%;
         }
@@ -42,17 +48,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ol class="breadcrumb text-left text-black mt-10">
-                                <li><a href="#">판매 내역 조회</a></li>
-                                <li class="active text-gray-silver"> - 판매 내역을 조회하고 관리할 수 있는 페이지입니다.</li>
+                                <li><a href="#">쿠폰 관리</a></li>
+                                <li class="active text-gray-silver"> - 쿠폰을 등록, 수정, 삭제할 수 있는 페이지입니다.</li>
                                 <!-- Topbar Search -->
                                 <li>
                                     <form name="searchForm" method="post" onsubmit="return searchform()">
                                         <div class="input-group" style="padding-left: 730px">
-                                            <select  id="key" style="background-color:#F8F9FC; margin-right: 10px;">
-                                                <option value="list">전체</option>
-                                                <option value="code">주문코드</option>
-                                                <option value="lecture">강의명</option>
-                                            </select>
                                             <input id="keyword" type="text" name="value" style="padding-left: 10px"
                                                    class="form-control bg-light border-0 small"
                                                    placeholder="Search for..." aria-label="Search"
@@ -80,45 +81,40 @@
                         <table class="table table-bordered" id="dataTable2" width="100%"
                                cellspacing="0">
                             <tr>
-                                <th>주문번호</th>
-                                <th>주문코드</th>
-                                <th>강의명</th>
-                                <th>결제수단</th>
-                                <th>금액</th>
-                                <th>결제일자</th>
-                                <th>상태</th>
+                                <th>쿠폰코드</th>
+                                <th>쿠폰이름</th>
+                                <th>할인율</th>
+                                <th>만료기한</th>
+                                <th>전체 개수</th>
+                                <th>남은 개수</th>
+                                <th colspan="2">기능</th>
                             </tr>
-                            <c:choose>
-                                <c:when test="${list ne null}">
                             <c:forEach items="${requestScope.list}" var="list">
                                 <tr>
-                                    <td>${list.onOrderNo}</td>
-                                    <td>${list.onOrderCode}</td>
-                                    <td>${list.onlecture.onLectureName}</td>
-                                    <td>${list.onOrderMethod}</td>
-                                    <td><fmt:formatNumber value="${list.onOrderPrice}" pattern="₩#,###"/></td>
-                                    <td><fmt:formatDate value="${list.onOrderRegdate}" pattern="yyyy.MM.dd"/></td>
-                                    <td>${list.onOrderState}</td>
+                                    <td>${list.onLectureNo}</td>
+                                    <td>${list.onLectureCategory}</td>
+                                    <td>${list.onLectureName}</td>
+                                    <td><fmt:formatDate value="${list.onLectureRegdate}"
+                                                        pattern="yyyy.MM.dd hh:mm"/></td>
+                                    <input type=hidden name="offLectureNo" value="${list.onLectureNo}">
+                                    <td>
+                                        <button type="button" name="deleteBtn" class="btn btn-dark"
+                                                value="${list.onLectureNo}">삭제
+                                        </button>
+                                    </td>
                                 </tr>
                             </c:forEach>
-                                </c:when>
-                                <c:otherwise>
-                                    <tr>
-                                        <td colspan="7">주문 내역이 없습니다.</td>
-                                    </tr>
-                                </c:otherwise>
-                            </c:choose>
                         </table>
                         <div class="container" id="in">
-                            <div class="row" >
-                                <div class="col">
+                            <div class="row">
+                                <div class="col" id="inin">
                                     <ul class="pagination">
-                                        <c:if test="${page.totalPages ne 0 && page ne null}">
+                                        <c:if test="${page.totalPages ne 0}">
                                         <c:choose>
                                             <c:when test="${page.hasPrevious() eq true}">
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${page.number}"
+                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number}"
                                                        aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                     </a>
                                                 </li>
@@ -126,7 +122,7 @@
                                             <c:otherwise>
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${page.number+1}"
+                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
                                                        aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                     </a>
                                                 </li>
@@ -138,11 +134,11 @@
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${i.count}">${i.count}</a>
+                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${i.count}">${i.count}</a>
+                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </li>
@@ -152,12 +148,12 @@
                                             <c:choose>
                                                 <c:when test="${page.hasNext() eq true}">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${page.number+2}"
+                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+2}"
                                                        aria-label="Next"> <span aria-hidden="true">다음</span> </a>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onOrder/${keyfield}/${keyword}/${page.number+1}"
+                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
                                                        aria-label="Previous"> <span aria-hidden="true">다음</span>
                                                     </a>
                                                 </c:otherwise>
@@ -165,6 +161,8 @@
                                             </c:if>
                                         </li>
                                     </ul>
+                                    <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.upload&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:8888/oauth2callback&response_type=code&client_id=1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com"
+                                       class="btn btn-dark">새로운</a>
                                 </div>
                             </div>
                         </div>
@@ -178,16 +176,17 @@
     function searchform() {
         var keyfield = $("#key option:selected").val();
         var keyword = $("#keyword").val();
-        if (keyword == "") {
-            keyword = "all";
-        }
-        location.href = '${pageContext.request.contextPath}/admin/onOrder/' + keyfield + '/' + keyword + '/1';
+        location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
         return false;
     }
-    $("button[name=deleteBtn]").click(function () {
-        location.href = '${pageContext.request.contextPath}/admin/onOrder/delete/' + $(this).attr(id);
+
+    $("button[name='deleteBtn']").on('click', function () {
+        location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).val();
     })
 
+    $("button[name='updateBtn']").on('click', function () {
+        location.href = '${pageContext.request.contextPath}/admin/onLecture/updateForm/' + $(this).val();
+    })
 </script>
 </body>
 </html>
