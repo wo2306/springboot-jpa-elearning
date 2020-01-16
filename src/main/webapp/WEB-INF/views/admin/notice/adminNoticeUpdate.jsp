@@ -83,7 +83,7 @@
                      </table>
                                  <div class="col-md-6">
                                     <div class="video-popup">
-                                       <input type="button" class="btn btn-dark" value="새로운 공지사항 등록" style="width: 500px; margin-left : 220px"
+                                       <input type="button" class="btn btn-dark" value="등록" style="width: 500px; margin-left:150px"
                                        onClick="location.href='${pageContext.request.contextPath}/admin/notice/insertForm'">
                                     </div>
                                  </div>
@@ -123,67 +123,6 @@
 	        location.href = '${pageContext.request.contextPath}/admin/notice/' + keyfield + '/' + keyword + '/1';
 	        return false;
 	    }
-	 
-	  $(document).ready(function(){ 
-          
-          
-          //전체레코드 가져오기
-          function printnotice() {
-             $.ajax({
-                   type :"post",
-                   url :"${pageContext.request.contextPath}/admin/notice/list",
-                   dataType :"json",               
-                   success : function(result){
-                      //alert("통신성공!!!");
-                      if(result!=null){
-                      //alert(result);
-                      $('#dataTable tr:gt(0)').empty();
-                   var str = "";
-                   $.each(result,function(index,item){
-                      str+='<tr>';
-                      str+='<td>'+item.noticeNo+'</td>';
-                      str+='<td><a>'+item.noticeTitle+'</a></td>';
-                      str+='<td>'+item.noticeContent+'</td>';
-                      str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
-                      str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.noticeNo+'></td>';
-                      str+='</tr>';
-                   });
-                   $('#dataTable').append(str);
-                      }else alert("등록된 공지사항이 없습니다.");
-                     },
-                  error : function(err){
-                   alert("통신실패!!!! err : " + err);
-               } 
-               });
-          }
-
-          
-          $('#dataTable').on('click', 'input[value=삭제]', function () {
-              console.log($(this).attr('id'));
-              $.ajax({
-                  url: "${pageContext.request.contextPath}/admin/notice/delete",
-                  type: "delete",
-                  data: "noticeNo=" + $(this).attr('id'),
-                  dataType: "text",
-                  success: function () {
-                      alert("삭제완료");
-                     	printnotice();
-                  }, error: function (err) {
-                      alert("안눌려");
-                  }
-              })
-          });//delete
-
-        
-        function searchform() {
-      	  alert(2222);
-            var keyfield = $("#key option:selected").val();
-            var keyword = $("#keyword").val();
-            location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
-            return false;
-        }
-        
-        })
 	</script>
 </body>
 </html>

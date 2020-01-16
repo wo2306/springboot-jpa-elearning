@@ -38,7 +38,6 @@ public class Notice {
     private String noticeContent;
 
 	@CreationTimestamp
-//	@Column(nullable = true)
-	private Date noticeRegdate;
+    private Date noticeRegdate;
 
 }
