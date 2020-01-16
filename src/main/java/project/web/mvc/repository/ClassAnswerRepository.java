@@ -10,4 +10,5 @@ import project.web.mvc.domain.ClassQuestion;
 public interface ClassAnswerRepository extends CrudRepository<ClassAnswer, Long> {
 	
 	List<ClassAnswer> findByClassQuestionClassQuestionNo(Long classQuestionNo);
+	
 }

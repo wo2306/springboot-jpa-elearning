@@ -272,12 +272,32 @@
 
                                                             <td>${dto.onLecture.onLectureName }</td>
 
-                                                            <td>
+                                                            <td><a
+																		href="#promoModal1${dto.classQuestionNo}" name="popup"
+																		data-lightbox="inline" class="btn btn-default">${dto.classQuestionTitle }</a>
+																		<div style="display: none;"
+																			id="promoModal1${dto.classQuestionNo}"
+																			class="modal-promo-box bg-img-cover"
+																			data-bg-img="http://placehold.it/1920x1280"
+																			style="background-image: url(&quot;http://placehold.it/1920x1280&quot;);">
+																			<h2 class="mt-0 text-white">상세 내용</h2>
 
-                                                                <a href="#" name="popup" data-lightbox="inline"
-                                                                   class="btn btn-default">${dto.classQuestionTitle }</a>
+																			<h5>
+																				<span class="text-highlight">${dto.classQuestionContent}</span>
+																			</h5>
 
-                                                            </td>
+
+
+																			<!-- Mailchimp Subscription Form Validation-->
+																			<script>
+																				$("a[name='popup']").on('click',function() {
+																									$(this).next().show();
+																						});
+																			</script>
+
+																			<a class="text-gray-darkgray" href="#"
+																				onclick="$.magnificPopup.close(); return false;">닫기</a>
+																		</div></td>
 
                                                             <td><h4>
                                                                 <a href="#" name="questionDelete"
@@ -285,6 +305,7 @@
                                                                         class="fa fa-close"></i></a>
                                                             </h4></td>
                                                         </tr>
+                                                        
                                                     </c:forEach>
                                                 </c:when>
                                                 <c:otherwise>
@@ -553,9 +574,10 @@
         $("a[name='questionDelete']").on('click', function () {
             console.log($(this).attr('id'));
             var reviewNo = $(this).attr('id');
+            
             if (confirm("정말로 삭제 하시겠습니까?")) {
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/",
+                    url: "${pageContext.request.contextPath}/qna/delete",
                     type: "delete",
                     data: "reviewNo=" + reviewNo,
                     dataType: "text",

@@ -44,15 +44,15 @@
           <div class="col-md-12">
             <p>
             	${question.classQuestionContent }
+            	
             </p>
             </div>
+            
         </div>
 <hr>
       
 <div class="col-md-6">
-		<script>
-			alert(${answerList});
-		</script>
+	
             <div class="heading-line-bottom">
               <span class="text-highlight light" style="font-size: 25px;">답변하기</span>
             </div>

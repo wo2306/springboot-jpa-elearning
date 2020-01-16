@@ -20,12 +20,13 @@ public class QnaController {
 	
 	@Autowired
 	private ClassQuestionService classQuestionService;
+	
 	@RequestMapping("/list")
 	public void list(Model model) {
 		System.out.println("qna test ctrl");
 		List<ClassQuestion> list = classQuestionService.selectAll();
 		
-	
+		
 		model.addAttribute("list",list);
 		
 	}
@@ -33,7 +34,10 @@ public class QnaController {
 	@RequestMapping("/read/{id}")
 	public ModelAndView read(@PathVariable Long id, Model model) {
 		ClassQuestion classQuestion = classQuestionService.selectByQNo(id);
+		
 		List<ClassAnswer> answerList = classQuestionService.selectAnswerByQNo(id);
+		
+		System.out.println("@@@@ answerList : "+answerList);
 		
 		
 		model.addAttribute("question", classQuestion);

@@ -25,6 +25,7 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	private ClassQuestionRepository classQuestionRepo;
 	@Autowired
 	private ClassAnswerRepository classAnswerRepo;
+	
 	@Override
 	public List<ClassQuestion> selectAll() {
 		System.out.println(Lists.newArrayList(classQuestionRepo.findAll()));
@@ -59,6 +60,13 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		ClassQuestion question = classQuestionRepo.findById(id).orElse(null);
 		return question;
 	}
+	
+	@Override
+	public List<ClassAnswer> selectAnswerByQNo(Long id) {
+		List<ClassAnswer> answerList = classAnswerRepo.findByClassQuestionClassQuestionNo(id);
+		System.out.println("퀘스천 "+answerList);
+		return answerList;
+	}
 
 	@Override
 	public List<ClassQuestion> findTop10ByOrderByClassQuestionRegdateDesc() {
@@ -70,11 +78,7 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		return classQuestionRepo.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum-1, 9));
 	}
 
-	@Override
-	public List<ClassAnswer> selectAnswerByQNo(Long id) {
-		
-		return classAnswerRepo.findByClassQuestionClassQuestionNo(id);
-	}
+
 	
 	
 }
