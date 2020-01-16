@@ -8,7 +8,13 @@
 
   <!-- Page Title -->
   <title>LM company | Learning Machine | main</title>
+<style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
 
+    </style>
 </head>
 <body class="">
 <div id="wrapper" class="clearfix">
@@ -21,7 +27,7 @@
       <div class="container pt-70 pb-20">
         <!-- Section Content -->
         <div class="section-content">
-          <div class="row">
+          <div class="row"  id="out">
             <div class="col-md-12">
               <h2 class="title text-white">관리자 페이지</h2>
               <ol class="breadcrumb text-left text-black mt-10">
@@ -33,9 +39,9 @@
                                         <div class="input-group" style="padding-left: 730px">
                                             <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
                                                 <option value="all">전체</option>
-                                                <option value="category">카테고리</option>
-                                                <option value="name">강의명</option>
-                                                <option value="teacher">강사명</option>
+                                                <option value="academy">교육원</option>
+                                                <option value="city">도시명</option>
+                                                <option value="address">주소</option>
                                             </select>
                                             <input id="keyword" type="text" name="value" style="padding-left: 10px"
                                                    class="form-control bg-light border-0 small"
@@ -164,5 +170,16 @@
               
               })
               </script>
+              
+              <script>
+    function searchform() {
+        var keyfield = $("#key option:selected").val();
+        var keyword = $("#keyword").val();
+        location.href = '${pageContext.request.contextPath}/admin/academy/' + keyfield + '/' + keyword;
+        return false;
+    }
+
+  
+</script>
 </body>
 </html>

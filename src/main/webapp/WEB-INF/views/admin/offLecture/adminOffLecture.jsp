@@ -16,6 +16,14 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  
+  <style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body class="">
 	<div id="wrapper" class="clearfix">
@@ -30,7 +38,7 @@
 				<div class="container pt-70 pb-20">
 					<!-- Section Content -->
 					<div class="section-content">
-						<div class="row">
+						<div class="row"  id="out">
 							<div class="col-md-12">
 								<h2 class="title text-white">관리자 페이지</h2>
 								<ol class="breadcrumb text-left text-black mt-10">
