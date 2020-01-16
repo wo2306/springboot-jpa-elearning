@@ -33,9 +33,12 @@ public class HomeController {
 		onLectureService.selectAll(1).iterator().forEachRemaining(lectureList::add);
 		System.out.println(lectureList);
 		model.addAttribute("onLectureList", lectureList);
+		//리스트 그냥 뿌리는거(그냥 뿌리기-됨)
+		//List <OffLecture> offLectureList = new ArrayList<>();
+		//offLectureService.selectAll(1).iterator().forEachRemaining(offLectureList::add);
 		List <OffLecture> offLectureList = new ArrayList<>();
-		offLectureService.selectAll(1).iterator().forEachRemaining(offLectureList::add);
-		System.out.println(offLectureList);
+		offLectureService.findByOrderByOffLectureDateDesc();
+		System.out.println("여기나오ㅑ?"+offLectureList);
 		model.addAttribute("offLectureList", offLectureList);
 		return"index";
 	}

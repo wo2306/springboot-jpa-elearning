@@ -77,5 +77,10 @@ public class OffLectureServiceImpl implements OffLectureService {
 	public Page<OffLecture> selectAll(int pageNum) {
 		return offLectureRepository.findByOrderByOffLectureNo(PageRequest.of(pageNum - 1, 9));
 	}
+
+	@Override
+	public List<OffLecture> findByOrderByOffLectureDateDesc() {
+		return offLectureRepository.findByOrderByOffLectureDateDesc();
+	}
 	
 }
