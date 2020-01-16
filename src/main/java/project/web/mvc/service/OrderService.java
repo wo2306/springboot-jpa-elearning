@@ -26,5 +26,7 @@ public interface OrderService {
 
     Page<OffOrder> offSelectByLectureName(int pageNum, String keyword);
 
+    Page<OffOrder> offSelectByUserdbNo(int pageNum);
+
     Page<OffOrder> offSelectByUserEmail(int pageNum, String keyword);
 }

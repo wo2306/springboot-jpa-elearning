@@ -60,7 +60,7 @@
                 <div class="section-title">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3 text-center">
-                            <h3 class="title text-theme-colored">수정하기 Form</h3>
+                            <h3 class="title text-theme-colored">입력하기 Form</h3>
                         </div>
                     </div>
                 </div>
@@ -71,12 +71,12 @@
                               method="post">
                             <br style="clear: both">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="subject"
+                                <input type="text" class="form-control" id="subject" value="${item.noticeTitle}"
                                        name="noticeTitle" placeholder="subject" required>
                             </div>
                             <div class="form-group">
-									<textarea class="form-control" id="summernote" name="noticeContent"
-                                              placeholder="content" maxlength="140" rows="7"></textarea>
+									<textarea class="form-control" id="summernote" name="noticeContent"  
+                                              placeholder="content" maxlength="140" rows="7"><div>${item.noticeContent}</div></textarea>
                             </div>
                             <button type="submit" id="submit" name="submit"
                                     class="btn btn-primary pull-right">등록하기
@@ -90,6 +90,7 @@
     </div>
 </div>
 
+<!-- summernote 작동시키기 -->
 <script type="text/javascript">
     $(document).ready(function () {
         $('#summernote').summernote({

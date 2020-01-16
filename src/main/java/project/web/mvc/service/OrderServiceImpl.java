@@ -72,6 +72,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Page<OffOrder> offSelectByUserdbNo(int pageNum) {
+        return offOrderRepository.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(),PageRequest.of(pageNum - 1, 10));
+    }
+
+    @Override
     public Page<OffOrder> offSelectByLectureName(int pageNum, String keyword) {
         return offOrderRepository.findByLectureName(keyword, PageRequest.of(pageNum - 1, 10));
     }

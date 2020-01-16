@@ -52,7 +52,7 @@
     </section>
 
     <!-- Section: welcome -->
-    <section id="welcome" class="divider layer-overlay overlay-dark-6 parallax" data-parallax-ratio="0.1" data-bg-img="http://placehold.it/1920x1280">
+    <section id="welcome" class="divider layer-overlay overlay-dark-6 parallax" data-parallax-ratio="0.1" data-bg-img="${pageContext.request.contextPath}/images/index/index1.jpg">>
       <div class="container pt-150 pb-150">
         <div class="section-content">
           <div class="row">
@@ -67,9 +67,7 @@
             </div>
             <div class="col-md-6">
               <div class="video-popup">
-                <a href="https://www.youtube.com/watch?v=pW1uVUg5wXM" data-lightbox-gallery="youtube-video" title="Video">
-                  <img alt="" src="http://placehold.it/555x330" class="img-responsive img-fullwidth">
-                </a>
+                  <iframe width="460" height="315" src="https://www.youtube.com/embed/PrN9QB8HDNM?autoplay=1&controls=0&mute=1&rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
             </div>
           </div>
@@ -78,7 +76,7 @@
     </section>
 
     <!-- Section: Courses -->
-    <section id="services" class="divider parallax layer-overlay overlay-dark-6" data-parallax-ratio="0.1" data-bg-img="http://placehold.it/1920x1280">
+    <section id="services" class="divider parallax layer-overlay overlay-dark-6" data-parallax-ratio="0.1" data-bg-img="${pageContext.request.contextPath}/images/index/main3.jpg">
       <div class="container pt-150 pb-150">
         <div class="section-title text-center">
           <div class="row">
@@ -94,12 +92,12 @@
         <c:forEach var="dto" items="${onLectureList}">
               <div class="item ">
                 <div class="service-block bg-white">
-                  <div class="thumb"> <img alt="featured project" src="http://placehold.it/265x195" class="img-fullwidth">
+                  <div class="thumb"> <img alt="featured project" src="${pageContext.request.contextPath}/images/onLecture/${dto.onLectureNo}.png" class="img-fullwidth">
                   <h4 class="text-white mt-0 mb-0"><span class="price"><fmt:formatNumber value="${dto.onLecturePrice}" pattern="₩#,###"/></span></h4>
                   </div>
                   <div class="content text-left flip p-25 pt-0">
-                    <h4 class="line-bottom mb-10">${dto.onLectureName}</h4>
-                    <p>${dto.onLectureSummary}</p>
+                    <h4 style="height: 60px" class="line-bottom mb-10">${dto.onLectureName}</h4>
+                    <p style="height: 130px">${dto.onLectureSummary}</p>
                    <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">자세히보기</a>
                   </div>
                 </div>
@@ -112,7 +110,7 @@
     </section>
 
     <!-- Section: Experts -->
-    <section id="experts" class="divider parallax layer-overlay overlay-dark-4" data-parallax-ratio="0.1" data-bg-img="http://placehold.it/1920x1280">
+    <section id="experts" class="divider parallax layer-overlay overlay-dark-4" data-parallax-ratio="0.1" data-bg-img="${pageContext.request.contextPath}/images/index/index3.jpg">
       <div class="container pt-150 pb-150">
         <div class="section-title text-center">
           <div class="row">

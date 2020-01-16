@@ -81,6 +81,23 @@ public class UserdbServiceImpl implements UserdbService {
 		return result;
 	}
 
+	//닉네임변경
+	@Override
+	public void updateNickname(String userdbNickname) {
+		Userdb userdb = LoginCheck.getUserdb();
+		userdb.setUserdbNickname(userdbNickname);
+		userdbRepository.save(userdb);
+	}
+	
+	@Override
+	public void updatePw(String userdbPassword) {
+		Userdb userdb = LoginCheck.getUserdb();
+		//비밀번호 인코딩
+		String encodedPassword = passwordEncoder.encode(userdbPassword);
+		userdb.setUserdbPassword(encodedPassword);
+		userdbRepository.save(userdb);
+	}
+
 
 
 }

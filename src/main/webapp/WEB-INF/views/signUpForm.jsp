@@ -45,7 +45,7 @@
 							<h4 class="heading-title">Don't have an Account? Register
 								Now</h4>
 						</div>
-						<form method="post" name="signUpForm">
+						<form method="post" name="signUpForm" onsubmit="return checkValid()">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" style="display: none">
 							<div class="row">
@@ -103,6 +103,27 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			
+
+			function checkValid() {
+				var f = window.document.formPassword;
+				if ( f.userdbPassword0.value == "" ) {
+			        alert( "비밀번호0를 입력해 주세요" );
+					f.userdbPassword0.focus();
+					return false;
+				}
+				if ( f.userdbPassword1.value == "" ) {
+			        alert( "비밀번호1를 입력해 주세요" );
+			        f.userdbPassword1.focus();
+			        return false;
+			    }
+				if ( f.userdbPassword2.value == "" ) {
+			        alert( "비밀번호2를 입력해 주세요" );
+			        f.userdbPassword2.focus();
+			        return false;
+			    }else{
+			    	
+			    
 			
 			/*
 				email 키업시 일어나는 이벤트
@@ -214,26 +235,45 @@
 
 
 		})
+	}
+			
+})
 	</script>
 
 
-
 <script type='text/javascript'>
+
+var userdbEmail;
+var userdbNickname;
+
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
     function loginWithKakao() {
       // 로그인 창을 띄웁니다.
-      Kakao.Auth.login({
-        success: function(authObj) {
-          alert(JSON.stringify(authObj));
-        },
-        fail: function(err) {
-          alert(JSON.stringify(err));
-        }
-      });
+    	Kakao.Auth.createLoginButton({
+            container: '#custom-login-btn',
+            success: function(authObj) {
+              Kakao.API.request({
+                url: '/v1/user/me',
+                success: function(res) {
+                      userdbEmail = res.kaccount_email;
+                      userdbNickname = res.properties['nickname'];
+                      alert(userdbEmail);
+                    }
+                  })
+                },
+                fail: function(error) {
+                  alert(JSON.stringify(error));
+                }
+              });
+      console.log(userdbEmail);
     };
+    
+    
   //]]>
 </script>
+
+
 </body>
 </html>

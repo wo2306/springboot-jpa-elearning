@@ -30,13 +30,13 @@
   <!-- Start main-content -->
   <div class="main-content">
     <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="${pageContext.request.contextPath}/images/banner/notice.jpg">
       <div class="container pt-70 pb-20">
         <!-- Section Content -->
         <div class="section-content">
           <div class="row">
             <div class="col-md-12">
-              <h3 class="title text-white">공지사항</h3>
+              <h2 class="title text-white">공지사항</h3>
               <ol class="breadcrumb text-left text-black mt-10">
                 <li><a href="${pageContext.request.contextPath}/">Home</a></li>
               </ol>
@@ -55,9 +55,9 @@
               <table class="table table-striped table-schedule">
                 <thead>
                   <tr class="bg-theme-colored">
-                    <th>글번호</th>
-                    <th>제목</th>
-                    <th>등록일</th>
+                    <th style="color: white;">글번호</th>
+                    <th style="color: white;">제목</th>
+                    <th style="color: white;">등록일</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -77,6 +77,5 @@
     </section>
   </div>
   <!-- end main-content -->
-</div>
 </body>
 </html>

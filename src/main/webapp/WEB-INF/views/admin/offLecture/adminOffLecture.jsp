@@ -1,53 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <head>
 
-  <!-- Page Title -->
-  <title>LM company | Learning Machine | main</title>
+<!-- Page Title -->
+<title>LM company | Learning Machine | main</title>
 
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
 <body class="">
-<div id="wrapper" class="clearfix">
+	<div id="wrapper" class="clearfix">
 
-  <!-- Start main-content -->
-  <div class="main-content">
+		<!-- Start main-content -->
+		<div class="main-content">
 
-    <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
-      <div class="container pt-70 pb-20">
-        <!-- Section Content -->
-        <div class="section-content">
-          <div class="row">
-            <div class="col-md-12">
-              <h2 class="title text-white">관리자 페이지</h2>
-              <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active text-gray-silver">Page Title</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+			<!-- Section: inner-header -->
+			<section
+				class="inner-header divider parallax layer-overlay overlay-dark-5"
+				data-bg-img="http://placehold.it/1920x1280">
+				<div class="container pt-70 pb-20">
+					<!-- Section Content -->
+					<div class="section-content">
+						<div class="row">
+							<div class="col-md-12">
+								<h2 class="title text-white">관리자 페이지</h2>
+								<ol class="breadcrumb text-left text-black mt-10">
+									<li><a href="#">Home</a></li>
+									<li><a href="#">Pages</a></li>
+									<li class="active text-gray-silver">Page Title</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-    <!-- Section: About -->
-    <section class="">
-      <div class="container">
-        <div class="section-content">
-          <div class="row">
+			<!-- Section: About -->
+			<section class="">
+				<div class="container">
+					<div class="section-content">
+						<div class="row">
 
-<%-- <form name="updateForm" method="post"
+							<%-- <form name="updateForm" method="post"
 								action="${pageContext.request.contextPath}/admin/offLecture/offLecUpdate"> --%>
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
@@ -73,42 +76,94 @@
 										<td>${list.offLectureSeat-list.offLectureReservedseat}</td>
 										<td>${list.offDetail}</td>
 										<td>${list.offLectureDate}</td>
-										<td><input type="submit" class="btn btn-dark" onClick="location.href='${pageContext.request.contextPath}/admin/offLecture/offLecUpdate/${list.offLectureNo}'" value="수정" ></td>
-										<td><input type="button" class="btn btn-dark" value="삭제" id=${list.offLectureNo}></td>
+										<td><input type="submit" class="btn btn-dark"
+											onClick="location.href='${pageContext.request.contextPath}/admin/offLecture/offLecUpdate/${list.offLectureNo}'"
+											value="수정"></td>
+										<td><input type="button" class="btn btn-dark" value="삭제"
+											id=${list.offLectureNo}></td>
 									</tr>
 								</c:forEach>
 							</table>
-						<!-- 	</form> -->
-						<h4>OffLecture 등록하기 :  </h4>
+
+							<!-- 	</form> -->
+							<h4>OffLecture 등록하기 :</h4>
 							<form name="writeForm" method="post"
 								action="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister">
 								<input type="submit" class="btn btn-dark" value="등록하기">
-								
-									
+
+
 
 							</form>
 
-											<div class="col-md-6">
-												<div class="video-popup">
-													<a href="https://www.youtube.com/watch?v=pW1uVUg5wXM"
-														data-lightbox-gallery="youtube-video" title="Video"> </a>
-												</div>
-											</div>
-										</div>
+							<div class="col-md-6">
+								<div class="video-popup">
+									<a href="https://www.youtube.com/watch?v=pW1uVUg5wXM"
+										data-lightbox-gallery="youtube-video" title="Video"> </a>
+
+									<!-- 페이징 처리 -->
+									<div class="container" id="in">
+										<div class="row">
+											<div class="col" id="inin">
+												<ul class="pagination">
+													<c:if test="${page.totalPages ne 0}">
+														<c:choose>
+															<c:when test="${page.hasPrevious() eq true}">
+																<li class="page-item"><a class="page-link"
+																	href="${pageContext.request.contextPath}/admin/offLecture/list/${page.number}"
+																	aria-label="Previous"> <span aria-hidden="true">이전</span>
+																</a></li>
+															</c:when>
+															<c:otherwise>
+																<li class="page-item"><a class="page-link"
+																	href="${pageContext.request.contextPath}/admin/offLecture/list/${page.number+1}"
+																	aria-label="Previous"> <span aria-hidden="true">이전</span>
+																</a></li>
+															</c:otherwise>
+														</c:choose>
+
+														<c:forEach varStatus="i" begin="1"
+															end="${page.totalPages}">
+															<li class="page-item"><c:choose>
+																	<c:when test="${page.number eq i.count-1}">
+																		<a class="page-link"
+																			href="${pageContext.request.contextPath}/admin/offLecture/list/${i.count}">${i.count}</a>
+																	</c:when>
+																	<c:otherwise>
+																		<a class="page-link"
+																			href="${pageContext.request.contextPath}/admin/offLecture/list/${i.count}">${i.count}</a>
+																	</c:otherwise>
+																</c:choose></li>
+														</c:forEach>
+
+														<li class="page-item"><c:choose>
+																<c:when test="${page.hasNext() eq true}">
+																	<a class="page-link"
+																		href="${pageContext.request.contextPath}/admin/offLecture/list/${page.number+2}"
+																		aria-label="Next"> <span aria-hidden="true">다음</span>
+																	</a>
+																</c:when>
+																<c:otherwise>
+																	<a class="page-link"
+																		href="${pageContext.request.contextPath}/admin/offLecture/list/${page.number+1}"
+																		aria-label="Previous"> <span aria-hidden="true">다음</span>
+																	</a>
+																</c:otherwise>
+															</c:choose>
+													</c:if>
+													</li>
+												</ul>
 									</div>
 								</div>
-							</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+		</div>
+	</div>
 
-  </div>
-</div>
-
- <script type="text/javascript">
+	<script type="text/javascript">
               $(document).ready(function(){ 
                
                 

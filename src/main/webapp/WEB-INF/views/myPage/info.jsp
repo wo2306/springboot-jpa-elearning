@@ -202,52 +202,35 @@
                                             </table>
                                         </div>
                                     </div>
-
-
                                     <div role="tabpanel" class="tab-pane" id="free-orders">
                                         <table class="table table-hover">
                                             <thead>
                                             <tr>
                                                 <th>주문번호</th>
+                                                <th>강의이름</th>
                                                 <th>주문날짜</th>
                                                 <th>결제수단</th>
                                                 <th>총 결제 금액</th>
-                                                <th>상세조회</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+                                            <c:choose>
+                                            <c:when test="${offOrderList ne null}">
+                                            <c:forEach items="${requestScope.offOrderList}" var="offOrder">
                                             <tr>
-                                                <th scope="row">#1189</th>
-                                                <td>24/07/2016</td>
-                                                <td>PayPal</td>
-                                                <td>$127.50</td>
-                                                <td><a class="btn btn-success btn-xs" href="#">주문
-                                                    내역 상세 보기</a></td>
+                                                <td>${offOrder.offOrderNo}</td>
+                                                <td>${offOrder.offLecture.offLectureName}</td>
+                                                <td><fmt:formatDate value="${offOrder.offOrderRegdate}" pattern="yyyy.MM.dd"/></td>
+                                                <td>${offOrder.offOrderMethod}</td>
+                                                <td><fmt:formatNumber value="${offOrder.offLecture.price}" pattern="₩#,###"/></td>
                                             </tr>
+                                            </c:forEach>
+                                            </c:when>
+                                            <c:otherwise>
                                             <tr>
-                                                <th scope="row">#1189</th>
-                                                <td>24/07/2016</td>
-                                                <td>PayPal</td>
-                                                <td>$127.50</td>
-                                                <td><a class="btn btn-success btn-xs" href="#">주문
-                                                    내역 상세 보기</a></td>
+                                                <td colspan="7" style="text-align: center">주문 내역이 존재하지 않습니다.</td>
                                             </tr>
-                                            <tr>
-                                                <th scope="row">#1189</th>
-                                                <td>24/07/2016</td>
-                                                <td>PayPal</td>
-                                                <td>$127.50</td>
-                                                <td><a class="btn btn-success btn-xs" href="#">주문
-                                                    내역 상세 보기</a></td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">#1189</th>
-                                                <td>24/07/2016</td>
-                                                <td>PayPal</td>
-                                                <td>$127.50</td>
-                                                <td><a class="btn btn-success btn-xs" href="#">주문
-                                                    내역 상세 보기</a></td>
-                                            </tr>
+                                            </c:otherwise>
+                                            </c:choose>
                                             </tbody>
                                         </table>
                                     </div>
@@ -458,7 +441,7 @@
                             str += '<tr>';
                             str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail">' + item.onLecture.onLectureNo + '</a>' + '</td>';
                             str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>' + item.onLecture.onLectureName + '</a>' + '</td>';
-                            str += '<td>' + item.onLecturePrice + '</td>';
+                            str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
                         });
@@ -486,7 +469,7 @@
                             str += '<tr>';
                             str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail">' + item.onLecture.onLectureNo + '</a>' + '</td>';
                             str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>' + item.onLecture.onLectureName + '</a>' + '</td>';
-                            str += '<td>' + item.onLecturePrice + '</td>';
+                            str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
                         });
@@ -509,7 +492,7 @@
                 dataType: "text",
                 success: function () {
                     console.log("삭제완료");
-                    //	printwishlist();
+                   	printwishlist();
                 }, error: function (err) {
                     console.log("안눌려");
                 }

@@ -4,7 +4,6 @@ package project.web.mvc.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,8 +39,8 @@ public class OffLectureController {
 	 * off lecture 등록
 	 * */
 	@RequestMapping("/offLecInsert")
-	public String offLecInsert(OffLecture offLecture, HttpServletRequest request) throws Exception{
-		offLectureService.offLecInsert(offLecture, request);
+	public String offLecInsert(OffLecture offLecture){
+		offLectureService.offLecInsert(offLecture);
 		return "redirect:list";
 	}
 	
@@ -70,7 +69,7 @@ public class OffLectureController {
 	 * off lecture 전체검색
 	 * */
 	
-	@RequestMapping("list/{pageNUm}")
+	@RequestMapping("list/{pageNum}")
 	public String list(Model model, @PathVariable int pageNum) {
 		System.out.println("너왓어어어어어?");
 		List<OffLecture> list = new ArrayList<>();
@@ -89,6 +88,13 @@ public class OffLectureController {
 		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
 		//System.out.println(offLecture.getOffDetail());
 		return new ModelAndView("offLecture/detail", "offLecture", offLecture);
+	}
+	
+	@RequestMapping("checkout/{offLectureNo}")
+	public ModelAndView offLecCheckout(@PathVariable Long offLectureNo) {
+		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
+		System.out.println(offLecture.getOffLectureName());
+		return new ModelAndView("payment/offLecturecheckout", "offLecture", offLecture);
 	}
 
 }

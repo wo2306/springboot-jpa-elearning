@@ -57,6 +57,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <!-- JS | jquery plugin collection for this theme -->
     <script src="${pageContext.request.contextPath}/js/jquery-plugin-collection.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
     <script type="text/javascript">
         function logout() {
@@ -77,6 +78,11 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
 		});  */
 
     </script>
+    <style>
+       * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
@@ -117,7 +123,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                 </li>
                                 <li class="text-white">|</li>
 
-                                <li><a class="text-white">${user.userdbNickname}님 </a>
+                                <li><a class="text-white" href="${pageContext.request.contextPath}/myPage/myAccount/">${user.userdbNickname}님 </a>
                                 </li>
                                 <form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post"
                                       style="display:none">
@@ -291,7 +297,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     }
 
     function offLecture() {
-        location.href = "${pageContext.request.contextPath}/offLecture";
+        location.href = "${pageContext.request.contextPath}/offLecture/list/1";
     }
 
     function roadmap() {

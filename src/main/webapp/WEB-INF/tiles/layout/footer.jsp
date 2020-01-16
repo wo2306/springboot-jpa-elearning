@@ -22,7 +22,7 @@
     <div class="container pt-70 pb-40">
       <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center">
-          <img src="images/logo-white-footer.png" alt="">
+          <img src="images/logo-white-footer3.png" alt="">
           <p class="font-12 mt-20 mb-20">NextEvent is a library of corporate and business templates with predefined web elements which helps you to build your own site. Lorem ipsum dolor sit amet elit.</p>
           <ul class="styled-icons flat medium list-inline mb-40">
             <li><a href="#"><i class="fa fa-facebook"></i></a> </li>

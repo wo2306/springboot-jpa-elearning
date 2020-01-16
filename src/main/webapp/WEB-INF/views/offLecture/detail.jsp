@@ -102,7 +102,7 @@
                 <p><span id="seat">${offLecture.offLectureSeat-offLecture.offLectureReservedseat}</span></p>
               </li>
             </ul>
-            <a href="${pageContext.request.contextPath}/offLecture/detail/${offLecture.offLectureNo}"
+            <a href="${pageContext.request.contextPath}/offLecture/checkout/${offLecture.offLectureNo}"
 															class="btn btn-dark btn-sm mt-10" id="btn">예약하기</a>
           </div>
           <div class="col-md-8">
