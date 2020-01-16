@@ -288,7 +288,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     }
 
     function notice() {
-        location.href = "${pageContext.request.contextPath}/notice";
+        location.href = "${pageContext.request.contextPath}/notice/list/1";
     }
 
     function onLecture() {

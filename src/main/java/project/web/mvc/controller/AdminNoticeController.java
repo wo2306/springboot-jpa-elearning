@@ -1,10 +1,12 @@
 package project.web.mvc.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.PostRemove;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,30 +16,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
 import project.web.mvc.domain.Notice;
 import project.web.mvc.service.NoticeService;
 
 @Controller
 @RequestMapping("/admin/notice")
+@RequiredArgsConstructor
 public class AdminNoticeController {
 
-	@Autowired
-	private NoticeService noticeService;
+	private final NoticeService noticeService;
 	
-	@RequestMapping("")
-	public ModelAndView main(Model model){
-		System.out.println("notice 콘트롤러 진입");
-		List<Notice> list = noticeService.selectAll();
-		if (!list.isEmpty())
-        	model.addAttribute("list", list);
-		return new ModelAndView("admin/notice/adminNotice", "list", list);
-	}
 
-	@RequestMapping("/list")
-	@ResponseBody
-	public List<Notice> list(){
-		return noticeService.selectAll();
+	@RequestMapping("/list/{pageNum}")
+	public String list(Model model, @PathVariable int pageNum){
+		List<Notice> list = new ArrayList<>();
+        Page<Notice> page = noticeService.selectAll(pageNum);
+        page.iterator().forEachRemaining(list::add);
+        model.addAttribute("list", list);
+        model.addAttribute("page", page);
+        return "admin/notice/adminNotice";
 	}
 	
 	@RequestMapping("/read/{noticeNo}")
@@ -54,10 +53,8 @@ public class AdminNoticeController {
 	
 	@RequestMapping("/insert")
 	public String insert(Notice notice) {
-		System.out.println(notice.getNoticeTitle());
-		System.out.println(notice.getNoticeContent());
 		noticeService.insert(notice);
-		return "redirect:";
+		return "redirect:/admin/notice/list/1";
 	}
 	
 	@RequestMapping("/detail")
@@ -78,7 +75,7 @@ public class AdminNoticeController {
 		System.out.println(notice.getNoticeTitle());
 		noticeService.insert(notice);
 		
-		return "redirect:";
+		return "redirect:/admin/notice/list/1";
 	}
 	
 	@DeleteMapping(value ="/delete")

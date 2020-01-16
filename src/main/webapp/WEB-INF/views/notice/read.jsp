@@ -40,28 +40,18 @@
 		<div class="container">
 
 			<!-- Textblock -->
-			<section class="bg-white-f7">
-				<div class="container pb-0">
-					<div class="section-title">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="text-right flip">
-									<h2 class="sub-title">${item.noticeTitle}</h2>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="text-left flip">
-									<p class="left-bordered mt-5">${item.noticeContent}</p>
-								</div>
-							</div>
-						</div>
-					</div>
+			<div>
+				<span class="text-highlight light" style="font-size: 25px; margin-bottom: 30px;">${item.noticeTitle}</span>
+			</div>
+			<form style="padding-bottom: 50px; padding-top: 20px;">
+				<div class="row">
+					<div class="col-md-12">${item.noticeContent}</div>
 				</div>
-
-				<input type="button" value="뒤로가기"
-					style="color: #FFFFFF; background: #202C45; padding: 5px 12px"
-					onClick="location.href='${pageContext.request.contextPath}/notice'">
-			</section>
+			
+			</form>
+			<input type="button" value="뒤로가기" class="btn btn-dark btn-sm"
+				style=" width:100px; padding: 5px 12px"
+				onClick="location.href='${pageContext.request.contextPath}/notice'">
 		</div>
 	</section>
 </div>

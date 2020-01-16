@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
@@ -21,12 +23,9 @@ public class NoticeServiceImpl implements NoticeService {
 	private NoticeRepository noticeRepo;
 	
 	@Override
-	public List<Notice> selectAll() {
-		List<Notice> list = Lists.newArrayList(noticeRepo.findAll());
-		for(Notice notice : list) {
-			System.out.println(notice);
-		}
-		return list;
+	public Page<Notice> selectAll(int pagenum) {
+		
+		return noticeRepo.findAllByOrderByNoticeNoDesc(PageRequest.of(pagenum - 1, 9));
 	}
 
 	@Override
