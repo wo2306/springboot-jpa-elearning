@@ -49,8 +49,16 @@ public class AdminAcademyController {
 		return "admin/academy/adminRegister";
 	}
 	
+	
+	@RequestMapping("/adminAcademyRegister/insert")
+	public ModelAndView academyInsert(Academy academy) {
+		academyService.academyInsert(academy);
+		List<Academy> list = academyService.selectAll();
+		return new ModelAndView("redirect:/admin/academy/adminAcademy", "list", list);
+	}
+	
 	@RequestMapping("/adminAcademyRegister/insert.do")
-	public ModelAndView academyInsert(String name, MultipartFile file, HttpSession session, Academy academy) {
+	public ModelAndView upload(String name, MultipartFile file, HttpSession session, Academy academy) {
 		academyService.academyInsert(academy);
 		ModelAndView mv = new ModelAndView();
 		try {
@@ -60,13 +68,7 @@ public class AdminAcademyController {
 			String fileName = file.getOriginalFilename();
 			file.transferTo(new File(path +"/" + fileName)); //폴더에 저장완료
 			
-			//뷰쪽으로 전달될 데이터 설정
-			mv.addObject("name", name);
-			mv.addObject("fileName", fileName);
-			mv.addObject("path", path);
-			mv.addObject("fileSize", file.getSize());
-			
-			mv.setViewName("redirect:/admin/academy/adminAcademy"); //WEB-INF/views/uploadResult.jsp이동
+			mv.setViewName("redirect:/admin/academy"); //WEB-INF/views/uploadResult.jsp이동
 			
 		}catch(Exception e){
 			e.printStackTrace();

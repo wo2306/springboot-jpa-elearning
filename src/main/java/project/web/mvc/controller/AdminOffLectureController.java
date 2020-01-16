@@ -71,7 +71,7 @@ public class AdminOffLectureController {
 	@RequestMapping("offLecUpdate/update")
 	public String offLecUpdate (OffLecture offLecture) {
 		offLectureService.offLecUpdate(offLecture);
-		return "redirect:/admin/offLecture";
+		return "redirect:/admin/offLecture/list/1";
 	}
 	
 	@DeleteMapping(value = "/delete")
