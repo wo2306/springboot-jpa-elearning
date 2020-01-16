@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <head>
 <title>LM company | Learning Machine</title>
-<![endif]-->
 </head>
 
 <body class="">
@@ -102,7 +101,8 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
+                  <button class="btn btn-dark btn-lg mt-15" type="submit">Password Update</button>
+                  
                 </div>
               </form>
             </div>
@@ -116,21 +116,10 @@
   <!-- end main-content -->
 
 	<script type="text/javascript">
-	
+
 	var userNickname = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.userdbNickname}';
 	console.log(userNickname);
 
-	var status;
-	
-	function checkValid() {
-		var f = window.document.form;
-		if ( f.userdbNickname.value == "" ) {
-			alert( "닉네임을 입력해 주세요." );
-			f.userdbNickname.focus();
-			return false;
-		}
-	}
-	
 	function checkValidPw() {
 		var f = window.document.formPassword;
 		if ( f.userdbPassword0.value == "" ) {
@@ -147,15 +136,49 @@
 	        alert( "비밀번호2를 입력해 주세요" );
 	        f.userdbPassword2.focus();
 	        return false;
-	    }
+	    }else{
+			$.ajax({
+				url : "${pageContext.request.contextPath}/myPage/myAccount/pwUpdate",
+				type : "post",
+				data : $("form").serialize(),
+				dataType : "text",
+				success : function(a) {
+					alert(a);
+					alert('비밀번호가 수정되었습니다.');
+				},
+				error : function(err) {
+					alert('수정에 실패했습니다.');
+				}
+			})
+		}
 	}
 	
 	
+	function checkValid() {
+		var f = window.document.form;
+		if ( f.userdbNickname.value == "" ) {
+			alert( "닉네임을 입력해 주세요." );
+			f.userdbNickname.focus();
+			return false;
+		}else{
+			$.ajax({
+				url : "${pageContext.request.contextPath}/myPage/myAccount/nickUpdate",
+				type : "post",
+				data : $("form").serialize(),
+				dataType : "text",
+				success : function() {
+					alert('수정되었습니다.');
+				},
+				error : function(err) {
+					alert('수정에 실패했습니다.');
+				}
+			})
+		}
+	}
+	
 		$(document).ready(function() {
-			
 			/*password 유호성체크 체크*/
 			/*기존 비밀번호 확인하기*/
-
 			$('[name=userdbPassword0]').keyup(function () {
 				$.ajax({
 					url : "${pageContext.request.contextPath}/myPage/myAccount/passwordCheck",
@@ -237,27 +260,10 @@
 					}
 				})
 			});///////
-			
-			
-			/*닉네임 업데이트*/
-			$('#nickBtn').click(function() {
-				
-					$.ajax({
-						url : "${pageContext.request.contextPath}/myPage/nickUpdate",
-						type : "post",
-						data : $("form[name=signUpForm]").serialize(),
-						dataType : "text",
-						success : function(result) {
-							alert('수정되었습니다.');
-						},
-						error : function(err) {
-							alert('수정에 실패했습니다.');
-						}
-					})
-			})
-
-
 		})
+		
+
+
 	</script>
 
 

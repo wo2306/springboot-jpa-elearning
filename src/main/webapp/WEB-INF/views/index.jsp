@@ -68,7 +68,7 @@
             <div class="col-md-6">
               <div class="video-popup">
                 <a href="https://www.youtube.com/watch?v=pW1uVUg5wXM" data-lightbox-gallery="youtube-video" title="Video">
-                  <img alt="" src="http://placehold.it/555x330" class="img-responsive img-fullwidth">
+                  <img alt="" src="${pageContext.request.contextPath}images/main/main02.jpg" class="img-responsive img-fullwidth">
                 </a>
               </div>
             </div>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import project.web.mvc.domain.ClassQuestion;
 import project.web.mvc.domain.OffOrder;
 import project.web.mvc.domain.OnOrder;
@@ -119,9 +120,19 @@ public class MyPageController {
     @RequestMapping(value ="/myAccount/nickUpdate")
     @ResponseBody
     public void nickUpdate(String userdbNickname) {
+    	System.out.println("나왓니????"+userdbNickname);
 		userdbService.updateNickname(userdbNickname);
+		System.out.println("닉네임 수정성공!!!");
+		System.out.println(LoginCheck.getUserdb().getUserdbNickname());
     }
     
-
+    //password 변경
+    @RequestMapping(value ="/myAccount/pwUpdate")
+    @ResponseBody
+    public String pwUpdate(String userdbPassword1) {
+    	userdbService.updatePw(userdbPassword1);
+    	return "도이러아아아";
+    }
+    
 }
 
