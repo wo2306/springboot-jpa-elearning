@@ -43,8 +43,8 @@
                             <table class="table table-striped table-bordered tbl-shopping-cart">
                                 <thead>
                                 <tr>
-                                    <th>이미지</th>
-                                    <th>강의명</th>
+                                    <th style="width:250px">이미지</th>
+                                    <th style="width:700px"> 강의명</th>
                                     <th>가격</th>
                                 </tr>
                                 </thead>
