@@ -76,12 +76,12 @@
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<tr>
-									<th>offLectureNo</th>
+									<th>LectureNo</th>
 									<th>academyName</th>
 									<th>offLectureName</th>
 									<th>offLectureTeacher</th>
 									<th>category</th>
-									<th>offLectureAvailableseat</th>
+									<th>Seat</th>
 									<th>offDetail</th>
 									<th>offLectureDate</th>
 									<th>수정</th>
@@ -244,17 +244,17 @@
               })
               
               
-              //수정하기 폼으로 이동하기
-               /* $(function(){
-	   
-	   $("input[value=수정]").click(function(){
-		   //document.requestForm.action="${pageContext.request.contextPath}/board/updateForm";
-		   
-		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/admin/offLecture/offLecUpdate");
-		   $("#requestForm").submit();
-	   })
-               } */
               
               </script>
+              <script>
+    function searchform() {
+        var keyfield = $("#key option:selected").val();
+        var keyword = $("#keyword").val();
+        location.href = '${pageContext.request.contextPath}/admin/offLecture/' + keyfield + '/' + keyword + '/1';
+        return false;
+    }
+
+  
+</script>
 </body>
 </html>

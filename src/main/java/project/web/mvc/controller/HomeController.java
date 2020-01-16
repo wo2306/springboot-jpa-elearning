@@ -37,7 +37,7 @@ public class HomeController {
 		//List <OffLecture> offLectureList = new ArrayList<>();
 		//offLectureService.selectAll(1).iterator().forEachRemaining(offLectureList::add);
 		List <OffLecture> offLectureList = new ArrayList<>();
-		offLectureService.findByOrderByOffLectureDateDesc();
+		offLectureList = offLectureService.selectByDate();
 		System.out.println("여기나오ㅑ?"+offLectureList);
 		model.addAttribute("offLectureList", offLectureList);
 		return"index";
