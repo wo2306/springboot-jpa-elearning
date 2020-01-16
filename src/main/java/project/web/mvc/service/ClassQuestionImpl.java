@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
@@ -27,9 +28,15 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	private ClassAnswerRepository classAnswerRepo;
 
 	@Override
-	public List<ClassQuestion> selectAll() {
-		System.out.println(Lists.newArrayList(classQuestionRepo.findAll()));
-		return Lists.newArrayList(classQuestionRepo.findAll());
+	public Page<ClassQuestion> selectAll(int pageNum) {
+		
+		return classQuestionRepo.findAll(PageRequest.of(pageNum-1, 9));
+	}
+	
+	@Override
+	public List<ClassQuestion> findAll() {
+
+		return classQuestionRepo.findAllClassQuestions();
 	}
 
 	@Override

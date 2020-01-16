@@ -305,7 +305,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     }
 
     function community() {
-        location.href = "${pageContext.request.contextPath}/qna/list";
+        location.href = "${pageContext.request.contextPath}/qna/list/1";
     }
 
     function myPage() {

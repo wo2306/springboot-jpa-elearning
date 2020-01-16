@@ -51,11 +51,30 @@
     </div>
     <hr>
 
+    <c:forEach items="${answers }" var="answer">
+    <div class="esc-heading heading-line-bottom lr-line left-heading">
+        <span class="text-highlight light" style="font-size: 25px;"> 답변 </span> <p>
+        <span class="text-highlight light" style="font-size: 20px;"> 작성자 :${answer.userdb.userdbNickname }  </span>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>
+               ${answer.classAnswerContent }
+            </p>
+        </div>
+    </div>
+    </c:forEach>
+    
+    
+    
+    
     <div class="col-md-6">
 
         <div class="heading-line-bottom">
             <span class="text-highlight light" style="font-size: 25px;">답변하기</span>
         </div>
+        
+        
         <form action="#">
 
             <div class="row">
@@ -71,7 +90,7 @@
             </div>
         </form>
         <br>
-        <a href="/qna/list" style="text-decoration:none;">리스트로 돌아가기</a>
+        <a href="/qna/list/1" style="text-decoration:none;">리스트로 돌아가기</a>
     </div>
 
 
