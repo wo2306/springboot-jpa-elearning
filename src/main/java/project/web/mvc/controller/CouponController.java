@@ -25,6 +25,7 @@ public class CouponController {
 
     @RequestMapping("/insert")
     public String insert(Coupon coupon) {
+        coupon.setCouponCode(createCoupon());
         couponService.insert(coupon);
         return "redirect:coupon/select/1";
     }
@@ -36,6 +37,8 @@ public class CouponController {
         page.iterator().forEachRemaining(coupons::add);
         model.addAttribute("couponList", coupons);
         model.addAttribute("page", page);
+        model.addAttribute("command", "list");
+        model.addAttribute("keyword", "all");
         return "admin/coupon/list";
     }
 

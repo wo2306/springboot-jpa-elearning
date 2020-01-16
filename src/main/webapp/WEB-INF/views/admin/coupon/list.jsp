@@ -16,11 +16,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <![endif]-->
-    <link href="${pageContext.request.contextPath}/css/datepicker.min.css" rel="stylesheet" type="text/css">
-    <script src="${pageContext.request.contextPath}/js/datepicker.min.js"></script>
-
-    <!-- Include English language -->
-    <script src="${pageContext.request.contextPath}/js/i18n/datepicker.en.js"></script>
     <style>
         #out {
             horiz-align: center;
@@ -32,9 +27,8 @@
             width: 50%;
         }
 
-        #inin {
-            margin: auto;
-            width: 50%;
+        input {
+            border: white;
         }
     </style>
 </head>
@@ -110,6 +104,28 @@
                                     </td>
                                 </tr>
                             </c:forEach>
+                            <tr>
+                                <td colspan="7"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" style="text-align: left; font-weight: bold">새로운 쿠폰 등록하기</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2">할인 쿠폰 이름</th>
+                                <th>할인율(%)</th>
+                                <th>만료기한</th>
+                                <th colspan="2">전체 개수</th>
+                                <th colspan="2">등록</th>
+                            </tr>
+                            <tr>
+                                <form action="${pageContext.request.contextPath}/coupon/insert" method="post">
+                                <td colspan="2"><input type="text" style="width:500px;"/> </td>
+                                <td><input type="text" style="width: 70px"/></td>
+                                <td><input type="text" style="width: 140px;"/></td>
+                                <td colspan="2"><input type="text" style="width: 140px;"/></td>
+                                <td colspan="2"><input type="submit" class="btn btn-dark" value="등록하기"/></td>
+                                </form>
+                            </tr>
                         </table>
                         <div class="container" id="in">
                             <div class="row">
@@ -119,7 +135,7 @@
                                             <c:when test="${page.hasPrevious() eq true}">
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number}"
+                                                       href="${pageContext.request.contextPath}/coupon/${command}/${keyword}/${page.number}"
                                                        aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                     </a>
                                                 </li>
@@ -127,7 +143,7 @@
                                             <c:otherwise>
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
+                                                       href="${pageContext.request.contextPath}/coupon/${command}/${keyword}/${page.number+1}"
                                                        aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                     </a>
                                                 </li>
@@ -139,11 +155,11 @@
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                           href="${pageContext.request.contextPath}/coupon/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                           href="${pageContext.request.contextPath}/coupon/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </li>
@@ -153,12 +169,12 @@
                                             <c:choose>
                                                 <c:when test="${page.hasNext() eq true}">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+2}"
+                                                       href="${pageContext.request.contextPath}/coupon/${command}/${keyword}/${page.number+2}"
                                                        aria-label="Next"> <span aria-hidden="true">다음</span> </a>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${page.number+1}"
+                                                       href="${pageContext.request.contextPath}/coupon/${command}/${keyword}/${page.number+1}"
                                                        aria-label="Previous"> <span aria-hidden="true">다음</span>
                                                     </a>
                                                 </c:otherwise>
@@ -172,22 +188,18 @@
                 </div>
             </div>
 
-            <div>
-                <div class="col-md-6">
-                    <h4>쿠폰 등록</h4>
-                    <div class="datepicker-here" data-language='en'></div>
-                </div>
-            </div>
         </section>
     </div>
 </div>
 <script>
+    // Access instance of plugin
     function searchform() {
         var keyfield = $("#key option:selected").val();
         var keyword = $("#keyword").val();
         location.href = '${pageContext.request.contextPath}/coupon/' + keyfield + '/' + keyword + '/1';
         return false;
     }
+
     $("button[name='deleteBtn']").on('click', function () {
         location.href = '${pageContext.request.contextPath}/coupon/delete/' + $(this).val();
     })
