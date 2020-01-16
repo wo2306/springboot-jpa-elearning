@@ -61,4 +61,9 @@ public class NoticeServiceImpl implements NoticeService {
 		Notice selnotice = noticeRepo.findByNoticeNo(noticeNo);
 		noticeRepo.delete(selnotice);
 	}
+
+	@Override
+	public Page<Notice> selectByKeyword(String keyword, int pageNum) {
+		return noticeRepo.findByKeyword(keyword, PageRequest.of(pageNum - 1, 9));
+	}
 }

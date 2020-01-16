@@ -17,4 +17,6 @@ public interface NoticeService {
 	public void update(Notice notice);
 
 	public void delete(Long noticeNo);
+	
+	public Page<Notice> selectByKeyword(String keyword, int pageNum);
 }

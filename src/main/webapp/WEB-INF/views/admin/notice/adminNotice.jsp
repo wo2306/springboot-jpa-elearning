@@ -37,26 +37,25 @@
 									<li><a href="${pageContext.request.contextPath}/admin"><h3>Home</h3></a></li>
 									<!-- Topbar Search -->
 									<li>
-										<form name="serchForm" method="post">
-											<div class="input-group" style="padding-left: 730px">
-												<select name="key"
-													style="background-color: #F8F9FC; margin-right: 10px;">
-													<option value="">메뉴</option>
-													<option value="noticeNo">글번호</option>
-													<option value="noticeTitle">제목</option>
-													<option value="noticeRegdate">등록일</option>
-												</select> <input type="text" name="value" style="padding-left: 10px"
-													class="form-control bg-light border-0 small"
-													placeholder="Search for..." aria-label="Search"
-													aria-describedby="basic-addon2">
-												<div class="input-group-append">
-													<button class="btn btn-primary" type="submit" id="search">
-														<i class="fas fa-search fa-sm"></i>
-													</button>
-												</div>
-											</div>
-										</form>
-									</li>
+                                    <form name="searchForm" method="post" onsubmit="return searchform()">
+                                        <div class="input-group" style="padding-left: 730px">
+                                            <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
+                                                <option value="all">전체</option>
+                                                <option value="title">제목</option>
+                                            </select>
+                                            <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                                                   class="form-control bg-light border-0 small"
+                                                   placeholder="Search for..." aria-label="Search"
+                                                   aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit" id="search">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+
 								</ol>
 							</div>
 						</div>
@@ -70,9 +69,8 @@
 					<div class="section-content">
 						<div class="row">
 							<table class="table table-bordered" id="dataTable"
-								cellspacing="0">
+								cellspacing="0" style="width:1100px;">
 								<tr>
-									<th style="width: 100px">글번호</th>
 									<th style="width: 600px">제목</th>
 									<th style="width: 200px">등록일</th>
 									<th style="width: 30px">수정</th>
@@ -80,7 +78,6 @@
 								</tr>
 								<c:forEach items="${requestScope.list}" var="list">
 									<tr>
-										<td>${list.noticeNo}</td>
 										<td><a
 											href="${pageContext.request.contextPath}/admin/notice/read/${list.noticeNo}">${list.noticeTitle}</a></td>
 										<td>${list.noticeRegdate}</td>
@@ -226,16 +223,13 @@
               })
           });//delete
 
-        
-        function searchform() {
-      	  alert(2222);
-            var keyfield = $("#key option:selected").val();
-            var keyword = $("#keyword").val();
-            location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
-            return false;
-        }
-        
         })
+        function searchform() {
+              var keyfield = $("#key option:selected").val();
+              var keyword = $("#keyword").val();
+              location.href = '${pageContext.request.contextPath}/admin/notice/' + keyfield + '/' + keyword + '/1';
+              return false;
+          }
 	</script>
 </body>
 </html>

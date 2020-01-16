@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -83,5 +84,23 @@ public class AdminNoticeController {
 	public void delete(Long noticeNo) {
 		noticeService.delete(noticeNo);
 		System.out.println("삭제완료");
+	}
+	
+	@RequestMapping("/{command}/{keyword}/{pageNum}")
+	public String search(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
+		
+		List<Notice> list = new ArrayList<>();
+		Page<Notice> page = null;
+		if(command.equals("all")) {
+			page = noticeService.selectByKeyword("", pageNum);
+		}else {
+			page = noticeService.selectByKeyword(keyword, pageNum);
+		}
+		page.iterator().forEachRemaining(list::add);
+		model.addAttribute("list", list);
+		model.addAttribute("command", command);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("page", page);
+		return "admin/notice/adminNotice";
 	}
 }
