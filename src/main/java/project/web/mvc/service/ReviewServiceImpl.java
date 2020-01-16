@@ -26,9 +26,12 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public Page<Review> selectByOnlectureNo(int pageNum) {
-	
-		return reviewRepo.findByOnLectureOnLectureNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum-1, 9));
+	public List<Review> selectByOnlectureNo(Long onLectureNo) {
+		List<Review> list = new ArrayList<>();
+		reviewRepo.findByOnLectureOnLectureNo(onLectureNo).iterator().forEachRemaining(list::add);;
+		System.out.println("@@@@@!@#!@#!@#리뷰 리스트 확인 : "+list.toString());
+		
+		return list;
 	}
 	
 	@Override
