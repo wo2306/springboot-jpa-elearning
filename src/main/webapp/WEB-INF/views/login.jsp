@@ -8,7 +8,7 @@
 
 <!-- Page Title -->
 <title>LM company | Learning Machine | login</title>
-	
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 
 <body class="">
@@ -73,6 +73,15 @@
               <div class="clear text-center pt-10">
                 <a class="btn btn-dark btn-lg btn-block no-border" href="signUpForm" data-bg-color="red">Sign Up</a>
               </div>
+              
+				<div class="form-group">
+				
+				<!-- 카카오로그인 -->
+					<a id="custom-login-btn" href="javascript:loginWithKakao()">
+						<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300" />
+					</a>
+				</div>
+              
             </form>
           </div>
         </div>
@@ -80,6 +89,42 @@
     </section>
   </div>
 </div>
-  <!-- end main-content -->
+
+<script type='text/javascript'>
+
+var userdbEmail;
+var userdbNickname;
+
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
+    function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
+    	Kakao.Auth.createLoginButton({
+            container: '#custom-login-btn',
+            success: function(authObj) {
+              Kakao.API.request({
+                url: '/v1/user/me',
+                success: function(res) {
+                      alert(JSON.stringify(res));
+                      alert(JSON.stringify(authObj));
+                      console.log(res.id);
+                      userdbEmail = res.kaccount_email;
+                      userdbNickname = res.properties['nickname'];
+                      console.log(userdbEmail)
+                      console.log(userdbNickname)
+                      console.log(authObj.access_token);
+                    }
+                  })
+                },
+                fail: function(error) {
+                  alert(JSON.stringify(error));
+                }
+              });
+    };
+    
+    
+  //]]>
+</script>
 </body>
 </html>
