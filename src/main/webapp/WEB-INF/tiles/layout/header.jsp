@@ -59,13 +59,6 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <script src="${pageContext.request.contextPath}/js/jquery-plugin-collection.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-
-    <![endif]-->
     <script type="text/javascript">
         function logout() {
             document.getElementById("logoutFrm").submit();
@@ -116,6 +109,10 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                     <a class="text-white" href="${pageContext.request.contextPath}/login">Login</a>
                                 </li>
                                 <li class="text-white">|</li>
+                                <li>
+                                    <a class="text-white" href="${pageContext.request.contextPath}/signUpForm">Sign Up</a>
+                                </li>
+                                <li class="text-white">|</li>
                             </ul>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
@@ -126,7 +123,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                 </li>
                                 <li class="text-white">|</li>
 
-                                <li><a class="text-white">${user.userdbNickname}님 </a>
+                                <li><a class="text-white" href="${pageContext.request.contextPath}/myPage/myAccount/">${user.userdbNickname}님 </a>
                                 </li>
                                 <form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post"
                                       style="display:none">

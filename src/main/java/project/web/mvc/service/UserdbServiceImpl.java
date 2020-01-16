@@ -2,11 +2,15 @@ package project.web.mvc.service;
 
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.UserdbRepository;
+import project.web.mvc.util.LoginCheck;
 
 @Service
 @RequiredArgsConstructor
@@ -34,31 +38,64 @@ public class UserdbServiceImpl implements UserdbService {
 		return result;
 	}
 
-    //아이디중복체크
-	@Override
-	public boolean duplicatedByEmail(Userdb userdb) {
-        String userdbEmail = userdb.getUserdbEmail();
-        Userdb user = selectByUserdbEmail(userdbEmail);
-        return user == null;
-    }
-
 	//회원가입
 	@Override
 	public void insert(Userdb userdb) {
-		if(duplicatedByEmail(userdb)) {
-				//비밀번호 인코딩
-				String password = userdb.getUserdbPassword();
-				String encodedPassword = passwordEncoder.encode(password);
-				userdb.setUserdbPassword(encodedPassword);
-				//회원가입
-				userdbRepository.save(userdb);
-		}
+		//비밀번호 인코딩
+		String encodedPassword = passwordEncoder.encode(userdb.getUserdbPassword());
+		userdb.setUserdbPassword(encodedPassword);
+		//회원가입
+		userdbRepository.save(userdb);
 	}
 
 	//회원탈퇴
 	@Override
 	public void delete(Long userdbNo) {
 		userdbRepository.deleteById(userdbNo);
+	}
+
+	//idCheck
+	//true : 중복, false : 중복아님
+	@Override
+	public boolean duplicatedEmailCheck(String userdbEmail) {
+		Userdb user = userdbRepository.findByUserdbEmail(userdbEmail);
+		boolean result = (user==null)? false : true;
+		return result;
+	}
+
+	//nickname 중복체크
+	//true : 중복, false : 중복아님
+	@Override
+	public boolean duplicatedNicknameCheck(String userdbNickname) {
+		List<Userdb> list = userdbRepository.findByUserdbNickname(userdbNickname);
+		boolean result = (list.isEmpty())? false : true;
+		return result;
+	}
+
+	//입력한 pw와 db pw비교
+	//true: 비밀번호 일치, false: 비밀번호 비일치
+	@Override
+	public boolean checkPassword(String password) {
+		String userdbPassword = LoginCheck.getUserdb().getUserdbPassword();
+		boolean result = (passwordEncoder.matches(password, userdbPassword))? true : false;
+		return result;
+	}
+
+	//닉네임변경
+	@Override
+	public void updateNickname(String userdbNickname) {
+		Userdb userdb = LoginCheck.getUserdb();
+		userdb.setUserdbNickname(userdbNickname);
+		userdbRepository.save(userdb);
+	}
+	
+	@Override
+	public void updatePw(String userdbPassword) {
+		Userdb userdb = LoginCheck.getUserdb();
+		//비밀번호 인코딩
+		String encodedPassword = passwordEncoder.encode(userdbPassword);
+		userdb.setUserdbPassword(encodedPassword);
+		userdbRepository.save(userdb);
 	}
 
 

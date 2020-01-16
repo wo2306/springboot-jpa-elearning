@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <head>
 <title>LM company | Learning Machine</title>
-<![endif]-->
 </head>
 
 <body class="">
@@ -38,29 +39,8 @@
       <div class="container">
         <div class="section-content">
           <div class="row">
-            <div class="col-sx-12 col-sm-4 col-md-4">
-              <div class="doctor-thumb">
-                <img src="http://placehold.it/400x470" alt="">
-              </div>
-              <div class="info p-20 bg-black-333">
-                <h4 class="text-uppercase text-white">Jacob Smith</h4>
-                <p class="text-gray-silver">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore atque officiis maxime suscipit expedita obcaecati nulla in ducimus.</p>
-                <ul class="list angle-double-right m-0">
-                  <li class="mt-0 text-gray-silver"><strong class="text-gray-lighter">Email</strong><br> smith@yourdomain.com</li>
-                  <li class="text-gray-silver"><strong class="text-gray-lighter">Web</strong><br> www.yourdomain.com</li>
-                </ul>
-                <ul class="styled-icons icon-gray icon-circled icon-sm mt-15 mb-15">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                </ul>
-                <a class="btn btn-info btn-flat mt-10 mb-sm-30" href="#">Edit Profile</a>
-                <a class="btn btn-danger btn-flat mt-10 mb-sm-30" href="#">Logout</a>
-              </div>
-            </div>
             <div class="col-xs-12 col-sm-8 col-md-8">
-              <form name="editprofile-form" method="post">
+              <form name="form" method="post" onSubmit="return checkValid()">
                 <div class="icon-box mb-0 p-0">
                   <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                     <i class="fa fa-user"></i>
@@ -68,41 +48,32 @@
                   <h4 class="text-gray pt-10 mt-0 mb-30">Edit Profile</h4>
                 </div>
                 <hr>
-                <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias.</p>
                 <div class="row">
                   <div class="form-group col-md-6">
-                    <label>Name</label>
-                    <input name="form_name" class="form-control" type="text">
+                    <label>이메일</label>
+                    <span>변경불가</span>
+                    <input name="userdbEmail" class="form-control" type="email" readonly="readonly" value=${item.userdbEmail}>
                   </div>
                   <div class="form-group col-md-6">
-                    <label>Email</label>
-                    <input name="form_email" class="form-control" type="email">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6">
-                    <label>Phone</label>
-                    <input name="form_phone" class="form-control" type="text">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label>Date of Birth</label>
-                    <input name="form_dob" class="form-control" type="email">
+                    <label>닉네임</label>
+                    <input name="userdbNickname" class="form-control" type="text" value=${item.userdbNickname}>
+                  	<span id="nickCheck">닉네임중복확인란</span>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group col-md-12">
-                    <label>Address</label>
-                    <textarea name="form_address" class="form-control" cols="20" rows="5"></textarea>
-                  </div>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
+                  <button class="btn btn-dark btn-lg mt-15" type="submit" id="nickBtn">Nickname Update</button>
                 </div>
               </form>
               
-              <hr class="mt-70 mb-70">
+              <hr class="mt-30 mb-30">
 
-              <form name="editprofile-form" method="post">
+              <form name="formPassword" method="post" onSubmit="return checkValidPw()">
                 <div class="icon-box mb-0 p-0">
                   <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                     <i class="fa fa-key"></i>
@@ -110,26 +81,28 @@
                   <h4 class="text-gray pt-10 mt-0 mb-30">Change Password</h4>
                 </div>
                 <hr>
-                <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias.</p>
-
                 <div class="row">
-                  <div class="form-group col-md-6">
-                    <label>Choose Password</label>
-                    <input name="form_choose_password" class="form-control" type="text">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label>Re-enter Password</label>
-                    <input name="form_re_enter_password"  class="form-control" type="text">
+                  <div class="form-group col-md-12">
+                    <label>현재비밀번호</label>
+                    <input name="userdbPassword0" class="form-control" type="password">
+                    <span id="passwordCheck">입력한 비밀번호와 현재 비밀번호 일치 확인란</span>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="form-group col-md-12">
-                    <label>Old Password</label>
-                    <input name="form_old_password" class="form-control" type="text">
+                  <div class="form-group col-md-6">
+                    <label>변경 비밀번호</label>
+                    <input name="userdbPassword1" class="form-control" type="password">
+                    <span id="passwordCheck2">비밀번호를 입력하시오</span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>비밀번호 확인</label>
+                    <input name="userdbPassword2"  class="form-control" type="password">
+                    <span id="passwordCheck3">비밀번호를 입력하시오</span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
+                  <button class="btn btn-dark btn-lg mt-15" type="submit">Password Update</button>
+                  
                 </div>
               </form>
             </div>
@@ -141,6 +114,158 @@
   </div>
 </div>
   <!-- end main-content -->
+
+	<script type="text/javascript">
+
+	var userNickname = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.userdbNickname}';
+	console.log(userNickname);
+
+	function checkValidPw() {
+		var f = window.document.formPassword;
+		if ( f.userdbPassword0.value == "" ) {
+	        alert( "비밀번호0를 입력해 주세요" );
+			f.userdbPassword0.focus();
+			return false;
+		}
+		if ( f.userdbPassword1.value == "" ) {
+	        alert( "비밀번호1를 입력해 주세요" );
+	        f.userdbPassword1.focus();
+	        return false;
+	    }
+		if ( f.userdbPassword2.value == "" ) {
+	        alert( "비밀번호2를 입력해 주세요" );
+	        f.userdbPassword2.focus();
+	        return false;
+	    }else{
+			$.ajax({
+				url : "${pageContext.request.contextPath}/myPage/myAccount/pwUpdate",
+				type : "post",
+				data : $("form").serialize(),
+				dataType : "text",
+				success : function(a) {
+					alert(a);
+					alert('비밀번호가 수정되었습니다.');
+				},
+				error : function(err) {
+					alert('수정에 실패했습니다.');
+				}
+			})
+		}
+	}
+	
+	
+	function checkValid() {
+		var f = window.document.form;
+		if ( f.userdbNickname.value == "" ) {
+			alert( "닉네임을 입력해 주세요." );
+			f.userdbNickname.focus();
+			return false;
+		}else{
+			$.ajax({
+				url : "${pageContext.request.contextPath}/myPage/myAccount/nickUpdate",
+				type : "post",
+				data : $("form").serialize(),
+				dataType : "text",
+				success : function() {
+					alert('수정되었습니다.');
+				},
+				error : function(err) {
+					alert('수정에 실패했습니다.');
+				}
+			})
+		}
+	}
+	
+		$(document).ready(function() {
+			/*password 유호성체크 체크*/
+			/*기존 비밀번호 확인하기*/
+			$('[name=userdbPassword0]').keyup(function () {
+				$.ajax({
+					url : "${pageContext.request.contextPath}/myPage/myAccount/passwordCheck",
+					type : "post",
+					data : $("form[name=formPassword]").serialize(),
+					dataType : "text",
+					success : function(result) {
+						//0=비밀번호 일치, 1=비밀번호 불일치
+						if (result == 0) {
+							$('#passwordCheck').text('비밀번호가 확인되었습니다.');
+						} else if (result == 1){
+							$('#passwordCheck').text('비밀번호가 일치하지 않습니다. 확인바람');
+						}
+					},
+					error : function(err) {
+						alert("err : " + err);
+					}
+				})
+			});///////
+			
+			
+			/*password 유호성체크 체크*/
+			/*기존 비번이랑 다른지 체크*/
+			$('[name=userdbPassword1]').keyup(function () {
+				var password1 = $('[name=userdbPassword0]').val();
+				var password2 = $(this).val();
+				
+				if(password1===password2){
+					$('#register').attr("disabled", false);
+					$('#passwordCheck2').text('현재 비밀번호와 다를게 없소!!! 증말 바꿀꺼요??');
+				}else{
+					$('#register').attr("disabled", true);
+					$('#passwordCheck2').text('오 그래 지금 비밀번호와 다르군');
+				}
+			});
+			
+			
+			/*password 유호성체크 체크*/
+			$('[name=userdbPassword2]').keyup(function () {
+				var password1 = $('[name=userdbPassword1]').val();
+				var password2 = $(this).val();
+				
+				if(password1===password2){
+					$('#register').attr("disabled", false);
+					$('#passwordCheck3').text('비밀번호가 정확합니다.');
+				}else{
+					$('#register').attr("disabled", true);
+					$('#passwordCheck3').text('비밀번호가 다릅니다. 확인해주세요');
+				}
+			});
+			
+
+
+			/*닉네임 중복체크*/
+			$('[name=userdbNickname]').keyup(function () {
+				var nickName = $('[name=userdbNickname]').val();
+				$.ajax({
+					url : "${pageContext.request.contextPath}/nicknameCheck",
+					type : "post",
+					data : $("form").serialize(),
+					dataType : "text",
+					success : function(result) {
+						//0=중복, 1=사용가능
+						if (result == 0) {
+							if(userNickname==nickName){
+								$('#nickBtn').attr("disabled", false);
+								$('#nickCheck').text('현재 닉네임과 동일합니다.');
+							}else{
+								$('#nickBtn').attr("disabled", true);
+								$('#nickCheck').text('이미 사용중인 닉네임입니다.');
+							}
+						} else if (result == 1){
+							$('#nickBtn').attr("disabled", false);
+							$('#nickCheck').text('사용 가능한 닉네임입니다.');
+						}
+					},
+					error : function(err) {
+						alert("err : " + err);
+					}
+				})
+			});///////
+		})
+		
+
+
+	</script>
+
 
 </body>
 </html>

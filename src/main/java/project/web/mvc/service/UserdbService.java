@@ -10,6 +10,10 @@ public interface UserdbService{
 	void delete(Long userdbNo);
 	Userdb selectByUserdbEmail(String userdbEmail);
 	Userdb selectByUserdbNo(Long userdbNo);
-	boolean duplicatedByEmail(Userdb userdb);
 	PasswordEncoder passwordEncoder();
+	boolean duplicatedEmailCheck(String userdbEmail);
+	boolean duplicatedNicknameCheck(String userdbNickname);
+	boolean checkPassword(String password);
+	void updateNickname(String userdbNickname);
+	void updatePw(String userdbPassword);
 }

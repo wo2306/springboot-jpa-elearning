@@ -1,7 +1,6 @@
 package project.web.mvc.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -11,15 +10,19 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import project.web.mvc.domain.ClassQuestion;
 import project.web.mvc.domain.OffOrder;
 import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.Review;
+import project.web.mvc.domain.Userdb;
 import project.web.mvc.domain.WishList;
 import project.web.mvc.service.ClassQuestionService;
 import project.web.mvc.service.OrderService;
+import project.web.mvc.service.UserdbService;
 import project.web.mvc.service.ReviewService;
 import project.web.mvc.service.WishListService;
 import project.web.mvc.util.LoginCheck;
@@ -30,6 +33,7 @@ import project.web.mvc.util.LoginCheck;
 public class MyPageController {
     private final OrderService orderService;
     private final WishListService wishlistService;
+    private final UserdbService userdbService;
     private final ReviewService reviewService;
     private final ClassQuestionService classQuestionService;
     
@@ -99,6 +103,40 @@ public class MyPageController {
 		wishlistService.wishlistDelete(wishListNo);
 	
 	}
-
+    
+    @RequestMapping(value ="/myAccount")
+    public ModelAndView myAccount() {
+    	Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
+		 Userdb item = userdbService.selectByUserdbNo(userdbNo);
+		return new ModelAndView("myPage/myAccount", "item", item);
+    }
+    
+    @RequestMapping(value ="/myAccount/passwordCheck")
+    @ResponseBody
+    public int passwordCheck(String userdbPassword0) {
+    	//true = 비밀번호 일치, false = 비밀번호 불일치
+    	//true : 0, false : 1
+    	int result = (userdbService.checkPassword(userdbPassword0))? 0 : 1;
+    	return result;
+    }
+    
+    //nickname 변경
+    @RequestMapping(value ="/myAccount/nickUpdate")
+    @ResponseBody
+    public void nickUpdate(String userdbNickname) {
+    	System.out.println("나왓니????"+userdbNickname);
+		userdbService.updateNickname(userdbNickname);
+		System.out.println("닉네임 수정성공!!!");
+		System.out.println(LoginCheck.getUserdb().getUserdbNickname());
+    }
+    
+    //password 변경
+    @RequestMapping(value ="/myAccount/pwUpdate")
+    @ResponseBody
+    public String pwUpdate(String userdbPassword1) {
+    	userdbService.updatePw(userdbPassword1);
+    	return "도이러아아아";
+    }
+    
 }
 
