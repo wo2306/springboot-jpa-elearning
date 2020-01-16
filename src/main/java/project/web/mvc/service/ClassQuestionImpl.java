@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 
+import project.web.mvc.domain.ClassAnswer;
 import project.web.mvc.domain.ClassQuestion;
+import project.web.mvc.repository.ClassAnswerRepository;
 import project.web.mvc.repository.ClassQuestionRepository;
 import project.web.mvc.util.LoginCheck;
 
@@ -21,7 +23,8 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	
 	@Autowired
 	private ClassQuestionRepository classQuestionRepo;
-	
+	@Autowired
+	private ClassAnswerRepository classAnswerRepo;
 	@Override
 	public List<ClassQuestion> selectAll() {
 		System.out.println(Lists.newArrayList(classQuestionRepo.findAll()));
@@ -65,6 +68,12 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	@Override
 	public Page<ClassQuestion> selectByUserdbId(int pageNum) {
 		return classQuestionRepo.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum-1, 9));
+	}
+
+	@Override
+	public List<ClassAnswer> selectAnswerByQNo(Long id) {
+		
+		return classAnswerRepo.findByClassQuestionClassQuestionNo(id);
 	}
 	
 	

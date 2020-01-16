@@ -50,6 +50,9 @@
 <hr>
       
 <div class="col-md-6">
+		<script>
+			alert(${answerList});
+		</script>
             <div class="heading-line-bottom">
               <span class="text-highlight light" style="font-size: 25px;">답변하기</span>
             </div>
@@ -67,7 +70,10 @@
                 <button type="submit" id="answerInsert" class="btn btn-default">답글 입력</button>
               </div>
             </form>
+            <br>
+          <a href="/qna/list" style="text-decoration:none;">리스트로 돌아가기</a>
           </div>
+          
           
           </div>
           <script>
@@ -75,6 +81,17 @@
           		var answerContent=$("#answerContent").val();
           		var questionNo = $("#classQuestionNo").val();
           		
+          		$.ajax({
+                    type: "post",
+                    url: "${pageContext.request.contextPath}/qna/answerInsert",
+                    dataType: "json",
+                    success: function (result) {
+                        
+                    },
+                    error: function (err) {
+                        console.log("통신실패!!!! err : " + err);
+                    }
+                });
           	});
           </script>
      

@@ -42,7 +42,7 @@
 								<c:choose>
     <c:when test="${empty list}">
 	<tr>
-        <td colspan="3">
+        <td colspan="4">
             <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
         </td>
     </tr>

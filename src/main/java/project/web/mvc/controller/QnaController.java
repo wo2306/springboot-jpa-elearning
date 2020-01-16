@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import project.web.mvc.domain.ClassAnswer;
 import project.web.mvc.domain.ClassQuestion;
-import project.web.mvc.domain.OnLecture;
 import project.web.mvc.service.ClassQuestionService;
 
 @Controller
@@ -31,10 +31,14 @@ public class QnaController {
 	}
 	
 	@RequestMapping("/read/{id}")
-	public ModelAndView read(@PathVariable Long id) {
+	public ModelAndView read(@PathVariable Long id, Model model) {
 		ClassQuestion classQuestion = classQuestionService.selectByQNo(id);
+		List<ClassAnswer> answerList = classQuestionService.selectAnswerByQNo(id);
 		
-		return new ModelAndView("qna/read" ,"question", classQuestion);
+		
+		model.addAttribute("question", classQuestion);
+		model.addAttribute("answer", answerList);
+		return new ModelAndView("qna/read");
 	}
 	
 	
@@ -53,10 +57,12 @@ public class QnaController {
 	}
 	
 
-	@RequestMapping("/answer")
-	public void answer(Model model) {
+	@RequestMapping("/answerInsert")
+	public String answer(Model model) {
 		System.out.println("answer 호출");
 		
+		
+		return "aa";
 	}
 	
 	@RequestMapping("/test")
