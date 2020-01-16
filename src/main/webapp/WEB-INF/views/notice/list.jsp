@@ -55,9 +55,9 @@
               <table class="table table-striped table-schedule">
                 <thead>
                   <tr class="bg-theme-colored">
-                    <th>글번호</th>
-                    <th>제목</th>
-                    <th>등록일</th>
+                    <th style="color: white;">글번호</th>
+                    <th style="color: white;">제목</th>
+                    <th style="color: white;">등록일</th>
                   </tr>
                 </thead>
                 <tbody>

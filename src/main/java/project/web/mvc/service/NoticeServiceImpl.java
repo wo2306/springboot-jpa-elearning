@@ -39,15 +39,29 @@ public class NoticeServiceImpl implements NoticeService {
 	public void insert(Notice notice) {
 		Notice selnotice = noticeRepo.findByNoticeNo(notice.getNoticeNo());
 		if(selnotice == null){
-			Notice saveNotice = new Notice();
-			saveNotice.setNoticeTitle(notice.getNoticeTitle());
-			saveNotice.setNoticeContent(notice.getNoticeContent());
+//			Notice saveNotice = new Notice();
+//			saveNotice.setNoticeTitle(notice.getNoticeTitle());
+//			saveNotice.setNoticeContent(notice.getNoticeContent());
 			//saveNotice.setNoticeRegdate(null);
 			noticeRepo.save(notice);
 		}else {
 			selnotice.setNoticeTitle(notice.getNoticeTitle());
-			selnotice.setNoticeContent(notice.getNoticeContent());	
+			selnotice.setNoticeContent(notice.getNoticeContent());
 		}
 		
+	}
+
+	@Override
+	@Transactional
+	public void update(Notice notice) {
+		Notice selnotice = noticeRepo.findByNoticeNo(notice.getNoticeNo());
+		selnotice.setNoticeTitle(notice.getNoticeTitle());
+		selnotice.setNoticeContent(notice.getNoticeContent());
+	}
+	
+	@Transactional
+	public void delete(Long noticeNo) {
+		Notice selnotice = noticeRepo.findByNoticeNo(noticeNo);
+		noticeRepo.delete(selnotice);
 	}
 }

@@ -11,4 +11,8 @@ public interface NoticeService {
 	public Notice selectByNoticeNo(Long noticeno);
 
 	public void insert(Notice notice);
+	
+	public void update(Notice notice);
+
+	public void delete(Long noticeNo);
 }
