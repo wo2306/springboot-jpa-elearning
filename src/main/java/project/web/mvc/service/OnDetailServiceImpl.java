@@ -5,8 +5,11 @@ import org.springframework.stereotype.Service;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.repository.OnDetailRepository;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class OnDetailServiceImpl implements OnDetailService {
 	private final OnDetailRepository onDetailRepository;
 

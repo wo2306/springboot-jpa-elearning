@@ -66,7 +66,7 @@
                                                        value="${discount_sum+cartDTO.onLecture.onLecturePrice*cartDTO.onLecture.onLectureDiscount/100}"/>
                                                 <tr class="cart_item">
                                                     <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                                   src="${pageContext.request.contextPath}/onlecture/images/${cartDTO.onLecture.onLectureName}"></a>
+                                                                                                   src="${pageContext.request.contextPath}/images/onLecture/${cartDTO.onLecture.onLectureNo}.png"></a>
                                                     </td>
                                                     <td class="product-name"><a href="#">${cartDTO.onLecture.onLectureName}</a>
                                                         <ul class="variation">

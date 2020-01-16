@@ -10,8 +10,12 @@ import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.Authority;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.security.UserCustom;
+
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class LoginServiceImpl implements LoginService {
 	
 	private final UserdbService userdbService;

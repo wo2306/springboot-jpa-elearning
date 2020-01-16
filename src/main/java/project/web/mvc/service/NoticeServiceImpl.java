@@ -14,6 +14,7 @@ import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.NoticeRepository;
 
 @Service
+@Transactional
 public class NoticeServiceImpl implements NoticeService {
 
 	@Autowired
@@ -35,7 +36,6 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	@Transactional
 	public void insert(Notice notice) {
 		Notice selnotice = noticeRepo.findByNoticeNo(notice.getNoticeNo());
 		if(selnotice == null){
@@ -52,14 +52,12 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	@Transactional
 	public void update(Notice notice) {
 		Notice selnotice = noticeRepo.findByNoticeNo(notice.getNoticeNo());
 		selnotice.setNoticeTitle(notice.getNoticeTitle());
 		selnotice.setNoticeContent(notice.getNoticeContent());
 	}
 	
-	@Transactional
 	public void delete(Long noticeNo) {
 		Notice selnotice = noticeRepo.findByNoticeNo(noticeNo);
 		noticeRepo.delete(selnotice);

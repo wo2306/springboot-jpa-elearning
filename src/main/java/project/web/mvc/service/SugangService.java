@@ -7,10 +7,12 @@ import project.web.mvc.domain.Sugang;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.SugangReposiitory;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class SugangService {
     private final SugangReposiitory sugangReposiitory;
 

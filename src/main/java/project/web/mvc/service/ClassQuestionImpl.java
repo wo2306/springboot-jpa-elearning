@@ -16,6 +16,7 @@ import project.web.mvc.repository.ClassQuestionRepository;
 import project.web.mvc.util.LoginCheck;
 
 @Service
+@Transactional
 public class ClassQuestionImpl implements ClassQuestionService {
 	
 	@Autowired
@@ -43,7 +44,6 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	}
 
 	@Override
-	@Transactional
 	public void delete(ClassQuestion classQuestion) {
 		
 		ClassQuestion dbQuestion = classQuestionRepo.findById(classQuestion.getClassQuestionNo()).orElse(null);

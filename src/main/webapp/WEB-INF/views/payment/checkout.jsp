@@ -59,7 +59,7 @@
                                                    value="${discount_sum+dto.onLecture.onLecturePrice*dto.onLecture.onLectureDiscount/100}"/>
                                             <tr>
                                                 <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                               src="${pageContext.request.contextPath}/onlecture/images/${dto.onLecture.onLectureName}"></a>
+                                                                                               src="${pageContext.request.contextPath}/images/onLecture/${dto.onLecture.onLectureNo}.png"></a>
                                                 </td>
                                                 <td><a href="#">${dto.onLecture.onLectureName}</a></td>
                                                 <td><fmt:formatNumber value="${dto.onLecture.onLecturePrice}"

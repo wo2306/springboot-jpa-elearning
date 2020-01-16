@@ -23,6 +23,7 @@ import project.web.mvc.repository.WishListRepository;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class WishListServiceImpl implements WishListService {
 
 	@Autowired
