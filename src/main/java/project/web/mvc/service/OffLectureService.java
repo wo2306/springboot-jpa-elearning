@@ -24,4 +24,7 @@ public interface OffLectureService {
 	OffLecture selectByOffNo(Long offLectureNo);
 	
 	OffLecture findByOffLectureNo(Long offLectureNo);
+	
+	List<OffLecture> findByOrderByOffLectureDateDesc();
+	
 	}
