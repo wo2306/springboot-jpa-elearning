@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Roadmap;
 import project.web.mvc.repository.RoadmapRepository;
 
@@ -17,12 +18,14 @@ public class RoadmapServiceImpl implements RoadmapService {
 	private RoadmapRepository roadmapRepo;
 	
 	@Override
-	public void insert(Roadmap roadmap) {
+	public void insert(List<Long> onLectureNo, Roadmap roadmap) {
 		System.out.println("로드맵insert");
-		Roadmap result =roadmapRepo.save(roadmap);
-		System.out.println(result.getRoadmapName()+"@@");
-		System.out.println(result.getRoadmapContent()+"@@");
-		System.out.println(result.getRoadmapRegdate()+"@@");
+		for(int i=0; i< onLectureNo.size(); i++) {
+			roadmap.setOnLecture(new OnLecture(onLectureNo.get(i)));
+			roadmapRepo.save(roadmap);
+		}
+
+		
 	}
 
 	@Override
