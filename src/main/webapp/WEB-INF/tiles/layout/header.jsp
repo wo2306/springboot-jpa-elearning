@@ -397,6 +397,11 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
 //카카오 로그아웃
 Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
 function checkStatus(){
+	alert('0')
+	deleteCookie('_kawlt');
+	alert('1')
+	//getCookie(변수이름)
+
 	 Kakao.Auth.getStatus(function(statusObj){
 		 if(statusObj.status=="not_connected"){
 			 alert('연결안되어잇음')
@@ -417,11 +422,20 @@ function klogout(){
         	alert('로그아웃성공')
         }else if(data==false){
         	alert('실패')
-        }ㄴ
+        }
     });
 	logoutSubmit()
 }
 
+
+function deleteCookie( cookieName )
+{
+ var expireDate = new Date();
+ 
+ //어제 날짜를 쿠키 소멸 날짜로 설정한다.
+ expireDate.setDate( expireDate.getDate() - 1 );
+ document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
+}
 
 </script>
 <script src="${pageContext.request.contextPath}/js/custom.js"></script>

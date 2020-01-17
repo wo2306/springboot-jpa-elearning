@@ -40,7 +40,7 @@
         <div class="section-content">
           <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-8">
-              <form name="form" method="post" onSubmit="return checkValid()">
+              <form name="form" method="post" >
                 <div class="icon-box mb-0 p-0">
                   <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                     <i class="fa fa-user"></i>
@@ -67,13 +67,13 @@
                 <div class="row">
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-dark btn-lg mt-15" type="submit" id="nickBtn">Nickname Update</button>
+                  <button class="btn btn-dark btn-lg mt-15" type="button" id="nickBtn" onclick="return checkValid()">Nickname Update</button>
                 </div>
               </form>
               
               <hr class="mt-30 mb-30">
 
-              <form name="formPassword" method="post" onSubmit="return checkValidPw()">
+              <form name="formPassword" method="post" >
                 <div class="icon-box mb-0 p-0">
                   <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                     <i class="fa fa-key"></i>
@@ -101,10 +101,33 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-dark btn-lg mt-15" type="submit">Password Update</button>
+                  <button class="btn btn-dark btn-lg mt-15" type="button" onclick="return checkValidPw()">Password Update</button>
                   
                 </div>
               </form>
+              
+              <!-- 회원탈퇴 -->
+              
+              <hr class="mt-30 mb-30">
+              <form name="goodbye" method="post" action="${pageContext.request.contextPath}/user/goodbye">
+                <div class="icon-box mb-0 p-0">
+                  <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                    <i class="fa fa-key"></i>
+                  </a>
+                  <h4 class="text-gray pt-10 mt-0 mb-30">회원 탈퇴</h4>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label>비밀번호를 입력해주세요</label>
+                    <input name="password" class="form-control" type="password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-dark btn-lg mt-15" type="submit">탈퇴하기</button>
+                </div>
+              </form>
+              
             </div>
           </div>
         </div>
@@ -120,31 +143,69 @@
 	var userNickname = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.userdbNickname}';
 	console.log(userNickname);
 
+	var okUrl = "${pageContext.request.contextPath}/"
+	var returnUrl = "${pageContext.request.contextPath}/myPage/myAccount"
+	
 	function checkValidPw() {
 		var f = window.document.formPassword;
 		if ( f.userdbPassword0.value == "" ) {
 	        alert( "비밀번호0를 입력해 주세요" );
 			f.userdbPassword0.focus();
-			return false;
+			return;
 		}
 		if ( f.userdbPassword1.value == "" ) {
 	        alert( "비밀번호1를 입력해 주세요" );
 	        f.userdbPassword1.focus();
-	        return false;
+			return;
 	    }
 		if ( f.userdbPassword2.value == "" ) {
 	        alert( "비밀번호2를 입력해 주세요" );
 	        f.userdbPassword2.focus();
-	        return false;
+			return;
 	    }else{
 			$.ajax({
 				url : "${pageContext.request.contextPath}/myPage/myAccount/pwUpdate",
 				type : "post",
 				data : $("form").serialize(),
 				dataType : "text",
-				success : function(a) {
-					alert(a);
-					alert('비밀번호가 수정되었습니다.');
+				success : function(result) {
+					if(result==0){
+						con();
+					}
+				},
+				error : function(err) {
+					alert('수정에 실패했습니다.');
+				}
+			})
+		}
+	}
+
+	
+	function goodbye() {
+		var f = window.document.goodbye;
+		if ( f.userdbPassword0.value == "" ) {
+	        alert( "비밀번호1를 입력해 주세요" );
+	        f.userdbPassword0.focus();
+	    }
+	   	else{
+			$.ajax({
+				url : "${pageContext.request.contextPath}/myPage/myAccount/passwordCheck",
+				type : "post",
+				data : $("form[name=goodbye]").serialize(),
+				dataType : "text",
+				success : function(result) {
+					//0=비밀번호 일치, 1=비밀번호 불일치
+					if(result==0){
+						var con = confirm("정말 탈퇴하겠습니까?")
+						if(con==true){
+							$("form[name=goodbye]").attr("action","");
+							$("form[name=goodbye]").submit();
+						}else {
+							alert('와아아 탈퇴안한다')
+						}
+					}else if(result==1){
+						alert('비밀번호가 틀렸습니다.')
+					}
 				},
 				error : function(err) {
 					alert('수정에 실패했습니다.');
@@ -176,92 +237,108 @@
 		}
 	}
 	
-		$(document).ready(function() {
-			/*password 유호성체크 체크*/
-			/*기존 비밀번호 확인하기*/
-			$('[name=userdbPassword0]').keyup(function () {
-				$.ajax({
-					url : "${pageContext.request.contextPath}/myPage/myAccount/passwordCheck",
-					type : "post",
-					data : $("form[name=formPassword]").serialize(),
-					dataType : "text",
-					success : function(result) {
-						//0=비밀번호 일치, 1=비밀번호 불일치
-						if (result == 0) {
-							$('#passwordCheck').text('비밀번호가 확인되었습니다.');
-						} else if (result == 1){
-							$('#passwordCheck').text('비밀번호가 일치하지 않습니다. 확인바람');
-						}
-					},
-					error : function(err) {
-						alert("err : " + err);
-					}
-				})
-			});///////
-			
-			
-			/*password 유호성체크 체크*/
-			/*기존 비번이랑 다른지 체크*/
-			$('[name=userdbPassword1]').keyup(function () {
-				var password1 = $('[name=userdbPassword0]').val();
-				var password2 = $(this).val();
-				
-				if(password1===password2){
-					$('#register').attr("disabled", false);
-					$('#passwordCheck2').text('현재 비밀번호와 다를게 없소!!! 증말 바꿀꺼요??');
-				}else{
-					$('#register').attr("disabled", true);
-					$('#passwordCheck2').text('오 그래 지금 비밀번호와 다르군');
+$(document).ready(function() {
+	
+	/*password 유호성체크 체크*/
+	/*기존 비밀번호 확인하기*/
+	$('[name=userdbPassword0]').keyup(function () {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/myPage/myAccount/passwordCheck",
+			type : "post",
+			data : $("form[name=formPassword]").serialize(),
+			dataType : "text",
+			success : function(result) {
+				//0=비밀번호 일치, 1=비밀번호 불일치
+				if (result == 0) {
+					$('#passwordCheck').text('비밀번호가 확인되었습니다.');
+				} else if (result == 1){
+					$('#passwordCheck').text('비밀번호가 일치하지 않습니다. 확인바람');
 				}
-			});
-			
-			
-			/*password 유호성체크 체크*/
-			$('[name=userdbPassword2]').keyup(function () {
-				var password1 = $('[name=userdbPassword1]').val();
-				var password2 = $(this).val();
-				
-				if(password1===password2){
-					$('#register').attr("disabled", false);
-					$('#passwordCheck3').text('비밀번호가 정확합니다.');
-				}else{
-					$('#register').attr("disabled", true);
-					$('#passwordCheck3').text('비밀번호가 다릅니다. 확인해주세요');
-				}
-			});
-			
-
-
-			/*닉네임 중복체크*/
-			$('[name=userdbNickname]').keyup(function () {
-				var nickName = $('[name=userdbNickname]').val();
-				$.ajax({
-					url : "${pageContext.request.contextPath}/nicknameCheck",
-					type : "post",
-					data : $("form").serialize(),
-					dataType : "text",
-					success : function(result) {
-						//0=중복, 1=사용가능
-						if (result == 0) {
-							if(userNickname==nickName){
-								$('#nickBtn').attr("disabled", false);
-								$('#nickCheck').text('현재 닉네임과 동일합니다.');
-							}else{
-								$('#nickBtn').attr("disabled", true);
-								$('#nickCheck').text('이미 사용중인 닉네임입니다.');
-							}
-						} else if (result == 1){
-							$('#nickBtn').attr("disabled", false);
-							$('#nickCheck').text('사용 가능한 닉네임입니다.');
-						}
-					},
-					error : function(err) {
-						alert("err : " + err);
-					}
-				})
-			});///////
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
 		})
+	});///////
+	
+	
+	/*password 유호성체크 체크*/
+	/*기존 비번이랑 다른지 체크*/
+	$('[name=userdbPassword1]').keyup(function () {
+		var password1 = $('[name=userdbPassword0]').val();
+		var password2 = $(this).val();
 		
+		if(password1===password2){
+			$('#register').attr("disabled", false);
+			$('#passwordCheck2').text('현재 비밀번호와 다를게 없소!!! 증말 바꿀꺼요??');
+		}else{
+			$('#register').attr("disabled", true);
+			$('#passwordCheck2').text('오 그래 지금 비밀번호와 다르군');
+		}
+	});
+	
+	
+	/*password 유호성체크 체크*/
+	$('[name=userdbPassword2]').keyup(function () {
+		var password1 = $('[name=userdbPassword1]').val();
+		var password2 = $(this).val();
+		
+		if(password1===password2){
+			$('#register').attr("disabled", false);
+			$('#passwordCheck3').text('비밀번호가 정확합니다.');
+		}else{
+			$('#register').attr("disabled", true);
+			$('#passwordCheck3').text('비밀번호가 다릅니다. 확인해주세요');
+		}
+	});
+	
+	/*닉네임 중복체크*/
+	$('[name=userdbNickname]').keyup(function () {
+		var nickName = $('[name=userdbNickname]').val();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/user/nicknameCheck",
+			type : "post",
+			data : $("form").serialize(),
+			dataType : "text",
+			success : function(result) {
+				//0=중복, 1=사용가능
+				if (result == 0) {
+					if(userNickname==nickName){
+						$('#nickBtn').attr("disabled", false);
+						$('#nickCheck').text('현재 닉네임과 동일합니다.');
+					}else{
+						$('#nickBtn').attr("disabled", true);
+						$('#nickCheck').text('이미 사용중인 닉네임입니다.');
+					}
+				} else if (result == 1){
+					$('#nickBtn').attr("disabled", false);
+					$('#nickCheck').text('사용 가능한 닉네임입니다.');
+				}
+			},
+			error : function(err) {
+				alert("err : " + err);
+			}
+		})
+	});///////
+	
+	function con(){
+		var result = confirm("계속 진행하시겠습니까?"); 
+		if(result == true) { 
+			$(location).attr('replace',okUrl)
+			} else { 
+			$(location).attr('replace',returnUrl)
+			}
+	}
+	
+	
+	
+	
+	
+	
+
+	
+})//ready끝
+
 
 
 	</script>

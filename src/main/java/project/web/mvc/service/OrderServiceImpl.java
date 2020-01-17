@@ -92,4 +92,11 @@ public class OrderServiceImpl implements OrderService {
     public Page<OnOrder> onSelect(int pageNum) {
         return onOrderRepository.findOnOrder(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum - 1, 9));
     }
+
+    //회원의 구매내역확인
+	@Override
+	public boolean selectAllByUserdbNo(Long userdbNo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

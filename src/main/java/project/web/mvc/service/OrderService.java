@@ -29,4 +29,6 @@ public interface OrderService {
     Page<OffOrder> offSelectByUserdbNo(int pageNum);
 
     Page<OffOrder> offSelectByUserEmail(int pageNum, String keyword);
+    
+    boolean selectAllByUserdbNo(Long userdbNo);
 }

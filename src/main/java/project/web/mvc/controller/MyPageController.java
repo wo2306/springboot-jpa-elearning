@@ -113,6 +113,7 @@ public class MyPageController {
     
     @RequestMapping(value ="/myAccount")
     public ModelAndView myAccount() {
+    	System.out.println("마이페이지의 마이어카운트 호출");
     	Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
 		 Userdb item = userdbService.selectByUserdbNo(userdbNo);
 		return new ModelAndView("myPage/myAccount", "item", item);
@@ -123,7 +124,9 @@ public class MyPageController {
     public int passwordCheck(String userdbPassword0) {
     	//true = 비밀번호 일치, false = 비밀번호 불일치
     	//true : 0, false : 1
+    	System.out.println("패스워드체크컨트롤러**********************************");
     	int result = (userdbService.checkPassword(userdbPassword0))? 0 : 1;
+    	System.out.println("패스워드체크컨트롤러22222*********************************");
     	return result;
     }
     
@@ -140,9 +143,10 @@ public class MyPageController {
     //password 변경
     @RequestMapping(value ="/myAccount/pwUpdate")
     @ResponseBody
-    public String pwUpdate(String userdbPassword1) {
+    public int pwUpdate(String userdbPassword1) {
     	userdbService.updatePw(userdbPassword1);
-    	return "도이러아아아";
+    	//0: 성공, 1:오류
+    	return 0;
     }
     
 }

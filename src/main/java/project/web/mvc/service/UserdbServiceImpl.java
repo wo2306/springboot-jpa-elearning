@@ -56,7 +56,7 @@ public class UserdbServiceImpl implements UserdbService {
 	public void delete(Long userdbNo) {
 		userdbRepository.deleteById(userdbNo);
 	}
-
+	
 	//idCheck
 	//true : 중복, false : 중복아님
 	@Override
