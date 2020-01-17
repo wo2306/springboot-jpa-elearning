@@ -18,12 +18,16 @@ public interface ClassQuestionService {
     List<ClassQuestion> findAll();
     void insert(ClassQuestion classQuestion);
 
-    void update(ClassQuestion classQuestion);
-
-    void delete(ClassQuestion classQuestion);
-
+    void updateQuestion(ClassQuestion classQuestion);
+    void updateAnswer(ClassAnswer classAnswer);
+    
+    
+    void deleteQuestion(Long classQuestion);
+    void deleteAnswer(Long classAnswerNo);
+    
     ClassQuestion selectByQNo(Long id);
-
+    ClassAnswer selectByAno(Long id);
+    
     List<ClassQuestion> findTop10ByOrderByClassQuestionRegdateDesc();
 
     List<ClassAnswer> selectAnswerByQNo(Long id);

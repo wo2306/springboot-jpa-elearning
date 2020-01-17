@@ -51,7 +51,7 @@
                       <hr>
                       <p>가입된 이메일로 임시 비밀번호를 발급해드립니다.</p>
                       <form name="login-form" class="clearfix" method="post"
-                            action="${pageContext.request.contextPath}/">
+                            action="${pageContext.request.contextPath}/findPwdResult">
                           <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"
                                  style="display:none">
                           <div class="row">
@@ -64,40 +64,15 @@
                               <div class="form-group col-md-12">
                                   <label for="form_addr">이메일 주소</label>
                                   <input id="form_addr" name="email" class="form-control" type="text">
-                </div>
+                				  <input id="from_pwd" name="tempPwd" type="hidden" value="${tempPwd }">
+                	</div>
               </div>
              
               <div class="clear text-center pt-10">
-                <button type="button" id="pwdBtn" class="btn btn-dark btn-sm">찾기</button>
+                <button type="submit" id="pwdBtn" class="btn btn-dark btn-sm">찾기</button>
               </div>
-           <script type="text/javascript">
-           $("#pwdBtn").on('click', function(){
-        	   alert(1);
-   			var address = unescape(location.href);
-			console.log(location.href)
-			
-
-			var id = $("#form_username_name").val();
-			var addr = $("#form_addr").val();
-			alert(id);
-			alert(addr);
-			var pwd = "1234";
-			
-			var host = "LearningMachine";
-			var template_params = {
-					   "give_men": addr,
-					   "reply_to": "reply_to_value",
-					   "host": host,
-					   "content": "귀하의 비밀번호는 "+pwd+"입니다."
-					}
-
-					var service_id = "default_service";
-					var template_id = "template_V4mBramB";
-					emailjs.send(service_id, template_id, template_params);
-           });
            
-           </script>
-           
+          
            
             </form>
           </div>

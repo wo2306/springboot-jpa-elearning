@@ -155,21 +155,13 @@
     </div>
 </div>
 <script>
-    function searchform() {
-       // var keyfield = $("#key option:selected").val();
-     //   var keyword = $("#keyword").val();
-      //  location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
-      //  return false;
-    }
 
     $("button[name='deleteBtn']").on('click', function () {
-     //   alert("선택한 강의를 강의를 삭제하였습니다");
      //   location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).val();
     })
 
     $("button[name='updateBtn']").on('click', function () {
-        // alert(1)
-      //  location.href = '${pageContext.request.contextPath}/admin/onLecture/updateForm/' + $(this).val();
+    	location.href = '${pageContext.request.contextPath}/admin/qna/questionUpdate/'+$(this).val();
     })
 </script>
 </body>

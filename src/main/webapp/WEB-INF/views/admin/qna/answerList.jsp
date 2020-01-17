@@ -80,7 +80,7 @@
                                     <td>${answer.userdb.userdbNickname}</td>
                                     <td>${answer.classAnswerContent}</td>
                                      <td>
-                                        <button type="button" name="deleteBtn" class="btn btn-dark"
+                                        <button type="button" name="updateBtn" class="btn btn-dark"
                                                 value="${answer.classAnswerNo}">수정</button>
                                     </td>
                                     <td>
@@ -157,21 +157,18 @@
     </div>
 </div>
 <script>
-    function searchform() {
-       // var keyfield = $("#key option:selected").val();
-     //   var keyword = $("#keyword").val();
-      //  location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
-      //  return false;
-    }
 
     $("button[name='deleteBtn']").on('click', function () {
-     //   alert("선택한 강의를 강의를 삭제하였습니다");
-     //   location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).val();
+   
+    	
+    
+    	if (confirm("정말로 삭제 하시겠습니까?")) {
+    	//	location.href = '${pageContext.request.contextPath}/admin/qna/answerDelete/'+ $(this).val();  
+            }
     })
 
     $("button[name='updateBtn']").on('click', function () {
-        // alert(1)
-      //  location.href = '${pageContext.request.contextPath}/admin/onLecture/updateForm/' + $(this).val();
+      location.href = '${pageContext.request.contextPath}/admin/qna/answerUpdate/'+ $(this).val();
     })
 </script>
 </body>

@@ -51,20 +51,30 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	}
 
 	@Override
-	public void update(ClassQuestion classQuestion) {
-		ClassQuestion dbQuestion = classQuestionRepo.findById(classQuestion.getClassQuestionNo()).orElse(null);
-		//db 검증(회원 인증해주고)
+	public void deleteAnswer(Long classAnswerNo) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteQuestion(Long classQuestion) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void updateAnswer(ClassAnswer classAnswer) {
+		ClassAnswer dbAnswer = classAnswerRepo.findByClassAnswerNo(classAnswer.getClassAnswerNo());
+		System.out.println("@#@#바꾸려는 내용 =" +classAnswer.getClassAnswerContent());
+		dbAnswer.setClassAnswerContent(classAnswer.getClassAnswerContent());
+	}
+	@Override
+	public void updateQuestion(ClassQuestion classQuestion) {
+		ClassQuestion dbQuestion = classQuestionRepo.findByClassQuestionNo(classQuestion.getClassQuestionNo());
+		System.out.println("@#@#바꾸려는 내용 =" +classQuestion.getClassQuestionContent());
 		dbQuestion.setClassQuestionContent(classQuestion.getClassQuestionContent());
 		dbQuestion.setClassQuestionTitle(classQuestion.getClassQuestionTitle());
-
-	}
-
-	@Override
-	public void delete(ClassQuestion classQuestion) {
-
-		ClassQuestion dbQuestion = classQuestionRepo.findById(classQuestion.getClassQuestionNo()).orElse(null);
-		//update와 같이 db검증(회원 인증)하고
-		classQuestionRepo.delete(dbQuestion);
+		
+		
 	}
 
 	@Override
@@ -72,11 +82,16 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		ClassQuestion question = classQuestionRepo.findById(id).orElse(null);
 		return question;
 	}
-
+	
+	@Override
+	public ClassAnswer selectByAno(Long id) {
+		ClassAnswer answer = classAnswerRepo.findById(id).orElse(null);
+		
+		return answer;
+	}
 	@Override
 	public List<ClassAnswer> selectAnswerByQNo(Long id) {
 		List<ClassAnswer> answerList = classAnswerRepo.findByClassQuestionClassQuestionNo(id);
-		System.out.println("퀘스천 "+answerList);
 		return answerList;
 	}
 

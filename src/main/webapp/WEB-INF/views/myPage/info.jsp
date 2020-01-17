@@ -253,7 +253,7 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>질문</th>
+                                                <th> </th>
                                                 <th>연관 강의</th>
                                                 <th>질문 제목 <span style="font-size: 11px;">
                                                 (상세 내용을 보려면 클릭하세요.)</span></th>
@@ -267,7 +267,7 @@
                                                     <c:forEach var="dto" items="${questionList}">
                                                         <tr>
                                                             <th scope="row"><img
-                                                                    src="http://placehold.it/100x50" alt=""></th>
+                                                                    src="${pageContext.request.contextPath}/images/onLecture/${dto.onLecture.onLectureNo}.png" style="width:100px; height: 50px;" alt=""></th>
 
                                                             <td>${dto.onLecture.onLectureName }</td>
 
@@ -324,7 +324,7 @@
                                         <table class="table" id="reviewtable">
                                             <thead>
                                             <tr>
-                                                <th>리 뷰</th>
+                                                <th>  </th>
                                                 <th>평 점</th>
                                                 <th>내 용 <span style="font-size: 12px;">
                                                 (수정하시려면 내용을 누르세요)</span></th>
@@ -337,8 +337,8 @@
                                                 <c:when test="${reviewList!=null}">
                                                     <c:forEach var="dto" items="${reviewList}">
                                                         <tr>
-                                                            <th scope="row"><img
-                                                                    src="http://placehold.it/100x50" alt=""></th>
+                                                            <th scope="row" style="width:180px;"><img
+                                                                    src="${pageContext.request.contextPath}/images/onLecture/${dto.onLecture.onLectureNo}.png" style="width:100px; height: 50px;" alt=""></th>
                                                             <td>${dto.reviewScore }</td>
                                                             <td>
                                                                 <button type="button"

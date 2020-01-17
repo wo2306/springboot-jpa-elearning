@@ -14,4 +14,7 @@ public interface ClassAnswerRepository extends CrudRepository<ClassAnswer, Long>
     List<ClassAnswer> findByClassQuestionClassQuestionNo(Long classQuestionNo);
     
     Page<ClassAnswer> findAll(Pageable pageable);
+    
+    ClassAnswer findByClassAnswerNo(Long classAnswerNo);
+    
 }

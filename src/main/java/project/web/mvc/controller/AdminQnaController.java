@@ -33,7 +33,6 @@ public class AdminQnaController {
 	
 	@RequestMapping("/qna/answerList/{pageNum}")
 	public String selectAllAnswer(@PathVariable int pageNum, Model model) {
-		System.out.println("admin answerList ctrl");
 		List<ClassAnswer> list = new ArrayList<ClassAnswer>();
 		Page<ClassAnswer> page = classQuestionService.selectAllAnswer(pageNum);
 		page.iterator().forEachRemaining(list::add);
@@ -42,5 +41,43 @@ public class AdminQnaController {
 		model.addAttribute("page",page);
 		return "admin/qna/answerList";
 	}
+	
+	@RequestMapping("qna/questionUpdate/{classQuestionNo}")
+	public String questionUpdateForm(@PathVariable Long classQuestionNo, Model model) {
+		ClassQuestion classQuestion = classQuestionService.selectByQNo(classQuestionNo);
+		
+		model.addAttribute("classQuestion", classQuestion);
+		
+		return "admin/qna/updateQuestion";
+	}
+	
+	
+	@RequestMapping("qna/answerUpdate/{classAnswerNo}")
+	public String answerUpdateForm(@PathVariable Long classAnswerNo, Model model) {
+		
+		ClassAnswer classAnswer = classQuestionService.selectByAno(classAnswerNo);
+		
+		model.addAttribute("classAnswer", classAnswer);
+		
+		return "admin/qna/updateAnswer";
+	}
+	
+	@RequestMapping("qna/answerUpdate/update")
+	public String answerUpdate (ClassAnswer classAnswer) {
+		System.out.println("바꿀 answer 내용 !!!! = "+classAnswer.getClassAnswerContent());
+		
+		classQuestionService.updateAnswer(classAnswer);
+		return "redirect:/admin/qna/answerList/1";
+	}
+	
+	@RequestMapping("qna/questionUpdate/update")
+	public String questionUpdate (ClassQuestion classQuestion) {
+		
+		classQuestionService.updateQuestion(classQuestion);
+		return "redirect:/admin/qna/questionList/1";
+	}
+
+	
+
 
 }
