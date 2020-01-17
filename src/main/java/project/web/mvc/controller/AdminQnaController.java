@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import project.web.mvc.domain.ClassAnswer;
 import project.web.mvc.domain.ClassQuestion;
@@ -53,19 +54,19 @@ public class AdminQnaController {
 	
 	
 	@RequestMapping("qna/answerUpdate/{classAnswerNo}")
-	public String answerUpdateForm(@PathVariable Long classAnswerNo, Model model) {
+	public ModelAndView answerUpdateForm(@PathVariable Long classAnswerNo, Model model) {
 		
 		ClassAnswer classAnswer = classQuestionService.selectByAno(classAnswerNo);
-		
-		model.addAttribute("classAnswer", classAnswer);
-		
-		return "admin/qna/updateAnswer";
+		return new ModelAndView("admin/qna/updateAnswer" , "classAnswer", classAnswer);
 	}
+	
+//	public ModelAndView update(@PathVariable Long offLectureNo) {
+//	OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
+//	return new ModelAndView("admin/offLecture/adminOffLectureUpdate", "offLecture", offLecture);
+//}
 	
 	@RequestMapping("qna/answerUpdate/update")
 	public String answerUpdate (ClassAnswer classAnswer) {
-		System.out.println("바꿀 answer 내용 !!!! = "+classAnswer.getClassAnswerContent());
-		
 		classQuestionService.updateAnswer(classAnswer);
 		return "redirect:/admin/qna/answerList/1";
 	}

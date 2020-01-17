@@ -171,8 +171,7 @@
     })
 
     $("button[name='updateBtn']").on('click', function () {
-        // alert(1)
-      //  location.href = '${pageContext.request.contextPath}/admin/onLecture/updateForm/' + $(this).val();
+        location.href = '${pageContext.request.contextPath}/admin/review/updateForm/'+$(this).val();
     })
 </script>
 </body>
