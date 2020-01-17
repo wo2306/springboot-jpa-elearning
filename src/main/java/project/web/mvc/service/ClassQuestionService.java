@@ -10,8 +10,9 @@ import java.util.List;
 
 public interface ClassQuestionService {
 
-    List<ClassQuestion> selectAll();
-
+    Page<ClassQuestion> selectAll(int pageNum);
+    
+    List<ClassQuestion> findAll();
     void insert(ClassQuestion classQuestion);
 
     void update(ClassQuestion classQuestion);

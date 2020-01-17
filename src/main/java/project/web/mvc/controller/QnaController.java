@@ -1,9 +1,11 @@
 package project.web.mvc.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +23,17 @@ public class QnaController {
 	@Autowired
 	private ClassQuestionService classQuestionService;
 
-	@RequestMapping("/list")
-	public void list(Model model) {
-		System.out.println("qna test ctrl");
-		List<ClassQuestion> list = classQuestionService.selectAll();
+	@RequestMapping("/list/{pageNum}")
+	public String list(Model model, @PathVariable int pageNum) {
 
-
+		List<ClassQuestion> list = new ArrayList<>();
+		Page<ClassQuestion> page = classQuestionService.selectAll(pageNum);
+		page.iterator().forEachRemaining(list::add);
 		model.addAttribute("list",list);
-
+		model.addAttribute("page", page);
+		
+		
+		return "qna/list";
 	}
 
 	@RequestMapping("/read/{id}")
@@ -37,11 +42,9 @@ public class QnaController {
 
 		List<ClassAnswer> answerList = classQuestionService.selectAnswerByQNo(id);
 
-		System.out.println("@@@@ answerList : "+answerList);
-
-
 		model.addAttribute("question", classQuestion);
-		model.addAttribute("answer", answerList);
+		model.addAttribute("answers", answerList);
+		
 		return new ModelAndView("qna/read");
 	}
 

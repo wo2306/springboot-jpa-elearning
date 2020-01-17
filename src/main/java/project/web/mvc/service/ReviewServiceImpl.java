@@ -60,6 +60,11 @@ public class ReviewServiceImpl implements ReviewService {
 		return null;
 	}
 
+	@Override
+	public Page<Review> findAll(int pageNum) {
+		
+		return reviewRepo.findAll(PageRequest.of(pageNum-1, 9));
+	}
 
 
 
