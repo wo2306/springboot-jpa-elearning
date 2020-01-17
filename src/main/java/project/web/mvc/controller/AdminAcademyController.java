@@ -1,11 +1,13 @@
 package project.web.mvc.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,6 +35,24 @@ public class AdminAcademyController {
 		List<Academy> list = academyService.selectAll();
 		System.out.println(list);
 		return new ModelAndView("admin/academy/adminAcademy", "list", list);
+	}
+	
+	@RequestMapping("/{command}/{keyword}")
+	 public String category(@PathVariable String command, @PathVariable String keyword, Model model) {
+		List<Academy> list = new ArrayList<>();
+		if (command.equals("all")) {
+			list = academyService.selectByacademyeName(keyword);
+		} else if (command.equals("academy")) {
+			list = academyService.selectByacademyeName(keyword);
+		} else if (command.equals("city")) {
+			list = academyService.selectByCity(keyword);
+		 }else if (command.equals("address")) {
+				list = academyService.selectByAddress(keyword);
+			 }
+		 model.addAttribute("list", list);
+	        model.addAttribute("command", command);
+	        model.addAttribute("keyword", keyword);
+	        return "admin/academy/adminAcademy";
 	}
 	
 	@RequestMapping("this")

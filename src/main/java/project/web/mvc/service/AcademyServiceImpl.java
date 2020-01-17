@@ -64,4 +64,19 @@ public class AcademyServiceImpl implements AcademyService {
 		return academy;
 	}
 
+	@Override
+	public List<Academy> selectByacademyeName(String academyName) {
+		return academyRepository.findByacademyeName(academyName);
+	}
+
+	@Override
+	public List<Academy> selectByCity(String city) {
+		return academyRepository.findByCity(city);
+	}
+
+	@Override
+	public List<Academy> selectByAddress(String address) {
+		return academyRepository.findByAddress(address);
+	}
+
 }
