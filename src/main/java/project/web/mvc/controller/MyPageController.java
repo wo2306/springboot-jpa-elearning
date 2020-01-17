@@ -96,6 +96,13 @@ public class MyPageController {
 		return list;
   }
     
+    @RequestMapping(value ="/isthere")
+    @ResponseBody
+    public List<WishList> isthere(){
+    return wishlistService.wishlistselectAll();
+    
+    }
+    
     @DeleteMapping(value ="/delete")
     @ResponseBody
 	public void delete(Long wishListNo) {

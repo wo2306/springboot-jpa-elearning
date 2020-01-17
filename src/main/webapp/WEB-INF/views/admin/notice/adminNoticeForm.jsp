@@ -60,7 +60,6 @@
                 <div class="section-title">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3 text-center">
-                            <h3 class="title text-theme-colored">입력하기 Form</h3>
                         </div>
                     </div>
                 </div>
@@ -72,14 +71,15 @@
                             <br style="clear: both">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="subject" value="${item.noticeTitle}"
-                                       name="noticeTitle" placeholder="subject" required>
+                                       name="noticeTitle" placeholder="subject" style="width:700px;" required>
                             </div>
                             <div class="form-group">
 									<textarea class="form-control" id="summernote" name="noticeContent"  
                                               placeholder="content" maxlength="140" rows="7"><div>${item.noticeContent}</div></textarea>
                             </div>
+                            
                             <button type="submit" id="submit" name="submit"
-                                    class="btn btn-primary pull-right">등록하기
+                                    class="btn btn-primary pull-right" style="margin-right:150px;">등록하기
                             </button>
                         </form>
                     </div>
@@ -94,7 +94,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#summernote').summernote({
-            height: 300,
+            width: 700,
+        	height: 300,
             minHeight: null,
             maxHeight: null,
             focus: true,

@@ -130,7 +130,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/list/1">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Notice</span></a>
     </li>
