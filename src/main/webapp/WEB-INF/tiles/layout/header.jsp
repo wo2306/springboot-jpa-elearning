@@ -117,7 +117,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                         </sec:authorize>
                         
           			   <!-- 일반유저로그아웃 -->
-                       <sec:authorize ifAnyGranted="MEMBER">
+                       <sec:authorize ifAnyGranted="MEMBER,ADMIN">
                       	 <sec:authentication var="user" property="principal"/>
                           <ul class="list-inline font-13 sm-text-center mt-5">
                                 <li><a class="text-white" href="javascript:logout();">Logout</a></li>
