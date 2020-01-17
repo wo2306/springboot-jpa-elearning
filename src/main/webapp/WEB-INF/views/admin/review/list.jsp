@@ -49,7 +49,7 @@
                         <div class="col-md-12">
                             <ol class="breadcrumb text-left text-black mt-10">
                                 <li><a href="#">관리자 리뷰 관리 페이지</a></li>
-                                <li class="active text-gray-silver"> - 관리자가 리뷰를  수정, 삭제할 수 있는 페이지 입니다.</li>
+                                <li class="active text-gray-silver"> - 관리자가 사용자의 리뷰를  수정, 삭제할 수 있는 페이지 입니다.</li>
                                
                             </ol>
                         </div>
