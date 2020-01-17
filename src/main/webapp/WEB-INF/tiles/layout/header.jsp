@@ -58,7 +58,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <!-- JS | jquery plugin collection for this theme -->
     <script src="${pageContext.request.contextPath}/js/jquery-plugin-collection.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript">
         function logout() {
             document.getElementById("logoutFrm").submit();
@@ -115,22 +115,32 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                 <li class="text-white">|</li>
                             </ul>
                         </sec:authorize>
-                        <sec:authorize access="isAuthenticated()">
-                            <sec:authentication var="user" property="principal"/>
-                            <ul class="list-inline font-13 sm-text-center mt-5">
-                                <li>
-                                    <a class="text-white" href="javascript:logout();">Logout</a>
-                                </li>
+                        
+          			   <!-- 일반유저로그아웃 -->
+                       <sec:authorize ifAnyGranted="MEMBER">
+                      	 <sec:authentication var="user" property="principal"/>
+                          <ul class="list-inline font-13 sm-text-center mt-5">
+                                <li><a class="text-white" href="javascript:logout();">Logout</a></li>
                                 <li class="text-white">|</li>
-
-                                <li><a class="text-white" href="${pageContext.request.contextPath}/myPage/myAccount/">${user.userdbNickname}님 </a>
-                                </li>
-                                <form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post"
-                                      style="display:none">
+                                <li><a class="text-white" href="${pageContext.request.contextPath}/myPage/myAccount/">${user.userdbNickname}님 </a></li>
+                                <form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post" style="display:none">
                                     <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                                 </form>
                             </ul>
-                        </sec:authorize>
+          			   </sec:authorize>
+          			   
+          			   <!-- 카카오로그아웃 -->
+                       <sec:authorize ifAnyGranted="KAKAO">
+                      	 <sec:authentication var="user" property="principal"/>
+                          <ul class="list-inline font-13 sm-text-center mt-5">
+                                <li><a class="text-white" href="javascript:checkStatus()">Logout</a></li>
+                                <li class="text-white">|</li>
+                                <li><a class="text-white" href="${pageContext.request.contextPath}/myPage/myAccount/">${user.userdbNickname}님 </a></li>
+                                <form id="logoutFrm" name="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post" style="display:none">
+                                    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+                                </form>
+                            </ul>
+          			   </sec:authorize>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -380,6 +390,39 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
             }
         })
     }
+</script>
+<script type="text/javascript">
+
+
+//카카오 로그아웃
+Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
+function checkStatus(){
+	 Kakao.Auth.getStatus(function(statusObj){
+		 if(statusObj.status=="not_connected"){
+			 alert('연결안되어잇음')
+		 }else {
+			 alert('연결되어잇음')
+			 klogout();
+		 }
+	 })
+	 
+	 alert('로그아웃한다!? 우리페이지??')
+		$("form[name=logoutFrm]").submit();
+}
+
+function klogout(){
+	Kakao.Auth.logout(function(data){
+        alert(data)
+        if(data==true){
+        	alert('로그아웃성공')
+        }else if(data==false){
+        	alert('실패')
+        }ㄴ
+    });
+	logoutSubmit()
+}
+
+
 </script>
 <script src="${pageContext.request.contextPath}/js/custom.js"></script>
 </body>

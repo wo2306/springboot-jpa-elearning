@@ -13,9 +13,7 @@ import project.web.mvc.domain.Userdb;
 public interface UserdbRepository extends PagingAndSortingRepository<Userdb, Long>{
 
 	Userdb findByUserdbEmail(String userdbEmail);
-	
 	Userdb findByUserdbNo(Long userdbNo);
-
 	List<Userdb> findByUserdbNickname(String userdbNickname);
 	 @Query("select u from Userdb u where u.userdbEmail LIKE CONCAT('%',:keyword,'%') or u.userdbNickname LIKE CONCAT('%',:keyword,'%')")
 	Page<Userdb> findByKeyword(@Param("keyword") String keyword, Pageable pageable);
