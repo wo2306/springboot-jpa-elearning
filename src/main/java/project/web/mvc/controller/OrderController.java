@@ -31,20 +31,20 @@ public class OrderController {
     }
 
     @RequestMapping("/cartInsert")
-    public String cartInsert(@RequestParam List<Long> onLectureNo, OnOrder onOrder) {
-        orderService.cartInsert(onLectureNo, onOrder);
+    public String cartInsert(@RequestParam List<Long> onLectureNo, OnOrder onOrder, String couponCode) {
+        orderService.cartInsert(onLectureNo, onOrder, couponCode);
         cartService.deleteAll();
         return "payment/success";
     }
 
     @RequestMapping("/onInsert")
-    public String onInsert1(@RequestParam Long onLectureNo, OnOrder onOrder) {
-        orderService.onInsert(onLectureNo, onOrder);
+    public String onInsert1(@RequestParam Long onLectureNo, OnOrder onOrder, String couponCode) {
+        orderService.onInsert(onLectureNo, onOrder, couponCode);
         return "payment/success";
     }
 
-    @RequestMapping("/offInsert/{offLectureNo}")
-    public String offInsert(@PathVariable Long offLectureNo) {
+    @RequestMapping("/offInsert")
+    public String offInsert(Long offLectureNo) {
         orderService.offInsert(offLectureNo);
         return "payment/success";
     }

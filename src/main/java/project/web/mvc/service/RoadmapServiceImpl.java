@@ -23,12 +23,12 @@ public class RoadmapServiceImpl implements RoadmapService {
 	@Override
 	public void insert(List<Long> onLectureNo, Roadmap roadmap) {
 		System.out.println("로드맵insert");
-		for(int i=0; i< onLectureNo.size(); i++) {
-			roadmap.setOnLecture(new OnLecture(onLectureNo.get(i)));
-			roadmapRepo.save(roadmap);
+		for (Long index : onLectureNo) {
+			System.out.println(index);
 		}
-
-		
+		for(int i=0; i< onLectureNo.size(); i++) {
+			roadmapRepo.save(new Roadmap(null, new OnLecture(onLectureNo.get(i)), roadmap.getRoadmapName(), roadmap.getRoadmapPrice(), roadmap.getRoadmapContent(), null));
+		}
 	}
 
 	@Override

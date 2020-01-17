@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.web.mvc.domain.Cart;
 import project.web.mvc.domain.Userdb;
+import project.web.mvc.domain.WishList;
 import project.web.mvc.repository.CartRepository;
+import project.web.mvc.repository.WishListRepository;
 import project.web.mvc.util.LoginCheck;
 import sun.rmi.runtime.Log;
 
@@ -18,6 +20,13 @@ import java.util.List;
 @Transactional
 public class CartServiceImpl implements CartService {
     private final CartRepository cartRepository;
+    private final WishListRepository wishListRepository;
+
+    @Override
+    public void wishListDelete(Long cartNo) {
+        wishListRepository.save(new WishList(cartRepository.findById(cartNo).orElse(null).getOnLecture().getOnLectureNo(), LoginCheck.getUserdb().getUserdbNo()));
+        cartRepository.deleteById(cartNo);
+    }
 
     @Override
     public void deleteAll() {

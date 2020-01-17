@@ -92,31 +92,6 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <h4>프로모션 코드 입력</h4>
-                            <form class="form" action="#">
-                                <table class="table no-border">
-                                    <tbody>
-                                    <tr>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="text" class="form-control" placeholder="쿠폰 번호 입력"
-                                                   value=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="text" class="form-control" placeholder="Postcod/zip"
-                                                   readonly="readonly" value="쿠폰 적용시 정보가 표시됩니다."></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <button type="button" class="btn btn-default">할인 쿠폰 적용</button>
-                                            <button type="button" class="btn btn-default">쿠폰 적용 취소</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </form>
-                        </div>
-                        <div class="col-md-12">
                             <h3>결제 수단 선택</h3>
                             <div class="payment-method">
                                 <div class="radio">
@@ -136,6 +111,12 @@
             </div>
         </section>
     </div>
+    <form id="payForm" action="${pageContext.request.contextPath}/order/offInsert">
+        <input name="offLectureNo" type="hidden"
+               value="${offLecture.offLectureNo}"/>
+        <input id="paymentPrice" name="price" type="hidden"
+               value="${offLecture.price}"/>
+    </form>
 </div>
 <script>
     function requestPay() {
@@ -147,47 +128,33 @@
             pay_method: 'card',
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: 'Learning Machine Paying',
-            amount: $("#final_price").text().replace(",", "").replace("₩", ""),
+            amount: $("#paymentPrice").val(),
             buyer_email: $("#checkuot-form-cname").val(),
             buyer_name: $("#checkuot-form-fname").val(),
             buyer_tel: $("#checkuot-form-lname").val(),
             buyer_addr: '서울특별시 강남구 삼성동',
             buyer_postcode: '42150',
+            m_redirect_url: '${pageContext.request.contextPath}/order/success/'
         }, function (rsp) {
             if (rsp.success) {
                 let msg = '결제가 완료되었습니다.';
                 alert(msg);
                 alert(rsp.pg_tid);
-                location.href = '${pageContext.request.contextPath}/order/offInsert/${offLecture.offLectureNo}'
+                $("#paymentId").val(rsp.pg_tid);
+                $("#paymentPrice").val(parseInt($("#paymentPrice").val()))
+                $("#payForm").submit();
             } else {
-                let msg = '결제에 실패하였습니다. 결제 정보를 확인해주세요.'
+                let msg = '결제에 실패하였습니다. 결제 확인창으로 되돌아갑니다.'
                 alert(msg);
+                location.href = "${pageContext.request.contextPath}/cart/checkout";
             }
         });
     }
-
     function fn(str) {
         var res;
         res = str.replace(/[^0-9]/g, "");
         return res;
     }
-
-    $("#discountButton").click(function () {
-        var couponCode = $("#couponCode").val();
-        $.ajax({
-            url: "${pageContext.request.contextPath}/coupon/select/" + couponCode,
-            type: "post",
-            dataType: "json",
-            success: function (result) {
-                $("#couponName").val(result.couponName + " (" + result.couponDiscount + " % 할인)");
-                console.log(result)
-            },
-            error: function (error) {
-                alert(error);
-            }
-        })
-
-    });
 </script>
 <!-- end main-content -->
 </body>

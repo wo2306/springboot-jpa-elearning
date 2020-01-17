@@ -16,7 +16,6 @@ $(function(){
 	
 	//추가한  강의 삭제
 	$(document).on("click","#btn",function(){
-	
 		$(this).closest("tr").remove();
 		
 	})//강의 삭제 이벤트 끝

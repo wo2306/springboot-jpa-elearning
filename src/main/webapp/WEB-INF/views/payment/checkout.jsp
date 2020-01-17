@@ -75,17 +75,26 @@
                                                     pattern="₩#,###"/></td>
                                         </tr>
                                         <tr>
-                                            <td>할인 금액</td>
+                                            <td>강의 기본 할인</td>
                                             <td>&nbsp;</td>
                                             <td id="discount_price" style="color: red"><fmt:formatNumber
                                                     value="${discount_sum}"
                                                     pattern="₩#,###"/></td>
                                         </tr>
                                         <tr>
+                                            <td>프로모션 코드 할인</td>
+                                            <td>&nbsp;</td>
+                                            <c:set var="coupon_price"
+                                                   value="${coupon ne null?price_sum*(1-coupon.couponDiscount/100):0}"/>
+                                            <td id="coupon_price" style="color: red"><fmt:formatNumber
+                                                    value="${coupon ne null?price_sum*(1-coupon.couponDiscount/100):0}"
+                                                    pattern="₩#,###"/></td>
+                                        </tr>
+                                        <tr>
                                             <td style="font-weight: bold">최종 결제 금액</td>
                                             <td>&nbsp;</td>
                                             <td id="final_price" style="font-weight: bold"><fmt:formatNumber
-                                                    value="${price_sum-discount_sum}"
+                                                    value="${price_sum-discount_sum-coupon_price}"
                                                     pattern="₩#,###"/></td>
                                         </tr>
                                     </c:when>
@@ -141,8 +150,9 @@
         <input name="onLectureNo" type="hidden"
                value="${dto.onLecture.onLectureNo}"/>
     </c:forEach>
-        <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
-        <input id="paymentPrice" name="onOrderPrice" type="hidden" value="${price_sum-discount_sum}"/>
+    <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
+    <input id="paymentPrice" name="onOrderPrice" type="hidden" value="${price_sum-discount_sum}"/>
+    <input id="payCoupon" name="couponCode" type="hidden" value="${coupon.couponCode}"/>
 </form>
 
 <script>
@@ -172,15 +182,16 @@
                 $("#paymentPrice").val(parseInt($("#paymentPrice").val()))
                 $("#payForm").submit();
             } else {
-                let msg = '결제에 실패하였습니다. 결제 확인창으로 되돌아갑니다.'
+                let msg = '결제에 실패하였습니다. 장바구니로 되돌아갑니다.'
                 alert(msg);
-                location.href = "${pageContext.request.contextPath}/cart/checkout";
+                location.href = "${pageContext.request.contextPath}/cart/list";
             }
         });
     }
-    function fn(str){
+
+    function fn(str) {
         var res;
-        res = str.replace(/[^0-9]/g,"");
+        res = str.replace(/[^0-9]/g, "");
         return res;
     }
 </script>
