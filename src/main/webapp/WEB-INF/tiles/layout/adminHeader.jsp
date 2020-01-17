@@ -36,42 +36,7 @@
   <script src="${pageContext.request.contextPath}/admin/js/sb-admin-2.min.js"></script>
 
 
-<!-- 메인페이지 css -->
-    <!-- Stylesheet -->
-    <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="${pageContext.request.contextPath}/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
-    <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet" type="text/css">
-    <link href="${pageContext.request.contextPath}/css/css-plugin-collections.css" rel="stylesheet"/>
-    <!-- CSS | menuzord megamenu skins -->
-    <link id="menuzord-menu-skins"
-          href="${pageContext.request.contextPath}/css/menuzord-skins/menuzord-rounded-boxed.css" rel="stylesheet"/>
-    <!-- CSS | Main style file -->
-    <link href="${pageContext.request.contextPath}/css/style-main.css" rel="stylesheet" type="text/css">
-    <!-- CSS | Preloader Styles -->
-    <link href="${pageContext.request.contextPath}/css/preloader.css" rel="stylesheet" type="text/css">
-    <!-- CSS | Custom Margin Padding Collection -->
-    <link href="${pageContext.request.contextPath}/css/custom-bootstrap-margin-padding.css" rel="stylesheet"
-          type="text/css">
-    <!-- CSS | Responsive media queries -->
-    <link href="${pageContext.request.contextPath}/css/responsive.css" rel="stylesheet" type="text/css">
-    <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
-    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css">
 
-    <!-- CSS | Theme Color -->
-    <link href="${pageContext.request.contextPath}/css/colors/theme-skin-color-set-1.css" rel="stylesheet"
-          type="text/css">
-
-    <!-- external javascripts -->
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-    <!-- JS | jquery plugin collection for this theme -->
-    <script src="${pageContext.request.contextPath}/js/jquery-plugin-collection.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-	<script src="${pageContext.request.contextPath}/js/chart.js"></script>
-	<script src="${pageContext.request.contextPath}/js/datepicker.js"></script>
-	<script src="${pageContext.request.contextPath}/js/datepicker.min.js"></script>
-<!--  -->
 
   <!-- Page level custom scripts -->
   <style type="text/css">
