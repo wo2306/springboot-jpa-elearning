@@ -92,6 +92,31 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <h4>프로모션 코드 입력</h4>
+                            <form class="form" action="#">
+                                <table class="table no-border">
+                                    <tbody>
+                                    <tr>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" placeholder="쿠폰 번호 입력"
+                                                   value=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" placeholder="Postcod/zip"
+                                                   readonly="readonly" value="쿠폰 적용시 정보가 표시됩니다."></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button type="button" class="btn btn-default">할인 쿠폰 적용</button>
+                                            <button type="button" class="btn btn-default">쿠폰 적용 취소</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="col-md-12">
                             <h3>결제 수단 선택</h3>
                             <div class="payment-method">
                                 <div class="radio">
@@ -103,8 +128,6 @@
                                         / County, Store Postcode.</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
                             <div class="text-right"><a class="btn btn-default" href='javascript:void(0);'
                                                        onclick="requestPay();">구매하기</a></div>
                         </div>
@@ -148,6 +171,23 @@
         res = str.replace(/[^0-9]/g, "");
         return res;
     }
+
+    $("#discountButton").click(function () {
+        var couponCode = $("#couponCode").val();
+        $.ajax({
+            url: "${pageContext.request.contextPath}/coupon/select/" + couponCode,
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                $("#couponName").val(result.couponName + " (" + result.couponDiscount + " % 할인)");
+                console.log(result)
+            },
+            error: function (error) {
+                alert(error);
+            }
+        })
+
+    });
 </script>
 <!-- end main-content -->
 </body>

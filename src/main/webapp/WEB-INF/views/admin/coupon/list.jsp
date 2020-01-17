@@ -118,12 +118,13 @@
                                 <th colspan="2">등록</th>
                             </tr>
                             <tr>
-                                <form action="${pageContext.request.contextPath}/coupon/insert" method="post">
-                                <td colspan="2"><input type="text" style="width:500px;"/> </td>
-                                <td><input type="text" style="width: 70px"/></td>
-                                <td><input type="text" style="width: 140px;"/></td>
-                                <td colspan="2"><input type="text" style="width: 140px;"/></td>
-                                <td colspan="2"><input type="submit" class="btn btn-dark" value="등록하기"/></td>
+                                <form id="inputCoupon" action="${pageContext.request.contextPath}/coupon/insert"
+                                      method="post" onsubmit="return submitFrm()">
+                                    <td colspan="2"><input type="text" name="couponName" style="width:500px;"/></td>
+                                    <td><input name="couponDiscount" type="text" style="width: 70px"/></td>
+                                    <td colspan="2"><input name="couponOriginalCount" type="text"
+                                                           style="width: 140px;"/></td>
+                                    <td colspan="2"><input type="submit" class="btn btn-dark" value="등록하기"/></td>
                                 </form>
                             </tr>
                         </table>
@@ -192,14 +193,18 @@
     </div>
 </div>
 <script>
-    // Access instance of plugin
     function searchform() {
         var keyfield = $("#key option:selected").val();
         var keyword = $("#keyword").val();
         location.href = '${pageContext.request.contextPath}/coupon/' + keyfield + '/' + keyword + '/1';
         return false;
     }
-
+    function submitFrm() {
+        if ($("td input").val() == "") {
+            alert("값을 입력해주세요");
+            return false;
+        }
+    }
     $("button[name='deleteBtn']").on('click', function () {
         location.href = '${pageContext.request.contextPath}/coupon/delete/' + $(this).val();
     })

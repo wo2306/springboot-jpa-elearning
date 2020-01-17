@@ -55,7 +55,7 @@
                                        value="${discount_sum+onLecture.onLecturePrice*onLecture.onLectureDiscount/100}"/>
                                 <tr>
                                     <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                   src="${pageContext.request.contextPath}/onlecture/images/${onLecture.onLectureName}"></a>
+                                                                                   src="${pageContext.request.contextPath}/images/onLecture/${onLecture.onLectureNo}.png"></a>
                                     </td>
                                     <td><a href="#">${onLecture.onLectureName}</a></td>
                                     <td><fmt:formatNumber value="${onLecture.onLecturePrice}"
@@ -102,6 +102,34 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <h4>프로모션 코드 입력</h4>
+                            <form class="form" id="discountForm" action="#">
+                                <table class="table no-border">
+                                    <tbody>
+                                    <tr>
+                                    </tr>
+                                    <tr>
+                                        <td><input id="couponCode" type="text" class="form-control"
+                                                   placeholder="쿠폰 번호 입력"
+                                                   value=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input id="couponName" type="text" class="form-control"
+                                                   placeholder="Postcod/zip"
+                                                   readonly="readonly" value="쿠폰 적용시 정보가 표시됩니다."></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button type="button" id="discountButton" class="btn btn-default">할인 쿠폰 적용
+                                            </button>
+                                            <button type="reset" class="btn btn-default">쿠폰 적용 취소</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="col-md-12">
                             <h3>결제 수단 선택</h3>
                             <div class="payment-method">
                                 <div class="radio">
@@ -113,8 +141,6 @@
                                         / County, Store Postcode.</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
                             <div class="text-right"><a class="btn btn-default" href='javascript:void(0);'
                                                        onclick="requestPay();">구매하기</a></div>
                         </div>
@@ -128,7 +154,8 @@
     <input name="onLectureNo" type="hidden"
            value="${onLecture.onLectureNo}"/>
     <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
-    <input id="paymentPrice" name="onOrderPrice" type="hidden" value="${onLecture.onLecturePrice-onLecture.onLecturePrice*onLecture.onLectureDiscount/100}"/>
+    <input id="paymentPrice" name="onOrderPrice" type="hidden"
+           value="${(onLecture.onLecturePrice-onLecture.onLecturePrice*onLecture.onLectureDiscount/100)*(1-coupon.couponDiscount)}"/>
 </form>
 
 <script>
@@ -163,6 +190,23 @@
             }
         });
     }
+
+    $("#discountButton").click(function () {
+        var couponCode = $("#couponCode").val();
+        $.ajax({
+            url: "${pageContext.request.contextPath}/coupon/select/" + couponCode,
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                $("#couponName").val(result.couponName + " (" + result.couponDiscount + " % 할인)");
+                console.log(result)
+            },
+            error: function (error) {
+                alert(error);
+            }
+        })
+
+    });
 </script>
 <!-- end main-content -->
 </body>

@@ -12,4 +12,7 @@ public interface CouponService {
     void update(Coupon coupon);
 
     void delete(String couponCode);
+
+    Coupon selectById(String couponCode);
+
 }

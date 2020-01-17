@@ -26,6 +26,7 @@ public class Coupon {
     @Column(nullable = false)
     private int couponDiscount;
 
+    @CreationTimestamp
     private Date couponDate;
 
     private int couponOriginalCount;

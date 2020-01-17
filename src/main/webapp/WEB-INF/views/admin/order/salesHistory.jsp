@@ -81,6 +81,7 @@
                                cellspacing="0">
                             <tr>
                                 <th>주문번호</th>
+                                <th>유저 ID</th>
                                 <th>주문코드</th>
                                 <th>강의명</th>
                                 <th>결제수단</th>
@@ -93,6 +94,7 @@
                             <c:forEach items="${requestScope.list}" var="list">
                                 <tr>
                                     <td>${list.onOrderNo}</td>
+                                    <td>${list.userdb.userdbEmail}</td>
                                     <td>${list.onOrderCode}</td>
                                     <td>${list.onlecture.onLectureName}</td>
                                     <td>${list.onOrderMethod}</td>

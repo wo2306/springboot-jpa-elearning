@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import project.web.mvc.domain.Coupon;
 import project.web.mvc.service.CouponService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,10 +23,9 @@ public class CouponController {
     private final CouponService couponService;
 
     @RequestMapping("/insert")
-    public String insert(Coupon coupon) {
-        coupon.setCouponCode(createCoupon());
+    public String insert(Coupon coupon) throws ParseException {
         couponService.insert(coupon);
-        return "redirect:coupon/select/1";
+        return "redirect:/coupon/list/all/1";
     }
 
     @RequestMapping("/list/all/{pageNum}")
@@ -45,13 +43,13 @@ public class CouponController {
     @RequestMapping("/update")
     public String update(Coupon coupon) {
         couponService.update(coupon);
-        return "redirect:coupon/select/1";
+        return "redirect:/coupon/list/all/1";
     }
 
     @RequestMapping("/delete/{couponCode}")
     public String delete(@PathVariable String couponCode) {
         couponService.delete(couponCode);
-        return "redirect:coupon/select/1";
+        return "redirect:/coupon/list/all/1";
     }
 
     static int n = 16; // n자리 쿠폰
@@ -67,5 +65,13 @@ public class CouponController {
             sb.append(ch);
         }
         return sb.toString();
+    }
+
+    @RequestMapping("/select/{couponCode}")
+    @ResponseBody
+    public Coupon getCoupon(@PathVariable String couponCode, Model model) {
+        Coupon coupon = couponService.selectById(couponCode);
+        model.addAttribute("coupon", coupon);
+        return coupon;
     }
 }
