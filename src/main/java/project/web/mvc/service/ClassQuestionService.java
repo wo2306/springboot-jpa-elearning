@@ -9,8 +9,11 @@ import project.web.mvc.domain.ClassQuestion;
 import java.util.List;
 
 public interface ClassQuestionService {
-
+	//관리자 페이지 questionList all 페이징처리
     Page<ClassQuestion> selectAll(int pageNum);
+    
+    //관리자 페이지 answerList all 페이징 처리
+    Page<ClassAnswer> selectAllAnswer(int pageNum);
     
     List<ClassQuestion> findAll();
     void insert(ClassQuestion classQuestion);

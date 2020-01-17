@@ -22,7 +22,10 @@ public class QnaController {
 
 	@Autowired
 	private ClassQuestionService classQuestionService;
-
+	
+	@RequestMapping("/findPwd")
+	public void findPwd() {}
+	
 	@RequestMapping("/list/{pageNum}")
 	public String list(Model model, @PathVariable int pageNum) {
 

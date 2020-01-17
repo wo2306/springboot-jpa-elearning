@@ -34,6 +34,11 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	}
 	
 	@Override
+	public Page<ClassAnswer> selectAllAnswer(int pageNum) {
+		
+		return classAnswerRepo.findAll(PageRequest.of(pageNum-1, 9));
+	}
+	@Override
 	public List<ClassQuestion> findAll() {
 
 		return classQuestionRepo.findAllClassQuestions();

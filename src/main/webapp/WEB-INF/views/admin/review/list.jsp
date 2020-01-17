@@ -135,7 +135,7 @@
                                             <c:choose>
                                                 <c:when test="${page.hasNext() eq true}">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/review/list//${page.number+2}"
+                                                       href="${pageContext.request.contextPath}/admin/review/list/${page.number+2}"
                                                        aria-label="Next"> <span aria-hidden="true">다음</span> </a>
                                                 </c:when>
                                                 <c:otherwise>
