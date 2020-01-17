@@ -2,6 +2,7 @@ package project.web.mvc.service;
 
 import org.springframework.data.domain.Page;
 import project.web.mvc.domain.OffOrder;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.OnOrder;
 
 import java.util.List;
@@ -31,4 +32,6 @@ public interface OrderService {
     Page<OffOrder> offSelectByUserEmail(int pageNum, String keyword);
 
     void couponDiscount(String couponCode);
+
+    Page<OnOrder> onSelectByUserNo(int pageNum);
 }

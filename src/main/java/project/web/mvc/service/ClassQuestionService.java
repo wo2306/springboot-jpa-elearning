@@ -21,7 +21,7 @@ public interface ClassQuestionService {
 
     ClassQuestion selectByQNo(Long id);
 
-    List<ClassQuestion> findTop10ByOrderByClassQuestionRegdateDesc();
+    List<ClassQuestion> findRecentQ(Long onLectureNo);
 
     List<ClassAnswer> selectAnswerByQNo(Long id);
     //유저별 질문 리스트 (마이페이지에서 사용)

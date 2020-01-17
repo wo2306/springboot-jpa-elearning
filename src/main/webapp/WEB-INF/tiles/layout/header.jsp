@@ -103,6 +103,8 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
             <div class="row">
                 <div class="col-md-4">
                     <div class="widget no-border m-0">
+                        <ul class="list-inline font-13 sm-text-center mt-5">
+                        </ul>
                         <sec:authorize access="isAnonymous()">
                             <ul class="list-inline font-13 sm-text-center mt-5">
                                 <li>
@@ -115,7 +117,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                 <li class="text-white">|</li>
                             </ul>
                         </sec:authorize>
-                        
+
           			   <!-- 일반유저로그아웃 -->
                        <sec:authorize ifAnyGranted="MEMBER">
                       	 <sec:authentication var="user" property="principal"/>
@@ -128,7 +130,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                 </form>
                             </ul>
           			   </sec:authorize>
-          			   
+
           			   <!-- 카카오로그아웃 -->
                        <sec:authorize ifAnyGranted="KAKAO">
                       	 <sec:authentication var="user" property="principal"/>
@@ -148,6 +150,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                         <ul class="list-inline pull-right">
                             <li class="mb-0 pb-0">
                                 <sec:authorize access="isAuthenticated()">
+
                                     <div class="top-dropdown-outer pt-5 pb-10">
                                         <a class="top-cart-link has-dropdown text-white text-hover-theme-colored"><i
                                                 class="fa fa-shopping-cart font-13"></i><span id="cartSize"></span></a>
@@ -268,8 +271,11 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <ul class="pull-right flip hidden-sm hidden-xs">
                     <li>
                         <!-- Modal: Book Now Starts -->
+                        <a class="btn btn-colored btn-flat bg-theme-colored-transparent text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"
+                           onclick="myLecture()" id="myLecture">내 강의실</a>
                         <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"
                            data-toggle="modal" data-target="#BSParentModal" onclick="myPage()" id="myPage">마이 페이지</a>
+
                         <!-- Modal: Book Now End -->
                     </li>
                 </ul>
@@ -321,6 +327,9 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     function myPage() {
         location.href = "${pageContext.request.contextPath}/myPage/info/1";
     }
+    function myLecture() {
+        location.href = "${pageContext.request.contextPath}/myPage/myLecture/1";
+    }
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -345,7 +354,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                         let price = val.onLecture.onLecturePrice;
                         totalPrice += price;
                         let discountPrice = Math.floor(val.onLecture.onLecturePrice * val.onLecture.onLectureDiscount / 100);
-                        str += "<tr><td><a href=\"#\"><img alt=\"\" src=\"${pageContext.request.contextPath}/images/onLecture/"+val.onLecture.onLectureNo+".png\"></a></td><td><a href=\"#\">" + name + "</a></td><td>₩" + numberWithCommas(price) + "</td><td><a class=\"close\" onclick='deleteCartAjax(" + no + ")'><i class=\"fa fa-close font-13\"></i></a></td></tr>";
+                        str += "<tr><td><a href=\"#\"><img alt=\"\" src=\"${pageContext.request.contextPath}/resources/images/onLecture/"+val.onLecture.onLectureNo+".png\"></a></td><td><a href=\"#\">" + name + "</a></td><td>₩" + numberWithCommas(price) + "</td><td><a class=\"close\" onclick='deleteCartAjax(" + no + ")'><i class=\"fa fa-close font-13\"></i></a></td></tr>";
                         totalDiscount += discountPrice;
                         $("#cart_btn").html("<a class=\"btn btn-theme-colored btn-xs\"\n" +
                             "                                                       href=\"${pageContext.request.contextPath}/cart/list\"> 장바구니로\n" +
@@ -405,7 +414,7 @@ function checkStatus(){
 			 klogout();
 		 }
 	 })
-	 
+
 	 alert('로그아웃한다!? 우리페이지??')
 		$("form[name=logoutFrm]").submit();
 }

@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.OnOrder;
 
 import java.util.List;
@@ -24,4 +25,6 @@ public interface OnOrderRepository extends PagingAndSortingRepository<OnOrder, L
 
     @Query("select o from OnOrder o where o.onlecture.onLectureName LIKE CONCAT('%',:keyword,'%')")
     Page<OnOrder> findByLectureName(String keyword, Pageable pageable);
+
+    Page<OnOrder> findByUserdb_UserdbNo(Long userdbNo, Pageable pageable);
 }

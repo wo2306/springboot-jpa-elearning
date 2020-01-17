@@ -18,7 +18,7 @@
 
         <!-- Section: inner-header -->
         <section class="inner-header divider parallax layer-overlay overlay-dark-5"
-                 data-bg-img="http://placehold.it/1920x1280">
+                 data-bg-img="${pageContext.request.contextPath}/images/index/main2.png">
             <div class="container pt-70 pb-20">
                 <!-- Section Content -->
                 <div class="section-content">

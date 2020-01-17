@@ -18,7 +18,7 @@
 
         <!-- Section: inner-header -->
         <section class="inner-header divider parallax layer-overlay overlay-dark-5"
-                 data-bg-img="http://placehold.it/1920x1280">
+                 data-bg-img="${pageContext.request.contextPath}/images/index/main2.png">
             <div class="container pt-70 pb-20">
                 <!-- Section Content -->
                 <div class="section-content">
@@ -59,7 +59,7 @@
                                                    value="${discount_sum+dto.onLecture.onLecturePrice*dto.onLecture.onLectureDiscount/100}"/>
                                             <tr>
                                                 <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                               src="${pageContext.request.contextPath}/images/onLecture/${dto.onLecture.onLectureNo}.png"></a>
+                                                                                               src="${pageContext.request.contextPath}/resources/images/onLecture/${dto.onLecture.onLectureNo}.png"></a>
                                                 </td>
                                                 <td><a href="#">${dto.onLecture.onLectureName}</a></td>
                                                 <td><fmt:formatNumber value="${dto.onLecture.onLecturePrice}"

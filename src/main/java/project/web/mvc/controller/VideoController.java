@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class VideoController {
 
     @RequestMapping("oauth2callback")
-    public String token(String code, Model model, String access_token) {
+    public String token(String code, Model model) {
         model.addAttribute("code", code);
-        System.out.println("token : " + access_token);
         return "admin/onLecture/insertOnLecture";
     }
 }

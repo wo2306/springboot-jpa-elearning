@@ -3,6 +3,7 @@ package project.web.mvc.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import project.web.mvc.domain.ClassQuestion;
-import project.web.mvc.domain.OffOrder;
-import project.web.mvc.domain.OnOrder;
-import project.web.mvc.domain.Review;
-import project.web.mvc.domain.Userdb;
-import project.web.mvc.domain.WishList;
+import project.web.mvc.domain.*;
 import project.web.mvc.service.ClassQuestionService;
 import project.web.mvc.service.OrderService;
 import project.web.mvc.service.UserdbService;
@@ -74,6 +70,16 @@ public class MyPageController {
             model.addAttribute("offOrderPage", offOrderPage);
         }
         return "myPage/info";
+    }
+
+    @RequestMapping("/myLecture/{pageNum}")
+    public String myLectureSelect(@PathVariable int pageNum, Model model) {
+        List<OnOrder> list = new ArrayList<>();
+        Page<OnOrder> page = orderService.onSelectByUserNo(pageNum);
+        page.iterator().forEachRemaining(list::add);
+        model.addAttribute("list", list);
+        model.addAttribute("page", page);
+        return "myPage/myLecture";
     }
 
     @RequestMapping("/offSelect")
