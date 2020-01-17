@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.web.mvc.domain.OnLecture;
@@ -17,7 +18,7 @@ import project.web.mvc.service.OnLectureService;
 import project.web.mvc.service.RoadmapService;
 
 @Controller
-@RequestMapping("/admin/roadMap")
+@RequestMapping("/admin/roadmap")
 public class AdminRoadmapController {
 	
 	@Autowired
@@ -45,12 +46,14 @@ public class AdminRoadmapController {
 	}
 	
 	@RequestMapping("/insert")
-	public String roadmapInsert(List<OnLecture> list, Roadmap roadmap) {
+	public ModelAndView roadmapInsert(@RequestParam List<Long> list, Roadmap roadmap) {
 		
-		System.out.println(list+"리스트받기~!!");
+		System.out.println(list.size()+"리스트받기~!!");
+	
+			service.insert(list, roadmap);
+		
 		//roadmap.setOnLecture(onLectureService.selectOnLectureById());
-		//new OnLeture();
-		service.insert(roadmap);
-		return "";
+		
+		return new ModelAndView("admin/roadmap/list","roadmap", roadmap);
 	}
 }
