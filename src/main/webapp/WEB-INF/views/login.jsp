@@ -57,7 +57,7 @@
                               <div class="form-group col-md-12">
                                   <label for="form_password">Password</label>
                                   <input id="form_password" name="password" class="form-control" type="password">
-                </div>
+            		    </div>
               </div>
               <div class="checkbox pull-left mt-15">
                 <label for="form_checkbox">
@@ -73,27 +73,31 @@
               <div class="clear text-center pt-10">
                 <a class="btn btn-dark btn-lg btn-block no-border" href="signUpForm" data-bg-color="red">Sign Up</a>
               </div>
-              
-				<div class="form-group">
-				
-				<!-- 카카오로그인 -->
-					<a id="custom-login-btn" href="javascript:loginWithKakao()">
-						<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300" />
-					</a>
-				</div>
-              
             </form>
+
+			<!-- 카카오로그인 -->
+				<div class="form-group">
+		            <form method="post" name="kakaoForm" action="${pageContext.request.contextPath}/loginCheck">
+						<a id="custom-login-btn" href="#" onClick="loginWithKakao()">
+							<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300" />
+						</a>
+		            	<input type="text" value="" name="id" id="kakaoId" style="display: none;">
+		            	<input type="text" value="" name="kakaoNickname" id="kakaoNickname" style="display: none;">
+		            	<input id="kakaoPw" name="password" type="text" style="display: none">
+                        <input type="hidden" id="kakaoToken" name="${_csrf.parameterName}" value="" style="display:none">
+	           		 </form>
+				</div>
+	
           </div>
         </div>
       </div>
     </section>
   </div>
 </div>
-
 <script type='text/javascript'>
-
-var userdbEmail;
-var userdbNickname;
+var userId;
+var userNickname;
+var kakaoToken;
 
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -106,14 +110,14 @@ var userdbNickname;
               Kakao.API.request({
                 url: '/v1/user/me',
                 success: function(res) {
-                      alert(JSON.stringify(res));
+                	persistAccessToken : false;
                       alert(JSON.stringify(authObj));
-                      console.log(res.id);
-                      userdbEmail = res.kaccount_email;
-                      userdbNickname = res.properties['nickname'];
-                      console.log(userdbEmail)
-                      console.log(userdbNickname)
-                      console.log(authObj.access_token);
+                   	  document.getElementById('kakaoToken').setAttribute('value',authObj.access_token);
+                   	  document.getElementById('kakaoId').setAttribute('value',res.id);
+                      document.getElementById('kakaoNickname').setAttribute('value',res.properties['nickname']);
+                      document.getElementById('kakaoPw').setAttribute('value','123456789');
+                      
+                      loginAjax();
                     }
                   })
                 },
@@ -122,9 +126,37 @@ var userdbNickname;
                 }
               });
     };
-    
-    
   //]]>
+  
+		function loginAjax() {
+			/*로그인하기*/
+					$.ajax({
+						url : "${pageContext.request.contextPath}/kakaoLogin",
+						type : "post",
+						data : $("form[name=kakaoForm]").serialize(),
+						dataType : "text",
+						success : function(result) {
+							$("form[name=kakaoForm]").attr("action", "loginCheck");
+							if(result==0){
+								alert('이미가입된유저다 로그인하자이제')
+		                      	$("form[name=kakaoForm]").submit();
+							}else if(result==1){
+								alert('신규이긴한데 닉네임이 중복이다 회원가입폼으로가자')
+								$("form[name=kakaoForm]").attr("action", "signUpForm");
+								$("form[name=kakaoForm]").submit();
+							}else if(result==2){
+								alert('신규라 회원가입성공, 로그인하자이제')
+		                      	$("form[name=kakaoForm]").submit();
+							}
+						},
+						error : function(err) {
+							alert("등록에 실패했습니다.");
+							location.href = "${pageContext.request.contextPath}/";
+						}
+					})
+			}////로그인하기
+  
 </script>
 </body>
 </html>
+
