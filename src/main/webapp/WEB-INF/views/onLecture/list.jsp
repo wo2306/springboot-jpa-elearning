@@ -75,24 +75,11 @@
                                                 class="line-bottom mb-10">${dto.onLectureName}</h5>
                                             <p style="height: 150px">${dto.onLectureSummary}</p>
                                             <div> 
-                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
+                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" style="margin-top: -30px;"
                                                href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의 상세 보기</a>
-                                              <%--  <c:set var="inwish" value="${inwish}">  --%>
-                                               <c:choose>
-                                             	  <c:when test="${inwish == 1}"> 
-                                            <button type="button" value="wishlist" id=${dto.onLectureNo}
-                                            	style="background-color: transparent; border-color: transparent; display: inline;">
-                                           			 <img src="${pageContext.request.contextPath}/wish/wish.png">       
-                                            </button>
-                                           		 </c:when>
-                                           		 <c:otherwise>
-                                            <button type="button" value="wishlist" id=${dto.onLectureNo}
-                                            	style="background-color: transparent; border-color: transparent; display: inline;">
-                                           			 <img src="${pageContext.request.contextPath}/wish/notwish.png">       
-                                            </button>
-                                            	</c:otherwise>
-                                            </c:choose>
-                                            <%-- </c:set> --%>
+                                             &nbsp
+                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" value="wishlist" 
+                                             id=${dto.onLectureNo} style="margin-top: -30px;">wishlist</a>
                                             </div>
                                         </div>
                                     </div>
@@ -266,7 +253,7 @@
         return false;
     }
 
-    $(document).on('click', 'button[value=wishlist]', function () {
+    $(document).on('click', 'a[value=wishlist]', function () {
         if (confirm('위시리스트에 담을까요?')) {
             $.ajax({
                 type: "post",

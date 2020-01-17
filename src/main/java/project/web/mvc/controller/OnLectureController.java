@@ -126,43 +126,17 @@ public class OnLectureController {
     public String category(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
         List<OnLecture> list = new ArrayList<>();
         Page<OnLecture> page = null;
-        Map<Long,Long> hartMap = new TreeMap<Long, Long>();
-        Long inwish = 0L;
+        Map<Long,Long> heartMap = new TreeMap<Long, Long>();
         if (command.equals("category")) {
             page = onLectureService.selectByCategory(keyword, pageNum);
         } else {
             page = onLectureService.selectByKeyword(keyword, pageNum);
         }
         page.iterator().forEachRemaining(list::add);
-        
-        List<WishList> wishlist = wishlistService.wishlistselectAll();
-        List<OnLecture> lecturelist = onLectureService.selectByCate(keyword);
-        
-        System.out.println("-------------------------------------");
-        System.out.println("wishlist:" + wishlist.size());
-        System.out.println("lecturelist:" + lecturelist.size());
-        System.out.println("-------------------------------------");
-//        	for(OnLecture on :  lecturelist) {
-//        		if(on.getOnLectureNo() ) {
-//        			hartMap.put(on.getOnLectureNo(), 1L);
-//        		}else {
-//        			hartMap.put(on.getOnLectureNo(), 0L);
-//        		}
-//        	}
-        
-        
-//        System.out.println(hartMap+":"+hartMap);
-//       
-//        for(OnLecture o : list) {
-//        	System.out.print(o.getOnLectureNo()+" | ");
-//        }
-        
-        
         model.addAttribute("list", list);
         model.addAttribute("command", command);
         model.addAttribute("keyword", keyword);
         model.addAttribute("page", page);
-//        model.addAttribute("inwish", inwish);
         return "onLecture/list";
     }
 
