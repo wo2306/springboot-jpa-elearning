@@ -87,7 +87,7 @@ public class AdminUserController {
 		userdb.setUserdbEmail(userdbEmail);
 		userdb.setUserdbNickname(userdbNickname);
 		userdb.setUserdbPassword(userdbPassword);
-		//0L = admin, 1L = member
+		//0L = admin
 		userdb.setAuthority(0L);
 		//회원가입
 		userdbService.insert(userdb);

@@ -17,12 +17,16 @@
 <![endif]-->
 <script type="text/javascript">
 	$(document).ready(function(){
+		//좌석 수 체크하는 기능
 		var result = document.getElementById('seat').innerText;
 		 //alert(endDate);
 		if(result<=0){
+			document.getElementById('btn').innerHTML="SOLD OUT";
 			$('#btn').attr("href", "#");
 			alert("현재 남아있는 좌석 수가 없어 예약이 불가합니다.");
 		}
+		
+		//날짜 체크하는 기능
 
 		 var endDate = document.getElementById('endDate').innerText;
 		 var yyyy = endDate.substr(0,4);
@@ -36,7 +40,10 @@
 		    //alert(offDate);
 		   // alert(startDate);
 		  // alert(dateresult);
+		  	//var buttonName = document.getElementById('btn').innerHTML;
+		  	//alert(buttonName);
 		    if(offdate.getTime()<date.getTime()){
+		    	document.getElementById('btn').innerHTML="예약마감";
 		    	$('#btn').attr("href", "#");
 		    	alert("날짜가 지나 마감되었습니다.");
 		    } 

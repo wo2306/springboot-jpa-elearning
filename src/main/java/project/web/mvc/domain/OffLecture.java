@@ -65,4 +65,7 @@ public class OffLecture {
     @Column(nullable = false)
     private Date offLectureDate;
 
+    public OffLecture(Long offLectureNo) {
+        this.offLectureNo = offLectureNo;
+    }
 }

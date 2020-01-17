@@ -45,7 +45,7 @@
 							<h4 class="heading-title">Don't have an Account? Register
 								Now</h4>
 						</div>
-						<form method="post" name="signUpForm" onsubmit="return checkValid()">
+						<form method="post" name="signUpForm" onsubmit="sign()">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" style="display: none">
 							<div class="row">
@@ -77,7 +77,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-default" id="register"
+								<button type="submit" class="btn btn-default" id="register" onclick="return checkValid()"
 									>회원가입</button>
 							</div>
 
@@ -90,9 +90,6 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
-			    
-			
 			/*
 				email 키업시 일어나는 이벤트
 				1. id중복체크 알람
@@ -153,8 +150,6 @@
 				}
 			});//////password 유효성체크
 			
-
-
 			/*닉네임 중복체크*/
 			$('[name=userdbNickname]').keyup(function () {
 				$.ajax({
@@ -178,7 +173,6 @@
 					}
 				})
 			});///////닉네임
-			
 
 })//레디 끝
 
@@ -200,29 +194,32 @@
 	        f.userdbPassword2.focus();
 	        return false;
 	    }else{
-		    	
-			
-		/*가입하기*/
-		$('#register').click(function() {
-				$.ajax({
-					url : "${pageContext.request.contextPath}/signUp",
-					type : "post",
-					data : $("form[name=signUpForm]").serialize(),
-					dataType : "text",
-					success : function(result) {
-						alert(result);
-						if(result==1)
-							alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
-						location.href = "${pageContext.request.contextPath}/login";
-					},
-					error : function(err) {
-						alert("등록에 실패했습니다.");
-						location.href = "${pageContext.request.contextPath}/";
-					}
-				})
-		})////가입하기끝
+	    	return true;
 	}//else 끝
 }//checkValid 끝
+
+/*가입하기*/
+function sign() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/signUp",
+			type : "post",
+			data : $("form[name=signUpForm]").serialize(),
+			dataType : "text",
+			success : function(result) {
+				alert(result);
+				if(result==1)
+					alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
+				location.href = "${pageContext.request.contextPath}/login";
+			},
+			error : function(err) {
+				alert("등록에 실패했습니다.");
+				location.href = "${pageContext.request.contextPath}/";
+			}
+		})
+}
+
+////가입하기끝
+
 	</script>
 
 

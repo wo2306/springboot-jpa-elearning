@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import project.web.mvc.domain.OffLecture;
 import project.web.mvc.domain.OffOrder;
 import project.web.mvc.domain.OnOrder;
 import project.web.mvc.service.CartService;
@@ -42,9 +43,9 @@ public class OrderController {
         return "payment/success";
     }
 
-    @RequestMapping("/offInsert")
-    public String offInsert(OffOrder offOrder) {
-        orderService.offInsert(offOrder);
+    @RequestMapping("/offInsert/{offLectureNo}")
+    public String offInsert(@PathVariable Long offLectureNo) {
+        orderService.offInsert(offLectureNo);
         return "payment/success";
     }
 

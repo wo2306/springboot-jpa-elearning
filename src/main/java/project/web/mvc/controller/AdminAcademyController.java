@@ -1,11 +1,13 @@
 package project.web.mvc.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,6 +37,24 @@ public class AdminAcademyController {
 		return new ModelAndView("admin/academy/adminAcademy", "list", list);
 	}
 	
+	@RequestMapping("/{command}/{keyword}")
+	 public String category(@PathVariable String command, @PathVariable String keyword, Model model) {
+		List<Academy> list = new ArrayList<>();
+		if (command.equals("all")) {
+			list = academyService.selectByacademyeName(keyword);
+		} else if (command.equals("academy")) {
+			list = academyService.selectByacademyeName(keyword);
+		} else if (command.equals("city")) {
+			list = academyService.selectByCity(keyword);
+		 }else if (command.equals("address")) {
+				list = academyService.selectByAddress(keyword);
+			 }
+		 model.addAttribute("list", list);
+	        model.addAttribute("command", command);
+	        model.addAttribute("keyword", keyword);
+	        return "admin/academy/adminAcademy";
+	}
+	
 	@RequestMapping("this")
 	@ResponseBody
 	public List<Academy> tablelist() {
@@ -49,8 +69,16 @@ public class AdminAcademyController {
 		return "admin/academy/adminRegister";
 	}
 	
+	
+	@RequestMapping("/adminAcademyRegister/insert")
+	public ModelAndView academyInsert(Academy academy) {
+		academyService.academyInsert(academy);
+		List<Academy> list = academyService.selectAll();
+		return new ModelAndView("redirect:/admin/academy/adminAcademy", "list", list);
+	}
+	
 	@RequestMapping("/adminAcademyRegister/insert.do")
-	public ModelAndView academyInsert(String name, MultipartFile file, HttpSession session, Academy academy) {
+	public ModelAndView upload(String name, MultipartFile file, HttpSession session, Academy academy) {
 		academyService.academyInsert(academy);
 		ModelAndView mv = new ModelAndView();
 		try {
@@ -60,13 +88,7 @@ public class AdminAcademyController {
 			String fileName = file.getOriginalFilename();
 			file.transferTo(new File(path +"/" + fileName)); //폴더에 저장완료
 			
-			//뷰쪽으로 전달될 데이터 설정
-			mv.addObject("name", name);
-			mv.addObject("fileName", fileName);
-			mv.addObject("path", path);
-			mv.addObject("fileSize", file.getSize());
-			
-			mv.setViewName("redirect:/admin/academy/adminAcademy"); //WEB-INF/views/uploadResult.jsp이동
+			mv.setViewName("redirect:/admin/academy"); //WEB-INF/views/uploadResult.jsp이동
 			
 		}catch(Exception e){
 			e.printStackTrace();

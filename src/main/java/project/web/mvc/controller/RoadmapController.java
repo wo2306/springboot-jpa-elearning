@@ -74,14 +74,7 @@ public class RoadmapController {
 		return "roadmap/detail";
 	}
 
-	@RequestMapping("/insert/{onLectureNo}")
-	public String roadmapInsert(@PathVariable Long onLectureNo, Roadmap roadmap) {
-		
-		roadmap.setOnLecture(onLectureService.selectOnLectureById(onLectureNo));
 
-		service.insert(roadmap);
-		return "redirect:list";
-	}
 	//강의 추가하기
 	@RequestMapping("/onLectureAdd")
 	@ResponseBody

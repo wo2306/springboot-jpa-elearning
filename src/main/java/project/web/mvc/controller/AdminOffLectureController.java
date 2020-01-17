@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.web.mvc.domain.OffLecture;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.service.OffLectureService;
 
 @Controller
@@ -39,6 +40,27 @@ public class AdminOffLectureController {
 		return "admin/offLecture/adminOffLecture";
 	}
 	
+
+	@RequestMapping("/{command}/{keyword}/{pageNum}")
+	 public String category(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
+		List<OffLecture> list = new ArrayList<>();
+		Page<OffLecture> page = null;
+		if (command.equals("all")) {
+			page = offLectureService.selectByCategory(keyword, pageNum);
+		} else if (command.equals("category")) {
+			page = offLectureService.selectByCategory(keyword, pageNum);
+		} else if (command.equals("teacher")) {
+			page = offLectureService.selectByTeacherName(keyword, pageNum);
+		 } else if (command.equals("name")) {
+			 page = offLectureService.selectByoffLectureName(keyword, pageNum);
+		}
+		page.iterator().forEachRemaining(list::add);
+		 model.addAttribute("list", list);
+	        model.addAttribute("command", command);
+	        model.addAttribute("keyword", keyword);
+	        model.addAttribute("page", page);
+	        return "admin/offLecture/adminOffLecture";
+	}
 	@RequestMapping("/adminOffLectureRegister")
 	public String register() {
 		//System.out.println("나와?");
@@ -71,7 +93,7 @@ public class AdminOffLectureController {
 	@RequestMapping("offLecUpdate/update")
 	public String offLecUpdate (OffLecture offLecture) {
 		offLectureService.offLecUpdate(offLecture);
-		return "redirect:/admin/offLecture";
+		return "redirect:/admin/offLecture/list/1";
 	}
 	
 	@DeleteMapping(value = "/delete")
@@ -110,23 +132,6 @@ public class AdminOffLectureController {
 		
 		return mv;
 	}
-	/**
-	 * 
-	 * */
-	/*
-	 * @RequestMapping("/upload2.do") public String upload2(UploadDTO dto,
-	 * HttpSession session) { //뷰에서 그대로 사용가능
-	 * 
-	 * //실제 root 경로를 가져오기 String path =
-	 * session.getServletContext().getRealPath("/WEB-INF/save");
-	 * 
-	 * String fileName = dto.getFile().getOriginalFilename(); try { //파일 폴더에 저장
-	 * dto.getFile().transferTo(new File(path+"/"+fileName));
-	 * 
-	 * dto.setFileName(fileName); dto.setFileSize(dto.getFile().getSize());
-	 * }catch(Exception e) { e.printStackTrace(); }
-	 * 
-	 * return "uploadResult"; }
-	 */
+
 	
 }

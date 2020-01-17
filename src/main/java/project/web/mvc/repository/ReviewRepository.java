@@ -15,6 +15,7 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 	//@Query("select r from Review r inner join r.onLecture o where o.onLectureNo=?1")
 	List<Review> findByOnLectureOnLectureNo(Long onLectureNo);
 			
+	Page<Review> findAll(Pageable pageable);
 	@Query("select r from Review r inner join r.userdb u where u.userdbNo=?1")
 	Page<Review> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
 	

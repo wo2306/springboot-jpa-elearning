@@ -1,19 +1,14 @@
 package project.web.mvc.service;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.common.collect.Lists;
 
@@ -75,6 +70,36 @@ public class OffLectureServiceImpl implements OffLectureService {
 	@Override
 	public Page<OffLecture> selectAll(int pageNum) {
 		return offLectureRepository.findByOrderByOffLectureNo(PageRequest.of(pageNum - 1, 9));
+	}
+
+	@Override
+	public List<OffLecture> selectByDate() {
+		return offLectureRepository.selectByDate();
+	}
+
+	@Override
+	public Page<OffLecture> findByoffLectureName(String keyword, Pageable pageable) {
+		return offLectureRepository.findByoffLectureName(keyword, pageable);
+	}
+
+	@Override
+	public Page<OffLecture> selectByKeyword(String keyword, int pageNum) {
+		return offLectureRepository.findByKeyword(keyword, PageRequest.of(pageNum - 1, 9))	;
+				}
+
+	@Override
+	public Page<OffLecture> selectByCategory(String category, int pageNum) {
+		return offLectureRepository.findByCategory(category, PageRequest.of(pageNum - 1, 9));
+	}
+
+	@Override
+	public Page<OffLecture> selectByTeacherName(String teacherName, int pageNum) {
+		return offLectureRepository.findByOffLectureTeacher(teacherName, PageRequest.of(pageNum - 1, 9));
+	}
+
+	@Override
+	public Page<OffLecture> selectByoffLectureName(String keyword, int pageNum) {
+		return offLectureRepository.findByoffLectureName(keyword, PageRequest.of(pageNum - 1, 9));
 	}
 	
 }

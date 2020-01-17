@@ -69,6 +69,59 @@
 					</table>
 				</div>
 			</div>
+			    <ul class="pagination">
+                                        <c:if test="${page.totalPages ne 0}">
+                                        <c:choose>
+                                            <c:when test="${page.hasPrevious() eq true}">
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/qna/list/${page.number+1}"
+                                                       aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                    </a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/qna/list/${page.number+1}"
+                                                       aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                    </a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                        <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
+                                            <li class="page-item">
+                                                <c:choose>
+                                                    <c:when test="${page.number eq i.count-1}">
+                                                        <a class="page-link"
+                                                           href="${pageContext.request.contextPath}/qna/list/${i.count}">${i.count}</a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <a class="page-link"
+                                                           href="${pageContext.request.contextPath}/qna/list/${i.count}">${i.count}</a>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </li>
+                                        </c:forEach>
+
+                                        <li class="page-item">
+                                            <c:choose>
+                                                <c:when test="${page.hasNext() eq true}">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/qna/list/${page.number+2}"
+                                                       aria-label="Next"> <span aria-hidden="true">다음</span> </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/qna/list/${page.number+1}"
+                                                       aria-label="Previous"> <span aria-hidden="true">다음</span>
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            </c:if>
+                                        </li>
+                                    </ul>
 		</div>
 	</div>
 </body>

@@ -78,10 +78,27 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/review">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/review/list/1">
           <i class="fas fa-fw fa-table"></i>
           <span>Review</span></a>
       </li>
+      
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="true"
+           aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Q&A</span>
+        </a>
+        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Components:</h6>
+                <a class="collapse-item" href="${pageContext.request.contextPath}/admin/qna/questionList/1">UserQuestionList</a>
+                <a class="collapse-item" href="${pageContext.request.contextPath}/admin/qna/answerList/1">UserAnswerList</a>
+               
+
+            </div>
+        </div>
+    </li>
       
       <!-- admin 계정 추가등록 -->
       <li class="nav-item">
@@ -116,7 +133,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/coupon">
+        <a class="nav-link" href="${pageContext.request.contextPath}/coupon/list/all/1">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Coupon</span></a>
     </li>
@@ -130,7 +147,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/list/1">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Notice</span></a>
     </li>

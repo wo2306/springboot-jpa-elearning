@@ -11,7 +11,7 @@ public interface OrderService {
     void cartInsert(List<Long> onLectureNo, OnOrder onOrder);
     void onInsert(Long onLectureNo, OnOrder onOrder);
 
-    void offInsert(OffOrder offOrder);
+    void offInsert(Long offLectureNo);
 
     Page<OnOrder> onSelectAll(int pageNum);
 
