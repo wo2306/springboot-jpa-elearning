@@ -35,6 +35,7 @@ public class LoginServiceImpl implements LoginService {
             throw new UsernameNotFoundException(username);
         }
 
+        
         Long userdbNo = user.getUserdbNo();
 		String userdbEmail = user.getUserdbEmail();
 		String userdbPassword = user.getUserdbPassword();
