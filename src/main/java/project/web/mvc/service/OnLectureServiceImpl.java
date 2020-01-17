@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import project.web.mvc.domain.Academy;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.repository.OnDetailRepository;
@@ -101,6 +103,13 @@ public class OnLectureServiceImpl implements OnLectureService {
     public List<OnLecture> selectLatest() {
         return onLectureRepository.findTop5ByOrderByOnLectureRegdateDesc();
     }
+
+
+	@Override
+	public List<OnLecture> selectByCate(String cate) {
+		List<OnLecture> list = Lists.newArrayList(onLectureRepository.findAll());
+		return list;
+	}
 }
 
 

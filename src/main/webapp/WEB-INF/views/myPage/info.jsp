@@ -485,7 +485,7 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-        					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'+item.onLecture.onLectureName+'</a>'+'</td>';
+        					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="'+item.onLecture.onLectureNo+'>'+item.onLecture.onLectureName+'</a>'+'</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';

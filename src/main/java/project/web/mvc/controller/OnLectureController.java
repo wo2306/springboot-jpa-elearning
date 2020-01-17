@@ -1,20 +1,32 @@
 package project.web.mvc.controller;
 
-import lombok.RequiredArgsConstructor;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Review;
-import project.web.mvc.service.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
+import project.web.mvc.domain.WishList;
+import project.web.mvc.service.ClassQuestionService;
+import project.web.mvc.service.OnDetailService;
+import project.web.mvc.service.OnLectureService;
+import project.web.mvc.service.OrderService;
+import project.web.mvc.service.ReviewService;
+import project.web.mvc.service.SugangService;
+import project.web.mvc.service.WishListService;
 
 @Controller
 @RequestMapping("/onLecture")
@@ -26,6 +38,7 @@ public class OnLectureController {
     private final ReviewService reviewService;
     private final ClassQuestionService qnaService;
     private final OnDetailService onDetailService;
+    private final WishListService wishlistService;
 
     @RequestMapping("/list/{pageNUm}")
     public String list(Model model, @PathVariable int pageNum) {
@@ -113,16 +126,43 @@ public class OnLectureController {
     public String category(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
         List<OnLecture> list = new ArrayList<>();
         Page<OnLecture> page = null;
+        Map<Long,Long> hartMap = new TreeMap<Long, Long>();
+        Long inwish = 0L;
         if (command.equals("category")) {
             page = onLectureService.selectByCategory(keyword, pageNum);
         } else {
             page = onLectureService.selectByKeyword(keyword, pageNum);
         }
         page.iterator().forEachRemaining(list::add);
+        
+        List<WishList> wishlist = wishlistService.wishlistselectAll();
+        List<OnLecture> lecturelist = onLectureService.selectByCate(keyword);
+        
+        System.out.println("-------------------------------------");
+        System.out.println("wishlist:" + wishlist.size());
+        System.out.println("lecturelist:" + lecturelist.size());
+        System.out.println("-------------------------------------");
+//        	for(OnLecture on :  lecturelist) {
+//        		if(on.getOnLectureNo() ) {
+//        			hartMap.put(on.getOnLectureNo(), 1L);
+//        		}else {
+//        			hartMap.put(on.getOnLectureNo(), 0L);
+//        		}
+//        	}
+        
+        
+//        System.out.println(hartMap+":"+hartMap);
+//       
+//        for(OnLecture o : list) {
+//        	System.out.print(o.getOnLectureNo()+" | ");
+//        }
+        
+        
         model.addAttribute("list", list);
         model.addAttribute("command", command);
         model.addAttribute("keyword", keyword);
         model.addAttribute("page", page);
+//        model.addAttribute("inwish", inwish);
         return "onLecture/list";
     }
 

@@ -76,16 +76,23 @@
                                             <p style="height: 150px">${dto.onLectureSummary}</p>
                                             <div> 
                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의
-                                                상세 보기</a>
-                                            <button type="button" value="wishlist" id=${dto.onLectureNo} class="wishlistbtn1"
+                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의 상세 보기</a>
+                                              <%--  <c:set var="inwish" value="${inwish}">  --%>
+                                               <c:choose>
+                                             	  <c:when test="${inwish == 1}"> 
+                                            <button type="button" value="wishlist" id=${dto.onLectureNo}
+                                            	style="background-color: transparent; border-color: transparent; display: inline;">
+                                           			 <img src="${pageContext.request.contextPath}/wish/wish.png">       
+                                            </button>
+                                           		 </c:when>
+                                           		 <c:otherwise>
+                                            <button type="button" value="wishlist" id=${dto.onLectureNo}
                                             	style="background-color: transparent; border-color: transparent; display: inline;">
                                            			 <img src="${pageContext.request.contextPath}/wish/notwish.png">       
                                             </button>
-                                            <button type="button" value="wishlist" id=${dto.onLectureNo} class="wishlistbtn2"
-                                            	style="background-color: transparent; border-color: transparent; display: none;">
-                                           			 <img src="${pageContext.request.contextPath}/wish/wish.png">       
-                                            </button>
+                                            	</c:otherwise>
+                                            </c:choose>
+                                            <%-- </c:set> --%>
                                             </div>
                                         </div>
                                     </div>
@@ -267,11 +274,9 @@
                 dataType: "text",
                 data: "onLectureNo=" + $(this).attr('id'),
                 success: function () {
-                	
-                		/* $(".wishlistbtn1").hide();
-                		$(".wishlistbtn2").show();
-                	 */
+            
                     if (confirm('성공해쓰 보러갈래?')) return location.href = "${pageContext.request.contextPath}/myPage/info/1";
+                    
                 },
                 error: function (err) {
                     alert("이미 중복된 강의가 있습니다.");
