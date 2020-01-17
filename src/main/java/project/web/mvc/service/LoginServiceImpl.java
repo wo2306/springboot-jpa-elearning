@@ -29,13 +29,11 @@ public class LoginServiceImpl implements LoginService {
 		// 로그인 시도하려는 유저정보 조회
 		Userdb user = userdbService.selectByUserdbEmail(username);
         System.out.println("유저정보"+user);
-        
         // 조회가 되지않는 고객은 에러발생.
         if(user == null){
             throw new UsernameNotFoundException(username);
         }
 
-        
         Long userdbNo = user.getUserdbNo();
 		String userdbEmail = user.getUserdbEmail();
 		String userdbPassword = user.getUserdbPassword();
