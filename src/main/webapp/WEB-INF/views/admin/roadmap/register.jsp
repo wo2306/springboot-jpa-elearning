@@ -16,20 +16,32 @@ $(function(){
 	
 	//추가한  강의 삭제
 	$(document).on("click","#btn",function(){
-	
 		$(this).closest("tr").remove();
 		
 	})//강의 삭제 이벤트 끝
 	
+	//등록버튼 클릭시
+	$(document).on("click","#register", function(){
+		var list =[]; 
+		 $(".onLecture-no").each(function(index,items){
+			 list.push(items.innerHTML); 
+		 })
+		 alert("onLectureNo= "+list);
+		$(".onLectureNo").val(list);
+	})
+	
 })
+//////////////////////////////////////////////////////////////////////////////	    
+	    
 	    //강의 추가하기
 	    function addOnLecture(data){
 		var result = data
 		$("#addOnLecture").append(result)
 		//alert(result+"결과값");
 		$.each(result,function(index,row){
-			alert($(row).html());
+			//alert($(row).html());
 		})
+				
 	}
 	
 	
@@ -69,7 +81,7 @@ $(function(){
               <div class="row">
                 <div class="col-md-12">
                   <h3>로드맵 등록</h3>
-                  <form class="form" method="post" action="${pageContext.request.contextPath}/admin/roadmap/insert/${result.onLectureNo}">
+                  <form class="form" method="post" action="${pageContext.request.contextPath}/admin/roadmap/insert/">
                     <table class="table no-border">
                       <tbody>
                        <tr>
@@ -91,10 +103,10 @@ $(function(){
                           <td><input type="text" class="form-control" placeholder="가격을 입력해주세요." name="roadmapPrice" ></td>
                         </tr>
                         <tr>
-                          <td><input type="hidden" class="onLectureNo" name="onLectureNo"></td>
+                          <td><input type="hidden" class="onLectureNo" name="list"></td>
                         </tr>                        
                         <tr>
-                          <td><button type="submit" class="btn btn-default">등록</button></td>
+                          <td><button type="submit" class="btn btn-default" id="register">등록</button></td>
                         </tr>
                       </tbody>
                     </table>

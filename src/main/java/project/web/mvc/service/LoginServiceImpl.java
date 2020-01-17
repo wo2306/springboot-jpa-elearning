@@ -20,9 +20,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	private final UserdbService userdbService;
 	private final AuthorityService authorityService;
-
-
-
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 

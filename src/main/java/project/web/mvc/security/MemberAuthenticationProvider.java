@@ -105,6 +105,34 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 	public boolean supports(Class<?> authentication) {
 		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
 	}
+	
+	//카카오로그인유저
+	public Authentication authenticate(String kakaoId) throws AuthenticationException {
+		System.out.println("********&&&&&&&&&&&&&&&여기라도 와라ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ");
+		//2. 인증됬다면, 인수로 받는 user정보를 가지고 디비에 존재하는지 체크(id check)
+		Userdb vo = userdbService.selectByUserdbEmail(kakaoId);
+		
+	    ////////////    여기까지 왔다면 인증에 성공함  ///////////////// 
+		//4. id, password 모두가 일치하면 Authentication를 만들어서 리턴.
+		// 사용자의 권한을 조회 : 하나의 사용자는 여러개의 권한을 가짐.
+		List<Authority> list = 
+				authorityService.findAuthorityByUserdbNo(vo.getUserdbNo());
+		if(list.isEmpty()){
+			throw new UsernameNotFoundException(kakaoId+"는 아무 권한이 없습니다.");
+		}
+//		
+//		//db에서 가지고 온 권한을 GrantedAuthority 로 변환해야함.
+//				authorityService.getAuthorities(vo.getUserdbNo());
+		List<SimpleGrantedAuthority> authList = 
+				new ArrayList<SimpleGrantedAuthority>();
+		for(Authority authority : list) {
+			authList.add(new SimpleGrantedAuthority(authority.getRole()));
+		}
+		
+		System.out.println("여기다아아:"+authList+"");
+		return new UsernamePasswordAuthenticationToken(vo, null, authList);
+	}
+	
 
 }
 

@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -38,6 +40,7 @@ public class Notice {
     private String noticeContent;
 
 	@CreationTimestamp
+    @Temporal(TemporalType.DATE)
     private Date noticeRegdate;
 
 }

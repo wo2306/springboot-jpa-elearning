@@ -17,12 +17,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class Coupon {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COUPON_SEQ_GENERATOR")
-    @SequenceGenerator(
-            name="COUPON_SEQ_GENERATOR", sequenceName = "COUPON_SEQ",
-            initialValue = 1, allocationSize = 50)
-    @Column(name = "COUPON_NO")
-    private Long couponNo;
+    @Column(name = "COUPON_CODE")
+    private String couponCode;
 
     @Column(nullable = false)
     private String couponName;
@@ -30,5 +26,10 @@ public class Coupon {
     @Column(nullable = false)
     private int couponDiscount;
 
+    @CreationTimestamp
     private Date couponDate;
+
+    private int couponOriginalCount;
+
+    private int couponRemainingCount;
 }

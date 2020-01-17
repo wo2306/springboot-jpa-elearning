@@ -74,7 +74,7 @@
                                                     </td>
                                                     <td class="product-price"><span class="amount"><fmt:formatNumber value="${cartDTO.onLecture.onLecturePrice}" pattern="₩#,###.##"/> </span></td>
                                                     <td class="product-remove" width="200">
-                                                        <button type="button" class="btn btn-default">위시리스트로 이동</button>
+                                                        <button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/cart/wishList/${cartDTO.cartNo}'">위시리스트로 이동</button>
                                                         <p></p>
                                                         <button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/cart/deleteCart/${cartDTO.cartNo}'">장바구니에서 삭제</button>
                                                     </td>
@@ -95,24 +95,27 @@
                         <div class="col-md-12 mt-30">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>할인 쿠폰 적용하기</h4>
-                                    <form class="form" action="#">
+                                    <h4>프로모션 코드 입력</h4>
+                                    <form class="form" id="discountForm" action="#">
                                         <table class="table no-border">
                                             <tbody>
                                             <tr>
                                             </tr>
                                             <tr>
-                                                <td><input type="text" class="form-control" placeholder="쿠폰 번호 입력"
+                                                <td><input id="couponCode" type="text" class="form-control"
+                                                           placeholder="쿠폰 번호 입력"
                                                            value=""></td>
                                             </tr>
                                             <tr>
-                                                <td><input type="text" class="form-control" placeholder="Postcod/zip"
+                                                <td><input id="couponName" type="text" class="form-control"
+                                                           placeholder="Postcod/zip"
                                                            readonly="readonly" value="쿠폰 적용시 정보가 표시됩니다."></td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <button type="button" class="btn btn-default">할인 쿠폰 적용</button>
-                                                    <button type="button" class="btn btn-default">쿠폰 적용 취소</button>
+                                                    <button type="button" id="discountButton" class="btn btn-default">할인 쿠폰 적용
+                                                    </button>
+                                                    <button type="reset" class="btn btn-default">쿠폰 적용 취소</button>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -128,7 +131,7 @@
                                             <td><fmt:formatNumber value="${total_price}" pattern="₩#,###"/></td>
                                         </tr>
                                         <tr>
-                                            <td>할인 금액</td>
+                                            <td>강의 기본 할인</td>
                                             <td style="color: red"><fmt:formatNumber value="${discount_sum}" pattern="₩#,###"/></td>
                                         </tr>
                                         <tr>
@@ -137,7 +140,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <a class="btn btn-default" href="${pageContext.request.contextPath}/cart/checkout">확인 후 결제 진행하기</a></div>
+                                    <a id="checkout" class="btn btn-default" href="${pageContext.request.contextPath}/cart/checkout">확인 후 결제 진행하기</a></div>
                             </div>
                         </div>
                     </div>
@@ -147,6 +150,24 @@
     </div>
 </div>
 <!-- end main-content -->
+<script>
+    $("#discountButton").click(function () {
+        var couponCode = $("#couponCode").val();
+        $.ajax({
+            url: "${pageContext.request.contextPath}/coupon/select/" + couponCode,
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                $("#couponName").val(result.couponName + " (최종 결제 금액에서 " + result.couponDiscount + " % 추가 할인)");
+                $("#checkout").attr('href', $("#checkout").attr('href')+"/"+result.couponCode)
+                console.log(result)
+            },
+            error: function (error) {
+                alert(error);
+            }
+        })
 
+    });
+</script>
 </body>
 </html>

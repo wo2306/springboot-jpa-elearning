@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.web.mvc.domain.Cart;
 import project.web.mvc.service.CartService;
+import project.web.mvc.service.CouponService;
 
 import java.util.List;
 
@@ -16,12 +17,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartController {
     private final CartService cartService;
+    private final CouponService couponService;
 
     @RequestMapping("/checkout")
     public String checkout(Model model) {
         List<Cart> list = cartService.selectAll();
         if (!list.isEmpty())
             model.addAttribute("cartList", list);
+        return "payment/checkout";
+    }
+
+    @RequestMapping("/checkout/{couponCode}")
+    public String checkout(Model model, @PathVariable String couponCode) {
+        List<Cart> list = cartService.selectAll();
+        if (!list.isEmpty()) {
+            model.addAttribute("cartList", list);
+            model.addAttribute("coupon", couponService.selectById(couponCode));
+        }
         return "payment/checkout";
     }
 
@@ -39,6 +51,12 @@ public class CartController {
         if (!list.isEmpty())
             model.addAttribute("cartList", list);
         return "payment/cart";
+    }
+
+    @RequestMapping("/wishList/{cartNo}")
+    public String wishList(@PathVariable Long cartNo) {
+        cartService.wishListDelete(cartNo);
+        return "redirect:/cart/list";
     }
 
     @RequestMapping("/insert/{onLectureNo}")

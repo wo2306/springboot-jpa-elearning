@@ -44,18 +44,18 @@
 			</section>
 
 			<!-- Section: About -->
-			<form style="padding-left: 300px">
+			<form style="padding-left: 150px">
 			
-				<span class="author"><strong>글번호 : ${item.noticeNo} </strong></span>
+				<span class="author" style="color: white">글번호 : ${item.noticeNo}</span>
 			<h4>
 				<span><strong>제목 : </strong></span><b>${item.noticeTitle}</b>
 			</h4>
-				<div style="border: 1px black solid; width: 700px; height:500px;">${item.noticeContent}</div>
+				<div style="padding: 10px; background-color: silver;">${item.noticeContent}</div>
 				<br> 
-				<div style="margin-left:240px; "> 
-				<input type="button" value="뒤로가기" style="color: #FFFFFF; background: #202C45; padding: 5px 12px"
-					onClick="location.href='${pageContext.request.contextPath}/admin/notice'">
-				<input type="button" value="수정하기" style="color: #FFFFFF; background: #202C45; padding: 5px 12px"
+				<div style="margin-left:; "> 
+				<input type="button" class="btn btn-dark btn-sm" value="뒤로가기" style="color: #FFFFFF; background: #202C45; padding: 5px 12px"
+					onClick="location.href='${pageContext.request.contextPath}/admin/notice/list/1'">
+				<input type="button" class="btn btn-dark btn-sm" value="수정하기" style="color: #FFFFFF; background: #202C45; padding: 5px 12px; margin-left: 5px;"
 					onClick="location.href='${pageContext.request.contextPath}/admin/notice/updateForm/${item.noticeNo}'">
 				</div>
 			</form>

@@ -95,7 +95,7 @@
                                     <td>${list.userdb.userdbEmail}</td>
                                     <td>${list.offLecture.offLectureName}</td>
                                     <td>${list.offOrderMethod}</td>
-<%--                                    <td><fmt:formatNumber value="${list.offLecture.offLecturePrice}" pattern="₩#,###"/></td>--%>
+<%--                                    <td><fmt:formatNumber value="${list.offLecture.price}" pattern="₩#,###"/></td>--%>
                                     <td><fmt:formatNumber value="10000" pattern="₩#,###"/></td>
                                     <td><fmt:formatDate value="${list.offOrderRegdate}" pattern="yyyy.MM.dd"/></td>
                                 </tr>
@@ -184,7 +184,6 @@
         return false;
     }
     $("button[name=deleteBtn]").click(function () {
-        alert("선택한 강의를 강의를 삭제하였습니다");
         location.href = '${pageContext.request.contextPath}/admin/offOrder/delete/' + $(this).attr(id);
     })
 

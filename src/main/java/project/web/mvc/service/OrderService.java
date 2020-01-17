@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface OrderService {
 
-    void cartInsert(List<Long> onLectureNo, OnOrder onOrder);
-    void onInsert(Long onLectureNo, OnOrder onOrder);
+    void cartInsert(List<Long> onLectureNo, OnOrder onOrder, String couponCode);
+    void onInsert(Long onLectureNo, OnOrder onOrder, String couponCode);
 
     void offInsert(Long offLectureNo);
 
@@ -29,4 +29,6 @@ public interface OrderService {
     Page<OffOrder> offSelectByUserdbNo(int pageNum);
 
     Page<OffOrder> offSelectByUserEmail(int pageNum, String keyword);
+
+    void couponDiscount(String couponCode);
 }

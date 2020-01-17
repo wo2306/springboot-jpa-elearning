@@ -103,8 +103,6 @@
                                         / County, Store Postcode.</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
                             <div class="text-right"><a class="btn btn-default" href='javascript:void(0);'
                                                        onclick="requestPay();">구매하기</a></div>
                         </div>
@@ -113,6 +111,12 @@
             </div>
         </section>
     </div>
+    <form id="payForm" action="${pageContext.request.contextPath}/order/offInsert">
+        <input name="offLectureNo" type="hidden"
+               value="${offLecture.offLectureNo}"/>
+        <input id="paymentPrice" name="price" type="hidden"
+               value="${offLecture.price}"/>
+    </form>
 </div>
 <script>
     function requestPay() {
@@ -124,25 +128,28 @@
             pay_method: 'card',
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: 'Learning Machine Paying',
-            amount: $("#final_price").text().replace(",", "").replace("₩", ""),
+            amount: $("#paymentPrice").val(),
             buyer_email: $("#checkuot-form-cname").val(),
             buyer_name: $("#checkuot-form-fname").val(),
             buyer_tel: $("#checkuot-form-lname").val(),
             buyer_addr: '서울특별시 강남구 삼성동',
             buyer_postcode: '42150',
+            m_redirect_url: '${pageContext.request.contextPath}/order/success/'
         }, function (rsp) {
             if (rsp.success) {
                 let msg = '결제가 완료되었습니다.';
                 alert(msg);
                 alert(rsp.pg_tid);
-                location.href = '${pageContext.request.contextPath}/order/offInsert/${offLecture.offLectureNo}'
+                $("#paymentId").val(rsp.pg_tid);
+                $("#paymentPrice").val(parseInt($("#paymentPrice").val()))
+                $("#payForm").submit();
             } else {
-                let msg = '결제에 실패하였습니다. 결제 정보를 확인해주세요.'
+                let msg = '결제에 실패하였습니다. 결제 확인창으로 되돌아갑니다.'
                 alert(msg);
+                location.href = "${pageContext.request.contextPath}/cart/checkout";
             }
         });
     }
-
     function fn(str) {
         var res;
         res = str.replace(/[^0-9]/g, "");

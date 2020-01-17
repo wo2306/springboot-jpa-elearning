@@ -3,7 +3,6 @@ package project.web.mvc.security;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -39,18 +38,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/order/**").authenticated()
         .anyRequest().permitAll()
                 .and() // 로그인 설정
-                .formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/loginCheck")
-                .defaultSuccessUrl("/login/result")
-                .usernameParameter("id")
-                .permitAll()
+	                .formLogin()
+	                .loginPage("/login")
+	                .loginProcessingUrl("/loginCheck")
+	                .defaultSuccessUrl("/login/result")
+	                .usernameParameter("id")
+	                .permitAll()
                 .and() // 로그아웃 설정
-                .logout()
-                .logoutUrl("/logout")
+	                .logout()
+	                .logoutUrl("/logout")
 //        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-//        .deleteCookies(cookieNamesToClear)
+	                .logoutSuccessUrl("/")
+        			.deleteCookies("JSESSIONID")
         .invalidateHttpSession(true)
     .and()
         // 403 예외처리 핸들링
