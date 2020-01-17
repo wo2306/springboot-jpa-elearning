@@ -4,8 +4,11 @@ package project.web.mvc.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -134,6 +137,8 @@ public class UserdbController {
 		ModelAndView mnv = new ModelAndView("user/nickNameSignUpForm", "list", list);
 		return mnv;
 	}
+	
+	
 	
 	
 	/**

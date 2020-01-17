@@ -5,9 +5,14 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.google.common.collect.Lists;
+
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.UserdbRepository;
 import project.web.mvc.util.LoginCheck;
@@ -100,6 +105,48 @@ public class UserdbServiceImpl implements UserdbService {
 		userdb.setUserdbPassword(encodedPassword);
 		userdbRepository.save(userdb);
 	}
+
+	//모든 유저 목록
+	@Override
+	public List<Userdb> selectAll() {
+		List<Userdb> list = Lists.newArrayList(userdbRepository.findAll());
+		return list;
+	}
+
+	//회원수정
+	@Override
+	public void updateUserdb(Userdb userdb) {
+		Userdb user = userdbRepository.findByUserdbNo(userdb.getUserdbNo());
+		user.setUserdbEmail(userdb.getUserdbEmail());
+		user.setUserdbNickname(userdb.getUserdbNickname());
+	}
+
+	//키워드찾기?
+	@Override
+	public Page<Userdb> selectByKeyword(String keyword, int pageNum) {
+		return userdbRepository.findByKeyword(keyword, PageRequest.of(pageNum - 1, 9));
+	}
+
+	@Override
+	public Page<Userdb> selectAllByUserdbEmail(String userdbEmail, int pageNum) {
+		return userdbRepository.findByUserdbEmailContainingIgnoreCase(userdbEmail, PageRequest.of(pageNum-1, 9));
+	}
+
+	@Override
+	public Page<Userdb> selectAllByUserdbNickname(String userdbNickname, int pageNum) {
+		return userdbRepository.findByUserdbNicknameContainingIgnoreCase(userdbNickname, PageRequest.of(pageNum-1, 9));
+	}
+
+	@Override
+	public Page<Userdb> selectAllByUserdbNo(String userdbNo, int pageNum) {
+		return userdbRepository.findByUserdbNoContainingIgnoreCase(Long.parseLong(userdbNo), PageRequest.of(pageNum-1, 9));
+	}
+
+//	@Override
+//	public Page<Userdb> selectAllByKeyword(String keyword, int pageNum) {
+//		return userdbRepository.findAllByKeyword(keyword, PageRequest.of(pageNum-1, 9));
+//	}
+
 
 
 

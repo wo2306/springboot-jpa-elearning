@@ -124,7 +124,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-dark btn-lg mt-15" type="submit">탈퇴하기</button>
+                  <button class="btn btn-dark btn-lg mt-15" type="button" id="byeBtn">탈퇴하기</button>
                 </div>
               </form>
               
@@ -183,9 +183,9 @@
 	
 	function goodbye() {
 		var f = window.document.goodbye;
-		if ( f.userdbPassword0.value == "" ) {
+		if ( f.password.value == "" ) {
 	        alert( "비밀번호1를 입력해 주세요" );
-	        f.userdbPassword0.focus();
+	        f.password.focus();
 	    }
 	   	else{
 			$.ajax({
@@ -213,6 +213,7 @@
 			})
 		}
 	}
+	
 	
 	
 	function checkValid() {

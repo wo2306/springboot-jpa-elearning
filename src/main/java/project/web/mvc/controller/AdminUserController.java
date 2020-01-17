@@ -13,72 +13,89 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
+import project.web.mvc.domain.OnDetail;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Userdb;
-import project.web.mvc.service.AdminUserService;
 import project.web.mvc.service.AuthorityService;
 import project.web.mvc.service.UserdbService;
 
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/admin/user")
+@RequestMapping("/admin")
 public class AdminUserController {
 	
-	private final AdminUserService adminuserService;
 	private final UserdbService userdbService;
 	private final AuthorityService authorityService;
 	
+//	
+//	@RequestMapping("")
+//	public ModelAndView main() {
+//		System.out.println("admin controller진입");
+//		 List<Userdb> list = userdbService.selectAll();
+//		return new ModelAndView("admin/user/adminUser", "list", list);
+//	}
 	
-	@RequestMapping("")
-	public ModelAndView main() {
-		System.out.println("admin controller진입");
-		 List<Userdb> list = adminuserService.selectAll();
-		return new ModelAndView("admin/user/adminUser", "list", list);
+	
+	
+	//검색하기
+	@RequestMapping("/user/{command}/{keyword}/{pageNum}")
+	public String category(@PathVariable String command,@PathVariable String keyword,@PathVariable int pageNum, Model model) {
+		System.out.println("들어왔다 오바");
+		System.out.println(command);
+		System.out.println(keyword);
+        List<Userdb> list = new ArrayList<>();
+        Page<Userdb> page = null;
+		if (command.equals("all")) {
+            page = userdbService.selectByKeyword("", pageNum);
+        } else if (command.equals("userdbNo")) {
+        	page = userdbService.selectAllByUserdbNo(keyword, pageNum);
+        } else if (command.equals("userdbNickname")) {
+            page = userdbService.selectAllByUserdbNickname(keyword, pageNum);
+        } else if (command.equals("userdbEmail")) {
+            page = userdbService.selectAllByUserdbEmail(keyword, pageNum);
+        }
+        page.iterator().forEachRemaining(list::add);
+        model.addAttribute("list", list);
+        model.addAttribute("command", command);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("page", page);
+        return "admin/user/adminUser";
 	}
 	
+	
+	
 	//업데이트 폼 보여주기
-	@RequestMapping("/updateForm/{userdbNo}")
+	@RequestMapping("/user/updateForm/{userdbNo}")
 	public ModelAndView userupdateForm(@PathVariable Long userdbNo) {
 
 		System.out.println("수정할 학생은 : " + userdbNo);
-		 Userdb item = adminuserService.selectByUserdbNo(userdbNo);
+		 Userdb item = userdbService.selectByUserdbNo(userdbNo);
 		 
 		return new ModelAndView("admin/user/adminUserUpdate", "item", item);
 	}
 	
 	//업데이트하기 
-	@RequestMapping("/update")
+	@RequestMapping("/user/update")
 	public String userupdate(Userdb inuserdb) {
-		adminuserService.updateUserdb(inuserdb);
+		userdbService.updateUserdb(inuserdb);
 		
 		return "redirect:/admin/user";
 	}
 	
 	//삭제하기
-	@RequestMapping("/delete")
-	@ResponseBody
-	public void userdbdelete(Long userdbNo) {
-		authorityService.deleteByUserdbNo(userdbNo);
-		adminuserService.deleteUserdb(userdbNo);
+	@RequestMapping("/user/delete")
+	public String userdbdelete(String userdbNo) {
+		System.out.println("딜리트 여긴왓니?"+userdbNo);
+		Long no = Long.parseLong(userdbNo);
+		authorityService.deleteByUserdbNo(no);
+		userdbService.delete(no);
+		return "redirect:/admin/user";
 	}
-	
-	//검색하기
-	@RequestMapping("/search/{command}/{keyword}/{pageNum}")
-	public String category(@PathVariable String command,@PathVariable String keyword,@PathVariable int pageNum, Model model) {
-		System.out.println("들어왔다 오바");
-		System.out.println(command);
-		System.out.println(keyword);
-		List<Userdb> list = new ArrayList<>();
-		Page<Userdb> page = null;
-		if(command.equals("all")) { //전체일때
-			page = adminuserService.selectByKeyword("", pageNum);
-		}
-		return "admin/user";
-	}
-	
+
 	
 //	회원가입 처리
-	@RequestMapping("/signUp")
+	@RequestMapping("/user/signUp")
 	@Transactional
 	@ResponseBody
 	public int execSignUp(String userdbEmail, String userdbNickname, String userdbPassword) {
@@ -100,7 +117,7 @@ public class AdminUserController {
 	}
 	
 	   //signupForm으로 가기
-	   @RequestMapping("/signUpForm")
+	   @RequestMapping("/user/signUpForm")
 	   public String adminSignUpForm() {
 		   return"admin/user/signUpForm";
 	   }
