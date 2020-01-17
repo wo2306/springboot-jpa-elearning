@@ -184,7 +184,6 @@
         return false;
     }
     $("button[name=deleteBtn]").click(function () {
-        alert("선택한 강의를 강의를 삭제하였습니다");
         location.href = '${pageContext.request.contextPath}/admin/offOrder/delete/' + $(this).attr(id);
     })
 

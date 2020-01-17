@@ -16,6 +16,14 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  
+  <style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body class="">
 	<div id="wrapper" class="clearfix">
@@ -30,7 +38,7 @@
 				<div class="container pt-70 pb-20">
 					<!-- Section Content -->
 					<div class="section-content">
-						<div class="row">
+						<div class="row"  id="out">
 							<div class="col-md-12">
 								<h2 class="title text-white">관리자 페이지</h2>
 								<ol class="breadcrumb text-left text-black mt-10">
@@ -76,12 +84,12 @@
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<tr>
-									<th>offLectureNo</th>
+									<th>LectureNo</th>
 									<th>academyName</th>
 									<th>offLectureName</th>
 									<th>offLectureTeacher</th>
 									<th>category</th>
-									<th>offLectureAvailableseat</th>
+									<th>Seat</th>
 									<th>offDetail</th>
 									<th>offLectureDate</th>
 									<th>수정</th>
@@ -244,17 +252,17 @@
               })
               
               
-              //수정하기 폼으로 이동하기
-               /* $(function(){
-	   
-	   $("input[value=수정]").click(function(){
-		   //document.requestForm.action="${pageContext.request.contextPath}/board/updateForm";
-		   
-		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/admin/offLecture/offLecUpdate");
-		   $("#requestForm").submit();
-	   })
-               } */
               
               </script>
+              <script>
+    function searchform() {
+        var keyfield = $("#key option:selected").val();
+        var keyword = $("#keyword").val();
+        location.href = '${pageContext.request.contextPath}/admin/offLecture/' + keyfield + '/' + keyword + '/1';
+        return false;
+    }
+
+  
+</script>
 </body>
 </html>

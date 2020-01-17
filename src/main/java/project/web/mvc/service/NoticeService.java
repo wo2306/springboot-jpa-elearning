@@ -2,11 +2,13 @@ package project.web.mvc.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import project.web.mvc.domain.Notice;
 
 public interface NoticeService {
 
-	public List<Notice> selectAll();
+	public Page<Notice> selectAll(int pagenum);
 	
 	public Notice selectByNoticeNo(Long noticeno);
 
@@ -15,4 +17,6 @@ public interface NoticeService {
 	public void update(Notice notice);
 
 	public void delete(Long noticeNo);
+	
+	public Page<Notice> selectByKeyword(String keyword, int pageNum);
 }

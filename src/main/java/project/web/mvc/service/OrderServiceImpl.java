@@ -7,13 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.web.mvc.domain.OffOrder;
-import project.web.mvc.domain.OnLecture;
-import project.web.mvc.domain.OnOrder;
-import project.web.mvc.domain.Userdb;
+import project.web.mvc.domain.*;
 import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
 import project.web.mvc.util.LoginCheck;
+import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +45,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void offInsert(OffOrder offOrder) {
-        offOrderRepository.save(offOrder);
+    public void offInsert(Long offLectureNo) {
+        offOrderRepository.save(new OffOrder(null, new OffLecture(offLectureNo), LoginCheck.getUserdb(), "신용카드", null));
     }
 
     @Override

@@ -7,25 +7,36 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 
+import project.web.mvc.domain.ClassAnswer;
 import project.web.mvc.domain.ClassQuestion;
+import project.web.mvc.repository.ClassAnswerRepository;
 import project.web.mvc.repository.ClassQuestionRepository;
 import project.web.mvc.util.LoginCheck;
 
 @Service
 @Transactional
 public class ClassQuestionImpl implements ClassQuestionService {
-	
+
 	@Autowired
 	private ClassQuestionRepository classQuestionRepo;
+	@Autowired
+	private ClassAnswerRepository classAnswerRepo;
+
+	@Override
+	public Page<ClassQuestion> selectAll(int pageNum) {
+		
+		return classQuestionRepo.findAll(PageRequest.of(pageNum-1, 9));
+	}
 	
 	@Override
-	public List<ClassQuestion> selectAll() {
-		System.out.println(Lists.newArrayList(classQuestionRepo.findAll()));
-		return Lists.newArrayList(classQuestionRepo.findAll());
+	public List<ClassQuestion> findAll() {
+
+		return classQuestionRepo.findAllClassQuestions();
 	}
 
 	@Override
@@ -45,7 +56,7 @@ public class ClassQuestionImpl implements ClassQuestionService {
 
 	@Override
 	public void delete(ClassQuestion classQuestion) {
-		
+
 		ClassQuestion dbQuestion = classQuestionRepo.findById(classQuestion.getClassQuestionNo()).orElse(null);
 		//update와 같이 db검증(회원 인증)하고
 		classQuestionRepo.delete(dbQuestion);
@@ -58,6 +69,13 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	}
 
 	@Override
+	public List<ClassAnswer> selectAnswerByQNo(Long id) {
+		List<ClassAnswer> answerList = classAnswerRepo.findByClassQuestionClassQuestionNo(id);
+		System.out.println("퀘스천 "+answerList);
+		return answerList;
+	}
+
+	@Override
 	public List<ClassQuestion> findTop10ByOrderByClassQuestionRegdateDesc() {
 		return classQuestionRepo.findTop10ByOrderByClassQuestionRegdateDesc();
 	}
@@ -66,6 +84,8 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	public Page<ClassQuestion> selectByUserdbId(int pageNum) {
 		return classQuestionRepo.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum-1, 9));
 	}
-	
-	
+
+
+
+
 }
