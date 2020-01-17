@@ -18,5 +18,4 @@ public interface OffOrderRepository extends PagingAndSortingRepository<OffOrder,
     @Query("select o from OffOrder o where o.userdb.userdbEmail=?1")
     Page<OffOrder> findByUserdbUserdbEmail(String userdbEmail, PageRequest of);
     
-    boolean findByUserdbNo(Long userdbNo);
 }

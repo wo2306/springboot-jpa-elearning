@@ -67,11 +67,4 @@ public class WishListServiceImpl implements WishListService {
 		wishlistRepo.deleteById(wishListNo);
 		
 	}
-
-
-	@Override
-	public boolean deleteAllbyUserdbNo(Long userdbNo) {
-		boolean result = (wishlistRepo.deleteByUserdbNo(userdbNo)) ? true:false;
-		return result;
-	}
 }

@@ -25,5 +25,4 @@ public interface WishListRepository extends CrudRepository<WishList, Long>{
 	List<WishList> findByUserdbUserdbNo(Long userdbNo);
 	WishList findByOnLectureOnLectureNo(Long onLecture);
 	
-	boolean deleteByUserdbNo(Long userdbNo);
 }

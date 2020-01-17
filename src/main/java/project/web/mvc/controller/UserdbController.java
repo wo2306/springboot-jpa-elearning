@@ -147,27 +147,27 @@ public class UserdbController {
 	private final ReviewService reviewService;
 	 * */
 	
-	
-	@RequestMapping("/goodbyeCheck")
-	@Transactional
-	public int goodbye(String password) {
-		Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
-		int result;
-		//0:현재 이용중인 서비스가 있습니다. 정말 탈퇴할건지 물어보자
-		//1:이용중인 서비스가 없다. 탈퇴로 넘어가자
-		//2:패스워드가 틀렸다.
-		//3:다음스텝
-		result = (userdbService.checkPassword(password)) ? 2:3;
-		if(result==2) return result;
-		if(result==3) {
-			//구매내역확인
-			orderService.sele
-			
-		}
-
-			
-		return result;
-	}
+//	
+//	@RequestMapping("/goodbyeCheck")
+//	@Transactional
+//	public int goodbye(String password) {
+//		Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
+//		int result;
+//		//0:현재 이용중인 서비스가 있습니다. 정말 탈퇴할건지 물어보자
+//		//1:이용중인 서비스가 없다. 탈퇴로 넘어가자
+//		//2:패스워드가 틀렸다.
+//		//3:다음스텝
+//		result = (userdbService.checkPassword(password)) ? 2:3;
+//		if(result==2) return result;
+//		if(result==3) {
+//			//구매내역확인
+//			orderService.sele
+//			
+//		}
+//
+//			
+//		return result;
+//	}
 	
 	
 //	
