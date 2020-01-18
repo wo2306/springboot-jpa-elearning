@@ -109,7 +109,7 @@
 			</section>
 
 			<!-- 페이징 처리 -->
-			<div class="container" id="in">
+			<div class="container" id="in" style="align-content: center;">
 				<div class="row">
 					<div class="col" id="inin">
 						<ul class="pagination">

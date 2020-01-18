@@ -44,16 +44,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ol class="breadcrumb text-center text-black mt-10">
-                                <li><a href="${pageContext.request.contextPath}/admin/user">Home</a></li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- start -->
-        <!-- Section: Registration Form -->
-        <section class="divider parallax layer-overlay overlay-white-8"
+   <section class="divider parallax layer-overlay overlay-white-8"
                  data-bg-img="http://placehold.it/1920x1280">
             <div class="container-fluid">
                 <div class="section-title">
@@ -84,7 +75,15 @@
                     </div>
                 </div>
             </div>
+        </section>                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
+        <!-- start -->
+        <!-- Section: Registration Form -->
+     
         <!-- End -->
     </div>
 </div>
