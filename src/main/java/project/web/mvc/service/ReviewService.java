@@ -14,8 +14,9 @@ public interface ReviewService {
 	
 	void delete(Long reviewNo);
 	
-	//리스트 전체 
+	Review selectById(Long reviewNo);
 	
+	//리스트 전체 (사용안함)
 	List<Review> selectAll();
 	
 	//유저별 리뷰 리스트 (마이페이지에서 사용)
@@ -23,5 +24,7 @@ public interface ReviewService {
 	
 	//강의별 리뷰 리스트 (온라인강의페이지에서 사용)
 	List<Review> selectByOnlectureNo(Long onLectureNo);
-
+	
+	//리스트전체 관리자용
+	Page<Review> findAll(int pageNum);
 }

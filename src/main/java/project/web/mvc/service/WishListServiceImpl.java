@@ -20,9 +20,11 @@ import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.domain.WishList;
 import project.web.mvc.repository.WishListRepository;
+import project.web.mvc.util.LoginCheck;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class WishListServiceImpl implements WishListService {
 
 	@Autowired
@@ -33,8 +35,7 @@ public class WishListServiceImpl implements WishListService {
 	public void wishlistInsert(Long onLectureNo) {
 	
 		//userdb에서 userdbNo 빼서 집어넣기
-       Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-       Long userdbNo = userdb.getUserdbNo();
+       Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
       
 		if (wishlistRepo.findByOnLectureOnLectureNo(onLectureNo)!=null) {
 
@@ -52,8 +53,7 @@ public class WishListServiceImpl implements WishListService {
 	public List<WishList> wishlistselectAll() {
 		List<WishList> list = new ArrayList<>();
       //userdb에서 userdbNo 빼서 집어넣기
-	       Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	       Long userdbNo = userdb.getUserdbNo();
+		Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
 	       
 		wishlistRepo.findByUserdbUserdbNo(userdbNo).iterator().forEachRemaining(list::add);
         return list;

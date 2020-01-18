@@ -8,7 +8,7 @@
 
 <!-- Page Title -->
 <title>LM company | Learning Machine | login</title>
-	
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 
 <body class="">
@@ -57,7 +57,7 @@
                               <div class="form-group col-md-12">
                                   <label for="form_password">Password</label>
                                   <input id="form_password" name="password" class="form-control" type="password">
-                </div>
+            		    </div>
               </div>
               <div class="checkbox pull-left mt-15">
                 <label for="form_checkbox">
@@ -68,18 +68,95 @@
                 <button type="submit" class="btn btn-dark btn-sm">Login</button>
               </div>
               <div class="clear text-center pt-10">
-                <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your Password?</a>
+                <a class="text-theme-colored font-weight-600 font-12" href="${pageContext.request.contextPath}/findPwd">Forgot Your Password?</a>
               </div>
               <div class="clear text-center pt-10">
                 <a class="btn btn-dark btn-lg btn-block no-border" href="signUpForm" data-bg-color="red">Sign Up</a>
               </div>
             </form>
+
+			<!-- 카카오로그인 -->
+				<div class="form-group">
+		            <form method="post" name="kakaoForm" action="${pageContext.request.contextPath}/loginCheck">
+						<a id="custom-login-btn" href="#" onClick="loginWithKakao()">
+							<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300" />
+						</a>
+		            	<input type="text" value="" name="id" id="kakaoId" style="display: none;">
+		            	<input type="text" value="" name="kakaoNickname" id="kakaoNickname" style="display: none;">
+		            	<input id="kakaoPw" name="password" type="text" style="display: none">
+                        <input type="hidden" id="kakaoToken" name="${_csrf.parameterName}" value="" style="display:none">
+	           		 </form>
+				</div>
+	
           </div>
         </div>
       </div>
     </section>
   </div>
 </div>
-  <!-- end main-content -->
+<script type='text/javascript'>
+var userId;
+var userNickname;
+var kakaoToken;
+
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
+    function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
+    	Kakao.Auth.createLoginButton({
+            container: '#custom-login-btn',
+            success: function(authObj) {
+              Kakao.API.request({
+                url: '/v1/user/me',
+                success: function(res) {
+                	persistAccessToken : false;
+                      alert(JSON.stringify(authObj));
+                   	  document.getElementById('kakaoToken').setAttribute('value',authObj.access_token);
+                   	  document.getElementById('kakaoId').setAttribute('value',res.id);
+                      document.getElementById('kakaoNickname').setAttribute('value',res.properties['nickname']);
+                      document.getElementById('kakaoPw').setAttribute('value','123456789');
+                      
+                      loginAjax();
+                    }
+                  })
+                },
+                fail: function(error) {
+                  alert(JSON.stringify(error));
+                }
+              });
+    };
+  //]]>
+  
+		function loginAjax() {
+			/*로그인하기*/
+					$.ajax({
+						url : "${pageContext.request.contextPath}/kakaoLogin",
+						type : "post",
+						data : $("form[name=kakaoForm]").serialize(),
+						dataType : "text",
+						success : function(result) {
+							$("form[name=kakaoForm]").attr("action", "loginCheck");
+							if(result==0){
+								alert('이미가입된유저다 로그인하자이제')
+		                      	$("form[name=kakaoForm]").submit();
+							}else if(result==1){
+								alert('신규이긴한데 닉네임이 중복이다 회원가입폼으로가자')
+								$("form[name=kakaoForm]").attr("action", "signUpForm");
+								$("form[name=kakaoForm]").submit();
+							}else if(result==2){
+								alert('신규라 회원가입성공, 로그인하자이제')
+		                      	$("form[name=kakaoForm]").submit();
+							}
+						},
+						error : function(err) {
+							alert("등록에 실패했습니다.");
+							location.href = "${pageContext.request.contextPath}/";
+						}
+					})
+			}////로그인하기
+  
+</script>
 </body>
 </html>
+

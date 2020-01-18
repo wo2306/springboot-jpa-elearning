@@ -70,15 +70,17 @@
                                                     pattern="₩#,###"/></span></h4>
                                         </div>
                                         <div class="content text-left flip p-25 pt-0">
+                                        <input type="hidden" id="lectureno" value=${dto.onLectureNo}>
                                             <h5 style="font-weight: bold; height: 50px"
                                                 class="line-bottom mb-10">${dto.onLectureName}</h5>
                                             <p style="height: 150px">${dto.onLectureSummary}</p>
-                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의
-                                                상세 보기</a>
-                                            <input class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                                   type="button" value="wishlist" id=${dto.onLectureNo}>
-
+                                            <div> 
+                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" style="margin-top: -30px;"
+                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의 상세 보기</a>
+                                             &nbsp
+                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" value="wishlist" 
+                                             id=${dto.onLectureNo} style="margin-top: -30px;">wishlist</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +253,7 @@
         return false;
     }
 
-    $(document).on('click', 'input[value=wishlist]', function () {
+    $(document).on('click', 'a[value=wishlist]', function () {
         if (confirm('위시리스트에 담을까요?')) {
             $.ajax({
                 type: "post",
@@ -259,14 +261,38 @@
                 dataType: "text",
                 data: "onLectureNo=" + $(this).attr('id'),
                 success: function () {
+            
                     if (confirm('성공해쓰 보러갈래?')) return location.href = "${pageContext.request.contextPath}/myPage/info/1";
+                    
                 },
                 error: function (err) {
-                    alert("이미 중복된 강의가 있습니다." + err);
+                    alert("이미 중복된 강의가 있습니다.");
                 }
             });
         }
     })
+    
+  $(window).load(function(){
+	  $.ajax({
+		  url: "${pageContext.request.contextPath}/myPage/isthere",
+          type: "post",
+          dataType: "json",
+          success: function (result) {
+        	  $.each(result, function (key, val) {
+        		  
+        		  console.log(key + " " + val.onLecture.onLectureNo);
+        		 /* if(val.onLecture.onLectureNo==$("#lectureno").val()){
+        			 $(".wishlistbtn1").hide();
+        			 $(".wishlistbtn2").show();
+        		 } */
+              });
+          },
+          error: function (error) {
+              console.log(error)
+          }
+      })
+  })
+    
 </script>
 </body>
 </html>

@@ -1,7 +1,9 @@
 package project.web.mvc.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,14 +22,14 @@ public class NoticeController {
 
 	private final NoticeService noticeService;
 	
-	@RequestMapping("")
-	public ModelAndView main(Model model) {
-		List<Notice> list = noticeService.selectAll();
-		
-		if (!list.isEmpty())
-        	model.addAttribute("list", list);
-		
-		return new ModelAndView("notice/list", "list", list);
+	@RequestMapping("/list/{pageNum}")
+	public String main(Model model, @PathVariable int pageNum) {
+		 List<Notice> list = new ArrayList<>();
+	        Page<Notice> page = noticeService.selectAll(pageNum);
+	        page.iterator().forEachRemaining(list::add);
+	        model.addAttribute("list", list);
+	        model.addAttribute("page", page);
+	        return "notice/list";
 	}
 	
 	@RequestMapping("/detail/{noticeNo}")

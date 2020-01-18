@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import project.web.mvc.domain.ClassQuestion;
 import project.web.mvc.domain.OffOrder;
+import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.OnOrder;
 import project.web.mvc.domain.Review;
 import project.web.mvc.domain.Userdb;
@@ -95,6 +96,13 @@ public class MyPageController {
 		  
 		return list;
   }
+    
+    @RequestMapping(value ="/isthere")
+    @ResponseBody
+    public List<WishList> isthere(){
+     List<WishList> list = wishlistService.wishlistselectAll();
+    return null;
+    }
     
     @DeleteMapping(value ="/delete")
     @ResponseBody

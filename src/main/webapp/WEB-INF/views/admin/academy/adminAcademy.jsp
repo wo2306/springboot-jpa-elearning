@@ -8,7 +8,13 @@
 
   <!-- Page Title -->
   <title>LM company | Learning Machine | main</title>
+<style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
 
+    </style>
 </head>
 <body class="">
 <div id="wrapper" class="clearfix">
@@ -21,14 +27,34 @@
       <div class="container pt-70 pb-20">
         <!-- Section Content -->
         <div class="section-content">
-          <div class="row">
+          <div class="row"  id="out">
             <div class="col-md-12">
-              <h2 class="title text-white">관리자 페이지</h2>
               <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active text-gray-silver">Page Title</li>
-              </ol>
+                                <li><a href="#">교육원 관리</a></li>
+                                <li class="active text-gray-silver"> - 교육원을 등록, 수정, 삭제할 수 있는 페이지입니다.</li>
+                                <!-- Topbar Search -->
+                                <li>
+                                    <form name="searchForm" method="post" onsubmit="return searchform()">
+                                        <div class="input-group" style="padding-left: 730px">
+                                            <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
+                                                <option value="all">전체</option>
+                                                <option value="academy">교육원</option>
+                                                <option value="city">도시명</option>
+                                                <option value="address">주소</option>
+                                            </select>
+                                            <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                                                   class="form-control bg-light border-0 small"
+                                                   placeholder="Search for..." aria-label="Search"
+                                                   aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit" id="search">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ol>
             </div>
           </div>
         </div>
@@ -65,13 +91,9 @@
 								</c:forEach>
 							</table>
 							<!-- </form> -->
-							<h4>Academy 등록하기 :  </h4>
 							<form name="writeForm" method="post"
 								action="${pageContext.request.contextPath}/admin/academy/adminRegister">
-										<input type="submit" class="btn btn-dark" value="등록하기">
-							
-			
-
+										<input type="submit"  style="width: 500px; margin-left: 280px" class="btn btn-dark" value="새로운 교육원 등록하기">
 							</form>
 
 											<div class="col-md-6">
@@ -143,5 +165,16 @@
               
               })
               </script>
+              
+              <script>
+    function searchform() {
+        var keyfield = $("#key option:selected").val();
+        var keyword = $("#keyword").val();
+        location.href = '${pageContext.request.contextPath}/admin/academy/' + keyfield + '/' + keyword;
+        return false;
+    }
+
+  
+</script>
 </body>
 </html>

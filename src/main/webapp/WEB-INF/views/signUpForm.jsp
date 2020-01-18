@@ -9,7 +9,7 @@
 
 <!-- Page Title -->
 <title>LM company | Learning Machine | SignUp</title>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 </head>
 
 <body class="">
@@ -45,7 +45,7 @@
 							<h4 class="heading-title">Don't have an Account? Register
 								Now</h4>
 						</div>
-						<form method="post" name="signUpForm" onsubmit="return checkValid()">
+						<form method="post" name="signUpForm" onsubmit="sign()">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" style="display: none">
 							<div class="row">
@@ -77,23 +77,10 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-default" id="register"
-									onclick="isEmpty()">회원가입</button>
+								<button type="submit" class="btn btn-default" id="register" onclick="return checkValid()"
+									>회원가입</button>
 							</div>
 
-							<div class="form-group">
-
-								<!-- 카카오로그인 -->
-								<a id="custom-login-btn" href="javascript:loginWithKakao()">
-									<img
-									src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
-									width="300" />
-								</a>
-
-								<button type="submit" class="btn btn-default">Register
-									Now</button>
-								<div class="clear text-center pt-10"></div>
-							</div>
 						</form>
 					</div>
 				</div>
@@ -103,28 +90,6 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
-
-			function checkValid() {
-				var f = window.document.formPassword;
-				if ( f.userdbPassword0.value == "" ) {
-			        alert( "비밀번호0를 입력해 주세요" );
-					f.userdbPassword0.focus();
-					return false;
-				}
-				if ( f.userdbPassword1.value == "" ) {
-			        alert( "비밀번호1를 입력해 주세요" );
-			        f.userdbPassword1.focus();
-			        return false;
-			    }
-				if ( f.userdbPassword2.value == "" ) {
-			        alert( "비밀번호2를 입력해 주세요" );
-			        f.userdbPassword2.focus();
-			        return false;
-			    }else{
-			    	
-			    
-			
 			/*
 				email 키업시 일어나는 이벤트
 				1. id중복체크 알람
@@ -143,7 +108,7 @@
 						$('#emailResult').hide();
 						$('#idCheck').attr("disabled", false);
 					}
-			});
+			});/////////키업시일어나는 이벤트
 			
 			/*아이디 중복체크*/
 			$('#idCheck').click(function() {
@@ -169,7 +134,7 @@
 						alert("err : " + err);
 					}
 				})
-			});
+			});///아이디 중복체크
 			
 			/*password 유호성체크 체크*/
 			$('[name=userdbPassword2]').keyup(function () {
@@ -183,10 +148,8 @@
 					$('#register').attr("disabled", true);
 					$('#passwordCheck').text('비밀번호가 다릅니다. 확인해주세요');
 				}
-			});
+			});//////password 유효성체크
 			
-
-
 			/*닉네임 중복체크*/
 			$('[name=userdbNickname]').keyup(function () {
 				$.ajax({
@@ -209,70 +172,56 @@
 						alert("err : " + err);
 					}
 				})
-			});///////
-			
-			
-			/*가입하기*/
-			$('#register').click(function() {
-				
-					$.ajax({
-						url : "${pageContext.request.contextPath}/signUp",
-						type : "post",
-						data : $("form[name=signUpForm]").serialize(),
-						dataType : "text",
-						success : function(result) {
-							alert(result);
-							if(result==1)
-								alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
-							location.href = "${pageContext.request.contextPath}/login";
-						},
-						error : function(err) {
-							alert("등록에 실패했습니다.");
-							location.href = "${pageContext.request.contextPath}/";
-						}
-					})
-			})
+			});///////닉네임
 
+})//레디 끝
 
+	
+	function checkValid() {
+		var f = window.document.signUpForm;
+		if ( f.userdbEmail.value == "" ) {
+	        alert( "이메일을 입력해주세요" );
+			f.userdbEmail.focus();
+			return false;
+		}
+		if ( f.userdbPassword1.value == "" ) {
+	        alert( "비밀번호1를 입력해 주세요" );
+	        f.userdbPassword1.focus();
+	        return false;
+	    }
+		if ( f.userdbPassword2.value == "" ) {
+	        alert( "비밀번호2를 입력해 주세요" );
+	        f.userdbPassword2.focus();
+	        return false;
+	    }else{
+	    	return true;
+	}//else 끝
+}//checkValid 끝
+
+/*가입하기*/
+function sign() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/signUp",
+			type : "post",
+			data : $("form[name=signUpForm]").serialize(),
+			dataType : "text",
+			success : function(result) {
+				alert(result);
+				if(result==1)
+					alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
+				location.href = "${pageContext.request.contextPath}/login";
+			},
+			error : function(err) {
+				alert("등록에 실패했습니다.");
+				location.href = "${pageContext.request.contextPath}/";
+			}
 		})
-	}
-			
-})
+}
+
+////가입하기끝
+
 	</script>
 
-
-<script type='text/javascript'>
-
-var userdbEmail;
-var userdbNickname;
-
-  //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
-    function loginWithKakao() {
-      // 로그인 창을 띄웁니다.
-    	Kakao.Auth.createLoginButton({
-            container: '#custom-login-btn',
-            success: function(authObj) {
-              Kakao.API.request({
-                url: '/v1/user/me',
-                success: function(res) {
-                      userdbEmail = res.kaccount_email;
-                      userdbNickname = res.properties['nickname'];
-                      alert(userdbEmail);
-                    }
-                  })
-                },
-                fail: function(error) {
-                  alert(JSON.stringify(error));
-                }
-              });
-      console.log(userdbEmail);
-    };
-    
-    
-  //]]>
-</script>
 
 
 </body>

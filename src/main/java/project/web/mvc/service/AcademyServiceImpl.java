@@ -13,6 +13,7 @@ import project.web.mvc.domain.Academy;
 import project.web.mvc.repository.AcademyRepository;
 
 @Service
+@Transactional
 public class AcademyServiceImpl implements AcademyService {
 
 	
@@ -35,7 +36,7 @@ public class AcademyServiceImpl implements AcademyService {
 		return list;
 	}
 	
-	@Transactional
+
 	@Override
 	public void academyUpdate(Academy inacademy) {
 		Academy academy = academyRepository.findByAcademyNo(inacademy.getAcademyNo());
@@ -61,6 +62,21 @@ public class AcademyServiceImpl implements AcademyService {
 	public Academy selectByAno(Long academyNo) {
 		Academy academy = academyRepository.findById(academyNo).orElse(null);
 		return academy;
+	}
+
+	@Override
+	public List<Academy> selectByacademyeName(String academyName) {
+		return academyRepository.findByacademyeName(academyName);
+	}
+
+	@Override
+	public List<Academy> selectByCity(String city) {
+		return academyRepository.findByCity(city);
+	}
+
+	@Override
+	public List<Academy> selectByAddress(String address) {
+		return academyRepository.findByAddress(address);
 	}
 
 }

@@ -66,7 +66,7 @@
                                                        value="${discount_sum+cartDTO.onLecture.onLecturePrice*cartDTO.onLecture.onLectureDiscount/100}"/>
                                                 <tr class="cart_item">
                                                     <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                                   src="${pageContext.request.contextPath}/onlecture/images/${cartDTO.onLecture.onLectureName}"></a>
+                                                                                                   src="${pageContext.request.contextPath}/images/onLecture/${cartDTO.onLecture.onLectureNo}.png"></a>
                                                     </td>
                                                     <td class="product-name"><a href="#">${cartDTO.onLecture.onLectureName}</a>
                                                         <ul class="variation">
@@ -95,24 +95,27 @@
                         <div class="col-md-12 mt-30">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>할인 쿠폰 적용하기</h4>
-                                    <form class="form" action="#">
+                                    <h4>프로모션 코드 입력</h4>
+                                    <form class="form" id="discountForm" action="#">
                                         <table class="table no-border">
                                             <tbody>
                                             <tr>
                                             </tr>
                                             <tr>
-                                                <td><input type="text" class="form-control" placeholder="쿠폰 번호 입력"
+                                                <td><input id="couponCode" type="text" class="form-control"
+                                                           placeholder="쿠폰 번호 입력"
                                                            value=""></td>
                                             </tr>
                                             <tr>
-                                                <td><input type="text" class="form-control" placeholder="Postcod/zip"
+                                                <td><input id="couponName" type="text" class="form-control"
+                                                           placeholder="Postcod/zip"
                                                            readonly="readonly" value="쿠폰 적용시 정보가 표시됩니다."></td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <button type="button" class="btn btn-default">할인 쿠폰 적용</button>
-                                                    <button type="button" class="btn btn-default">쿠폰 적용 취소</button>
+                                                    <button type="button" id="discountButton" class="btn btn-default">할인 쿠폰 적용
+                                                    </button>
+                                                    <button type="reset" class="btn btn-default">쿠폰 적용 취소</button>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -147,6 +150,23 @@
     </div>
 </div>
 <!-- end main-content -->
+<script>
+    $("#discountButton").click(function () {
+        var couponCode = $("#couponCode").val();
+        $.ajax({
+            url: "${pageContext.request.contextPath}/coupon/select/" + couponCode,
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                $("#couponName").val(result.couponName + " (" + result.couponDiscount + " % 할인)");
+                console.log(result)
+            },
+            error: function (error) {
+                alert(error);
+            }
+        })
 
+    });
+</script>
 </body>
 </html>

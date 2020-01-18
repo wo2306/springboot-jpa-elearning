@@ -16,6 +16,14 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  
+  <style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body class="">
 	<div id="wrapper" class="clearfix">
@@ -30,14 +38,34 @@
 				<div class="container pt-70 pb-20">
 					<!-- Section Content -->
 					<div class="section-content">
-						<div class="row">
+						<div class="row"  id="out">
 							<div class="col-md-12">
-								<h2 class="title text-white">관리자 페이지</h2>
-								<ol class="breadcrumb text-left text-black mt-10">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Pages</a></li>
-									<li class="active text-gray-silver">Page Title</li>
-								</ol>
+ㄴ								<ol class="breadcrumb text-left text-black mt-10">
+                                <li><a href="#">오프라인 강의 관리</a></li>
+                                <li class="active text-gray-silver"> - 오프라인 강의들을 등록, 수정, 삭제할 수 있는 페이지입니다.</li>
+                                <!-- Topbar Search -->
+                                <li>
+                                    <form name="searchForm" method="post" onsubmit="return searchform()">
+                                        <div class="input-group" style="padding-left: 730px">
+                                            <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
+                                                <option value="all">전체</option>
+                                                <option value="category">카테고리</option>
+                                                <option value="name">강의명</option>
+                                                <option value="teacher">강사명</option>
+                                            </select>
+                                            <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                                                   class="form-control bg-light border-0 small"
+                                                   placeholder="Search for..." aria-label="Search"
+                                                   aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit" id="search">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ol>
 							</div>
 						</div>
 					</div>
@@ -55,14 +83,13 @@
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<tr>
-									<th>offLectureNo</th>
-									<th>academyName</th>
-									<th>offLectureName</th>
-									<th>offLectureTeacher</th>
-									<th>category</th>
-									<th>offLectureAvailableseat</th>
-									<th>offDetail</th>
-									<th>offLectureDate</th>
+									<th>강의번호</th>
+									<th>교육원</th>
+									<th>강의명</th>
+									<th>강사명</th>
+									<th>카테고리</th>
+									<th>좌석수</th>
+									<th>강의날짜</th>
 									<th>수정</th>
 									<th>삭제</th>
 								</tr>
@@ -74,7 +101,6 @@
 										<td>${list.offLectureTeacher}</td>
 										<td>${list.category}</td>
 										<td>${list.offLectureSeat-list.offLectureReservedseat}</td>
-										<td>${list.offDetail}</td>
 										<td>${list.offLectureDate}</td>
 										<td><input type="submit" class="btn btn-dark"
 											onClick="location.href='${pageContext.request.contextPath}/admin/offLecture/offLecUpdate/${list.offLectureNo}'"
@@ -223,17 +249,17 @@
               })
               
               
-              //수정하기 폼으로 이동하기
-               /* $(function(){
-	   
-	   $("input[value=수정]").click(function(){
-		   //document.requestForm.action="${pageContext.request.contextPath}/board/updateForm";
-		   
-		   $("#requestForm").attr("action", "${pageContext.request.contextPath}/admin/offLecture/offLecUpdate");
-		   $("#requestForm").submit();
-	   })
-               } */
               
               </script>
+              <script>
+    function searchform() {
+        var keyfield = $("#key option:selected").val();
+        var keyword = $("#keyword").val();
+        location.href = '${pageContext.request.contextPath}/admin/offLecture/' + keyfield + '/' + keyword + '/1';
+        return false;
+    }
+
+  
+</script>
 </body>
 </html>

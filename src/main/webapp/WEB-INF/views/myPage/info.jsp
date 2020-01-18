@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <head>
     <title>LM company | Learning Machine</title>
-
+   
 </head>
 
 <body class="">
@@ -134,18 +134,18 @@
                                                                                                     <th>평 점</th>
                                                                                                     <td><span
                                                                                                             style="text-align: right">
-																															<div class="form-group">
-																																<select class="form-control"
-                                                                                                                                        name="reviewScore">
-																																	<option value="0">평점 선택</option>
-																																	<option value="1">1</option>
-																																	<option value="2">2</option>
-																																	<option value="3">3</option>
-																																	<option value="4">4</option>
-																																	<option value="5">5</option>
-																																</select>
-																															</div>
-																													</span>
+                                                                                             <div class="form-group">
+                                                                                                <select class="form-control"
+                                                                                                        name="reviewScore">
+                                                                                                   <option value="0">평점 선택</option>
+                                                                                                   <option value="1">1</option>
+                                                                                                   <option value="2">2</option>
+                                                                                                   <option value="3">3</option>
+                                                                                                   <option value="4">4</option>
+                                                                                                   <option value="5">5</option>
+                                                                                                </select>
+                                                                                             </div>
+                                                                                       </span>
                                                                                                     </td>
                                                                                                 </tr>
 
@@ -214,22 +214,22 @@
                                             </tr>
                                             </thead>
                                             <c:choose>
-                                            <c:when test="${offOrderList ne null}">
-                                            <c:forEach items="${requestScope.offOrderList}" var="offOrder">
-                                            <tr>
-                                                <td>${offOrder.offOrderNo}</td>
-                                                <td>${offOrder.offLecture.offLectureName}</td>
-                                                <td><fmt:formatDate value="${offOrder.offOrderRegdate}" pattern="yyyy.MM.dd"/></td>
-                                                <td>${offOrder.offOrderMethod}</td>
-                                                <td><fmt:formatNumber value="${offOrder.offLecture.price}" pattern="₩#,###"/></td>
-                                            </tr>
-                                            </c:forEach>
-                                            </c:when>
-                                            <c:otherwise>
-                                            <tr>
-                                                <td colspan="7" style="text-align: center">주문 내역이 존재하지 않습니다.</td>
-                                            </tr>
-                                            </c:otherwise>
+                                                <c:when test="${offOrderList ne null}">
+                                                    <c:forEach items="${requestScope.offOrderList}" var="offOrder">
+                                                        <tr>
+                                                            <td>${offOrder.offOrderNo}</td>
+                                                            <td>${offOrder.offLecture.offLectureName}</td>
+                                                            <td><fmt:formatDate value="${offOrder.offOrderRegdate}" pattern="yyyy.MM.dd"/></td>
+                                                            <td>${offOrder.offOrderMethod}</td>
+                                                            <td><fmt:formatNumber value="${offOrder.offLecture.price}" pattern="₩#,###"/></td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <tr>
+                                                        <td colspan="7" style="text-align: center">주문 내역이 존재하지 않습니다.</td>
+                                                    </tr>
+                                                </c:otherwise>
                                             </c:choose>
                                             </tbody>
                                         </table>
@@ -238,8 +238,8 @@
                                         <table class="table" id="wishlisttable">
                                             <tbody>
                                             <tr>
-                                                <th>강의번호</th>
-                                                <th>강의제목</th>
+                                            	<th style="width:150px;">강의사진</th>
+                                                <th style="width:500px; padding-left: 30px;">강의제목</th>
                                                 <th>가격</th>
                                                 <th>삭제</th>
                                             </tr>
@@ -254,10 +254,10 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>질문</th>
+                                                <th> </th>
                                                 <th>연관 강의</th>
                                                 <th>질문 제목 <span style="font-size: 11px;">
-																(상세 내용을 보려면 클릭하세요.)</span></th>
+                                                (상세 내용을 보려면 클릭하세요.)</span></th>
                                                 <th>삭 제</th>
                                             </tr>
                                             </thead>
@@ -268,16 +268,35 @@
                                                     <c:forEach var="dto" items="${questionList}">
                                                         <tr>
                                                             <th scope="row"><img
-                                                                    src="http://placehold.it/100x50" alt=""></th>
+                                                                    src="${pageContext.request.contextPath}/images/onLecture/${dto.onLecture.onLectureNo}.png" style="width:100px; height: 50px;" alt=""></th>
 
                                                             <td>${dto.onLecture.onLectureName }</td>
 
-                                                            <td>
+                                                            <td><a
+                                                                    href="#promoModal1${dto.classQuestionNo}" name="popup"
+                                                                    data-lightbox="inline" class="btn btn-default">${dto.classQuestionTitle }</a>
+                                                                <div style="display: none;"
+                                                                     id="promoModal1${dto.classQuestionNo}"
+                                                                     class="modal-promo-box bg-img-cover"
+                                                                     data-bg-img="http://placehold.it/1920x1280">
+                                                                    <h2 class="mt-0 text-white">상세 내용</h2>
 
-                                                                <a href="#" name="popup" data-lightbox="inline"
-                                                                   class="btn btn-default">${dto.classQuestionTitle }</a>
+                                                                    <h5>
+                                                                        <span class="text-highlight">${dto.classQuestionContent}</span>
+                                                                    </h5>
 
-                                                            </td>
+
+
+                                                                    <!-- Mailchimp Subscription Form Validation-->
+                                                                    <script>
+                                                                        $("a[name='popup']").on('click',function() {
+                                                                            $(this).next().show();
+                                                                        });
+                                                                    </script>
+
+                                                                    <a class="text-gray-darkgray" href="#"
+                                                                       onclick="$.magnificPopup.close(); return false;">닫기</a>
+                                                                </div></td>
 
                                                             <td><h4>
                                                                 <a href="#" name="questionDelete"
@@ -285,6 +304,7 @@
                                                                         class="fa fa-close"></i></a>
                                                             </h4></td>
                                                         </tr>
+
                                                     </c:forEach>
                                                 </c:when>
                                                 <c:otherwise>
@@ -305,10 +325,10 @@
                                         <table class="table" id="reviewtable">
                                             <thead>
                                             <tr>
-                                                <th>리 뷰</th>
+                                                <th>  </th>
                                                 <th>평 점</th>
                                                 <th>내 용 <span style="font-size: 12px;">
-																(수정하시려면 내용을 누르세요)</span></th>
+                                                (수정하시려면 내용을 누르세요)</span></th>
                                                 <th>삭제</th>
 
                                             </tr>
@@ -318,8 +338,8 @@
                                                 <c:when test="${reviewList!=null}">
                                                     <c:forEach var="dto" items="${reviewList}">
                                                         <tr>
-                                                            <th scope="row"><img
-                                                                    src="http://placehold.it/100x50" alt=""></th>
+                                                            <th scope="row" style="width:180px;"><img
+                                                                    src="${pageContext.request.contextPath}/images/onLecture/${dto.onLecture.onLectureNo}.png" style="width:100px; height: 50px;" alt=""></th>
                                                             <td>${dto.reviewScore }</td>
                                                             <td>
                                                                 <button type="button"
@@ -351,17 +371,17 @@
                                                                                             <th>평 점</th>
                                                                                             <td><span
                                                                                                     style="text-align: right">
-																												<div class="form-group">
-																													<select class="form-control">
-																														<option value="0">평점 선택</option>
-																														<option value="1">1</option>
-																														<option value="2">2</option>
-																														<option value="3">3</option>
-																														<option value="4">4</option>
-																														<option value="5">5</option>
-																													</select>
-																												</div>
-																										</span></td>
+                                                                                    <div class="form-group">
+                                                                                       <select class="form-control">
+                                                                                          <option value="0">평점 선택</option>
+                                                                                          <option value="1">1</option>
+                                                                                          <option value="2">2</option>
+                                                                                          <option value="3">3</option>
+                                                                                          <option value="4">4</option>
+                                                                                          <option value="5">5</option>
+                                                                                       </select>
+                                                                                    </div>
+                                                                              </span></td>
                                                                                         </tr>
 
                                                                                         <tr>
@@ -439,8 +459,8 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail">' + item.onLecture.onLectureNo + '</a>' + '</td>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>' + item.onLecture.onLectureName + '</a>' + '</td>';
+                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+'<img src="${pageContext.request.contextPath}/images/onLecture/'+item.onLecture.onLectureNo+'.png">'+ '</a>' +'</td>'
+                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+item.onLecture.onLectureName + '</a>' + '</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
@@ -467,8 +487,8 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail">' + item.onLecture.onLectureNo + '</a>' + '</td>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>' + item.onLecture.onLectureName + '</a>' + '</td>';
+                            str += '<td class="product-thumbnail">' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+'<img src="${pageContext.request.contextPath}/images/onLecture/'+item.onLecture.onLectureNo+'.png">'+ '</a>' +'</td>';
+        					str += '<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+item.onLecture.onLectureName+'</a>'+'</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
@@ -492,7 +512,7 @@
                 dataType: "text",
                 success: function () {
                     console.log("삭제완료");
-                   	printwishlist();
+                    printwishlist();
                 }, error: function (err) {
                     console.log("안눌려");
                 }
@@ -513,8 +533,8 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail">' + item.onLecture.onLectureNo + '</a>' + '</td>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>' + item.onLecture.onLectureName + '</a>' + '</td>';
+                            str += '<td class="product-thumbnail">' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+'<img src="${pageContext.request.contextPath}/images/onLecture/'+item.onLecture.onLectureNo+'.png">'+ '</a>' +'</td>';
+                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">' + item.onLecture.onLectureName + '</a>' + '</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
@@ -553,9 +573,10 @@
         $("a[name='questionDelete']").on('click', function () {
             console.log($(this).attr('id'));
             var reviewNo = $(this).attr('id');
+
             if (confirm("정말로 삭제 하시겠습니까?")) {
                 $.ajax({
-                    url: "${pageContext.request.contextPath}/",
+                    url: "${pageContext.request.contextPath}/qna/delete",
                     type: "delete",
                     data: "reviewNo=" + reviewNo,
                     dataType: "text",

@@ -12,8 +12,11 @@ import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.UserdbRepository;
 import project.web.mvc.util.LoginCheck;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserdbServiceImpl implements UserdbService {
 
 	private final UserdbRepository userdbRepository;

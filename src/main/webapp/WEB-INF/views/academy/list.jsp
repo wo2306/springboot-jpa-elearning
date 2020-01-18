@@ -32,12 +32,10 @@
 						<div class="row">
 							<div class="col-md-12">
 								<h3 class="title text-white">교육원 소개</h3>
-								<ol class="breadcrumb text-center text-black mt-10">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Pages</a></li>
-									<li class="active text-theme-colored">Page Title</li>
-									<li class="active text-theme-colored">Event List without
-										Sidebar</li>
+								<ol class="breadcrumb text-left text-black mt-10">
+									<li><a href="#">홈</a></li>
+									<li><a href="#">교육원</a></li>
+									<li class="active text-gray-silver">교육원  리스트</li>
 								</ol>
 							</div>
 						</div>

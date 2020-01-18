@@ -13,7 +13,10 @@ import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Roadmap;
 import project.web.mvc.repository.RoadmapRepository;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class RoadmapServiceImpl implements RoadmapService {
 	
 	@Autowired

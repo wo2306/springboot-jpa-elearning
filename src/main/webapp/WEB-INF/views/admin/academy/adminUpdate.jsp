@@ -16,6 +16,8 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+
 </head>
 <body class="">
 	<div id="wrapper" class="clearfix">
@@ -31,85 +33,89 @@
 					<div class="section-content">
 						<div class="row">
 							<div class="col-md-12">
-								<h3 class="title text-white">교육원 소개</h3>
-								<ol class="breadcrumb text-center text-black mt-10">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Pages</a></li>
-									<li class="active text-theme-colored">Page Title</li>
-									<li class="active text-theme-colored">Event List without
-										Sidebar</li>
+								<ol class="breadcrumb text-left text-black mt-10">
+									<li><a href="#">교육원 수정</a></li>
+									<li class="active text-gray-silver">- 교육원을 수정할 수 있는
+										페이지입니다.</li>
 								</ol>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-<!-- start -->
-							<!-- Section: Registration Form -->
-							<section class="divider parallax layer-overlay overlay-white-8"
-								data-bg-img="http://placehold.it/1920x1280">
-								<div class="container-fluid">
-									<div class="section-title">
-										<div class="row">
-											<div class="col-md-6 col-md-offset-3 text-center">
-												<h3 class="title text-theme-colored">수정 하기 Form</h3>
-											</div>
+			<!-- start -->
+			<!-- Section: Registration Form -->
+			<section class="divider parallax layer-overlay overlay-white-8"
+				data-bg-img="http://placehold.it/1920x1280">
+				<div class="container-fluid">
+					<div class="section-title">
+						<div class="row" style="margin-left: 310px; margin-top: 30px;">
+							<div class="col-md-6 col-md-offset-3 text-center">
+								<h3 class="title text-theme-colored">[ UPDATE FORM ]</h3>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="margin-left: 310px; margin-top: 50px;">
+						<div class="col-md-6 col-md-offset-3">
+							<form id="booking-form" name="booking-form"
+								action="${pageContext.request.contextPath}/admin/academy/adminAcademyUpdate/update"
+								method="post" enctype="multipart/form-data">
+								<div class="row">
+									<%-- <div class="col-sm-6" style="margin-right: 300px;">
+										<div class="form-group">
+
+											<label>academyNo</label> <input type="text" style="width: 200px;"
+												value="${academy.academyNo}" name="academyNo" required="required" readonly="readonly"
+												class="form-control">
+										</div>
+									</div> --%>
+
+									<div class="col-sm-6" >
+										<div class="form-group">
+											<label>academyName</label> <input type="text" style="width: 200px;"
+												value="${academy.academyName}" name="academyName"
+												required="required" class="form-control">
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-md-6 col-md-offset-3">
-											<form id="booking-form" name="booking-form"
-												action="${pageContext.request.contextPath}/admin/academy/adminAcademyUpdate/update" method="post"
-												enctype="multipart/form-data">
-												<div class="row">
-													<div class="col-sm-6">
-														<div class="form-group">
-														
-														<label>academyNo</label>
-															<input type="text" value="${academy.academyNo}"
-																name="academyNo" required="" class="form-control">
-														</div>
-														
-													</div>
-													
-													<div class="col-sm-6">
-														<div class="form-group">
-														<label>academyName</label>
-															<input type="text" value="${academy.academyName}"
-																name="academyName" required="" class="form-control">
-														</div>
-													</div>
-													
-													<div class="col-sm-6">
-														<div class="form-group">
-														<label>academyAddrCity</label>
-															<input type="text" value="${academy.academyAddrCity}"
-																name="academyAddrCity" required="" class="form-control">
-														</div>
-													</div>
-													
-													<div class="col-sm-12">
-														<div class="form-group">
-														<label>academyAddrDetail</label>
-															<input type="text" value="${academy.academyAddrDetail}"
-																name="academyAddrDetail" required="" class="form-control">
-														</div>
-													</div>
-										
-													<div class="col-sm-12">
-														<div class="form-group text-center">
-															<input name="form_botcheck" class="form-control"
-																type="hidden" value="" />
-															<button data-loading-text="Please wait..."
-																class="btn btn-dark btn-theme-colored btn-sm btn-block mt-20 pt-10 pb-10"
-																type="submit">Update now</button>
-																</form>
-														</div>
-													</div>
-												</div>
-											
-											<!-- End -->
-			
+
+									<div class="col-sm-6" >
+										<div class="form-group">
+											<label>academyAddrCity</label> <input type="text" style="width: 200px;"
+												value="${academy.academyAddrCity}" name="academyAddrCity"
+												required="required" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label>academyAddrDetail</label> <input type="text" style="width: 430px;"
+												value="${academy.academyAddrDetail}"
+												name="academyAddrDetail" required="required" class="form-control">
+										</div>
+									</div>
+
+									<div class="col-sm-12">
+										<div class="form-group text-center" style="margin-top: 15px;">
+											<input name="form_botcheck" class="form-control"
+												type="hidden" value="" />
+											<button data-loading-text="Please wait..."
+												class="btn btn-dark btn-theme-colored btn-sm btn-block mt-20 pt-10 pb-10"
+												type="submit">Update now</button>
+										</div>
+									</div>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+
+
+		<!-- End -->
+
 	</div>
 </body>
 </html>

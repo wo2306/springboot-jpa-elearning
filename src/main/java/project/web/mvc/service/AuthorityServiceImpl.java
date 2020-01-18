@@ -11,8 +11,11 @@ import project.web.mvc.domain.Authority;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.repository.AuthorityRepository;
 
+import javax.transaction.Transactional;
+
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AuthorityServiceImpl implements AuthorityService{
 
 	private final AuthorityRepository authorityRepository;
@@ -48,20 +51,23 @@ public class AuthorityServiceImpl implements AuthorityService{
 	//회원 회원가입시 db에도 insert
 	@Override
 	public void insert(Userdb userdb) {
-		// 0 = ADMIN , 1 = 회원
+		// 0 = ADMIN , 1 = 회원, 2 = kakao
 		System.out.println("Authoritu 서비스"+userdb.getAuthority()+"*****");
 		if(userdb.getAuthority()==0) {
 			Authority authorityAdmin = new Authority();
 			authorityAdmin.setUserdb(userdb);
 			authorityAdmin.setRole("ADMIN");
 			authorityRepository.save(authorityAdmin);
-		}else {
+		}else if(userdb.getAuthority()==1){
 			Authority authority = new Authority();
 			authority.setUserdb(userdb);
 			authority.setRole("MEMBER");
 			authorityRepository.save(authority);
+		}else if(userdb.getAuthority()==2) {
+			Authority authority = new Authority();
+			authority.setUserdb(userdb);
+			authority.setRole("KAKAO");
+			authorityRepository.save(authority);
 		}
 	}
-	
-
 }

@@ -20,9 +20,7 @@
 <!-- Start main-content -->
 <div class="main-content">
 	<!-- Section: inner-header -->
-	<section
-		class="inner-header divider parallax layer-overlay overlay-dark-5"
-		data-bg-img="http://placehold.it/1920x1280">
+	 <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="${pageContext.request.contextPath}/images/banner/notice.jpg">
 		<div class="container pt-70 pb-20">
 			<!-- Section Content -->
 			<div class="section-content">
@@ -31,8 +29,6 @@
 						<h2 class="title text-white">공지사항</h2>
 						<ol class="breadcrumb text-left text-black mt-10">
 							<li><a href="#">Home</a></li>
-							<li><a href="#">Pages</a></li>
-							<li class="active text-gray-silver">Page Title</li>
 						</ol>
 					</div>
 				</div>
@@ -44,15 +40,18 @@
 		<div class="container">
 
 			<!-- Textblock -->
-			<div class="esc-heading heading-line-bottom lr-line left-heading">
-				<h4>${item.noticeTitle}</h4>
+			<div>
+				<span class="text-highlight light" style="font-size: 25px; margin-bottom: 30px;">${item.noticeTitle}</span>
 			</div>
-			<form style="padding-bottom: 50px;">
-				<div class="row , esc-heading heading-line-bottom lr-line left-heading">
+			<form style="padding-bottom: 50px; padding-top: 20px;">
+				<div class="row">
 					<div class="col-md-12">${item.noticeContent}</div>
 				</div>
+			
 			</form>
-			<input type="button" value="뒤로가기" style=" color : #FFFFFF; background : #202C45; padding : 5px 12px" onClick="location.href='${pageContext.request.contextPath}/notice'">
+			<input type="button" value="뒤로가기" class="btn btn-dark btn-sm"
+				style=" width:100px; padding: 5px 12px"
+				onClick="location.href='${pageContext.request.contextPath}/notice/list/1'">
 		</div>
 	</section>
 </div>

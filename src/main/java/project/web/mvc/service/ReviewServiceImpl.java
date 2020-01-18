@@ -13,7 +13,10 @@ import project.web.mvc.domain.Review;
 import project.web.mvc.repository.ReviewRepository;
 import project.web.mvc.util.LoginCheck;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class ReviewServiceImpl implements ReviewService {
 
 	@Autowired
@@ -29,7 +32,6 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> selectByOnlectureNo(Long onLectureNo) {
 		List<Review> list = new ArrayList<>();
 		reviewRepo.findByOnLectureOnLectureNo(onLectureNo).iterator().forEachRemaining(list::add);;
-		System.out.println("@@@@@!@#!@#!@#리뷰 리스트 확인 : "+list.toString());
 		
 		return list;
 	}
@@ -44,6 +46,11 @@ public class ReviewServiceImpl implements ReviewService {
 		
 
 	}
+	
+	@Override
+	public Review selectById(Long reviewNo) {
+		return reviewRepo.findByReviewNo(reviewNo);
+	}
 
 	@Override
 	public void delete(Long reviewNo) {
@@ -57,6 +64,11 @@ public class ReviewServiceImpl implements ReviewService {
 		return null;
 	}
 
+	@Override
+	public Page<Review> findAll(int pageNum) {
+		
+		return reviewRepo.findAll(PageRequest.of(pageNum-1, 9));
+	}
 
 
 

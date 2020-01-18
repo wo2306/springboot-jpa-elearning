@@ -41,51 +41,38 @@
                         <div class="col-md-12">
                             <h3>결제 목록</h3>
                             <table class="table table-striped table-bordered tbl-shopping-cart">
-                                <thead>
+                                thead>
                                 <tr>
-                                    <th>이미지</th>
-                                    <th>강의명</th>
+                                    <th style="width:250px">이미지</th>
+                                    <th style="width:700px"> 강의명</th>
                                     <th>가격</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:choose>
-                                    <c:when test="${empty requestScope.list}">
+                                <c:set var="price_sum"
+                                       value="${price_sum+offLecture.price}"/>
+                                <td class="product-thumbnail"><a href="#"><img alt="member"
+                                                                               src="${pageContext.request.contextPath}/images/offLecture/${offLecture.offLectureNo}.png"></a>
+                                </td>
+                                <td><a href="#">${offLecture.offLectureName}</a></td>
+                                <td><fmt:formatNumber value="${offLecture.price}"
+                                                      pattern="₩#,###.##"/></td>
+                                </tr>
 
-                                        <c:forEach items="${requestScope.list}" var="list">
-                                            <c:set var="list"
-                                                   value="${list.price}"/>
-                                            <tr>
-                                                <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                               src="${pageContext.request.contextPath}/onlecture/images/${dto.onLecture.onLectureName}"></a>
-                                                </td>
-                                                <td><a href="#">${list.offLectureName}</a></td>
-                                                <td><fmt:formatNumber value="${list.price}"
-                                                                      pattern="₩#,###.##"/></td>
-                                            </tr>
-
-                                        </c:forEach>
-                                        <tr>
-                                            <td>총 결제 금액</td>
-                                            <td>&nbsp;</td>
-                                            <td id="total_price" style="font-weight: bold"><fmt:formatNumber
-                                                    value="${list.price}"
-                                                    pattern="₩#,###"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight: bold">최종 결제 금액</td>
-                                            <td>&nbsp;</td>
-                                            <td id="final_price" style="font-weight: bold"><fmt:formatNumber
-                                                    value="${price_sum-discount_sum}"
-                                                    pattern="₩#,###"/></td>
-                                        </tr>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <tr>
-                                            <td colspan="3" style="text-align: center">수강바구니에 담긴 강의가 없습니다</td>
-                                        </tr>
-                                    </c:otherwise>
-                                </c:choose>
+                                <tr>
+                                    <td>총 결제 금액</td>
+                                    <td>&nbsp;</td>
+                                    <td id="total_price" style="font-weight: bold"><fmt:formatNumber
+                                            value="${price_sum}"
+                                            pattern="₩#,###"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold">최종 결제 금액</td>
+                                    <td>&nbsp;</td>
+                                    <td id="final_price" style="font-weight: bold"><fmt:formatNumber
+                                            value="${price_sum}"
+                                            pattern="₩#,###"/></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -105,6 +92,31 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <h4>프로모션 코드 입력</h4>
+                            <form class="form" action="#">
+                                <table class="table no-border">
+                                    <tbody>
+                                    <tr>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" placeholder="쿠폰 번호 입력"
+                                                   value=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" placeholder="Postcod/zip"
+                                                   readonly="readonly" value="쿠폰 적용시 정보가 표시됩니다."></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button type="button" class="btn btn-default">할인 쿠폰 적용</button>
+                                            <button type="button" class="btn btn-default">쿠폰 적용 취소</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                        <div class="col-md-12">
                             <h3>결제 수단 선택</h3>
                             <div class="payment-method">
                                 <div class="radio">
@@ -116,8 +128,6 @@
                                         / County, Store Postcode.</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
                             <div class="text-right"><a class="btn btn-default" href='javascript:void(0);'
                                                        onclick="requestPay();">구매하기</a></div>
                         </div>
@@ -127,15 +137,6 @@
         </section>
     </div>
 </div>
-<form id="payForm" action="${pageContext.request.contextPath}/order/cartInsert">
-    <c:forEach items="${cartList}" var="dto">
-        <input name="onLectureNo" type="hidden"
-               value="${dto.onLecture.onLectureNo}"/>
-    </c:forEach>
-        <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
-        <input id="paymentPrice" name="onOrderPrice" type="hidden" value="${price_sum-discount_sum}"/>
-</form>
-
 <script>
     function requestPay() {
         var IMP = window.IMP; // 생략가능
@@ -152,28 +153,41 @@
             buyer_tel: $("#checkuot-form-lname").val(),
             buyer_addr: '서울특별시 강남구 삼성동',
             buyer_postcode: '42150',
-            m_redirect_url: '${pageContext.request.contextPath}/order/success/'
         }, function (rsp) {
             if (rsp.success) {
                 let msg = '결제가 완료되었습니다.';
                 alert(msg);
                 alert(rsp.pg_tid);
-                $("#paymentId").val(fn(rsp.pg_tid));
-                //문자 날리고 숫자만 주문코드로 저장
-                $("#paymentPrice").val(parseInt($("#paymentPrice").val()))
-                $("#payForm").submit();
+                location.href = '${pageContext.request.contextPath}/order/offInsert/${offLecture.offLectureNo}'
             } else {
-                let msg = '결제에 실패하였습니다. 결제 확인창으로 되돌아갑니다.'
+                let msg = '결제에 실패하였습니다. 결제 정보를 확인해주세요.'
                 alert(msg);
-                location.href = "${pageContext.request.contextPath}/cart/checkout";
             }
         });
     }
-    function fn(str){
+
+    function fn(str) {
         var res;
-        res = str.replace(/[^0-9]/g,"");
+        res = str.replace(/[^0-9]/g, "");
         return res;
     }
+
+    $("#discountButton").click(function () {
+        var couponCode = $("#couponCode").val();
+        $.ajax({
+            url: "${pageContext.request.contextPath}/coupon/select/" + couponCode,
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                $("#couponName").val(result.couponName + " (" + result.couponDiscount + " % 할인)");
+                console.log(result)
+            },
+            error: function (error) {
+                alert(error);
+            }
+        })
+
+    });
 </script>
 <!-- end main-content -->
 </body>
