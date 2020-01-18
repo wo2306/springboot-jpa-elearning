@@ -58,16 +58,16 @@
                                 정렬 기준
                                 <select name="form_sex" class="form-control required valid" aria-required="true"
                                         aria-invalid="false">
-                                    <option value="Male">최근 공부한순</option>
-                                    <option value="Female">제목순</option>
+                                    <option value="1">최근 공부한순</option>
+                                    <option value="2">제목순</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
                                 진행률
                                 <select name="form_sex" class="form-control required valid" aria-required="true"
                                         aria-invalid="false">
-                                    <option value="Male">학습중</option>
-                                    <option value="Female">완강</option>
+                                    <option value="">학습중</option>
+                                    <option value="">완강</option>
                                 </select>
                             </div>
                             <div class="col-md-4 blog-pull-right">
@@ -173,42 +173,8 @@
 <!-- end main-content -->
 <script>
     $(function () {
-        $.ajax({
-            url: "${pageContext.request.contextPath}/onLecture/latest",
-            type: "post",
-            dataType: "json",
-            success: function (result) {
-                var str = ""
-                $.each(result, function (key, val) {
-                    str += "<article class=\"post media-post clearfix pb-0 mb-10\">\n" +
-                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/resources/images/onLecture/" + val.onLectureNo + ".png\" style=\"width:80px; height:60px;\" alt=\"http://placehold.it/75x75\"></a>\n" +
-                        " <div class=\"post-right\">\n" +
-                        " <h5 class=\"post-title mt-0\"><a href=\"${pageContext.request.contextPath}/onLecture/detail/" + val.onLectureNo + "\">" + val.onLectureName + "</a></h5>\n" +
-                        " <p>" + "</p>\n" +
-                        " </div>\n" +
-                        " </article>"
-                });
-                $("#latest-posts").html(str);
-                console.log(result)
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        })
-
-        $.ajax({
-            url: "${pageContext.request.contextPath}/onLecture/count",
-            type: "post",
-            dataType: "json",
-            success: function (result) {
-                $.each(result, function (key, val) {
-                    $("#ct" + key).text(val);
-                });
-                console.log(result)
-            },
-            error: function (error) {
-                console.log(error)
-            }
+        $("select[name=form_sex]").change(function() {
+            alert($(this).val());
         })
     })
 

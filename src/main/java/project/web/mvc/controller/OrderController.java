@@ -38,8 +38,8 @@ public class OrderController {
     }
 
     @RequestMapping("/onInsert")
-    public String onInsert1(@RequestParam Long onLectureNo, OnOrder onOrder) {
-        orderService.onInsert(onLectureNo, onOrder);
+    public String onInsert1(@RequestParam Long onLectureNo, OnOrder onOrder, String couponCode) {
+        orderService.onInsert(onLectureNo, onOrder, couponCode);
         return "payment/success";
     }
 
