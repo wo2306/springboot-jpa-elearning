@@ -103,9 +103,10 @@ public class MyPageController {
         Page<Sugang> page = null;
         if (command == 1) {
             page = sugangService.selectByUserNoOrderByRegdate(pageNum);
-        } else if (command == 2) {
+        } else if (command== 2) {
+        } else if (command == 3) {
             page = sugangService.selectBySugangState(pageNum, true);
-        } else {
+        } else if (command == 4) {
             page = sugangService.selectBySugangState(pageNum, false);
         }
         model.addAttribute("list", list);
