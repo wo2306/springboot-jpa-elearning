@@ -4,11 +4,13 @@ package project.web.mvc.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -36,6 +38,7 @@ public class HomeController {
 	private final OnLectureService onLectureService;
 	private final AuthorityService authorityService;
 	private final OffLectureService offLectureService;
+	private final UserdbRepository userdbRepository;
 	
 	
 	/**
@@ -191,5 +194,56 @@ public class HomeController {
 //		return"/oauth/kakaoCheck";
 //	}
 //	
+	static int n = 6; // n자리 임시키
+    static char[] chs = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+    
+	@RequestMapping("/findPwd")
+	public String findPwd(Model model) {
+		
+		Random rd = new Random();
+		StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            char ch = chs[rd.nextInt(chs.length)];
+            sb.append(ch);
+        }
+        String tempPwd = sb.toString();
+        model.addAttribute("tempPwd", tempPwd);
+        
+        //userdbService.updatePw(tempPwd);
+        
+        return "/findPwd";
+	}
+	
+    
+	@RequestMapping("/findPwdResult")
+	public String findPwdResult(Model model, String id, String email, String tempPwd) {
+		System.out.println(id+email+tempPwd);
+		
+		model.addAttribute("id", id);
+		model.addAttribute("email", email);
+		model.addAttribute("tempPwd", tempPwd);
+		
+		Userdb tempUserdb= userdbService.selectByUserdbEmail(email);
+			
+		if(tempUserdb!=null && tempUserdb.getUserdbNickname().equals(id)) {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String encodedPassword = passwordEncoder.encode(tempPwd);
+			tempUserdb.setUserdbPassword(encodedPassword);
+			userdbRepository.save(tempUserdb);
+			model.addAttribute("message", "임시 비밀번호가 발송되었습니다.");
+			model.addAttribute("state", true);
+		}
+		else {
+			model.addAttribute("message", "입력하신 정보가 맞지않습니다.");
+			model.addAttribute("state",false);
+		}
+		
+        return "/findPwdResult";
+	}
+	
+	
+	
 	
 }

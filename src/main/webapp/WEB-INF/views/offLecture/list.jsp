@@ -33,9 +33,9 @@
 							<div class="col-md-12">
 								<h2 class="title text-white">오프라인 강의</h2>
 								<ol class="breadcrumb text-left text-black mt-10">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Pages</a></li>
-									<li class="active text-gray-silver">오프라인 강의 리스트</li>
+									<li><a href="#">홈</a></li>
+									<li><a href="#">오프라인 강의</a></li>
+									<li class="active text-gray-silver">강의 리스트</li>
 								</ol>
 							</div>
 						</div>
@@ -77,12 +77,11 @@
 														<li><i class="fa fa-map-marker mr-5"></i>${list.academy.academyAddrCity}</li>
 													</ul>
 													 <p>강사님 이름 : ${list.offLectureTeacher}</p>
-													<p>강의 설명 : ${list.offDetail}</p> 
 													<p>남은 좌석수 : ${list.offLectureSeat-list.offLectureReservedseat}</p>
 													
 													<div class="mt-10">
 															<a href="${pageContext.request.contextPath}/offLecture/detail/${list.offLectureNo}"
-															class="btn btn-dark btn-sm mt-10">Details</a>
+															class="btn btn-dark btn-sm mt-10">강의 상세보기</a>
 													</div>
 												</div>
 											</div>
