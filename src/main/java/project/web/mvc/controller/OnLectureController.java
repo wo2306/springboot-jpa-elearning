@@ -36,6 +36,7 @@ public class OnLectureController {
         return "onLecture/list";
     }
 
+
     @RequestMapping("/detail/{onLectureNo}")
     public String detail(@PathVariable Long onLectureNo, Model model) {
         System.out.println("@@@@@@@@@@@@@@@@@@@@!#!@#!@#!@#@!#!@#!");
