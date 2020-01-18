@@ -14,6 +14,4 @@ public interface WishListService {
 	List<WishList> wishlistselectAll();
 	
 	public void wishlistDelete(Long onLectureNo);
-
-	 
 }

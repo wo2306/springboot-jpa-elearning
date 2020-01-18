@@ -45,8 +45,6 @@
 								Now</h4>
 						</div>
 						<form method="post" name="signUpForm">
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" style="display: none">
 							<div class="row">
 								<div class="form-group col-md-12">
 									<label>Id : Email Address</label> <input type="email"
@@ -76,7 +74,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-default" id="register">회원가입</button>
+								<button type="button" class="btn btn-default" id="register">회원가입</button>
 							</div>
 						</form>
 					</div>
@@ -111,7 +109,7 @@
 			/*아이디 중복체크*/
 			$('#idCheck').click(function() {
 				$.ajax({
-					url : "${pageContext.request.contextPath}/idCheck",
+					url : "${pageContext.request.contextPath}/user/idCheck",
 					type : "post",
 					data : $("form[name=signUpForm]").serialize(),
 					dataType : "text",
@@ -153,7 +151,7 @@
 			/*닉네임 중복체크*/
 			$('[name=userdbNickname]').keyup(function () {
 				$.ajax({
-					url : "${pageContext.request.contextPath}/nicknameCheck",
+					url : "${pageContext.request.contextPath}/user/nicknameCheck",
 					type : "post",
 					data : $("form[name=signUpForm]").serialize(),
 					dataType : "text",
@@ -185,7 +183,7 @@
 						dataType : "text",
 						success : function(result) {
 							if(result==1)
-								alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
+								alert('회원가입에 성공했습니다.');
 							location.href = "${pageContext.request.contextPath}/admin/";
 						},
 						error : function(err) {
