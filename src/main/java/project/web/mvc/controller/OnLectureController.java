@@ -55,7 +55,6 @@ public class OnLectureController {
         model.addAttribute("onLecture", onLecture);
         model.addAttribute("reviewList", reviewList);
 
-
         if (orderService.payCheck(onLectureNo)) {
             model.addAttribute("qnaList", qnaService.findRecentQ(onLectureNo));
             model.addAttribute("sugangList", sugangService.sugangList(onLectureNo));
