@@ -22,4 +22,6 @@ public interface ClassQuestionRepository extends PagingAndSortingRepository<Clas
     @Query("select c from ClassQuestion c inner join c.userdb u where u.userdbNo=?1")
     Page<ClassQuestion> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
     
+    ClassQuestion findByClassQuestionNo(Long classQuestionNo);
+    
 }
