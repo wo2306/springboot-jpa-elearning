@@ -6,12 +6,10 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
-
-
 <script type="text/javascript">
 $(function(){
 	$("#onlecturebtn").click(function(){
-		window.open("onLectureList/1", "PopupWin", "width=1000,height=1000")
+		window.open("${pageContext.request.contextPath}/admin/roadmap/onLectureList/1", "PopupWin", "width=1000,height=1000")
 	})// click end	
 	
 	//추가한  강의 삭제
@@ -21,8 +19,8 @@ $(function(){
 		
 	})//강의 삭제 이벤트 끝
 	
-	//등록버튼 클릭시
-	$(document).on("click","#register", function(){
+	//수정버튼 클릭시
+	$(document).on("click","#update", function(){
 		var list =[]; 
 		 $(".onLecture-no").each(function(index,items){
 			 list.push(items.innerHTML); 
@@ -45,47 +43,30 @@ $(function(){
 	}
 	
 </script>
-
 </head>
 <body class="">
 <div id="wrapper" class="clearfix">
- 
-  
+
   <!-- Start main-content -->
   <div class="main-content">
-
-    <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
-      <div class="container pt-70 pb-20">
-        <!-- Section Content -->
-        <div class="section-content">
-          <div class="row">
-            <div class="col-md-12">
-              <h2 class="title text-white">로드맵 등록</h2>
-              <ul class="list-inline text-white">
-                <li>Home /</li>
-                <li><span class="text-gray">Shop Cart</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+	<div class="row">       
+	<br>
+    </div>    
     <section>
       <div class="container">
         <div class="section-content">
                <div class="col-md-12 mt-30">
               <div class="row">
                 <div class="col-md-12">
-                  <h3>로드맵 등록</h3>
-                  <form class="form" method="post" action="${pageContext.request.contextPath}/admin/roadmap/insert/">
+                  <h3>로드맵 수정</h3>
+                  <form class="form" method="post" action="${pageContext.request.contextPath}/admin/roadmap/update/${roadmap.roadmapName}">
                     <table class="table no-border">
                       <tbody>
                        <tr>
                           <td><h4>로드맵 제목</h4></td>
                          </tr>
                         <tr>
-                          <td><input type="text" class="form-control" placeholder="제목을 입력해주세요." name="roadmapName"></td>
+                          <td><input type="text" class="form-control" placeholder="제목을 입력해주세요." name="roadmapName" value="${roadmap.roadmapName}"></td>
                         </tr>
                         <tr>
                           <td><h4>로드맵 내용</h4></td>
@@ -97,13 +78,13 @@ $(function(){
                           <td><h4>로드맵 가격</h4></td>
                          </tr>
                         <tr>
-                          <td><input type="text" class="form-control" placeholder="가격을 입력해주세요." name="roadmapPrice" ></td>
+                          <td><input type="text" class="form-control" placeholder="가격을 입력해주세요." name="roadmapPrice" value="${roadmap.roadmapPrice}" ></td>
                         </tr>
                         <tr>
                           <td><input type="hidden" class="onLectureNo" name="list"></td>
                         </tr>                        
                         <tr>
-                          <td><button type="submit" class="btn btn-default" id="register">등록</button></td>
+                          <td><button type="submit" class="btn btn-default" id="update" value="${roadmap.roadmapName}">수정</button></td>
                         </tr>
                       </tbody>
                     </table>
@@ -119,9 +100,19 @@ $(function(){
                     </tr>
                   </thead>
                   <tbody  id="addOnLectureTable">
-
+					<c:forEach items="${list}" var="roadmap">
+					 <tr class="onLecture_item">
+					 <td class='onLecture-remove'><button type='button' class='btn' id="btn">취소</button></td>
+                      <td class="onLecture-no" id="${roadmap.onLecture.onLectureNo}">${roadmap.onLecture.onLectureNo}</td>
+                      <td class="onLecture-name"><a href="#">${roadmap.onLecture.onLectureName}</a></td>
+                      <td class="onLecture-content"><span class="content">${roadmap.onLecture.onLectureContent}</span></td>
+        			  <td class="onLecture-teacher"><span class="teacher">${roadmap.onLecture.onLectureTeacher}</span></td>
+                      <td class="onLecture-price"><span class="price">${roadmap.onLecture.onLecturePrice}</span>
+                      </td>
+                    </tr>
+					</c:forEach>
                    </tbody>
-                    <tr class="cart_item">
+                    <tr class="onLecture_item">
                       <td colspan="6"><div class="onlecture">
                           <button type="button" class="btn" id="onlecturebtn">강의 추가하기</button>
                         </div></td>
