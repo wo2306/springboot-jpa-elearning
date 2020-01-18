@@ -135,7 +135,7 @@
                                     <ul class="pagination theme-colored xs-pull-center m-0">
                                         <c:if test="${page.hasPrevious() eq true}">
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/roadmap/onLectureList/${page.number}"
+                                                <a href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${page.number}"
                                                    aria-label="Previous"> <span aria-hidden="true">이전</span> </a>
                                             </li>
                                         </c:if>
@@ -144,12 +144,12 @@
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
                                                         <li class="active"><a
-                                                                href="${pageContext.request.contextPath}/roadmap/onLectureList/${i.count}">${i.count}</a>
+                                                                href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${i.count}">${i.count}</a>
                                                         </li>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <li>
-                                                            <a href="${pageContext.request.contextPath}/roadmap/onLectureList/${i.count}">${i.count}</a>
+                                                            <a href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${i.count}">${i.count}</a>
                                                         </li>
                                                     </c:otherwise>
                                                 </c:choose>
@@ -157,7 +157,7 @@
                                         </c:if>
                                         <c:if test="${page.hasNext() eq true}">
                                             <li>
-                                                <a href="${pageContext.request.contextPath}/roadmap/onLectureList/${page.number+2}"
+                                                <a href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${page.number+2}"
                                                    aria-label="Next"> <span aria-hidden="true">다음</span> </a></li>
                                         </c:if>
                                     </ul>

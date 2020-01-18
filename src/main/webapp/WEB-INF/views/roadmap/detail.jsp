@@ -45,7 +45,7 @@
               <div class="col-md-5">
                 <div class="product-image">
                   <div class="zoom-gallery">
-                    <a href="http://placehold.it/460x460" title="Title Here 1"><img src="http://placehold.it/460x460" alt=""></a>
+                    <a href="http://placehold.it/460x460" title="Title Here 1"><img src="http://placehold.it/320x320" alt=""></a>
                   </div>
                 </div>
               </div>
@@ -61,30 +61,20 @@
                       <li><a href="#">Add reviews</a></li>
                     </ul>
                   </div>
-                  <div class="price"><ins><span class="amount"><fmt:formatNumber value="${roadmap.roadmapPrice}" pattern="₩#,###"/></span></ins> </div>
-                  <div class="short-description">
-                    <p>등록일 : ${roadmap.roadmapRegdate}</p>
-                  </div>
-                  <div class="tags"><strong>SKU:</strong> EA34</div>
-                  <div class="category"><strong>Category:</strong> <a href="#">Book</a>, <a href="#">Note Book</a></div>
-                  <div class="tags"><strong>Tags:</strong> <a href="#">Bag</a>, <a href="#">Ladies Bag</a></div>
+                  	<br>
+                     <p>등록일 : ${roadmap.roadmapRegdate}</p>
                   <div class="cart-form-wrapper mt-30">
                     <form enctype="multipart/form-data" method="post" class="cart">
                       <input type="hidden" value="productID" name="add-to-cart">
                       <table class="table variations no-border">
                         <tbody>
                           <tr>
-                            <td class="name">포함된 강의수 ${fn:length(list)} </td>
-                            <td class="value">
-                              <div class="quantity buttons_added">
-                                <input type="button" class="minus" value="-">
-                                <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                <input type="button" class="plus" value="+">
-                              </div>
-                            </td>
+                          <td> <div class="price"><ins><span class="amount">가격 : <fmt:formatNumber value="${roadmap.roadmapPrice}" pattern="₩#,###"/></span></ins> </div></td>
+                            <td>포함된 강의수 ${fn:length(list)} </td>
                           </tr>
                         </tbody>
                       </table>
+                      <br>
                       <button class="single_add_to_cart_button btn btn-theme-colored" type="submit">구매</button>
                     </form>
                   </div>
@@ -160,91 +150,23 @@
               </div>
             </div>
             <div class="col-md-12">
-              <h3 class="line-bottom">Related Products</h3>
+              <h3 class="line-bottom">등록된 강의</h3>
               <div class="row multi-row-clearfix">
                 <div class="products related">
+                 <c:forEach items="${list}" var="roadmap">
                   <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
                     <div class="product">
-                      <span class="tag-sale">Sale!</span>
                       <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
-                          </div>
-                        </div>
+                        <img alt="" src="${pageContext.request.contextPath}/images/onLecture/${roadmap.onLecture.onLectureNo}.png" class="img-responsive img-fullwidth">
                       </div>
                       <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Watch</h5></a>
+                        <a href="#"><h5 class="product-title">${roadmap.onLecture.onLectureName}</h5></a>
                         <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 80%;">3.50</span></div>
-                        <div class="price"><del><span class="amount">$165.00</span></del><ins><span class="amount">$160.00</span></ins></div>
+                        <div class="price"><ins><span class="amount"><fmt:formatNumber value="${roadmap.onLecture.onLecturePrice}" pattern="₩#,###"/></span></ins></div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
-                    <div class="product">
-                      <span class="tag-sale">Sale!</span>
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Color Box</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 32%;">3.50</span></div>
-                        <div class="price"><del><span class="amount">$120.00</span></del><ins><span class="amount">$110.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
-                    <div class="product">
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Pen</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 85%;">3.50</span></div>
-                        <div class="price"><ins><span class="amount">$240.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md3 col-lg-3">
-                    <div class="product">
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Table Lamp</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
-                        <div class="price"><ins><span class="amount">$480.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
+                 </c:forEach>
                 </div>
               </div>
             </div>

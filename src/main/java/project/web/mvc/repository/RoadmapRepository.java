@@ -19,4 +19,9 @@ public interface RoadmapRepository extends CrudRepository<Roadmap, Long> {
 	@Query("delete from Roadmap r where r.roadmapName=?1")
 	void deleteByRoadmapName(String roadmapName);
 	
+	@Modifying
+	@Query("delete from Roadmap r where r.roadmapNo=?1")
+	void deleteByRoadmapNo(Long roadmapNo);
+	
+	
 }
