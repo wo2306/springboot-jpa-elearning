@@ -67,6 +67,7 @@ public class RoadmapServiceImpl implements RoadmapService {
 			}
 		}else {
 			// 로드맵이 가지고 있는 강의수보다 업데이트할 강의수가 작을때
+			
 			for (int i = 0; i < onLectureNo.size(); i++) {
 				System.out.println(roadmapList.get(i).getRoadmapNo() + "기존 강의 번호!!@@");
 				for (int k = 0; k <i+1; k++) {
@@ -78,6 +79,7 @@ public class RoadmapServiceImpl implements RoadmapService {
 				roadmapList.get(i).setRoadmapContent(roadmap.getRoadmapContent());
 				roadmapList.get(i).setRoadmapPrice(roadmap.getRoadmapPrice());
 				roadmapRepo.save(roadmapList.get(i));
+			
 			    }		
 			}
 	}	
