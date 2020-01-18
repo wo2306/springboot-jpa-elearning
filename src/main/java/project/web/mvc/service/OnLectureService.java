@@ -35,4 +35,7 @@ public interface OnLectureService {
     Page<OnLecture> selectByTeacherName(String keyword, int pageNum);
 
     Page<OnLecture> selectByonLectureName(String keyword, int pageNum);
+    
+    //
+    List<OnLecture> selectByCate(String cate);
 }

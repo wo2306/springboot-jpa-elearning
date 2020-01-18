@@ -95,7 +95,7 @@
                                     <td>${list.userdb.userdbEmail}</td>
                                     <td>${list.offLecture.offLectureName}</td>
                                     <td>${list.offOrderMethod}</td>
-<%--                                    <td><fmt:formatNumber value="${list.offLecture.price}" pattern="₩#,###"/></td>--%>
+<%--                                    <td><fmt:formatNumber value="${list.offLecture.offLecturePrice}" pattern="₩#,###"/></td>--%>
                                     <td><fmt:formatNumber value="10000" pattern="₩#,###"/></td>
                                     <td><fmt:formatDate value="${list.offOrderRegdate}" pattern="yyyy.MM.dd"/></td>
                                 </tr>

@@ -75,17 +75,11 @@
                                                 class="line-bottom mb-10">${dto.onLectureName}</h5>
                                             <p style="height: 150px">${dto.onLectureSummary}</p>
                                             <div> 
-                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10"
-                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의
-                                                상세 보기</a>
-                                            <button type="button" value="wishlist" id=${dto.onLectureNo} class="wishlistbtn1"
-                                            	style="background-color: transparent; border-color: transparent; display: inline;">
-                                           			 <img src="${pageContext.request.contextPath}/wish/notwish.png">       
-                                            </button>
-                                            <button type="button" value="wishlist" id=${dto.onLectureNo} class="wishlistbtn2"
-                                            	style="background-color: transparent; border-color: transparent; display: none;">
-                                           			 <img src="${pageContext.request.contextPath}/wish/wish.png">       
-                                            </button>
+                                            <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" style="margin-top: -30px;"
+                                               href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의 상세 보기</a>
+                                             &nbsp
+                                             <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" value="wishlist" 
+                                             id=${dto.onLectureNo} style="margin-top: -30px;">wishlist</a>
                                             </div>
                                         </div>
                                     </div>
@@ -259,7 +253,7 @@
         return false;
     }
 
-    $(document).on('click', 'button[value=wishlist]', function () {
+    $(document).on('click', 'a[value=wishlist]', function () {
         if (confirm('위시리스트에 담을까요?')) {
             $.ajax({
                 type: "post",
@@ -267,11 +261,9 @@
                 dataType: "text",
                 data: "onLectureNo=" + $(this).attr('id'),
                 success: function () {
-                	
-                		/* $(".wishlistbtn1").hide();
-                		$(".wishlistbtn2").show();
-                	 */
+            
                     if (confirm('성공해쓰 보러갈래?')) return location.href = "${pageContext.request.contextPath}/myPage/info/1";
+                    
                 },
                 error: function (err) {
                     alert("이미 중복된 강의가 있습니다.");

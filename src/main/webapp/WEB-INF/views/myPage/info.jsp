@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <head>
     <title>LM company | Learning Machine</title>
-
+   
 </head>
 
 <body class="">
@@ -238,7 +238,8 @@
                                         <table class="table" id="wishlisttable">
                                             <tbody>
                                             <tr>
-                                                <th>강의제목</th>
+                                            	<th style="width:150px;">강의사진</th>
+                                                <th style="width:500px; padding-left: 30px;">강의제목</th>
                                                 <th>가격</th>
                                                 <th>삭제</th>
                                             </tr>
@@ -458,7 +459,8 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="'+item.onLecture.onLectureNo+'>'+item.onLecture.onLectureName + '</a>' + '</td>';
+                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+'<img src="${pageContext.request.contextPath}/images/onLecture/'+item.onLecture.onLectureNo+'.png">'+ '</a>' +'</td>'
+                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+item.onLecture.onLectureName + '</a>' + '</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
@@ -485,7 +487,8 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-        					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'+item.onLecture.onLectureName+'</a>'+'</td>';
+                            str += '<td class="product-thumbnail">' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+'<img src="${pageContext.request.contextPath}/images/onLecture/'+item.onLecture.onLectureNo+'.png">'+ '</a>' +'</td>';
+        					str += '<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+item.onLecture.onLectureName+'</a>'+'</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
@@ -530,7 +533,8 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>' + item.onLecture.onLectureName + '</a>' + '</td>';
+                            str += '<td class="product-thumbnail">' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+'<img src="${pageContext.request.contextPath}/images/onLecture/'+item.onLecture.onLectureNo+'.png">'+ '</a>' +'</td>';
+                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">' + item.onLecture.onLectureName + '</a>' + '</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
