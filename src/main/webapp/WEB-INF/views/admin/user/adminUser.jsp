@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -6,182 +6,192 @@
 <!DOCTYPE html>
 <head>
 
-  <!-- Page Title -->
-  <title>LM company | Learning Machine | main</title>
+    <!-- Page Title -->
+    <title>LM company | Learning Machine | main</title>
 
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.deleteBtn').click(function () {
+                alert('정말삭제한다아')
+                $('.deleteBtn').attr('type', 'submit')
+                return true;
+            })
+
+
+            $('#search').click(function () {
+                alert('서치클릭')
+                var command = $("#key option:selected").val();
+                var keyword = $("#keyword").val();
+                $('form[name=searchForm]').attr('type', 'submit')
+                location.href = '${pageContext.request.contextPath}/admin/user/' + command + '/' + keyword + '/1';
+                return false;
+                /* 	   $('form[name=searchForm]').attr('action','submit')
+                    return true;
+
+                 */
+
+
+            })
+
+
+            function searchform() {
+                alert(2222);
+                var keyfield = $("#key option:selected").val();
+                var keyword = $("#keyword").val();
+                location.href = '${pageContext.request.contextPath}/admin/user/search/' + keyfield + '/' + keyword + '/1';
+                return false;
+            }
+
+        })
+    </script>
+
 </head>
 <body class="">
 <div id="wrapper" class="clearfix">
 
-  <!-- Start main-content -->
-  <div class="main-content">
+    <!-- Start main-content -->
+    <div class="main-content">
 
-    <!-- Section: inner-header -->
-    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
-      <div class="container pt-70 pb-20">
-        <!-- Section Content -->
-        <div class="section-content">
-          <div class="row">
-            <div class="col-md-12">
-              <h2 class="title text-white">관리자 페이지</h2>
-              <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="${pageContext.request.contextPath}/admin"><h3>Home</h3></a>- 사용자들을  수정, 삭제할 수 있는 페이지입니다.</li>
-	                
-	           <!-- Topbar Search -->
-                 <li>
-                     <form name="searchForm" method="post" onsubmit="return searchform()">
-                         <div class="input-group" style="padding-left: 730px">
-                             <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
-                                 <option value="all">전체</option>
-                                 <option value="no">학생번호</option>
-                                 <option value="email">이메일</option>
-                                 <option value="nickname">닉네임</option>
-                             </select>
-                             <input id="keyword" type="text" name="value" style="padding-left: 10px"
-                                    class="form-control bg-light border-0 small"
-                                    placeholder="Search for..." aria-label="Search"
-                                    aria-describedby="basic-addon2">
-                             <div class="input-group-append">
-                                 <button class="btn btn-primary" type="submit" id="search">
-                                     <i class="fas fa-search fa-sm"></i>
-                                 </button>
-                             </div>
-                         </div>
-                     </form>
-                 </li>      
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- Section: inner-header -->
+        <section class="inner-header divider parallax layer-overlay overlay-dark-5"
+                 data-bg-img="http://placehold.it/1920x1280">
+            <div class="container pt-70 pb-20">
+                <!-- Section Content -->
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="title text-white">관리자 페이지</h2>
+                            <ol class="breadcrumb text-left text-black mt-10">
+                                <li><a href="${pageContext.request.contextPath}/admin"><h3>Home</h3></a>- 사용자들을 수정, 삭제할
+                                    수 있는 페이지입니다.
+                                </li>
 
-    <!-- Section: About -->
-    <section class="">
-      <div class="container">
-        <div class="section-content">
-          <div class="row">
-                     <table class="table table-bordered" id="dataTable" cellspacing="0">
-                        <tr>
-                           <th style="width:200px">UserNo</th>
-                           <th style="width:350px">Email</th>
-                           <th style="width:350px">Nickname</th>
-                           <th>수정</th>
-                           <th>삭제</th>
-                        </tr>
-                        <c:forEach items="${requestScope.list}" var="list">
-                           <tr>
-                              <td>${list.userdbNo}</td>
-                              <td>${list.userdbEmail}</td>
-                              <td>${list.userdbNickname}</td>
-                              <td><input type="button" class="btn btn-dark" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/user/updateForm/${list.userdbNo}'"></td>
-                              <td><input type="button" class="btn btn-dark" value="삭제" id=${list.userdbNo}></td>
-                           </tr>
-                        </c:forEach>
-                     </table>
-                                 <div class="col-md-6">
-                                    <div class="video-popup">
-                                       <a href="https://www.youtube.com/watch?v=pW1uVUg5wXM"
-                                          data-lightbox-gallery="youtube-video" title="Video"> </a>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+                                <!-- Topbar Search -->
+                                <li>
+                                    <form name="searchForm" method="get">
+                                        <div class="input-group" style="padding-left: 730px">
+                                            <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
+                                                <option value="all">전체</option>
+                                                <option value="userdbNo">학생번호</option>
+                                                <option value="userdbEmail">이메일</option>
+                                                <option value="userdbNickname">닉네임</option>
+                                            </select>
+                                            <input id="keyword" type="text" name="keyword" style="padding-left: 10px"
+                                                   class="form-control bg-light border-0 small"
+                                                   placeholder="Search for..." aria-label="Search"
+                                                   aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button" id="search">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ol>
                         </div>
-                     </section>
-
-                     <!-- Divider: Call To Action -->
-    <section class="bg-theme-color-2">
-      <div class="container pt-10 pb-20">
-        <div class="row">
-          <div class="call-to-action">
-            <div class="col-md-6">
-              <h3 class="mt-5 mb-5 text-white vertical-align-middle"><i class="pe-7s-mail mr-10 font-48 vertical-align-middle"></i> SUBSCRIBE TO OUR NEWSLETTER</h3>
-            </div>
-            <div class="col-md-6">
-              <!-- Mailchimp Subscription Form Starts Here -->
-              <form id="mailchimp-subscription-form" class="newsletter-form mt-10">
-                <div class="input-group">
-                  <span class="input-group-btn">
-                  </span>
+                    </div>
                 </div>
-              </form>
-              <!-- Mailchimp Subscription Form Ends Here -->
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+        </section>
+
+        <!-- Section: About -->
+        <section class="">
+            <div class="container">
+                <div class="section-content">
+                    <div class="row">
+                        <form name="form" action="${pageContext.request.contextPath}/admin/user/delete">
+                            <table class="table table-bordered" id="dataTable" cellspacing="0">
+                                <tr>
+                                    <th style="width:200px">UserNo</th>
+                                    <th style="width:350px">Email</th>
+                                    <th style="width:350px">Nickname</th>
+                                    <th>수정</th>
+                                    <th>삭제</th>
+                                </tr>
+                                <c:forEach items="${requestScope.list}" var="list">
+                                    <tr>
+                                        <td>${list.userdbNo}</td>
+                                        <td>${list.userdbEmail}</td>
+                                        <td><input type="text" name="userdbNickname" value="${list.userdbNickname}"
+                                                   style="display: none">${list.userdbNickname}</td>
+                                        <td><input type="button" class="btn btn-dark" value="수정"
+                                                   onClick="location.href='${pageContext.request.contextPath}/admin/user/updateForm/${list.userdbNo}'">
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-dark deleteBtn" name="userdbNo"
+                                                    value=${list.userdbNo }>삭제
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </form>
+                        <!-- 페이징처리 -->
+                        <div class="container" id="in">
+                            <div class="row">
+                                <div class="col" id="inin">
+                                    <ul class="pagination">
+                                        <c:if test="${page.totalPages ne 0}">
+                                        <c:choose>
+                                        <c:when test="${page.hasPrevious() eq true}">
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/user/${command}/${keyword}/${page.number}"
+                                               aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                            </a>
+                                        </li>
+                                        </c:when>
+                                        <c:otherwise>
+                                        <li class="page-item">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/user/${command}/${keyword}/${page.number+1}"
+                                               aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                            </a>
+                                        </li>
+                                        </c:otherwise>
+                                        </c:choose>
+
+                                        <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
+                                        <li class="page-item">
+                                            <c:choose>
+                                                <c:when test="${page.number eq i.count-1}">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/user/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/user/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </li>
+                                        </c:forEach>
+
+                                        <li class="page-item">
+                                            <c:choose>
+                                            <c:when test="${page.hasNext() eq true}">
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/user/${command}/${keyword}/${page.number+2}"
+                                               aria-label="Next"> <span aria-hidden="true">다음</span> </a>
+                                            </c:when>
+                                            <c:otherwise>
+                                            <a class="page-link"
+                                               href="${pageContext.request.contextPath}/admin/user/${command}/${keyword}/${page.number+1}"
+                                               aria-label="Previous"> <span aria-hidden="true">다음</span>
+                                            </a>
+                                            </c:otherwise>
+                                            </c:choose>
+                                            </c:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
-	<script type="text/javascript">
-              $(document).ready(function(){ 
-               
-                
-                //전체레코드 가져오기
-                function printUser() {
-                   $.ajax({
-                         type :"post",
-                         url :"${pageContext.request.contextPath}/admin/user/",
-                         dataType :"json",               
-                         success : function(result){
-                            alert("통신성공!!!");
-                            if(result!=null){
-                            alert(result);
-                            $('#dataTable tr:gt(0)').empty();
-                         var str = "";
-                         $.each(result,function(index,item){
-                            str+='<tr>';
-                            str+='<td>'+item.userdbNo+'</td>';
-                            str+='<td>'+item.userdbEmail+'</td>';
-                            str+='<td>'+item.userdbNickname+'</td>';
-                            str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
-                            str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.userdbNo+'></td>';
-                            str+='</tr>';
-                         });
-                         $('#dataTable').append(str);
-                            }else alert("등록된 유저가 없습니다.");
-                           },
-                        error : function(err){
-                         alert("통신실패!!!! err : " + err);
-                     } 
-                     });
-                }
-
-                
-                $('#dataTable').on('click','input[value=삭제]',function() {
-                	
-                    alert($(this).attr('id'));
-                    $.ajax({
-                    url:"${pageContext.request.contextPath}/admin/user/delete",
-                    type:"delete",
-                    data:"userdbNo="+$(this).attr('id'),
-                    dataType:"text",
-                    success:function(){
-                       alert("삭제완료");
-                       printUser();
-                    },error:function(err){
-                       alert("자식레코드있어서 못지워요");
-                    }
-                 })
-              });//delete
-              
-              function searchform() {
-            	  alert(2222);
-                  var keyfield = $("#key option:selected").val();
-                  var keyword = $("#keyword").val();
-                  location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
-                  return false;
-              }
-              
-              })
-              </script>
-
 </body>
 </html>
