@@ -36,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/myPage/**").authenticated()
 //        .antMatchers("/cart/**").authenticated()
         .antMatchers("/order/**").authenticated()
+        .antMatchers("/qna/questionForm").authenticated()
+        .antMatchers("/qna/read/**").authenticated()
         .anyRequest().permitAll()
                 .and() // 로그인 설정
 	                .formLogin()

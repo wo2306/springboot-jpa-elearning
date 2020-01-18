@@ -50,13 +50,22 @@
 	a:visited { color: black; text-decoration: none;}
 	a:hover { color: gray; text-decoration: none;}
 	.logout{padding-left: 20px;}
-  
+	.logo{width:20px}
   </style>
 </head>
 <body>
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-		<a href="${pageContext.request.contextPath}/">메인 페이지로 가기</a>
+        
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center"
+       href="${pageContext.request.contextPath}/">
+        <div class="">
+           <img src="${pageContext.request.contextPath}/css/images/adminlogo2.png" alt=""></a>
+        </div>
+        <div class="sidebar-brand-text mx-3"></div>
+    </a>
+        
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
             <div class="topbar-divider d-none d-sm-block"></div>

@@ -1,7 +1,17 @@
 package project.web.mvc.domain;
 
 
-import javax.persistence.*;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,6 +43,9 @@ public class Userdb {
 
 	@Column(nullable = false)
 	private Long authority;
+	
+	@CreationTimestamp
+	private Date regDate;
 	
 	public Userdb(Long userdbNo) {
 		this.userdbNo = userdbNo;
