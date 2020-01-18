@@ -37,6 +37,19 @@ public class OrderServiceImpl implements OrderService {
         onOrder.setOnlecture(new OnLecture(onLectureNo));
         onOrder.setUserdb(LoginCheck.getUserdb());
         onOrderRepository.save(onOrder);
+        couponDiscount(couponCode);
+    }
+
+    @Override
+    public Page<OnOrder> onSelectByUserNo(int pageNum) {
+        return onOrderRepository.findByUserdb_UserdbNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum - 1, 12));
+    }
+
+    @Override
+    public void couponDiscount(String couponCode) {
+        Coupon coupon = couponRepository.findById(couponCode).orElse(null);
+        coupon.setCouponRemainingCount(coupon.getCouponRemainingCount()-1);
+        couponRepository.save(coupon);
     }
 
     @Override

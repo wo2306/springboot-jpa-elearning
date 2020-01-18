@@ -23,9 +23,11 @@
             horiz-align: center;
             text-align: center;
         }
+
         label {
             font-weight: bold;
         }
+
         #in {
             margin: auto;
             width: 50%;
@@ -89,7 +91,7 @@
 
                     </div>
                     <hr>
-                    <form id="onLectureForm" action="${pageContext.request.contextPath}/onLecture/update" method="post">
+                    <form id="onLectureForm" action="${pageContext.request.contextPath}/admin/onLecture/update" method="post">
                         <div class="form-group">
                             <label>온라인 강의명</label>
                             <input type="hidden" class="form-control" placeholder="강의번호"
@@ -121,7 +123,7 @@
                         <div class="form-group">
                             <label>강의 내용 설명</label>
                             <textarea class="form-control" name="onLectureContent" id="summernote" rows="7"
-                                      placeholder="강의에 대한 설명을 쓰세요"></textarea>
+                                      placeholder="강의에 대한 설명을 쓰세요">${onLecture.onLectureContent}</textarea>
                         </div>
                         <div class="form-group">
                             <label>썸네일용 강의 설명</label>
@@ -161,21 +163,14 @@
 
 </body>
 <script>
-    document.querySelector('.file').addEventListener('change', function () {
-        var vid = document.createElement('video');
-        var fileURL = URL.createObjectURL(this.files[0]);
-        vid.src = fileURL;
-        vid.ondurationchange = function () {
-            console.log(this.duration);
-            dur = this.duration;
-            $("#videoLength").val(Math.floor(dur) + '분')
-        };
+    $("#submit").click(function () {
+        $("#onLectureForm").submit();
     });
-
     $(function () {
         $('#outInsert').click(function () {
             location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
         })
+
         $('#summernote').summernote({
             height: 300,                 // set editor height
             minHeight: null,             // set minimum height of editor

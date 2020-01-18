@@ -52,29 +52,24 @@
 				</div>
 			</section>
 
-			<!-- Section: Blog -->
-			<section>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-8 blog-pull-right">
-							<div class="single-service">
-								<img
-									src="${pageContext.request.contextPath}/images/onLecture/${onLecture.onLectureNo}.png"
-									style="width: 750px; height: 500px" alt="">
-								<h3 class="text-theme-colored line-bottom text-theme-colored">${onLecture.onLectureName}</h3>
-								<ul class="review_text list-inline">
-									<li>
-										<!--리뷰 평점 평균내서 -->
-										<div class="star-rating" title="Rated 4.50 out of 5">
-											<span style="width: 90%;">4.50</span>
-										</div>
-									</li>
-								</ul>
-								<h5>
-									<em>${onLecture.onLectureSummary}</em>
-								</h5>
-								<p>${onLecture.onLectureContent}</p>
-								<br>
+        <!-- Section: Blog -->
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 blog-pull-right">
+                        <div class="single-service">
+                            <img src="${pageContext.request.contextPath}/resources/images/onLecture/${onLecture.onLectureNo}.png" style="width: 750px; height: 500px" alt="">
+                            <h3 class="text-theme-colored line-bottom text-theme-colored">${onLecture.onLectureName}</h3>
+                            <ul class="review_text list-inline">
+                                <li>
+                                    <!--리뷰 평점 평균내서 -->
+                                    <div class="star-rating" title="Rated 4.50 out of 5"><span
+                                            style="width: 90%;">4.50</span></div>
+                                </li>
+                            </ul>
+                            <h5><em>${onLecture.onLectureSummary}</em></h5>
+                            <p>${onLecture.onLectureContent}</p>
+                            <br>
 
 								<h4 class="widget-title line-bottom">강의 등록 일자</h4>
 								<p>${onLecture.onLectureRegdate}</p>

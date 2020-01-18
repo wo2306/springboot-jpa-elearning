@@ -13,7 +13,7 @@ import java.util.List;
 public interface OnLectureRepository extends PagingAndSortingRepository<OnLecture, Long> {
 
 
-    @Query("select o from OnLecture o where o.onLectureName LIKE CONCAT('%',:keyword,'%') or o.onLectureTeacher LIKE CONCAT('%',:keyword,'%')")
+    @Query("select o from OnLecture o where o.onLectureName LIKE CONCAT('%',:keyword,'%') or o.onLectureCategory LIKE CONCAT('%',:keyword,'%') or o.onLectureTeacher LIKE CONCAT('%',:keyword,'%')")
     Page<OnLecture> findByKeyword(@Param("keyword") String keyword, Pageable pageable);
 
     Page<OnLecture> findByOnLectureCategory(String onLectureCategory, Pageable pageable);

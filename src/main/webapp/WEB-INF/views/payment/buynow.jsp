@@ -18,7 +18,7 @@
 
         <!-- Section: inner-header -->
         <section class="inner-header divider parallax layer-overlay overlay-dark-5"
-                 data-bg-img="http://placehold.it/1920x1280">
+                 data-bg-img="${pageContext.request.contextPath}/images/index/main2.png">
             <div class="container pt-70 pb-20">
                 <!-- Section Content -->
                 <div class="section-content">
@@ -55,7 +55,7 @@
                                        value="${discount_sum+onLecture.onLecturePrice*onLecture.onLectureDiscount/100}"/>
                                 <tr>
                                     <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                                   src="${pageContext.request.contextPath}/images/onLecture/${onLecture.onLectureNo}.png"></a>
+                                                                                   src="${pageContext.request.contextPath}/resources/images/onLecture/${onLecture.onLectureNo}.png"></a>
                                     </td>
                                     <td><a href="#">${onLecture.onLectureName}</a></td>
                                     <td><fmt:formatNumber value="${onLecture.onLecturePrice}"
@@ -186,7 +186,7 @@
             } else {
                 let msg = '결제에 실패하였습니다. 결제 확인창으로 되돌아갑니다.'
                 alert(msg);
-                location.href = "${pageContext.request.contextPath}/cart/checkout";
+                location.href = "${pageContext.request.contextPath}/order/buynow/${onLecture.onLectureNo}";
             }
         });
     }
