@@ -80,11 +80,16 @@
 			<!-- 카카오로그인 -->
 				<div class="form-group">
 		            <form method="post" name="kakaoForm" action="${pageContext.request.contextPath}/loginCheck">
-						<button type="button" id="custom-login-btn" onClick="loginWithKakao()"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" /></button>
+						<button type="button" id="kakao-login-btn"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" /></button>
 						<button type="button" id="custom-login-btn" onClick="loginWithKakao()"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" /></button>
 						
 						<a id="kakao-login-btn"></a>
-						<a href="http://developers.kakao.com/logout"></a>
+							<a href="http://developers.kakao.com/logout"></a>
+						<p id="kakao-login-result"></p>
+						</div>
+						
+						<a id="kakao-login-btn"></a>
+							<a href="http://developers.kakao.com/logout"></a>
 						<p id="kakao-login-result"></p>
 						</div>
 						</div>
