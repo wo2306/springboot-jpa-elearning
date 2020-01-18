@@ -45,7 +45,7 @@
               <div class="col-md-5">
                 <div class="product-image">
                   <div class="zoom-gallery">
-                    <a href="http://placehold.it/460x460" title="Title Here 1"><img src="http://placehold.it/320x320" alt=""></a>
+                    <a href="http://placehold.it/460x460" title="Title Here 1"><img src="${pageContext.request.contextPath}/images/roadmap/${roadmap.roadmapNo}.png" alt=""></a>
                   </div>
                 </div>
               </div>
