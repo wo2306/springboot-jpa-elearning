@@ -29,7 +29,6 @@
         <div class="section-content">
           <div class="row"  id="out">
             <div class="col-md-12">
-              <h2 class="title text-white">관리자 페이지</h2>
               <ol class="breadcrumb text-left text-black mt-10">
                                 <li><a href="#">교육원 관리</a></li>
                                 <li class="active text-gray-silver"> - 교육원을 등록, 수정, 삭제할 수 있는 페이지입니다.</li>
@@ -92,13 +91,9 @@
 								</c:forEach>
 							</table>
 							<!-- </form> -->
-							<h4>Academy 등록하기 :  </h4>
 							<form name="writeForm" method="post"
 								action="${pageContext.request.contextPath}/admin/academy/adminRegister">
-										<input type="submit" class="btn btn-dark" value="등록하기">
-							
-			
-
+										<input type="submit"  style="width: 500px; margin-left: 280px" class="btn btn-dark" value="새로운 교육원 등록하기">
 							</form>
 
 											<div class="col-md-6">
