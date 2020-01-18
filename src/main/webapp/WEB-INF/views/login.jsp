@@ -59,11 +59,13 @@
                                   <input id="form_password" name="password" class="form-control" type="password">
             		    </div>
               </div>
+              <!-- Remeber Me
               <div class="checkbox pull-left mt-15">
                 <label for="form_checkbox">
                   <input id="form_checkbox" name="form_checkbox" type="checkbox">
                   Remember me </label>
               </div>
+               -->
               <div class="form-group pull-right mt-10">
                 <button type="submit" class="btn btn-dark btn-sm">Login</button>
               </div>
@@ -78,10 +80,33 @@
 			<!-- 카카오로그인 -->
 				<div class="form-group">
 		            <form method="post" name="kakaoForm" action="${pageContext.request.contextPath}/loginCheck">
-						<a id="custom-login-btn" href="#" onClick="loginWithKakao()">
-							<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300" />
-						</a>
-		            	<input type="text" value="" name="id" id="kakaoId" style="display: none;">
+						<button type="button" id="custom-login-btn" onClick="loginWithKakao()"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" /></button>
+						<button type="button" id="custom-login-btn" onClick="loginWithKakao()"><img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" /></button>
+						
+						<a id="kakao-login-btn"></a>
+						<a href="http://developers.kakao.com/logout"></a>
+						<p id="kakao-login-result"></p>
+						</div>
+						</div>
+						<script type='text/javascript'>
+						  //<![CDATA[
+						    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+						    Kakao.init('c089c8172def97eb00c07217cae17495');
+						    // 카카오 로그인 버튼을 생성합니다.
+						    Kakao.Auth.createLoginButton({
+						    	container: '#kakao-login-btn',
+						    	success: function(authObj) {
+						    		document.getElementById('kakao-login-result').innerText = 'success: ' + JSON.stringify(authObj);
+						    	},
+						    	fail: function(err) {
+						    		document.getElementById('kakao-login-result').innerText = 'fail: ' + JSON.stringify(err);
+						    	}
+						    });
+						  //]]>
+						</script>
+						
+						
+						<input type="text" value="" name="id" id="kakaoId" style="display: none;">
 		            	<input type="text" value="" name="userdbNickname" id="kakaoNickname" style="display: none;">
 		            	<input id="password" name="password" type="text" style="display: none">
                         <input type="hidden" id="kakaoToken" name="${_csrf.parameterName}" value="" style="display:none">
