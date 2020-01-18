@@ -2,6 +2,7 @@ package project.web.mvc.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,5 +14,9 @@ public interface RoadmapRepository extends CrudRepository<Roadmap, Long> {
 	List<Roadmap> findByRoadmapNameSelectAll();
 	
 	List<Roadmap> findByRoadmapName(String roadmapName);
+	
+	@Modifying
+	@Query("delete from Roadmap r where r.roadmapName=?1")
+	void deleteByRoadmapName(String roadmapName);
 	
 }

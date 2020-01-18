@@ -92,7 +92,7 @@
         <c:forEach var="dto" items="${onLectureList}">
               <div class="item ">
                 <div class="service-block bg-white">
-                  <div class="thumb"> <img alt="featured project" src="${pageContext.request.contextPath}/images/onLecture/${dto.onLectureNo}.png" class="img-fullwidth">
+                  <div class="thumb"> <img alt="featured project" src="${pageContext.request.contextPath}/resources/images/onLecture/${dto.onLectureNo}.png" class="img-fullwidth">
                   <h4 class="text-white mt-0 mb-0"><span class="price"><fmt:formatNumber value="${dto.onLecturePrice}" pattern="₩#,###"/></span></h4>
                   </div>
                   <div class="content text-left flip p-25 pt-0">

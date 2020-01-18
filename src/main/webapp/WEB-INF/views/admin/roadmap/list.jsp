@@ -7,6 +7,25 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
 <head>
+<script type="text/javascript">
+	$(function(){
+		$("button[name=deleteBtn]").click(function(){
+			var result = window.confirm("정말 삭제 하시겠습니까?");
+			if(result){
+				location.href='${pageContext.request.contextPath}/admin/roadmap/delete/'+$(this).val();
+			}else{
+				alert("삭제 취소 되었습니다")
+			}
+		})
+		///////////////////////////////////////////////////////////////////////////
+		$("button[name=updateBtn]").click(function(){
+			alert("수정하기")
+			location.href='${pageContext.request.contextPath}/admin/roadmap/updateForm/'+$(this).val();
+		})
+		
+	})
+
+</script>
 
 </head>
 <body class="">
@@ -57,10 +76,10 @@
                       <td class="roadmap-regdate"><span class="regdate">${list.onLecture.onLectureName}</span></td>
                       <td class="roadmap-udate">
                       <input type="hidden" name="id" value=""/>
-                      <button type="submit" class="btn" value="${list.roadmapNo}">수정</button></td>
+                      <button type="submit" class="btn" name="updateBtn" value="${list.roadmapName}">수정</button></td>
                       <td class="roadmap-remove">
                       <input type="hidden" name="id" value=""/>
-                      <button type="button" class="btn" value="${list.roadmapNo}">삭제</button></td>
+                      <button type="button" class="btn" name="deleteBtn" value="${list.roadmapName}" >삭제</button></td>
                     </tr>
                     </c:forEach>
                   </tbody>

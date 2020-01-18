@@ -57,44 +57,21 @@ public class OnLectureController {
         System.out.println(onLecture);
         List<OnLecture> teachers = onLectureService.selectByTeacher(onLecture.getOnLectureTeacher());
         List<Review> reviewList = reviewService.selectByOnlectureNo(onLectureNo);
-       
         model.addAttribute("teacherList", teachers);
         model.addAttribute("detailList", list);
         model.addAttribute("onLecture", onLecture);
         System.out.println("온라인강의별 리뷰 리스트 : " +reviewList.toString());
         model.addAttribute("reviewList", reviewList);
-       
-        
+
+
         if (orderService.payCheck(onLectureNo)) {
-            model.addAttribute("qnaList", qnaService.findTop10ByOrderByClassQuestionRegdateDesc());
+            model.addAttribute("qnaList", qnaService.findRecentQ(onLectureNo));
             model.addAttribute("sugangList", sugangService.sugangList(onLectureNo));
             return "onLecture/dashboard";
         }
         return "onLecture/detail";
     }
 
-    @RequestMapping("/insert")
-    public String insert(OnLecture onLecture, HttpServletRequest request, String detailUrl) {
-        onLectureService.insert(onLecture);
-        String[] detailNames = request.getParameterValues("onDetailName");
-        String[] videoLength = request.getParameterValues("videoLength");
-        for (int i = 0; i < detailNames.length; i++) {
-            onDetailService.insert(new OnDetail(null, onLecture, detailUrl, detailNames[i], videoLength[i]));
-        }
-        return "redirect:admin/onLecture/all/keyword/1";
-    }
-
-    @RequestMapping("/delete/{onLectureNo}")
-    public String delete(@PathVariable Long onLectureNo) {
-        onLectureService.delete(onLectureNo);
-        return "redirect:admin/onLecture/all/keyword/1";
-    }
-
-    @RequestMapping("/update")
-    public String update(OnLecture onLecture) {
-        onLectureService.update(onLecture);
-        return "redirect:onLecture/list";
-    }
 
     @RequestMapping("/view/{onDetailNo}")
     public String view(@PathVariable Long onDetailNo, Model model) {

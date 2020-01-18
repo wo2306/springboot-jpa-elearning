@@ -45,7 +45,7 @@
 							<h4 class="heading-title">Don't have an Account? Register
 								Now</h4>
 						</div>
-						<form method="post" name="signUpForm" onsubmit="sign()">
+						<form method="post" name="signUpForm" action="${pageContext.request.contextPath}/user/signUp">
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" style="display: none">
 							<div class="row">
@@ -77,8 +77,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-default" id="register" onclick="return checkValid()"
-									>회원가입</button>
+								<button type="button" class="btn btn-default" id="register" onClick="javascript:checkValid()">회원가입</button>
 							</div>
 
 						</form>
@@ -113,7 +112,7 @@
 			/*아이디 중복체크*/
 			$('#idCheck').click(function() {
 				$.ajax({
-					url : "${pageContext.request.contextPath}/idCheck",
+					url : "${pageContext.request.contextPath}/user/idCheck",
 					type : "post",
 					data : $("form[name=signUpForm]").serialize(),
 					dataType : "text",
@@ -153,7 +152,7 @@
 			/*닉네임 중복체크*/
 			$('[name=userdbNickname]').keyup(function () {
 				$.ajax({
-					url : "${pageContext.request.contextPath}/nicknameCheck",
+					url : "${pageContext.request.contextPath}/user/nicknameCheck",
 					type : "post",
 					data : $("form[name=signUpForm]").serialize(),
 					dataType : "text",
@@ -174,51 +173,71 @@
 				})
 			});///////닉네임
 
+
 })//레디 끝
 
-	
-	function checkValid() {
-		var f = window.document.signUpForm;
-		if ( f.userdbEmail.value == "" ) {
-	        alert( "이메일을 입력해주세요" );
-			f.userdbEmail.focus();
-			return false;
-		}
-		if ( f.userdbPassword1.value == "" ) {
-	        alert( "비밀번호1를 입력해 주세요" );
-	        f.userdbPassword1.focus();
-	        return false;
-	    }
-		if ( f.userdbPassword2.value == "" ) {
-	        alert( "비밀번호2를 입력해 주세요" );
-	        f.userdbPassword2.focus();
-	        return false;
-	    }else{
-	    	return true;
-	}//else 끝
-}//checkValid 끝
-
-/*가입하기*/
-function sign() {
-		$.ajax({
-			url : "${pageContext.request.contextPath}/signUp",
+function checkValid() {
+	var f = window.document.signUpForm;
+	if ( f.userdbEmail.value == "" ) {
+        alert( "이메일을 입력해주세요" );
+		f.userdbEmail.focus();
+		return;
+	}
+	if ( f.userdbPassword.value == "" ) {
+        alert( "비밀번호1를 입력해 주세요" );
+        f.userdbPassword.focus();
+        return;
+    }
+	if ( f.userdbPassword2.value == "" ) {
+        alert( "비밀번호2를 입력해 주세요" );
+        f.userdbPassword2.focus();
+        return;
+    }
+	else{ 		
+			$.ajax({
+			url : "${pageContext.request.contextPath}/user/signUp",
 			type : "post",
 			data : $("form[name=signUpForm]").serialize(),
 			dataType : "text",
 			success : function(result) {
 				alert(result);
-				if(result==1)
+				if(result==1){
 					alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
-				location.href = "${pageContext.request.contextPath}/login";
+					location.href = "${pageContext.request.contextPath}/login";
+				}
 			},
 			error : function(err) {
 				alert("등록에 실패했습니다.");
 				location.href = "${pageContext.request.contextPath}/";
 			}
-		})
-}
+		})//가입하기 끝 
+	
+	}
+}//checkValid 끝
 
-////가입하기끝
+$(document).ready(function() {
+function sign() {
+	alert('가입하기에이젝스')
+		$.ajax({
+			url : "${pageContext.request.contextPath}/user/signUp",
+			type : "post",
+			data : $("form[name=signUpForm]").serialize(),
+			dataType : "text",
+			success : function(result) {
+				alert(result);
+				if(result==1){
+					alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
+					location.href = "${pageContext.request.contextPath}/login";
+				}
+			},
+			error : function(err) {
+				alert("등록에 실패했습니다.");
+				location.href = "${pageContext.request.contextPath}/";
+			}
+		})//가입하기 끝
+	}
+})
+
 
 	</script>
 

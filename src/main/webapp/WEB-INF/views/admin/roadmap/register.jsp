@@ -41,10 +41,8 @@ $(function(){
 		//alert(result+"결과값");
 		$.each(result,function(index,row){
 			//alert($(row).html());
-		})
-				
+		})	
 	}
-	
 	
 </script>
 
@@ -73,9 +71,7 @@ $(function(){
         </div>
       </div>
     </section>
-
     <section>
- 
       <div class="container">
         <div class="section-content">
                <div class="col-md-12 mt-30">
