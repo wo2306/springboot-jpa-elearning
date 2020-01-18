@@ -2,6 +2,7 @@ package project.web.mvc.domain;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class OnLecture {
 
     private int onLecturePrice;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     private Date onLectureRegdate;
 
 

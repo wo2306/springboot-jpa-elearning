@@ -16,6 +16,9 @@ public interface ClassQuestionService {
     Page<ClassAnswer> selectAllAnswer(int pageNum);
     
     List<ClassQuestion> findAll();
+    
+    public List<ClassAnswer> findByQNo(Long id);
+    
     void insert(ClassQuestion classQuestion);
 
     void updateQuestion(ClassQuestion classQuestion);
@@ -26,10 +29,10 @@ public interface ClassQuestionService {
     void deleteAnswer(Long classAnswerNo);
     
     ClassQuestion selectByQNo(Long id);
+
+    List<ClassQuestion> findRecentQ(Long onLectureNo);
     ClassAnswer selectByAno(Long id);
     
-    List<ClassQuestion> findTop10ByOrderByClassQuestionRegdateDesc();
-
     List<ClassAnswer> selectAnswerByQNo(Long id);
     //유저별 질문 리스트 (마이페이지에서 사용)
     Page<ClassQuestion> selectByUserdbId(int pageNum);

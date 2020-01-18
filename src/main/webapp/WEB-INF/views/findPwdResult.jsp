@@ -12,6 +12,7 @@
 </head>
 
 <body class="">
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
 <script type="text/javascript">
    (function(){
@@ -70,13 +71,13 @@ $(document).ready(function(){
 	var host = "LearningMachine";
 	var template_params = {
 			   "give_men": email,
-			   "reply_to": "reply_to_value",
-			   "host": host,
-			   "content": "귀하의 비밀번호는 "+tempPwd+"입니다."
+			   "host": "LearningMachine",
+			   "content": "발급된 임시 비밀번호는 "+tempPwd+"입니다."
 			}
 
 			var service_id = "default_service";
-			var template_id = "template_V4mBramB";
+			var template_id = "learningmachine";
+			
 			var state= ${state}
 			if(state) {
 			emailjs.send(service_id, template_id, template_params);

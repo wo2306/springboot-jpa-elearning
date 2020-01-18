@@ -32,17 +32,18 @@
 					<table class="table table-striped table-schedule">
 						<thead>
 							<tr class="bg-theme-colored">
-								<th>질문</th>
-								<th>연관 강의</th>
-								<th>제목</th>
-								<th>작성자</th>
+								<th style="color:white;">질문</th>
+								<th style="color:white;">연관 강의</th>
+								<th style="color:white;">제목<span style="font-size: 12px; color:gray">(상세 내용을 보려면 클릭하세요)</span></th>
+								<th style="color:white;">등록일</th>
+								<th style="color:white;">작성자</th>
 							</tr>
 						</thead>
 						<tbody>
 								<c:choose>
     <c:when test="${empty list}">
 	<tr>
-        <td colspan="3">
+        <td colspan="5">
             <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
         </td>
     </tr>
@@ -54,9 +55,12 @@
     <th scope="row" style="width: 170px;"><img src="http://placehold.it/100x50"
 															alt=""></th>
     <td style="width: 160px;">${question.onLecture.onLectureName }</td>
-    <td><strong><a href="${pageContext.request.contextPath}/qna/read/${question.classQuestionNo }">${question.classQuestionTitle }</a></strong></td>
+    <td><strong style="font-size: 16px;"><a href="${pageContext.request.contextPath}/qna/read/${question.classQuestionNo }">${question.classQuestionTitle }</a></strong></td>
     
-    
+    <td> 
+    	<fmt:formatDate value="${question.classQuestionRegdate}"
+                                                        pattern="yyyy. MM. dd"/>
+    </td>
     <td style="width: 100px;">${question.userdb.userdbNickname }</td>
     
     </tr>

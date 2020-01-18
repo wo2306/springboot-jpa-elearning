@@ -69,21 +69,21 @@
 								 <div class="row">
 									<div class="col-sm-3">
 										<div class="form-group">
-											<label>질문 번호</label> <input type="text"
+											<label>질문 번호</label> <input type="text" name="classQuestionNo"
 												value="${classQuestion.classQuestionNo }" readonly="true"
 												class="form-control">
 										</div>
 									</div>
 									<div class="col-sm-3" >
 										<div class="form-group">
-											<label>작성자</label> <input type="text"
+											<label>작성자</label> <input type="text" name="userdb.userdbNickname"
 												value="${classQuestion.userdb.userdbNickname }" readonly="true"
 												class="form-control">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label>관련 강의 제목</label> <input type="text"
+											<label>관련 강의 제목</label> <input type="text" name="onLecture.onLectureName"
 												value="${classQuestion.onLecture.onLectureName }" readonly="true"
 												class="form-control">
 										</div>
@@ -96,14 +96,14 @@
 									<p>
 									<div class="col-sm-12">
 										<div class="form-group">
-											<label>질문 제목</label> <input type="text"
+											<label>질문 제목</label> <input type="text" name="classQuestionTitle"
 												value="${classQuestion.classQuestionTitle }"
 												class="form-control">
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="form-group">
-											<label>질문 내용</label> <input type="text"
+											<label>질문 내용</label> <input type="text" name="classQuestionContent"
 												value="${classQuestion.classQuestionContent }"
 												class="form-control">
 										</div>
@@ -121,27 +121,34 @@
 														</div>
 													</div>
 							</form>
-
-							<%--  <c:forEach items="${list}" var="answer">
-                                <tr>
-                                    <td>${answer.classAnswerNo}</td>
-                                    <td>${answer.classQuestion.classQuestionNo}</td>
-                                    <td>${answer.userdb.userdbNickname}</td>
-                                    <td>${answer.classAnswerContent}</td>
-                                     <td>
-                                        <button type="button" name="updateBtn" class="btn btn-dark"
-                                                value="${answer.classAnswerNo}">수정</button>
-                                    </td>
-                                    <td>
-                                        <button  type="button" name="deleteBtn" class="btn btn-dark"
-                                                value="${answer.classAnswerNo}">삭제
-                                        </button>
-                                    </td>
-                                </tr>
-                            </c:forEach> --%>
-                        
                        
                     </div>
+                    <hr>
+                    <br>
+                    <div style="text-align: center;"><strong> <label >질문에 대한 답변 내용들</label></strong></div>
+                    
+							<c:forEach items="${answerList }" var="answer">
+							<div class="row">
+									<div class="col-sm-2">
+										<div class="form-group">
+											<label>답변 작성자</label> <input type="text" value="${answer.userdb.userdbNickname }" readonly="true" class="form-control">
+										</div>
+									</div>
+									<div class="col-sm-9">
+										<div class="form-group">
+											<label>답변 내용</label> <input type="text" value="${answer.classAnswerContent }" readonly="true" class="form-control">
+										</div>
+									</div>
+									<div class="col-sm-1">
+										<div class="form-group">
+											<label>삭제</label> <button type="button" class="btn btn-dark"
+												value="${question.classQuestionNo}">X</button>
+										</div>
+									</div>
+									
+								</div>
+									</c:forEach>
+								
                 </div>
             </div>
         </section>

@@ -20,10 +20,10 @@
             horiz-align: center;
             text-align: center;
         }
-
-        #in {
-            margin: auto;
-            width: 50%;
+        .pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -62,7 +62,7 @@
                                 <div class="col-sm-6 col-md-4">
                                     <div class="service-block bg-white">
                                         <div class="thumb"><img alt="featured project"
-                                                                src="${pageContext.request.contextPath}/images/onLecture/${dto.onLectureNo}.png"
+                                                                src="${pageContext.request.contextPath}/resources/images/onLecture/${dto.onLectureNo}.png"
                                                                 style="width:265px; height: 195px;"
                                                                 class="img-fullwidth">
                                             <h4 class="text-white mt-0 mb-0"><span class="price"><fmt:formatNumber
@@ -214,7 +214,7 @@
                 var str = ""
                 $.each(result, function (key, val) {
                     str += "<article class=\"post media-post clearfix pb-0 mb-10\">\n" +
-                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/images/onLecture/" + val.onLectureNo + ".png\" style=\"width:80px; height:60px;\" alt=\"http://placehold.it/75x75\"></a>\n" +
+                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/resources/images/onLecture/" + val.onLectureNo + ".png\" style=\"width:80px; height:60px;\" alt=\"http://placehold.it/75x75\"></a>\n" +
                         " <div class=\"post-right\">\n" +
                         " <h5 class=\"post-title mt-0\"><a href=\"${pageContext.request.contextPath}/onLecture/detail/" + val.onLectureNo + "\">" + val.onLectureName + "</a></h5>\n" +
                         " <p>" + "</p>\n" +
