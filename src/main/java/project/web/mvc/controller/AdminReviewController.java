@@ -29,4 +29,17 @@ public class AdminReviewController {
 		
 		return "admin/review/list";
 	}
+	
+	@RequestMapping("/review/updateForm/{reviewNo}")
+	public String updateForm(@PathVariable Long reviewNo, Model model) {
+		Review review= reviewService.selectById(reviewNo);
+		model.addAttribute("review",review);
+		return "admin/review/updateReview";
+	}
+	
+	@RequestMapping("/review/update")
+	public String update (Review review) {
+		
+		return "redirect:/admin/review/list/1";
+	}
 }

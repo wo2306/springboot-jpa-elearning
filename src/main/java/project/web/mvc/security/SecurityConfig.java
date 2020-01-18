@@ -36,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/myPage/**").authenticated()
 //        .antMatchers("/cart/**").authenticated()
         .antMatchers("/order/**").authenticated()
+        .antMatchers("/qna/questionForm").authenticated()
+        .antMatchers("/qna/read/**").authenticated()
         .anyRequest().permitAll()
                 .and() // 로그인 설정
 	                .formLogin()
@@ -47,10 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and() // 로그아웃 설정
 	                .logout()
 	                .logoutUrl("/logout")
-//        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 	                .logoutSuccessUrl("/")
-        			.deleteCookies("JSESSIONID")
-        .invalidateHttpSession(true)
+	                .invalidateHttpSession(true)
+	                .deleteCookies("webid","_kawlt","_kadu","_karmt","_karmtea","_kawltea","TIARA","JSESSIONID","_ga","_gid")
     .and()
         // 403 예외처리 핸들링
     	.exceptionHandling().accessDeniedPage("/denied")

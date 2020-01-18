@@ -11,7 +11,8 @@ import project.web.mvc.domain.ClassQuestion;
 
 public interface ClassQuestionRepository extends PagingAndSortingRepository<ClassQuestion, Long> {
 
-    List<ClassQuestion> findTop10ByOrderByClassQuestionRegdateDesc();
+    @Query("select c from ClassQuestion c where c.onLecture.onLectureNo=?1 order by c.classQuestionRegdate desc")
+    List<ClassQuestion> findRecentQ(Long onLectureNo);
    
    @Query("select c from ClassQuestion c")
     List<ClassQuestion> findAllClassQuestions();   
@@ -20,5 +21,7 @@ public interface ClassQuestionRepository extends PagingAndSortingRepository<Clas
     
     @Query("select c from ClassQuestion c inner join c.userdb u where u.userdbNo=?1")
     Page<ClassQuestion> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
+    
+    ClassQuestion findByClassQuestionNo(Long classQuestionNo);
     
 }

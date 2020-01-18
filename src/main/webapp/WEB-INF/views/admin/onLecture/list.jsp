@@ -120,7 +120,7 @@
 							<div style="width: 100%; text-align: center;">
 								<!-- paging 처리 -->
 								<div class="container" id="in" style="display: inline-block">
-									<div class="row">
+									<div class="row" style="display: inline-block">
 										<div class="col" id="inin">
 											<ul class="pagination">
 												<c:if test="${page.totalPages ne 0}">
