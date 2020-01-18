@@ -35,8 +35,7 @@ public class WishListServiceImpl implements WishListService {
 	public void wishlistInsert(Long onLectureNo) {
 	
 		//userdb에서 userdbNo 빼서 집어넣기
-		Userdb userdb = LoginCheck.getUserdb();
-       Long userdbNo = userdb.getUserdbNo();
+       Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
       
 		if (wishlistRepo.findByOnLectureOnLectureNo(onLectureNo)!=null) {
 
@@ -54,8 +53,7 @@ public class WishListServiceImpl implements WishListService {
 	public List<WishList> wishlistselectAll() {
 		List<WishList> list = new ArrayList<>();
       //userdb에서 userdbNo 빼서 집어넣기
-		Userdb userdb = LoginCheck.getUserdb();
-		Long userdbNo = userdb.getUserdbNo();
+		Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
 	       
 		wishlistRepo.findByUserdbUserdbNo(userdbNo).iterator().forEachRemaining(list::add);
         return list;
