@@ -141,8 +141,8 @@
         <input name="onLectureNo" type="hidden"
                value="${dto.onLecture.onLectureNo}"/>
     </c:forEach>
-        <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
-        <input id="paymentPrice" name="onOrderPrice" type="hidden" value="${price_sum-discount_sum}"/>
+    <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
+    <input id="paymentPrice" name="onOrderPrice" type="hidden" value="${price_sum-discount_sum}"/>
 </form>
 
 <script>
