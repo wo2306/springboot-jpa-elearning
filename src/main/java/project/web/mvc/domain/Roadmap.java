@@ -10,8 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -46,6 +49,7 @@ public class Roadmap {
     private String roadmapContent;
 
     @CreationTimestamp
+    @Temporal(TemporalType.DATE)
     private Date roadmapRegdate;
 
 }

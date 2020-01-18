@@ -40,8 +40,7 @@
 					<div class="section-content">
 						<div class="row"  id="out">
 							<div class="col-md-12">
-								<h2 class="title text-white">관리자 페이지</h2>
-								<ol class="breadcrumb text-left text-black mt-10">
+ㄴ								<ol class="breadcrumb text-left text-black mt-10">
                                 <li><a href="#">오프라인 강의 관리</a></li>
                                 <li class="active text-gray-silver"> - 오프라인 강의들을 등록, 수정, 삭제할 수 있는 페이지입니다.</li>
                                 <!-- Topbar Search -->
@@ -84,14 +83,13 @@
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<tr>
-									<th>LectureNo</th>
-									<th>academyName</th>
-									<th>offLectureName</th>
-									<th>offLectureTeacher</th>
-									<th>category</th>
-									<th>Seat</th>
-									<th>offDetail</th>
-									<th>offLectureDate</th>
+									<th>강의번호</th>
+									<th>교육원</th>
+									<th>강의명</th>
+									<th>강사명</th>
+									<th>카테고리</th>
+									<th>좌석수</th>
+									<th>강의날짜</th>
 									<th>수정</th>
 									<th>삭제</th>
 								</tr>
@@ -103,7 +101,6 @@
 										<td>${list.offLectureTeacher}</td>
 										<td>${list.category}</td>
 										<td>${list.offLectureSeat-list.offLectureReservedseat}</td>
-										<td>${list.offDetail}</td>
 										<td>${list.offLectureDate}</td>
 										<td><input type="submit" class="btn btn-dark"
 											onClick="location.href='${pageContext.request.contextPath}/admin/offLecture/offLecUpdate/${list.offLectureNo}'"

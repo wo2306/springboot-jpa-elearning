@@ -46,14 +46,32 @@ public class AdminRoadmapController {
 	}
 	
 	@RequestMapping("/insert")
-	public ModelAndView roadmapInsert(@RequestParam List<Long> list, Roadmap roadmap) {
-		
+	public String roadmapInsert(@RequestParam List<Long> list, Roadmap roadmap) {
 		System.out.println(list.size()+"리스트받기~!!");
+		service.insert(list, roadmap);
+		return "redirect:/admin/roadmap";
+	}
+	@RequestMapping("/update/{roadmapName}")
+	public String roadmapUpdate(@PathVariable String roadmapName, @RequestParam List<Long> list, Roadmap roadmap) {
+		//System.out.println(list.size()+"@@@@@@리스트 사이즈 확인@@@@@");
+		//System.out.println(roadmapName +"로드맵 제목!!!!");
+		service.update(roadmapName ,list, roadmap);
+		return "redirect:/admin/roadmap";
+	}
 	
-			service.insert(list, roadmap);
+	@RequestMapping("/delete/{roadmapName}")
+	public String roadmapDelete(@PathVariable String roadmapName) {
+		System.out.println(roadmapName+"controller!!");
+		service.delete(roadmapName);
+		return "redirect:/admin/roadmap";
 		
-		//roadmap.setOnLecture(onLectureService.selectOnLectureById());
+	}
+	@RequestMapping("/updateForm/{roadmapName}")
+	public String roadmapUpdateForm(@PathVariable String roadmapName, Model model) {
+		List<Roadmap> list = service.selectByName(roadmapName);
 		
-		return new ModelAndView("admin/roadmap/list","roadmap", roadmap);
+		model.addAttribute("list", list);
+		model.addAttribute("roadmap", list.get(0));
+		return "admin/roadmap/updateForm";
 	}
 }

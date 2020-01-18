@@ -1,20 +1,32 @@
 package project.web.mvc.controller;
 
-import lombok.RequiredArgsConstructor;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import lombok.RequiredArgsConstructor;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Review;
-import project.web.mvc.service.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
+import project.web.mvc.domain.WishList;
+import project.web.mvc.service.ClassQuestionService;
+import project.web.mvc.service.OnDetailService;
+import project.web.mvc.service.OnLectureService;
+import project.web.mvc.service.OrderService;
+import project.web.mvc.service.ReviewService;
+import project.web.mvc.service.SugangService;
+import project.web.mvc.service.WishListService;
 
 @Controller
 @RequestMapping("/onLecture")
@@ -26,6 +38,7 @@ public class OnLectureController {
     private final ReviewService reviewService;
     private final ClassQuestionService qnaService;
     private final OnDetailService onDetailService;
+    private final WishListService wishlistService;
 
     @RequestMapping("/list/{pageNUm}")
     public String list(Model model, @PathVariable int pageNum) {
@@ -39,21 +52,16 @@ public class OnLectureController {
 
     @RequestMapping("/detail/{onLectureNo}")
     public String detail(@PathVariable Long onLectureNo, Model model) {
-    	System.out.println("@@@@@@@@@@@@@@@@@@@@!#!@#!@#!@#@!#!@#!");
         List<OnDetail> list = onLectureService.selectById(onLectureNo);
         OnLecture onLecture = list.get(0).getOnLecture();
         System.out.println(onLecture);
         List<OnLecture> teachers = onLectureService.selectByTeacher(onLecture.getOnLectureTeacher());
         List<Review> reviewList = reviewService.selectByOnlectureNo(onLectureNo);
        
-        System.out.println("@@@teachers : "+teachers.toString());
-        System.out.println("@@@detail : " +list);
-        System.out.println("@@@onLecture + "+onLecture);
-        System.out.println("@@@@reviewList : "+reviewList.toString());
-        
         model.addAttribute("teacherList", teachers);
         model.addAttribute("detailList", list);
         model.addAttribute("onLecture", onLecture);
+        System.out.println("온라인강의별 리뷰 리스트 : " +reviewList.toString());
         model.addAttribute("reviewList", reviewList);
        
         
@@ -113,6 +121,7 @@ public class OnLectureController {
     public String category(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
         List<OnLecture> list = new ArrayList<>();
         Page<OnLecture> page = null;
+        Map<Long,Long> heartMap = new TreeMap<Long, Long>();
         if (command.equals("category")) {
             page = onLectureService.selectByCategory(keyword, pageNum);
         } else {
