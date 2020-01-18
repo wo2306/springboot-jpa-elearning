@@ -74,7 +74,7 @@
                                                     </td>
                                                     <td class="product-price"><span class="amount"><fmt:formatNumber value="${cartDTO.onLecture.onLecturePrice}" pattern="₩#,###.##"/> </span></td>
                                                     <td class="product-remove" width="200">
-                                                        <button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/cart/wishList/${cartDTO.cartNo}'">위시리스트로 이동</button>
+                                                        <button type="button" class="btn btn-default">위시리스트로 이동</button>
                                                         <p></p>
                                                         <button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/cart/deleteCart/${cartDTO.cartNo}'">장바구니에서 삭제</button>
                                                     </td>
@@ -131,7 +131,7 @@
                                             <td><fmt:formatNumber value="${total_price}" pattern="₩#,###"/></td>
                                         </tr>
                                         <tr>
-                                            <td>강의 기본 할인</td>
+                                            <td>할인 금액</td>
                                             <td style="color: red"><fmt:formatNumber value="${discount_sum}" pattern="₩#,###"/></td>
                                         </tr>
                                         <tr>
@@ -140,7 +140,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <a id="checkout" class="btn btn-default" href="${pageContext.request.contextPath}/cart/checkout">확인 후 결제 진행하기</a></div>
+                                    <a class="btn btn-default" href="${pageContext.request.contextPath}/cart/checkout">확인 후 결제 진행하기</a></div>
                             </div>
                         </div>
                     </div>
@@ -158,8 +158,7 @@
             type: "post",
             dataType: "json",
             success: function (result) {
-                $("#couponName").val(result.couponName + " (최종 결제 금액에서 " + result.couponDiscount + " % 추가 할인)");
-                $("#checkout").attr('href', $("#checkout").attr('href')+"/"+result.couponCode)
+                $("#couponName").val(result.couponName + " (" + result.couponDiscount + " % 할인)");
                 console.log(result)
             },
             error: function (error) {

@@ -70,7 +70,7 @@
                                             pattern="₩#,###"/></td>
                                 </tr>
                                 <tr>
-                                    <td>강의 기본 할인</td>
+                                    <td>할인 금액</td>
                                     <td>&nbsp;</td>
                                     <td id="discount_price" style="color: red"><fmt:formatNumber
                                             value="${discount_sum}"
@@ -154,9 +154,8 @@
     <input name="onLectureNo" type="hidden"
            value="${onLecture.onLectureNo}"/>
     <input id="paymentId" name="onOrderCode" type="hidden" value=""/>
-    <input id="payCoupon" name="couponCode" type="hidden" value=""/>
     <input id="paymentPrice" name="onOrderPrice" type="hidden"
-           value="${onLecture.onLecturePrice-onLecture.onLecturePrice*onLecture.onLectureDiscount/100}"/>
+           value="${(onLecture.onLecturePrice-onLecture.onLecturePrice*onLecture.onLectureDiscount/100)*(1-coupon.couponDiscount)}"/>
 </form>
 
 <script>
@@ -169,7 +168,7 @@
             pay_method: 'card',
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: 'Learning Machine Paying',
-            amount: $("#paymentPrice").val(),
+            amount: $("#final_price").text().replace(",", "").replace("₩", ""),
             buyer_email: $("#checkuot-form-cname").val(),
             buyer_name: $("#checkuot-form-fname").val(),
             buyer_tel: $("#checkuot-form-lname").val(),
@@ -199,15 +198,14 @@
             type: "post",
             dataType: "json",
             success: function (result) {
-                $("#paymentPrice").val($("#paymentPrice").val() * (1 - result.couponDiscount / 100));
-                $("#couponName").val(result.couponName + " (최종 결제 금액에서 " + result.couponDiscount + " % 추가 할인)");
-                $("#payCoupon").val(result.couponCode);
+                $("#couponName").val(result.couponName + " (" + result.couponDiscount + " % 할인)");
                 console.log(result)
             },
             error: function (error) {
-                alert("올바른 쿠폰번호를 입력해주세요");
+                alert(error);
             }
         })
+
     });
 </script>
 <!-- end main-content -->

@@ -167,7 +167,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                                                 <td id="total"></td>
                                                             </tr>
                                                             <tr>
-                                                                <td>강의 기본 할인</td>
+                                                                <td>할인 금액</td>
                                                                 <td id="discount" style="color: red"></td>
                                                             </tr>
                                                             <tr>
