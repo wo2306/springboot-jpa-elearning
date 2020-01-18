@@ -1,6 +1,7 @@
 package project.web.mvc.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.json.JSONException;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.service.OnDetailService;
 import project.web.mvc.service.OnLectureService;
+import project.web.mvc.video.vimeo.Vimeo;
+import project.web.mvc.video.vimeo.VimeoException;
+import project.web.mvc.video.vimeo.VimeoResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -27,21 +32,27 @@ public class AdminOnLectureController {
     private final OnDetailService onDetailService;
 
     @PostMapping("/insert")
-    public String insert(OnLecture onLecture, MultipartFile thumbnail, HttpServletRequest request) {
-        try {
+    public String insert(OnLecture onLecture, MultipartHttpServletRequest mtfRequest
+            , HttpServletRequest request, String token) throws JSONException, IOException, VimeoException {
+        MultipartFile thumbnail = mtfRequest.getFile("thumbnail");
+        List<MultipartFile> multipartFiles = mtfRequest.getFiles("onLectureFile");
+
+        for (MultipartFile m : multipartFiles) {
+            File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + m.getOriginalFilename());
+            m.transferTo(convFile);
+            Vimeo vimeo = new Vimeo(token);
+            String videoEndPoint = vimeo.addVideo(convFile, true);
+            VimeoResponse info = vimeo.getVideoInfo(videoEndPoint);
             onLectureService.insert(onLecture);
             //실제 root 경로를 가져오기
             String path = request.getSession().getServletContext().getRealPath("/resources/images/onLecture/");
             //첨부된 파일 이름 가져오기
-            thumbnail.transferTo(new File(path + onLecture.getOnLectureNo() + ".png")); //폴더에 저장완료
-            String[] detailNames = request.getParameterValues("onDetailName");
-            String[] videoLength = request.getParameterValues("videoLength");
-            String[] detailUrl = request.getParameterValues("detailUrl");
+            thumbnail.transferTo(new File(path + onLecture.getOnLectureNo() + ".png"));
+            String[] detailNames = mtfRequest.getParameterValues("onDetailName");
+            String[] videoLength = mtfRequest.getParameterValues("videoLength");
             for (int i = 0; i < detailNames.length; i++) {
-                onDetailService.insert(new OnDetail(null, onLecture, detailUrl[i], detailNames[i], videoLength[i]));
+                onDetailService.insert(new OnDetail(null, onLecture, String.valueOf(info.getJson().get("link")), detailNames[i], videoLength[i]));
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return "redirect:all/keyword/1";
     }

@@ -91,7 +91,8 @@
 
                     </div>
                     <hr>
-                    <form id="onLectureForm" action="${pageContext.request.contextPath}/admin/onLecture/insert" enctype="multipart/form-data" method="post">
+                    <form id="onLectureForm" action="${pageContext.request.contextPath}/admin/onLecture/insert"
+                          enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <label>온라인 강의명</label>
                             <input type="text" class="form-control" placeholder="온라인 강의 명" name="onLectureName">
@@ -152,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="detailUrl" name="detailUrl" value="test"/>
+                        <input type="hidden" id="token" name="token" value=""/>
                     </form>
 
                     <div class="checkbox">
@@ -183,7 +184,6 @@
 
     $("#submit").on('click', function () {
         $("#onLectureForm").submit();
-        var file = $('#file').get(0).files[0];
         // if (file) {
         //     $.ajax({
         //         url: VIDEOS_UPLOAD_SERVICE_URL,
@@ -209,153 +209,150 @@
     var access_token = "";
     $(function () {
         $.ajax({
-            url: "https://www.googleapis.com/oauth2/v4/token",
+            url: "https://api.vimeo.com/oauth/access_token",
             type: "post",
             dataType: "json",
             data: {
                 code: "${code}",
-                client_id: "1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com",
-                client_secret: "YW06D8o9k2GCHceDUYpM4e7L",
+                client_id: "ab5b24fc3d01921d6cdad123ae0cd4bbbc930dc2",
+                client_secret: "STTo/SV2SkWQ/+2+37kFwjfngAZG6LMMWqSG+lXlPjlYcwdqV0zgyqk2nzkJeeSt6mnuAQo4RI6zt/iAV8T0RILBf/QETv9W/ui776QShDMEhCe7cvzTiXIOzNNl2nv0",
                 redirect_uri: "http://localhost:8888/oauth2callback",
                 grant_type: "authorization_code"
             },
             success: function (result) {
                 access_token = result.access_token;
+                console.log(access_token);
+                $("#token").val(access_token);
             },
             error: function (error) {
                 console.log(error)
             }
         })
+        $('#addForm').click(function () {
+            var str = "";
+            str += '<hr><div><div><label>세부 강의 제목</label><input type="text" class="form-control" placeholder="강의 제목을 입력하세요"';
+            str += 'name="onDetailName"></div><div class="form-group"><br><label>동영상 업로드</label><br><input type="file" name="onLectureFile">';
+            str += '<p class="help-block"></p><input type="hidden" name="videoLength" value="10"/><input type="hidden" name="detailUrl" value="test"/></div></div>';
+            $("#detail").parent().append(str);
+        });
+
+        $('#outInsert').click(function () {
+            location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
+        })
+        $('#summernote').summernote({
+            height: 300,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true,
+            callbacks: {
+                onImageUpload: function (files, editor, welEditable) {
+                    for (var i = files.length - 1; i >= 0; i--) {
+                        sendFile(files[i], this);
+                    }
+                },
+                onMediaDelete: function (files) {
+                    var filename = files.attr('src').split('/')[5];
+                    deleteFile(filename);
+                }
+            }
+        });
+
+        function sendFile(file, el) {
+            var form_data = new FormData();
+            form_data.append('file', file);
+            $.ajax({
+                data: form_data,
+                type: "POST",
+                url: '${pageContext.request.contextPath}/uploadImage',
+                cache: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                processData: false,
+                success: function (url) {
+                    $(el).summernote('editor.insertImage', url);
+                }
+            });
+        }
+
+        function deleteFile(file) {
+            $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
+        }
     })
 
-    var metadata = {
-        snippet: {
-            title: "test",
-            description: "Learning Machine Video Upload",
-            categoryId: 22
-        },
-    };
-
-    var GOOGLE_PLUS_SCRIPT_URL = 'https://apis.google.com/js/client:plusone.js';
-    var CHANNELS_SERVICE_URL = 'https://www.googleapis.com/youtube/v3/channels';
-    var VIDEOS_UPLOAD_SERVICE_URL = 'https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet';
-    var VIDEOS_SERVICE_URL = 'https://www.googleapis.com/youtube/v3/videos';
-    var INITIAL_STATUS_POLLING_INTERVAL_MS = 15 * 1000;
-
-
-    resumableUpload = function (options) {
-        var ajax = $.ajax({
-            url: options.url,
-            method: 'PUT',
-            contentType: options.file.type,
-            headers: {
-                'Content-Range': 'bytes ' + options.start + '-' + (options.file.size - 1) + '/' + options.file.size
-            },
-            xhr: function () {
-                var xhr = $.ajaxSettings.xhr();
-                if (xhr.upload) {
-                    xhr.upload.addEventListener('progress', function (e) {
-                            if (e.lengthComputable) {
-                                var bytesTransferred = e.loaded;
-                                var totalBytes = e.total;
-                                var percentage = Math.round(100 * bytesTransferred / totalBytes);
-                            }
-
-                        },
-                        false
-                    );
-                }
-                return xhr;
-            },
-            processData: false,
-            data: options.file
-        });
-        ajax.done(function (response) {
-            videoId = response.id;
-            checkVideoStatus(videoId, INITIAL_STATUS_POLLING_INTERVAL_MS);
-        });
-    }
-
-    checkVideoStatus = function (videoId, waitFornextPoll) {
-        $.ajax({
-            url: VIDEOS_SERVICE_URL,
-            method: 'GET',
-            headers: {
-                Authorization: 'Bearer ' + access_token
-            },
-            data: {
-                part: 'status,processingDetails,player',
-                id: videoId
-            }
-        }).done(function(response){
-            var uploadStatus = response.items[0].status.uploadStatus;
-            var embed = response.items[0].player.embedHtml;
-            console.log(embed);
-            console.log(uploadStatus);
-            if(uploadStatus == 'uploaded'){
-                setTimeout(function(){
-                    checkVideoStatus(videoId, waitFornextPoll * 2);
-                }, waitFornextPoll);
-            }else{
-                if(uploadStatus == 'processed'){
-                    console.log("finally completed!");
-                }
-            }
-        });
-    },
-
-
-        $(function () {
-            $('#addForm').click(function () {
-                var str = "";
-                str += '<hr><div><div><label>세부 강의 제목</label><input type="text" class="form-control" placeholder="강의 제목을 입력하세요"';
-                str += 'name="onDetailName"></div><div class="form-group"><br><label>동영상 업로드</label><br><input type="file" name="onLectureFile">';
-                str += '<p class="help-block"></p><input type="hidden" name="videoLength" value="10"/><input type="hidden" name="detailUrl" value="test"/></div></div>';
-                $("#detail").parent().append(str);
-            });
-
-            $('#outInsert').click(function () {
-                location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
-            })
-            $('#summernote').summernote({
-                height: 300,                 // set editor height
-                minHeight: null,             // set minimum height of editor
-                maxHeight: null,             // set maximum height of editor
-                focus: true,
-                callbacks: {
-                    onImageUpload: function (files, editor, welEditable) {
-                        for (var i = files.length - 1; i >= 0; i--) {
-                            sendFile(files[i], this);
-                        }
-                    },
-                    onMediaDelete: function (files) {
-                        var filename = files.attr('src').split('/')[5];
-                        deleteFile(filename);
-                    }
-                }
-            });
-
-            function sendFile(file, el) {
-                var form_data = new FormData();
-                form_data.append('file', file);
-                $.ajax({
-                    data: form_data,
-                    type: "POST",
-                    url: '${pageContext.request.contextPath}/uploadImage',
-                    cache: false,
-                    contentType: false,
-                    enctype: 'multipart/form-data',
-                    processData: false,
-                    success: function (url) {
-                        $(el).summernote('editor.insertImage', url);
-                    }
-                });
-            }
-
-            function deleteFile(file) {
-                $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
-            }
-        });
-
+    // var metadata = {
+    //     snippet: {
+    //         title: "test",
+    //         description: "Learning Machine Video Upload",
+    //         categoryId: 22
+    //     },
+    // };
+    //
+    // var GOOGLE_PLUS_SCRIPT_URL = 'https://apis.google.com/js/client:plusone.js';
+    // var CHANNELS_SERVICE_URL = 'https://www.googleapis.com/youtube/v3/channels';
+    // var VIDEOS_UPLOAD_SERVICE_URL = 'https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet';
+    // var VIDEOS_SERVICE_URL = 'https://www.googleapis.com/youtube/v3/videos';
+    // var INITIAL_STATUS_POLLING_INTERVAL_MS = 15 * 1000;
+    //
+    //
+    // resumableUpload = function (options) {
+    //     var ajax = $.ajax({
+    //         url: options.url,
+    //         method: 'PUT',
+    //         contentType: options.file.type,
+    //         headers: {
+    //             'Content-Range': 'bytes ' + options.start + '-' + (options.file.size - 1) + '/' + options.file.size
+    //         },
+    //         xhr: function () {
+    //             var xhr = $.ajaxSettings.xhr();
+    //             if (xhr.upload) {
+    //                 xhr.upload.addEventListener('progress', function (e) {
+    //                         if (e.lengthComputable) {
+    //                             var bytesTransferred = e.loaded;
+    //                             var totalBytes = e.total;
+    //                             var percentage = Math.round(100 * bytesTransferred / totalBytes);
+    //                         }
+    //
+    //                     },
+    //                     false
+    //                 );
+    //             }
+    //             return xhr;
+    //         },
+    //         processData: false,
+    //         data: options.file
+    //     });
+    //     ajax.done(function (response) {
+    //         videoId = response.id;
+    //         checkVideoStatus(videoId, INITIAL_STATUS_POLLING_INTERVAL_MS);
+    //     });
+    // }
+    //
+    // checkVideoStatus = function (videoId, waitFornextPoll) {
+    //     $.ajax({
+    //         url: VIDEOS_SERVICE_URL,
+    //         method: 'GET',
+    //         headers: {
+    //             Authorization: 'Bearer ' + access_token
+    //         },
+    //         data: {
+    //             part: 'status,processingDetails,player',
+    //             id: videoId
+    //         }
+    //     }).done(function(response){
+    //         var uploadStatus = response.items[0].status.uploadStatus;
+    //         var embed = response.items[0].player.embedHtml;
+    //         console.log(embed);
+    //         console.log(uploadStatus);
+    //         if(uploadStatus == 'uploaded'){
+    //             setTimeout(function(){
+    //                 checkVideoStatus(videoId, waitFornextPoll * 2);
+    //             }, waitFornextPoll);
+    //         }else{
+    //             if(uploadStatus == 'processed'){
+    //                 console.log("finally completed!");
+    //             }
+    //         }
+    //     });
+    // },
 </script>
 </html>
