@@ -16,6 +16,9 @@ public interface ClassQuestionService {
     Page<ClassAnswer> selectAllAnswer(int pageNum);
     
     List<ClassQuestion> findAll();
+    
+    public List<ClassAnswer> findByQNo(Long id);
+    
     void insert(ClassQuestion classQuestion);
 
     void updateQuestion(ClassQuestion classQuestion);

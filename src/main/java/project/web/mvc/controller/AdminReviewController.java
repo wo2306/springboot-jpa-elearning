@@ -39,7 +39,7 @@ public class AdminReviewController {
 	
 	@RequestMapping("/review/update")
 	public String update (Review review) {
-		
+		reviewService.update(review);
 		return "redirect:/admin/review/list/1";
 	}
 }

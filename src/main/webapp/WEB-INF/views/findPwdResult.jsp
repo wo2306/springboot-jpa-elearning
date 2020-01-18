@@ -71,17 +71,14 @@ $(document).ready(function(){
 	var host = "LearningMachine";
 	var template_params = {
 			   "give_men": email,
-			   "reply_to": "reply_to_value",
 			   "host": "LearningMachine",
-			   "content": "귀하의 비밀번호는 "+tempPwd+"입니다."
+			   "content": "발급된 임시 비밀번호는 "+tempPwd+"입니다."
 			}
 
 			var service_id = "default_service";
-			var template_id = "LearningMachine";
+			var template_id = "learningmachine";
 			
 			var state= ${state}
-			alert(state);
-			emailjs.send(service_id, template_id, template_params);
 			if(state) {
 			emailjs.send(service_id, template_id, template_params);
 			}

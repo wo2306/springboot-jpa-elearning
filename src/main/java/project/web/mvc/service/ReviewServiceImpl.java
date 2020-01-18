@@ -43,7 +43,8 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public void update(Review review) {
-		
+		Review dbReview = reviewRepo.findByReviewNo(review.getReviewNo());
+		dbReview.setReviewContent(review.getReviewContent());
 
 	}
 	
