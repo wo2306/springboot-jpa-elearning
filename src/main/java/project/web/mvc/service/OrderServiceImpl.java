@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.web.mvc.domain.*;
-import project.web.mvc.repository.CouponRepository;
 import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
 import project.web.mvc.util.LoginCheck;
@@ -23,20 +22,18 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private final OnOrderRepository onOrderRepository;
     private final OffOrderRepository offOrderRepository;
-    private final CouponRepository couponRepository;
 
     @Override
-    public void cartInsert(List<Long> onLectureNo, OnOrder onOrder, String couponCode) {
+    public void cartInsert(List<Long> onLectureNo, OnOrder onOrder) {
         for (int i = 0; i < onLectureNo.size(); i++) {
             onOrder.setOnlecture(new OnLecture(onLectureNo.get(i)));
             onOrder.setUserdb(LoginCheck.getUserdb());
             onOrderRepository.save(onOrder);
         }
-        couponDiscount(couponCode);
     }
 
     @Override
-    public void onInsert(Long onLectureNo, OnOrder onOrder, String couponCode) {
+    public void onInsert(Long onLectureNo, OnOrder onOrder) {
         onOrder.setOnlecture(new OnLecture(onLectureNo));
         onOrder.setUserdb(LoginCheck.getUserdb());
         onOrderRepository.save(onOrder);

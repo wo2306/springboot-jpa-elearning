@@ -1,8 +1,11 @@
 package project.web.mvc.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,13 +20,16 @@ import project.web.mvc.service.UserdbService;
 @RequiredArgsConstructor
 public class AdminHomeController {
 	
+	private final OnLectureService onLectureService;
 	private final UserdbService userdbService;
 	private final AuthorityService authorityService;
 	
 	
    @RequestMapping("")
-   public String main() {
+   public String main(Model model) {
       System.out.println("어드민컨트롤러호출");
+      List<Long> list = onLectureService.countCategory();
+      model.addAttribute("list", list);
       return "admin/adminIndex";
    }
    

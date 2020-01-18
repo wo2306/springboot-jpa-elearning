@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class AuthorityServiceImpl implements AuthorityService{
 
 	private final AuthorityRepository authorityRepository;

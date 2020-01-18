@@ -152,7 +152,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="detailUrl" name="detailUrl" value="test"/>
+                        <input type="hidden" id="detailUrl" name="detailUrl" value=""/>
                     </form>
 
                     <div class="checkbox">
@@ -182,27 +182,26 @@
     });
 
     $("#submit").on('click', function () {
-        $("#onLectureForm").submit();
         var file = $('#file').get(0).files[0];
-        // if (file) {
-        //     $.ajax({
-        //         url: VIDEOS_UPLOAD_SERVICE_URL,
-        //         method: 'POST',
-        //         contentType: 'application/json',
-        //         data: JSON.stringify(metadata),
-        //         beforeSend: function (request) {
-        //             request.setRequestHeader('Authorization', 'Bearer ' + access_token);
-        //         },
-        //     }).done(function (data, textStatus, jqXHR) {
-        //         resumableUpload({
-        //             url: jqXHR.getResponseHeader('Location'),
-        //             file: file,
-        //             start: 0
-        //         });
-        //     });
-        // } else {
-        //     alert("file을 선택해주세요");
-        // }
+        if (file) {
+            $.ajax({
+                url: VIDEOS_UPLOAD_SERVICE_URL,
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(metadata),
+                beforeSend: function (request) {
+                    request.setRequestHeader('Authorization', 'Bearer ' + access_token);
+                },
+            }).done(function (data, textStatus, jqXHR) {
+                this.resumableUpload({
+                    url: jqXHR.getResponseHeader('Location'),
+                    file: file,
+                    start: 0
+                });
+            });
+        } else {
+            alert("file을 선택해주세요");
+        }
 
     })
 
@@ -272,7 +271,7 @@
         });
         ajax.done(function (response) {
             videoId = response.id;
-            checkVideoStatus(videoId, INITIAL_STATUS_POLLING_INTERVAL_MS);
+            this.checkVideoStatus(videoId, INITIAL_STATUS_POLLING_INTERVAL_MS);
         });
     }
 
@@ -281,7 +280,7 @@
             url: VIDEOS_SERVICE_URL,
             method: 'GET',
             headers: {
-                Authorization: 'Bearer ' + access_token
+                Authorization: 'Bearer ' + accessToken
             },
             data: {
                 part: 'status,processingDetails,player',
@@ -294,11 +293,14 @@
             console.log(uploadStatus);
             if(uploadStatus == 'uploaded'){
                 setTimeout(function(){
-                    checkVideoStatus(videoId, waitFornextPoll * 2);
+                    this.checkVideoStatus(videoId, waitFornextPoll * 2);
                 }, waitFornextPoll);
             }else{
                 if(uploadStatus == 'processed'){
                     console.log("finally completed!");
+                    $("#uploading").hide();
+                    $(".progress-bar").removeClass("progress-bar-striped active");
+                    $('.container').find('.embed-responsive').append(embed);
                 }
             }
         });

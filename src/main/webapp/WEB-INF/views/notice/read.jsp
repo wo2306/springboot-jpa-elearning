@@ -51,7 +51,7 @@
 			</form>
 			<input type="button" value="뒤로가기" class="btn btn-dark btn-sm"
 				style=" width:100px; padding: 5px 12px"
-				onClick="location.href='${pageContext.request.contextPath}/notice'">
+				onClick="location.href='${pageContext.request.contextPath}/notice/list/1'">
 		</div>
 	</section>
 </div>

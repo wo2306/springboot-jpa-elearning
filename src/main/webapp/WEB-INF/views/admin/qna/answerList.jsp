@@ -48,8 +48,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ol class="breadcrumb text-left text-black mt-10">
-                                <li><a href="#">관리자 리뷰 관리 페이지</a></li>
-                                <li class="active text-gray-silver"> - 관리자가 리뷰를  수정, 삭제할 수 있는 페이지 입니다.</li>
+                                <li><a href="#">관리자 답변 관리 페이지</a></li>
+                                <li class="active text-gray-silver"> - 관리자가 사용자의 답변을  수정, 삭제할 수 있는 페이지 입니다.</li>
                                
                             </ol>
                         </div>
@@ -63,34 +63,33 @@
             <div class="container">
                 <div class="section-content">
                     <div class="row" id="out">
-                        <table class="table table-bordered" id="dataTable2" width="100%"
+                                               <table class="table table-bordered" id="dataTable2" width="100%"
                                cellspacing="0">
                             <tr>
-                                <th>리뷰번호</th>
+                                <th>답변번호</th>
+                                <th>연관 질문 번호<span>클릭하시면 질문 내용을 확인할수 있습니다.</span></th>
                                 <th>작성자</th>
-                                <th>리뷰내용</th>
-                                <th>평점</th>
+                                <th>답변내용</th>
                                 <th colspan="2">기능</th>
                             </tr>
                          
-                             <c:forEach items="${list}" var="review">
+                           <c:forEach items="${list}" var="answer">
                                 <tr>
-                                    <td>${review.reviewNo}</td>
-                                    <td>${review.userdb.userdbNickname}</td>
-                                    <td>${review.reviewContent}</td>
-                                    <td>${review.reviewScore }</td>
-                                   
-                                    <td>
-                                        <button type="button" name="updateBtn" class="btn btn-dark" value="${review.reviewNo}">수정
-                                        </button>
+                                    <td>${answer.classAnswerNo}</td>
+                                    <td>${answer.classQuestion.classQuestionNo}</td>
+                                    <td>${answer.userdb.userdbNickname}</td>
+                                    <td>${answer.classAnswerContent}</td>
+                                     <td>
+                                        <button type="button" name="updateBtn" class="btn btn-dark"
+                                                value="${answer.classAnswerNo}">수정</button>
                                     </td>
                                     <td>
-                                        <button type="button" name="deleteBtn" class="btn btn-dark"
-                                                value="${review.reviewNo}">삭제
+                                        <button  type="button" name="deleteBtn" class="btn btn-dark"
+                                                value="${answer.classAnswerNo}">삭제
                                         </button>
                                     </td>
                                 </tr>
-                            </c:forEach> 
+                            </c:forEach>
                         </table>
                         <div class="container" id="in">
                             <div class="row">
@@ -101,7 +100,7 @@
                                             <c:when test="${page.hasPrevious() eq true}">
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/review/list/${page.number}"
+                                                       href="${pageContext.request.contextPath}/admin/qna/answerList/${page.number}"
                                                        aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                     </a>
                                                 </li>
@@ -109,7 +108,7 @@
                                             <c:otherwise>
                                                 <li class="page-item">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/review/list/${page.number+1}"
+                                                       href="${pageContext.request.contextPath}/admin/qna/answerList/${page.number+1}"
                                                        aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                     </a>
                                                 </li>
@@ -121,11 +120,11 @@
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/review/list/${i.count}">${i.count}</a>
+                                                           href="${pageContext.request.contextPath}/admin/qna/answerList/${i.count}">${i.count}</a>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <a class="page-link"
-                                                           href="${pageContext.request.contextPath}/admin/review/list/${i.count}">${i.count}</a>
+                                                           href="${pageContext.request.contextPath}/admin/qna/answerList/${i.count}">${i.count}</a>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </li>
@@ -135,12 +134,12 @@
                                             <c:choose>
                                                 <c:when test="${page.hasNext() eq true}">
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/review/list//${page.number+2}"
+                                                       href="${pageContext.request.contextPath}/admin/qna/answerList/${page.number+2}"
                                                        aria-label="Next"> <span aria-hidden="true">다음</span> </a>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <a class="page-link"
-                                                       href="${pageContext.request.contextPath}/admin/review/list/${page.number+1}"
+                                                       href="${pageContext.request.contextPath}/admin/qna/answerList/${page.number+1}"
                                                        aria-label="Previous"> <span aria-hidden="true">다음</span>
                                                     </a>
                                                 </c:otherwise>
@@ -158,21 +157,18 @@
     </div>
 </div>
 <script>
-    function searchform() {
-       // var keyfield = $("#key option:selected").val();
-     //   var keyword = $("#keyword").val();
-      //  location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
-      //  return false;
-    }
 
     $("button[name='deleteBtn']").on('click', function () {
-     //   alert("선택한 강의를 강의를 삭제하였습니다");
-     //   location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).val();
+   
+    	
+    
+    	if (confirm("정말로 삭제 하시겠습니까?")) {
+    	//	location.href = '${pageContext.request.contextPath}/admin/qna/answerDelete/'+ $(this).val();  
+            }
     })
 
     $("button[name='updateBtn']").on('click', function () {
-        // alert(1)
-      //  location.href = '${pageContext.request.contextPath}/admin/onLecture/updateForm/' + $(this).val();
+      location.href = '${pageContext.request.contextPath}/admin/qna/answerUpdate/'+ $(this).val();
     })
 </script>
 </body>

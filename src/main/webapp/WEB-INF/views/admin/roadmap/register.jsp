@@ -16,6 +16,7 @@ $(function(){
 	
 	//추가한  강의 삭제
 	$(document).on("click","#btn",function(){
+	
 		$(this).closest("tr").remove();
 		
 	})//강의 삭제 이벤트 끝
@@ -40,10 +41,8 @@ $(function(){
 		//alert(result+"결과값");
 		$.each(result,function(index,row){
 			//alert($(row).html());
-		})
-				
+		})	
 	}
-	
 	
 </script>
 
@@ -72,9 +71,7 @@ $(function(){
         </div>
       </div>
     </section>
-
     <section>
- 
       <div class="container">
         <div class="section-content">
                <div class="col-md-12 mt-30">

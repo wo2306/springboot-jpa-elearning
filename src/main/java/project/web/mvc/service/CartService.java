@@ -12,6 +12,4 @@ public interface CartService {
     void delete(Long cartNo);
 
     void deleteAll();
-
-    void wishListDelete(Long cartNo);
 }
