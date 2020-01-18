@@ -107,7 +107,7 @@
                                 <option>모바일앱</option>
                                 <option>게임개발</option>
                                 <option>알고리즘</option>
-                                <option>데이터베이스</option>
+                                <option>데이터사이언스</option>
                             </select>
                         </div>
                         <div class="form-group">
