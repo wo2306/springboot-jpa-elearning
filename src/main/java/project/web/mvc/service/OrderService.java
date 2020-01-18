@@ -34,4 +34,6 @@ public interface OrderService {
     void couponDiscount(String couponCode);
 
     Page<OnOrder> onSelectByUserNo(int pageNum);
+    int findDate();
+
 }
