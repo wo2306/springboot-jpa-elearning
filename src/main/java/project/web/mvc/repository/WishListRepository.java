@@ -24,4 +24,5 @@ public interface WishListRepository extends CrudRepository<WishList, Long>{
 	Page<WishList> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
 	List<WishList> findByUserdbUserdbNo(Long userdbNo);
 	WishList findByOnLectureOnLectureNo(Long onLecture);
+	
 }

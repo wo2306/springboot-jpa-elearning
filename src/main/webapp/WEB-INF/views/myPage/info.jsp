@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <head>
     <title>LM company | Learning Machine</title>
-
+   
 </head>
 
 <body class="">
@@ -238,7 +238,8 @@
                                         <table class="table" id="wishlisttable">
                                             <tbody>
                                             <tr>
-                                                <th>강의제목</th>
+                                            	<th style="width:150px;">강의사진</th>
+                                                <th style="width:500px; padding-left: 30px;">강의제목</th>
                                                 <th>가격</th>
                                                 <th>삭제</th>
                                             </tr>
@@ -253,7 +254,7 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>질문</th>
+                                                <th> </th>
                                                 <th>연관 강의</th>
                                                 <th>질문 제목 <span style="font-size: 11px;">
                                                 (상세 내용을 보려면 클릭하세요.)</span></th>
@@ -267,7 +268,7 @@
                                                     <c:forEach var="dto" items="${questionList}">
                                                         <tr>
                                                             <th scope="row"><img
-                                                                    src="http://placehold.it/100x50" alt=""></th>
+                                                                    src="${pageContext.request.contextPath}/images/onLecture/${dto.onLecture.onLectureNo}.png" style="width:100px; height: 50px;" alt=""></th>
 
                                                             <td>${dto.onLecture.onLectureName }</td>
 
@@ -324,7 +325,7 @@
                                         <table class="table" id="reviewtable">
                                             <thead>
                                             <tr>
-                                                <th>리 뷰</th>
+                                                <th>  </th>
                                                 <th>평 점</th>
                                                 <th>내 용 <span style="font-size: 12px;">
                                                 (수정하시려면 내용을 누르세요)</span></th>
@@ -337,8 +338,8 @@
                                                 <c:when test="${reviewList!=null}">
                                                     <c:forEach var="dto" items="${reviewList}">
                                                         <tr>
-                                                            <th scope="row"><img
-                                                                    src="http://placehold.it/100x50" alt=""></th>
+                                                            <th scope="row" style="width:180px;"><img
+                                                                    src="${pageContext.request.contextPath}/images/onLecture/${dto.onLecture.onLectureNo}.png" style="width:100px; height: 50px;" alt=""></th>
                                                             <td>${dto.reviewScore }</td>
                                                             <td>
                                                                 <button type="button"
@@ -458,7 +459,8 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="'+item.onLecture.onLectureNo+'>'+item.onLecture.onLectureName + '</a>' + '</td>';
+                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+'<img src="${pageContext.request.contextPath}/images/onLecture/'+item.onLecture.onLectureNo+'.png">'+ '</a>' +'</td>'
+                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+item.onLecture.onLectureName + '</a>' + '</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
@@ -485,7 +487,8 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-        					str+='<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>'+item.onLecture.onLectureName+'</a>'+'</td>';
+                            str += '<td class="product-thumbnail">' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+'<img src="${pageContext.request.contextPath}/images/onLecture/'+item.onLecture.onLectureNo+'.png">'+ '</a>' +'</td>';
+        					str += '<td>'+'<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+item.onLecture.onLectureName+'</a>'+'</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';
@@ -530,7 +533,8 @@
                         var str = "";
                         $.each(result, function (index, item) {
                             str += '<tr>';
-                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail?onLectureNo="+item.onLecture.onLectureNo>' + item.onLecture.onLectureName + '</a>' + '</td>';
+                            str += '<td class="product-thumbnail">' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">'+'<img src="${pageContext.request.contextPath}/images/onLecture/'+item.onLecture.onLectureNo+'.png">'+ '</a>' +'</td>';
+                            str += '<td>' + '<a href="${pageContext.request.contextPath}/onLecture/detail/'+item.onLecture.onLectureNo+'">' + item.onLecture.onLectureName + '</a>' + '</td>';
                             str += '<td>' + item.onLecture.onLecturePrice + '</td>';
                             str += '<td><input type="button" value="삭제" id=' + item.wishListNo + '></td>';
                             str += '</tr>';

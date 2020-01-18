@@ -32,7 +32,6 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<Review> selectByOnlectureNo(Long onLectureNo) {
 		List<Review> list = new ArrayList<>();
 		reviewRepo.findByOnLectureOnLectureNo(onLectureNo).iterator().forEachRemaining(list::add);;
-		System.out.println("@@@@@!@#!@#!@#리뷰 리스트 확인 : "+list.toString());
 		
 		return list;
 	}
@@ -46,6 +45,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public void update(Review review) {
 		
 
+	}
+	
+	@Override
+	public Review selectById(Long reviewNo) {
+		return reviewRepo.findByReviewNo(reviewNo);
 	}
 
 	@Override
