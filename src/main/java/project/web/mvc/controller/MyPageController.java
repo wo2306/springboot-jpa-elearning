@@ -84,24 +84,6 @@ public class MyPageController {
         return list;
     }
 
-    @RequestMapping("/orderBy/{command}/{pageNum}")
-    public String orderby(@PathVariable int command, @PathVariable int pageNum, Model model) {
-        List<Sugang> list = new ArrayList<>();
-        Page<Sugang> page = null;
-        if (command == 1) {
-            page = sugangService.selectByUserNoOrderByRegdate(pageNum);
-        } else if (command == 2) {
-        } else if (command == 3) {
-            page = sugangService.selectBySugangState(pageNum, true);
-        } else if (command == 4) {
-            page = sugangService.selectBySugangState(pageNum, false);
-        }
-        model.addAttribute("list", list);
-        model.addAttribute("page", page);
-        page.iterator().forEachRemaining(list::add);
-        return "myPage/myLecture";
-    }
-
     @RequestMapping("/info/wishlisttab")
     @ResponseBody
     public List<WishList> wishlisttab(Model model) {

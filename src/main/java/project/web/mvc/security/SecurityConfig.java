@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 페이지 권한 설정
 //        .antMatchers("/admin/**").hasAuthority("ADMIN")
         .antMatchers("/myPage/**").authenticated()
-//        .antMatchers("/cart/**").authenticated()
+        .antMatchers("/cart/**").authenticated()
         .antMatchers("/order/**").authenticated()
         .antMatchers("/qna/questionForm").authenticated()
         .antMatchers("/qna/read/**").authenticated()

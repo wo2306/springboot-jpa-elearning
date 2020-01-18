@@ -140,9 +140,12 @@
                                 <div>
                                     <div class="form-group">
                                         <label>세부 강의 제목</label>
+                                        <input name="onDetailNo" type="hidden" class="form-control" value="${detail.onDetailNo}">
                                         <input id="title" type="text" class="form-control"
                                                placeholder="강의 제목을 입력하세요" name="onDetailName"
                                                value="${detail.onDetailName}">
+                                        <input name="onDetailUrl" type="hidden" class="form-control" value="${detail.onDetailUrl}">
+                                        <input name="onDetailPlaytime" type="hidden" class="form-control" value="${detail.onDetailPlaytime}">
                                     </div>
                                 </div>
                             </div>
