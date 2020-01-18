@@ -103,6 +103,7 @@ public class OnLectureController {
         return "onLecture/list";
     }
 
+
     @RequestMapping("/latest")
     @ResponseBody
     public List<OnLecture> latestList() {
