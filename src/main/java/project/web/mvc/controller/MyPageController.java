@@ -135,6 +135,8 @@ public class MyPageController {
         return new ModelAndView("myPage/myAccount", "item", item);
     }
 
+
+
     @RequestMapping(value = "/myAccount/passwordCheck")
     @ResponseBody
     public int passwordCheck(String userdbPassword0) {
