@@ -26,5 +26,9 @@ public interface OnOrderRepository extends PagingAndSortingRepository<OnOrder, L
     @Query("select o from OnOrder o where o.onlecture.onLectureName LIKE CONCAT('%',:keyword,'%')")
     Page<OnOrder> findByLectureName(String keyword, Pageable pageable);
 
+    @Query("select o from OnOrder o where o.userdb.userdbNo=?1 order by o.onlecture.onLectureName")
     Page<OnOrder> findByUserdb_UserdbNo(Long userdbNo, Pageable pageable);
+
+
+
 }

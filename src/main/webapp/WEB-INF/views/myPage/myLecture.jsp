@@ -16,14 +16,10 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        #out {
-            horiz-align: center;
-            text-align: center;
-        }
-
-        #in {
-            margin: auto;
-            width: 50%;
+        .pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -115,7 +111,7 @@
                             <div class="col-sm-12" id="paginationList">
                                 <nav>
                                     <ul class="pagination theme-colored xs-pull-center m-0" id="in">
-                                        <c:if test="${page.totalPages ne 1}">
+                                        <c:if test="${page.totalPages ne 0}">
                                             <c:choose>
                                                 <c:when test="${page.hasPrevious() eq true}">
                                                     <li>
