@@ -68,7 +68,7 @@
                 <button type="submit" class="btn btn-dark btn-sm">Login</button>
               </div>
               <div class="clear text-center pt-10">
-                <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your Password?</a>
+                <a class="text-theme-colored font-weight-600 font-12" href="${pageContext.request.contextPath}/findPwd">Forgot Your Password?</a>
               </div>
               <div class="clear text-center pt-10">
                 <a class="btn btn-dark btn-lg btn-block no-border" href="signUpForm" data-bg-color="red">Sign Up</a>
@@ -82,9 +82,10 @@
 							<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300" />
 						</a>
 		            	<input type="text" value="" name="id" id="kakaoId" style="display: none;">
-		            	<input type="text" value="" name="kakaoNickname" id="kakaoNickname" style="display: none;">
-		            	<input id="kakaoPw" name="password" type="text" style="display: none">
+		            	<input type="text" value="" name="userdbNickname" id="kakaoNickname" style="display: none;">
+		            	<input id="password" name="password" type="text" style="display: none">
                         <input type="hidden" id="kakaoToken" name="${_csrf.parameterName}" value="" style="display:none">
+                        <input type="hidden" id="kakaoToken2" name="kakaoToken2" value="" style="display:none">
 	           		 </form>
 				</div>
 	
@@ -112,10 +113,12 @@ var kakaoToken;
                 success: function(res) {
                 	persistAccessToken : false;
                       alert(JSON.stringify(authObj));
+                     /*  alert(authObj.cookies) */
                    	  document.getElementById('kakaoToken').setAttribute('value',authObj.access_token);
+                   	  document.getElementById('kakaoToken2').setAttribute('value',authObj.access_token);
                    	  document.getElementById('kakaoId').setAttribute('value',res.id);
                       document.getElementById('kakaoNickname').setAttribute('value',res.properties['nickname']);
-                      document.getElementById('kakaoPw').setAttribute('value','123456789');
+                   	  document.getElementById('password').setAttribute('value','1234');
                       
                       loginAjax();
                     }
@@ -131,19 +134,19 @@ var kakaoToken;
 		function loginAjax() {
 			/*로그인하기*/
 					$.ajax({
-						url : "${pageContext.request.contextPath}/kakaoLogin",
+						url : "${pageContext.request.contextPath}/user/kakaoLogin",
 						type : "post",
 						data : $("form[name=kakaoForm]").serialize(),
 						dataType : "text",
 						success : function(result) {
-							$("form[name=kakaoForm]").attr("action", "loginCheck");
+							$("form[name=kakaoForm]").attr("action", "/loginCheck");
 							if(result==0){
 								alert('이미가입된유저다 로그인하자이제')
 		                      	$("form[name=kakaoForm]").submit();
 							}else if(result==1){
 								alert('신규이긴한데 닉네임이 중복이다 회원가입폼으로가자')
-								$("form[name=kakaoForm]").attr("action", "signUpForm");
-								$("form[name=kakaoForm]").submit();
+								$("form[name=kakaoForm]").attr("action", "/user/nickNameSignUpForm");
+		                      	$("form[name=kakaoForm]").submit();
 							}else if(result==2){
 								alert('신규라 회원가입성공, 로그인하자이제')
 		                      	$("form[name=kakaoForm]").submit();

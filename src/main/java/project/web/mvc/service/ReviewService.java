@@ -14,6 +14,8 @@ public interface ReviewService {
 	
 	void delete(Long reviewNo);
 	
+	Review selectById(Long reviewNo);
+	
 	//리스트 전체 (사용안함)
 	List<Review> selectAll();
 	

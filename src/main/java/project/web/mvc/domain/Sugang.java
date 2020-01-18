@@ -35,5 +35,9 @@ public class Sugang {
     //수강완료
 
     private Long onDetailNo;
-    private Long onLectureNo;
+
+    @ManyToOne
+    @JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
+    private OnLecture onLecture;
+
 }
