@@ -63,7 +63,7 @@
 											<div class="schedule-box maxwidth500 bg-light mb-30">
 												<div class="thumb">
 													<img class="img-fullwidth"
-														src="${pageContext.request.contextPath}/images/offLecture/${list.offLectureNo}.png">
+														src="${pageContext.request.contextPath}/resources/images/offLecture/${list.offLectureNo}.png" alt="${list.offLectureName} 사진입니다.">
 													<div class="overlay"></div>
 												</div>
 

@@ -111,7 +111,7 @@
 															class="btn btn-dark btn-sm mt-10" id="btn">예약하기</a>
           </div>
           <div class="col-md-8">
-            <img src="${pageContext.request.contextPath}/images/offLecture/offLectureDetail/${offLecture.offLectureNo}.jpg" width="755" height="480">
+            <img src="${pageContext.request.contextPath}/resources/images/offLecture/offLectureDetail/${offLecture.offLectureNo}.png" alt="${offLecture.offLectureName} 사진입니다." width="755" height="480">
           </div>
         </div>
       </div>

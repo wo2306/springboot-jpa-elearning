@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,10 +84,10 @@ public class AdminAcademyController {
 		ModelAndView mv = new ModelAndView();
 		try {
 			//실제 root 경로를 가져오기
-			String path = session.getServletContext().getRealPath("/WEB-INF/save");
+			String path = session.getServletContext().getRealPath("/resources/images/academy/");
 			//첨부된 파일 이름 가져오기
-			String fileName = file.getOriginalFilename();
-			file.transferTo(new File(path +"/" + fileName)); //폴더에 저장완료
+			//String fileName = file.getOriginalFilename();
+			file.transferTo(new File(path + academy.getAcademyNo()+".jpg")); //폴더에 저장완료
 			
 			mv.setViewName("redirect:/admin/academy"); //WEB-INF/views/uploadResult.jsp이동
 			
@@ -111,7 +112,8 @@ public class AdminAcademyController {
 	
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
-	public void academyDelete(Long academyNo) {
+	public void academyDelete(Long academyNo, HttpServletRequest request) {
+		new File(request.getSession().getServletContext().getRealPath("/resources/images/academy/") + academyNo + ".jpg").delete();
 		academyService.academyDelete(academyNo);
 		//return "redirect:list";
 	}

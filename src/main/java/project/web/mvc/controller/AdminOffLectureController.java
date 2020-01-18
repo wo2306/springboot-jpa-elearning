@@ -98,7 +98,8 @@ public class AdminOffLectureController {
 	
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
-	public void offLecDelete(Long offLectureNo) {
+	public void offLecDelete(Long offLectureNo, HttpServletRequest request) {
+		new File(request.getSession().getServletContext().getRealPath("/resources/images/offLecture/") + offLectureNo + ".png").delete();
 		offLectureService.offLecDelete(offLectureNo);
 		//return "redirect:/admin/offLecture";
 	}
@@ -113,10 +114,10 @@ public class AdminOffLectureController {
 		ModelAndView mv = new ModelAndView();
 		try {
 			//실제 root 경로를 가져오기
-			String path = session.getServletContext().getRealPath("/WEB-INF/save");
+			String path = session.getServletContext().getRealPath("/resources/images/offLecture/");
 			//첨부된 파일 이름 가져오기
 			String fileName = file.getOriginalFilename();
-			file.transferTo(new File(path +"/" + fileName)); //폴더에 저장완료
+			file.transferTo(new File(path + offLecture.getOffLectureNo()+".png")); //폴더에 저장완료
 			
 			//뷰쪽으로 전달될 데이터 설정
 			mv.addObject("name", name);
