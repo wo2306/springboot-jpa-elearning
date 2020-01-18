@@ -91,7 +91,7 @@
 
                     </div>
                     <hr>
-                    <form id="onLectureForm" action="${pageContext.request.contextPath}/onLecture/insert" method="post">
+                    <form id="onLectureForm" action="${pageContext.request.contextPath}/admin/onLecture/insert" enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <label>온라인 강의명</label>
                             <input type="text" class="form-control" placeholder="온라인 강의 명" name="onLectureName">
@@ -123,9 +123,13 @@
                                       placeholder="강의에 대한 설명을 쓰세요"></textarea>
                         </div>
                         <div class="form-group">
-                            <label>썸네일용 강의 설명</label>
+                            <label>강의 요약 설명</label>
                             <input type="text" class="form-control" placeholder="썸네일용 강의 설명"
                                    name="onLectureSummary">
+                        </div>
+                        <div class="form-group">
+                            <label>강의 썸네일용 이미지</label><br>
+                            <input id="thumbnail" class="file" type="file" name="thumbnail">
                         </div>
 
                         <br>
@@ -143,7 +147,7 @@
                                     <label>동영상 업로드</label>
                                     <br>
                                     <input id="file" class="file" type="file" name="onLectureFile">
-                                    <input type="hidden" id="videoLength" name="videoLength" value=""/>
+                                    <input type="hidden" id="videoLength" name="videoLength" value="10"/>
                                     <p class="help-block"></p>
                                 </div>
                             </div>
@@ -308,7 +312,7 @@
                 var str = "";
                 str += '<hr><div><div><label>세부 강의 제목</label><input type="text" class="form-control" placeholder="강의 제목을 입력하세요"';
                 str += 'name="onDetailName"></div><div class="form-group"><br><label>동영상 업로드</label><br><input type="file" name="onLectureFile">';
-                str += '<p class="help-block"></p><input type="hidden" name="videoLength" value=""/></div></div>';
+                str += '<p class="help-block"></p><input type="hidden" name="videoLength" value="10"/><input type="hidden" name="detailUrl" value="test"/></div></div>';
                 $("#detail").parent().append(str);
             });
 

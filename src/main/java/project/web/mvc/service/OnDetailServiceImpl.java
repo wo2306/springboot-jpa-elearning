@@ -14,6 +14,11 @@ public class OnDetailServiceImpl implements OnDetailService {
 	private final OnDetailRepository onDetailRepository;
 
 	@Override
+	public void deleteByOnLectureNo(Long onLectureNo) {
+		onDetailRepository.deleteByOnLecture_OnLectureNo(onLectureNo);
+	}
+
+	@Override
 	public void insert(OnDetail onDetail) {
 		onDetailRepository.save(onDetail);
 	}

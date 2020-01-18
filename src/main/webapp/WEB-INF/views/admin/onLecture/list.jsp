@@ -17,19 +17,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <![endif]-->
     <style>
-        #out {
-            horiz-align: center;
+        td {
             text-align: center;
         }
-
-        #in {
-            margin: auto;
-            width: 50%;
-        }
-
-        #inin {
-            margin: auto;
-            width: 50%;
+        .pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -55,9 +49,8 @@
                                     <form name="searchForm" method="post" onsubmit="return searchform()">
                                         <div class="input-group" style="padding-left: 730px">
                                             <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
-                                                <option value="all">전체</option>
-                                                <option value="category">카테고리</option>
                                                 <option value="name">강의명</option>
+                                                <option value="category">카테고리</option>
                                                 <option value="teacher">강사명</option>
                                             </select>
                                             <input id="keyword" type="text" name="value" style="padding-left: 10px"
@@ -89,6 +82,7 @@
                             <tr>
                                 <th>강의번호</th>
                                 <th>카테고리</th>
+                                <th>강사명</th>
                                 <th>이름</th>
                                 <th>등록일</th>
                                 <th colspan="2">기능</th>
@@ -97,12 +91,14 @@
                                 <tr>
                                     <td>${list.onLectureNo}</td>
                                     <td>${list.onLectureCategory}</td>
+                                    <td>${list.onLectureTeacher}</td>
                                     <td>${list.onLectureName}</td>
                                     <td><fmt:formatDate value="${list.onLectureRegdate}"
                                                         pattern="yyyy.MM.dd hh:mm"/></td>
                                     <input type=hidden name="offLectureNo" value="${list.onLectureNo}">
                                     <td>
-                                        <button type="button" name="updateBtn" class="btn btn-dark" value="${list.onLectureNo}">수정
+                                        <button type="button" name="updateBtn" class="btn btn-dark"
+                                                value="${list.onLectureNo}">수정
                                         </button>
                                     </td>
                                     <td>
@@ -141,7 +137,7 @@
                                             <li class="page-item">
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
-                                                        <a class="page-link"
+                                                        <a style="color: silver" class="page-link"
                                                            href="${pageContext.request.contextPath}/admin/onLecture/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:when>
                                                     <c:otherwise>
@@ -172,6 +168,7 @@
                                     <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.upload&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:8888/oauth2callback&response_type=code&client_id=1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com"
                                        class="btn btn-dark">새로운 강의 등록하기</a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -184,12 +181,19 @@
     function searchform() {
         var keyfield = $("#key option:selected").val();
         var keyword = $("#keyword").val();
+        if (keyword!="") {
         location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
+
+        } else {
+            alert("검색어를 입력하세요");
+        }
         return false;
     }
 
     $("button[name='deleteBtn']").on('click', function () {
-        location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).val();
+        if (confirm("선택한 강의를 정말로 삭제하시겠습니까?")) {
+            location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).val();
+        }
     })
 
     $("button[name='updateBtn']").on('click', function () {
