@@ -115,7 +115,7 @@
                         </li>
                     </c:forEach>
                     <li>
-                        <a style="font-weight: bold" href="${pageContext.request.contextPath}/onLecture/detail/${onDetail.onLecture.onLectureNo}">수강
+                        <a href="${pageContext.request.contextPath}/onLecture/detail/${onDetail.onLecture.onLectureNo}">수강
                             종료 후 나가기</a>
                     </li>
                 </ul>

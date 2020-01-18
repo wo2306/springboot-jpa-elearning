@@ -62,12 +62,12 @@
         <!-- Section Content -->
         <div class="section-content">
           <div class="row">
-            <div class="col-md-12 text-center">
-              <h3 class="font-28 text-white">${offLecture.offLectureName}</h2>
-              <ol class="breadcrumb text-center text-black mt-10">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active text-theme-colored">Page Title</li>
+            <div class="col-md-12">
+              <h2 class="font-28 text-white">${offLecture.offLectureName}</h2>
+              <ol class="breadcrumb text-black mt-10">
+                <li><a href="#">홈</a></li>
+                <li><a href="#">강의 상세 조회</a></li>
+                <li class="active text-theme-colored">${offLecture.offLectureName}</li>
               </ol>
             </div>
           </div>
@@ -79,48 +79,43 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
+          <h3 class="text-theme-colored line-bottom text-theme-colored">${offLecture.offLectureName}</h3>
             <ul>
               <li>
-                <h5>강의 제목:</h5>
-                <p>${offLecture.offLectureName}</p>
-              </li>
-              <li>
-                <h5>강의 카테고리</h5>
+                <h5>강의 카테고리:</h5>
                 <p>${offLecture.category}</p>
-              </li>
-              <li>
-                <h5>강의 설명</h5>
-                <p>${offLecture.offDetail}</p>
               </li>
               <li>
                 <h5>강사:</h5>
                 <p>${offLecture.offLectureTeacher}</p>
               </li>
               <li>
-                <h5>강의 장소</h5>
-                <p>${offLecture.academy.academyAddrCity}</p>
-              </li>
-              <li>
-                <h5>강의 날짜</h5>
+                <h5>강의 날짜:</h5>
                 <span id ="endDate">${offLecture.offLectureDate}</span>
               </li>
               <li>
-                <h5>남은 좌석 수</h5>
+                <h5>남은 좌석 수:</h5>
                 <p><span id="seat">${offLecture.offLectureSeat-offLecture.offLectureReservedseat}</span></p>
               </li>
+              <li>
+                <h5>강의 장소:</h5>
+                <p>${offLecture.academy.academyAddrDetail}</p>
+              </li>
+              <li>
+                <h5>강의 설명:</h5>
+                <p>${offLecture.offDetail}</p>
+              </li>
+              
             </ul>
             <a href="${pageContext.request.contextPath}/offLecture/checkout/${offLecture.offLectureNo}"
 															class="btn btn-dark btn-sm mt-10" id="btn">예약하기</a>
           </div>
           <div class="col-md-8">
-            <img src="https://placehold.it/755x480" alt="">
+            <img src="${pageContext.request.contextPath}/images/offLecture/offLectureDetail/${offLecture.offLectureNo}.jpg" width="755" height="480">
           </div>
         </div>
       </div>
     </section>
-
-    
-
     
   </div>
   </div>
