@@ -17,7 +17,7 @@ public interface OffLectureRepository extends PagingAndSortingRepository<OffLect
 	Page<OffLecture> findByOrderByOffLectureNo(Pageable pageable);
 	
 	
-	@Query("select o from OffLecture o where o.offLectureDate > sysdate")
+	@Query("select o from OffLecture o order by o.offLectureDate desc")
 	 List<OffLecture> selectByDate();
 	 
 	List<OffLecture> findByOrderByOffLectureDateDesc();
