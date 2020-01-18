@@ -65,6 +65,7 @@ public class OnLectureController {
     }
 
 
+
     @RequestMapping("/view/{onDetailNo}")
     public String view(@PathVariable Long onDetailNo, Model model) {
         OnDetail onDetail = onLectureService.selectOnDetailById(onDetailNo);
