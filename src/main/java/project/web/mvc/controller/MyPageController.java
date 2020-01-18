@@ -9,21 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
-import project.web.mvc.domain.ClassQuestion;
-import project.web.mvc.domain.OffOrder;
-import project.web.mvc.domain.OnLecture;
-import project.web.mvc.domain.OnOrder;
-import project.web.mvc.domain.Review;
-import project.web.mvc.domain.Userdb;
-import project.web.mvc.domain.WishList;
-import project.web.mvc.service.ClassQuestionService;
-import project.web.mvc.service.OrderService;
-import project.web.mvc.service.UserdbService;
-import project.web.mvc.service.ReviewService;
-import project.web.mvc.service.WishListService;
+import project.web.mvc.domain.*;
+import project.web.mvc.service.*;
 import project.web.mvc.util.LoginCheck;
 
 import java.util.ArrayList;
@@ -103,7 +90,7 @@ public class MyPageController {
         Page<Sugang> page = null;
         if (command == 1) {
             page = sugangService.selectByUserNoOrderByRegdate(pageNum);
-        } else if (command== 2) {
+        } else if (command == 2) {
         } else if (command == 3) {
             page = sugangService.selectBySugangState(pageNum, true);
         } else if (command == 4) {
@@ -144,21 +131,21 @@ public class MyPageController {
 
     @RequestMapping(value = "/myAccount")
     public ModelAndView myAccount() {
-    	System.out.println("마이페이지의 마이어카운트 호출");
-    	Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
-		 Userdb item = userdbService.selectByUserdbNo(userdbNo);
-		return new ModelAndView("myPage/myAccount", "item", item);
+        System.out.println("마이페이지의 마이어카운트 호출");
+        Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
+        Userdb item = userdbService.selectByUserdbNo(userdbNo);
+        return new ModelAndView("myPage/myAccount", "item", item);
     }
 
     @RequestMapping(value = "/myAccount/passwordCheck")
     @ResponseBody
     public int passwordCheck(String userdbPassword0) {
-    	//true = 비밀번호 일치, false = 비밀번호 불일치
-    	//true : 0, false : 1
-    	System.out.println("패스워드체크컨트롤러**********************************");
-    	int result = (userdbService.checkPassword(userdbPassword0))? 0 : 1;
-    	System.out.println("패스워드체크컨트롤러22222*********************************");
-    	return result;
+        //true = 비밀번호 일치, false = 비밀번호 불일치
+        //true : 0, false : 1
+        System.out.println("패스워드체크컨트롤러**********************************");
+        int result = (userdbService.checkPassword(userdbPassword0)) ? 0 : 1;
+        System.out.println("패스워드체크컨트롤러22222*********************************");
+        return result;
     }
 
     //nickname 변경
@@ -175,9 +162,9 @@ public class MyPageController {
     @RequestMapping(value = "/myAccount/pwUpdate")
     @ResponseBody
     public int pwUpdate(String userdbPassword1) {
-    	userdbService.updatePw(userdbPassword1);
-    	//0: 성공, 1:오류
-    	return 0;
+        userdbService.updatePw(userdbPassword1);
+        //0: 성공, 1:오류
+        return 0;
     }
 
 }
