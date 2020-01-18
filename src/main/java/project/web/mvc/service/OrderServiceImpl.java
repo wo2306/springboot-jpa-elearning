@@ -3,17 +3,14 @@ package project.web.mvc.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import project.web.mvc.domain.*;
+import project.web.mvc.repository.CouponRepository;
 import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
 import project.web.mvc.util.LoginCheck;
-import sun.rmi.runtime.Log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +19,7 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private final OnOrderRepository onOrderRepository;
     private final OffOrderRepository offOrderRepository;
+    private final CouponRepository couponRepository;
 
     @Override
     public void cartInsert(List<Long> onLectureNo, OnOrder onOrder) {
@@ -33,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void onInsert(Long onLectureNo, OnOrder onOrder) {
+    public void onInsert(Long onLectureNo, OnOrder onOrder, String couponCode) {
         onOrder.setOnlecture(new OnLecture(onLectureNo));
         onOrder.setUserdb(LoginCheck.getUserdb());
         onOrderRepository.save(onOrder);
@@ -48,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void couponDiscount(String couponCode) {
         Coupon coupon = couponRepository.findById(couponCode).orElse(null);
-        coupon.setCouponRemainingCount(coupon.getCouponRemainingCount()-1);
+        coupon.setCouponRemainingCount(coupon.getCouponRemainingCount() - 1);
         couponRepository.save(coupon);
     }
 
@@ -74,7 +72,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<OnOrder> onSelectByLectureName(int pageNum, String keyword) {
-        return onOrderRepository.findByLectureName(keyword,  PageRequest.of(pageNum - 1, 10));
+        return onOrderRepository.findByLectureName(keyword, PageRequest.of(pageNum - 1, 10));
     }
 
     @Override
@@ -84,7 +82,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<OffOrder> offSelectByUserdbNo(int pageNum) {
-        return offOrderRepository.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(),PageRequest.of(pageNum - 1, 10));
+        return offOrderRepository.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum - 1, 10));
     }
 
     @Override
