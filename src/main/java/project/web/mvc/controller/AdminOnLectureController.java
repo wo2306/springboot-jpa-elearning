@@ -48,6 +48,8 @@ public class AdminOnLectureController {
         return "redirect:all/keyword/1";
     }
 
+
+
     @RequestMapping("/delete/{onLectureNo}")
     public String delete(@PathVariable Long onLectureNo, HttpServletRequest request) {
         onDetailService.deleteByOnLectureNo(onLectureNo);
