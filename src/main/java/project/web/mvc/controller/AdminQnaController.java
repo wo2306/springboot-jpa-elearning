@@ -68,6 +68,7 @@ public class AdminQnaController {
 	@RequestMapping("qna/answerUpdate/update")
 	public String answerUpdate (ClassAnswer classAnswer) {
 		classQuestionService.updateAnswer(classAnswer);
+		
 		return "redirect:/admin/qna/answerList/1";
 	}
 	
