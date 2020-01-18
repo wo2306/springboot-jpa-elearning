@@ -132,10 +132,10 @@
                
                  <div class="col-sm-12" id="paginationList">
                                 <nav>
-                                    <ul class="pagination theme-colored xs-pull-center m-0">
+                                    <ul class="pagination">
                                         <c:if test="${page.hasPrevious() eq true}">
-                                            <li>
-                                                <a href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${page.number}"
+                                            <li class="page-item">
+                                                <a class="page-link" href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${page.number}"
                                                    aria-label="Previous"> <span aria-hidden="true">이전</span> </a>
                                             </li>
                                         </c:if>
@@ -143,21 +143,21 @@
                                             <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
-                                                        <li class="active"><a
+                                                        <li class="page-item" class="active"><a class="page-link"
                                                                 href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${i.count}">${i.count}</a>
                                                         </li>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <li>
-                                                            <a href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${i.count}">${i.count}</a>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${i.count}">${i.count}</a>
                                                         </li>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${page.hasNext() eq true}">
-                                            <li>
-                                                <a href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${page.number+2}"
+                                            <li class="page-item">
+                                                <a class="page-link" href="${pageContext.request.contextPath}/admin/roadmap/onLectureList/${page.number+2}"
                                                    aria-label="Next"> <span aria-hidden="true">다음</span> </a></li>
                                         </c:if>
                                     </ul>
