@@ -108,7 +108,15 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		return classQuestionRepo.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum-1, 9));
 	}
 
-
-
+	//관리자 작성자 검색
+	@Override
+	public Page<ClassQuestion> selectByName(String keyword, int pageNum) {
+		return classQuestionRepo.findByName(keyword, PageRequest.of(pageNum-1, 9));
+	}
+	//관리자 제목 검색
+	@Override
+	public Page<ClassQuestion> selectByTitle(String keyword, int pageNum) {
+		return classQuestionRepo.findByTitle(keyword, PageRequest.of(pageNum-1, 9));
+	}
 
 }

@@ -36,4 +36,10 @@ public interface ClassQuestionService {
     List<ClassAnswer> selectAnswerByQNo(Long id);
     //유저별 질문 리스트 (마이페이지에서 사용)
     Page<ClassQuestion> selectByUserdbId(int pageNum);
+    
+    //관리자 페이지 검색 (작성자검색)
+    Page<ClassQuestion> selectByName(String keyword, int pageNum);
+    //관리자 페이지 검색 (질문제목검색)
+    Page<ClassQuestion> selectByTitle(String keyword, int pageNum);
+    
 }
