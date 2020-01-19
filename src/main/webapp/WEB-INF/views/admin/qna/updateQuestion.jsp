@@ -141,8 +141,9 @@
 									</div>
 									<div class="col-sm-1">
 										<div class="form-group">
-											<label>삭제</label> <button type="button" class="btn btn-dark"
-												value="${question.classQuestionNo}">X</button>
+											<label>삭제</label> <button type="button" class="btn btn-dark" name="deleteBtn"
+												value="${answer.classAnswerNo}">X</button>
+												<input type="hidden" value="${answer.classQuestion.classQuestionNo}"/>
 										</div>
 									</div>
 									
@@ -154,6 +155,13 @@
         </section>
     </div>
 </div>
-
+<script>
+    $("button[name='deleteBtn']").on('click', function () {
+    	
+    	if(confirm("선택된 연관 답변을 정말로 삭제하시겠습니까?")){
+        location.href = '${pageContext.request.contextPath}/admin/qna/answerDelete/'+$(this).val()+"/"+$(this).next().val();
+    		}
+    })
+</script>
 </body>
 </html>

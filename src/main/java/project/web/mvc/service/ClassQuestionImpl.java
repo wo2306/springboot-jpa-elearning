@@ -57,12 +57,12 @@ public class ClassQuestionImpl implements ClassQuestionService {
 
 	@Override
 	public void deleteAnswer(Long classAnswerNo) {
-		// TODO Auto-generated method stub
+		classAnswerRepo.deleteById(classAnswerNo);
 		
 	}
 	@Override
-	public void deleteQuestion(Long classQuestion) {
-		// TODO Auto-generated method stub
+	public void deleteQuestion(Long classQuestionNo) {
+		classQuestionRepo.deleteById(classQuestionNo);
 		
 	}
 	

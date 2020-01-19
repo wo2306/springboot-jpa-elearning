@@ -60,6 +60,20 @@ public class AdminQnaController {
 		return "redirect:/admin/qna/questionList/1";
 	}
 	
+	@RequestMapping("qna/questionDelete/{classQuestionNo}")
+	public String questionDelete(@PathVariable Long classQuestionNo) {
+		classQuestionService.deleteQuestion(classQuestionNo);
+		
+		return "redirect:/admin/qna/questionList/1";
+	}
+	
+	@RequestMapping("qna/answerDelete/{classAnswerNo}/{classQuestionNo}")
+	public String answerDelete(@PathVariable Long classAnswerNo, @PathVariable Long classQuestionNo) {
+		classQuestionService.deleteAnswer(classAnswerNo);
+		
+		return "redirect:/admin/qna/questionUpdate/"+classQuestionNo;
+	}
+	
 	
 //	@RequestMapping("qna/answerUpdate/{classAnswerNo}")
 //	public ModelAndView answerUpdateForm(@PathVariable Long classAnswerNo, Model model) {
