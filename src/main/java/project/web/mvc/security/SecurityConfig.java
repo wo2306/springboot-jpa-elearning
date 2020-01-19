@@ -59,6 +59,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//post방식 허용
 		.csrf().disable();
     }
-
-
 }

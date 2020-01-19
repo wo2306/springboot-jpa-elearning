@@ -13,7 +13,6 @@ import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.service.OnDetailService;
 import project.web.mvc.service.OnLectureService;
-import project.web.mvc.video.vimeo.VimeoException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -29,27 +28,16 @@ public class AdminOnLectureController {
     private final OnDetailService onDetailService;
 
     @PostMapping("/insert")
-    public String insert(OnLecture onLecture, MultipartHttpServletRequest mtfRequest
-            , HttpServletRequest request, String token) throws IOException, VimeoException {
+    public String insert(OnLecture onLecture, MultipartHttpServletRequest mtfRequest) throws IOException {
         MultipartFile thumbnail = mtfRequest.getFile("thumbnail");
-        List<MultipartFile> multipartFiles = mtfRequest.getFiles("onLectureFile");
-
-        for (MultipartFile m : multipartFiles) {
-            File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + m.getOriginalFilename());
-            m.transferTo(convFile);
-//            Vimeo vimeo = new Vimeo(token);
-//            String videoEndPoint = vimeo.addVideo(convFile, true);
-//            VimeoResponse info = vimeo.getVideoInfo(videoEndPoint);
-            onLectureService.insert(onLecture);
-            //실제 root 경로를 가져오기
-            String path = request.getSession().getServletContext().getRealPath("/resources/images/onLecture/");
-            //첨부된 파일 이름 가져오기
-            thumbnail.transferTo(new File(path + onLecture.getOnLectureNo() + ".png"));
-            String[] detailNames = mtfRequest.getParameterValues("onDetailName");
-            String[] videoLength = mtfRequest.getParameterValues("videoLength");
-            for (int i = 0; i < detailNames.length; i++) {
-//                onDetailService.insert(new OnDetail(null, onLecture, String.valueOf(info.getJson().get("link")), detailNames[i], videoLength[i]));
-            }
+        onLectureService.insert(onLecture);
+        String path = mtfRequest.getSession().getServletContext().getRealPath("/resources/images/onLecture/");
+        thumbnail.transferTo(new File(path + onLecture.getOnLectureNo() + ".png"));
+        String[] detailNames = mtfRequest.getParameterValues("onDetailName");
+        String[] detailUrls = mtfRequest.getParameterValues("detailUrl");
+        String[] videoLength = mtfRequest.getParameterValues("videoLength");
+        for (int i = 0; i < detailNames.length; i++) {
+            onDetailService.insert(new OnDetail(null, onLecture, detailUrls[i], detailNames[i], videoLength[i]));
         }
         return "redirect:all/keyword/1";
     }

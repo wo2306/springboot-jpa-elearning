@@ -165,7 +165,7 @@
                                             </c:if>
                                         </li>
                                     </ul>
-                                    <a href="https://api.vimeo.com/oauth/authorize?response_type=code&client_id=ab5b24fc3d01921d6cdad123ae0cd4bbbc930dc2&redirect_uri=http://localhost:8888/oauth2callback&state=true&scope=public"
+                                    <a href="${pageContext.request.contextPath}/callback/video"
                                        class="btn btn-dark">새로운 강의 등록하기</a>
                                 </div>
                             </div>
