@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,12 +31,12 @@ public class OnOrder {
 	private String onOrderCode;
 
 	@ManyToOne
-//	@JsonManagedReference
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
 	private OnLecture onlecture;
 
 	@ManyToOne
-//	@JsonManagedReference
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
 	private Userdb userdb;
 

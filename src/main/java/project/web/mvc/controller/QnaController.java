@@ -63,6 +63,7 @@ public class QnaController {
 	@RequestMapping("/questionInsert")
 	public String insert(ClassQuestion question) {
 		System.out.println("내용 = " +question.getClassQuestionContent());
+		
 //		if(question.getClassQuestionContent()==null) {
 //			return "redirect:/onLecture/detail/"+question.getOnLecture().getOnLectureNo();
 //			
