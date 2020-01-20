@@ -63,10 +63,15 @@ public class QnaController {
 	@RequestMapping("/questionInsert")
 	public String insert(ClassQuestion question) {
 		System.out.println("내용 = " +question.getClassQuestionContent());
-		if(question.getClassQuestionContent()==null) {
-			return "redirect:/onLecture/detail/"+question.getOnLecture().getOnLectureNo();
-		}
-		else {
+//		if(question.getClassQuestionContent()==null) {
+//			return "redirect:/onLecture/detail/"+question.getOnLecture().getOnLectureNo();
+//			
+//		}
+//		else {
+//		if(LoginCheck.getUserdb()==null) {
+//			return "redirect:/login";
+//		}
+		
 		if(LoginCheck.getUserdb()==null) {
 			return "redirect:/login";
 		}
@@ -76,7 +81,7 @@ public class QnaController {
 		
 		return "redirect:/onLecture/detail/"+question.getOnLecture().getOnLectureNo();
 		}
-	}
+	
 
 
 	@RequestMapping("/answerInsert")

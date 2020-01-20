@@ -19,4 +19,5 @@ public interface NoticeRepository extends PagingAndSortingRepository<Notice, Lon
 	@Query("select no from Notice no where no.noticeTitle LIKE CONCAT('%',:keyword,'%')")
 	Page<Notice> findByKeyword(@Param("keyword") String keyword, Pageable pageable);
 	
+	Page<Notice> findAllByOrderByNoticeRegdateDesc(Pageable pageable);
 }

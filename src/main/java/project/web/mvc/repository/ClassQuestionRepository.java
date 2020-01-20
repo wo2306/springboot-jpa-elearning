@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 import project.web.mvc.domain.ClassQuestion;
 
@@ -25,11 +26,9 @@ public interface ClassQuestionRepository extends PagingAndSortingRepository<Clas
     ClassQuestion findByClassQuestionNo(Long classQuestionNo);
     
     @Query("select q from ClassQuestion q where q.classQuestionTitle LIKE CONCAT('%',:keyword,'%')")
-    Page<ClassQuestion> findByTitle(String keyword, Pageable pageable);
+    Page<ClassQuestion> findByTitle(@Param("keyword") String keyword, Pageable pageable);
     
     @Query("select c from ClassQuestion c inner join c.userdb u where u.userdbNo LIKE CONCAT('%',:keyword,'%')")
-    Page<ClassQuestion> findByName(String keyword, Pageable pageable);
-    
-    
+    Page<ClassQuestion> findByName(@Param("keyword") String keyword, Pageable pageable);
     
 }

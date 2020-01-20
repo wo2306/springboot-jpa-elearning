@@ -191,6 +191,7 @@
         if (keyword=="") {
         
         location.href = '${pageContext.request.contextPath}/admin/qna/questionList/1';
+        
         } else {
         	location.href = '${pageContext.request.contextPath}/admin/qna/' + keyfield + '/' + keyword + '/1';
         	 }

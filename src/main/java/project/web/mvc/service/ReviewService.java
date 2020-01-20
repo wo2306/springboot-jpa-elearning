@@ -27,4 +27,7 @@ public interface ReviewService {
 	
 	//리스트전체 관리자용
 	Page<Review> findAll(int pageNum);
+	
+	//관리자 작성자별 검색
+	Page<Review> findByUser(String keyword, int pageNum);
 }

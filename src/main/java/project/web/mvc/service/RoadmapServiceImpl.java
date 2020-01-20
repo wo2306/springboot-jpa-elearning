@@ -115,8 +115,7 @@ public class RoadmapServiceImpl implements RoadmapService {
 
 	@Override
 	public List<Roadmap> selectByOnLectureNo(Long onLectureNo) {
-		
-		return roadmapRepo.findByOnLectureNo(onLectureNo);
+		return roadmapRepo.findTop3ByOnLecture_OnLectureNo(onLectureNo);
 	}
 	
 

@@ -62,7 +62,7 @@
                 <div class="row">
                     <div class="col-md-8 blog-pull-right">
                         <div class="single-service">
-                            <img src="http://placehold.it/750x500" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/images/onLecture/${onLecture.onLectureNo}.png" style="width: 750px; height: 500px" alt="">
                             <h3 class="text-theme-colored line-bottom text-theme-colored">${onLecture.onLectureName}</h3>
                             </h4>
                             <ul class="review_text list-inline">
@@ -80,8 +80,8 @@
                                 <ul class="list list-border angle-double-right">
 
                                     <c:forEach items="${roadmapList}" var="dto">
-                                        <li class="relatedRoadmapList"><a
-                                                href="${pageContext.request.contextPath}/roadmap/${dto.roadmapNo}">${dto.roadmapName}</a>
+                                        <li class="relatedRoadmapList">
+                                            <a href="${pageContext.request.contextPath}/roadmap/detail/${dto.roadmapName}">${dto.roadmapName}</a>
                                         </li>
                                     </c:forEach>
                                 </ul>
@@ -224,13 +224,15 @@
 $("#questionInsert").on('click', function(){
 	var title=$("#classQuestion > div:nth-child(1) > input.form-control.valid").val();
 	var content = $("#classQuestion > div:nth-child(2) > div > div.note-editing-area > div.note-editable.panel-body");
-	
-	if(title!="" && content!=null){
+	alert(title);
+	alert(content);
+	location.href='${pageContext.request.contextPath}/qna/questionInsert';
+/* 	if(title!="" && content!=null){
 	location.href='${pageContext.request.contextPath}/qna/questionInsert';
 	}
 	else{
 		alert("질문제목과 내용을 입력하세요");
-	}
+	} */
 });
 
 </script>

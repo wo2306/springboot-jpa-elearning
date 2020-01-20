@@ -51,6 +51,23 @@
                                 <li><a href="#">관리자 리뷰 관리 페이지</a></li>
                                 <li class="active text-gray-silver"> - 관리자가 사용자의 리뷰를  수정, 삭제할 수 있는 페이지 입니다.</li>
                                
+                                <li>
+                                    <form name="searchForm" method="post" onsubmit="return searchform()">
+                                        <div class="input-group" style="padding-left: 730px">
+                                            
+                                            <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                                                   class="form-control bg-light border-0 small"
+                                                   placeholder="작성자 이름별 검색" aria-label="Search"
+                                                   aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit" id="search">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                               
                             </ol>
                         </div>
                     </div>
@@ -159,10 +176,15 @@
 </div>
 <script>
     function searchform() {
-       // var keyfield = $("#key option:selected").val();
-     //   var keyword = $("#keyword").val();
-      //  location.href = '${pageContext.request.contextPath}/admin/onLecture/' + keyfield + '/' + keyword + '/1';
-      //  return false;
+           var keyword = $("#keyword").val();
+           if (keyword=="") {
+           
+           location.href = '${pageContext.request.contextPath}/admin/review/list/1';
+           
+           } else {
+          	location.href = '${pageContext.request.contextPath}/admin/review/'+keyword + '/1';
+           	 }
+           return false;
     }
 
     $("button[name='deleteBtn']").on('click', function () {

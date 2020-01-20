@@ -70,6 +70,12 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return reviewRepo.findAll(PageRequest.of(pageNum-1, 9));
 	}
+	
+	@Override
+	public Page<Review> findByUser(String keyword, int pageNum) {
+		
+		return reviewRepo.findByUser(keyword, PageRequest.of(pageNum-1, 9));
+	}
 
 
 

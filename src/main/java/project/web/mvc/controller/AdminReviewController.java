@@ -52,4 +52,18 @@ public class AdminReviewController {
 		return "redirect:/admin/review/list/1";
 		
 	}
+	
+	@RequestMapping("review/{keyword}/{pageNum}")
+	public String selectReviewByUserid(@PathVariable String keyword, @PathVariable int pageNum, Model model) {
+		System.out.println("리뷰 작성자 검색 확인");
+		List<Review> list = new ArrayList<>();
+		Page<Review> page = reviewService.findByUser(keyword, pageNum);
+		
+		
+		page.iterator().forEachRemaining(list::add);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+		
+		return "redirect:/admin/review/list/1";
+	}
 }

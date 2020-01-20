@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import project.web.mvc.domain.Review;
 
@@ -20,4 +21,7 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
 	Page<Review> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
 	
 	Review findByReviewNo(Long reviewNo);
+	
+	@Query("select r from Review r inner join r.userdb u where u.userdbNickname LIKE CONCAT('%',:keyword,'%')")
+	Page<Review> findByUser(@Param("keyword") String keyword, Pageable pageable);
 }

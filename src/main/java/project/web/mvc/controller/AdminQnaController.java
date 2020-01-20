@@ -44,7 +44,7 @@ public class AdminQnaController {
 	}
 	
 	//검색
-    @RequestMapping("/{keyfield}/{keyword}/{pageNum}")
+    @RequestMapping("/qna/{keyfield}/{keyword}/{pageNum}")
    public String category(@PathVariable String keyfield, @PathVariable String keyword,
                           @PathVariable int pageNum, Model model) {
     	System.out.println("제목검색 ctrl");
@@ -64,6 +64,8 @@ public class AdminQnaController {
        model.addAttribute("keyword", keyword);
        model.addAttribute("keyfield", keyfield);
        model.addAttribute("page", page);
+       
+       System.out.println(list.toString());
        return "admin/qna/answerList";
    }
 	

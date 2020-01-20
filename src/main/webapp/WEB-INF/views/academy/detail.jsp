@@ -51,16 +51,23 @@
               <h2 class="text-uppercase font-weight-600 mt-0 font-28 line-bottom">${academy.academyName}</h2>
               <h4 class="text-theme-colored">${academy.academyAddrCity}</h4>
               <p>${academy.academyAddrDetail}</p>
-								<!-- 지도를 표시할 div 입니다 -->
+              <img src="${pageContext.request.contextPath}/resources/images/academy/academyDetail/${academy.academyNo}.jpg" alt="${academy.academyNo} 사진입니다." style="width:65%;height:65%;">
+								
+            </div>
+            	<div class="col-md-6">
+              <div class="video-popup">                
+                  <!-- 지도를 표시할 div 입니다 -->
 								<p style="margin-top:-12px">
     <em class="link">
+    <p>
+    <br>
         <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
             혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
         </a>
     </em>
 </p>
-
 <div id="map" style="width:100%;height:350px;"></div>
+
 
 								<script type="text/javascript"
 									src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9f0b4f0fc1c29948fb684135e99d7721&libraries=services"></script>
@@ -107,9 +114,8 @@
 							
 							    </script>
 								<!-- 다음 지도 api 끝 -->
-								
+              </div>
             </div>
-            
            
           </div>
         </div>
