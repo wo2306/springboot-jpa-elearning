@@ -14,7 +14,7 @@ import java.util.List;
 public interface OnOrderRepository extends PagingAndSortingRepository<OnOrder, Long> {
     List<OnOrder> findByUserdbUserdbNo(Long userdbNo);
 
-    @Query("select distinct o from OnOrder o inner join o.userdb u inner join o.onlecture l where u.userdbNo=?1")
+    @Query("select o from OnOrder o inner join o.userdb u inner join o.onlecture l where u.userdbNo=?1")
     Page<OnOrder> findOnOrder(Long userdbNo, Pageable pageable);
 
 

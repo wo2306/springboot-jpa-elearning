@@ -11,8 +11,6 @@ import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
 import project.web.mvc.util.LoginCheck;
 
-import java.util.*;
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -22,11 +20,16 @@ public class OrderServiceImpl implements OrderService {
     private final CouponRepository couponRepository;
 
     @Override
-    public void cartInsert(List<Long> onLectureNo, OnOrder onOrder) {
-        for (int i = 0; i < onLectureNo.size(); i++) {
-            onOrder.setOnlecture(new OnLecture(onLectureNo.get(i)));
-            onOrder.setUserdb(LoginCheck.getUserdb());
-            onOrderRepository.save(onOrder);
+    public void cartInsert(Long[] onLectureNoList, OnOrder onOrder) {
+        for (int i = 0; i < onLectureNoList.length; i++) {
+            OnOrder tmp = new OnOrder();
+            tmp.setOnOrderCode(onOrder.getOnOrderCode());
+            tmp.setOnOrderMethod(onOrder.getOnOrderMethod());
+            tmp.setOnOrderPrice(onOrder.getOnOrderPrice());
+            tmp.setOnOrderState(onOrder.getOnOrderState());
+            tmp.setOnlecture(new OnLecture(onLectureNoList[i]));
+            tmp.setUserdb(LoginCheck.getUserdb());
+            onOrderRepository.save(tmp);
         }
     }
 
@@ -35,25 +38,9 @@ public class OrderServiceImpl implements OrderService {
         onOrder.setOnlecture(new OnLecture(onLectureNo));
         onOrder.setUserdb(LoginCheck.getUserdb());
         onOrderRepository.save(onOrder);
-        couponDiscount(couponCode);
-    }
-
-    @Override
-    public int findDate() {
-        Calendar calendar = new GregorianCalendar(Locale.KOREA);
-        int month = calendar.get(Calendar.MONTH);
-        System.out.println("month : " + month);
-        Date start = new Date();
-        Date end = new Date();
-        start.setMonth(month);
-        end.setMonth(month + 1);
-        System.out.println("date : "+ start + end);
-        List<OnOrder> onOrders = onOrderRepository.findDate(start, end);
-        int revenue = 0;
-        for (OnOrder o : onOrders) {
-            revenue += o.getOnOrderPrice();
+        if (couponCode != null) {
+            couponDiscount(couponCode);
         }
-        return revenue;
     }
 
 

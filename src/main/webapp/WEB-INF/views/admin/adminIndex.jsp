@@ -47,8 +47,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">월별 매출액</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><fmt:formatNumber value="${monthRevenue}" pattern="₩#,###"/></div>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">강의 판매량</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">858</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -64,8 +64,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">연간 매출액</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><fmt:formatNumber value="${yearRevenue}" pattern="₩#,###"/></div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">누적 매출액</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><fmt:formatNumber value="123000"
+                                                                                                  pattern="₩#,###"/></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -201,34 +202,22 @@
         <div class="col-xl-8 col-lg-7">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">오프라인 강의 매출액</h6>
                 </div>
                 <div class="card-body">
-                    <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
-                             aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="chart-bar">
+                        <div class="chartjs-size-monitor">
+                            <div class="chartjs-size-monitor-expand">
+                                <div class=""></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink">
+                                <div class=""></div>
+                            </div>
+                        </div>
+                        <canvas id="myBarChart" width="487" height="400" class="chartjs-render-monitor"
+                                style="display: block; height: 320px; width: 390px;"></canvas>
                     </div>
-                    <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40"
-                             aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60"
-                             aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
-                    <div class="progress mb-4">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
-                             aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
-                    <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
-                             aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    <hr>
                 </div>
             </div>
         </div>

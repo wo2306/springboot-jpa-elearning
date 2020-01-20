@@ -7,14 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import project.web.mvc.domain.OffLecture;
-import project.web.mvc.domain.OffOrder;
 import project.web.mvc.domain.OnOrder;
 import project.web.mvc.service.CartService;
 import project.web.mvc.service.OnLectureService;
 import project.web.mvc.service.OrderService;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/order")
@@ -31,8 +29,13 @@ public class OrderController {
     }
 
     @RequestMapping("/cartInsert")
-    public String cartInsert(@RequestParam List<Long> onLectureNo, OnOrder onOrder) {
-        orderService.cartInsert(onLectureNo, onOrder);
+    public String cartInsert(HttpServletRequest request, OnOrder onOrder) {
+        String[] onLectureNoList = request.getParameterValues("onLectureNo");
+        Long[] list = new Long[onLectureNoList.length];
+        for (int i = 0; i < onLectureNoList.length; i++) {
+            list[i] = Long.parseLong(onLectureNoList[i]);
+        }
+        orderService.cartInsert(list, onOrder);
         cartService.deleteAll();
         return "payment/success";
     }
@@ -56,5 +59,4 @@ public class OrderController {
         return "payment/buynow";
     }
 
-//select는 mypageController에 있음.
 }

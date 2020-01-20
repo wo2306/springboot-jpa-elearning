@@ -29,11 +29,8 @@ public class AdminHomeController {
     public String main(Model model) {
         System.out.println("어드민컨트롤러호출");
         List<Long> list = onLectureService.countCategory();
-        model.addAttribute("monthRevenue", orderService.findDate());
         //월별매출액 구해오기
         model.addAttribute("list", list);
         return "admin/adminIndex";
     }
-
-
 }
