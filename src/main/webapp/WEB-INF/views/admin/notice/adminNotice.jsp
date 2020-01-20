@@ -91,7 +91,7 @@
 										<td><input type="button" class="btn btn-dark" value="수정"
 											onClick="location.href='${pageContext.request.contextPath}/admin/notice/updateForm/${list.noticeNo}'"></td>
 									<%-- <td><input type="button" class="btn btn-dark" value="삭제" name="deletebtn" id=${list.noticeNo} value="${list.noticeNo}"></td> --%>
-										<td><button type="button" name="deletebtn" class="btn btn-dark" value="${list.noticeNo}">삭제 </button></td>
+										<td><button type="button" name="deletebtn" class="btn btn-dark" value="${list.noticeNo}" style="width:60px;">삭제 </button></td>
 									</tr>
 								</c:forEach>
 							</table>
