@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.checkerframework.checker.units.qual.A;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -15,8 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Setter
@@ -38,7 +35,6 @@ public class ClassQuestion {
     private Userdb userdb;
 
 	@ManyToOne
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
 	private OnLecture onLecture;
 

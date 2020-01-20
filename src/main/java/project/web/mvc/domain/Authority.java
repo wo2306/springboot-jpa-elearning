@@ -13,8 +13,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Setter
@@ -33,7 +31,6 @@ public class Authority {
    
    
    @ManyToOne
-   @OnDelete(action = OnDeleteAction.CASCADE)
    @JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false, unique = true)
     private Userdb userdb;
 

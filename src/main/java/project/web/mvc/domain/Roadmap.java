@@ -39,7 +39,6 @@ public class Roadmap {
     private Long roadmapNo;
 	
 	@ManyToOne
-	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
 	private OnLecture onLecture;
 	
