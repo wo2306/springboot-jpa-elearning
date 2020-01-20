@@ -17,10 +17,10 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 	   <!-- include libraries(jQuery, bootstrap) -->
-	  <!--  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+	   <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
-		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-	 -->
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>  -->
+	 
 		<!-- include summernote css/js-->
 		<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
@@ -54,7 +54,7 @@
         <!-- start -->
  <!-- Section: Registration Form -->
         <section class="divider parallax layer-overlay overlay-white-8"
-                 data-bg-img="http://placehold.it/1920x1280">
+                 data-bg-img="http://placehold.it/1920x1280" style="margin-left:200px;">
             <div class="container-fluid">
                 <div class="section-title">
                     <div class="row">
@@ -69,6 +69,7 @@
                               method="post">
                             <br style="clear: both">
                             <div class="form-group">
+                            	<input type="hidden" name="noticeNo" value="${item.noticeNo}">
                                 <input type="text" class="form-control" id="subject" value="${item.noticeTitle}"
                                        name="noticeTitle" placeholder="subject" style="width:700px;" required>
                             </div>
@@ -78,7 +79,7 @@
                             </div>
                             
                             <button type="submit" id="submit" name="submit"
-                                    class="btn btn-primary pull-right" style="margin-right:150px;">수정하기
+                                    class="btn btn-primary pull-right" style="margin-right:150px; width:700px;">수정하기
                             </button>
                         </form>
                     </div>

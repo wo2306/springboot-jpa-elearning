@@ -253,7 +253,7 @@
         return false;
     }
 
-    $(document).on('click', 'button[value=wishlist]', function () {
+    $(document).on('click', 'a[value=wishlist]', function () {
         if (confirm('위시리스트에 담을까요?')) {
             $.ajax({
                 type: "post",
