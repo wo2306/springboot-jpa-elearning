@@ -119,9 +119,8 @@ $(function(){
                     </tr>
                   </thead>
                   <tbody  id="addOnLectureTable">
-
-                   </tbody>
-                   
+                  </tbody>
+                
                   </tbody>
                 </table>
                  <button type="button" class="btn btn-dark" id="onlecturebtn">강의 추가하기</button>

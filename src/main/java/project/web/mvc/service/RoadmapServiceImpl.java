@@ -110,9 +110,14 @@ public class RoadmapServiceImpl implements RoadmapService {
 
 	@Override
 	public List<Roadmap> selectByName(String roadmapName) {
-		
 		return roadmapRepo.findByRoadmapName(roadmapName);
-		
 	}
+
+	@Override
+	public List<Roadmap> selectByOnLectureNo(Long onLectureNo) {
+		
+		return roadmapRepo.findByOnLectureNo(onLectureNo);
+	}
+	
 
 }
