@@ -233,6 +233,9 @@
         </section>
     </div>
 </div>
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal.username" var="user_id" />
+</sec:authorize>
 </section>
 </div>
 </div>
@@ -253,6 +256,7 @@
     });
 
     function cartInsert() {
+        if ("${user_id}"!="") {
         $.ajax({
             url: "${pageContext.request.contextPath}/cart/insert/" + ${onLecture.onLectureNo},
             type: "post",
@@ -268,11 +272,19 @@
                 var err = eval("(" + xmlHttpRequest.responseText + ")");
                 alert(err.message);
                 cartList()
+
             }
         })
+        }
+        alert("로그인 후 이용해주세요")
+        location.href='${pageContext.request.contextPath}/login'
     }
     function buyNow() {
+        if ("${user_id}"!="") {
         location.href = '${pageContext.request.contextPath}/order/buynow/${onLecture.onLectureNo}';
+        }
+        alert("로그인 후 이용해주세요")
+        location.href='${pageContext.request.contextPath}/login'
     }
 
 </script>
