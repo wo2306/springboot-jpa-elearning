@@ -20,9 +20,8 @@ import project.web.mvc.service.RoadmapService;
 @Controller
 @RequestMapping("/admin/roadmap")
 public class AdminRoadmapController {
-	
 	@Autowired
-	private OnLectureService onLectureService;  	
+	private OnLectureService onLectureService;
 	@Autowired
 	private RoadmapService service;
 	@RequestMapping("/register")
@@ -95,5 +94,4 @@ public class AdminRoadmapController {
 	        model.addAttribute("page", page);
 	        return "admin/roadmap/onLectureList";
 	    }
-	
 }

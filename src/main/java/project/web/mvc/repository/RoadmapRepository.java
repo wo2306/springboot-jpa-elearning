@@ -15,8 +15,7 @@ public interface RoadmapRepository extends CrudRepository<Roadmap, Long> {
 	
 	List<Roadmap> findByRoadmapName(String roadmapName);
 	
-	@Query("select o from Roadmap o where o.onLecture.onLectureNo=?1")
-	List<Roadmap> findByOnLectureNo(Long onLectureNo);
+	List<Roadmap> findTop3ByOnLecture_OnLectureNo(Long onLectureNo);
 	
 	@Modifying
 	@Query("delete from Roadmap r where r.roadmapName=?1")
