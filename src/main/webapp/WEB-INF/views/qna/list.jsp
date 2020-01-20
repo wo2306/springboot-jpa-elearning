@@ -16,10 +16,38 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+ <style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
+        .pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 
-<body>
-
+<body class="">
+<div id="wrapper" class="clearfix">
+ <section class="inner-header divider parallax layer-overlay overlay-dark-5"
+                 data-bg-img="${pageContext.request.contextPath}/images/banner/qna2.jpg">
+            <div class="container pt-70 pb-20">
+                <!-- Section Content -->
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="title text-white">Questions List</h2>
+                            <ol class="breadcrumb text-left text-black mt-10">
+                                <li><a href="#">홈</a></li>
+                                <li><a href="#">Questions List</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 	<div class="container pt-80 pb-60">
 		<div class="section-content">
@@ -32,17 +60,18 @@
 					<table class="table table-striped table-schedule">
 						<thead>
 							<tr class="bg-theme-colored">
-								<th>질문</th>
-								<th>연관 강의</th>
-								<th>제목</th>
-								<th>작성자</th>
+								<th style="color:white;">질문</th>
+								<th style="color:white;">연관 강의</th>
+								<th style="color:white;">제목<span style="font-size: 12px; color:gray">(상세 내용을 보려면 클릭하세요)</span></th>
+								<th style="color:white;">등록일</th>
+								<th style="color:white;">작성자</th>
 							</tr>
 						</thead>
 						<tbody>
 								<c:choose>
     <c:when test="${empty list}">
 	<tr>
-        <td colspan="3">
+        <td colspan="5">
             <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
         </td>
     </tr>
@@ -54,9 +83,12 @@
     <th scope="row" style="width: 170px;"><img src="http://placehold.it/100x50"
 															alt=""></th>
     <td style="width: 160px;">${question.onLecture.onLectureName }</td>
-    <td><strong><a href="${pageContext.request.contextPath}/qna/read/${question.classQuestionNo }">${question.classQuestionTitle }</a></strong></td>
+    <td><strong style="font-size: 16px;"><a href="${pageContext.request.contextPath}/qna/read/${question.classQuestionNo }">${question.classQuestionTitle }</a></strong></td>
     
-    
+    <td> 
+    	<fmt:formatDate value="${question.classQuestionRegdate}"
+                                                        pattern="yyyy. MM. dd"/>
+    </td>
     <td style="width: 100px;">${question.userdb.userdbNickname }</td>
     
     </tr>
@@ -123,6 +155,7 @@
                                         </li>
                                     </ul>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

@@ -10,11 +10,11 @@
 
 <!-- Page Title -->
 <title>StudyPress | Education & Courses HTML Template</title>
-
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body class="">
 <div id="wrapper" class="clearfix">
- 
+
   <!-- Start main-content -->
   <div class="main-content">
 
@@ -45,7 +45,7 @@
               <div class="col-md-5">
                 <div class="product-image">
                   <div class="zoom-gallery">
-                    <a href="http://placehold.it/460x460" title="Title Here 1"><img src="http://placehold.it/460x460" alt=""></a>
+                    <a href="http://placehold.it/460x460" title="Title Here 1"><img src="${pageContext.request.contextPath}/images/roadmap/${roadmap.roadmapNo}.png" alt=""></a>
                   </div>
                 </div>
               </div>
@@ -61,31 +61,21 @@
                       <li><a href="#">Add reviews</a></li>
                     </ul>
                   </div>
-                  <div class="price"><ins><span class="amount"><fmt:formatNumber value="${roadmap.roadmapPrice}" pattern="₩#,###"/></span></ins> </div>
-                  <div class="short-description">
-                    <p>등록일 : ${roadmap.roadmapRegdate}</p>
-                  </div>
-                  <div class="tags"><strong>SKU:</strong> EA34</div>
-                  <div class="category"><strong>Category:</strong> <a href="#">Book</a>, <a href="#">Note Book</a></div>
-                  <div class="tags"><strong>Tags:</strong> <a href="#">Bag</a>, <a href="#">Ladies Bag</a></div>
+                  	<br>
+                     <p>등록일 : ${roadmap.roadmapRegdate}</p>
                   <div class="cart-form-wrapper mt-30">
                     <form enctype="multipart/form-data" method="post" class="cart">
                       <input type="hidden" value="productID" name="add-to-cart">
                       <table class="table variations no-border">
                         <tbody>
                           <tr>
-                            <td class="name">포함된 강의수 ${fn:length(list)} </td>
-                            <td class="value">
-                              <div class="quantity buttons_added">
-                                <input type="button" class="minus" value="-">
-                                <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                                <input type="button" class="plus" value="+">
-                              </div>
-                            </td>
+                          <td> <div class="price"><ins><span class="amount">가격 : <fmt:formatNumber value="${roadmap.roadmapPrice}" pattern="₩#,###"/></span></ins> </div></td>
+                            <td>포함된 강의수 ${fn:length(list)} </td>
                           </tr>
                         </tbody>
                       </table>
-                      <button class="single_add_to_cart_button btn btn-theme-colored" type="submit">구매</button>
+                      <br>
+                      <button class="single_add_to_cart_button btn btn-theme-colored" type="button" onclick="buyRoadmap()">구매</button>
                     </form>
                   </div>
                 </div>
@@ -129,7 +119,7 @@
                             <th>카테고리</th>
                             <td><p>${r.onLecture.onLectureCategory}</p></td>
                           </tr>
-                          </c:forEach>                
+                          </c:forEach>
                         </tbody>
                       </table>
                     </div>
@@ -160,91 +150,23 @@
               </div>
             </div>
             <div class="col-md-12">
-              <h3 class="line-bottom">Related Products</h3>
+              <h3 class="line-bottom">등록된 강의</h3>
               <div class="row multi-row-clearfix">
                 <div class="products related">
+                 <c:forEach items="${list}" var="roadmap">
                   <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
                     <div class="product">
-                      <span class="tag-sale">Sale!</span>
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
-                          </div>
-                        </div>
+                      <div class="product-thumb">
+                        <img alt="" src="${pageContext.request.contextPath}/images/onLecture/${roadmap.onLecture.onLectureNo}.png" class="img-responsive img-fullwidth">
                       </div>
                       <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Watch</h5></a>
+                        <a href="#"><h5 class="product-title">${roadmap.onLecture.onLectureName}</h5></a>
                         <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 80%;">3.50</span></div>
-                        <div class="price"><del><span class="amount">$165.00</span></del><ins><span class="amount">$160.00</span></ins></div>
+                        <div class="price"><ins><span class="amount"><fmt:formatNumber value="${roadmap.onLecture.onLecturePrice}" pattern="₩#,###"/></span></ins></div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
-                    <div class="product">
-                      <span class="tag-sale">Sale!</span>
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Color Box</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 32%;">3.50</span></div>
-                        <div class="price"><del><span class="amount">$120.00</span></del><ins><span class="amount">$110.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
-                    <div class="product">
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Pen</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 85%;">3.50</span></div>
-                        <div class="price"><ins><span class="amount">$240.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 col-md3 col-lg-3">
-                    <div class="product">
-                      <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
-                        <div class="overlay">
-                          <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">Add To Cart</a>
-                          </div>
-                          <div class="btn-product-view-details">
-                            <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">View detail</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">Table Lamp</h5></a>
-                        <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 56%;">3.50</span></div>
-                        <div class="price"><ins><span class="amount">$480.00</span></ins></div>
-                      </div>
-                    </div>
-                  </div>
+                 </c:forEach>
                 </div>
               </div>
             </div>
@@ -255,10 +177,56 @@
   </div>
   </div>
   <!-- end main-content -->
-  
+<form id="payForm" method="post" action="${pageContext.request.contextPath}/order/cartInsert">
+  <c:forEach var="dto" items="${list}">
+  <input type="hidden" name="onLectureNo" value="${dto.onLecture.onLectureNo}"/>
+    <c:set var="roadmapPrice" value="${dto.roadmapPrice}"/>
+  </c:forEach>
+  <input type="hidden" id="paymentId" name="onOrderCode"/>
+  <input type="hidden" id="paymentPrice" name="onOrderPrice" value="${roadmapPrice}"/>
+</form>
 <!-- Footer Scripts -->
 <!-- JS | Custom script for all pages -->
 <script src="js/custom.js"></script>
+<script>
+  function requestPay() {
+    var IMP = window.IMP; // 생략가능
+    IMP.init('imp32416573');  // 가맹점 식별 코드
+    IMP.request_pay({
+      // name과 amount만 있어도 결제 진행가능
+      pg: 'html5_inicis', // pg 사 선택
+      pay_method: 'card',
+      merchant_uid: 'merchant_' + new Date().getTime(),
+      name: 'Learning Machine Paying',
+      amount: "${roadmapPrice}",
+      buyer_email: "learningMachine@gmail.com",
+      buyer_name: "LMService",
+      buyer_tel: "01030101020",
+      buyer_addr: '서울특별시 강남구 삼성동',
+      buyer_postcode: '42150',
+      m_redirect_url: '${pageContext.request.contextPath}/order/success/'
+    }, function (rsp) {
+      if (rsp.success) {
+        let msg = '결제가 완료되었습니다.';
+        alert(msg);
+        alert(rsp.pg_tid);
+        $("#paymentId").val(fn(rsp.pg_tid));
+        $("#payForm").submit();
+      } else {
+        let msg = '결제에 실패하였습니다.'
+        alert(msg);
+      }
+    });
+  }
+  function fn(str){
+    var res;
+    res = str.replace(/[^0-9]/g,"");
+    return res;
+  }
 
+  function buyRoadmap() {
+    requestPay();
+  }
+</script>
 </body>
 </html>

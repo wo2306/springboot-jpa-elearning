@@ -72,13 +72,13 @@ $(function(){
                           <td><h4>로드맵 내용</h4></td>
                         </tr>
                         <tr>
-                          <td><textarea rows="12" class="form-control" placeholder="내용을 입력해주세요." name="roadmapContent" ></textarea></td>
+                          <td><textarea rows="12" class="form-control" name="roadmapContent">${roadmap.roadmapContent}</textarea></td>
                         </tr>
                         <tr>
                           <td><h4>로드맵 가격</h4></td>
                          </tr>
                         <tr>
-                          <td><input type="text" class="form-control" placeholder="가격을 입력해주세요." name="roadmapPrice" value="${roadmap.roadmapPrice}" ></td>
+                          <td><input type="text" class="form-control" name="roadmapPrice" value="${roadmap.roadmapPrice}" ></td>
                         </tr>
                         <tr>
                           <td><input type="hidden" class="onLectureNo" name="list"></td>

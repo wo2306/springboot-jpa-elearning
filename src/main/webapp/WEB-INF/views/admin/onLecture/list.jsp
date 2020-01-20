@@ -144,11 +144,10 @@
                                             </c:if>
                                         </li>
                                     </ul>
-                                    <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.upload&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:8888/oauth2callback&response_type=code&client_id=1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com"
-                                       class="btn btn-success btn-icon-split"><span class="icon text-white-50"><i class="fas fa-check"></i></span>
+                                    <a href="${pageContext.request.contextPath}/callback/video" class="btn btn-success btn-icon-split">
+                                    <span class="icon text-white-50"><i class="fas fa-check"></i></span>
                     					<span class="text text-white">새로운 강의 등록하기</span></a>
                                 </div>
-
                             </div>
                         </div>
                     </div>

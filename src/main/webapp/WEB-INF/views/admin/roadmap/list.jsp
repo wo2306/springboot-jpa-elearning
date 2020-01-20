@@ -42,9 +42,9 @@
             <div class="col-md-12">
               <h2 class="title text-white">로드맵 리스트</h2>
               <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Pages</a></li>
-                <li class="active text-gray-silver">Page Title</li>
+                <li><a href="#">관리자 로드맵 페이지</a></li>
+           
+                <li class="active text-gray-silver"> -관리자가 로드맵을 등록, 수정, 삭제할 수 있는 페이지 입니다.</li>
               </ol>
             </div>
           </div>
@@ -91,7 +91,7 @@
 				<th>등록</th>
 				</tr>
 				<tr>
-				<td><input type="submit" value="등록"></td>
+				<td><input type="submit" class="btn btn-dark" value="등록"></td>
 				</tr>
 				</table>
 			    </form>
