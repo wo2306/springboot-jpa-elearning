@@ -12,18 +12,14 @@
  
 <script type="text/javascript">
 $(document).ready(function(){ 
-
-	$('.deleteBtn').click(function() {
-        alert('정말삭제한다아')
-        $('.deleteBtn').attr('type','submit')
-        return true;
-	})
-	
-	
 	$('#search').click(function() {
-        alert('서치클릭')
        var command = $("#key option:selected").val();
        var keyword = $("#keyword").val();
+       if(keyword==''){
+    	   alert('검색어를 입력해주세요');
+    	   $("#keyword").focus();
+    	   return false;
+       }
     	   $('form[name=searchForm]').attr('type','submit')
        location.href = '${pageContext.request.contextPath}/admin/user/' + command + '/' + keyword + '/1';
        return false;
@@ -31,11 +27,7 @@ $(document).ready(function(){
         return true;
     	   
      */
-    	   
-    	   
 	})
-        	 
-        	 
          function searchform() {
        	  alert(2222);
              var keyfield = $("#key option:selected").val();
@@ -43,12 +35,23 @@ $(document).ready(function(){
              location.href = '${pageContext.request.contextPath}/admin/user/search/' + keyfield + '/' + keyword + '/1';
              return false;
          }
-         
+	
+
+	$('form[name=form]').on('submit', function () {
+		if(confirm('정말 삭제하시겠습니까?')) return true;			
+		else{
+			alert('회원 삭제가 취소되었습니다.')
+			return false;
+			
+		}
+	})
 })
+	
+
 </script>
 
 </head>
-<body class="">
+<body class="" id="page-top">
 <div id="wrapper" class="clearfix">
 
   <!-- Start main-content -->
@@ -58,20 +61,19 @@ $(document).ready(function(){
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
       <div class="container pt-70 pb-20">
         <!-- Section Content -->
-        <div class="section-content">
-          <div class="row">
-            <div class="col-md-12">
-              <h2 class="title text-white">관리자 페이지</h2>
+            
               <ol class="breadcrumb text-left text-black mt-10">
-                <li><a href="${pageContext.request.contextPath}/admin"><h3>Home</h3></a>- 사용자들을  수정, 삭제할 수 있는 페이지입니다.</li>
 	                
+           <!-- Page Heading -->
+          <a class="h3 mb-2 text-gray-800" href="${pageContext.request.contextPath}/admin/user/all/keword/1">회원 관리 페이지</a>
+          <p class="mb-4">
+          	회원삭제 사용시엔 다시 한 번 유의깊게 생각해주세요. 회원 수정은 닉네임만 변경 가능합니다. 권한은 0=Admin, 1=Member, 2=KaKao입니다.</br>
+            
 	           <!-- Topbar Search -->
                  <li>
                      <form name="searchForm" method="get">
                          <div class="input-group" style="padding-left: 730px">
                              <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
-                                 <option value="all">전체</option>
-                                 <option value="userdbNo">학생번호</option>
                                  <option value="userdbEmail">이메일</option>
                                  <option value="userdbNickname">닉네임</option>
                              </select>
@@ -88,9 +90,6 @@ $(document).ready(function(){
                      </form>
                  </li>      
               </ol>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -99,26 +98,63 @@ $(document).ready(function(){
       <div class="container">
         <div class="section-content">
           <div class="row">
-		          <form name="form" action="${pageContext.request.contextPath}/admin/user/delete" >
-                     <table class="table table-bordered" id="dataTable" cellspacing="0">
-                        <tr>
-                           <th style="width:200px">UserNo</th>
-                           <th style="width:350px">Email</th>
-                           <th style="width:350px">Nickname</th>
-                           <th>수정</th>
-                           <th>삭제</th>
-                        </tr>
-                        <c:forEach items="${requestScope.list}" var="list">
-                           <tr>
-                              <td>${list.userdbNo}</td>
-                              <td>${list.userdbEmail}</td>
-                              <td><input type="text" name="userdbNickname" value=${list.userdbNickname} style="display: none">${list.userdbNickname}</td>
-                              <td><input type="button" class="btn btn-dark" value="수정" onClick="location.href='${pageContext.request.contextPath}/admin/user/updateForm/${list.userdbNo}'"></td>
-                              <td><button type="button" class="btn btn-dark deleteBtn" name="userdbNo" value=${list.userdbNo }>삭제</button></td>
-                           </tr>
-                        </c:forEach>
-                     </table>
-		          </form>
+		          <!--  -->
+		          
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">회원 가입 리스트</h6>
+            </div>
+            <div class="card-body" >
+              <div class="table-responsive" >
+		          <form name="form" action="${pageContext.request.contextPath}/admin/user/delete">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th width="500px">회원 Email</th>
+                      <th width="500px">회원 닉네임</th>
+                      <th width="500px">회원 가입일</th>
+                      <th width="200px">권한</th>
+                      <th width="200px">수정</th>
+                      <th width="200px">삭제</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>회원 Email</th>
+                      <th>회원 닉네임</th>
+                      <th>회원 가입일</th>
+                      <th>권한</th>
+                      <th>수정</th>
+                      <th>삭제</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <c:forEach items="${requestScope.list}" var="list">
+                       <tr class="odd">
+                          <td class="sorting_1">${list.userdbEmail}</td>
+                          <td class="sorting_1"><input type="text" name="userdbNickname" value=${list.userdbNickname} style="display: none">${list.userdbNickname}</td>
+                          <td class="sorting_1">${list.regDate}</td>
+                          <td class="sorting_1">${list.authority}</td>
+                          <td><button type="button" class="btn btn-info btn-circle" onClick="location.href='${pageContext.request.contextPath}/admin/user/updateForm/${list.userdbNo}'">
+                          <i class="fas fa-info-circle"></i></button></td>
+                          <td><button type="submit" class="btn btn-danger btn-circle" name="userdbNo" value=${list.userdbNo }><i class="fas fa-trash"></i></button></td>
+                       </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+                     </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+        <!-- /.container-fluid -->
+		          
+		          
+		          
+		          <!--  -->
 		          <!-- 페이징처리 -->
                         <div class="container" id="in">
                             <div class="row">
@@ -178,6 +214,9 @@ $(document).ready(function(){
            </div>
         </div>
      </section>
-
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 </body>
 </html>
