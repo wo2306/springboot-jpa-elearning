@@ -180,7 +180,7 @@
                 let msg = '결제가 완료되었습니다.';
                 alert(msg);
                 alert(rsp.pg_tid);
-                $("#paymentId").val(rsp.pg_tid);
+                $("#paymentId").val(fn(rsp.pg_tid));
                 $("#paymentPrice").val(parseInt($("#paymentPrice").val()))
                 $("#payForm").submit();
             } else {
@@ -207,6 +207,12 @@
         })
 
     });
+
+    function fn(str){
+        var res;
+        res = str.replace(/[^0-9]/g,"");
+        return res;
+    }
 </script>
 <!-- end main-content -->
 </body>

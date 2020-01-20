@@ -109,7 +109,7 @@
               <!-- 회원탈퇴 -->
               
               <hr class="mt-30 mb-30">
-              <form name="goodbye" method="post" action="${pageContext.request.contextPath}/user/goodbye">
+              <form name="goodbye" method="post">
                 <div class="icon-box mb-0 p-0">
                   <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                     <i class="fa fa-key"></i>
@@ -139,13 +139,8 @@
   <!-- end main-content -->
 
 	<script type="text/javascript">
-
-	var userNickname = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.userdbNickname}';
-	console.log(userNickname);
-
-	var okUrl = "${pageContext.request.contextPath}/"
-	var returnUrl = "${pageContext.request.contextPath}/myPage/myAccount"
 	
+	/*비밀번호 수정*/
 	function checkValidPw() {
 		var f = window.document.formPassword;
 		if ( f.userdbPassword0.value == "" ) {
@@ -170,7 +165,8 @@
 				dataType : "text",
 				success : function(result) {
 					if(result==0){
-						con();
+						alert('수정이 완료되었습니다')
+						location.replace('${pageContext.request.contextPath}/myPage/myAccount/');
 					}
 				},
 				error : function(err) {
@@ -178,44 +174,9 @@
 				}
 			})
 		}
-	}
+	}//비밀번호 수정 끝
 
-	
-	function goodbye() {
-		var f = window.document.goodbye;
-		if ( f.password.value == "" ) {
-	        alert( "비밀번호1를 입력해 주세요" );
-	        f.password.focus();
-	    }
-	   	else{
-			$.ajax({
-				url : "${pageContext.request.contextPath}/myPage/myAccount/passwordCheck",
-				type : "post",
-				data : $("form[name=goodbye]").serialize(),
-				dataType : "text",
-				success : function(result) {
-					//0=비밀번호 일치, 1=비밀번호 불일치
-					if(result==0){
-						var con = confirm("정말 탈퇴하겠습니까?")
-						if(con==true){
-							$("form[name=goodbye]").attr("action","");
-							$("form[name=goodbye]").submit();
-						}else {
-							alert('와아아 탈퇴안한다')
-						}
-					}else if(result==1){
-						alert('비밀번호가 틀렸습니다.')
-					}
-				},
-				error : function(err) {
-					alert('수정에 실패했습니다.');
-				}
-			})
-		}
-	}
-	
-	
-	
+	/*닉네임수정*/
 	function checkValid() {
 		var f = window.document.form;
 		if ( f.userdbNickname.value == "" ) {
@@ -230,15 +191,74 @@
 				dataType : "text",
 				success : function() {
 					alert('수정되었습니다.');
+					location.replace('${pageContext.request.contextPath}/myPage/myAccount/');
 				},
 				error : function(err) {
 					alert('수정에 실패했습니다.');
 				}
-			})
+			})//////
 		}
-	}
+	}//닉네임수정끝
 	
 $(document).ready(function() {
+	
+	/*회원탈퇴*/
+	$('#byeBtn').click(function () {
+		if($('[name=password]').val()==''){
+			alert('비밀번호를 입력해주세요')
+			$('[name=password]').focus();
+		}else{
+			$.ajax({
+				url : "${pageContext.request.contextPath}/myPage/myAccount/passwordCheck",
+				type : "post",
+				data : $("form[name=goodbye]").serialize(),
+				dataType : "text",
+				success : function(result) {
+					//0=비밀번호 일치, 1=비밀번호 불일치
+					if(result==0){
+						if(confirm('탈퇴하면 더 이상 구매한 강의를 시청하실 수 없습니다. 그래도 탈퇴하시겠습니까?')){
+							 //ok하면, 회원탈퇴 진행
+							 //result 0: 성공, 1: 실패
+							 //성공하면 로그아웃처리
+							 //ajax를 또 넣어야한다 하하하
+							 
+					 			$.ajax({
+									url : "${pageContext.request.contextPath}/user/deleteUser",
+									type : "post",
+									dataType : "text",
+									success : function(result) {
+										alert(result);
+										if(result==0){
+											alert('탈퇴되었습니다. 이용해주셔서 감사합니다.');
+											$('#logoutFrm').submit();
+										}else{
+											alert('오류로 탈퇴를 실패했습니다.');
+										}
+										alert('수정되었습니다.');
+										location.replace('${pageContext.request.contextPath}/myPage/myAccount/');
+									},
+									error : function(err) {
+										alert('수정에 실패했습니다.');
+									}
+								})//////
+												 
+							 
+							 
+							 
+						}else{
+							location.replace('${pageContext.request.contextPath}/myPage/myAccount/');
+						}
+					}else if(result==1){
+						alert('비밀번호가 틀렸습니다. 확인해주세요')
+						location.replace('${pageContext.request.contextPath}/myPage/myAccount/');
+					}
+				},
+				error : function(err) {
+					alert('err: '+err);
+				}
+			})
+		}
+	})////회원탈퇴끝	
 	
 	/*password 유호성체크 체크*/
 	/*기존 비밀번호 확인하기*/
@@ -322,27 +342,10 @@ $(document).ready(function() {
 		})
 	});///////
 	
-	function con(){
-		var result = confirm("계속 진행하시겠습니까?"); 
-		if(result == true) { 
-			$(location).attr('replace',okUrl)
-			} else { 
-			$(location).attr('replace',returnUrl)
-			}
-	}
-	
-	
-	
-	
-	
-	
-
 	
 })//ready끝
 
-
-
-	</script>
+</script>
 
 
 </body>

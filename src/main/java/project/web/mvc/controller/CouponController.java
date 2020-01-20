@@ -24,6 +24,7 @@ public class CouponController {
 
     @RequestMapping("/insert")
     public String insert(Coupon coupon) throws ParseException {
+        coupon.setCouponCode(createCoupon());
         couponService.insert(coupon);
         return "redirect:/coupon/list/all/1";
     }

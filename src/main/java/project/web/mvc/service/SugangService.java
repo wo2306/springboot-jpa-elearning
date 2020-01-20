@@ -5,9 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import project.web.mvc.domain.OnOrder;
-import project.web.mvc.domain.Sugang;
-import project.web.mvc.domain.Userdb;
+import project.web.mvc.domain.*;
 import project.web.mvc.repository.SugangReposiitory;
 import project.web.mvc.util.LoginCheck;
 
@@ -28,7 +26,7 @@ public class SugangService {
     public void insert(Long onLectureNo, Long onDetailNo) {
         Userdb userdb = (Userdb) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (sugangReposiitory.findByUserdb_UserdbNoAndOnDetailNoAndOnLectureNo(userdb.getUserdbNo(), onDetailNo, onLectureNo) == null) {
-            sugangReposiitory.save(new Sugang(null, userdb, null, "수강중", onDetailNo, onLectureNo));
+            sugangReposiitory.save(new Sugang(null, userdb, null, "수강중", new OnDetail(onDetailNo), new OnLecture(onLectureNo)));
         }
     }
 

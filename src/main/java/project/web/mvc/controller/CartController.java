@@ -1,6 +1,7 @@
 package project.web.mvc.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import project.web.mvc.domain.Cart;
 import project.web.mvc.service.CartService;
+import project.web.mvc.service.WishListService;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartController {
     private final CartService cartService;
+    private final WishListService wishListService;
 
     @RequestMapping("/checkout")
     public String checkout(Model model) {
@@ -59,6 +62,14 @@ public class CartController {
     @RequestMapping("/deleteCart/{cartNo}")
     public String deleteCart(@PathVariable Long cartNo) {
         cartService.delete(cartNo);
+        return "redirect:/cart/list";
+    }
+
+
+    @RequestMapping("/wishList/{cartNo}/{onLectureNo}")
+    public String addWishListFromCart(@PathVariable Long cartNo, @PathVariable Long onLectureNo) {
+        cartService.delete(cartNo);
+        wishListService.wishlistInsert(onLectureNo);
         return "redirect:/cart/list";
     }
 }

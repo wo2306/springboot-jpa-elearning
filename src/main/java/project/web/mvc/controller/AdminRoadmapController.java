@@ -20,9 +20,8 @@ import project.web.mvc.service.RoadmapService;
 @Controller
 @RequestMapping("/admin/roadmap")
 public class AdminRoadmapController {
-	
 	@Autowired
-	private OnLectureService onLectureService;  	
+	private OnLectureService onLectureService;
 	@Autowired
 	private RoadmapService service;
 	@RequestMapping("/register")
@@ -35,15 +34,15 @@ public class AdminRoadmapController {
 		return new ModelAndView("admin/roadmap/list","roadmapList", list);
 	}
 	
-	@RequestMapping("/onLectureList/{pageNum}")
-	public String onLectureList(Model model, @PathVariable int pageNum) {
-		List<OnLecture> list = new ArrayList<>();
-		Page<OnLecture> page =onLectureService.selectAll(pageNum);
-		page.iterator().forEachRemaining(list::add);
-		model.addAttribute("onLectureList", list);
-		model.addAttribute("page", page);
-		return "admin/roadmap/onLectureList";
-	}
+//	@RequestMapping("/onLectureList/{command}/{keyword}/{pageNum}")
+//	public String onLectureList(Model model, @PathVariable int pageNum) {
+//		List<OnLecture> list = new ArrayList<>();
+//		Page<OnLecture> page =onLectureService.selectAll(pageNum);
+//		page.iterator().forEachRemaining(list::add);
+//		model.addAttribute("list", list);
+//		model.addAttribute("page", page);
+//		return "admin/roadmap/onLectureList";
+//	}
 	
 	@RequestMapping("/insert")
 	public String roadmapInsert(@RequestParam List<Long> list, Roadmap roadmap) {
@@ -74,4 +73,25 @@ public class AdminRoadmapController {
 		model.addAttribute("roadmap", list.get(0));
 		return "admin/roadmap/updateForm";
 	}
+	 @RequestMapping("/{command}/{keyword}/{pageNum}")
+	    public String category(@PathVariable String command, @PathVariable String keyword,
+	                           @PathVariable int pageNum, Model model) {
+	        List<OnLecture> list = new ArrayList<>();
+	        Page<OnLecture> page = null;
+	        if (command.equals("all")) {
+	            page = onLectureService.selectByKeyword("", pageNum);
+	        } else if (command.equals("category")) {
+	            page = onLectureService.selectByCategory(keyword, pageNum);
+	        } else if (command.equals("teacher")) {
+	            page = onLectureService.selectByTeacherName(keyword, pageNum);
+	        } else if (command.equals("name")) {
+	            page = onLectureService.selectByonLectureName(keyword, pageNum);
+	        }
+	        page.iterator().forEachRemaining(list::add);
+	        model.addAttribute("list", list);
+	        model.addAttribute("keyword", keyword);
+	        model.addAttribute("command", command);
+	        model.addAttribute("page", page);
+	        return "admin/roadmap/onLectureList";
+	    }
 }

@@ -25,7 +25,6 @@ public class MemberAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 				Authentication authentication) throws IOException, ServletException {
 		System.out.println("로그인성공햇다아아! 여기는 성공핸들러");	
 		request.getSession().setMaxInactiveInterval(TIME);
-		
 		super.onAuthenticationSuccess(request, response, authentication);
 		}
 

@@ -53,8 +53,8 @@
 									<label>Id : Email Address</label> <input type="email"
 										class="form-control" name="userdbEmail"> <input
 										type="button" id="idCheck" value="아이디중복확인"> <span
-										id="idResult">id중복 체크를 해주세요</span> <span id="emailResult">email
-										타입으로 입력해주세요</span>
+										id="idResult">id중복 체크를 해주세요</span> 
+										<span id="emailResult">email 타입으로 입력해주세요</span>
 								</div>
 							</div>
 							<div class="row">
@@ -89,6 +89,8 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			
+
 			/*
 				email 키업시 일어나는 이벤트
 				1. id중복체크 알람
@@ -99,11 +101,13 @@
 				$('#idResult').text('id중복 체크를 해주세요');
 				var email = $(this).val();
 				var exptext = /^[_a-zA-Z0-9]+([-+.][_a-zA-Z0-9]+)*@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/i;
+
 					if(exptext.test(email)==false){
 						$('#emailResult').show();
 						$('#emailResult').text('email 타입으로 적어줘');
 						$('#idCheck').attr("disabled", true);
-					}else{
+					}
+					if(exptext.test(email)==true){
 						$('#emailResult').hide();
 						$('#idCheck').attr("disabled", false);
 					}
@@ -111,6 +115,7 @@
 			
 			/*아이디 중복체크*/
 			$('#idCheck').click(function() {
+				
 				$.ajax({
 					url : "${pageContext.request.contextPath}/user/idCheck",
 					type : "post",
@@ -191,6 +196,11 @@ function checkValid() {
 	if ( f.userdbPassword2.value == "" ) {
         alert( "비밀번호2를 입력해 주세요" );
         f.userdbPassword2.focus();
+        return;
+    }
+	if ( f.userdbNickname.value == "" ) {
+        alert( "닉네임을 입력해주세요" );
+        f.userdbNickname.focus();
         return;
     }
 	else{ 		

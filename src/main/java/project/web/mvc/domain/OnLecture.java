@@ -1,5 +1,6 @@
 package project.web.mvc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -53,19 +54,32 @@ public class OnLecture {
         this.onLectureNo = onLectureNo;
     }
 
-    //    @OneToMany(mappedBy = "onLecture", fetch = FetchType.LAZY)
-//    @JsonBackReference
-//    private List<Review>reviews = new ArrayList<>();
-//
-//    @ManyToMany(mappedBy = "onLectures")
-//    @JsonBackReference
-//    private List<Roadmap>roadmaps = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "onLecture", fetch = FetchType.LAZY)
-//    @JsonBackReference
-//    private List<WishList> wishLists = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "onLecture", fetch = FetchType.EAGER)
-//    @JsonBackReference
-//    private List<Cart> carts = new ArrayList<>();
+    @OneToMany(mappedBy = "onlecture", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    public List<OnOrder> onOrders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "onLecture", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    public List<OnDetail> onDetails = new ArrayList<>();
+
+    @OneToMany(mappedBy = "onLecture", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    public List<Sugang> sugangs = new ArrayList<>();
+
+    @OneToMany(mappedBy = "onLecture", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    public List<Cart> carts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "onLecture", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    public List<WishList> wishLists = new ArrayList<>();
+
+    @OneToMany(mappedBy = "onLecture", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    public List<ClassQuestion> clasㄷsQuestions= new ArrayList<>();
+
+    @OneToMany(mappedBy = "onLecture", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    public List<Review> reviews= new ArrayList<>();
+
 }

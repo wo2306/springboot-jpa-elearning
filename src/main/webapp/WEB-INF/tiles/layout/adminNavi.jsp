@@ -83,7 +83,12 @@
           <span>Review</span></a>
       </li>
       
-       <li class="nav-item">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/qna/questionList/1">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Q&A</span></a>
+      </li>
+       <%-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3" aria-expanded="true"
            aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -98,7 +103,7 @@
 
             </div>
         </div>
-    </li>
+    </li> --%>
 
     <div class="sidebar-heading">
         Order
@@ -133,7 +138,7 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/list/1">
+        <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice/all/keyword/1">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Notice</span></a>
     </li>

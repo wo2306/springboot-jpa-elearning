@@ -60,23 +60,11 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript">
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
         function logout() {
             document.getElementById("logoutFrm").submit();
         }
-
-        /*  		var t = document.getElementById('target');
-                t.addEventListener('submit', function(event){
-                    <!-- 첫번째 인자의 이벤트가 발생하면 두번째 인자인 익명함수가 실행된다. -->
-                    if(document.getElementById('name').value.length === 0){
-                        alert('Name 필드의 값이 누락 되었습니다');
-                        event.preventDefault();
-                        <!-- submit이 안 된다.(action 프로퍼티로 전송되는 것을 방지한다.) 기본 동작의 취소-->
-                           return
-                    }
-                    document.write("<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" style:"display:none">");
-		    submit();
-		});  */
-
     </script>
     <style>
        * {
@@ -124,7 +112,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                           <ul class="list-inline font-13 sm-text-center mt-5">
                                 <li><a class="text-white" href="javascript:logout();">Logout</a></li>
                                 <li class="text-white">|</li>
-                                <li><a class="text-white" href="${pageContext.request.contextPath}/myPage/myAccount/">${user.userdbNickname}님 </a></li>
+                                <li class="text-white">${user.userdbNickname}님 </li>
                                 <form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post" style="display:none">
                                     <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                                 </form>
@@ -137,7 +125,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                           <ul class="list-inline font-13 sm-text-center mt-5">
                                 <li><a class="text-white" href="javascript:checkStatus()">Logout</a></li>
                                 <li class="text-white">|</li>
-                                <li><a class="text-white" href="${pageContext.request.contextPath}/myPage/myAccount/">${user.userdbNickname}님 </a></li>
+                                <li class="text-white">${user.userdbNickname}님 </a></li>
                                 <form id="logoutFrm" name="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post" style="display:none">
                                     <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                                 </form>
@@ -150,8 +138,11 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                         <ul class="list-inline pull-right">
                             <li class="mb-0 pb-0">
                                 <sec:authorize access="isAuthenticated()">
-
                                     <div class="top-dropdown-outer pt-5 pb-10">
+									 <sec:authorize ifAnyGranted="MEMBER,ADMIN">
+									<a href="${pageContext.request.contextPath}/myPage/myAccount/" style="padding-right:10px">
+									<img src="${pageContext.request.contextPath}/css/images/baseline_face_white_18dp.png"></a>
+                                    </sec:authorize>
                                         <a class="top-cart-link has-dropdown text-white text-hover-theme-colored"><i
                                                 class="fa fa-shopping-cart font-13"></i><span id="cartSize"></span></a>
                                         <ul class="dropdown">
@@ -197,9 +188,9 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                                             <div class="search-form-wrapper">
                                                 <form method="post" class="mt-10" onsubmit="return topSearch()">
                                                     <input type="text"
-                                                           onfocus="if(this.value =='검색어를 입력하세요') { this.value = ''; }"
-                                                           onblur="if(this.value == '') { this.value ='검색어를 입력하세요'; }"
-                                                           value="검색어를 입력하세요" id="searchKeyword" name="keyword" class="">
+                                                           onfocus="if(this.value =='온라인 강의를 검색해보세요') { this.value = ''; }"
+                                                           onblur="if(this.value == '') { this.value ='온라인 강의를 검색해보세요'; }"
+                                                           value="온라인 강의를 검색해보세요" id="searchKeyword" name="keyword" class="">
                                                     <label><input type="submit" name="submit" value=""></label>
                                                 </form>
                                             </div>

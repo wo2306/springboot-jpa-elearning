@@ -39,7 +39,17 @@ public class AdminReviewController {
 	
 	@RequestMapping("/review/update")
 	public String update (Review review) {
+		reviewService.update(review);
+		return "redirect:/admin/review/list/1";
+	}
+	
+	@RequestMapping("review/delete/{reviewNo}")
+	public String reviewDelete(@PathVariable Long reviewNo) {
+
+		System.out.println("리뷰 delete ctrl(리뷰 넘버 : ) " +reviewNo);
+		reviewService.delete(reviewNo);
 		
 		return "redirect:/admin/review/list/1";
+		
 	}
 }

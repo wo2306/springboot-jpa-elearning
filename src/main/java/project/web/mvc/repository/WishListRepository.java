@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import project.web.mvc.domain.Cart;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.domain.WishList;
@@ -24,5 +25,8 @@ public interface WishListRepository extends CrudRepository<WishList, Long>{
 	Page<WishList> findByUserdbUserdbNo(Long userdbNo, Pageable pageable);
 	List<WishList> findByUserdbUserdbNo(Long userdbNo);
 	WishList findByOnLectureOnLectureNo(Long onLecture);
+	
+    List<WishList> findByUserdbUserdbNoAndOnLectureOnLectureNo(Long userdbNo, Long onLectureNo);
+	
 	
 }
