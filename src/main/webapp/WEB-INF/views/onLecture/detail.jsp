@@ -107,7 +107,7 @@
                             </ul>
                             <br>
                             <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane fade in active" id="small2">
+                                <div class="tab-pane fade in active" id="small">
                                     <table class="table table-bordered">
                                         <tr>
                                             <td
@@ -233,9 +233,6 @@
         </section>
     </div>
 </div>
-<sec:authorize access="isAuthenticated()">
-    <sec:authentication property="principal.username" var="user_id" />
-</sec:authorize>
 </section>
 </div>
 </div>
@@ -256,7 +253,6 @@
     });
 
     function cartInsert() {
-        if ("${user_id}"!="") {
         $.ajax({
             url: "${pageContext.request.contextPath}/cart/insert/" + ${onLecture.onLectureNo},
             type: "post",
@@ -275,16 +271,9 @@
 
             }
         })
-        }
-        alert("로그인 후 이용해주세요")
-        location.href='${pageContext.request.contextPath}/login'
     }
     function buyNow() {
-        if ("${user_id}"!="") {
         location.href = '${pageContext.request.contextPath}/order/buynow/${onLecture.onLectureNo}';
-        }
-        alert("로그인 후 이용해주세요")
-        location.href='${pageContext.request.contextPath}/login'
     }
 
 </script>
