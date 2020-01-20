@@ -14,12 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import project.web.mvc.domain.Academy;
 import project.web.mvc.domain.OffLecture;
-import project.web.mvc.domain.OnLecture;
+import project.web.mvc.service.AcademyService;
 import project.web.mvc.service.OffLectureService;
 
 @Controller
@@ -28,6 +30,8 @@ public class AdminOffLectureController {
 	
 	@Autowired
 	private OffLectureService offLectureService;
+	@Autowired
+	private AcademyService academyService;
 	
 	@RequestMapping("/list/{pageNum}")
 	public String main(Model model, @PathVariable int pageNum) {
@@ -62,8 +66,10 @@ public class AdminOffLectureController {
 	        return "admin/offLecture/adminOffLecture";
 	}
 	@RequestMapping("/adminOffLectureRegister")
-	public String register() {
-		//System.out.println("나와?");
+	public String register(Model model) {
+		List<Academy> list = academyService.selectAll();
+		model.addAttribute("list", list);
+		//System.out.println(list);
 		return "admin/offLecture/adminOffLectureRegister";
 	}
 	
@@ -84,9 +90,14 @@ public class AdminOffLectureController {
 	}
 
 	@RequestMapping("/offLecUpdate/{offLectureNo}")
-	public ModelAndView update(@PathVariable Long offLectureNo) {
+	public String update(@PathVariable Long offLectureNo, Model model) {
 		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
-		return new ModelAndView("admin/offLecture/adminOffLectureUpdate", "offLecture", offLecture);
+		List<Academy> academy = academyService.selectAll();
+		model.addAttribute("academy", academy);
+		model.addAttribute("offLecture", offLecture);
+		offLectureService.offLecUpdate(offLecture);
+		System.out.println(offLecture.getAcademy().getAcademyName());
+		return "admin/offLecture/adminOffLectureUpdate";
 	}
 
 
@@ -98,7 +109,9 @@ public class AdminOffLectureController {
 	
 	@DeleteMapping(value = "/delete")
 	@ResponseBody
-	public void offLecDelete(Long offLectureNo) {
+	public void offLecDelete(Long offLectureNo, HttpServletRequest request) {
+		new File(request.getSession().getServletContext().getRealPath("/resources/images/offLecture/") + offLectureNo + ".png").delete();
+		new File(request.getSession().getServletContext().getRealPath("/resources/images/offLecture/offLectureDetail/") + offLectureNo + ".png").delete();
 		offLectureService.offLecDelete(offLectureNo);
 		//return "redirect:/admin/offLecture";
 	}
@@ -108,23 +121,23 @@ public class AdminOffLectureController {
 	 * 	:bean 설정문서
 	 * */
 	@RequestMapping("/adminOffLectureRegister/insert.do")
-	public ModelAndView upload(String name, MultipartFile file, HttpSession session, OffLecture offLecture) {
+	public ModelAndView upload(String name, @RequestParam("files") MultipartFile[] files, HttpSession session, OffLecture offLecture) {
 		offLectureService.offLecInsert(offLecture);
 		ModelAndView mv = new ModelAndView();
 		try {
-			//실제 root 경로를 가져오기
-			String path = session.getServletContext().getRealPath("/WEB-INF/save");
-			//첨부된 파일 이름 가져오기
-			String fileName = file.getOriginalFilename();
-			file.transferTo(new File(path +"/" + fileName)); //폴더에 저장완료
+			String path1="";
+			String path2="";
+			for(int i=0;i<=files.length;i++) {
+				if(i==0) {
+					path1 = session.getServletContext().getRealPath("/resources/images/offLecture/");
+					files[i].transferTo(new File(path1 + offLecture.getOffLectureNo()+".png"));
+				}if(i==1) {
+					path2 = session.getServletContext().getRealPath("/resources/images/offLecture/offLectureDetail/");
+					files[i].transferTo(new File(path2 + offLecture.getOffLectureNo()+".png"));
+				}
+			}
 			
-			//뷰쪽으로 전달될 데이터 설정
-			mv.addObject("name", name);
-			mv.addObject("fileName", fileName);
-			mv.addObject("path", path);
-			mv.addObject("fileSize", file.getSize());
-			
-			mv.setViewName("redirect:/admin/offLecture/list/1"); //WEB-INF/views/uploadResult.jsp이동
+			mv.setViewName("redirect:/admin/offLecture/list/1"); //WEB-INF/views//admin/offLecture/list/1.jsp이동
 			
 		}catch(Exception e){
 			e.printStackTrace();
