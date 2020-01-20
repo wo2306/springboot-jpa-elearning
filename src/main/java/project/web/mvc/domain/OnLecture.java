@@ -76,7 +76,7 @@ public class OnLecture {
 
     @OneToMany(mappedBy = "onLecture", cascade = CascadeType.REMOVE)
     @JsonBackReference
-    public List<ClassQuestion> classQuestions= new ArrayList<>();
+    public List<ClassQuestion> clasㄷsQuestions= new ArrayList<>();
 
     @OneToMany(mappedBy = "onLecture", cascade = CascadeType.REMOVE)
     @JsonBackReference
