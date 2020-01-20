@@ -165,6 +165,7 @@
 												</ul>
 												<a href="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister"
                                        class="btn btn-dark">새로운 강의 등록하기</a>
+                                       
 									</div>
 								</div>
 							</div>

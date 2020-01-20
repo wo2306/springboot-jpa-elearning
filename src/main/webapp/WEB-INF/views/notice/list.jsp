@@ -9,14 +9,17 @@
 <!-- Page Title -->
 <title>LM company | Learning Machine | main</title>
 
-<style type="text/css">
-.main-bg {
-	background-image:
-		url("${pageContext.request.contextPath}images/index/main2.png");
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-</style>
+<style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
+        .pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -80,59 +83,60 @@
 							</div>
 							
 							<!-- 페이징 처리 -->
-			<div class="container" id="in">
-				<div class="row">
-					<div class="col" id="inin">
-						<ul class="pagination">
-							<c:if test="${page.totalPages ne 0}">
-								<c:choose>
-									<c:when test="${page.hasPrevious() eq true}">
-										<li class="page-item"><a class="page-link"
-											href="${pageContext.request.contextPath}/notice/list/${page.number}"
-											aria-label="Previous"> <span aria-hidden="true">이전</span>
-										</a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="page-item"><a class="page-link"
-											href="${pageContext.request.contextPath}/notice/list/${page.number+1}"
-											aria-label="Previous"> <span aria-hidden="true">이전</span>
-										</a></li>
-									</c:otherwise>
-								</c:choose>
-
-								<c:forEach varStatus="i" begin="1" end="${page.totalPages}">
-									<li class="page-item"><c:choose>
-											<c:when test="${page.number eq i.count-1}">
-												<a class="page-link"
-													href="${pageContext.request.contextPath}/notice/list/${i.count}">${i.count}</a>
-											</c:when>
-											<c:otherwise>
-												<a class="page-link"
-													href="${pageContext.request.contextPath}/notice/list/${i.count}">${i.count}</a>
-											</c:otherwise>
-										</c:choose></li>
-								</c:forEach>
-
-								<li class="page-item"><c:choose>
-										<c:when test="${page.hasNext() eq true}">
-											<a class="page-link"
-												href="${pageContext.request.contextPath}/notice/list/${page.number+2}"
-												aria-label="Next"> <span aria-hidden="true">다음</span>
-											</a>
-										</c:when>
-										<c:otherwise>
-											<a class="page-link"
-												href="${pageContext.request.contextPath}/notice/list/${page.number+1}"
-												aria-label="Previous"> <span aria-hidden="true">다음</span>
-											</a>
-										</c:otherwise>
-									</c:choose>
-							</c:if>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			<div class="col-sm-12" id="paginationList">
+                                <nav >
+                                    <ul class="pagination theme-colored xs-pull-center m-0" id="in">
+                                        <c:if test="${page.totalPages ne 1}">
+                                            <c:choose>
+                                                <c:when test="${page.hasPrevious() eq true}">
+                                                    <li>
+                                                        <a href="${pageContext.request.contextPath}/notice/list/${page.number}"
+                                                           aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                        </a>
+                                                    </li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li>
+                                                        <a href="${pageContext.request.contextPath}/notice/list/${page.number+1}"
+                                                           aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                        </a>
+                                                    </li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                            <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
+                                                <c:choose>
+                                                    <c:when test="${page.number eq i.count-1}">
+                                                        <li class="active"><a
+                                                                href="${pageContext.request.contextPath}/notice/list/${i.count}">${i.count}</a>
+                                                        </li>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <li>
+                                                            <a href="${pageContext.request.contextPath}/notice/list/${i.count}">${i.count}</a>
+                                                        </li>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                            <c:choose>
+                                                <c:when test="${page.hasNext() eq true}">
+                                                    <li>
+                                                        <a href="${pageContext.request.contextPath}/notice/list/${page.number+2}"
+                                                           aria-label="Next"> <span aria-hidden="true">다음</span>
+                                                        </a>
+                                                    </li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li>
+                                                        <a href="${pageContext.request.contextPath}/notice/list/${page.number+1}"
+                                                           aria-label="Next"> <span aria-hidden="true">다음</span>
+                                                        </a>
+                                                    </li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:if>
+                                    </ul>
+                                </nav>
+                            </div>
 			
 						</div>
 					</div>

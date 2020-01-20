@@ -50,22 +50,21 @@
                                                                               aria-controls="orders" role="tab"
                                                                               data-toggle="tab"
                                                                               class="font-15 text-uppercase">온라인 강의
-                                        <span class="badge"></span></a></li>
+                                        </a></li>
                                     <li role="presentation"><a href="#free-orders"
                                                                aria-controls="free-orders" role="tab" data-toggle="tab"
-                                                               class="font-15 text-uppercase">오프라인 강의 <span
-                                            class="badge">3</span></a></li>
+                                                               class="font-15 text-uppercase">오프라인 강의 </a></li>
                                     <li role="presentation"><a href="#wishlisttab"
                                                                aria-controls="wishlisttab" role="tab" data-toggle="tab"
-                                                               class="font-15 text-uppercase">위시리스트 <span class="badge">4</span></a>
+                                                               class="font-15 text-uppercase">위시리스트 </a>
                                     </li>
                                     <li role="presentation"><a href="#questions"
                                                                aria-controls="bookmarks" role="tab" data-toggle="tab"
-                                                               class="font-15 text-uppercase">나의 질문 <span class="badge">3</span></a>
+                                                               class="font-15 text-uppercase">나의 질문 </a>
                                     </li>
                                     <li role="presentation"><a href="#reviews"
                                                                aria-controls="bookmarks" role="tab" data-toggle="tab"
-                                                               class="font-15 text-uppercase">나의 리뷰 <span class="badge">2</span></a>
+                                                               class="font-15 text-uppercase">나의 리뷰</a>
                                     </li>
                                 </ul>
 
