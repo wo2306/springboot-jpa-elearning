@@ -6,9 +6,32 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 <head>
-
-
 <script type="text/javascript">
+	function checkValid(){
+		 if($("#roadmapName").val()==""){
+			alert("로드맵 제목을 입력하세요.")
+			 $("#roadmapName").focus();
+			 return false;
+		 }
+		 if($("#roadmapContent").val()==""){
+			alert("로드맵 내용을 입력하세요.")
+			  $("#roadmapContent").focus();
+			 return false;
+		 }
+		 if($("#roadmapPrice").val()==""){
+				alert("가격을 입력하세요")
+				  $("#roadmapPrice").focus();
+			 return false;
+		 }
+/* 		 if($("#addOnLecture tr").val()==""){
+				alert("강의를 추가해주세요")
+				  $("#onlecturebtn").focus();
+			 return false;
+		}*/
+		 
+	 }// 빈칸 유효성 체크 끝
+
+
 $(function(){
 	$("#onlecturebtn").click(function(){
 		window.open("all/keyword/1", "PopupWin", "width=1300,height=1000")
@@ -32,8 +55,7 @@ $(function(){
 	})
 	
 })
-//////////////////////////////////////////////////////////////////////////////	    
-	    
+//////////////////////////////////////////////////////////////////////////////	      
 	    //강의 추가하기
 	    function addOnLecture(data){
 		var result = data
@@ -78,26 +100,26 @@ $(function(){
               <div class="row">
                 <div class="col-md-12">
                   <h3>로드맵 등록</h3>
-                  <form class="form" method="post" action="${pageContext.request.contextPath}/admin/roadmap/insert/">
+                  <form class="form" method="post" action="${pageContext.request.contextPath}/admin/roadmap/insert/" onsubmit="return checkValid()">
                     <table class="table no-border">
                       <tbody>
                        <tr>
                           <td><h4>로드맵 제목</h4></td>
                          </tr>
                         <tr>
-                          <td><input type="text" class="form-control" placeholder="제목을 입력해주세요." name="roadmapName"></td>
+                          <td><input type="text" class="form-control" placeholder="제목을 입력해주세요." name="roadmapName" id="roadmapName"></td>
                         </tr>
                         <tr>
                           <td><h4>로드맵 내용</h4></td>
                         </tr>
                         <tr>
-                          <td><textarea rows="12" class="form-control" placeholder="내용을 입력해주세요." name="roadmapContent" ></textarea></td>
+                          <td><textarea rows="12" class="form-control" placeholder="내용을 입력해주세요." name="roadmapContent" id="roadmapContent" ></textarea></td>
                         </tr>
                         <tr>
                           <td><h4>로드맵 가격</h4></td>
                          </tr>
                         <tr>
-                          <td><input type="text" class="form-control" placeholder="가격을 입력해주세요." name="roadmapPrice" ></td>
+                          <td><input type="text" class="form-control" placeholder="가격을 입력해주세요." name="roadmapPrice" id="roadmapPrice"></td>
                         </tr>
                         <tr>
                           <td><input type="hidden" class="onLectureNo" name="list"></td>
