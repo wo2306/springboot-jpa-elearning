@@ -60,6 +60,10 @@ public class Userdb {
     @OneToMany(mappedBy = "userdb")
     @JsonBackReference
     private List<ClassAnswer> classAnwsers = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "userdb")
+    @JsonBackReference
+    private List<ClassQuestion> classQuestions= new ArrayList<>();
 
     @OneToMany(mappedBy = "userdb")
     @JsonBackReference
