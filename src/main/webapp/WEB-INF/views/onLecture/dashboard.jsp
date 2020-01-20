@@ -80,8 +80,8 @@
                                 <ul class="list list-border angle-double-right">
 
                                     <c:forEach items="${roadmapList}" var="dto">
-                                        <li class="relatedRoadmapList"><a
-                                                href="${pageContext.request.contextPath}/roadmap/${dto.roadmapNo}">${dto.roadmapName}</a>
+                                        <li class="relatedRoadmapList">
+                                            <a href="${pageContext.request.contextPath}/roadmap/detail/${dto.roadmapName}">${dto.roadmapName}</a>
                                         </li>
                                     </c:forEach>
                                 </ul>
