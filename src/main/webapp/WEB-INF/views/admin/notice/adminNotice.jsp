@@ -16,6 +16,17 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
+        .pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 <body class="">
 	<div id="wrapper" class="clearfix">
@@ -32,18 +43,14 @@
 					<div class="section-content">
 						<div class="row">
 							<div class="col-md-12">
-								<h2 class="title text-white">관리자 페이지</h2>
 								<ol class="breadcrumb text-left text-black mt-10">
-									<li><a href="${pageContext.request.contextPath}/admin"><h3>Home</h3></a></li>
+									 <li><a href="#">NOTICE</a></li>
+                               		 <li class="active text-gray-silver"> &nbsp&nbsp- 공지사항을 등록, 수정, 삭제할 수 있는 페이지입니다.</li>
 									<!-- Topbar Search -->
 									<li>
                                     <form name="searchForm" method="post" onsubmit="return searchform()">
-                                        <div class="input-group" style="padding-left: 730px">
-                                            <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
-                                                <option value="all">전체</option>
-                                                <option value="title">제목</option>
-                                            </select>
-                                            <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                                        <div class="input-group" style="padding-left: 660px">
+                                            <input id="keyword" type="text" name="value" style="padding-left: 10px; width: 280px;"
                                                    class="form-control bg-light border-0 small"
                                                    placeholder="Search for..." aria-label="Search"
                                                    aria-describedby="basic-addon2">
@@ -83,15 +90,15 @@
 										<td>${list.noticeRegdate}</td>
 										<td><input type="button" class="btn btn-dark" value="수정"
 											onClick="location.href='${pageContext.request.contextPath}/admin/notice/updateForm/${list.noticeNo}'"></td>
-										<td><input type="button" class="btn btn-dark" value="삭제"
-											id=${list.noticeNo}></td>
+									<%-- <td><input type="button" class="btn btn-dark" value="삭제" name="deletebtn" id=${list.noticeNo} value="${list.noticeNo}"></td> --%>
+										<td><button type="button" name="deletebtn" class="btn btn-dark" value="${list.noticeNo}">삭제 </button></td>
 									</tr>
 								</c:forEach>
 							</table>
 							<div class="col-md-6">
 								<div class="video-popup">
 									<input type="button" class="btn btn-dark" value="새로운 공지사항 등록"
-										style="width: 500px; margin-left: 280px"
+										style="width: 500px; margin-left: 280px; margin-bottom: 20px;"
 										onClick="location.href='${pageContext.request.contextPath}/admin/notice/insertForm'">
 								</div>
 							</div>
@@ -100,15 +107,9 @@
 				</div>
 			</section>
 
-			<!-- Divider: Call To Action -->
-			<section class="bg-theme-color-2">
-				<div class="container pt-10 pb-20">
-					<div class="row">
-					</div>
-				</div>
-			</section>
-
-			<!-- 페이징 처리 -->
+		
+	  <!-- Section: Course gird -->
+        <!-- 페이징 처리 -->
 			<div class="container" id="in">
 				<div class="row">
 					<div class="col" id="inin">
@@ -117,27 +118,28 @@
 								<c:choose>
 									<c:when test="${page.hasPrevious() eq true}">
 										<li class="page-item"><a class="page-link"
-											href="${pageContext.request.contextPath}/admin/notice/list/${page.number}"
+											href="${pageContext.request.contextPath}/admin/notice/all/keyword/${page.number}"
 											aria-label="Previous"> <span aria-hidden="true">이전</span>
 										</a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="${pageContext.request.contextPath}/admin/notice/list/${page.number+1}"
+											href="${pageContext.request.contextPath}/admin/notice/all/keyword/${page.number+1}"
 											aria-label="Previous"> <span aria-hidden="true">이전</span>
 										</a></li>
 									</c:otherwise>
 								</c:choose>
 
 								<c:forEach varStatus="i" begin="1" end="${page.totalPages}">
-									<li class="page-item"><c:choose>
+									<li class="page-item">
+										<c:choose>
 											<c:when test="${page.number eq i.count-1}">
 												<a class="page-link"
-													href="${pageContext.request.contextPath}/admin/notice/list/${i.count}">${i.count}</a>
+													href="${pageContext.request.contextPath}/admin/notice/all/keyword/${i.count}">${i.count}</a>
 											</c:when>
 											<c:otherwise>
 												<a class="page-link"
-													href="${pageContext.request.contextPath}/admin/notice/list/${i.count}">${i.count}</a>
+													href="${pageContext.request.contextPath}/admin/notice/all/keyword/${i.count}">${i.count}</a>
 											</c:otherwise>
 										</c:choose></li>
 								</c:forEach>
@@ -145,13 +147,13 @@
 								<li class="page-item"><c:choose>
 										<c:when test="${page.hasNext() eq true}">
 											<a class="page-link"
-												href="${pageContext.request.contextPath}/admin/notice/list/${page.number+2}"
+												href="${pageContext.request.contextPath}/admin/notice/all/keyword/${page.number+2}"
 												aria-label="Next"> <span aria-hidden="true">다음</span>
 											</a>
 										</c:when>
 										<c:otherwise>
 											<a class="page-link"
-												href="${pageContext.request.contextPath}/admin/notice/list/${page.number+1}"
+												href="${pageContext.request.contextPath}/admin/notice/all/keyword/${page.number+1}"
 												aria-label="Previous"> <span aria-hidden="true">다음</span>
 											</a>
 										</c:otherwise>
@@ -162,25 +164,24 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
+	
 	<script type="text/javascript">
 	 function searchform() {
-	        var keyfield = $("#key option:selected").val();
 	        var keyword = $("#keyword").val();
-	        location.href = '${pageContext.request.contextPath}/admin/notice/' + keyfield + '/' + keyword + '/1';
+	        location.href = '${pageContext.request.contextPath}/admin/notice/' + keyword + '/1';
 	        return false;
 	    }
 	 
 	  $(document).ready(function(){ 
           
           
-          //전체레코드 가져오기
+      /* //전체레코드 가져오기
           function printnotice() {
              $.ajax({
                    type :"post",
-                   url :"${pageContext.request.contextPath}/admin/notice/list",
+                   url :"${pageContext.request.contextPath}/admin/notice/all/keyword/1",
                    dataType :"json",               
                    success : function(result){
                       //alert("통신성공!!!");
@@ -204,10 +205,15 @@
                    alert("통신실패!!!! err : " + err);
                } 
                });
-          }
+          }  */
 
+          $("button[name='deletebtn']").on('click', function () {
+              if (confirm("선택한 강의를 정말로 삭제하시겠습니까?")) {
+                  location.href = "${pageContext.request.contextPath}/admin/notice/delete/"+ $(this).val();
+              }
+          }) 
           
-          $('#dataTable').on('click', 'input[value=삭제]', function () {
+          /* $('#dataTable').on('click', 'input[value=삭제]', function () {
               console.log($(this).attr('id'));
               $.ajax({
                   url: "${pageContext.request.contextPath}/admin/notice/delete",
@@ -221,15 +227,9 @@
                       alert("안눌려");
                   }
               })
-          });//delete
+          });//delete */
 
         })
-        function searchform() {
-              var keyfield = $("#key option:selected").val();
-              var keyword = $("#keyword").val();
-              location.href = '${pageContext.request.contextPath}/admin/notice/' + keyfield + '/' + keyword + '/1';
-              return false;
-          }
 	</script>
 </body>
 </html>

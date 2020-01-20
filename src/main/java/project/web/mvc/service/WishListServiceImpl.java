@@ -32,20 +32,25 @@ public class WishListServiceImpl implements WishListService {
 	
 	@Override
 	@Transactional
-	public void wishlistInsert(Long onLectureNo) {
+	public int wishlistInsert(Long onLectureNo) {
 	
 		//userdb에서 userdbNo 빼서 집어넣기
+	   Userdb userdb = LoginCheck.getUserdb();
        Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
-      
-		if (wishlistRepo.findByOnLectureOnLectureNo(onLectureNo)!=null) {
+       if (userdb==null) {
+           return 1;
+       }
+       
+		if (wishlistRepo.findByUserdbUserdbNoAndOnLectureOnLectureNo(userdbNo, onLectureNo).size()!=0) {
 
-            throw new RuntimeException("이미 중복된 강의가 존재합니다.");
-        };
+            return 2;
+        }
         
-		OnLecture onlecture = wishlistRepo.findOnlectureByNo(onLectureNo);
-
-		System.out.println("onLectureNo : " + onLectureNo + "/" + onlecture);
-		wishlistRepo.save(new WishList(onLectureNo, userdbNo));
+        else{
+        	wishlistRepo.save(new WishList(onLectureNo, userdbNo));
+        	
+        	return 0;
+        }
 	}
 	
 	
