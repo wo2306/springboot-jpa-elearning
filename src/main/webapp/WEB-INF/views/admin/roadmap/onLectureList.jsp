@@ -106,7 +106,7 @@
  					<form name="searchForm" method="post" onsubmit="return searchform()">
                       <div class="input-group">
                         <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
-                         <option value="name">강의명</option>
+                        <!--  <option value="name">강의명</option> -->
 					     <option value="category">카테고리</option>
                          <option value="teacher">강사명</option>
                       </select>
