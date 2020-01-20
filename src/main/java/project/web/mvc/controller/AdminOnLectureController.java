@@ -13,6 +13,7 @@ import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.service.OnDetailService;
 import project.web.mvc.service.OnLectureService;
+import project.web.mvc.service.SugangService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -37,16 +38,15 @@ public class AdminOnLectureController {
         String[] detailUrls = mtfRequest.getParameterValues("detailUrl");
         String[] videoLength = mtfRequest.getParameterValues("videoLength");
         for (int i = 0; i < detailNames.length; i++) {
-            onDetailService.insert(new OnDetail(null, onLecture, detailUrls[i], detailNames[i], videoLength[i]));
+            onDetailService.insert(new OnDetail(null, onLecture, "vimeo|"+detailUrls[i], detailNames[i], videoLength[i]));
         }
         return "redirect:all/keyword/1";
     }
 
     @RequestMapping("/delete/{onLectureNo}")
     public String delete(@PathVariable Long onLectureNo, HttpServletRequest request) {
-        onDetailService.deleteByOnLectureNo(onLectureNo);
-        new File(request.getSession().getServletContext().getRealPath("/resources/images/onLecture/") + onLectureNo + ".png").delete();
         onLectureService.delete(onLectureNo);
+        new File(request.getSession().getServletContext().getRealPath("/resources/images/onLecture/") + onLectureNo + ".png").delete();
         return "redirect:/admin/onLecture/all/keyword/1";
     }
 

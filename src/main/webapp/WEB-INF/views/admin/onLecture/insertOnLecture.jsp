@@ -181,6 +181,8 @@
             var data = new FormData()
             data.append('onLectureFile', file);
             if (file) {
+                console.log(access_token)
+                console.log(upload_url)
                 $.ajax({
                     url: upload_url,
                     type: "post",
@@ -260,8 +262,8 @@
 
     $(function () {
         DM.init({
-            apiKey: '8e8896bcab8f31041dc3',
-            apiSecret: 'c5c26cdec546f2f5fb757aab5a86e969127e26f2',
+            apiKey: '1af9a33c912c59434e49',
+            apiSecret: 'af2d344fc382cd2012ec544a7bcf52da63902453',
             status: true, // check login status
             cookie: true // enable cookies to allow the server to access the session
         });
@@ -270,10 +272,9 @@
                 access_token = response.session.access_token;
                 DM.api('/file/upload', function (response) {
                     upload_url = response.upload_url;
-                    ;
                 });
             } else {
-                alert('로그인에 실패하여 강의 리스트 화면으로 되돌아갑니다');
+                alert('로그인에 실패하여 강의 리스트 화면으로 되돌아갑니다');OFF_LECTURE
                 location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
             }
         });
