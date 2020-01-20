@@ -64,7 +64,7 @@ public class QnaController {
 	public String insert(ClassQuestion question) {
 		System.out.println("내용 = " +question.getClassQuestionContent());
 		if(question.getClassQuestionContent()==null) {
-			return "redirect:#";
+			return "redirect:/onLecture/detail/"+question.getOnLecture().getOnLectureNo();
 		}
 		else {
 		if(LoginCheck.getUserdb()==null) {

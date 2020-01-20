@@ -204,7 +204,7 @@
         	toolbar: [
                 // [groupName, [list of button]]
             ],
-            width: 250,
+            width: '100%',
         	height: 270,
             minHeight: null,
             maxHeight: null,
