@@ -72,6 +72,9 @@
 
 									<div class="col-sm-6" >
 										<div class="form-group">
+										<input type="hidden" style="width: 200px;"
+												value="${academy.academyNo}" name="academyNo"
+												required="required" class="form-control">
 											<label>academyName</label> <input type="text" style="width: 200px;"
 												value="${academy.academyName}" name="academyName"
 												required="required" class="form-control">
