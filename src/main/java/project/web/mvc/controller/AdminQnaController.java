@@ -46,38 +46,37 @@ public class AdminQnaController {
 	@RequestMapping("qna/questionUpdate/{classQuestionNo}")
 	public String questionUpdateForm(@PathVariable Long classQuestionNo, Model model) {
 		ClassQuestion classQuestion = classQuestionService.selectByQNo(classQuestionNo);
+		List<ClassAnswer> answerList = classQuestionService.findByQNo(classQuestionNo);
 		
 		model.addAttribute("classQuestion", classQuestion);
+		model.addAttribute("answerList", answerList);
 		
 		return "admin/qna/updateQuestion";
 	}
 	
-	
-	@RequestMapping("qna/answerUpdate/{classAnswerNo}")
-	public ModelAndView answerUpdateForm(@PathVariable Long classAnswerNo, Model model) {
-		
-		ClassAnswer classAnswer = classQuestionService.selectByAno(classAnswerNo);
-		return new ModelAndView("admin/qna/updateAnswer" , "classAnswer", classAnswer);
-	}
-	
-//	public ModelAndView update(@PathVariable Long offLectureNo) {
-//	OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
-//	return new ModelAndView("admin/offLecture/adminOffLectureUpdate", "offLecture", offLecture);
-//}
-	
-	@RequestMapping("qna/answerUpdate/update")
-	public String answerUpdate (ClassAnswer classAnswer) {
-		classQuestionService.updateAnswer(classAnswer);
-		
-		return "redirect:/admin/qna/answerList/1";
-	}
-	
 	@RequestMapping("qna/questionUpdate/update")
 	public String questionUpdate (ClassQuestion classQuestion) {
-		
 		classQuestionService.updateQuestion(classQuestion);
 		return "redirect:/admin/qna/questionList/1";
 	}
+	
+	
+//	@RequestMapping("qna/answerUpdate/{classAnswerNo}")
+//	public ModelAndView answerUpdateForm(@PathVariable Long classAnswerNo, Model model) {
+//		
+//		ClassAnswer classAnswer = classQuestionService.selectByAno(classAnswerNo);
+//		return new ModelAndView("admin/qna/updateAnswer" , "classAnswer", classAnswer);
+//	}
+//	
+	
+//	@RequestMapping("qna/answerUpdate/update")
+//	public String answerUpdate (ClassAnswer classAnswer) {
+//		classQuestionService.updateAnswer(classAnswer);
+//		
+//		return "redirect:/admin/qna/answerList/1";
+//	}
+	
+
 
 	
 

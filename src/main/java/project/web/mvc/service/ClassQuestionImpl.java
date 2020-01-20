@@ -43,6 +43,11 @@ public class ClassQuestionImpl implements ClassQuestionService {
 
 		return classQuestionRepo.findAllClassQuestions();
 	}
+	
+	public List<ClassAnswer> findByQNo(Long id) {
+		
+		return classAnswerRepo.findByClassQuestionClassQuestionNo(id);
+	}
 
 	@Override
 	public void insert(ClassQuestion classQuestion) {
@@ -64,13 +69,11 @@ public class ClassQuestionImpl implements ClassQuestionService {
 	@Override
 	public void updateAnswer(ClassAnswer classAnswer) {
 		ClassAnswer dbAnswer = classAnswerRepo.findByClassAnswerNo(classAnswer.getClassAnswerNo());
-		System.out.println("@#@#바꾸려는 내용 =" +classAnswer.getClassAnswerContent());
 		dbAnswer.setClassAnswerContent(classAnswer.getClassAnswerContent());
 	}
 	@Override
 	public void updateQuestion(ClassQuestion classQuestion) {
 		ClassQuestion dbQuestion = classQuestionRepo.findByClassQuestionNo(classQuestion.getClassQuestionNo());
-		System.out.println("@#@#바꾸려는 내용 =" +classQuestion.getClassQuestionContent());
 		dbQuestion.setClassQuestionContent(classQuestion.getClassQuestionContent());
 		dbQuestion.setClassQuestionTitle(classQuestion.getClassQuestionTitle());
 		

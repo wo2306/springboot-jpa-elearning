@@ -47,7 +47,7 @@
                   <div class="col-sm-6 col-md-4 col-lg-4 mb-30">
                     <div class="product">
                       <div class="product-thumb"> 
-                        <img alt="" src="http://placehold.it/285x300" class="img-responsive img-fullwidth">
+                        <img alt="" src="${pageContext.request.contextPath}/images/roadmap/${list.roadmapNo}.png" class="img-responsive img-fullwidth">
                         <div class="overlay">
                           <div class="btn-add-to-cart-wrapper">
                             <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">장바구니에 담기</a>

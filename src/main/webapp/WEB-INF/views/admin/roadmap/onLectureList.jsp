@@ -18,7 +18,6 @@
 <![endif]-->
 <script type="text/javascript">
 	$(function(){
-
 		$(".btn").click(function(){
 			var onLectureNo = $(this).val()
 			/* alert($(this).val()); */
@@ -39,7 +38,7 @@
 	                      data+="<td class='onLecture-remove'>"+"<button type='button' class='btn' id='btn'>"+"취소"+"</button>"+"</td>";
 	                      data+="<td class='onLecture-no' id='result.onLectureNo'>"+result.onLectureNo+"</a>"+"</td>";
 	                      data+="<td class='onLecture-name'>"+"<a href='#'>"+result.onLectureName+"</a>"+"</td>"
-	                      data+="<td class='onLecture-content'>"+"<span class='content'>"+result.onLectureContent+"</span>"+"</td>";
+	                      data+="<td class='onLecture-content'>"+"<span class='content'>"+result.onLectureCategory+"</span>"+"</td>";
 	        			  data+="<td class='onLecture-teacher'>"+"<span class='teacher'>"+result.onLectureTeacher+"</span>"+"</td>";
 	                      data+="<td class='onLecture-price'>"+"<span class='price'>"+result.onLecturePrice+"</span>"+"</td>";
 	                  	  data+="</tr>";
@@ -53,13 +52,24 @@
 		})//강의 삭제 이벤트 끝
 		
 		//팝업 자식창 부모창으로 값넘기기
-	//	$("#roadmapBtn").click(function(){
 		$(document).on("click","#roadmapBtn",function(){
 			var add = $("#selectable tr").val(this)
 			opener.addOnLecture(add);
 			self.close();
-		});
-	});
+		});	
+});
+	//온라인강의 검색
+    function searchform() {
+    var keyfield = $("#key option:selected").val();
+    var keyword = $("#keyword").val();
+    if (keyword!="") {
+    location.href = '${pageContext.request.contextPath}/admin/roadmap/' + keyfield + '/' + keyword + '/1';
+
+    } else {
+        alert("검색어를 입력하세요");
+    }
+    return false;
+}		
 
 </script>
 
@@ -92,28 +102,44 @@
       <div class="container">
         <div class="section-content">
                <div class="col-md-12 mt-30">
-              <div class="row">
- 
+                  <div class="row">
+ 					<form name="searchForm" method="post" onsubmit="return searchform()">
+                      <div class="input-group">
+                        <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
+                         <option value="name">강의명</option>
+					     <option value="category">카테고리</option>
+                         <option value="teacher">강사명</option>
+                      </select>
+                        <input id="keyword" type="text" name="value" style="padding-left: 10px"
+                          class="form-control bg-light border-0 small"
+                          placeholder="Search for..." aria-label="Search"
+                          aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" id="search">
+                         <i class="fas fa-search fa-sm"></i>
+                        </button>
+            		   </div>
+                      </div>
+                    </form>
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">
                 <table class="table table-striped table-bordered tbl-shopping-cart">
                   <thead>
                     <tr>
-                      
-                      <th>onLectureNo</th>
-                      <th>onLectureName</th>
-                      <th>onLectureContent</th>
-                      <th>teacher</th>
-                      <th>onLecturePrice</th>
+                      <th>강의 번호</th>
+                      <th>강의명</th>
+                      <th>카테고리</th>
+                      <th>강사명</th>
+                      <th>강의 가격</th>
                     </tr>
                   </thead>
                   <tbody>
-                  <c:forEach items="${onLectureList}" var="list" varStatus="status">
+                  <c:forEach items="${list}" var="list" varStatus="status">
                     <tr class="onLecture_item">
                       <td class="onLecture-no" id="${list.onLectureNo}">${list.onLectureNo}</td>
                       <td class="onLecture-name"><a href="#">${list.onLectureName}</a></td>
-                      <td class="onLecture-content"><span class="content">${list.onLectureContent}</span></td>
+                      <td class="onLecture-content"><span class="content">${list.onLectureCategory}</span></td>
         			  <td class="onLecture-teacher"><span class="teacher">${list.onLectureTeacher}</span></td>
                       <td class="onLecture-price"><span class="price">${list.onLecturePrice}</span>
                       </td>
@@ -129,36 +155,61 @@
                     </c:forEach>
                   </tbody>
                 </table>
-               
-                 <div class="col-sm-12" id="paginationList">
+               <div class="container" id="in">
+                 <div class="row">
+                  <div class="col" id="inin">
+                   <div class="col-sm-12" id="paginationList">
                                 <nav>
-                                    <ul class="pagination theme-colored xs-pull-center m-0">
-                                        <c:if test="${page.hasPrevious() eq true}">
-                                            <li>
-                                                <a href="${pageContext.request.contextPath}/roadmap/onLectureList/${page.number}"
-                                                   aria-label="Previous"> <span aria-hidden="true">이전</span> </a>
-                                            </li>
-                                        </c:if>
-                                        <c:if test="${page.totalPages ne 1}">
-                                            <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
+                                    <ul class="pagination">
+                                     <c:if test="${page.totalPages ne 0}">
+                                        <c:choose>
+                                            <c:when test="${page.hasPrevious() eq true}">
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/roadmap/${command}/${keyword}/${page.number}"
+                                                       aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                    </a>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/roadmap/${command}/${keyword}/${page.number+1}"
+                                                       aria-label="Previous"> <span aria-hidden="true">이전</span>
+                                                    </a>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                        <c:forEach varStatus="i" begin="1" end="${page.totalPages}">
+                                            <li class="page-item">
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
-                                                        <li class="active"><a
-                                                                href="${pageContext.request.contextPath}/roadmap/onLectureList/${i.count}">${i.count}</a>
-                                                        </li>
+                                                        <a style="color: silver" class="page-link"
+                                                           href="${pageContext.request.contextPath}/admin/roadmap/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <li>
-                                                            <a href="${pageContext.request.contextPath}/roadmap/onLectureList/${i.count}">${i.count}</a>
-                                                        </li>
+                                                        <a class="page-link"
+                                                           href="${pageContext.request.contextPath}/admin/roadmap/${command}/${keyword}/${i.count}">${i.count}</a>
                                                     </c:otherwise>
                                                 </c:choose>
-                                            </c:forEach>
-                                        </c:if>
-                                        <c:if test="${page.hasNext() eq true}">
-                                            <li>
-                                                <a href="${pageContext.request.contextPath}/roadmap/onLectureList/${page.number+2}"
-                                                   aria-label="Next"> <span aria-hidden="true">다음</span> </a></li>
+                                            </li>
+                                        </c:forEach>
+
+                                        <li class="page-item">
+                                            <c:choose>
+                                                <c:when test="${page.hasNext() eq true}">
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/roadmap/${command}/${keyword}/${page.number+2}"
+                                                       aria-label="Next"> <span aria-hidden="true">다음</span> </a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="page-link"
+                                                       href="${pageContext.request.contextPath}/admin/roadmap/${command}/${keyword}/${page.number+1}"
+                                                       aria-label="Previous"> <span aria-hidden="true">다음</span>
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:if>
                                     </ul>
                                 </nav>
@@ -173,18 +224,18 @@
                   <thead>
                     <tr>
                       <th></th>
-                      <th>onLectureNo</th>
-                      <th>onLectureName</th>
-                      <th>onLectureContent</th>
-                      <th>teacher</th>
-                      <th>onLecturePrice</th>
+                      <th>강의번호</th>
+                      <th>강의명</th>
+                      <th>카테고리</th>
+                      <th>강사명</th>
+                      <th>강의가격</th>
                     </tr>
                   </thead>
 				<tbody id="selectable">
 				</tbody>
    
                 </table>
-                  <button type="button" class="roadmapbtn" id="roadmapBtn">강의 선택 완료</button>
+                  <button type="button" class="btn btn-dark" id="roadmapBtn">강의 선택 완료</button>
               <!--   </form> -->
                   
                </div>

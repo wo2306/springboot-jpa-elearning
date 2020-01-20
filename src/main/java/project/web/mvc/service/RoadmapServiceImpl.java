@@ -13,8 +13,6 @@ import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Roadmap;
 import project.web.mvc.repository.RoadmapRepository;
 
-import javax.transaction.Transactional;
-
 @Service
 @Transactional
 public class RoadmapServiceImpl implements RoadmapService {
@@ -70,11 +68,14 @@ public class RoadmapServiceImpl implements RoadmapService {
 			}
 		}else {
 			// 로드맵이 가지고 있는 강의수보다 업데이트할 강의수가 작을때
-			
+			for(int d = onLectureNo.size(); d < roadmapList.size(); d++) {
+				//System.out.println(roadmapList.get(onLectureNo.size()).getRoadmapNo()+"삭제할로드맵번호");
+				roadmapRepo.deleteByRoadmapNo(roadmapList.get(onLectureNo.size()).getRoadmapNo());
+			}
 			for (int i = 0; i < onLectureNo.size(); i++) {
-				System.out.println(roadmapList.get(i).getRoadmapNo() + "기존 강의 번호!!@@");
+				//System.out.println(roadmapList.get(i).getRoadmapNo() + "기존 강의 번호!!@@");
 				for (int k = 0; k <i+1; k++) {
-					System.out.println(onLectureNo.get(k) + "업데이트할 강의번호!!");
+					//System.out.println(onLectureNo.get(k) + "업데이트할 강의번호!!");
 					roadmapList.get(i).setOnLecture(new OnLecture(onLectureNo.get(k)));
 				}
 				roadmapList.get(i).setRoadmapNo(roadmapList.get(i).getRoadmapNo());
@@ -82,11 +83,9 @@ public class RoadmapServiceImpl implements RoadmapService {
 				roadmapList.get(i).setRoadmapContent(roadmap.getRoadmapContent());
 				roadmapList.get(i).setRoadmapPrice(roadmap.getRoadmapPrice());
 				roadmapRepo.save(roadmapList.get(i));
-			
 			    }		
 			}
 	}	
-
 	@Override
 	@Transactional
 	public void delete(String roadmapName) {
@@ -94,8 +93,6 @@ public class RoadmapServiceImpl implements RoadmapService {
 		for(int i=0; i<list.size(); i++) {
 			roadmapRepo.deleteByRoadmapName(roadmapName);
 		}
-		
-		
 
 	}
 
