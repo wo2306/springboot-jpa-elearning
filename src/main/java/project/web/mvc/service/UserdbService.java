@@ -13,7 +13,7 @@ public interface UserdbService{
 
 	PasswordEncoder passwordEncoder();
 	void insert(Userdb userdb);
-	void delete(Long userdbNo);
+	boolean delete(Long userdbNo);
 	void updateNickname(String userdbNickname);
 	void updatePw(String userdbPassword);
 	Userdb selectByUserdbEmail(String userdbEmail);
