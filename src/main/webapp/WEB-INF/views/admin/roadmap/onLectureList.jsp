@@ -18,7 +18,7 @@
 <![endif]-->
 <script type="text/javascript">
 	$(function(){
-		$(".selectBtn").click(function(){
+		$("button[name=select]").click(function(){
 			var onLectureNo = $(this).val()
 			/* alert($(this).val()); */
 			//로드맵 등록시 온라인강의 추가
@@ -149,7 +149,7 @@
                       <td colspan="6"><div class="onlecture">
                     <!--   <form name="requestForm" method="post" id="requestForm"> -->
                      	  <input type="hidden" name="id" value="${list.onLectureNo}"/>
-                          <button type="button" class="btn btn-red" value="${list.onLectureNo}">강의 선택하기</button>
+                          <button type="button" class="btn btn-primary" name="select" value="${list.onLectureNo}">강의 선택하기</button>
                       <!--  </form> -->
                         </div></td>
                     </tr>
