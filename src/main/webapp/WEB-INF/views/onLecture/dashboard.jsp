@@ -56,7 +56,7 @@
                 <div class="row">
                     <div class="col-md-8 blog-pull-right">
                         <div class="single-service">
-                            <img src="http://placehold.it/750x500" alt="">
+                            <img src="${pageContext.request.contextPath}/resources/images/onLecture/${onLecture.onLectureNo}.png" style="width: 750px; height: 500px" alt="">
                             <h3 class="text-theme-colored line-bottom text-theme-colored">${onLecture.onLectureName}</h3>
                             </h4>
                             <ul class="review_text list-inline">
