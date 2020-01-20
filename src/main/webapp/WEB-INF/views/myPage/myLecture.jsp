@@ -66,8 +66,8 @@
                                 진행률
                                 <select name="form_sex" class="form-control required valid" aria-required="true"
                                         aria-invalid="false">
-                                    <option value="">학습중</option>
-                                    <option value="">완강</option>
+                                    <option value="3">학습중</option>
+                                    <option value="4">완강</option>
                                 </select>
                             </div>
                             <div class="col-md-4 blog-pull-right">
@@ -115,14 +115,14 @@
                                             <c:choose>
                                                 <c:when test="${page.hasPrevious() eq true}">
                                                     <li>
-                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number}"
+                                                        <a href="${pageContext.request.contextPath}/myPage/myLecture/${page.number}"
                                                            aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                         </a>
                                                     </li>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li>
-                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+1}"
+                                                        <a href="${pageContext.request.contextPath}/myPage/myLecture/${page.number+1}"
                                                            aria-label="Previous"> <span aria-hidden="true">이전</span>
                                                         </a>
                                                     </li>
@@ -132,12 +132,12 @@
                                                 <c:choose>
                                                     <c:when test="${page.number eq i.count-1}">
                                                         <li class="active"><a
-                                                                href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                                href="${pageContext.request.contextPath}/myPage/myLecture/${i.count}">${i.count}</a>
                                                         </li>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <li>
-                                                            <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${i.count}">${i.count}</a>
+                                                            <a href="${pageContext.request.contextPath}/myPage/myLecture/${i.count}">${i.count}</a>
                                                         </li>
                                                     </c:otherwise>
                                                 </c:choose>
@@ -145,14 +145,14 @@
                                             <c:choose>
                                                 <c:when test="${page.hasNext() eq true}">
                                                     <li>
-                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+2}"
+                                                        <a href="${pageContext.request.contextPath}/myPage/myLecture/${page.number+2}"
                                                            aria-label="Next"> <span aria-hidden="true">다음</span>
                                                         </a>
                                                     </li>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li>
-                                                        <a href="${pageContext.request.contextPath}/onLecture/search/${command}/${keyword}/${page.number+1}"
+                                                        <a href="${pageContext.request.contextPath}/myPage/myLecture/${page.number+1}"
                                                            aria-label="Next"> <span aria-hidden="true">다음</span>
                                                         </a>
                                                     </li>
@@ -185,48 +185,6 @@
         }
         return false;
     }
-
-    $(document).on('click', 'button[value=wishlist]', function () {
-        if (confirm('위시리스트에 담을까요?')) {
-            $.ajax({
-                type: "post",
-                url: "${pageContext.request.contextPath}/wishlist",
-                dataType: "text",
-                data: "onLectureNo=" + $(this).attr('id'),
-                success: function () {
-
-                    /* $(".wishlistbtn1").hide();
-                    $(".wishlistbtn2").show();
-                 */
-                    if (confirm('성공해쓰 보러갈래?')) return location.href = "${pageContext.request.contextPath}/myPage/info/1";
-                },
-                error: function (err) {
-                    alert("이미 중복된 강의가 있습니다.");
-                }
-            });
-        }
-    })
-
-    $(window).load(function () {
-        $.ajax({
-            url: "${pageContext.request.contextPath}/myPage/isthere",
-            type: "post",
-            dataType: "json",
-            success: function (result) {
-                $.each(result, function (key, val) {
-
-                    console.log(key + " " + val.onLecture.onLectureNo);
-                    /* if(val.onLecture.onLectureNo==$("#lectureno").val()){
-                        $(".wishlistbtn1").hide();
-                        $(".wishlistbtn2").show();
-                    } */
-                });
-            },
-            error: function (error) {
-                console.log(error)
-            }
-        })
-    })
 
 </script>
 </body>

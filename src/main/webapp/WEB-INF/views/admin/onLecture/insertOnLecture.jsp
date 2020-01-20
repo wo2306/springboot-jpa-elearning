@@ -18,6 +18,7 @@
     <![endif]-->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+    <script src="https://api.dmcdn.net/all.js"></script>
     <style>
         #out {
             horiz-align: center;
@@ -91,7 +92,8 @@
 
                     </div>
                     <hr>
-                    <form id="onLectureForm" action="${pageContext.request.contextPath}/admin/onLecture/insert" enctype="multipart/form-data" method="post">
+                    <form id="onLectureForm" action="${pageContext.request.contextPath}/admin/onLecture/insert"
+                          enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <label>온라인 강의명</label>
                             <input type="text" class="form-control" placeholder="온라인 강의 명" name="onLectureName">
@@ -99,12 +101,11 @@
                         <div class="form-group">
                             <label>강의 카테고리</label>
                             <select name="onLectureCategory" class="form-control">
-                                <option>---카테고리 선택---</option>
                                 <option>웹개발</option>
                                 <option>모바일앱</option>
                                 <option>게임개발</option>
                                 <option>알고리즘</option>
-                                <option>데이터베이스</option>
+                                <option>데이터사이언스</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -129,7 +130,7 @@
                         </div>
                         <div class="form-group">
                             <label>강의 썸네일용 이미지</label><br>
-                            <input id="thumbnail" class="file" type="file" name="thumbnail">
+                            <input id="thumbnail" type="file" name="thumbnail">
                         </div>
 
                         <br>
@@ -146,19 +147,19 @@
                                 <div class="form-group">
                                     <label>동영상 업로드</label>
                                     <br>
-                                    <input id="file" class="file" type="file" name="onLectureFile">
-                                    <input type="hidden" id="videoLength" name="videoLength" value="10"/>
+                                    <input class="file" type="file" name="onLectureFile">
+                                    <input type="hidden" name="videoLength"/>
+                                    <input type="hidden" name="detailUrl"/>
                                     <p class="help-block"></p>
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="detailUrl" name="detailUrl" value=""/>
                     </form>
-
                     <div class="checkbox">
                         <br>
                         <input type="button" class="btn btn-dark" value="강의 추가하기" id="addForm">&nbsp;&nbsp;
-                        <button type="button" class="btn btn-dark" id="submit">강의 등록 완료</button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-dark" id="submit">동영상 업로드</button>&nbsp;&nbsp;
+                        <button type="button" class="btn btn-dark" id="formSubmit">강의 등록하기</button>&nbsp;&nbsp;
                         <button type="button" class="btn btn-dark" id="outInsert">나가기</button>
                     </div>
                 </div>
@@ -170,194 +171,113 @@
 
 </body>
 <script>
-    document.querySelector('.file').addEventListener('change', function () {
-        var vid = document.createElement('video');
-        var fileURL = URL.createObjectURL(this.files[0]);
-        vid.src = fileURL;
-        vid.ondurationchange = function () {
-            console.log(this.duration);
-            dur = this.duration;
-            $("#videoLength").val(Math.floor(dur) + '분')
-        };
-    });
-
     $("#submit").on('click', function () {
-        var file = $('#file').get(0).files[0];
-        if (file) {
-            $.ajax({
-                url: VIDEOS_UPLOAD_SERVICE_URL,
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(metadata),
-                beforeSend: function (request) {
-                    request.setRequestHeader('Authorization', 'Bearer ' + access_token);
-                },
-            }).done(function (data, textStatus, jqXHR) {
-                this.resumableUpload({
-                    url: jqXHR.getResponseHeader('Location'),
-                    file: file,
-                    start: 0
-                });
-            });
-        } else {
-            alert("file을 선택해주세요");
+        var fileList = $("input[name=onLectureFile]").get();
+        var videoLengthList = $("input[name=videoLength]").get();
+        var urlList = $("input[name=detailUrl]").get();
+        arrSize = $("input[name=onLectureFile]").length;
+        for (let i = 0; i < arrSize; i++) {
+            var file = fileList[i].files[0];
+            var data = new FormData()
+            data.append('onLectureFile', file);
+            if (file) {
+                $.ajax({
+                    url: upload_url,
+                    type: "post",
+                    dataType: "json",
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        videoLengthList[i].value = Math.floor(result.duration / 1000) + '분';
+                        callurl = result.url;
+                        $.ajax({
+                            url: "https://api.dailymotion.com/me/videos",
+                            type: "post",
+                            dataType: "json",
+                            data: {
+                                url: callurl
+                            },
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer ' + access_token)
+                            },
+                            success: function (result) {
+                                var videoid = result.id;
+                                $.ajax({
+                                    url: "https://api.dailymotion.com/video/" + videoid,
+                                    type: "post",
+                                    dataType: "json",
+                                    data: {
+                                        title: 'Learning Machine - video upload test',
+                                        tags: 'dailymotion,api,sdk,test',
+                                        channel: 'videogames',
+                                        published: 'true'
+                                    },
+                                    beforeSend: function (xhr) {
+                                        xhr.setRequestHeader('Authorization', 'Bearer ' + access_token)
+                                    },
+                                    success: function (result) {
+                                        console.log(result)
+                                        urlList[i].value = result.id;
+                                    },
+                                })
+                            },
+                        })
+                    },
+                })
+            } else {
+                alert("file을 선택해주세요");
+            }
         }
+    })
 
+
+    $("#formSubmit").click(function () {
+        $("#onLectureForm").submit();
     })
 
     var access_token = "";
+    var upload_url = "";
     $(function () {
-        $.ajax({
-            url: "https://www.googleapis.com/oauth2/v4/token",
-            type: "post",
-            dataType: "json",
-            data: {
-                code: "${code}",
-                client_id: "1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com",
-                client_secret: "YW06D8o9k2GCHceDUYpM4e7L",
-                redirect_uri: "http://localhost:8888/oauth2callback",
-                grant_type: "authorization_code"
-            },
-            success: function (result) {
-                access_token = result.access_token;
-            },
-            error: function (error) {
-                console.log(error)
-            }
+        $('#addForm').click(function () {
+            var str = "";
+            str += '<hr><div><div><label>세부 강의 제목</label><input type="text" class="form-control" placeholder="강의 제목을 입력하세요"';
+            str += 'name="onDetailName"></div><div class="form-group"><br><label>동영상 업로드</label><br><input type="file" class="file" name="onLectureFile">';
+            str += '<p class="help-block"></p><input type="hidden" name="videoLength"/><input type="hidden" name="detailUrl"/></div></div>';
+            $("#detail").parent().append(str);
+        });
+
+        $('#outInsert').click(function () {
+            location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
         })
+        $('#summernote').summernote({
+            height: 300,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true,
+        });
     })
 
-    var metadata = {
-        snippet: {
-            title: "test",
-            description: "Learning Machine Video Upload",
-            categoryId: 22
-        },
-    };
-
-    var GOOGLE_PLUS_SCRIPT_URL = 'https://apis.google.com/js/client:plusone.js';
-    var CHANNELS_SERVICE_URL = 'https://www.googleapis.com/youtube/v3/channels';
-    var VIDEOS_UPLOAD_SERVICE_URL = 'https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet';
-    var VIDEOS_SERVICE_URL = 'https://www.googleapis.com/youtube/v3/videos';
-    var INITIAL_STATUS_POLLING_INTERVAL_MS = 15 * 1000;
-
-
-    resumableUpload = function (options) {
-        var ajax = $.ajax({
-            url: options.url,
-            method: 'PUT',
-            contentType: options.file.type,
-            headers: {
-                'Content-Range': 'bytes ' + options.start + '-' + (options.file.size - 1) + '/' + options.file.size
-            },
-            xhr: function () {
-                var xhr = $.ajaxSettings.xhr();
-                if (xhr.upload) {
-                    xhr.upload.addEventListener('progress', function (e) {
-                            if (e.lengthComputable) {
-                                var bytesTransferred = e.loaded;
-                                var totalBytes = e.total;
-                                var percentage = Math.round(100 * bytesTransferred / totalBytes);
-                            }
-
-                        },
-                        false
-                    );
-                }
-                return xhr;
-            },
-            processData: false,
-            data: options.file
+    $(function () {
+        DM.init({
+            apiKey: '8e8896bcab8f31041dc3',
+            apiSecret: 'c5c26cdec546f2f5fb757aab5a86e969127e26f2',
+            status: true, // check login status
+            cookie: true // enable cookies to allow the server to access the session
         });
-        ajax.done(function (response) {
-            videoId = response.id;
-            this.checkVideoStatus(videoId, INITIAL_STATUS_POLLING_INTERVAL_MS);
-        });
-    }
-
-    checkVideoStatus = function (videoId, waitFornextPoll) {
-        $.ajax({
-            url: VIDEOS_SERVICE_URL,
-            method: 'GET',
-            headers: {
-                Authorization: 'Bearer ' + accessToken
-            },
-            data: {
-                part: 'status,processingDetails,player',
-                id: videoId
-            }
-        }).done(function(response){
-            var uploadStatus = response.items[0].status.uploadStatus;
-            var embed = response.items[0].player.embedHtml;
-            console.log(embed);
-            console.log(uploadStatus);
-            if(uploadStatus == 'uploaded'){
-                setTimeout(function(){
-                    this.checkVideoStatus(videoId, waitFornextPoll * 2);
-                }, waitFornextPoll);
-            }else{
-                if(uploadStatus == 'processed'){
-                    console.log("finally completed!");
-                    $("#uploading").hide();
-                    $(".progress-bar").removeClass("progress-bar-striped active");
-                    $('.container').find('.embed-responsive').append(embed);
-                }
-            }
-        });
-    },
-
-
-        $(function () {
-            $('#addForm').click(function () {
-                var str = "";
-                str += '<hr><div><div><label>세부 강의 제목</label><input type="text" class="form-control" placeholder="강의 제목을 입력하세요"';
-                str += 'name="onDetailName"></div><div class="form-group"><br><label>동영상 업로드</label><br><input type="file" name="onLectureFile">';
-                str += '<p class="help-block"></p><input type="hidden" name="videoLength" value="10"/><input type="hidden" name="detailUrl" value="test"/></div></div>';
-                $("#detail").parent().append(str);
-            });
-
-            $('#outInsert').click(function () {
-                location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
-            })
-            $('#summernote').summernote({
-                height: 300,                 // set editor height
-                minHeight: null,             // set minimum height of editor
-                maxHeight: null,             // set maximum height of editor
-                focus: true,
-                callbacks: {
-                    onImageUpload: function (files, editor, welEditable) {
-                        for (var i = files.length - 1; i >= 0; i--) {
-                            sendFile(files[i], this);
-                        }
-                    },
-                    onMediaDelete: function (files) {
-                        var filename = files.attr('src').split('/')[5];
-                        deleteFile(filename);
-                    }
-                }
-            });
-
-            function sendFile(file, el) {
-                var form_data = new FormData();
-                form_data.append('file', file);
-                $.ajax({
-                    data: form_data,
-                    type: "POST",
-                    url: '${pageContext.request.contextPath}/uploadImage',
-                    cache: false,
-                    contentType: false,
-                    enctype: 'multipart/form-data',
-                    processData: false,
-                    success: function (url) {
-                        $(el).summernote('editor.insertImage', url);
-                    }
+        DM.login(function (response) {
+            if (response.session) {
+                access_token = response.session.access_token;
+                DM.api('/file/upload', function (response) {
+                    upload_url = response.upload_url;
+                    ;
                 });
-            }
-
-            function deleteFile(file) {
-                $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
+            } else {
+                alert('로그인에 실패하여 강의 리스트 화면으로 되돌아갑니다');
+                location.href = '${pageContext.request.contextPath}/admin/onLecture/all/keyword/1'
             }
         });
+    })
 
 </script>
 </html>

@@ -11,7 +11,7 @@ import project.web.mvc.repository.OffOrderRepository;
 import project.web.mvc.repository.OnOrderRepository;
 import project.web.mvc.util.LoginCheck;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +37,25 @@ public class OrderServiceImpl implements OrderService {
         onOrderRepository.save(onOrder);
         couponDiscount(couponCode);
     }
+
+    @Override
+    public int findDate() {
+        Calendar calendar = new GregorianCalendar(Locale.KOREA);
+        int month = calendar.get(Calendar.MONTH);
+        System.out.println("month : " + month);
+        Date start = new Date();
+        Date end = new Date();
+        start.setMonth(month);
+        end.setMonth(month + 1);
+        System.out.println("date : "+ start + end);
+        List<OnOrder> onOrders = onOrderRepository.findDate(start, end);
+        int revenue = 0;
+        for (OnOrder o : onOrders) {
+            revenue += o.getOnOrderPrice();
+        }
+        return revenue;
+    }
+
 
     @Override
     public Page<OnOrder> onSelectByUserNo(int pageNum) {

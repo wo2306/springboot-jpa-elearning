@@ -63,7 +63,6 @@ public class OnLectureController {
         System.out.println("온라인강의별 리뷰 리스트 : " +reviewList.toString());
         model.addAttribute("reviewList", reviewList);
 
-
         if (orderService.payCheck(onLectureNo)) {
             model.addAttribute("qnaList", qnaService.findRecentQ(onLectureNo));
             model.addAttribute("sugangList", sugangService.sugangList(onLectureNo));
@@ -71,7 +70,6 @@ public class OnLectureController {
         }
         return "onLecture/detail";
     }
-
 
     @RequestMapping("/view/{onDetailNo}")
     public String view(@PathVariable Long onDetailNo, Model model) {

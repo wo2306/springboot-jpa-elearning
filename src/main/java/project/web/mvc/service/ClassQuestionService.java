@@ -21,6 +21,7 @@ public interface ClassQuestionService {
     
     void insert(ClassQuestion classQuestion);
 
+    void answerInsert(ClassAnswer classAnswer);
     void updateQuestion(ClassQuestion classQuestion);
     void updateAnswer(ClassAnswer classAnswer);
     

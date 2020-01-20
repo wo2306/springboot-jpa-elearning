@@ -54,6 +54,11 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		classQuestionRepo.save(classQuestion);
 
 	}
+	
+	@Override
+	public void answerInsert(ClassAnswer classAnswer) {
+		classAnswerRepo.save(classAnswer);
+	}
 
 	@Override
 	public void deleteAnswer(Long classAnswerNo) {
