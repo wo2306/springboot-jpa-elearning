@@ -58,8 +58,9 @@ public class UserdbServiceImpl implements UserdbService {
 
 	//회원탈퇴
 	@Override
-	public void delete(Long userdbNo) {
+	public boolean delete(Long userdbNo) {
 		userdbRepository.deleteById(userdbNo);
+		return true;
 	}
 	
 	//idCheck

@@ -5,27 +5,6 @@
 
 <!DOCTYPE html>
 <head>
-
-    <!-- Page Title -->
-    <title>LM company | Learning Machine | main</title>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <![endif]-->
-    <style>
-        td {
-            text-align: center;
-        }
-        .pagination {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    </style>
 </head>
 <body class="">
 <div id="wrapper" class="clearfix">
@@ -165,10 +144,10 @@
                                             </c:if>
                                         </li>
                                     </ul>
-                                    <a href="https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/youtube.upload&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://localhost:8888/oauth2callback&response_type=code&client_id=1071666857106-008okgbmnmncv02m6sgdflovhk8ih49b.apps.googleusercontent.com"
-                                       class="btn btn-dark">새로운 강의 등록하기</a>
+                                    <a href="${pageContext.request.contextPath}/callback/video" class="btn btn-success btn-icon-split">
+                                    <span class="icon text-white-50"><i class="fas fa-check"></i></span>
+                    					<span class="text text-white">새로운 강의 등록하기</span></a>
                                 </div>
-
                             </div>
                         </div>
                     </div>

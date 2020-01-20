@@ -34,11 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 페이지 권한 설정
 //        .antMatchers("/admin/**").hasAuthority("ADMIN")
         .antMatchers("/myPage/**").authenticated()
-//        .antMatchers("/cart/**").authenticated()
-//      .antMatchers("/wishlist/**").authenticated()
+        .antMatchers("/cart/**").authenticated()
         .antMatchers("/order/**").authenticated()
         .antMatchers("/qna/questionForm").authenticated()
-        .antMatchers("/qna/read/**").authenticated()
         .anyRequest().permitAll()
                 .and() // 로그인 설정
 	                .formLogin()
@@ -60,6 +58,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//post방식 허용
 		.csrf().disable();
     }
-
-
 }

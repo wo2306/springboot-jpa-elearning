@@ -78,7 +78,6 @@ public class UploadVideo {
      * @param scopes list of scopes needed to run youtube upload.
      */
     private static Credential authorize(List<String> scopes) throws Exception {
-
         // Load client secrets.
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(
                 JSON_FACTORY, UploadVideo.class.getResourceAsStream("client_secrets.json"));

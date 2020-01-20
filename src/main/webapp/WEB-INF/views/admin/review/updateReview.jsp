@@ -69,21 +69,21 @@
 								 <div class="row">
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label>리뷰 번호</label> <input type="text"
+											<label>리뷰 번호</label> <input type="text" name="reviewNo"
 												value="${review.reviewNo }" readonly="true"
 												class="form-control">
 										</div>
 									</div>
 									<div class="col-sm-6" >
 										<div class="form-group">
-											<label>작성자</label> <input type="text"
+											<label>작성자</label> <input type="text" name="userdb.userdbNickname"
 												value="${review.userdb.userdbNickname }" readonly="true"
 												class="form-control">
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="form-group">
-											<label>리뷰 내용</label> <input type="text"
+											<label>리뷰 내용</label> <input type="text" name="reviewContent"
 												value="${review.reviewContent }"
 												class="form-control">
 										</div>

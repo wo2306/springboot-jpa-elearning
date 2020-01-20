@@ -43,34 +43,42 @@ public class ClassQuestionImpl implements ClassQuestionService {
 
 		return classQuestionRepo.findAllClassQuestions();
 	}
+	
+	public List<ClassAnswer> findByQNo(Long id) {
+		
+		return classAnswerRepo.findByClassQuestionClassQuestionNo(id);
+	}
 
 	@Override
 	public void insert(ClassQuestion classQuestion) {
 		classQuestionRepo.save(classQuestion);
 
 	}
+	
+	@Override
+	public void answerInsert(ClassAnswer classAnswer) {
+		classAnswerRepo.save(classAnswer);
+	}
 
 	@Override
 	public void deleteAnswer(Long classAnswerNo) {
-		// TODO Auto-generated method stub
+		classAnswerRepo.deleteById(classAnswerNo);
 		
 	}
 	@Override
-	public void deleteQuestion(Long classQuestion) {
-		// TODO Auto-generated method stub
+	public void deleteQuestion(Long classQuestionNo) {
+		classQuestionRepo.deleteById(classQuestionNo);
 		
 	}
 	
 	@Override
 	public void updateAnswer(ClassAnswer classAnswer) {
 		ClassAnswer dbAnswer = classAnswerRepo.findByClassAnswerNo(classAnswer.getClassAnswerNo());
-		System.out.println("@#@#바꾸려는 내용 =" +classAnswer.getClassAnswerContent());
 		dbAnswer.setClassAnswerContent(classAnswer.getClassAnswerContent());
 	}
 	@Override
 	public void updateQuestion(ClassQuestion classQuestion) {
 		ClassQuestion dbQuestion = classQuestionRepo.findByClassQuestionNo(classQuestion.getClassQuestionNo());
-		System.out.println("@#@#바꾸려는 내용 =" +classQuestion.getClassQuestionContent());
 		dbQuestion.setClassQuestionContent(classQuestion.getClassQuestionContent());
 		dbQuestion.setClassQuestionTitle(classQuestion.getClassQuestionTitle());
 		
@@ -105,7 +113,15 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		return classQuestionRepo.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum-1, 9));
 	}
 
-
-
+	//관리자 작성자 검색
+	@Override
+	public Page<ClassQuestion> selectByName(String keyword, int pageNum) {
+		return classQuestionRepo.findByName(keyword, PageRequest.of(pageNum-1, 9));
+	}
+	//관리자 제목 검색
+	@Override
+	public Page<ClassQuestion> selectByTitle(String keyword, int pageNum) {
+		return classQuestionRepo.findByTitle(keyword, PageRequest.of(pageNum-1, 9));
+	}
 
 }

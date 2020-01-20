@@ -48,9 +48,6 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     public void insert(Coupon coupon) {
-        if (couponRepository.existsById(coupon.getCouponCode())) {
-            throw new RuntimeException("중복된 쿠폰 번호가 존재합니다");
-        }
         couponRepository.save(coupon);
     }
 }

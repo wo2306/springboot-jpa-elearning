@@ -102,12 +102,11 @@
                         <div class="form-group">
                             <label>강의 카테고리</label>
                             <select name="onLectureCategory" class="form-control">
-                                <option>---카테고리 선택---</option>
                                 <option>웹개발</option>
                                 <option>모바일앱</option>
                                 <option>게임개발</option>
                                 <option>알고리즘</option>
-                                <option>데이터베이스</option>
+                                <option>데이터사이언스</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -140,9 +139,12 @@
                                 <div>
                                     <div class="form-group">
                                         <label>세부 강의 제목</label>
+                                        <input name="onDetailNo" type="hidden" class="form-control" value="${detail.onDetailNo}">
                                         <input id="title" type="text" class="form-control"
                                                placeholder="강의 제목을 입력하세요" name="onDetailName"
                                                value="${detail.onDetailName}">
+                                        <input name="onDetailUrl" type="hidden" class="form-control" value="${detail.onDetailUrl}">
+                                        <input name="onDetailPlaytime" type="hidden" class="form-control" value="${detail.onDetailPlaytime}">
                                     </div>
                                 </div>
                             </div>
@@ -175,41 +177,7 @@
             height: 300,                 // set editor height
             minHeight: null,             // set minimum height of editor
             maxHeight: null,             // set maximum height of editor
-            callbacks: {
-                onImageUpload: function (files, editor, welEditable) {
-                    for (var i = files.length - 1; i >= 0; i--) {
-                        sendFile(files[i], this);
-                    }
-                },
-                onMediaDelete: function (files) {
-                    var filename = files.attr('src').split('/')[5];
-                    deleteFile(filename);
-                }
-            }
         });
     });
-
-    function sendFile(file, el) {
-        var form_data = new FormData();
-        form_data.append('file', file);
-        $.ajax({
-            data: form_data,
-            type: "POST",
-            url: '${pageContext.request.contextPath}/uploadImage',
-            cache: false,
-            contentType: false,
-            enctype: 'multipart/form-data',
-            processData: false,
-            success: function (url) {
-                $(el).summernote('editor.insertImage', url);
-            }
-        });
-    }
-
-    function deleteFile(file) {
-        $.post('${pageContext.request.contextPath}/deleteImage', {'filename': file});
-    }
-
-
 </script>
 </html>

@@ -74,7 +74,7 @@
                                                     </td>
                                                     <td class="product-price"><span class="amount"><fmt:formatNumber value="${cartDTO.onLecture.onLecturePrice}" pattern="₩#,###.##"/> </span></td>
                                                     <td class="product-remove" width="200">
-                                                        <button type="button" class="btn btn-default">위시리스트로 이동</button>
+                                                        <button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/cart/wishList/${cartDTO.cartNo}/${cartDTO.onLecture.onLectureNo}'">위시리스트로 이동</button>
                                                         <p></p>
                                                         <button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/cart/deleteCart/${cartDTO.cartNo}'">장바구니에서 삭제</button>
                                                     </td>

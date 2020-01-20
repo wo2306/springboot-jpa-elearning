@@ -214,7 +214,7 @@
                 var str = ""
                 $.each(result, function (key, val) {
                     str += "<article class=\"post media-post clearfix pb-0 mb-10\">\n" +
-                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/resources/images/onLecture/" + val.onLectureNo + ".png\" style=\"width:80px; height:60px;\" alt=\"http://placehold.it/75x75\"></a>\n" +
+                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/images/onLecture/" + val.onLectureNo + ".png\" style=\"width:80px; height:60px;\" alt=\"http://placehold.it/75x75\"></a>\n" +
                         " <div class=\"post-right\">\n" +
                         " <h5 class=\"post-title mt-0\"><a href=\"${pageContext.request.contextPath}/onLecture/detail/" + val.onLectureNo + "\">" + val.onLectureName + "</a></h5>\n" +
                         " <p>" + "</p>\n" +
@@ -253,7 +253,7 @@
         return false;
     }
 
-    $(document).on('click', 'a[value=wishlist]', function () {
+    $(document).on('click', 'button[value=wishlist]', function () {
         if (confirm('위시리스트에 담을까요?')) {
             $.ajax({
                 type: "post",
@@ -261,16 +261,12 @@
                 dataType: "json",
                 data: "onLectureNo=" + $(this).attr('id'),
                 success: function (result) {
-            
                 	if(result==2){
                 		alert("이미 중복된 강의가 있습니다.");
                 		
                 	}
-                
-                	
                 	else (confirm('위시리스트에 담았습니다. \n지금 위시리스트로 이동하시겠습니까?')) 
 					 return location.href = "${pageContext.request.contextPath}/myPage/info/1";
-                    
                 },
                 error: function (err) {
                 	alert("로그인 후 이용하십시오")
@@ -280,28 +276,27 @@
             });
         }
     })
-    
-  $(window).load(function(){
-	  $.ajax({
-		  url: "${pageContext.request.contextPath}/myPage/isthere",
-          type: "post",
-          dataType: "json",
-          success: function (result) {
-        	  $.each(result, function (key, val) {
-        		  
-        		  console.log(key + " " + val.onLecture.onLectureNo);
-        		 /* if(val.onLecture.onLectureNo==$("#lectureno").val()){
-        			 $(".wishlistbtn1").hide();
-        			 $(".wishlistbtn2").show();
-        		 } */
-              });
-          },
-          error: function (error) {
-              console.log(error)
-          }
-      })
-  })
-    
+
+    $(window).load(function(){
+        $.ajax({
+            url: "${pageContext.request.contextPath}/myPage/isthere",
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                $.each(result, function (key, val) {
+
+                    console.log(key + " " + val.onLecture.onLectureNo);
+                    /* if(val.onLecture.onLectureNo==$("#lectureno").val()){
+                        $(".wishlistbtn1").hide();
+                        $(".wishlistbtn2").show();
+                    } */
+                });
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    })
 </script>
 </body>
 </html>
