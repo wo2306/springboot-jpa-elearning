@@ -80,11 +80,8 @@
                 	<a href="${pageContext.request.contextPath}/logout"><span class="mr-2 d-none d-lg-inline text-gray-600 small">Logout</span></a>
               	</li>
               </sec:authorize>
-
           </ul>
-
         </nav>
         <!-- End of Topbar -->
-
 </body>
 </html>
