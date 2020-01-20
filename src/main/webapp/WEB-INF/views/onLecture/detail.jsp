@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <head>
@@ -212,7 +213,7 @@
                                         <input name="form_botcheck" class="form-control"
                                                type="hidden" value=""/>
                                         <button type="button"
-                                                onclick="location.href='${pageContext.request.contextPath}/order/buynow/${onLecture.onLectureNo}'"
+                                                onclick="buyNow()"
                                                 class="btn btn-theme-colored btn-flat btn-xs btn-quick-contact pt-10 pb-10"
                                                 data-loading-text="Please wait...">바로 구매하기
                                         </button>
@@ -232,6 +233,9 @@
         </section>
     </div>
 </div>
+<sec:authorize access="isAuthenticated()">
+    <sec:authentication property="principal.username" var="user_id" />
+</sec:authorize>
 </section>
 </div>
 </div>
@@ -252,6 +256,7 @@
     });
 
     function cartInsert() {
+        if ("${user_id}"!="") {
         $.ajax({
             url: "${pageContext.request.contextPath}/cart/insert/" + ${onLecture.onLectureNo},
             type: "post",
@@ -269,6 +274,16 @@
                 cartList()
             }
         })
+        }
+        alert("로그인 후 이용해주세요")
+        location.href='${pageContext.request.contextPath}/login'
+    }
+    function buyNow() {
+        if ("${user_id}"!="") {
+        location.href = '${pageContext.request.contextPath}/order/buynow/${onLecture.onLectureNo}';
+        }
+        alert("로그인 후 이용해주세요")
+        location.href='${pageContext.request.contextPath}/login'
     }
 
 </script>
