@@ -272,6 +272,7 @@
                 var err = eval("(" + xmlHttpRequest.responseText + ")");
                 alert(err.message);
                 cartList()
+
             }
         })
         }
