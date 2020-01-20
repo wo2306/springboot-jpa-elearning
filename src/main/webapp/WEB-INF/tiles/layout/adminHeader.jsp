@@ -105,6 +105,7 @@
                 <img class="img-profile rounded-circle"
                      src="https://pbs.twimg.com/profile_images/883779200653549572/7PmFtnjF_400x400.jpg">
             </li>
+
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
             <li class="nav-item dropdown no-arrow logout">
