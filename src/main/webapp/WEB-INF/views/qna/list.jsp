@@ -16,10 +16,38 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+ <style>
+        #out {
+            horiz-align: center;
+            text-align: center;
+        }
+        .pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 </head>
 
-<body>
-
+<body class="">
+<div id="wrapper" class="clearfix">
+ <section class="inner-header divider parallax layer-overlay overlay-dark-5"
+                 data-bg-img="${pageContext.request.contextPath}/images/banner/qna2.jpg">
+            <div class="container pt-70 pb-20">
+                <!-- Section Content -->
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="title text-white">Questions List</h2>
+                            <ol class="breadcrumb text-left text-black mt-10">
+                                <li><a href="#">홈</a></li>
+                                <li><a href="#">Questions List</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 	<div class="container pt-80 pb-60">
 		<div class="section-content">
@@ -127,6 +155,7 @@
                                         </li>
                                     </ul>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

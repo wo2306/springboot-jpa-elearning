@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.web.mvc.domain.ClassAnswer;
 import project.web.mvc.domain.ClassQuestion;
+import project.web.mvc.domain.Userdb;
 import project.web.mvc.service.ClassQuestionService;
+import project.web.mvc.util.LoginCheck;
 
 @Controller
 @RequestMapping("/qna")
@@ -66,18 +70,27 @@ public class QnaController {
 
 
 	@RequestMapping("/answerInsert")
-	public String answer(Model model) {
-		System.out.println("answer 호출");
+	public String answer(ClassAnswer classAnswer, Model model) {
+		if(LoginCheck.getUserdb()==null)
+		{
+			return "redirect:/login";
+		}
+		//Long tempUserdbNo=LoginCheck.getUserdb().getUserdbNo();
 
-
-		return "aa";
+		classAnswer.setUserdb(LoginCheck.getUserdb());
+		classQuestionService.answerInsert(classAnswer);
+		return "redirect:/qna/read/"+classAnswer.getClassQuestion().getClassQuestionNo();
 	}
 
-	@RequestMapping("/test")
-	public void test(Model model) {
-		System.out.println("list div형식 호출");
+	 @RequestMapping("delete/{classQuestionNo}")
+	    @ResponseBody
+		public void questionDelete(@PathVariable Long classQuestionNo) {
 
-	}
+			System.out.println("q delete ctrl(리뷰 넘버 : ) " +classQuestionNo);
+			//classQuestionService.deleteQuestion(classQuestionNo);
+			
+			
+		}
 
 
 

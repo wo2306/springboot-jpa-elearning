@@ -54,15 +54,20 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		classQuestionRepo.save(classQuestion);
 
 	}
+	
+	@Override
+	public void answerInsert(ClassAnswer classAnswer) {
+		classAnswerRepo.save(classAnswer);
+	}
 
 	@Override
 	public void deleteAnswer(Long classAnswerNo) {
-		// TODO Auto-generated method stub
+		classAnswerRepo.deleteById(classAnswerNo);
 		
 	}
 	@Override
-	public void deleteQuestion(Long classQuestion) {
-		// TODO Auto-generated method stub
+	public void deleteQuestion(Long classQuestionNo) {
+		classQuestionRepo.deleteById(classQuestionNo);
 		
 	}
 	
@@ -108,7 +113,15 @@ public class ClassQuestionImpl implements ClassQuestionService {
 		return classQuestionRepo.findByUserdbUserdbNo(LoginCheck.getUserdb().getUserdbNo(), PageRequest.of(pageNum-1, 9));
 	}
 
-
-
+	//관리자 작성자 검색
+	@Override
+	public Page<ClassQuestion> selectByName(String keyword, int pageNum) {
+		return classQuestionRepo.findByName(keyword, PageRequest.of(pageNum-1, 9));
+	}
+	//관리자 제목 검색
+	@Override
+	public Page<ClassQuestion> selectByTitle(String keyword, int pageNum) {
+		return classQuestionRepo.findByTitle(keyword, PageRequest.of(pageNum-1, 9));
+	}
 
 }

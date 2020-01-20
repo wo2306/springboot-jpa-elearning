@@ -554,37 +554,41 @@
         });
         $("a[name='reviewDelete']").on('click', function () {
             var reviewNo = $(this).attr('id');
-            if (confirm("정말로 삭제 하시겠습니까?")) {
+           if (confirm("정말로 삭제 하시겠습니까?")) {
                 $.ajax({
                     url: "${pageContext.request.contextPath}/review/delete",
                     type: "delete",
                     data: "reviewNo=" + reviewNo,
                     dataType: "text",
                     success: function () {
-
+                    	location.href = '${pageContext.request.contextPath}/myPage/info/1';
                     }, error: function (err) {
                         console.log("에러 : " + err);
                     }
                 })
-            }
+            } 
+/*             if(confirm("선택된 리뷰를 정말로 삭제하시겠습니까?")){
+                location.href = '${pageContext.request.contextPath}/review/delete/'+$(this).val();
+             } */
         });
 
         $("a[name='questionDelete']").on('click', function () {
             console.log($(this).attr('id'));
-            var reviewNo = $(this).attr('id');
+            var classQuestionNo = $(this).attr('id');
 
             if (confirm("정말로 삭제 하시겠습니까?")) {
-                $.ajax({
+                /* $.ajax({
                     url: "${pageContext.request.contextPath}/qna/delete",
                     type: "delete",
-                    data: "reviewNo=" + reviewNo,
+                    data: "classQuestionNo="+classQuestionNo,
                     dataType: "text",
                     success: function () {
-
+                    	location.href = '${pageContext.request.contextPath}/myPage/info/1';
                     }, error: function (err) {
                         //console.log("에러 : "+err);
                     }
-                })
+                }) */
+                location.href = '${pageContext.request.contextPath}/qna/delete/'+$(this).attr('id');
             }
         });
 

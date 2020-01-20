@@ -2,6 +2,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <head>
@@ -19,21 +20,24 @@
     <![endif]-->
 </head>
 <body>
-<section class="bg-white-f7">
-    <div class="container pb-0">
-        <div class="section-title">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="text-center">
-
-                        <h2 class="title">${question.classQuestionTitle }</h2>
-                        <p>등록일 : ${question.classQuestionRegdate }</p>
+<div id="wrapper" class="clearfix">
+<section class="inner-header divider parallax layer-overlay overlay-dark-5"
+                 data-bg-img="${pageContext.request.contextPath}/images/banner/qna3.jpg">
+            <div class="container pt-70 pb-20">
+                <!-- Section Content -->
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="title text-white">Questions List Detail</h2>
+                            <ol class="breadcrumb text-left text-black mt-10">
+                                <li><a href="#">홈</a></li>
+                                <li><a href="#">Questions List</a></li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 <div class="container">
 
     <!-- Textblock -->
@@ -66,8 +70,6 @@
     </c:forEach>
     
     
-    
-    
     <div class="col-md-6">
 
         <div class="heading-line-bottom">
@@ -75,13 +77,14 @@
         </div>
         
         
-        <form action="#">
+        <form action="${pageContext.request.contextPath}/qna/answerInsert/" name="classAnswer">
 
             <div class="row">
                 <div class="form-group col-md-12">
                     <label>내 용</label>
-                    <input type="text" class="form-control" id="answerContent">
-                    <input type="hidden" value="${question.classQuestionNo }" id="classQuestionNo">
+                    <input type="text" class="form-control" name="classAnswerContent">
+                    <input type="hidden" value="${question.classQuestionNo }" name="classQuestion.classQuestionNo">
+                	
                 </div>
             </div>
 
@@ -93,25 +96,10 @@
         <a href="/qna/list/1" style="text-decoration:none;">리스트로 돌아가기</a>
     </div>
 
-
+</div>
 </div>
 <script>
-    $("#answerInsert").on('click', function() {
-        var answerContent=$("#answerContent").val();
-        var questionNo = $("#classQuestionNo").val();
-
-        $.ajax({
-            type: "post",
-            url: "${pageContext.request.contextPath}/qna/answerInsert",
-            dataType: "json",
-            success: function (result) {
-
-            },
-            error: function (err) {
-                console.log("통신실패!!!! err : " + err);
-            }
-        });
-    });
+   
 </script>
 
 </body>
