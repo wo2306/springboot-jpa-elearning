@@ -94,9 +94,14 @@
 												
 													<div class="col-sm-6">
 														<div class="form-group">
-														<label>academyNo</label>
-															<input type="text" value="${offLecture.academy.academyNo}"
-																name="academyNo" required="" class="form-control">
+														<label>academyName</label>
+															 <input type="text" value="${offLecture.academy.academyNo}"
+																name="academyNo" required="" class="form-control" readonly="readonly">
+																<%-- <select id="key" margin-right: 10px;" class="form-control" name="offLecture.academy.academyNo"> 
+                                                <c:forEach items="${requestScope.academy}" var="list">
+                                                <option value="${list.academyNo}">${list.academyName}</option>
+                                             </c:forEach>
+                                            </select> --%>
 														</div>
 													</div>
 												
@@ -107,7 +112,7 @@
 														
 														<label>offLectureNo</label>
 															<input type="text" value="${offLecture.offLectureNo}"
-																name="offLectureNo" required="" class="form-control">
+																name="offLectureNo" required="" class="form-control" readonly="readonly">
 														</div>
 														
 													</div>

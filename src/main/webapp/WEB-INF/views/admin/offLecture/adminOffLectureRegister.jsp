@@ -98,9 +98,12 @@
 
 									<div class="col-sm-6">
 										<div class="form-group">
-											<label>academyNo</label> <input type="text"
-												placeholder="academyNo" name="academy.academyNo" required=""
-												class="form-control">
+											<label>academyName</label>
+												<select id="key" margin-right: 10px;" class="form-control" name="academy.academyNo"> 
+                                                <c:forEach items="${requestScope.list}" var="list">
+                                                <option value="${list.academyNo}">${list.academyName}</option>
+                                             </c:forEach>
+                                            </select>
 										</div>
 									</div>
 

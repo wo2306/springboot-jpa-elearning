@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import project.web.mvc.domain.Academy;
 import project.web.mvc.domain.OffLecture;
-import project.web.mvc.domain.OnLecture;
+import project.web.mvc.service.AcademyService;
 import project.web.mvc.service.OffLectureService;
 
 @Controller
@@ -29,6 +30,8 @@ public class AdminOffLectureController {
 	
 	@Autowired
 	private OffLectureService offLectureService;
+	@Autowired
+	private AcademyService academyService;
 	
 	@RequestMapping("/list/{pageNum}")
 	public String main(Model model, @PathVariable int pageNum) {
@@ -63,8 +66,10 @@ public class AdminOffLectureController {
 	        return "admin/offLecture/adminOffLecture";
 	}
 	@RequestMapping("/adminOffLectureRegister")
-	public String register() {
-		//System.out.println("나와?");
+	public String register(Model model) {
+		List<Academy> list = academyService.selectAll();
+		model.addAttribute("list", list);
+		//System.out.println(list);
 		return "admin/offLecture/adminOffLectureRegister";
 	}
 	
@@ -85,9 +90,14 @@ public class AdminOffLectureController {
 	}
 
 	@RequestMapping("/offLecUpdate/{offLectureNo}")
-	public ModelAndView update(@PathVariable Long offLectureNo) {
+	public String update(@PathVariable Long offLectureNo, Model model) {
 		OffLecture offLecture = offLectureService.selectByOffNo(offLectureNo);
-		return new ModelAndView("admin/offLecture/adminOffLectureUpdate", "offLecture", offLecture);
+		List<Academy> academy = academyService.selectAll();
+		model.addAttribute("academy", academy);
+		model.addAttribute("offLecture", offLecture);
+		offLectureService.offLecUpdate(offLecture);
+		System.out.println(offLecture.getAcademy().getAcademyName());
+		return "admin/offLecture/adminOffLectureUpdate";
 	}
 
 
