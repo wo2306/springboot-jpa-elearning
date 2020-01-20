@@ -84,7 +84,7 @@ public class AdminNoticeController {
 		System.out.println(notice.getNoticeTitle());
 		noticeService.insert(notice);
 		
-		return "redirect:all/keyword/1";
+		return "redirect:/admin/notice/all/keyword/1";
 	}
 	
 	@RequestMapping("/delete/{noticeNo}")
