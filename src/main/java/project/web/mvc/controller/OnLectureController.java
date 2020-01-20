@@ -20,13 +20,7 @@ import project.web.mvc.domain.OnDetail;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Review;
 import project.web.mvc.domain.WishList;
-import project.web.mvc.service.ClassQuestionService;
-import project.web.mvc.service.OnDetailService;
-import project.web.mvc.service.OnLectureService;
-import project.web.mvc.service.OrderService;
-import project.web.mvc.service.ReviewService;
-import project.web.mvc.service.SugangService;
-import project.web.mvc.service.WishListService;
+import project.web.mvc.service.*;
 
 @Controller
 @RequestMapping("/onLecture")
@@ -39,6 +33,7 @@ public class OnLectureController {
     private final ClassQuestionService qnaService;
     private final OnDetailService onDetailService;
     private final WishListService wishlistService;
+    private final RoadmapService roadmapService;
 
     @RequestMapping("/list/{pageNUm}")
     public String list(Model model, @PathVariable int pageNum) {

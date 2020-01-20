@@ -72,6 +72,7 @@
                                     class="text-theme-color-2">로드맵</span></h4>
                             <div class="services-list">
                                 <ul class="list list-border angle-double-right">
+
                                     <c:forEach items="${roadmapList}" var="dto">
                                         <li class="relatedRoadmapList"><a
                                                 href="${pageContext.request.contextPath}/roadmap/${dto.roadmapNo}">${dto.roadmapName}</a>
@@ -150,7 +151,7 @@
                                         class="text-theme-color-2">질문</span></h4>
                                 <ul class="list-border">
                                     <c:forEach var="qna" items="${qnaList}">
-                                        <li class="clearfix"><span> ${qna.classQuestionTitle}</span>
+                                        <li class="clearfix"><span> <a href="${pageContext.request.contextPath}/qna/read/${qna.classQuestionNo}">${qna.classQuestionTitle}</a></span>
                                             <div class="value pull-right"> ${qna.userdb.userdbNickname}</div>
                                         </li>
                                     </c:forEach>

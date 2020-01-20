@@ -50,7 +50,6 @@
                         <img alt="" src="${pageContext.request.contextPath}/images/roadmap/${list.roadmapNo}.png" class="img-responsive img-fullwidth">
                         <div class="overlay">
                           <div class="btn-add-to-cart-wrapper">
-                            <a class="btn btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="#">장바구니에 담기</a>
                           </div>
                           <div class="btn-product-view-details">
                             <a class="btn btn-default btn-theme-colored btn-sm btn-flat pl-20 pr-20 btn-add-to-cart text-uppercase font-weight-700" href="detail/${list.roadmapName}">로드맵 상세보기</a>

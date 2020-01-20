@@ -10,11 +10,11 @@
 
 <!-- Page Title -->
 <title>StudyPress | Education & Courses HTML Template</title>
-
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body class="">
 <div id="wrapper" class="clearfix">
- 
+
   <!-- Start main-content -->
   <div class="main-content">
 
@@ -75,7 +75,7 @@
                         </tbody>
                       </table>
                       <br>
-                      <button class="single_add_to_cart_button btn btn-theme-colored" type="submit">구매</button>
+                      <button class="single_add_to_cart_button btn btn-theme-colored" type="button" onclick="buyRoadmap()">구매</button>
                     </form>
                   </div>
                 </div>
@@ -119,7 +119,7 @@
                             <th>카테고리</th>
                             <td><p>${r.onLecture.onLectureCategory}</p></td>
                           </tr>
-                          </c:forEach>                
+                          </c:forEach>
                         </tbody>
                       </table>
                     </div>
@@ -156,7 +156,7 @@
                  <c:forEach items="${list}" var="roadmap">
                   <div class="col-sm-6 col-md-3 col-lg-3 mb-sm-30">
                     <div class="product">
-                      <div class="product-thumb"> 
+                      <div class="product-thumb">
                         <img alt="" src="${pageContext.request.contextPath}/images/onLecture/${roadmap.onLecture.onLectureNo}.png" class="img-responsive img-fullwidth">
                       </div>
                       <div class="product-details text-center">
@@ -177,10 +177,56 @@
   </div>
   </div>
   <!-- end main-content -->
-  
+<form id="payForm" method="post" action="${pageContext.request.contextPath}/order/cartInsert">
+  <c:forEach var="dto" items="${list}">
+  <input type="hidden" name="onLectureNo" value="${dto.onLecture.onLectureNo}"/>
+    <c:set var="roadmapPrice" value="${dto.roadmapPrice}"/>
+  </c:forEach>
+  <input type="hidden" id="paymentId" name="onOrderCode"/>
+  <input type="hidden" id="paymentPrice" name="onOrderPrice" value="${roadmapPrice}"/>
+</form>
 <!-- Footer Scripts -->
 <!-- JS | Custom script for all pages -->
 <script src="js/custom.js"></script>
+<script>
+  function requestPay() {
+    var IMP = window.IMP; // 생략가능
+    IMP.init('imp32416573');  // 가맹점 식별 코드
+    IMP.request_pay({
+      // name과 amount만 있어도 결제 진행가능
+      pg: 'html5_inicis', // pg 사 선택
+      pay_method: 'card',
+      merchant_uid: 'merchant_' + new Date().getTime(),
+      name: 'Learning Machine Paying',
+      amount: "${roadmapPrice}",
+      buyer_email: "learningMachine@gmail.com",
+      buyer_name: "LMService",
+      buyer_tel: "01030101020",
+      buyer_addr: '서울특별시 강남구 삼성동',
+      buyer_postcode: '42150',
+      m_redirect_url: '${pageContext.request.contextPath}/order/success/'
+    }, function (rsp) {
+      if (rsp.success) {
+        let msg = '결제가 완료되었습니다.';
+        alert(msg);
+        alert(rsp.pg_tid);
+        $("#paymentId").val(fn(rsp.pg_tid));
+        $("#payForm").submit();
+      } else {
+        let msg = '결제에 실패하였습니다.'
+        alert(msg);
+      }
+    });
+  }
+  function fn(str){
+    var res;
+    res = str.replace(/[^0-9]/g,"");
+    return res;
+  }
 
+  function buyRoadmap() {
+    requestPay();
+  }
+</script>
 </body>
 </html>
