@@ -27,7 +27,6 @@
     <link href="${pageContext.request.contextPath}/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Bootstrap core JavaScript-->
-    <
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="${pageContext.request.contextPath}/admin/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
