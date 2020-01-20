@@ -146,6 +146,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <c:choose>
+                            <c:when test="${empty qnaList }">
+                            	<br>
+                            </c:when>
+                            <c:otherwise>
+                       
                             <div class=" widget">
                                 <h4 class="widget-title line-bottom">최근 <span
                                         class="text-theme-color-2">질문</span></h4>
@@ -157,46 +163,27 @@
                                     </c:forEach>
                                 </ul>
                             </div>
+                            </c:otherwise>
+                            </c:choose>
+                            
                             <div class="widget">
-                                <h4 class="widget-title line-bottom">강의 <span
-                                        class="text-theme-color-2">공지</span></h4>
-                                <div class="opening-hours">
-                                    <ul class="list-border">
-                                        <c:forEach var="notice" items="${noticeList}">
-                                            <li class="clearfix"><span> Mon - Tues :  </span>
-                                                <div class="value pull-right"> 6.00 am - 10.00 pm</div>
-                                            </li>
-                                        </c:forEach>
-                                    </ul>
-                                </div>
+                                <h4 class="widget-title line-bottom">질문 <span
+                                        class="text-theme-color-2">등록</span></h4>
+                <form  action="${pageContext.request.contextPath}/qna/questionInsert" id="classQuestion" name="footer_quick_contact_form" class="quick-contact-form" method="post" novalidate="novalidate">
+                  <div class="form-group">
+                    <input name="classQuestionTitle" class="form-control valid" type="text" required="" placeholder="질문 제목" aria-required="true" aria-invalid="false"><label id="form_email-error" class="error" for="form_email" style="display: none;"></label>
+                  	<input type="hidden" value="${onLecture.onLectureNo }" name="onLecture.onLectureNo"/>
+                  </div>
+                  <div class="form-group">
+                    <textarea name="classQuestionContent" class="form-control valid" required="" placeholder="질문 내용" rows="8" aria-required="true" aria-invalid="false"></textarea><label id="form_message-error" class="error" for="form_message" style="display: none;"></label>
+                  </div>
+                  
+                    <button type="submit" class="btn btn-theme-colored btn-flat btn-xs btn-quick-contact text-white pt-5 pb-5" data-loading-text="질문 등록 하기">질문 등록 하기</button>
+                 
+                </form>
                             </div>
 
-                            <!-- Quick Contact Form Validation-->
-                            <script type="text/javascript">
-                                $("#quick_contact_form_sidebar").validate({
-                                    submitHandler: function (form) {
-                                        var form_btn = $(form).find('button[type="submit"]');
-                                        var form_result_div = '#form-result';
-                                        $(form_result_div).remove();
-                                        form_btn.before('<div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>');
-                                        var form_btn_old_msg = form_btn.html();
-                                        form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
-                                        $(form).ajaxSubmit({
-                                            dataType: 'json',
-                                            success: function (data) {
-                                                if (data.status == 'true') {
-                                                    $(form).find('.form-control').val('');
-                                                }
-                                                form_btn.prop('disabled', false).html(form_btn_old_msg);
-                                                $(form_result_div).html(data.message).fadeIn('slow');
-                                                setTimeout(function () {
-                                                    $(form_result_div).fadeOut('slow')
-                                                }, 6000);
-                                            }
-                                        });
-                                    }
-                                });
-                            </script>
+                           
                         </div>
                     </div>
                 </div>
