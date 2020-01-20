@@ -35,12 +35,6 @@ import project.web.mvc.util.LoginCheck;
 public class UserdbController {
 	private final UserdbService userdbService;
 	private final AuthorityService authorityService;
-	private final WishListService wishListService;
-	private final SugangService sugangService;
-	private final CartService cartService;
-	private final OrderService orderService;
-	private final ClassQuestionService classQuestionService;
-	private final ReviewService reviewService;
 	
 	
 	
@@ -138,42 +132,18 @@ public class UserdbController {
 		return mnv;
 	}
 	
-	
-	
-	
-	/**
-	 * 	private final UserdbService userdbService;
-	private final AuthorityService authorityService;
-	private final WishListService wishListService;
-	private final SugangService sugangService;
-	private final CartService cartService;
-	private final OrderService orderService;
-	private final ClassQuestionService classQuestionService;
-	private final ReviewService reviewService;
-	 * */
-	
-//	
-//	@RequestMapping("/goodbyeCheck")
-//	@Transactional
-//	public int goodbye(String password) {
-//		Long userdbNo = LoginCheck.getUserdb().getUserdbNo();
-//		int result;
-//		//0:현재 이용중인 서비스가 있습니다. 정말 탈퇴할건지 물어보자
-//		//1:이용중인 서비스가 없다. 탈퇴로 넘어가자
-//		//2:패스워드가 틀렸다.
-//		//3:다음스텝
-//		result = (userdbService.checkPassword(password)) ? 2:3;
-//		if(result==2) return result;
-//		if(result==3) {
-//			//구매내역확인
-//			orderService.sele
-//			
-//		}
-//
-//			
-//		return result;
-//	}
-	
+	//회원탈퇴
+	@RequestMapping("/deleteUser")
+	@ResponseBody
+	public int deleteUser() {
+		//0: 성공, 1:실패
+		int result;
+		Long userNo = LoginCheck.getUserdb().getUserdbNo();
+		if(authorityService.deleteByUserdbNo(userNo)) {
+			result = (userdbService.delete(userNo))? 0:1;
+		}else result=1;
+		return result;
+	}
 	
 //	
 //	//쿠키처리

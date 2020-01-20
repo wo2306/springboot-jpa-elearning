@@ -166,9 +166,10 @@
     }
 
     $("button[name='deleteBtn']").on('click', function () {
-     //   alert("선택한 강의를 강의를 삭제하였습니다");
-     //   location.href = '${pageContext.request.contextPath}/admin/onLecture/delete/' + $(this).val();
-    })
+     if(confirm("선택된 리뷰를 정말로 삭제하시겠습니까?")){
+        location.href = '${pageContext.request.contextPath}/admin/review/delete/'+$(this).val();
+     }
+     })
 
     $("button[name='updateBtn']").on('click', function () {
         location.href = '${pageContext.request.contextPath}/admin/review/updateForm/'+$(this).val();

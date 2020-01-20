@@ -16,11 +16,10 @@ public class WishListController {
 	//wishlist 버튼 눌렀을때
 	@RequestMapping("/wishlist")
 	@ResponseBody
-	public void wishlistInsert(Long onLectureNo) {
+	public int wishlistInsert(Long onLectureNo) {
 		
 		System.out.println(" wish insert controller 진입");
-		wishlistService.wishlistInsert(onLectureNo); 
-		
+		return wishlistService.wishlistInsert(onLectureNo); 
 	}
 	
 }

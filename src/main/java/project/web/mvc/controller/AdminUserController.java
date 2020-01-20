@@ -18,11 +18,12 @@ import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.Userdb;
 import project.web.mvc.service.AuthorityService;
 import project.web.mvc.service.UserdbService;
+import project.web.mvc.util.LoginCheck;
 
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin/user")
 public class AdminUserController {
 	
 	private final UserdbService userdbService;
@@ -39,7 +40,7 @@ public class AdminUserController {
 	
 	
 	//검색하기
-	@RequestMapping("/user/{command}/{keyword}/{pageNum}")
+	@RequestMapping("/{command}/{keyword}/{pageNum}")
 	public String category(@PathVariable String command,@PathVariable String keyword,@PathVariable int pageNum, Model model) {
 		System.out.println("들어왔다 오바");
 		System.out.println(command);
@@ -66,7 +67,7 @@ public class AdminUserController {
 	
 	
 	//업데이트 폼 보여주기
-	@RequestMapping("/user/updateForm/{userdbNo}")
+	@RequestMapping("/updateForm/{userdbNo}")
 	public ModelAndView userupdateForm(@PathVariable Long userdbNo) {
 
 		System.out.println("수정할 학생은 : " + userdbNo);
@@ -76,26 +77,28 @@ public class AdminUserController {
 	}
 	
 	//업데이트하기 
-	@RequestMapping("/user/update")
+	@RequestMapping("/update")
 	public String userupdate(Userdb inuserdb) {
 		userdbService.updateUserdb(inuserdb);
 		
-		return "redirect:/admin/user";
+		return "redirect:/admin/user/all/keyword/1";
 	}
 	
 	//삭제하기
-	@RequestMapping("/user/delete")
+	@RequestMapping("/delete")
 	public String userdbdelete(String userdbNo) {
 		System.out.println("딜리트 여긴왓니?"+userdbNo);
 		Long no = Long.parseLong(userdbNo);
 		authorityService.deleteByUserdbNo(no);
 		userdbService.delete(no);
-		return "redirect:/admin/user";
+		return "redirect:/admin/user/all/keyword/1";
 	}
+	
 
 	
+	
 //	회원가입 처리
-	@RequestMapping("/user/signUp")
+	@RequestMapping("/signUp")
 	@Transactional
 	@ResponseBody
 	public int execSignUp(String userdbEmail, String userdbNickname, String userdbPassword) {
@@ -117,7 +120,7 @@ public class AdminUserController {
 	}
 	
 	   //signupForm으로 가기
-	   @RequestMapping("/user/signUpForm")
+	   @RequestMapping("/signUpForm")
 	   public String adminSignUpForm() {
 		   return"admin/user/signUpForm";
 	   }

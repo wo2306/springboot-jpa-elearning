@@ -43,7 +43,7 @@ public class OnDetail {
     private String onDetailPlaytime;
 
 
-
-
-
+	public OnDetail(Long onDetailNo) {
+		this.onDetailNo = onDetailNo;
+	}
 }

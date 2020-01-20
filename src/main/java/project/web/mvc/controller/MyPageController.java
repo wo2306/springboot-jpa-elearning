@@ -96,24 +96,6 @@ public class MyPageController {
         return list;
     }
 
-    @RequestMapping("/orderBy/{command}/{pageNum}")
-    public String orderby(@PathVariable int command, @PathVariable int pageNum, Model model) {
-        List<Sugang> list = new ArrayList<>();
-        Page<Sugang> page = null;
-        if (command == 1) {
-            page = sugangService.selectByUserNoOrderByRegdate(pageNum);
-        } else if (command == 2) {
-        } else if (command == 3) {
-            page = sugangService.selectBySugangState(pageNum, true);
-        } else if (command == 4) {
-            page = sugangService.selectBySugangState(pageNum, false);
-        }
-        model.addAttribute("list", list);
-        model.addAttribute("page", page);
-        page.iterator().forEachRemaining(list::add);
-        return "myPage/myLecture";
-    }
-
     @RequestMapping("/info/wishlisttab")
     @ResponseBody
     public List<WishList> wishlisttab(Model model) {
@@ -151,11 +133,11 @@ public class MyPageController {
 
     @RequestMapping(value = "/myAccount/passwordCheck")
     @ResponseBody
-    public int passwordCheck(String userdbPassword0) {
+    public int passwordCheck(String password) {
         //true = 비밀번호 일치, false = 비밀번호 불일치
         //true : 0, false : 1
         System.out.println("패스워드체크컨트롤러**********************************");
-        int result = (userdbService.checkPassword(userdbPassword0)) ? 0 : 1;
+        int result = (userdbService.checkPassword(password)) ? 0 : 1;
         System.out.println("패스워드체크컨트롤러22222*********************************");
         return result;
     }

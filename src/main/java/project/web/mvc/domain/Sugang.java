@@ -34,6 +34,12 @@ public class Sugang {
     private String sugangState;
     //수강완료
 
-    private Long onDetailNo;
-    private Long onLectureNo;
+    @ManyToOne
+    @JoinColumn(name = "ON_DETAIL_NO", referencedColumnName = "ON_DETAIL_NO", nullable = false)
+    private OnDetail onDetail;
+
+    @ManyToOne
+    @JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
+    private OnLecture onLecture;
+
 }

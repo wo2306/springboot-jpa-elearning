@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
@@ -57,7 +58,7 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <!-- JS | jquery plugin collection for this theme -->
     <script src="${pageContext.request.contextPath}/js/jquery-plugin-collection.js"></script>
-
+    <script src="https://api.dmcdn.net/all.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -196,17 +197,19 @@
 
     <div class="video-container">
         <div class="video-foreground">
-            <div id="player"></div>
+            <c:choose>
+                <c:when test="${fn:startsWith(onDetail.onDetailUrl, 'vimeo')}">
+                    <div id="dailymotion">
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div id="player"></div>
+                </c:otherwise>
+            </c:choose>
+
         </div>
     </div>
-    <!-- Section: inner-header -->
-
-    <!-- Section: About -->
 </div>
-<!-- end main-content -->
-
-<!-- Footer Scripts -->
-<!-- JS | Custom script for all pages -->
 </div>
 <script>
     var tag = document.createElement('script');
@@ -219,16 +222,35 @@
             height: '100%',
             width: '100%',
             videoId: '${onDetail.onDetailUrl}',
-            playerVars: {'autoplay': 1, 'controls': 0, 'rel': 0},
+            playerVars: {'autoplay': 1},
             events: {
                 'onStateChange': onPlayerStateChange
             }
         });
+
     }
+    var url = "${fn:substring(onDetail.onDetailUrl, fn:indexOf(onDetail.onDetailUrl, '|')+1, onDetail.onDetailUrl.length())}";
+    var dailymotion = DM.player(document.getElementById("dailymotion"), {
+        video: url,
+        width: "100%",
+        height: "100%",
+        params: {
+            autoplay: true,
+        }
+    });
+
+    dailymotion.addEventListener('end', function (event) {
+        nextVideo();
+    })
 
     function onPlayerStateChange(event) {
-        var nextNo =${nextNo}
         if (event.data === 0) {
+            nextVideo();
+        }
+    }
+
+    function nextVideo() {
+        var nextNo = ${nextNo}
             $.ajax({
                 url: "${pageContext.request.contextPath}/sugang/complete/${onDetail.onLecture.onLectureNo}/${onDetailNo}",
                 type: "post",
@@ -241,14 +263,13 @@
                     console.log(error)
                 }
             });
-            if (nextNo != -1) {
-                if (confirm("학습이 종료되었습니다.\n 다음 강의로 이동하시겠습니까?")) {
-                    location.href = '${pageContext.request.contextPath}/onLecture/view/${nextNo}'
-                }
-            } else {
-                alert("모든 강의에 대한 학습이 끝났습니다. \n강의 메인페이지로 이동합니다.");
-                location.href = '${pageContext.request.contextPath}/onLecture/detail/${onDetail.onLecture.onLectureNo}'
+        if (nextNo != -1) {
+            if (confirm("학습이 종료되었습니다.\n 다음 강의로 이동하시겠습니까?")) {
+                location.href = '${pageContext.request.contextPath}/onLecture/view/${nextNo}'
             }
+        } else {
+            alert("모든 강의에 대한 학습이 끝났습니다. \n강의 메인페이지로 이동합니다.");
+            location.href = '${pageContext.request.contextPath}/onLecture/detail/${onDetail.onLecture.onLectureNo}'
         }
     }
 </script>

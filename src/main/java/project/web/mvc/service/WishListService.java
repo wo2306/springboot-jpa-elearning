@@ -7,7 +7,7 @@ import project.web.mvc.domain.WishList;
 public interface WishListService {
 
 	
-	public void wishlistInsert(Long onLectureNo);
+	public int wishlistInsert(Long onLectureNo);
 	
 //	public List<WishList> wishlistselectAll(int pageNum);
 

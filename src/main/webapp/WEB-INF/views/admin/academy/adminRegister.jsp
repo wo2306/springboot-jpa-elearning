@@ -73,7 +73,7 @@
 					<div class="section-title">
 						<div class="row" style="margin-left: 300px; margin-top: 30px;">
 							<div class="col-md-6 col-md-offset-3 text-center">
-								<h3 class="title text-theme-colored">[  REGISTER FORM  ]</h3>
+								<h3 class="title text-theme-colored">[  REGISTRATION FORM  ]</h3>
 							</div>
 						</div>
 					</div>
@@ -112,7 +112,8 @@
 
 									<div class="col-sm-12">
 										<div class="form-group">
-											<label>file upload : </label> <input type="file" name="file">
+											<label>Thumbnail upload : </label> <input type="file" name="files"><p> 
+											<label>Main upload : </label> <input type="file" name="files">
 										</div>
 									</div>
 

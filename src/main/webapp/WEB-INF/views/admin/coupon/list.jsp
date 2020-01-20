@@ -83,7 +83,6 @@
                                 <th>쿠폰코드</th>
                                 <th>쿠폰이름</th>
                                 <th>할인율</th>
-                                <th>만료기한</th>
                                 <th>전체 개수</th>
                                 <th>남은 개수</th>
                                 <th colspan="2">기능</th>
@@ -113,7 +112,6 @@
                             <tr>
                                 <th colspan="2">할인 쿠폰 이름</th>
                                 <th>할인율(%)</th>
-                                <th>만료기한</th>
                                 <th colspan="2">전체 개수</th>
                                 <th colspan="2">등록</th>
                             </tr>

@@ -24,4 +24,12 @@ public interface ClassQuestionRepository extends PagingAndSortingRepository<Clas
     
     ClassQuestion findByClassQuestionNo(Long classQuestionNo);
     
+    @Query("select q from ClassQuestion q where q.classQuestionTitle LIKE CONCAT('%',:keyword,'%')")
+    Page<ClassQuestion> findByTitle(String keyword, Pageable pageable);
+    
+    @Query("select c from ClassQuestion c inner join c.userdb u where u.userdbNo LIKE CONCAT('%',:keyword,'%')")
+    Page<ClassQuestion> findByName(String keyword, Pageable pageable);
+    
+    
+    
 }

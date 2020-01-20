@@ -8,12 +8,13 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import project.web.mvc.domain.OnLecture;
 import project.web.mvc.domain.OnOrder;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OnOrderRepository extends PagingAndSortingRepository<OnOrder, Long> {
     List<OnOrder> findByUserdbUserdbNo(Long userdbNo);
 
-    @Query("select distinct o from OnOrder o inner join o.userdb u inner join o.onlecture l where u.userdbNo=?1")
+    @Query("select o from OnOrder o inner join o.userdb u inner join o.onlecture l where u.userdbNo=?1")
     Page<OnOrder> findOnOrder(Long userdbNo, Pageable pageable);
 
 
@@ -30,5 +31,7 @@ public interface OnOrderRepository extends PagingAndSortingRepository<OnOrder, L
     Page<OnOrder> findByUserdb_UserdbNo(Long userdbNo, Pageable pageable);
 
 
+    @Query("select o from OnOrder o where o.onOrderRegdate between :start and :end")
+    List<OnOrder> findDate(Date start, Date end);
 
 }
