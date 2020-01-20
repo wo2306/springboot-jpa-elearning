@@ -159,7 +159,8 @@
 
 									<div class="col-sm-12">
 										<div class="form-group">
-											<label>file upload : </label> <input type="file" name="file">
+											<label>Thumbnail upload : </label> <input type="file" name="files"><p> 
+											<label>Main upload : </label> <input type="file" name="files">
 										</div>
 									</div>
 

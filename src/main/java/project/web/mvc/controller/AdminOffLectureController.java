@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -100,6 +101,7 @@ public class AdminOffLectureController {
 	@ResponseBody
 	public void offLecDelete(Long offLectureNo, HttpServletRequest request) {
 		new File(request.getSession().getServletContext().getRealPath("/resources/images/offLecture/") + offLectureNo + ".png").delete();
+		new File(request.getSession().getServletContext().getRealPath("/resources/images/offLecture/offLectureDetail/") + offLectureNo + ".png").delete();
 		offLectureService.offLecDelete(offLectureNo);
 		//return "redirect:/admin/offLecture";
 	}
@@ -109,23 +111,23 @@ public class AdminOffLectureController {
 	 * 	:bean 설정문서
 	 * */
 	@RequestMapping("/adminOffLectureRegister/insert.do")
-	public ModelAndView upload(String name, MultipartFile file, HttpSession session, OffLecture offLecture) {
+	public ModelAndView upload(String name, @RequestParam("files") MultipartFile[] files, HttpSession session, OffLecture offLecture) {
 		offLectureService.offLecInsert(offLecture);
 		ModelAndView mv = new ModelAndView();
 		try {
-			//실제 root 경로를 가져오기
-			String path = session.getServletContext().getRealPath("/resources/images/offLecture/");
-			//첨부된 파일 이름 가져오기
-			String fileName = file.getOriginalFilename();
-			file.transferTo(new File(path + offLecture.getOffLectureNo()+".png")); //폴더에 저장완료
+			String path1="";
+			String path2="";
+			for(int i=0;i<=files.length;i++) {
+				if(i==0) {
+					path1 = session.getServletContext().getRealPath("/resources/images/offLecture/");
+					files[i].transferTo(new File(path1 + offLecture.getOffLectureNo()+".png"));
+				}if(i==1) {
+					path2 = session.getServletContext().getRealPath("/resources/images/offLecture/offLectureDetail/");
+					files[i].transferTo(new File(path2 + offLecture.getOffLectureNo()+".png"));
+				}
+			}
 			
-			//뷰쪽으로 전달될 데이터 설정
-			mv.addObject("name", name);
-			mv.addObject("fileName", fileName);
-			mv.addObject("path", path);
-			mv.addObject("fileSize", file.getSize());
-			
-			mv.setViewName("redirect:/admin/offLecture/list/1"); //WEB-INF/views/uploadResult.jsp이동
+			mv.setViewName("redirect:/admin/offLecture/list/1"); //WEB-INF/views//admin/offLecture/list/1.jsp이동
 			
 		}catch(Exception e){
 			e.printStackTrace();

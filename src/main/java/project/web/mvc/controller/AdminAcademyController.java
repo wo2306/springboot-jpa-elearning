@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -79,17 +80,24 @@ public class AdminAcademyController {
 	}
 	
 	@RequestMapping("/adminAcademyRegister/insert.do")
-	public ModelAndView upload(String name, MultipartFile file, HttpSession session, Academy academy) {
+	public ModelAndView upload(String name, @RequestParam("files") MultipartFile[] files, HttpSession session, Academy academy) {
 		academyService.academyInsert(academy);
 		ModelAndView mv = new ModelAndView();
 		try {
-			//실제 root 경로를 가져오기
-			String path = session.getServletContext().getRealPath("/resources/images/academy/");
-			//첨부된 파일 이름 가져오기
-			//String fileName = file.getOriginalFilename();
-			file.transferTo(new File(path + academy.getAcademyNo()+".jpg")); //폴더에 저장완료
-			
-			mv.setViewName("redirect:/admin/academy"); //WEB-INF/views/uploadResult.jsp이동
+			String path1="";
+			String path2="";
+
+			for(int i=0;i<=files.length;i++) {
+				if(i==0) {
+					path1 = session.getServletContext().getRealPath("/resources/images/academy/");
+					files[i].transferTo(new File(path1 + academy.getAcademyNo()+".jpg"));
+				}if(i==1) {
+					path2 = session.getServletContext().getRealPath("/resources/images/academy/academyDetail/");
+					files[i].transferTo(new File(path2 + academy.getAcademyNo()+".jpg"));
+				}
+			}
+
+			mv.setViewName("redirect:/admin/academy"); //WEB-INF/views//admin/academy.jsp이동
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -114,6 +122,7 @@ public class AdminAcademyController {
 	@ResponseBody
 	public void academyDelete(Long academyNo, HttpServletRequest request) {
 		new File(request.getSession().getServletContext().getRealPath("/resources/images/academy/") + academyNo + ".jpg").delete();
+		new File(request.getSession().getServletContext().getRealPath("/resources/images/academy/academyDetail/") + academyNo + ".jpg").delete();
 		academyService.academyDelete(academyNo);
 		//return "redirect:list";
 	}
