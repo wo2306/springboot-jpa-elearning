@@ -106,7 +106,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
 		<!-- jsp페이지 설정 -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
