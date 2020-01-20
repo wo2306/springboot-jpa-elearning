@@ -54,7 +54,7 @@
 				<br> 
 				<div style="margin-left:; "> 
 				<input type="button" class="btn btn-dark btn-sm" value="뒤로가기" style="color: #FFFFFF; background: #202C45; padding: 5px 12px"
-					onClick="location.href='${pageContext.request.contextPath}/admin/notice/list/1'">
+					onClick="location.href='${pageContext.request.contextPath}/admin/notice/all/keyword/1'">
 				<input type="button" class="btn btn-dark btn-sm" value="수정하기" style="color: #FFFFFF; background: #202C45; padding: 5px 12px; margin-left: 5px;"
 					onClick="location.href='${pageContext.request.contextPath}/admin/notice/updateForm/${item.noticeNo}'">
 				</div>
@@ -64,12 +64,6 @@
 				<div class="container pt-10 pb-20">
 					<div class="row">
 						<div class="call-to-action">
-							<div class="col-md-6">
-								<h3 class="mt-5 mb-5 text-white vertical-align-middle">
-									<i class="pe-7s-mail mr-10 font-48 vertical-align-middle"></i>
-									SUBSCRIBE TO OUR NEWSLETTER
-								</h3>
-							</div>
 							<div class="col-md-6">
 								<!-- Mailchimp Subscription Form Starts Here -->
 								<form id="mailchimp-subscription-form"
