@@ -23,6 +23,12 @@
             padding: 3px 30px
         }
     </style>
+        <!-- include summernote css/js-->
+    <link
+            href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
+            rel="stylesheet">
+    <script
+            src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 </head>
 
 
@@ -169,17 +175,17 @@
                             <div class="widget">
                                 <h4 class="widget-title line-bottom">질문 <span
                                         class="text-theme-color-2">등록</span></h4>
-                <form  action="${pageContext.request.contextPath}/qna/questionInsert" id="classQuestion" name="footer_quick_contact_form" class="quick-contact-form" method="post" novalidate="novalidate">
+                <form id="classQuestion" name="footer_quick_contact_form" class="quick-contact-form" method="post" novalidate="novalidate">
                   <div class="form-group">
-                    <input name="classQuestionTitle" class="form-control valid" type="text" required="" placeholder="질문 제목" aria-required="true" aria-invalid="false"><label id="form_email-error" class="error" for="form_email" style="display: none;"></label>
+                    <input name="classQuestionTitle" class="form-control valid" type="text" required="" placeholder="질문 제목" aria-required="true" aria-invalid="false" style="background-color: white;">
                   	<input type="hidden" value="${onLecture.onLectureNo }" name="onLecture.onLectureNo"/>
                   </div>
                   <div class="form-group">
-                    <textarea name="classQuestionContent" class="form-control valid" required="" placeholder="질문 내용" rows="8" aria-required="true" aria-invalid="false"></textarea><label id="form_message-error" class="error" for="form_message" style="display: none;"></label>
-                  </div>
+									<textarea class="form-control" id="summernote" name="classQuestionContent"  
+                                              placeholder="질문 내용" maxlength="140" rows="7"></textarea>
+                            </div>
                   
-                    <button type="submit" class="btn btn-theme-colored btn-flat btn-xs btn-quick-contact text-white pt-5 pb-5" data-loading-text="질문 등록 하기">질문 등록 하기</button>
-                 
+                    <button type="button" id="questionInsert" class="btn btn-theme-colored btn-flat btn-xs btn-quick-contact text-white pt-5 pb-5" data-loading-text="질문 등록 하기">질문 등록 하기</button>
                 </form>
                             </div>
 
@@ -191,6 +197,43 @@
         </section>
     </div>
 </div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#summernote').summernote({
+        	toolbar: [
+                // [groupName, [list of button]]
+            ],
+            width: 250,
+        	height: 270,
+            minHeight: null,
+            maxHeight: null,
+            focus: true,
+            callbacks: {
+                onImageUpload: function (files, editor, welEditable) {
+                    for (var i = files.length - 1; i >= 0; i--) {
+                        sendFile(files[i], this);
+                    }
+                }
+            }
+        });
+    });
+    
+</script>
+<script type="text/javascript">
+$("#questionInsert").on('click', function(){
+	var title=$("#classQuestion > div:nth-child(1) > input.form-control.valid").val();
+	var content = $("#classQuestion > div:nth-child(2) > div > div.note-editing-area > div.note-editable.panel-body");
+	
+	if(title!="" && content!=null){
+	location.href='${pageContext.request.contextPath}/qna/questionInsert';
+	}
+	else{
+		alert("질문제목과 내용을 입력하세요");
+	}
+});
+
+</script>
 </section>
 </div>
 </div>
