@@ -11,7 +11,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#onlecturebtn").click(function(){
-		window.open("onLectureList/1", "PopupWin", "width=1000,height=1000")
+		window.open("all/keyword/1", "PopupWin", "width=1300,height=1000")
 	})// click end	
 	
 	//추가한  강의 삭제
@@ -103,7 +103,7 @@ $(function(){
                           <td><input type="hidden" class="onLectureNo" name="list"></td>
                         </tr>                        
                         <tr>
-                          <td><button type="submit" class="btn btn-default" id="register">등록</button></td>
+                          <td><button type="submit" class="btn btn-dark" id="register">등록</button></td>
                         </tr>
                       </tbody>
                     </table>
@@ -111,23 +111,20 @@ $(function(){
                   <thead>
                     <tr>
                       <th></th>
-                      <th>onLectureNo</th>
-                      <th>onLectureName</th>
-                      <th>onLectureContent</th>
-                      <th>teacher</th>
-                      <th>onLecturePrice</th>
+                      <th>강의 번호</th>
+                      <th>강의명</th>
+                      <th>강의 카테고리</th>
+                      <th>강사명</th>
+                      <th>강의가격</th>
                     </tr>
                   </thead>
                   <tbody  id="addOnLectureTable">
 
                    </tbody>
-                    <tr class="cart_item">
-                      <td colspan="6"><div class="onlecture">
-                          <button type="button" class="btn" id="onlecturebtn">강의 추가하기</button>
-                        </div></td>
-                    </tr>
+                   
                   </tbody>
                 </table>
+                 <button type="button" class="btn btn-dark" id="onlecturebtn">강의 추가하기</button>
              </form>
            </div>
           <div class="row">

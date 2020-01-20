@@ -91,7 +91,7 @@
 				<th>등록</th>
 				</tr>
 				<tr>
-				<td><input type="submit" value="등록"></td>
+				<td><input type="submit" class="btn btn-dark" value="등록"></td>
 				</tr>
 				</table>
 			    </form>
