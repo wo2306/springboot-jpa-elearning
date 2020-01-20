@@ -18,7 +18,7 @@
 <![endif]-->
 <script type="text/javascript">
 	$(function(){
-		$(".btn").click(function(){
+		$(".selectBtn").click(function(){
 			var onLectureNo = $(this).val()
 			/* alert($(this).val()); */
 			//로드맵 등록시 온라인강의 추가
@@ -38,7 +38,7 @@
 	                      data+="<td class='onLecture-remove'>"+"<button type='button' class='btn' id='btn'>"+"취소"+"</button>"+"</td>";
 	                      data+="<td class='onLecture-no' id='result.onLectureNo'>"+result.onLectureNo+"</a>"+"</td>";
 	                      data+="<td class='onLecture-name'>"+"<a href='#'>"+result.onLectureName+"</a>"+"</td>"
-	                      data+="<td class='onLecture-content'>"+"<span class='content'>"+result.onLectureCategory+"</span>"+"</td>";
+	                      data+="<td class='onLecture-content'>"+"<span class='category'>"+result.onLectureContent+"</span>"+"</td>";
 	        			  data+="<td class='onLecture-teacher'>"+"<span class='teacher'>"+result.onLectureTeacher+"</span>"+"</td>";
 	                      data+="<td class='onLecture-price'>"+"<span class='price'>"+result.onLecturePrice+"</span>"+"</td>";
 	                  	  data+="</tr>";
@@ -106,7 +106,7 @@
  					<form name="searchForm" method="post" onsubmit="return searchform()">
                       <div class="input-group">
                         <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
-                        <!--  <option value="name">강의명</option> -->
+                         <option value="name">강의명</option>
 					     <option value="category">카테고리</option>
                          <option value="teacher">강사명</option>
                       </select>
@@ -127,6 +127,7 @@
                 <table class="table table-striped table-bordered tbl-shopping-cart">
                   <thead>
                     <tr>
+                      
                       <th>강의 번호</th>
                       <th>강의명</th>
                       <th>카테고리</th>
@@ -139,7 +140,7 @@
                     <tr class="onLecture_item">
                       <td class="onLecture-no" id="${list.onLectureNo}">${list.onLectureNo}</td>
                       <td class="onLecture-name"><a href="#">${list.onLectureName}</a></td>
-                      <td class="onLecture-content"><span class="content">${list.onLectureCategory}</span></td>
+                      <td class="onLecture-content"><span class="category">${list.onLectureCategory}</span></td>
         			  <td class="onLecture-teacher"><span class="teacher">${list.onLectureTeacher}</span></td>
                       <td class="onLecture-price"><span class="price">${list.onLecturePrice}</span>
                       </td>
@@ -148,7 +149,7 @@
                       <td colspan="6"><div class="onlecture">
                     <!--   <form name="requestForm" method="post" id="requestForm"> -->
                      	  <input type="hidden" name="id" value="${list.onLectureNo}"/>
-                          <button type="button" class="btn" value="${list.onLectureNo}">강의 선택하기</button>
+                          <button type="button" class="btn btn-red" value="${list.onLectureNo}">강의 선택하기</button>
                       <!--  </form> -->
                         </div></td>
                     </tr>
@@ -233,7 +234,6 @@
                   </thead>
 				<tbody id="selectable">
 				</tbody>
-   
                 </table>
                   <button type="button" class="btn btn-dark" id="roadmapBtn">강의 선택 완료</button>
               <!--   </form> -->
@@ -242,6 +242,9 @@
               </div>
              </div>
             </div>
+           </div>
+          </div>
+         </div>
 	  </section>
   </div>
 </div>

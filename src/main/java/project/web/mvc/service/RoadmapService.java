@@ -10,6 +10,7 @@ public interface RoadmapService {
 	void delete(String roadmapName);
 	Roadmap selectById(Long roadmapNo);
 	List<Roadmap> selectByName(String roadmapName);
+	List<Roadmap> selectByOnLectureNo(Long onLectureNo);
 	List<Roadmap> selectAll();
 	
 }
