@@ -94,8 +94,8 @@
 												
 													<div class="col-sm-6">
 														<div class="form-group">
-														<label>academyName</label>
-															 <input type="text" value="${offLecture.academy.academyNo}"
+														<!-- <label>academyName</label> -->
+															 <input type="hidden" value="${offLecture.academy.academyNo}"
 																name="academyNo" required="" class="form-control" readonly="readonly">
 																<%-- <select id="key" margin-right: 10px;" class="form-control" name="offLecture.academy.academyNo"> 
                                                 <c:forEach items="${requestScope.academy}" var="list">
@@ -110,8 +110,8 @@
 														<div class="form-group">
 														
 														
-														<label>offLectureNo</label>
-															<input type="text" value="${offLecture.offLectureNo}"
+														<!-- <label>offLectureNo</label> -->
+															<input type="hidden" value="${offLecture.offLectureNo}"
 																name="offLectureNo" required="" class="form-control" readonly="readonly">
 														</div>
 														
