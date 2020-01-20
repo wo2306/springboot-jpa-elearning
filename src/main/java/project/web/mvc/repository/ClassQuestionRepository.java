@@ -31,4 +31,5 @@ public interface ClassQuestionRepository extends PagingAndSortingRepository<Clas
     Page<ClassQuestion> findByName(String keyword, Pageable pageable);
     
     
+    
 }
