@@ -60,7 +60,7 @@
 												<div class="col-sm-4 pr-0 pr-sm-15">
 													<div class="thumb p-15" style="height:160px;width:220px;">
 														<img class="img-fullwidth"
-															src="${pageContext.request.contextPath}/academy/${list.academyNo}.jpg" alt="...">
+															src="${pageContext.request.contextPath}/resources/images/academy/${list.academyNo}.jpg" alt="${list.academyNo} 사진입니다.">
 													</div>
 												</div>
 												<div class="col-sm-4 pl-0 pl-sm-15">

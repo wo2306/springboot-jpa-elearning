@@ -258,17 +258,20 @@
             $.ajax({
                 type: "post",
                 url: "${pageContext.request.contextPath}/wishlist",
-                dataType: "text",
+                dataType: "json",
                 data: "onLectureNo=" + $(this).attr('id'),
-                success: function () {
-
-                    /* $(".wishlistbtn1").hide();
-                    $(".wishlistbtn2").show();
-                 */
-                    if (confirm('성공해쓰 보러갈래?')) return location.href = "${pageContext.request.contextPath}/myPage/info/1";
+                success: function (result) {
+                	if(result==2){
+                		alert("이미 중복된 강의가 있습니다.");
+                		
+                	}
+                	else (confirm('위시리스트에 담았습니다. \n지금 위시리스트로 이동하시겠습니까?')) 
+					 return location.href = "${pageContext.request.contextPath}/myPage/info/1";
                 },
                 error: function (err) {
-                    alert("이미 중복된 강의가 있습니다.");
+                	alert("로그인 후 이용하십시오")
+            		return location.href = "${pageContext.request.contextPath}/login";
+                	alert("이미 중복된 강의가 있습니다.")
                 }
             });
         }
