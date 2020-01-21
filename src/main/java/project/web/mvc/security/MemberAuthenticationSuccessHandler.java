@@ -17,6 +17,7 @@ public class MemberAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	@Override
 		public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 				Authentication authentication) throws IOException, ServletException {
+		System.out.println("MemberAuthenticationSuccessHandler호출중**************");
 		request.getSession().setMaxInactiveInterval(TIME);
 		super.onAuthenticationSuccess(request, response, authentication);
 		}

@@ -22,6 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+    	System.out.println("SecurityConfig호출중****************");
         //static 디렉토리의 하위파일목록은 항상통과
         web.ignoring().antMatchers("/ajax-load/**", "/color-switcher/**",
                 "/css/**", "/fonts/**", "/fonts/**", "/images/**",
@@ -30,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	System.out.println("SecurityConfig호출중****************");
         http.authorizeRequests()
         // 페이지 권한 설정
         .antMatchers("/admin/**").hasAuthority("ADMIN")

@@ -30,16 +30,6 @@ public class AdminUserController {
 	private final UserdbService userdbService;
 	private final AuthorityService authorityService;
 	
-//	
-//	@RequestMapping("")
-//	public ModelAndView main() {
-//		System.out.println("admin controller진입");
-//		 List<Userdb> list = userdbService.selectAll();
-//		return new ModelAndView("admin/user/adminUser", "list", list);
-//	}
-	
-	
-	
 	//검색하기
 	@RequestMapping("/{command}/{keyword}/{pageNum}")
 	public String category(@PathVariable String command,@PathVariable String keyword,@PathVariable int pageNum, Model model) {
@@ -59,8 +49,6 @@ public class AdminUserController {
         model.addAttribute("page", page);
         return "admin/user/adminUser";
 	}
-	
-	
 	
 	//업데이트 폼 보여주기
 	@RequestMapping("/updateForm/{userdbNo}")

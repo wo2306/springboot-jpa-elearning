@@ -63,13 +63,20 @@
 				</div>
 			</section>
 
-			<!-- Section: About -->
-			<section class="">
-				<div class="container">
-					<div class="section-content">
-						<div class="row">
-							<table class="table table-bordered" id="dataTable"
-								cellspacing="0" style="width:1100px;">
+     <!-- Section: About -->
+	    <section class="">
+	      <div class="container">
+	        <div class="section-content">
+	          <div class="row">
+			          
+	          <!-- DataTales Example -->
+	          <div class="card shadow mb-4">
+	            <div class="card-header py-3">
+	              <h6 class="m-0 font-weight-bold text-primary">회원 가입 리스트</h6>
+	            </div>
+	            <div class="card-body" >
+	              <div class="table-responsive" >
+                       <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 								<tr>
 									<th style="width: 600px">제목</th>
 									<th style="width: 200px">등록일</th>
@@ -81,24 +88,34 @@
 										<td><a
 											href="${pageContext.request.contextPath}/admin/notice/read/${list.noticeNo}">${list.noticeTitle}</a></td>
 										<td>${list.noticeRegdate}</td>
-										<td><input type="button" class="btn btn-dark" value="수정"
-											onClick="location.href='${pageContext.request.contextPath}/admin/notice/updateForm/${list.noticeNo}'"></td>
-										<td><input type="button" class="btn btn-dark" value="삭제"
-											id=${list.noticeNo}></td>
+                                    <td>
+                                        <button type="button" name="updateBtn" class="btn btn-info btn-circle" onClick="location.href='${pageContext.request.contextPath}/admin/notice/updateForm/${list.noticeNo}'">
+                                        <i class="fas fa-info-circle"></i>
+                                        </button>
+                                    </td>
+                                    
+                                    <td>
+	                                    <button type="button" name="deletebtn" class="btn btn-danger btn-circle" id="${list.noticeNo}" value="${list.noticeNo}">
+	                                    <i class="fas fa-trash"></i></button>
+                                    </td>		
+											
 									</tr>
 								</c:forEach>
 							</table>
-							<div class="col-md-6">
-								<div class="video-popup">
-									<input type="button" class="btn btn-dark" value="새로운 공지사항 등록"
-										style="width: 500px; margin-left: 280px"
-										onClick="location.href='${pageContext.request.contextPath}/admin/notice/insertForm'">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+		                 </div>
+			           </div>
+			         </div>
+			       </div>
+		       </div>
+		      </div> 
 			</section>
+			<div class="col-md-6">
+				<a href="${pageContext.request.contextPath}/admin/notice/insertForm" class="btn btn-light btn-icon-split">
+				<span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span>
+				<span class="text">새로운 공지사항 등록</span></a>	
+			</div>
+			</div>
+		</div>
 
 			<!-- Divider: Call To Action -->
 			<section class="bg-theme-color-2">
@@ -117,13 +134,13 @@
 								<c:choose>
 									<c:when test="${page.hasPrevious() eq true}">
 										<li class="page-item"><a class="page-link"
-											href="${pageContext.request.contextPath}/admin/notice/list/${page.number}"
+											href="${pageContext.request.contextPath}/admin/notice/all/keyword/${page.number}"
 											aria-label="Previous"> <span aria-hidden="true">이전</span>
 										</a></li>
 									</c:when>
 									<c:otherwise>
 										<li class="page-item"><a class="page-link"
-											href="${pageContext.request.contextPath}/admin/notice/list/${page.number+1}"
+											href="${pageContext.request.contextPath}/admin/notice/all/keyword/${page.number+1}"
 											aria-label="Previous"> <span aria-hidden="true">이전</span>
 										</a></li>
 									</c:otherwise>
@@ -133,11 +150,11 @@
 									<li class="page-item"><c:choose>
 											<c:when test="${page.number eq i.count-1}">
 												<a class="page-link"
-													href="${pageContext.request.contextPath}/admin/notice/list/${i.count}">${i.count}</a>
+													href="${pageContext.request.contextPath}/admin/notice/all/keyword/${i.count}">${i.count}</a>
 											</c:when>
 											<c:otherwise>
 												<a class="page-link"
-													href="${pageContext.request.contextPath}/admin/notice/list/${i.count}">${i.count}</a>
+													href="${pageContext.request.contextPath}/admin/notice/all/keyword/${i.count}">${i.count}</a>
 											</c:otherwise>
 										</c:choose></li>
 								</c:forEach>
@@ -145,13 +162,13 @@
 								<li class="page-item"><c:choose>
 										<c:when test="${page.hasNext() eq true}">
 											<a class="page-link"
-												href="${pageContext.request.contextPath}/admin/notice/list/${page.number+2}"
+												href="${pageContext.request.contextPath}/admin/notice/all/keyword/${page.number+2}"
 												aria-label="Next"> <span aria-hidden="true">다음</span>
 											</a>
 										</c:when>
 										<c:otherwise>
 											<a class="page-link"
-												href="${pageContext.request.contextPath}/admin/notice/list/${page.number+1}"
+												href="${pageContext.request.contextPath}/admin/notice/all/keyword/${page.number+1}"
 												aria-label="Previous"> <span aria-hidden="true">다음</span>
 											</a>
 										</c:otherwise>
@@ -207,21 +224,13 @@
           }
 
           
-          $('#dataTable').on('click', 'input[value=삭제]', function () {
-              console.log($(this).attr('id'));
-              $.ajax({
-                  url: "${pageContext.request.contextPath}/admin/notice/delete",
-                  type: "delete",
-                  data: "noticeNo=" + $(this).attr('id'),
-                  dataType: "text",
-                  success: function () {
-                      alert("삭제완료");
-                     	printnotice();
-                  }, error: function (err) {
-                      alert("안눌려");
-                  }
-              })
-          });//delete
+          $("button[name='deletebtn']").on('click', function () {
+              if (confirm("선택한 강의를 정말로 삭제하시겠습니까?")) {
+                  location.href = "${pageContext.request.contextPath}/admin/notice/delete/"+ $(this).val();
+              }
+          }) 
+          
+          
 
         })
         function searchform() {

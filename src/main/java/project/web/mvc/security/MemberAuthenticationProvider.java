@@ -40,6 +40,7 @@ public class MemberAuthenticationProvider implements AuthenticationProvider {
 	 */
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
+		System.out.println("MemberAuthenticationProvider호출중**********");
 		//1. 파라미터로 전달받은 Authentication 객체의 인증처리가 지원되지 않으면 null이 리턴
 		if(!supports(auth.getClass())) return null;
 		String id = (String)auth.getPrincipal();

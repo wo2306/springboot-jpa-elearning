@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import org.checkerframework.checker.units.qual.Temperature;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -40,17 +42,22 @@ public class Userdb {
     @Column(nullable = false)
     private Long authority;
 
+    @Temporal(TemporalType.DATE)
     @CreationTimestamp
     private Date regDate;
 
     public Userdb(Long userdbNo) {
         this.userdbNo = userdbNo;
     }
-
+    
     //2 = kakao, 1 = Member, 0 = admin
     @PrePersist
     public void insertAuthority() {
         this.authority = this.authority == null ? 1 : this.authority;
     }
+	/*
+	 * @PrePersist public void insertRegDate() { this.regDate = this.regDate == null
+	 * ? new Date() : this.regDate; }
+	 */
 
 }

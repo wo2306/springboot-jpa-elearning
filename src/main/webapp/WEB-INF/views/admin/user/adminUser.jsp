@@ -109,16 +109,6 @@ $(document).ready(function(){
                       <th width="200px">삭제</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>회원 Email</th>
-                      <th>회원 닉네임</th>
-                      <th>회원 가입일</th>
-                      <th>권한</th>
-                      <th>수정</th>
-                      <th>삭제</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
                     <c:forEach items="${requestScope.list}" var="list">
                        <tr class="odd">
@@ -141,10 +131,6 @@ $(document).ready(function(){
         </div>
         </div>
         <!-- /.container-fluid -->
-		          
-		          
-		          
-		          <!--  -->
 		          <!-- 페이징처리 -->
                         <div class="container" id="in">
                             <div class="row">
@@ -200,6 +186,7 @@ $(document).ready(function(){
                                                 </c:otherwise>
                                             </c:choose>
                                             </c:if>
+                                            </ul>
               </div>
            </div>
         </div>
