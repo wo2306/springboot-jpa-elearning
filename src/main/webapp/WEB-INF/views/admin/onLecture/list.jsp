@@ -5,13 +5,6 @@
 
 <!DOCTYPE html>
 <head>
-    <style>
-        .pagination {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    </style>
 </head>
 <body class="">
 <div id="wrapper" class="clearfix">

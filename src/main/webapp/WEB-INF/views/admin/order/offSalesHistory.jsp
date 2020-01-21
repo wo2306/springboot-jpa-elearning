@@ -16,13 +16,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <![endif]-->
-    <style>
-        .pagination {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    </style>
 </head>
 <body class="">
 <div id="wrapper" class="clearfix">

@@ -80,6 +80,11 @@
         .logo {
             width: 20px
         }
+        .pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
     </style>
 </head>
 <body>
