@@ -133,11 +133,11 @@ public class MyPageController {
 
     @RequestMapping(value = "/myAccount/passwordCheck")
     @ResponseBody
-    public int passwordCheck(String password) {
+    public int passwordCheck(String userdbPassword0) {
         //true = 비밀번호 일치, false = 비밀번호 불일치
         //true : 0, false : 1
         System.out.println("패스워드체크컨트롤러**********************************");
-        int result = (userdbService.checkPassword(password)) ? 0 : 1;
+        int result = (userdbService.checkPassword(userdbPassword0)) ? 0 : 1;
         System.out.println("패스워드체크컨트롤러22222*********************************");
         return result;
     }
