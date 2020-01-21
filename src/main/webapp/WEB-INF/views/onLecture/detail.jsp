@@ -236,9 +236,7 @@
 </section>
 </div>
 </div>
-<!-- end main-content -->
 <script>
-    //구매했으면 구매 사이드바 숨기고 학습하기 UI 보여줌
     $(".relatedRoadmapList").hover(function () {
         $(this).attr('class', 'active')
     }, function () {

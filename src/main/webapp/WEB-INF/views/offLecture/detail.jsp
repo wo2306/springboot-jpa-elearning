@@ -23,7 +23,8 @@
 		if(result<=0){
 			document.getElementById('btn').innerHTML="SOLD OUT";
 			$('#btn').attr("href", "#");
-			alert("현재 남아있는 좌석 수가 없어 예약이 불가합니다.");
+			$('#btn').attr("disabled", true);
+			//alert("현재 남아있는 좌석 수가 없어 예약이 불가합니다.");
 		}
 		
 		//날짜 체크하는 기능
@@ -45,7 +46,8 @@
 		    if(offdate.getTime()<date.getTime()){
 		    	document.getElementById('btn').innerHTML="예약마감";
 		    	$('#btn').attr("href", "#");
-		    	alert("날짜가 지나 마감되었습니다.");
+		    	$('#btn').attr("disabled", true);
+		    	//alert("날짜가 지나 마감되었습니다.");
 		    } 
 	});
    
@@ -111,7 +113,7 @@
 															class="btn btn-dark btn-sm mt-10" id="btn">예약하기</a>
           </div>
           <div class="col-md-8">
-            <img src="${pageContext.request.contextPath}/images/offLecture/offLectureDetail/${offLecture.offLectureNo}.jpg" width="755" height="480">
+            <img src="${pageContext.request.contextPath}/resources/images/offLecture/offLectureDetail/${offLecture.offLectureNo}.png" alt="${offLecture.offLectureName} 사진입니다." width="755" height="480">
           </div>
         </div>
       </div>

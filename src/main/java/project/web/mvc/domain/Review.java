@@ -36,11 +36,13 @@ public class Review {
     private Long reviewNo;
 
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private Userdb userdb;
 
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private OnLecture onLecture;

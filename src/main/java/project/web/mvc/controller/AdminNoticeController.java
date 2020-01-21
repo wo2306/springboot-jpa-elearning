@@ -30,14 +30,24 @@ public class AdminNoticeController {
 	private final NoticeService noticeService;
 	
 
-	@RequestMapping("/list/{pageNum}")
-	public String list(Model model, @PathVariable int pageNum){
+	@RequestMapping("/{command}/{keyword}/{pageNum}")
+	public String search(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
+		
+		
 		List<Notice> list = new ArrayList<>();
-        Page<Notice> page = noticeService.selectAll(pageNum);
-        page.iterator().forEachRemaining(list::add);
-        model.addAttribute("list", list);
-        model.addAttribute("page", page);
-        return "admin/notice/adminNotice";
+		Page<Notice> page = null;
+		
+		if(command.equals("all")) {
+			page = noticeService.selectByKeyword("", pageNum);
+		}if(command.equals(null)) {
+			page = noticeService.selectByKeyword(keyword, pageNum);
+		}
+		page.iterator().forEachRemaining(list::add);
+		model.addAttribute("list", list);
+		model.addAttribute("command", command);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("page", page);
+		return "admin/notice/adminNotice";
 	}
 	
 	@RequestMapping("/read/{noticeNo}")
@@ -55,7 +65,7 @@ public class AdminNoticeController {
 	@RequestMapping("/insert")
 	public String insert(Notice notice) {
 		noticeService.insert(notice);
-		return "redirect:/admin/notice/list/1";
+		return "redirect:/admin/notice/all/keyword/1";
 	}
 	
 	@RequestMapping("/detail")
@@ -73,34 +83,18 @@ public class AdminNoticeController {
 	@RequestMapping("/update")
 	public String update(Notice notice) {
 		System.out.println("이거나와아아아아"+notice.getNoticeNo());
-		System.out.println(notice.getNoticeTitle());
-		noticeService.insert(notice);
+		noticeService.update(notice);
 		
-		return "redirect:/admin/notice/list/1";
+		return "redirect:/admin/notice/all/keyword/1";
 	}
 	
-	@DeleteMapping(value ="/delete")
-    @ResponseBody
-	public void delete(Long noticeNo) {
+	@RequestMapping("/delete/{noticeNo}")
+	public String delete(@PathVariable Long noticeNo) {
+	System.out.println("들어와");
 		noticeService.delete(noticeNo);
 		System.out.println("삭제완료");
+		 return "redirect:/admin/notice/all/keyword/1";
 	}
 	
-	@RequestMapping("/{command}/{keyword}/{pageNum}")
-	public String search(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
-		
-		List<Notice> list = new ArrayList<>();
-		Page<Notice> page = null;
-		if(command.equals("all")) {
-			page = noticeService.selectByKeyword("", pageNum);
-		}else {
-			page = noticeService.selectByKeyword(keyword, pageNum);
-		}
-		page.iterator().forEachRemaining(list::add);
-		model.addAttribute("list", list);
-		model.addAttribute("command", command);
-		model.addAttribute("keyword", keyword);
-		model.addAttribute("page", page);
-		return "admin/notice/adminNotice";
-	}
+	 
 }

@@ -40,7 +40,7 @@
 					<div class="section-content">
 						<div class="row"  id="out">
 							<div class="col-md-12">
-ㄴ								<ol class="breadcrumb text-left text-black mt-10">
+								<ol class="breadcrumb text-left text-black mt-10">
                                 <li><a href="#">오프라인 강의 관리</a></li>
                                 <li class="active text-gray-silver"> - 오프라인 강의들을 등록, 수정, 삭제할 수 있는 페이지입니다.</li>
                                 <!-- Topbar Search -->
@@ -111,21 +111,6 @@
 								</c:forEach>
 							</table>
 
-							<!-- 	</form> -->
-							<h4>OffLecture 등록하기 :</h4>
-							<form name="writeForm" method="post"
-								action="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister">
-								<input type="submit" class="btn btn-dark" value="등록하기">
-
-
-
-							</form>
-
-							<div class="col-md-6">
-								<div class="video-popup">
-									<a href="https://www.youtube.com/watch?v=pW1uVUg5wXM"
-										data-lightbox-gallery="youtube-video" title="Video"> </a>
-
 									<!-- 페이징 처리 -->
 									<div class="container" id="in">
 										<div class="row">
@@ -175,14 +160,17 @@
 																	</a>
 																</c:otherwise>
 															</c:choose>
-													</c:if>
+														</c:if>
 													</li>
 												</ul>
+												<a href="${pageContext.request.contextPath}/admin/offLecture/adminOffLectureRegister"
+                                       class="btn btn-dark">새로운 강의 등록하기</a>
 									</div>
 								</div>
 							</div>
+							
 						</div>
-					</div>
+				</div>
 				</div>
 			</section>
 
@@ -200,9 +188,9 @@
                          url :"${pageContext.request.contextPath}/admin/offLecture/this",
                          dataType :"json",               
                          success : function(result){
-                            alert("통신성공!!!");
+                           // alert("통신성공!!!");
                             if(result!=null){
-                            alert(result);
+                            //alert(result);
                             $('#dataTable tr:gt(0)').empty();
                          var str = "";
                          $.each(result,function(index,item){
@@ -212,8 +200,7 @@
                             str+='<td>'+item.offLectureName+'</td>';
                             str+='<td>'+item.offLectureTeacher+'</td>';
                             str+='<td>'+item.category+'</td>';
-                            str+='<td>'+item.offLectureAvailableseat+'</td>';
-                            str+='<td>'+item.offDetail+'</td>';
+                            str+='<td>'+(item.offLectureSeat-item.offLectureReservedseat)+'</td>';
                             str+='<td>'+item.offLectureDate+'</td>';
                             str+='<td><input type="submit" class="btn btn-dark" value="수정"></td>';
                             str+='<td><input type="button" class="btn btn-dark" value="삭제" id='+item.offLectureNo+'></td>';
