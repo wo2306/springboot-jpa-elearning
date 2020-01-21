@@ -52,7 +52,7 @@
                                 <c:set var="price_sum"
                                        value="${price_sum+offLecture.price}"/>
                                 <td class="product-thumbnail"><a href="#"><img alt="member"
-                                                                               src="${pageContext.request.contextPath}/images/offLecture/${offLecture.offLectureNo}.png"></a>
+                                                                               src="${pageContext.request.contextPath}/resources/images/offLecture/${offLecture.offLectureNo}.png"></a>
                                 </td>
                                 <td><a href="#">${offLecture.offLectureName}</a></td>
                                 <td><fmt:formatNumber value="${offLecture.price}"
