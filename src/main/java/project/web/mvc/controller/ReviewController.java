@@ -69,8 +69,10 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/update")
-	public String reviewUpdate() {
-		System.out.println("review update ctrl");
-		return "dd";
+	public String reviewUpdate(Model model, Review review) {
+		
+		reviewService.update(review);
+		
+		return "redirect:/myPage/info/1";
 	}
 }

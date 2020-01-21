@@ -135,7 +135,7 @@
                                                                                                             style="text-align: right">
                                                                                              <div class="form-group">
                                                                                                 <select class="form-control"
-                                                                                                        name="reviewScore">
+                                                                                                        name="reviewScore" id="reviewScore">
                                                                                                    <option value="0">평점 선택</option>
                                                                                                    <option value="1">1</option>
                                                                                                    <option value="2">2</option>
@@ -339,7 +339,13 @@
                                                         <tr>
                                                             <th scope="row" style="width:180px;"><img
                                                                     src="${pageContext.request.contextPath}/images/onLecture/${dto.onLecture.onLectureNo}.png" style="width:100px; height: 50px;" alt=""></th>
-                                                            <td>${dto.reviewScore }</td>
+                                                            <td><c:forEach var="i" begin="1"
+                                                                       end="${dto.reviewScore }">
+																		<span class="fa-hover"><i
+                                                                                class="fa fa-star"></i>
+																		</span>
+                                                        </c:forEach>
+                                                            </td>
                                                             <td>
                                                                 <button type="button"
                                                                         class="btn btn-dark btn-flat"
@@ -363,7 +369,7 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="modal-body">
-                                                                                <form action="${pageContext.request.contextPath}/review/update">
+                                                                                <form action="${pageContext.request.contextPath}/review/update" name="review">
                                                                                     <table class="table table-hover">
                                                                                         <tbody>
                                                                                         <tr>
@@ -371,7 +377,7 @@
                                                                                             <td><span
                                                                                                     style="text-align: right">
                                                                                     <div class="form-group">
-                                                                                       <select class="form-control">
+                                                                                       <select class="form-control" id="reviewScore" name="reviewScore">
                                                                                           <option value="0">평점 선택</option>
                                                                                           <option value="1">1</option>
                                                                                           <option value="2">2</option>
@@ -387,14 +393,16 @@
                                                                                             <td colspan="2"><textarea
                                                                                                     name="reviewContent"
                                                                                                     cols="30" rows="13"
-                                                                                                    placeholder="${dto.reviewContent }"></textarea>
+                                                                                                    placeholder="${dto.reviewContent }"name="reviewContent"></textarea>
+                                                                                            <input type="hidden" name="reviewNo" value="${dto.reviewNo }">
                                                                                             </td>
+                                                                                            
                                                                                         </tr>
 
                                                                                         </tbody>
                                                                                     </table>
                                                                                     <div class="modal-footer">
-                                                                                        <button type="button"
+                                                                                        <button type="submit"
                                                                                                 id="reviewUpdate"
                                                                                                 class="btn btn-primary text-white">
                                                                                             수정
@@ -549,9 +557,15 @@
         $("#reviewInsert").on('click', function () {
             console.log("등록 insert!");
         });
-        $("#reviewUpdate").on('click', function () {
-            console.log("수정 update!");
-        });
+/*         $("#reviewUpdate").on('click', function () {
+            var score = $("#reviewScore").val();
+            if(score==0) {
+            	alert("평점을 선택하세요!");
+            }
+            else{
+            	location.href="${pageContext.request.contextPath}/review/update";
+            }
+        }); */
         $("a[name='reviewDelete']").on('click', function () {
             var reviewNo = $(this).attr('id');
            if (confirm("정말로 삭제 하시겠습니까?")) {

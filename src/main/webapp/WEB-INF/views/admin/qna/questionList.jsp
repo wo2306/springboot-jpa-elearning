@@ -57,7 +57,7 @@
 									<li class="active text-gray-silver">- 관리자가 사용자의 질문을 수정,
 										삭제할 수 있는 페이지 입니다.</li>
 										<!-- Topbar Search -->
-                                <li>
+                               <!--  <li>
                                     <form name="searchForm" method="post" onsubmit="return searchform()">
                                         <div class="input-group" style="padding-left: 730px">
                                             <select id="key" style="background-color:#F8F9FC; margin-right: 10px;">
@@ -75,7 +75,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                </li>
+                                </li> -->
 
 								</ol>
 							</div>

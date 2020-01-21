@@ -51,7 +51,7 @@
                                 <li><a href="#">관리자 리뷰 관리 페이지</a></li>
                                 <li class="active text-gray-silver"> - 관리자가 사용자의 리뷰를  수정, 삭제할 수 있는 페이지 입니다.</li>
                                
-                                <li>
+                               <!--  <li>
                                     <form name="searchForm" method="post" onsubmit="return searchform()">
                                         <div class="input-group" style="padding-left: 730px">
                                             
@@ -66,7 +66,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                </li>
+                                </li> -->
                                
                             </ol>
                         </div>
