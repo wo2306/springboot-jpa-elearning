@@ -42,8 +42,10 @@ public class NoticeServiceImpl implements NoticeService {
 //			saveNotice.setNoticeTitle(notice.getNoticeTitle());
 //			saveNotice.setNoticeContent(notice.getNoticeContent());
 			//saveNotice.setNoticeRegdate(null);
+			System.out.println("insert하러갑니닼ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
 			noticeRepo.save(notice);
 		}else {
+			System.out.println("update하러갑니닼ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
 			selnotice.setNoticeTitle(notice.getNoticeTitle());
 			selnotice.setNoticeContent(notice.getNoticeContent());
 		}
@@ -53,6 +55,7 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public void update(Notice notice) {
 		Notice selnotice = noticeRepo.findByNoticeNo(notice.getNoticeNo());
+		System.out.println("update하러갑니닼ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
 		selnotice.setNoticeTitle(notice.getNoticeTitle());
 		selnotice.setNoticeContent(notice.getNoticeContent());
 	}

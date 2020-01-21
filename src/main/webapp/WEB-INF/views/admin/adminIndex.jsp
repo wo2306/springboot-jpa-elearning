@@ -5,16 +5,28 @@
 
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
 
     <title>SB Admin 2 - Dashboard</title>
 
+    <!-- Custom fonts for this template-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet"
+          type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
+
+
 <!-- Main Content -->
+
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -22,6 +34,8 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     </div>
 
     <!-- Content Row -->
@@ -213,16 +227,18 @@
 </div>
 
 <!-- Core plugin JavaScript-->
-<script src="${pageContext.request.contextPath}/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
+<script src="js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
+<script src="vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="${pageContext.request.contextPath}/js/demo/chart-area-demo.js"></script>
-<script src="${pageContext.request.contextPath}/js/demo/chart-pie-demo.js"></script>
-<script src="${pageContext.request.contextPath}/js/demo/chart-bar-demo.js"></script>
+<script src="js/demo/chart-area-demo.js"></script>
+<script src="js/demo/chart-pie-demo.js"></script>
+<script src="js/demo/chart-bar-demo.js"></script>
 
 </body>
 

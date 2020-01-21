@@ -40,13 +40,11 @@ public class OffOrder {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "OFF_LECTURE_NO", referencedColumnName = "OFF_LECTURE_NO", nullable = false)
-//    @JsonManagedReference
     private OffLecture offLecture;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
-//    @JsonManagedReference
     private Userdb userdb;
 
     @Column(nullable = false)

@@ -34,6 +34,7 @@ public class ClassQuestion {
     private Long classQuestionNo;
 
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
     private Userdb userdb;
 

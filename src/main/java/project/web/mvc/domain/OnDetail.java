@@ -32,7 +32,6 @@ public class OnDetail {
 	@ManyToOne
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
-//	@JsonManagedReference
 	private OnLecture onLecture;
 
 

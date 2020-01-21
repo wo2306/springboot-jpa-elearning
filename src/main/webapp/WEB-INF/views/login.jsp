@@ -160,7 +160,6 @@
 </div>
 <script type="text/javascript">
 $('#loginBtn').click(function () {
-	alert(22)
 	if($('#form_username_email').val()==''){
 		alert('Id(Email) 입력해주세요');
 		$('#form_username_email').focus();
