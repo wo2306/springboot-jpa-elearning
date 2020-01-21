@@ -22,6 +22,7 @@
 		 //alert(endDate);
 		if(result<=0){
 			document.getElementById('btn').innerHTML="SOLD OUT";
+			$('#btn').attr("href", "#");
 			$('#btn').attr("disabled", true);
 			//alert("현재 남아있는 좌석 수가 없어 예약이 불가합니다.");
 		}
@@ -44,6 +45,7 @@
 		  	//alert(buttonName);
 		    if(offdate.getTime()<date.getTime()){
 		    	document.getElementById('btn').innerHTML="예약마감";
+		    	$('#btn').attr("href", "#");
 		    	$('#btn').attr("disabled", true);
 		    	//alert("날짜가 지나 마감되었습니다.");
 		    } 

@@ -114,7 +114,9 @@ public class AdminAcademyController {
 	
 	@RequestMapping("/adminAcademyUpdate/update")
 	public String academyUpdate(Academy academy) {
+		System.out.println(academy.getAcademyNo());
 		academyService.academyUpdate(academy);
+		System.out.println(academy.getAcademyName());
 		return "redirect:/admin/academy";
 	}
 	

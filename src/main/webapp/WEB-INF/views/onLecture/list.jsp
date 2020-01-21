@@ -16,10 +16,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        #out {
-            horiz-align: center;
-            text-align: center;
-        }
         .pagination {
             position: absolute;
             left: 50%;
@@ -79,7 +75,7 @@
                                                href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의 상세 보기</a>
                                              &nbsp
                                              <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" value="wishlist" 
-                                             id=${dto.onLectureNo} style="margin-top: -30px;">wishlist</a>
+                                             id="${dto.onLectureNo}" style="margin-top: -30px;">wishlist</a>
                                             </div>
                                         </div>
                                     </div>
@@ -214,7 +210,7 @@
                 var str = ""
                 $.each(result, function (key, val) {
                     str += "<article class=\"post media-post clearfix pb-0 mb-10\">\n" +
-                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/images/onLecture/" + val.onLectureNo + ".png\" style=\"width:80px; height:60px;\" alt=\"http://placehold.it/75x75\"></a>\n" +
+                        " <a class=\"post-thumb\" href=\"#\"><img src=\"${pageContext.request.contextPath}/resources/images/onLecture/" + val.onLectureNo + ".png\" style=\"width:80px; height:60px;\" alt=\"http://placehold.it/75x75\"></a>\n" +
                         " <div class=\"post-right\">\n" +
                         " <h5 class=\"post-title mt-0\"><a href=\"${pageContext.request.contextPath}/onLecture/detail/" + val.onLectureNo + "\">" + val.onLectureName + "</a></h5>\n" +
                         " <p>" + "</p>\n" +
@@ -253,7 +249,7 @@
         return false;
     }
 
-    $(document).on('click', 'button[value=wishlist]', function () {
+    $(document).on('click', 'a[value=wishlist]', function () {
         if (confirm('위시리스트에 담을까요?')) {
             $.ajax({
                 type: "post",

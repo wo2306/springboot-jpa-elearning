@@ -32,7 +32,7 @@
 <body class="">
 <div id="wrapper" class="clearfix">
  <section class="inner-header divider parallax layer-overlay overlay-dark-5"
-                 data-bg-img="${pageContext.request.contextPath}/images/banner/qna2.jpg">
+                 data-bg-img="${pageContext.request.contextPath}/images/banner/qna3.png">
             <div class="container pt-70 pb-20">
                 <!-- Section Content -->
                 <div class="section-content">

@@ -33,11 +33,13 @@ public class AdminNoticeController {
 	@RequestMapping("/{command}/{keyword}/{pageNum}")
 	public String search(@PathVariable String command, @PathVariable String keyword, @PathVariable int pageNum, Model model) {
 		
+		
 		List<Notice> list = new ArrayList<>();
 		Page<Notice> page = null;
+		
 		if(command.equals("all")) {
 			page = noticeService.selectByKeyword("", pageNum);
-		}else {
+		}if(command.equals(null)) {
 			page = noticeService.selectByKeyword(keyword, pageNum);
 		}
 		page.iterator().forEachRemaining(list::add);
@@ -57,7 +59,7 @@ public class AdminNoticeController {
 	
 	@RequestMapping("/insertForm")
 	public String insertForm() {
-		return "admin/notice/adminNoticeForm";
+		return "admin/notice/adminNoticeInsertForm";
 	}
 	
 	@RequestMapping("/insert")
@@ -81,10 +83,9 @@ public class AdminNoticeController {
 	@RequestMapping("/update")
 	public String update(Notice notice) {
 		System.out.println("이거나와아아아아"+notice.getNoticeNo());
-		System.out.println(notice.getNoticeTitle());
-		noticeService.insert(notice);
+		noticeService.update(notice);
 		
-		return "redirect:all/keyword/1";
+		return "redirect:/admin/notice/all/keyword/1";
 	}
 	
 	@RequestMapping("/delete/{noticeNo}")
