@@ -59,7 +59,7 @@ public class AdminNoticeController {
 	
 	@RequestMapping("/insertForm")
 	public String insertForm() {
-		return "admin/notice/adminNoticeForm";
+		return "admin/notice/adminNoticeInsertForm";
 	}
 	
 	@RequestMapping("/insert")
