@@ -16,10 +16,6 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        #out {
-            horiz-align: center;
-            text-align: center;
-        }
         .pagination {
             position: absolute;
             left: 50%;
@@ -79,7 +75,7 @@
                                                href="${pageContext.request.contextPath}/onLecture/detail/${dto.onLectureNo}">강의 상세 보기</a>
                                              &nbsp
                                              <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" value="wishlist" 
-                                             id=${dto.onLectureNo} style="margin-top: -30px;">wishlist</a>
+                                             id="${dto.onLectureNo}" style="margin-top: -30px;">wishlist</a>
                                             </div>
                                         </div>
                                     </div>
