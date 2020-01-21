@@ -2,7 +2,6 @@ package project.web.mvc.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,35 +53,4 @@ public class Userdb {
         this.authority = this.authority == null ? 1 : this.authority;
     }
 
-    @OneToMany(mappedBy = "userdb")
-    @JsonBackReference
-    private List<Authority> Authorities = new ArrayList<>();
-
-    @OneToMany(mappedBy = "userdb")
-    @JsonBackReference
-    private List<ClassAnswer> classAnwsers = new ArrayList<>();
-    
-    @OneToMany(mappedBy = "userdb")
-    @JsonBackReference
-    private List<ClassQuestion> classQuestions= new ArrayList<>();
-
-    @OneToMany(mappedBy = "userdb")
-    @JsonBackReference
-    private List<Review> reviews = new ArrayList<>();
-
-    @OneToMany(mappedBy = "userdb")
-    @JsonBackReference
-    private List<OffOrder> offOrders = new ArrayList<>();
-
-    @OneToMany(mappedBy = "userdb")
-    @JsonBackReference
-    private List<OnOrder> onOrders = new ArrayList<>();
-
-    @OneToMany(mappedBy = "userdb", fetch = FetchType.EAGER)
-    @JsonBackReference
-    private List<Cart> carts = new ArrayList<>();
-
-    @OneToMany(mappedBy = "userdb")
-    @JsonBackReference
-    private List<WishList> wishLists = new ArrayList<>();
 }

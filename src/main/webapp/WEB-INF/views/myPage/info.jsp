@@ -12,10 +12,8 @@
 
 <body class="">
 <div id="wrapper" class="clearfix">
-    <!-- preloader -->
     <!-- Start main-content -->
     <div class="main-content">
-
         <!-- Section: inner-header -->
         <section
                 class="inner-header divider parallax layer-overlay overlay-dark-5"

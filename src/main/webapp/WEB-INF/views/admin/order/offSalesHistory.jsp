@@ -17,13 +17,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <![endif]-->
     <style>
-        #out {
-            horiz-align: center;
-            text-align: center;
-        }
-        #in {
-            margin: auto;
-            width: 50%;
+        .pagination {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -173,6 +170,7 @@
         </section>
     </div>
 </div>
+<br><br>
 <script>
     function searchform() {
         var keyfield = $("#key option:selected").val();

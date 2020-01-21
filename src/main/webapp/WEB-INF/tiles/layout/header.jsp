@@ -265,10 +265,10 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <ul class="pull-right flip hidden-sm hidden-xs">
                     <li>
                         <!-- Modal: Book Now Starts -->
-                        <a class="btn btn-colored btn-flat bg-theme-colored-transparent text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"
+                        <a class="btn btn-colored btn-flat bg-theme-colored-transparent text-white font-14 mt-0 p-25 pr-15 pl-15"
                            onclick="myLecture()" id="myLecture">내 강의실</a>
-                        <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"
-                           data-toggle="modal" data-target="#BSParentModal" onclick="myPage()" id="myPage">마이 페이지</a>
+                        <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 mt-0 p-25 pr-15 pl-15"
+                           onclick="myPage()" id="myPage">마이 페이지</a>
 
                         <!-- Modal: Book Now End -->
                     </li>
@@ -424,6 +424,5 @@ function klogout(){
 }
 
 </script>
-<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 </body>
 </html>

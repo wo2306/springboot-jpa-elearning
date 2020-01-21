@@ -134,7 +134,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div id="myTabContent" class="tab-content">
-                                        <div class="tab-pane fade in active" id="small">
+                                        <div class="tab-pane fade in active" id="small2">
                                             <table class="table table-bordered">
                                                 <tr>
                                                     <td

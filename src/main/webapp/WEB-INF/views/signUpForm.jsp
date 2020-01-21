@@ -248,10 +248,7 @@ function sign() {
 	}
 })
 
-
 	</script>
-
-
 
 </body>
 </html>
