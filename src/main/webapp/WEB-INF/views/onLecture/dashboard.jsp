@@ -23,7 +23,7 @@
             padding: 3px 30px
         }
     </style>
-        <!-- include summernote css/js-->
+    <!-- include summernote css/js-->
     <link
             href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
             rel="stylesheet">
@@ -153,43 +153,43 @@
                                 </div>
                             </div>
                             <c:choose>
-                            <c:when test="${empty qnaList }">
-                            	<br>
-                            </c:when>
-                            <c:otherwise>
-                       
-                            <div class=" widget">
-                                <h4 class="widget-title line-bottom">최근 <span
-                                        class="text-theme-color-2">질문</span></h4>
-                                <ul class="list-border">
-                                    <c:forEach var="qna" items="${qnaList}">
-                                        <li class="clearfix"><span> <a href="${pageContext.request.contextPath}/qna/read/${qna.classQuestionNo}">${qna.classQuestionTitle}</a></span>
-                                            <div class="value pull-right"> ${qna.userdb.userdbNickname}</div>
-                                        </li>
-                                    </c:forEach>
-                                </ul>
-                            </div>
-                            </c:otherwise>
+                                <c:when test="${empty qnaList }">
+                                    <br>
+                                </c:when>
+                                <c:otherwise>
+
+                                    <div class=" widget">
+                                        <h4 class="widget-title line-bottom">최근 <span
+                                                class="text-theme-color-2">질문</span></h4>
+                                        <ul class="list-border">
+                                            <c:forEach var="qna" items="${qnaList}">
+                                                <li class="clearfix"><span> <a href="${pageContext.request.contextPath}/qna/read/${qna.classQuestionNo}">${qna.classQuestionTitle}</a></span>
+                                                    <div class="value pull-right"> ${qna.userdb.userdbNickname}</div>
+                                                </li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </c:otherwise>
                             </c:choose>
-                            
+
                             <div class="widget">
                                 <h4 class="widget-title line-bottom">질문 <span
                                         class="text-theme-color-2">등록</span></h4>
-                <form id="classQuestion" name="footer_quick_contact_form" class="quick-contact-form" method="post" novalidate="novalidate">
-                  <div class="form-group">
-                    <input name="classQuestionTitle" class="form-control valid" type="text" required="" placeholder="질문 제목" aria-required="true" aria-invalid="false" style="background-color: white;">
-                  	<input type="hidden" value="${onLecture.onLectureNo }" name="onLecture.onLectureNo"/>
-                  </div>
-                  <div class="form-group">
-									<textarea class="form-control" id="summernote" name="classQuestionContent"  
-                                              placeholder="질문 내용" maxlength="140" rows="7"></textarea>
-                            </div>
-                  
-                    <button type="button" id="questionInsert" class="btn btn-theme-colored btn-flat btn-xs btn-quick-contact text-white pt-5 pb-5" data-loading-text="질문 등록 하기">질문 등록 하기</button>
-                </form>
+                                <form action = "${pageContext.request.contextPath}/qna/questionInsert" id="classQuestion" name="classQuestion" class="quick-contact-form" method="post" novalidate="novalidate">
+
+                                    <div class="form-group">
+                                        <input name="classQuestionTitle" class="form-control valid" type="text" placeholder="질문 제목" aria-required="true" aria-invalid="false" style="background-color: white;">
+                                        <input type="hidden" value="${onLecture.onLectureNo }" name="onLecture.onLectureNo"/>
+                                    </div>
+                                    <div class="form-group">
+                           <textarea class="form-control" id="summernote" name="classQuestionContent"
+                                     placeholder="content" rows="5"></textarea>
+                                    </div>
+                                    <button type="submit" id="questionInsert" class="btn btn-theme-colored btn-flat btn-xs btn-quick-contact text-white pt-5 pb-5" data-loading-text="질문 등록 하기">질문 등록 하기</button>
+                                </form>
                             </div>
 
-                           
+
                         </div>
                     </div>
                 </div>
@@ -201,11 +201,11 @@
 
     $(document).ready(function () {
         $('#summernote').summernote({
-        	toolbar: [
+            toolbar: [
                 // [groupName, [list of button]]
             ],
             width: '100%',
-        	height: 270,
+            height: 270,
             minHeight: null,
             maxHeight: null,
             focus: true,
@@ -218,20 +218,6 @@
             }
         });
     });
-    
-</script>
-<script type="text/javascript">
-$("#questionInsert").on('click', function(){
-	var title=$("#classQuestion > div:nth-child(1) > input.form-control.valid").val();
-	var content = $("#classQuestion > div:nth-child(2) > div > div.note-editing-area > div.note-editable.panel-body");
-	
-	if(title!="" && content!=null){
-	location.href='${pageContext.request.contextPath}/qna/questionInsert';
-	}
-	else{
-		alert("질문제목과 내용을 입력하세요");
-	}
-});
 
 </script>
 </section>
