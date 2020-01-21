@@ -114,7 +114,7 @@
   
             <!-- 로그인 -->
             <div class="clear pt-10">
-            	<button type="button" class="btn btn-dark btn-lg btn-block" id="loginBtn" width="50%">Login</button>
+            	<button type="submit" class="btn btn-dark btn-lg btn-block" id="loginBtn" width="50%">Login</button>
 			</div>
             </form>
             
@@ -152,7 +152,7 @@
   </div>
 </div>
 <script type="text/javascript">
-$('#loginBtn').click(function () {
+$('#loginBtn').on("submit", function() {
 	if($('#form_username_email').val()==''){
 		alert('Id(Email) 입력해주세요');
 		$('#form_username_email').focus();
@@ -163,9 +163,9 @@ $('#loginBtn').click(function () {
 		$('#form_password').focus();
 		return false;
 	}
-	$('#loginBtn').attr('type','submit');
 	return true;
 })
+
 
 </script>
 
