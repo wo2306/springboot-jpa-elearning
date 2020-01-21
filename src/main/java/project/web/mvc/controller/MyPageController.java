@@ -136,9 +136,7 @@ public class MyPageController {
     public int passwordCheck(String userdbPassword0) {
         //true = 비밀번호 일치, false = 비밀번호 불일치
         //true : 0, false : 1
-        System.out.println("패스워드체크컨트롤러**********************************");
         int result = (userdbService.checkPassword(userdbPassword0)) ? 0 : 1;
-        System.out.println("패스워드체크컨트롤러22222*********************************");
         return result;
     }
 
@@ -146,10 +144,7 @@ public class MyPageController {
     @RequestMapping(value = "/myAccount/nickUpdate")
     @ResponseBody
     public void nickUpdate(String userdbNickname) {
-        System.out.println("나왓니????" + userdbNickname);
         userdbService.updateNickname(userdbNickname);
-        System.out.println("닉네임 수정성공!!!");
-        System.out.println(LoginCheck.getUserdb().getUserdbNickname());
     }
 
     //password 변경

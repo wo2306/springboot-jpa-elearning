@@ -1,6 +1,7 @@
 package project.web.mvc.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -42,15 +43,10 @@ public class AdminUserController {
 	//검색하기
 	@RequestMapping("/{command}/{keyword}/{pageNum}")
 	public String category(@PathVariable String command,@PathVariable String keyword,@PathVariable int pageNum, Model model) {
-		System.out.println("들어왔다 오바");
-		System.out.println(command);
-		System.out.println(keyword);
         List<Userdb> list = new ArrayList<>();
         Page<Userdb> page = null;
 		if (command.equals("all")) {
             page = userdbService.selectByKeyword("", pageNum);
-        } else if (command.equals("userdbNo")) {
-        	page = userdbService.selectAllByUserdbNo(keyword, pageNum);
         } else if (command.equals("userdbNickname")) {
             page = userdbService.selectAllByUserdbNickname(keyword, pageNum);
         } else if (command.equals("userdbEmail")) {
@@ -71,8 +67,8 @@ public class AdminUserController {
 	public ModelAndView userupdateForm(@PathVariable Long userdbNo) {
 
 		System.out.println("수정할 학생은 : " + userdbNo);
+		
 		 Userdb item = userdbService.selectByUserdbNo(userdbNo);
-		 
 		return new ModelAndView("admin/user/adminUserUpdate", "item", item);
 	}
 	

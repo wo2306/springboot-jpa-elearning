@@ -43,11 +43,7 @@ public class UserdbController {
 	@Transactional
 	@ResponseBody
 	public int execSignUp(String userdbEmail, String userdbNickname, String userdbPassword) {
-		System.out.println("HomeController call *** /signUp");
-		System.out.println(userdbEmail+userdbNickname+userdbPassword+"나오니?");
-
 		Userdb userdb = new Userdb();
-		System.out.println("얍"+userdb.getAuthority()+"권한을보자");
 		userdb.setUserdbEmail(userdbEmail);
 		userdb.setUserdbNickname(userdbNickname);
 		userdb.setUserdbPassword(userdbPassword);
@@ -55,7 +51,6 @@ public class UserdbController {
 		userdbService.insert(userdb);
 		//회원가입 후 authority db 저장
 		authorityService.insert(userdb);
-		System.out.println("회원가입끝");
 		//1 : 성공 , 0: 실패
 		return 1;
 	}
@@ -65,20 +60,15 @@ public class UserdbController {
 	@ResponseBody
 	@Transactional
 	public int kakaoLogin(String id, String userdbNickname) {
-		System.out.println("카카오로그인 controller");
 		Userdb user = userdbService.selectByUserdbEmail(id);
 		//결과: 0:이미 유저 -> 로그인, 1:회원가입폼으로 이동, 2:회원가입성공->로그인
-		
 			//userdb가 있으면 전에 가입한적있음. 로그인해야함
 		if(user!=null) {
-			System.out.println("카카오로그인의 컨트롤러에서 user!=null !!!!");
 			return 0;
 		}else if(nicknameCheck(userdbNickname)==0){
-				System.out.println("회원가입은 처음인데 nickname이 중복이다. 새로 작성하게하자.");
 				return 1;
 		}else {
 			//userdb가 없으면 신규
-			System.out.println("카카오사인업");
 			Userdb userdb = new Userdb();
 			userdb.setUserdbEmail(id);
 			userdb.setUserdbNickname(userdbNickname);
@@ -98,7 +88,6 @@ public class UserdbController {
 	@RequestMapping("/idCheck")
 	@ResponseBody
 	public int idCheck(String userdbEmail) {
-		System.out.println(userdbEmail+"아이디체크");
 		boolean idCheck = userdbService.duplicatedEmailCheck(userdbEmail);
 		//true면 중복, false면 사용가능
 		//0: 중복, 1:사용가능
@@ -144,24 +133,5 @@ public class UserdbController {
 		}else result=1;
 		return result;
 	}
-	
-//	
-//	//쿠키처리
-//	@RequestMapping("/logoutCheck")
-//	public String logoutCheck(HttpServletRequest request, HttpServletResponse response,
-//            Authentication authentication) {
-//		System.out.println("여기는 쿠키체크");
-//		Cookie[]cookies=request.getCookies();
-//		System.out.println("ㅋ쿠키잇니"+cookies);
-//		if(cookies!=null) {
-//			System.out.println("쿠키가 널이 아니다");
-//			for(int i=0; i<cookies.length; i++) {
-//				cookies[i].setMaxAge(0);
-//				response.addCookie(cookies[i]);
-//			}
-//		}
-//		return "redirect:/";
-//	}
-//	
 	
 }

@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         // 페이지 권한 설정
-//        .antMatchers("/admin/**").hasAuthority("ADMIN")
+        .antMatchers("/admin/**").hasAuthority("ADMIN")
         .antMatchers("/myPage/**").authenticated()
         .antMatchers("/cart/**").authenticated()
         .antMatchers("/order/**").authenticated()

@@ -28,7 +28,5 @@ public interface UserdbService{
 	
 	Page<Userdb> selectAllByUserdbEmail(String userdbEmail, int pageNum);
 	Page<Userdb> selectAllByUserdbNickname(String userdbNickname, int pageNum);
-	Page<Userdb> selectAllByUserdbNo(String userdbNo, int pageNum);
-//	Page<Userdb> selectAllByKeyword(@Param("keyword") String keyword, int pageNum);
 	
 }

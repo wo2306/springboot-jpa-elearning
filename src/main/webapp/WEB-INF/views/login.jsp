@@ -111,12 +111,12 @@
                                   <input id="form_password" name="password" class="form-control" type="password">
             		   		 </div>
           			    </div>
-  
-            <!-- 로그인 -->
-            <div class="clear pt-10">
-            	<button type="submit" class="btn btn-dark btn-lg btn-block" id="loginBtn" width="50%">Login</button>
-			</div>
-            </form>
+		  
+		          	  <!-- 로그인 -->
+			            <div class="clear pt-10">
+			            	<button type="submit" class="btn btn-dark btn-lg btn-block" id="loginBtn" width="50%">Login</button>
+						</div>
+       			   </form>
             
             <div class="clear pt-10">
             <!-- 회원가입 -->
@@ -165,8 +165,6 @@ $('#loginBtn').on("submit", function() {
 	}
 	return true;
 })
-
-
 </script>
 
 </body>
