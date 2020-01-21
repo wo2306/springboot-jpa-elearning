@@ -53,7 +53,7 @@
 		
 		//팝업 자식창 부모창으로 값넘기기
 		$(document).on("click","#roadmapBtn",function(){
-			var add = $("#selectable tr").val(this)
+			var add = $("#addTable tr").val(this)
 			opener.addOnLecture(add);
 			self.close();
 		});	
@@ -112,7 +112,7 @@
                    <th>카테고리</th>
                    <th>강사명</th>
                    <th>강의 가격</th>
-                      <th>선택</th>
+                   <th>선택</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -133,7 +133,7 @@
                 </table>
                          <div class="container" id="in">
                             <div class="row">
-                                <div class="col-12" id="inin">
+                                <div class="col" id="inin">
                                     <ul class="pagination">
                                         <c:if test="${page.totalPages ne 0}">
                                         <c:choose>
@@ -190,9 +190,8 @@
                                  </div>
                                </div>
                              </div>
-                    <br>
-                   	<br>
-                   	<br>
+                             <br><br><br>                    
+               	<div class="container">
                   <h3>선택한 강의</h3>
                   <hr>
                   </div>
@@ -213,6 +212,7 @@
 				</tbody>
                 </table>
                   <button type="button" class="btn btn-dark" id="roadmapBtn">강의 선택 완료</button>
+                 </div>
                </div>
               </div>
              </div>
