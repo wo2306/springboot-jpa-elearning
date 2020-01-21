@@ -101,7 +101,7 @@
                                  style="display:none">
                           <div class="row">
                               <div class="form-group col-md-12">
-                                  <label for="form_username_email">Username/Email</label>
+                                  <label for="form_username_email">Email</label>
                                   <input id="form_username_email" name="id" class="form-control" type="text">
                               </div>
                           </div>
@@ -111,27 +111,15 @@
                                   <input id="form_password" name="password" class="form-control" type="password">
             		   		 </div>
           			    </div>
-              <!-- Remeber Me
-              <div class="checkbox pull-left mt-15">
-                <label for="form_checkbox">
-                  <input id="form_checkbox" name="form_checkbox" type="checkbox">
-                  Remember me </label>
-              </div>
-               -->
-
-              <div class="clear text-center pt-10">
-                <a class="text-theme-colored font-weight-600 font-12" href="${pageContext.request.contextPath}/findPwd">Forgot Your Password?</a>
-              </div>
   
             <!-- 로그인 -->
-            
             <div class="clear pt-10">
             	<button type="button" class="btn btn-dark btn-lg btn-block" id="loginBtn" width="50%">Login</button>
 			</div>
-            
             </form>
             
             <div class="clear pt-10">
+            <!-- 회원가입 -->
               <div class="clear text-center pt-10">
                 <a class="btn btn-dark btn-lg btn-block no-border" href="signUpForm" data-bg-color="red" style="width:50%">Sign Up</a>
               </div>
@@ -151,6 +139,11 @@
 					</div>
 				</div>
 				<!-- 카카오끝 -->
+				
+				<!-- 비밀번호찾기 -->
+	              <div class="clear text-center pt-10">
+	                <a class="text-theme-colored font-weight-600 font-12" href="${pageContext.request.contextPath}/findPwd">Forgot Your Password?</a>
+	              </div>
 	          </div>
           </div>
         </div>
