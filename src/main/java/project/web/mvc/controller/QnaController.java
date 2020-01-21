@@ -37,6 +37,23 @@ public class QnaController {
 		model.addAttribute("list",list);
 		model.addAttribute("page", page);
 		
+		return "qna/list";
+	}
+	
+	@RequestMapping("/search/{pageNum}")
+	public String searchList(Model model, String keyword, @PathVariable int pageNum) {
+		System.out.println("검색어 : " +keyword);
+		List<ClassQuestion> list = new ArrayList<>();
+		Page<ClassQuestion> page = null;
+		if(keyword==null || keyword.isEmpty()) {
+		page = classQuestionService.selectAll(pageNum);
+		}
+		else {
+			page = classQuestionService.selectByTitle(keyword, pageNum);
+		}
+		page.iterator().forEachRemaining(list::add);
+		model.addAttribute("list",list);
+		model.addAttribute("page", page);
 		
 		return "qna/list";
 	}

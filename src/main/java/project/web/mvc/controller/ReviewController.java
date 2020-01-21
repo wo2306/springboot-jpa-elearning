@@ -45,18 +45,17 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/insert")
-	public String reviewInsert(Model model) {
-		System.out.println("리뷰 인서트 ctrl");
+	public String reviewInsert(Model model, Review review) {
+		System.out.println("reviewe 등록 onlectureNo = "+review.getOnLecture().getOnLectureNo());
 		
-//		Integer reviewScore = (Integer) model.getAttribute("reviewScore");
-//		
-//		String reviewContent = (String)model.getAttribute("reviewContent");
-//		Long onLectureNo = (Long)model.getAttribute("onLectureNo");
-//		System.out.println("받아온 값(스코어, 내용, 온라인강의넘버 : " +reviewScore +reviewContent +onLectureNo);
+		if(LoginCheck.getUserdb()!=null) {
+			review.setUserdb(LoginCheck.getUserdb());
+			reviewService.insert(review);
 		
-		//reviewService.insert(new Review());
+		return "redirect:/myPage/info/1";
+		}
 		
-		return "myPage/info";
+		return "redirect:/myPage/info/1";
 	}
 	
     @DeleteMapping(value ="/delete")

@@ -38,7 +38,7 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Override
 	public void insert(Review review) {
-		
+		reviewRepo.save(review);
 	}
 
 	@Override

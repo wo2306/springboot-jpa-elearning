@@ -54,14 +54,22 @@
 			<div class="row">
 				<div class="col-md-12">
 				    <div class="media-content">
-      <h4><span style="color:#1dc078">Q.</span> <a href="/qna/questionForm">질문등록</a></h4>
-  
+				    <div class="search-form">
+                                    <form method="post" action="${pageContext.request.contextPath}/qna/search/1">
+                                        <div class="input-group">
+                                            <input type="text" style="width: 150px; height: 35px;" placeholder="검색 내용 입력" name="keyword">
+                                            
+    <button style="height: 35px;" type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+    
+                                        </div>
+                                    </form>
+                                </div>
+  <h4><span style="color:#1dc078">Q.</span>질문목록</h4>
     </div>
 					<table class="table table-striped table-schedule">
 						<thead>
 							<tr class="bg-theme-colored">
-								<th style="color:white;">질문</th>
-								<th style="color:white;">연관 강의</th>
+								<th colspan="2" style="color:white;">연관 강의</th>
 								<th style="color:white;">제목<span style="font-size: 12px; color:gray">(상세 내용을 보려면 클릭하세요)</span></th>
 								<th style="color:white;">등록일</th>
 								<th style="color:white;">작성자</th>
@@ -80,9 +88,9 @@
     <c:forEach items = "${list }" var="question">
     <tr class="">
     
-    <th scope="row" style="width: 170px;"><img src="http://placehold.it/100x50"
-															alt=""></th>
-    <td style="width: 160px;">${question.onLecture.onLectureName }</td>
+    <th scope="row" style="width: 120px;"><img src="${pageContext.request.contextPath}/images/onLecture/${question.onLecture.onLectureNo}.png"
+																		style="width: 100px; height: 50px;" alt=""></th>
+    <td style="width: 250px;">${question.onLecture.onLectureName }</td>
     <td><strong style="font-size: 16px;"><a href="${pageContext.request.contextPath}/qna/read/${question.classQuestionNo }">${question.classQuestionTitle }</a></strong></td>
     
     <td> 
