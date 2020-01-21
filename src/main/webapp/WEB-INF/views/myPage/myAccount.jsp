@@ -103,28 +103,7 @@
                   
                 </div>
               </form>
-              
-              <!-- 회원탈퇴 -->
-              
-              <hr class="mt-30 mb-30">
-              <form name="goodbye" method="post">
-                <div class="icon-box mb-0 p-0">
-                  <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
-                    <i class="fa fa-key"></i>
-                  </a>
-                  <h4 class="text-gray pt-10 mt-0 mb-30">회원 탈퇴</h4>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="form-group col-md-6">
-                    <label>비밀번호를 입력해주세요</label>
-                    <input name="password" class="form-control" type="password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <button class="btn btn-dark btn-lg mt-15" type="button" id="byeBtn">탈퇴하기</button>
-                </div>
-              </form>
+
               
             </div>
           </div>
