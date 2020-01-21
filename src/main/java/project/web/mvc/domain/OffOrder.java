@@ -40,7 +40,6 @@ public class OffOrder {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "OFF_LECTURE_NO", referencedColumnName = "OFF_LECTURE_NO", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private OffLecture offLecture;
 
     @ManyToOne
