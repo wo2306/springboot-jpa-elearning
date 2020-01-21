@@ -9,7 +9,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#onlecturebtn").click(function(){
-		window.open("${pageContext.request.contextPath}/admin/roadmap/onLectureList/1", "PopupWin", "width=1000,height=1000")
+		window.open("${pageContext.request.contextPath}/admin/roadmap/all/keyword/1", "PopupWin", "width=1500,height=1000")
 	})// click end	
 	
 	//추가한  강의 삭제

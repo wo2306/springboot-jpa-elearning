@@ -22,6 +22,9 @@
 			alert("수정하기")
 			location.href='${pageContext.request.contextPath}/admin/roadmap/updateForm/'+$(this).val();
 		})
+		$("button[name=register]").click(function(){
+			location.href='${pageContext.request.contextPath}/admin/roadmap/register'
+		})
 		
 	})
 
@@ -57,11 +60,11 @@
                 <table class="table table-striped table-bordered tbl-shopping-cart">
                   <thead>
                     <tr>
-                      <th>RoadmapNo</th>
-                      <th>RoadmapName</th>
-                      <th>RoadmapPrice</th>
-                      <th>RoadmapRegdate</th>
-                      <th>OnlectureName</th>
+                      <th>로드맵 번호</th>
+                      <th>로드맵 제목</th>
+                      <th>로드맵 가격</th>
+                      <th>등록일</th>
+                      <th>강의명</th>
                       <th>수정</th>
                       <th>삭제</th>
                     </tr>
@@ -76,24 +79,17 @@
                       <td class="roadmap-regdate"><span class="regdate">${list.onLecture.onLectureName}</span></td>
                       <td class="roadmap-udate">
                       <input type="hidden" name="id" value=""/>
-                      <button type="submit" class="btn" name="updateBtn" value="${list.roadmapName}">수정</button></td>
+                      <button type="submit" class="btn btn-dark" name="updateBtn" value="${list.roadmapName}">수정</button></td>
                       <td class="roadmap-remove">
                       <input type="hidden" name="id" value=""/>
-                      <button type="button" class="btn" name="deleteBtn" value="${list.roadmapName}" >삭제</button></td>
+                      <button type="button" class="btn btn-dark" name="deleteBtn" value="${list.roadmapName}" >삭제</button></td>
                     </tr>
                     </c:forEach>
                   </tbody>
                 </table>
                 <form name="writeForm" method="post"
-				action="${pageContext.request.contextPath}/admin/roadmap/register">
-				 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-				<tr>
-				<th>등록</th>
-				</tr>
-				<tr>
-				<td><input type="submit" class="btn btn-dark" value="등록"></td>
-				</tr>
-				</table>
+				action="">
+				<button type="button" class="btn btn-dark" name="register" >등록</button>
 			    </form>
     		   </div>
     		  </div>
@@ -103,10 +99,6 @@
   		   
   <!-- end main-content -->
   
-  
-
-<!-- Footer Scripts -->
-<!-- JS | Custom script for all pages -->
 <script src="js/custom.js"></script>
 
 </body>

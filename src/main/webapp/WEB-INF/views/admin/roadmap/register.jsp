@@ -23,18 +23,18 @@
 				  $("#roadmapPrice").focus();
 			 return false;
 		 }
-/* 		 if($("#addOnLecture tr").val()==""){
+/*  		 if($("#addOnLectureTable tr").val()==""){
 				alert("강의를 추가해주세요")
 				  $("#onlecturebtn").focus();
 			 return false;
-		}*/
+		} */
 		 
 	 }// 빈칸 유효성 체크 끝
 
 
 $(function(){
 	$("#onlecturebtn").click(function(){
-		window.open("all/keyword/1", "PopupWin", "width=1300,height=1000")
+		window.open("all/keyword/1", "PopupWin", "width=1350,height=1000")
 	})// click end	
 	
 	//추가한  강의 삭제
@@ -141,9 +141,7 @@ $(function(){
                     </tr>
                   </thead>
                   <tbody  id="addOnLectureTable">
-                  </tbody>
-                
-                  </tbody>
+					</tbody>
                 </table>
                  <button type="button" class="btn btn-dark" id="onlecturebtn">강의 추가하기</button>
              </form>
