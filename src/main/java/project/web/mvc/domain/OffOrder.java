@@ -19,6 +19,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Setter
@@ -37,12 +39,12 @@ public class OffOrder {
 
     @ManyToOne
     @JoinColumn(name = "OFF_LECTURE_NO", referencedColumnName = "OFF_LECTURE_NO", nullable = false)
-//    @JsonManagedReference
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private OffLecture offLecture;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
-//    @JsonManagedReference
     private Userdb userdb;
 
     @Column(nullable = false)

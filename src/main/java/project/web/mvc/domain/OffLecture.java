@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Setter
@@ -30,6 +32,7 @@ public class OffLecture {
     private Long offLectureNo;
 
 	@ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "ACADEMY_NO", referencedColumnName = "ACADEMY_NO", nullable = false)
 	private Academy academy;
 
@@ -63,7 +66,4 @@ public class OffLecture {
         this.offLectureNo = offLectureNo;
     }
 
-    @OneToMany(mappedBy = "offLecture", cascade = CascadeType.REMOVE)
-    @JsonBackReference
-    public List<OffOrder> offOrders = new ArrayList<>();
 }

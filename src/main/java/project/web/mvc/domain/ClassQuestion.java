@@ -14,6 +14,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Setter
@@ -31,10 +33,12 @@ public class ClassQuestion {
     private Long classQuestionNo;
 
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
     private Userdb userdb;
 
 	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
 	private OnLecture onLecture;
 
@@ -47,7 +51,4 @@ public class ClassQuestion {
     @CreationTimestamp
     private Date classQuestionRegdate;
 
-	@JsonBackReference
-	@OneToMany(mappedBy = "classQuestion", cascade = CascadeType.REMOVE)
-	private List<ClassAnswer> classAnswers = new ArrayList<>();
 }

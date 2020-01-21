@@ -17,6 +17,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Setter
@@ -35,10 +37,12 @@ public class Review {
 
 	@ManyToOne
 	@JoinColumn(name = "USERDB_NO", referencedColumnName = "USERDB_NO", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
     private Userdb userdb;
 
 	@ManyToOne
 	@JoinColumn(name = "ON_LECTURE_NO", referencedColumnName = "ON_LECTURE_NO", nullable = false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
     private OnLecture onLecture;
 
 	@Column(nullable = false)
