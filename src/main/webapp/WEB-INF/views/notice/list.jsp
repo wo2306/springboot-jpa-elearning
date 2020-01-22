@@ -54,8 +54,7 @@
 
 			<!-- Section: Schedule -->
 			<section id="schedule"
-				class="divider parallax layer-overlay overlay-white-8"
-				data-bg-img="http://placehold.it/1920x1280">
+				class="divider parallax layer-overlay overlay-white-8">
 				<div class="container pt-80 pb-60">
 					<div class="section-content">
 						<div class="row">

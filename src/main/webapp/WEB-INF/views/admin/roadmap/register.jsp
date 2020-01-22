@@ -50,7 +50,6 @@ $(function(){
 		 $(".onLecture-no").each(function(index,items){
 			 list.push(items.innerHTML); 
 		 })
-		 alert("onLectureNo= "+list);
 		$(".onLectureNo").val(list);
 	})
 	

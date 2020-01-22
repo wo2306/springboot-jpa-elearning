@@ -59,6 +59,12 @@ public class HomeController {
 		return "/login";
 	}
 	
+	//로그인페이지맵핑
+	@RequestMapping("/login?error")
+	public String loginerror() {
+		return "/loginerror";
+	}
+	
 	//로그인결과페이지맵핑
 	@RequestMapping("/login/result")
 	public String dispLoginResult() {

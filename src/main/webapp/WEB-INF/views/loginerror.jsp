@@ -10,57 +10,8 @@
 <title>LM company | Learning Machine | login</title>
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script type='text/javascript'>
-		function loginAjax() {
-			/*로그인하기*/
-					$.ajax({
-						url : "${pageContext.request.contextPath}/user/kakaoLogin",
-						type : "post",
-						data : $("form[name=kakaoForm]").serialize(),
-						dataType : "text",
-						success : function(result) {
-							$("form[name=kakaoForm]").attr("action", "/loginCheck");
-							if(result==0){
-		                      	$("form[name=kakaoForm]").submit();
-							}else if(result==1){
-								alert('닉네임이 중복입니다. 닉네임 수정으로 넘어갑니다')
-								$("form[name=kakaoForm]").attr("action", "/user/nickNameSignUpForm");
-		                      	$("form[name=kakaoForm]").submit();
-							}else if(result==2){
-		                      	$("form[name=kakaoForm]").submit();
-							}
-						},
-						error : function(err) {
-							alert("등록에 실패했습니다.");
-							location.href = "${pageContext.request.contextPath}/";
-						}
-					})
-			}////로그인하기
-		    
-	        function loginWithKakao() {
-	            // 로그인 창을 띄웁니다.
-	            Kakao.Auth.login({
-	              success: function(authObj) {
-	                  Kakao.API.request({
-	                    url: '/v1/user/me',
-	                    success: function(res) {
-	                    	persistAccessToken : false;
-	                         /*  alert(authObj.cookies) */
-	                       	  document.getElementById('kakaoToken').setAttribute('value',authObj.access_token);
-	                       	  document.getElementById('kakaoToken2').setAttribute('value',authObj.access_token);
-	                       	  document.getElementById('kakaoId').setAttribute('value',res.id);
-	                          document.getElementById('kakaoNickname').setAttribute('value',res.properties['nickname']);
-	                       	  document.getElementById('password').setAttribute('value','1234');
-	                          
-	                          loginAjax();
-	                        }
-	                      })
-	                    },
-	                  fail: function(error) {
-	                    alert(JSON.stringify(error));
-	                  }
-	            });
-	          };
-  
+	alert('로그인에 실패하였습니다. 다시 확인해주세요.')
+	location.replace = "${pageContext.request.contextPath}/login";
 </script>
 </head>
 
@@ -121,7 +72,7 @@
             <div class="clear pt-10">
             <!-- 회원가입 -->
               <div class="clear text-center pt-10">
-                <a class="btn btn-dark btn-lg btn-block no-border" href="${pageContext.request.contextPath}/signUpForm" data-bg-color="red" style="width:50%">Sign Up</a>
+                <a class="btn btn-dark btn-lg btn-block no-border" href="signUpForm" data-bg-color="red" style="width:50%">Sign Up</a>
               </div>
 	            <!-- 카카오2 -->
 	            <div class="clear pt-10">
@@ -152,7 +103,7 @@
   </div>
 </div>
 <script type="text/javascript">
-$('#loginBtn').on("click", function() {
+$('#loginBtn').on("submit", function() {
 	if($('#form_username_email').val()==''){
 		alert('Id(Email) 입력해주세요');
 		$('#form_username_email').focus();

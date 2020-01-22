@@ -123,10 +123,8 @@
 				success : function(result) {
 					$("form[name=form]").attr("action", "${pageContext.request.contextPath}/loginCheck");
 					if(result==0){
-						alert('이미가입된유저다 로그인하자이제')
                       	$("form[name=form]").submit();
 					}else if(result==2){
-						alert('신규라 회원가입성공, 로그인하자이제')
                       	$("form[name=form]").submit();
 					}
 				},
@@ -150,10 +148,8 @@ $(function(){
 					success : function(result) {
 						$("form[name=form]").attr("action", "${pageContext.request.contextPath}/loginCheck");
 						if(result==0){
-							alert('이미가입된유저다 로그인하자이제')
 	                      	$("form[name=form]").submit();
 						}else if(result==2){
-							alert('신규라 회원가입성공, 로그인하자이제')
 	                      	$("form[name=form]").submit();
 						}
 					},

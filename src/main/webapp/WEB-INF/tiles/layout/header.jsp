@@ -402,9 +402,7 @@ Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
 function checkStatus(){
 	 Kakao.Auth.getStatus(function(statusObj){
 		 if(statusObj.status=="not_connected"){
-			 alert('연결안되어잇음')
 		 }else {
-			 alert('연결되어잇음')
 			 klogout();
 		 }
 	 })
@@ -415,9 +413,7 @@ function klogout(){
 	Kakao.Auth.logout(function(data){
         alert(data)
         if(data==true){
-        	alert('로그아웃성공')
         }else if(data==false){
-        	alert('실패')
         }
     });
 	logoutSubmit()

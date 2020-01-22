@@ -11,8 +11,9 @@
 <!-- Page Title -->
 <title>LM company | Learning Machine | Admin SignUp</title>
 </head>
+
 <body class="">
-<!--  -->
+
 	<!-- Start main-content -->
 	<div class="main-content">
 		<!-- Section: inner-header -->
@@ -26,47 +27,54 @@
 						<div class="col-md-12">
 							<h2 class="title text-white">Forms</h2>
 							<ol class="breadcrumb text-left text-black mt-10">
-								<li><a href="#">관리자 추가등록</a></li>
-								<li class="active text-gray-silver">: 관리자를 추가등록할 수 있는 페이지입니다.</li>
+								<li><a href="#">Home</a></li>
+								<li><a href="#">Pages</a></li>
+								<li class="active text-gray-silver">Page Title</li>
 							</ol>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-<!--  -->
 
-        <section class="">
-            <div>
-                <div class="section-content">
-                    <div class="row" id="out">
-                    </div>
-                    <hr>
-						<form method="post" name="signUpForm" action="${pageContext.request.contextPath}/admin/user/signUp">
-							
-                        <div class="form-group">
-                            <label>아이디</label>
-                            <input type="text" class="form-control" placeholder="ex) Email타입으로 입력해주세요" name="userdbEmail">
-                            <input type="button" id="idCheck" value="아이디중복확인"> <span id="idResult">id중복 체크를 해주세요</span>
-                        </div>
-                        
-                        <div>
-	                        <div class="form-group">
-	                            <label>비밀번호</label>
-	                            <input type="password" class="form-control" placeholder="ex) Password" name="userdbPassword">
-	                        </div>
-	                        <div class="form-group">
-	                            <label>비밀번호 재입력</label>
-	                            <input type="password" class="form-control" placeholder="ex) Password 재입력" name="userdbPassword2">
-	                            <span id="passwordCheck"></span>
-	                        </div>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="heading-line-bottom">
+							<h4 class="heading-title">Don't have an Account? Register
+								Now</h4>
 						</div>
-	                        <div class="form-group">
-	                            <label>비밀번호 재입력</label>
-	                            <input type="text" class="form-control" placeholder="ex) 닉네임을 입력해주세요" name="userdbNickname">
-	                            <span id="nickCheck">닉네임을 입력해주세요</span>
-	                        </div>
-						
+						<form method="post" name="signUpForm" action="${pageContext.request.contextPath}/user/signUp">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" style="display: none">
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label>Id : Email Address</label> <input type="email"
+										class="form-control" name="userdbEmail"> <input
+										type="button" id="idCheck" value="아이디중복확인"> <span
+										id="idResult">id중복 체크를 해주세요</span> 
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label>Choose Password</label> <input type="password"
+										class="form-control" name="userdbPassword">
+								</div>
+								<div class="form-group col-md-6">
+									<label>Re-enter Password</label> <input type="password"
+										class="form-control" name="userdbPassword2"> <span
+										id="passwordCheck">비밀번호를 입력해주세요</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label>Nick Name</label> <input type="text"
+										class="form-control" name="userdbNickname"
+										placeholder="닉네임을 입력해주세요"> <span id="nickCheck">닉네임을
+										입력해주세요</span>
+								</div>
+							</div>
 							<div class="form-group">
 								<button type="button" class="btn btn-default" id="register" onClick="javascript:checkValid()">회원가입</button>
 							</div>
@@ -74,6 +82,7 @@
 						</form>
 					</div>
 				</div>
+			</div>
 		</section>
 	</div>
 		
@@ -201,7 +210,7 @@ function checkValid() {
 			dataType : "text",
 			success : function(result) {
 				if(result==1){
-					alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
+					alert('회원가입에 성공했습니다.');
 					location.href = "${pageContext.request.contextPath}/admin/user/all/keyword/1";
 				}
 			},

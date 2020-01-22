@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -49,28 +49,36 @@
             </div>
         </section>
 
-	<div class="container pt-80 pb-60">
-		<div class="section-content">
-			<div class="row">
-				<div class="col-md-12">
-				    <div class="media-content">
-      <h4><span style="color:#1dc078">Q.</span> <a href="/qna/questionForm">질문등록</a></h4>
-  
+   <div class="container pt-80 pb-60">
+      <div class="section-content">
+         <div class="row">
+            <div class="col-md-12">
+                <div class="media-content">
+                <div class="search-form">
+                                    <form method="post" action="${pageContext.request.contextPath}/qna/search/1">
+                                        <div class="input-group">
+                                            <input type="text" style="width: 150px; height: 35px;" placeholder="검색 내용 입력" name="keyword">
+                                            
+    <button style="height: 35px;" type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+    
+                                        </div>
+                                    </form>
+                                </div>
+  <h4><span style="color:#1dc078">Q.</span>질문목록</h4>
     </div>
-					<table class="table table-striped table-schedule">
-						<thead>
-							<tr class="bg-theme-colored">
-								<th style="color:white;">질문</th>
-								<th style="color:white;">연관 강의</th>
-								<th style="color:white;">제목<span style="font-size: 12px; color:gray">(상세 내용을 보려면 클릭하세요)</span></th>
-								<th style="color:white;">등록일</th>
-								<th style="color:white;">작성자</th>
-							</tr>
-						</thead>
-						<tbody>
-								<c:choose>
+               <table class="table table-striped table-schedule">
+                  <thead>
+                     <tr class="bg-theme-colored">
+                        <th colspan="2" style="color:white;">연관 강의</th>
+                        <th style="color:white;">제목<span style="font-size: 12px; color:gray">(상세 내용을 보려면 클릭하세요)</span></th>
+                        <th style="color:white;">등록일</th>
+                        <th style="color:white;">작성자</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                        <c:choose>
     <c:when test="${empty list}">
-	<tr>
+   <tr>
         <td colspan="5">
             <p align="center"><b><span style="font-size:9pt;">등록된 게시물이 없습니다.</span></b></p>
         </td>
@@ -80,28 +88,28 @@
     <c:forEach items = "${list }" var="question">
     <tr class="">
     
-    <th scope="row" style="width: 170px;"><img src="http://placehold.it/100x50"
-															alt=""></th>
-    <td style="width: 160px;">${question.onLecture.onLectureName }</td>
+    <th scope="row" style="width: 120px;"><img src="${pageContext.request.contextPath}/images/onLecture/${question.onLecture.onLectureNo}.png"
+                                                      style="width: 100px; height: 50px;" alt=""></th>
+    <td style="width: 250px;">${question.onLecture.onLectureName }</td>
     <td><strong style="font-size: 16px;"><a href="${pageContext.request.contextPath}/qna/read/${question.classQuestionNo }">${question.classQuestionTitle }</a></strong></td>
     
     <td> 
-    	<fmt:formatDate value="${question.classQuestionRegdate}"
+       <fmt:formatDate value="${question.classQuestionRegdate}"
                                                         pattern="yyyy. MM. dd"/>
     </td>
     <td style="width: 100px;">${question.userdb.userdbNickname }</td>
     
     </tr>
-    	
+       
     </c:forEach>
     </c:otherwise>
     </c:choose>
 
-						</tbody>
-					</table>
-				</div>
-			</div>
-			    <ul class="pagination">
+                  </tbody>
+               </table>
+            </div>
+         </div>
+             <ul class="pagination">
                                         <c:if test="${page.totalPages ne 0}">
                                         <c:choose>
                                             <c:when test="${page.hasPrevious() eq true}">
@@ -154,8 +162,8 @@
                                             </c:if>
                                         </li>
                                     </ul>
-		</div>
-	</div>
-	</div>
+      </div>
+   </div>
+   </div>
 </body>
 </html>
