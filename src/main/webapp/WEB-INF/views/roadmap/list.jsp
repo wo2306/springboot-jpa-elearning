@@ -57,7 +57,7 @@
                         </div>
                       </div>
                       <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">${list.roadmapName}</h5></a>
+                        <a href="detail/${list.roadmapName}"><h5 class="product-title">${list.roadmapName}</h5></a>
                         <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 67%;">3.50</span></div>
                         <div class="price"><ins><span class="amount"><fmt:formatNumber value="${list.roadmapPrice}" pattern="₩#,###"/></span></ins></div>
                       </div>
@@ -67,72 +67,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-3">
-              <div class="sidebar sidebar-right mt-sm-30">
-                <div class="widget">
-                  <h5 class="widget-title line-bottom">Search box</h5>
-                  <div class="search-form">
-                    <form>
-                      <div class="input-group">
-                        <input type="text" placeholder="Click to Search" class="form-control search-input">
-                        <span class="input-group-btn">
-                        <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
-                        </span>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div class="widget">
-                  <h5 class="widget-title line-bottom">Categories</h5>
-                  <div class="categories">
-                    <ul class="list list-border angle-double-right">
-                      <li><a href="#">Creative<span>(19)</span></a></li>
-                      <li><a href="#">Portfolio<span>(21)</span></a></li>
-                      <li><a href="#">Fitness<span>(15)</span></a></li>
-                      <li><a href="#">Gym<span>(35)</span></a></li>
-                      <li><a href="#">Personal<span>(16)</span></a></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="widget">
-                  <h5 class="widget-title line-bottom">Top Sellers</h5>
-                  <div class="top-sellers">
-                    <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="#"><img src="http://placehold.it/85x85" alt=""></a>
-                      <div class="post-right">
-                        <h5 class="post-title font-weight-600 mt-0 mb-0"><a href="#">Brake Disk</a></h5>
-                        <div class="product-detail">
-                          <div class="price mb-10"><ins><span class="amount">$480.00</span></ins></div>
-                          <div title="Rated 3.50 out of 5" class="star-rating ml-0"><span style="width: 60%;">3.50</span></div>
-                        </div>
-                      </div>
-                    </article>
-                    <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="#"><img src="http://placehold.it/85x85" alt=""></a>
-                      <div class="post-right">
-                        <h5 class="post-title font-weight-600 mt-0 mb-0"><a href="#">Brake Disk</a></h5>
-                        <div class="product-detail">
-                          <div class="price mb-10"><ins><span class="amount">$480.00</span></ins></div>
-                          <div title="Rated 3.50 out of 5" class="star-rating ml-0"><span style="width: 60%;">3.50</span></div>
-                        </div>
-                      </div>
-                    </article>
-                    <article class="post media-post clearfix pb-0 mb-10">
-                      <a class="post-thumb" href="#"><img src="http://placehold.it/85x85" alt=""></a>
-                      <div class="post-right">
-                        <h5 class="post-title font-weight-600 mt-0 mb-0"><a href="#">Brake Disk</a></h5>
-                        <div class="product-detail">
-                          <div class="price mb-10"><ins><span class="amount">$480.00</span></ins></div>
-                          <div title="Rated 3.50 out of 5" class="star-rating ml-0"><span style="width: 60%;">3.50</span></div>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                </div>
-               </div>
-              </div>
-            </div>
-            </div>
+          </div>
+      </div>
       </div>
     </section>
   </div>

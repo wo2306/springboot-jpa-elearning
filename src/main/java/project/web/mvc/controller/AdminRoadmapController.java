@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.web.mvc.domain.OnLecture;
@@ -94,4 +95,14 @@ public class AdminRoadmapController {
 	        model.addAttribute("page", page);
 	        return "admin/roadmap/onLectureList";
 	    }
+	 
+	//강의 추가하기
+		@RequestMapping("/onLectureAdd")
+		@ResponseBody
+		public OnLecture onLectureAdd(Long onLectureNo) {
+			System.out.println(onLectureNo);
+			OnLecture onLecture = onLectureService.selectOnLectureById(onLectureNo);
+			System.out.println(onLectureService.selectOnLectureById(onLectureNo));
+			return onLecture;
+		}
 }

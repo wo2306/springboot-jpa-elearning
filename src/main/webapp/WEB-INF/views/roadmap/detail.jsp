@@ -160,7 +160,7 @@
                         <img alt="" src="${pageContext.request.contextPath}/images/onLecture/${roadmap.onLecture.onLectureNo}.png" class="img-responsive img-fullwidth">
                       </div>
                       <div class="product-details text-center">
-                        <a href="#"><h5 class="product-title">${roadmap.onLecture.onLectureName}</h5></a>
+                        <a href="/onLecture/detail/${roadmap.onLecture.onLectureNo}"><h5 class="product-title">${roadmap.onLecture.onLectureName}</h5></a>
                         <div class="star-rating" title="Rated 3.50 out of 5"><span style="width: 80%;">3.50</span></div>
                         <div class="price"><ins><span class="amount"><fmt:formatNumber value="${roadmap.onLecture.onLecturePrice}" pattern="₩#,###"/></span></ins></div>
                       </div>

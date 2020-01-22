@@ -25,7 +25,6 @@ $(function(){
 		 $(".onLecture-no").each(function(index,items){
 			 list.push(items.innerHTML); 
 		 })
-		 alert("onLectureNo= "+list);
 		$(".onLectureNo").val(list);
 	})
 	
@@ -84,7 +83,7 @@ $(function(){
                           <td><input type="hidden" class="onLectureNo" name="list"></td>
                         </tr>                        
                         <tr>
-                          <td><button type="submit" class="btn btn-default" id="update" value="${roadmap.roadmapName}">수정</button></td>
+                          <td><button type="submit" class="btn btn-dark" id="update" value="${roadmap.roadmapName}">수정</button></td>
                         </tr>
                       </tbody>
                     </table>

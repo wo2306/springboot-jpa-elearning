@@ -73,17 +73,4 @@ public class RoadmapController {
 		model.addAttribute("roadmap",roadmap);
 		return "roadmap/detail";
 	}
-
-
-	//강의 추가하기
-	@RequestMapping("/onLectureAdd")
-	@ResponseBody
-	public OnLecture onLectureAdd(Long onLectureNo) {
-		System.out.println(onLectureNo);
-		OnLecture onLecture = onLectureService.selectOnLectureById(onLectureNo);
-		System.out.println(onLectureService.selectOnLectureById(onLectureNo));
-		return onLecture;
-	}
-
-
 }

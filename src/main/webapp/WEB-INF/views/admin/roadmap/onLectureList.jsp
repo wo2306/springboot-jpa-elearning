@@ -24,7 +24,7 @@
 			//로드맵 등록시 온라인강의 추가
 			$.ajax({
 				type:"POST",
-				url:"${pageContext.request.contextPath}/roadmap/onLectureAdd",				
+				url:"${pageContext.request.contextPath}/admin/roadmap/onLectureAdd",				
 				data:"${_csrf.parameterName}=${_csrf.token}&onLectureNo="+onLectureNo,
 				dataType:"json",
 				success:function(result){						
