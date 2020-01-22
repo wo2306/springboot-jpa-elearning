@@ -35,33 +35,19 @@ public class AdminRoadmapController {
 		return new ModelAndView("admin/roadmap/list","roadmapList", list);
 	}
 	
-//	@RequestMapping("/onLectureList/{command}/{keyword}/{pageNum}")
-//	public String onLectureList(Model model, @PathVariable int pageNum) {
-//		List<OnLecture> list = new ArrayList<>();
-//		Page<OnLecture> page =onLectureService.selectAll(pageNum);
-//		page.iterator().forEachRemaining(list::add);
-//		model.addAttribute("list", list);
-//		model.addAttribute("page", page);
-//		return "admin/roadmap/onLectureList";
-//	}
-	
 	@RequestMapping("/insert")
 	public String roadmapInsert(@RequestParam List<Long> list, Roadmap roadmap) {
-		System.out.println(list.size()+"리스트받기~!!");
 		service.insert(list, roadmap);
 		return "redirect:/admin/roadmap";
 	}
 	@RequestMapping("/update/{roadmapName}")
 	public String roadmapUpdate(@PathVariable String roadmapName, @RequestParam List<Long> list, Roadmap roadmap) {
-		//System.out.println(list.size()+"@@@@@@리스트 사이즈 확인@@@@@");
-		//System.out.println(roadmapName +"로드맵 제목!!!!");
 		service.update(roadmapName ,list, roadmap);
 		return "redirect:/admin/roadmap";
 	}
 	
 	@RequestMapping("/delete/{roadmapName}")
 	public String roadmapDelete(@PathVariable String roadmapName) {
-		System.out.println(roadmapName+"controller!!");
 		service.delete(roadmapName);
 		return "redirect:/admin/roadmap";
 		
@@ -100,7 +86,6 @@ public class AdminRoadmapController {
 		@RequestMapping("/onLectureAdd")
 		@ResponseBody
 		public OnLecture onLectureAdd(Long onLectureNo) {
-			System.out.println(onLectureNo);
 			OnLecture onLecture = onLectureService.selectOnLectureById(onLectureNo);
 			System.out.println(onLectureService.selectOnLectureById(onLectureNo));
 			return onLecture;

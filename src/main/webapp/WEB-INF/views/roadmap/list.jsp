@@ -17,7 +17,7 @@
   <!-- Start main-content -->
   <div class="main-content">
 
-    <!-- Section: inner-header -->
+    <!-- 로드맵 리스트 -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="${pageContext.request.contextPath}/images/banner/roadmap.jpg">>
       <div class="container pt-70 pb-20">
         <!-- Section Content -->

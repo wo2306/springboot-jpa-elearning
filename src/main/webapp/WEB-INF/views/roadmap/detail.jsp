@@ -18,7 +18,7 @@
   <!-- Start main-content -->
   <div class="main-content">
 
-    <!-- Section: inner-header -->
+    <!-- 로드맵 상세보기 -->
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
       <div class="container pt-70 pb-20">
         <!-- Section Content -->
