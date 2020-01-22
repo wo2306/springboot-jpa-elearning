@@ -54,7 +54,6 @@
 										class="form-control" name="userdbEmail"> <input
 										type="button" id="idCheck" value="아이디중복확인"> <span
 										id="idResult">id중복 체크를 해주세요</span> 
-										<span id="emailResult">email 타입으로 입력해주세요</span>
 								</div>
 							</div>
 							<div class="row">
@@ -89,55 +88,64 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
-
+			//0: 유효성검사 실패, 1: 유효성검사 성공
+			var status;
+		if(status==0){
+			$('#register').attr("disabled", true);
+		}else if(status==1){
+			$('#register').attr("disabled", false);
+		}
+		var idstatus;
 			/*
 				email 키업시 일어나는 이벤트
 				1. id중복체크 알람
 				2. 이메일타입 유효성체크
 			*/
 			$('[name=userdbEmail]').keyup(function () {
-				$('#register').attr("disabled", true);
+			//0: 유효성검사 실패, 1: 유효성검사 성공, 2:빈칸
 				$('#idResult').text('id중복 체크를 해주세요');
 				var email = $(this).val();
 				var exptext = /^[_a-zA-Z0-9]+([-+.][_a-zA-Z0-9]+)*@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/i;
-
-					if(exptext.test(email)==false){
-						$('#emailResult').show();
-						$('#emailResult').text('email 타입으로 적어줘');
-						$('#idCheck').attr("disabled", true);
-					}
-					if(exptext.test(email)==true){
-						$('#emailResult').hide();
-						$('#idCheck').attr("disabled", false);
-					}
+				if(exptext.test(email)==false) idstatus=0;
+				if(exptext.test(email)==true) idstatus=1;
 			});/////////키업시일어나는 이벤트
 			
 			/*아이디 중복체크*/
 			$('#idCheck').click(function() {
-				
-				$.ajax({
-					url : "${pageContext.request.contextPath}/user/idCheck",
-					type : "post",
-					data : $("form[name=signUpForm]").serialize(),
-					dataType : "text",
-					success : function(result) {
-							//0=중복, 1=사용가능
-						if (result==0) {
-							alert('이미 사용중인 이메일입니다.');
-							$('#register').attr("disabled", true);
-							$('#idResult').text('id중복 체크를 해주세요');
-						} else if(result==1){
-							alert('사용가능합니다.');
-							$('#register').attr("disabled", false);
-							$('#idCheck').attr("disabled", false);
-							$('#idResult').text('사용가능한 id입니다');
+				if(idstatus==0){
+					alert('Email타입으로 입력해주세요')
+				$('#idResult').text('id중복 체크를 해주세요')	
+				}
+				if($('[name=userdbEmail]').val()==''){
+				alert('Email을 입력해주세요')
+				$('#idResult').text('id중복 체크를 해주세요')	
+				}if(idstatus==1){
+						
+					$.ajax({
+						url : "${pageContext.request.contextPath}/user/idCheck",
+						type : "post",
+						data : $("form[name=signUpForm]").serialize(),
+						dataType : "text",
+						success : function(result) {
+								//0=중복, 1=사용가능
+							if (result==0) {
+								alert('이미 사용중인 이메일입니다.');
+								$('#register').attr("disabled", true);
+								$('#idResult').text('id중복 체크를 해주세요');
+							} else if(result==1){
+								alert('사용가능합니다.');
+								$('#register').attr("disabled", false);
+								$('#idCheck').attr("disabled", false);
+								$('#idResult').text('사용가능한 id입니다');
+							}
+						},
+						error : function(err) {
+							alert("err : " + err);
 						}
-					},
-					error : function(err) {
-						alert("err : " + err);
-					}
-				})
+					})
+					
+				}
+					
 			});///아이디 중복체크
 			
 			/*password 유호성체크 체크*/
@@ -210,7 +218,6 @@ function checkValid() {
 			data : $("form[name=signUpForm]").serialize(),
 			dataType : "text",
 			success : function(result) {
-				alert(result);
 				if(result==1){
 					alert('회원가입에 성공했습니다. 로그인 페이지로 이동합니다.');
 					location.href = "${pageContext.request.contextPath}/login";
@@ -249,9 +256,8 @@ function sign() {
 })
 
 
+
 	</script>
-
-
 
 </body>
 </html>

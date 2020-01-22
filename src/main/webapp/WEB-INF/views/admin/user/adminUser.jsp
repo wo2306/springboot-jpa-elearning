@@ -23,26 +23,19 @@ $(document).ready(function(){
     	   $('form[name=searchForm]').attr('type','submit')
        location.href = '${pageContext.request.contextPath}/admin/user/' + command + '/' + keyword + '/1';
        return false;
-    /* 	   $('form[name=searchForm]').attr('action','submit')
-        return true;
-    	   
-     */
 	})
-         function searchform() {
-       	  alert(2222);
-             var keyfield = $("#key option:selected").val();
-             var keyword = $("#keyword").val();
-             location.href = '${pageContext.request.contextPath}/admin/user/search/' + keyfield + '/' + keyword + '/1';
-             return false;
-         }
-	
+    function searchform() {
+        var keyfield = $("#key option:selected").val();
+        var keyword = $("#keyword").val();
+        location.href = '${pageContext.request.contextPath}/admin/user/search/' + keyfield + '/' + keyword + '/1';
+        return false;
+    }
 
 	$('form[name=form]').on('submit', function () {
 		if(confirm('정말 삭제하시겠습니까?')) return true;			
 		else{
 			alert('회원 삭제가 취소되었습니다.')
 			return false;
-			
 		}
 	})
 })
@@ -61,14 +54,11 @@ $(document).ready(function(){
     <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="http://placehold.it/1920x1280">
       <div class="container pt-70 pb-20">
         <!-- Section Content -->
-            
-              <ol class="breadcrumb text-left text-black mt-10">
-	                
+          <ol class="breadcrumb text-left text-black mt-10">
            <!-- Page Heading -->
-          <a class="h3 mb-2 text-gray-800" href="${pageContext.request.contextPath}/admin/user/all/keword/1">회원 관리 페이지</a>
-          <p class="mb-4">
-          	회원삭제 사용시엔 다시 한 번 유의깊게 생각해주세요. 회원 수정은 닉네임만 변경 가능합니다. 권한은 0=Admin, 1=Member, 2=KaKao입니다.</br>
-            
+	          <a class="h3 mb-2 text-gray-800" href="${pageContext.request.contextPath}/admin/user/all/keword/1">회원 관리 페이지</a>
+	          <p class="mb-4">
+          		회원삭제 사용시엔 다시 한 번 유의깊게 생각해주세요. 회원 수정은 닉네임만 변경 가능합니다. 권한은 0=Admin, 1=Member, 2=KaKao입니다.</br>
 	           <!-- Topbar Search -->
                  <li>
                      <form name="searchForm" method="get">
@@ -89,9 +79,9 @@ $(document).ready(function(){
                          </div>
                      </form>
                  </li>      
-              </ol>
+           </ol>
       </div>
-    </section>
+   </section>
 
     <!-- Section: About -->
     <section class="">
@@ -119,16 +109,6 @@ $(document).ready(function(){
                       <th width="200px">삭제</th>
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>회원 Email</th>
-                      <th>회원 닉네임</th>
-                      <th>회원 가입일</th>
-                      <th>권한</th>
-                      <th>수정</th>
-                      <th>삭제</th>
-                    </tr>
-                  </tfoot>
                   <tbody>
                     <c:forEach items="${requestScope.list}" var="list">
                        <tr class="odd">
@@ -151,10 +131,6 @@ $(document).ready(function(){
         </div>
         </div>
         <!-- /.container-fluid -->
-		          
-		          
-		          
-		          <!--  -->
 		          <!-- 페이징처리 -->
                         <div class="container" id="in">
                             <div class="row">
@@ -210,6 +186,7 @@ $(document).ready(function(){
                                                 </c:otherwise>
                                             </c:choose>
                                             </c:if>
+                                            </ul>
               </div>
            </div>
         </div>

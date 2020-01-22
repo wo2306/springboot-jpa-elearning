@@ -47,6 +47,10 @@
         <put-attribute name="body" value="/WEB-INF/views/signUpForm.jsp" />
     </definition>
     
+    <definition name="loginerror" extends="main-layout">
+        <put-attribute name="body" value="/WEB-INF/views/loginerror.jsp" />
+    </definition>
+    
     <definition name="*/*" extends="main-layout">
         <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
     </definition> 

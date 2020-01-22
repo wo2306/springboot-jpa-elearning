@@ -8,40 +8,39 @@
 <head>
 <script type="text/javascript">
 $(function(){
-	$("#onlecturebtn").click(function(){
-		window.open("${pageContext.request.contextPath}/admin/roadmap/onLectureList/1", "PopupWin", "width=1000,height=1000")
-	})// click end	
-	
-	//추가한  강의 삭제
-	$(document).on("click","#btn",function(){
-	
-		$(this).closest("tr").remove();
-		
-	})//강의 삭제 이벤트 끝
-	
-	//수정버튼 클릭시
-	$(document).on("click","#update", function(){
-		var list =[]; 
-		 $(".onLecture-no").each(function(index,items){
-			 list.push(items.innerHTML); 
-		 })
-		 alert("onLectureNo= "+list);
-		$(".onLectureNo").val(list);
-	})
-	
+   $("#onlecturebtn").click(function(){
+      window.open("${pageContext.request.contextPath}/admin/roadmap/all/keyword/1", "PopupWin", "width=1500,height=1000")
+   })// click end   
+   
+   //추가한  강의 삭제
+   $(document).on("click","#btn",function(){
+   
+      $(this).closest("tr").remove();
+      
+   })//강의 삭제 이벤트 끝
+   
+   //수정버튼 클릭시
+   $(document).on("click","#update", function(){
+      var list =[]; 
+       $(".onLecture-no").each(function(index,items){
+          list.push(items.innerHTML); 
+       })
+      $(".onLectureNo").val(list);
+   })
+   
 })
-//////////////////////////////////////////////////////////////////////////////	    
-	    
-	    //강의 추가하기
-	    function addOnLecture(data){
-		var result = data
-		$("#addOnLecture").append(result)
-		//alert(result+"결과값");
-		$.each(result,function(index,row){
-			//alert($(row).html());
-		})	
-	}
-	
+//////////////////////////////////////////////////////////////////////////////       
+       
+       //강의 추가하기
+       function addOnLecture(data){
+      var result = data
+      $("#addOnLecture").append(result)
+      //alert(result+"결과값");
+      $.each(result,function(index,row){
+         //alert($(row).html());
+      })   
+   }
+   
 </script>
 </head>
 <body class="">
@@ -49,8 +48,8 @@ $(function(){
 
   <!-- Start main-content -->
   <div class="main-content">
-	<div class="row">       
-	<br>
+   <div class="row">       
+   <br>
     </div>    
     <section>
       <div class="container">
@@ -84,7 +83,7 @@ $(function(){
                           <td><input type="hidden" class="onLectureNo" name="list"></td>
                         </tr>                        
                         <tr>
-                          <td><button type="submit" class="btn btn-default" id="update" value="${roadmap.roadmapName}">수정</button></td>
+                          <td><button type="submit" class="btn btn-dark" id="update" value="${roadmap.roadmapName}">수정</button></td>
                         </tr>
                       </tbody>
                     </table>
@@ -100,17 +99,17 @@ $(function(){
                     </tr>
                   </thead>
                   <tbody  id="addOnLectureTable">
-					<c:forEach items="${list}" var="roadmap">
-					 <tr class="onLecture_item">
-					 <td class='onLecture-remove'><button type='button' class='btn' id="btn">취소</button></td>
+               <c:forEach items="${list}" var="roadmap">
+                <tr class="onLecture_item">
+                <td class='onLecture-remove'><button type='button' class='btn' id="btn">취소</button></td>
                       <td class="onLecture-no" id="${roadmap.onLecture.onLectureNo}">${roadmap.onLecture.onLectureNo}</td>
                       <td class="onLecture-name"><a href="#">${roadmap.onLecture.onLectureName}</a></td>
                       <td class="onLecture-content"><span class="content">${roadmap.onLecture.onLectureContent}</span></td>
-        			  <td class="onLecture-teacher"><span class="teacher">${roadmap.onLecture.onLectureTeacher}</span></td>
+                   <td class="onLecture-teacher"><span class="teacher">${roadmap.onLecture.onLectureTeacher}</span></td>
                       <td class="onLecture-price"><span class="price">${roadmap.onLecture.onLecturePrice}</span>
                       </td>
                     </tr>
-					</c:forEach>
+               </c:forEach>
                    </tbody>
                     <tr class="onLecture_item">
                       <td colspan="6"><div class="onlecture">

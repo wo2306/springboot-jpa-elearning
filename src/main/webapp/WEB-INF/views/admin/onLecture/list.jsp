@@ -58,44 +58,62 @@
             </div>
         </section>
 
-        <!-- Section: About -->
-        <section class="">
-            <div class="container">
-                <div class="section-content">
-                    <div class="row" id="out">
-                        <table class="table table-bordered" id="dataTable2" width="100%"
-                               cellspacing="0">
+     <!-- Section: About -->
+	    <section class="">
+	      <div class="container">
+	        <div class="section-content">
+	          <div class="row">
+			          
+	          <!-- DataTales Example -->
+	          <div class="card shadow mb-4">
+	            <div class="card-header py-3">
+	              <h6 class="m-0 font-weight-bold text-primary">회원 가입 리스트</h6>
+	            </div>
+	            <div class="card-body" >
+	              <div class="table-responsive" >
+                       <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                         <thead>
                             <tr>
-                                <th>강의번호</th>
-                                <th>카테고리</th>
-                                <th>강사명</th>
-                                <th>이름</th>
-                                <th>등록일</th>
-                                <th colspan="2">기능</th>
+		                      <th width="200px">강의번호</th>
+		                      <th width="200px">카테고리</th>
+		                      <th width="200px">강사명</th>
+		                      <th width="500px">이름</th>
+		                      <th width="200px">등록일</th>
+		                      <th width="200px">수정</th>
+		                      <th width="200px">삭제</th>
                             </tr>
+                         </thead>
+                         <tbody>
                             <c:forEach items="${requestScope.list}" var="list">
-                                <tr>
-                                    <td>${list.onLectureNo}</td>
-                                    <td>${list.onLectureCategory}</td>
-                                    <td>${list.onLectureTeacher}</td>
-                                    <td>${list.onLectureName}</td>
+                                <tr class="odd">
+                                    <td class="sorting_1">${list.onLectureNo}</td>
+                                    <td class="sorting_1">${list.onLectureCategory}</td>
+                                    <td class="sorting_1">${list.onLectureTeacher}</td>
+                                    <td class="sorting_1">${list.onLectureName}</td>
                                     <td><fmt:formatDate value="${list.onLectureRegdate}"
                                                         pattern="yyyy.MM.dd hh:mm"/></td>
                                     <input type=hidden name="offLectureNo" value="${list.onLectureNo}">
                                     <td>
-                                        <button type="button" name="updateBtn" class="btn btn-dark"
-                                                value="${list.onLectureNo}">수정
+                                        <button type="button" name="updateBtn" class="btn btn-info btn-circle"
+                                                value="${list.onLectureNo}"><i class="fas fa-info-circle"></i>
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" name="deleteBtn" class="btn btn-dark"
-                                                value="${list.onLectureNo}">삭제
+                                        <button type="button" name="deleteBtn" class="btn btn-danger btn-circle"
+                                                value="${list.onLectureNo}"><i class="fas fa-trash"></i>
                                         </button>
                                     </td>
                                 </tr>
                             </c:forEach>
-                        </table>
-                        
+                         </tbody>
+                      </table>
+                   </div>
+	           </div>
+	         </div>
+	       </div>
+       </div>
+      </div> 
+     </section>
                         <div class="container" id="in">
                             <div class="row">
                                 <div class="col" id="inin">
@@ -152,18 +170,13 @@
                                             </c:if>
                                         </li>
                                     </ul>
-                                    <a href="${pageContext.request.contextPath}/callback/video" class="btn btn-success btn-icon-split">
-                                    <span class="icon text-white-50"><i class="fas fa-check"></i></span>
-                    					<span class="text text-white">새로운 강의 등록하기</span></a>
+                                    <a href="${pageContext.request.contextPath}/callback/video" class="btn btn-light btn-icon-split">
+                                    <span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span>
+                    					<span class="text">새로운 강의 등록하기</span></a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
+       
 <script>
     function searchform() {
         var keyfield = $("#key option:selected").val();

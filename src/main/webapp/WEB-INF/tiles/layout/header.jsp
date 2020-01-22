@@ -53,24 +53,27 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
 
     <!-- external javascripts -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.masonry.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/custom.js"></script>
+    <script src="${pageContext.request.contextPath}/js/flipbox.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <!-- JS | jquery plugin collection for this theme -->
     <script src="${pageContext.request.contextPath}/js/jquery-plugin-collection.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script type="text/javascript">
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
-        function logout() {
-            document.getElementById("logoutFrm").submit();
-        }
-    </script>
+
     <style>
        * {
             font-family: 'Noto Sans KR', sans-serif;
         }
     </style>
+    <script type="text/javascript">
+// 사용할 앱의 JavaScript 키를 설정해 주세요.
+    function logout() {
+        document.getElementById("logoutFrm").submit();
+    }
+</script>
 </head>
 
 <body>
@@ -110,7 +113,7 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                        <sec:authorize ifAnyGranted="MEMBER,ADMIN">
                       	 <sec:authentication var="user" property="principal"/>
                           <ul class="list-inline font-13 sm-text-center mt-5">
-                                <li><a class="text-white" href="javascript:logout();">Logout</a></li>
+                                <li><a class="text-white" href="javascript:logout()">Logout</a></li>
                                 <li class="text-white">|</li>
                                 <li class="text-white">${user.userdbNickname}님 </li>
                                 <form id="logoutFrm" action="${pageContext.request.contextPath}/logout" method="post" style="display:none">
@@ -262,10 +265,10 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
                 <ul class="pull-right flip hidden-sm hidden-xs">
                     <li>
                         <!-- Modal: Book Now Starts -->
-                        <a class="btn btn-colored btn-flat bg-theme-colored-transparent text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"
+                        <a class="btn btn-colored btn-flat bg-theme-colored-transparent text-white font-14 mt-0 p-25 pr-15 pl-15"
                            onclick="myLecture()" id="myLecture">내 강의실</a>
-                        <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"
-                           data-toggle="modal" data-target="#BSParentModal" onclick="myPage()" id="myPage">마이 페이지</a>
+                        <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 mt-0 p-25 pr-15 pl-15"
+                           onclick="myPage()" id="myPage">마이 페이지</a>
 
                         <!-- Modal: Book Now End -->
                     </li>
@@ -397,21 +400,12 @@ e-learning, code, coding, java, javascript, spring, 인터넷강의, 코딩, 코
 //카카오 로그아웃
 Kakao.init('5ffb824695870cc524f35aa0dc3e2323');
 function checkStatus(){
-	alert('0')
-	deleteCookie('_kawlt');
-	alert('1')
-	//getCookie(변수이름)
-
 	 Kakao.Auth.getStatus(function(statusObj){
 		 if(statusObj.status=="not_connected"){
-			 alert('연결안되어잇음')
 		 }else {
-			 alert('연결되어잇음')
 			 klogout();
 		 }
 	 })
-
-	 alert('로그아웃한다!? 우리페이지??')
 		$("form[name=logoutFrm]").submit();
 }
 
@@ -419,25 +413,12 @@ function klogout(){
 	Kakao.Auth.logout(function(data){
         alert(data)
         if(data==true){
-        	alert('로그아웃성공')
         }else if(data==false){
-        	alert('실패')
         }
     });
 	logoutSubmit()
 }
 
-
-function deleteCookie( cookieName )
-{
- var expireDate = new Date();
- 
- //어제 날짜를 쿠키 소멸 날짜로 설정한다.
- expireDate.setDate( expireDate.getDate() - 1 );
- document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString() + "; path=/";
-}
-
 </script>
-<script src="${pageContext.request.contextPath}/js/custom.js"></script>
 </body>
 </html>

@@ -31,30 +31,30 @@
                                     <div class="row">
                                        <div class="col-sm-12">
                                           <div class="form-group">
-                                          <label>Email</label>
+                                          <label>이메일</label>
                                              <input type="text" name="userdbEmail" value=${item.userdbEmail}
                                                 name="userdbEmail" readonly="readonly" class="form-control">
                                           </div>
                                        </div>
                                        <div class="col-sm-12">
                                           <div class="form-group">
-                                          <label>Password</label>
+                                          <label>패스워드</label>
                                              <input type="password" name="Password" value=${item.userdbPassword}
                                                 name="userdbPassword" readonly="readonly" class="form-control">
                                           </div>
                                        </div>
                                        <div class="col-sm-12">
                                           <div class="form-group">
-                                          <label>Nickname</label>
+                                          <label>닉네임</label>
                                              <input type="text" name="userdbNickname" value=${item.userdbNickname}
                                                 name="userdbNickname" required="" class="form-control">
                                           </div>
                                        </div>
                                        <div class="col-sm-12">
                                           <div class="form-group">
-                                          <label>Authority</label>
-                                             <input type="text" name="authority" value=${item.authority}
-                                                name="userdbauthority" readonly="readonly" class="form-control">
+                                          <label>가입일</label>
+                                             <input type="text" name="authority" value=${item.regDate}
+                                                name="userdbauthority" class="form-control">
                                           </div>
                                        </div>
                                     </div>

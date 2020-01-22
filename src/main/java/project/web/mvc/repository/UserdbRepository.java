@@ -17,10 +17,7 @@ public interface UserdbRepository extends PagingAndSortingRepository<Userdb, Lon
 	List<Userdb> findByUserdbNickname(String userdbNickname);
 	 @Query("select u from Userdb u where u.userdbEmail LIKE CONCAT('%',:keyword,'%') or u.userdbNickname LIKE CONCAT('%',:keyword,'%')")
 	Page<Userdb> findByKeyword(@Param("keyword") String keyword, Pageable pageable);
-	
 	Page<Userdb> findByUserdbEmailContainingIgnoreCase(String userdbEmail,Pageable pageable);
 	Page<Userdb> findByUserdbNicknameContainingIgnoreCase(String userdbNickname,Pageable pageable);
-	Page<Userdb> findByUserdbNoContainingIgnoreCase(Long userdbNo,Pageable pageable);
-//	Page<Userdb> findAllByKeyword(@Param("keyword") String keyword,Pageable pageable);
 
 }

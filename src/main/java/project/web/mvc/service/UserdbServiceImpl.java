@@ -122,32 +122,24 @@ public class UserdbServiceImpl implements UserdbService {
 		user.setUserdbNickname(userdb.getUserdbNickname());
 	}
 
-	//키워드찾기?
+	//키워드찾기
+	//All
 	@Override
 	public Page<Userdb> selectByKeyword(String keyword, int pageNum) {
 		return userdbRepository.findByKeyword(keyword, PageRequest.of(pageNum - 1, 9));
 	}
-
+	
+	//userdbEmail 키워드찾기
 	@Override
 	public Page<Userdb> selectAllByUserdbEmail(String userdbEmail, int pageNum) {
 		return userdbRepository.findByUserdbEmailContainingIgnoreCase(userdbEmail, PageRequest.of(pageNum-1, 9));
 	}
 
+	//userdbNickname 키워드찾기
 	@Override
 	public Page<Userdb> selectAllByUserdbNickname(String userdbNickname, int pageNum) {
 		return userdbRepository.findByUserdbNicknameContainingIgnoreCase(userdbNickname, PageRequest.of(pageNum-1, 9));
 	}
-
-	@Override
-	public Page<Userdb> selectAllByUserdbNo(String userdbNo, int pageNum) {
-		return userdbRepository.findByUserdbNoContainingIgnoreCase(Long.parseLong(userdbNo), PageRequest.of(pageNum-1, 9));
-	}
-
-//	@Override
-//	public Page<Userdb> selectAllByKeyword(String keyword, int pageNum) {
-//		return userdbRepository.findAllByKeyword(keyword, PageRequest.of(pageNum-1, 9));
-//	}
-
 
 
 
