@@ -206,7 +206,8 @@
 	});
 
     $("button[name='deleteBtn']").on('click', function () {
-    	if(confirm("선택된 리뷰를 정말로 삭제하시겠습니까?")){
+    	
+    	if(confirm("선택된 질문을 정말로 삭제하시겠습니까?")){
         location.href = '${pageContext.request.contextPath}/admin/qna/questionDelete/'+$(this).val();
     		}
     })

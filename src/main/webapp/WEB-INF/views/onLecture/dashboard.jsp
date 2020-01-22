@@ -126,7 +126,49 @@
                                 </div>
                             </div>
                         </div>
+                        <c:choose>
+                                <c:when test="${empty reviewList }">
+                                </c:when>
+                                <c:otherwise>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div class="tab-pane fade in active" id="small2">
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <td
+                                                            class="text-center font-16 font-weight-600 bg-theme-color-2 text-white"
+                                                            colspan="3">리뷰 리스트
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>작성자</th>
+                                                    <th>평점</th>
+                                                    <th>내용</th>
+                                                </tr>
+                                                <tbody>
+                                                <c:forEach items="${reviewList}" var="review">
+                                                    <tr>
+                                                        <td>${review.userdb.userdbNickname }</td>
+                                                        <td><c:forEach var="i" begin="1"
+                                                                       end="${review.reviewScore }">
+																		<span class="fa-hover"><i
+                                                                                class="fa fa-star"></i>
+																		</span>
+                                                        </c:forEach> <c:forEach var="i" begin="${review.reviewScore }"
+                                                                                end="4">
+                                                            <span class="fa-hover"><i class="fa fa-star-o"></i></span>
+                                                        </c:forEach></td>
+                                                        <td>${review.reviewContent }</td>
+                                                    </tr>
+                                                </c:forEach>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                     </div>
+                    
                     <div class="col-sm-12 col-md-4">
                         <div class="sidebar sidebar-left mt-sm-30 ml-40">
                             <div class="widget">

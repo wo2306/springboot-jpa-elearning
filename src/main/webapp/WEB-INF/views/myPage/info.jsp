@@ -11,31 +11,30 @@
 </head>
 
 <body class="">
-	<div id="wrapper" class="clearfix">
-		<!-- preloader -->
-		<!-- Start main-content -->
-		<div class="main-content">
 
-			<!-- Section: inner-header -->
-			<section
-				class="inner-header divider parallax layer-overlay overlay-dark-5"
-				data-bg-img="http://placehold.it/1920x1280">
-				<div class="container pt-70 pb-20">
-					<!-- Section Content -->
-					<div class="section-content">
-						<div class="row">
-							<div class="col-md-12">
-								<h2 class="title text-white">마이 페이지</h2>
-								<ol class="breadcrumb text-left text-black mt-10">
-									<li><a href="#">홈</a></li>
-									<li><a href="#">마이페이지</a></li>
-									<li class="active text-gray-silver">구매내역 조회</li>
-								</ol>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+<div id="wrapper" class="clearfix">
+    <!-- Start main-content -->
+    <div class="main-content">
+        <!-- Section: inner-header -->
+        <section
+                class="inner-header divider parallax layer-overlay overlay-dark-5"
+                data-bg-img="http://placehold.it/1920x1280">
+            <div class="container pt-70 pb-20">
+                <!-- Section Content -->
+                <div class="section-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="title text-white">마이 페이지</h2>
+                            <ol class="breadcrumb text-left text-black mt-10">
+                                <li><a href="#">홈</a></li>
+                                <li><a href="#">마이페이지</a></li>
+                                <li class="active text-gray-silver">구매내역 조회</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 			<!-- Section: Doctor Details -->
 			<section class="">
