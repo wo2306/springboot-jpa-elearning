@@ -110,16 +110,7 @@
 
  <br/>
 
-## **6. Class Diagram**
-![image](https://user-images.githubusercontent.com/49690751/73121246-9c2f4800-3fbb-11ea-93dc-d2d8c276e591.png)
-![image](https://user-images.githubusercontent.com/49690751/73121247-9cc7de80-3fbb-11ea-90a6-722e0d76dd6d.png)
-![image](https://user-images.githubusercontent.com/49690751/73121249-9df90b80-3fbb-11ea-8e40-0d2ed8566715.png)
-![image](https://user-images.githubusercontent.com/49690751/73121250-9e91a200-3fbb-11ea-9d0a-e64ba55f8699.png)
-
-
- <br/>
-
-## **7. Database Modeling** #
+## **6. Database Modeling** #
 
 > 테이블 설계(ERD) [클릭시 큰 이미지를 확인할 수 있습니다.](https://www.erdcloud.com/d/FhWjnizXNrH6bbjrf)
 
@@ -129,7 +120,7 @@
   <br/>
  <br/>
 
-## **8. 주요 기능 설명**
+## **7. 주요 기능 설명**
 
   <br/>
  <br/>
