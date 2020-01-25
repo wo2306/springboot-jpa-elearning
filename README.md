@@ -10,7 +10,7 @@
    <br/>
 
 
-## **1. 프로젝트 개요**   
+## **1. Introduction**   
 
 ### 1)  Problem, Customer segment 
 - 오프라인에서 수업을 들을 시간이 부족한 사람들을 위한 사람들을 위한 e-러닝 시스템
@@ -70,7 +70,7 @@
 
  <br/>
 
-## **2.  프로젝트 추진일정**
+## **2. Project Schedule**
 
 - 전체 일정
 ![image](https://user-images.githubusercontent.com/49690751/73121252-a05b6580-3fbb-11ea-97e7-cf25c7b1125c.png)
@@ -85,13 +85,13 @@
 
  <br/>
 
-## **3. 개발 환경 및 적용 기술**
+## **3. Technical Specification**
 ![image](https://user-images.githubusercontent.com/49690751/73121327-5921a480-3fbc-11ea-9769-4f8205f880c7.png)
 
 
  <br/>
 
-## **4. 린 캔버스**
+## **4. Lean Canvas**
 ![image](https://user-images.githubusercontent.com/49690751/73121244-9afe1b00-3fbb-11ea-9952-b851ca166990.jpg)
 
  <br/>
