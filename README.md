@@ -86,8 +86,7 @@
  <br/>
 
 ## **3. Technical Specification**
-![image](https://user-images.githubusercontent.com/49690751/73121327-5921a480-3fbc-11ea-9769-4f8205f880c7.png)
-
+![image](https://user-images.githubusercontent.com/49690751/73123722-41571a00-3fd6-11ea-99dc-a4225e3a645b.png)
 
  <br/>
 
