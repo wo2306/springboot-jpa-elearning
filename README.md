@@ -1,5 +1,6 @@
 # SpringBoot-JPA 기반 e-learning 사이트 개발 
 
+   <br/>
 
 
 해당 게시글은 [[Notion]](https://www.notion.so/webdevko/Learning-Machine-4081e3b1b4b747779edb749f7d5ebd53)에 정리된 프로젝트 발표 문서를 간략히 정리한 글입니다.
