@@ -191,6 +191,9 @@
    <br/>
 
 ![image](https://user-images.githubusercontent.com/49690751/73121071-5ec9bb00-3fb9-11ea-95cc-ad7bf6e3be21.gif)
+   
+   <br/>
+
 ![image]((https://user-images.githubusercontent.com/49690751/73122004-dfd98000-3fc2-11ea-8f0e-4cd1e6322ea6.gif)
 > 강의 구매 성공시 구매 내역에 해당 강의가 저장되고, 내 강의실에서 구매한 강의들을 수강할 수 있습니다.
 
