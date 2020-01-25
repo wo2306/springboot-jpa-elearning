@@ -100,12 +100,12 @@
 
  <br/>  
 
-### 1. 사용자 측면 유스케이스
+### 1) 사용자 측면 유스케이스
 ![image](https://user-images.githubusercontent.com/49690751/73121254-a5201980-3fbb-11ea-999e-3e35a4a79eee.png)
 
  <br/>
 
-### 2. 관리자 측면 유스케이스
+### 2) 관리자 측면 유스케이스
 ![image](https://user-images.githubusercontent.com/49690751/73121255-a5b8b000-3fbb-11ea-8754-f8ae69c2bb95.png)
 
  <br/>
