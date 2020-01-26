@@ -10,7 +10,7 @@
    <br/>
 
 
-## **1. Introduction**   
+## **Introduction**   
 
 ### 1)  Problem, Customer segment 
 - 오프라인에서 수업을 들을 시간이 부족한 사람들을 위한 사람들을 위한 e-러닝 시스템
@@ -70,7 +70,7 @@
 
  <br/>
 
-## **2. Project Schedule**
+## **Project Schedule**
 
 - 전체 일정
 ![image](https://user-images.githubusercontent.com/49690751/73121252-a05b6580-3fbb-11ea-97e7-cf25c7b1125c.png)
@@ -85,17 +85,17 @@
 
  <br/>
 
-## **3. Technical Specification**
+## **Technical Specification**
 ![image](https://user-images.githubusercontent.com/49690751/73123722-41571a00-3fd6-11ea-99dc-a4225e3a645b.png)
 
  <br/>
 
-## **4. Lean Canvas**
+## **Lean Canvas**
 ![image](https://user-images.githubusercontent.com/49690751/73121244-9afe1b00-3fbb-11ea-9952-b851ca166990.jpg)
 
  <br/>
 
-## **5. Usecase Diagram**
+## **Usecase Diagram**
 
  <br/>  
 
@@ -109,7 +109,7 @@
 
  <br/>
 
-## **6. Database Modeling** #
+## **Database Modeling** #
 
 > 테이블 설계(ERD) [클릭시 큰 이미지를 확인할 수 있습니다.](https://www.erdcloud.com/d/FhWjnizXNrH6bbjrf)
 
@@ -119,7 +119,7 @@
   <br/>
  <br/>
 
-## **7. 주요 기능 설명**
+## **주요 기능 설명**
 
   <br/>
  <br/>
